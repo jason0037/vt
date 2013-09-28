@@ -1,0 +1,70 @@
+<div id="container">
+    <header>
+      <h1>摩登客新品速递</h1>
+      <p><%="#{@tag.tag_ext.issue_no} #{@tag.tag_ext.title}" if @tag&&@tag.tag_ext%></p>
+    </header>
+    <div id="main" role="main">
+
+      <ul id="tiles">
+        <!-- These are our grid blocks -->
+        <%@goods.each do |good|%>
+        <li>
+          <%=link_to "/mobile" + good_path(good.bn) do%>
+            <%=image_tag good.list_cover_for_mobile,:size=>"143x202"%>
+            <div class="meta">
+              <h3><%=good.brand.brand_name%></h3>
+              <p><%=good.name%><span>￥<%=good.price.to_i%></span></p>
+            </div>
+          <%end%>
+        </li>
+        <%end%>
+        <!-- End of grid blocks -->
+      </ul>
+    </div>
+    <footer>
+    </footer>
+</div>
+
+
+<!-- Once the page is loaded, initalize the plug-in. -->
+  <script type="text/javascript">
+    var handler = null;
+    
+    // Prepare layout options.
+    var options = {
+      autoResize: true, // This will auto-update the layout when the browser window is resized.
+      container: $('#main'), // Optional, used for some extra CSS styling
+      offset: 10//, // Optional, the distance between grid items
+      //itemWidth: 143 // Optional, the width of a grid item
+    };
+    
+    /**
+     * When scrolled all the way to the bottom, add more tiles.
+     */
+    function onScroll(event) {
+      // Check if we're within 100 pixels of the bottom edge of the broser window.
+      var closeToBottom = ($(window).scrollTop() + $(window).height() > $(document).height() - 100);
+      if(closeToBottom) {
+        // Get the first then items from the grid, clone them, and add them to the bottom of the grid.
+        var items = $('#tiles li');
+        var firstTen = items.slice(0, 10);
+        $('#tiles').append(firstTen.clone());
+        
+        // Clear our previous layout handler.
+        if(handler) handler.wookmarkClear();
+        
+        // Create a new layout handler.
+        handler = $('#tiles li');
+        handler.wookmark(options);
+      }
+    };
+  
+    $(document).ready(new function() {
+      // Capture scroll event.
+      // $(document).bind('scroll', onScroll);
+      
+      // Call the layout function.
+      handler = $('#tiles li');
+      handler.wookmark(options);
+    });
+  </script>

@@ -1,0 +1,208 @@
+<%=form_for :home,:url=>@action_url,:method=>@method,:html=>{:class=>"form-horizontal"} do |f|%>
+<fieldset id="sliders">
+  <legend>幻灯片</legend>
+
+  <%unless @home.new_record?%>
+      <%@home.sliders.each_with_index do |slider,index|%>
+      <div class="item">
+        <span><%=index+1%>.</span>
+        <%=text_field_tag "home[sliders][][pic_url]",slider["pic_url"],:placeholder=>"图片地址",:class=>"span4"%>
+        <%=text_field_tag "home[sliders][][link_url]",slider["link_url"],:placeholder=>"图片链接",:class=>"span4"%>
+        <%=link_to "&times;".html_safe,"javascript:void(0);",:class=>"delete"%>
+      </div>
+      <%end if @home.sliders%>
+  <%else%>
+      <div class="item">
+        <span>1.</span>
+         <%=text_field_tag "home[sliders][][pic_url]","",:placeholder=>"图片地址",:class=>"span4"%>
+        <%=text_field_tag "home[sliders][][link_url]","",:placeholder=>"图片链接",:class=>"span4"%>
+      </div>
+
+      <div class="item">
+        <span>2.</span>
+         <%=text_field_tag "home[sliders][][pic_url]","",:placeholder=>"图片地址",:class=>"span4"%>
+        <%=text_field_tag "home[sliders][][link_url]","",:placeholder=>"图片链接",:class=>"span4"%>
+      </div>
+
+      <div class="item">
+        <span>3.</span>
+         <%=text_field_tag "home[sliders][][pic_url]","",:placeholder=>"图片地址",:class=>"span4"%>
+        <%=text_field_tag "home[sliders][][link_url]","",:placeholder=>"图片链接",:class=>"span4"%>
+        <%=link_to "&times;".html_safe,"javascript:void(0);",:class=>"delete"%>
+      </div>
+
+  <%end%>
+  <div><%=link_to "+添加","javascript:void(0);",:class=>"add"%></div>
+  <br />
+  <br />
+</fieldset>
+
+
+<fieldset id="keywords">
+    
+  <legend>关键字</legend>
+  <%unless @home.new_record?%>
+  <%@home.keywords.each_with_index do |keyword,index|%>
+        <div class="item">
+          <span class='no'><%=index+1%>.</span>
+          <%=text_field_tag "home[keywords][][word]",keyword["word"],:placeholder=>"关键字"%>
+          <%=text_field_tag "home[keywords][][link_url]",keyword["link_url"],:placeholder=>"关键字链接",:class=>"span4"%>
+          <%=link_to "&times;".html_safe,"javascript:void(0);",:class=>"delete"%>
+          <span class="pos-control">
+              <i class=" icon-arrow-up"></i>
+              <i class=" icon-arrow-down"></i>
+          </span>
+        </div>
+  <%end if @home.keywords%>
+  <%else%>
+  <div class="item">
+    <span class='no'>1.</span>
+    <%=text_field_tag "home[keywords][][word]","",:placeholder=>"关键字"%>
+    <%=text_field_tag "home[keywords][][link_url]","",:placeholder=>"关键字链接",:class=>"span4"%>
+    <%=link_to "&times;".html_safe,"javascript:void(0);",:class=>"delete"%>
+  </div>
+
+  <div class="item">
+    <span class='no'>2.</span>
+    <%=text_field_tag "home[keywords][][word]","",:placeholder=>"关键字"%>
+    <%=text_field_tag "home[keywords][][link_url]","",:placeholder=>"关键字链接",:class=>"span4"%>
+    <%=link_to "&times;".html_safe,"javascript:void(0);",:class=>"delete"%>
+  </div>
+  <%end%>
+  <div><%=link_to "+添加","javascript:void(0);",:class=>"add"%></div>
+  <br />
+  <br />
+</fieldset>
+
+<!-- <fieldset id="pops">
+    
+    <legend>热门商品</legend>
+    <%unless @home.new_record?%>
+    <%@home.pops.each_with_index do |pop,i|%>
+      <div>
+      <span><%=i+1%>.</span>
+      <%=text_field_tag "home[pops][]",pop,:placeholder=>"商品编号"%>
+      </div>
+    <%end if @home.pops%>
+    <%else%>
+    <%5.times do |i|%>
+    <div>
+      <span><%=i+1%>.</span>
+      <%=text_field_tag "home[pops][]","",:placeholder=>"商品编号"%>
+    </div>
+    <%end%>
+    <%end%>
+  <br />
+  <br />
+</fieldset>
+
+
+
+<fieldset id="clothing">
+    
+    <legend>时装</legend>
+    <%unless @home.new_record?%>
+        <%@home.clothing.each_with_index do |clothing,i|%>
+          <div>
+          <span><%=i+1%>.</span>
+          <%=text_field_tag "home[clothing][]",clothing,:placeholder=>"商品编号"%>
+          </div>
+        <%end if @home.clothing%>
+    <%else%>
+      <%3.times do |i|%>
+      <div>
+        <span><%=i+1%>.</span>
+        <%=text_field_tag "home[clothing][]","",:placeholder=>"商品编号"%>
+      </div>
+      <%end%>
+    <%end%>
+  <br />
+  <br />
+</fieldset>
+
+<fieldset id="bags">
+    
+    <legend>包袋&配饰</legend>
+    <%unless @home.new_record? || @home.bags.blank?%>
+        <%@home.bags.each_with_index do |bag,i|%>
+          <div>
+          <span><%=i+1%>.</span>
+          <%=text_field_tag "home[bags][]",bag,:placeholder=>"商品编号"%>
+          </div>
+        <%end if @home.bags%>
+    <%else%>
+        <%3.times do |i|%>
+        <div>
+          <span><%=i+1%>.</span>
+          <%=text_field_tag "home[bags][]","",:placeholder=>"商品编号"%>
+        </div>
+        <%end%>
+    <%end%>
+
+  <br />
+  <br />
+</fieldset> -->
+
+
+<fieldset id="suits">
+  <legend>套装</legend>
+    <%if  !@home.new_record? && @home.suits.size > 0%>
+        <%@home.suits.each_with_index do |suit,i|%>
+          <div class="item">
+          <span><%=i+1%>.</span>
+          <%=text_field_tag "home[suits][][bn]",suit["bn"],:placeholder=>"商品编号"%>
+          <%=text_field_tag "home[suits][][link]",suit["link"],:placeholder=>"链接"%>
+          </div>
+        <%end if @home.suits%>
+    <%else%>
+      <%3.times do |i|%>
+      <div class="item">
+        <span><%=i+1%>.</span>
+        <%=text_field_tag "home[suits][][bn]","",:placeholder=>"商品编号"%>
+        <%=text_field_tag "home[suits][][link]","",:placeholder=>"链接"%>
+      </div>
+      <%end%>
+    <%end%>
+</fieldset>
+
+<fieldset id="hots">
+  <legend>热品推荐</legend>
+    <%if !@home.new_record? && @home.hots.size > 0%>
+        <%@home.hots.each_with_index do |hot,i|%>
+          <div class="item"> 
+          <span><%=i+1%>.</span>
+          <%=text_field_tag "home[hots][]",hot,:placeholder=>"商品编号"%>
+          </div>
+        <%end if @home.hots%>
+    <%else%>
+      <%10.times do |i|%>
+      <div class="item">
+        <span><%=i+1%>.</span>
+        <%=text_field_tag "home[hots][]","",:placeholder=>"商品编号"%>
+      </div>
+      <%end%>
+    <%end%>
+</fieldset>
+
+
+<fieldset id="bags">
+    
+    <legend>其他</legend>
+    <div class="control-group">
+          <%= f.cktext_area :body, :toolbar => 'Easy',:language=>'zh-cn',:height => 300 %>
+        </div>
+</fieldset>
+
+
+
+<%=render :partial=>"admin/shared/metable",:locals=>{ :form=>f, :resource=>@home }%>
+
+<p style="color:#bbb;">提示：调整关键字顺序提交才能生效</p>
+<%=f.submit "提 交",:class=>"btn btn-large btn-primary"%>
+
+
+<%end%>
+<br />
+<br />  
+<br />
+<br />

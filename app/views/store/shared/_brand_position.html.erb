@@ -1,0 +1,23 @@
+<div id="brand_position">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li>
+        <span>当前位置 ：</span>
+      </li>
+      <%if action_name == 'index'%>
+              <li class="active">品牌专区</li>
+      <%end%>
+
+      <%if action_name == 'show'%>
+            <li>
+              <%=link_to "品牌专区", brands_path%>
+              <span class="divider">/</span>
+            </li>
+            <li class="active">
+              <%=@brand.brand_name if @brand%>
+            </li>
+      <%end%>
+    </ul>
+
+  </div>
+</div>

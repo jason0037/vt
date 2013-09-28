@@ -1,0 +1,2 @@
+$("#goods").html('<%= j render("collocation_goods").html_safe%>');
+$(".pagination").html('<%=will_paginate @goods,:container=>false,:params=>{:page=>params[:page]}%>');

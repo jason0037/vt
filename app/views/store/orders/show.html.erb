@@ -1,0 +1,80 @@
+<div class="order-holder">
+<%=form_for :payment,:url=>payments_path(:order_id=>@order.order_id),:html=>{ :target=>"_blank" } do |f|%>
+	<%=f.hidden_field :currency, :value=>"CNY" %>
+	<%if @order.payment == "bcom"%>
+		<%=f.hidden_field :memo, :value=>"持交通银行卡在线支付可享受订单金额95折优惠" %>
+	<%end%>
+
+	<div class="order">
+		<div class="title">订单已经成功提交!</div>
+		<p>订单编号: <span><%=@order.order_id%></span>
+			&nbsp;&nbsp;&nbsp;     
+			支付金额: ￥<span id="final_pay"><%=@order.final_pay%></span>
+			&nbsp;&nbsp;&nbsp; 
+			<span id="products_total" data-amount="<%=@order.products_total%>"></span> 
+			订单状态: <span class="status"><%=@order.order_status_text%></span>
+
+			<span id="pmts_total" class="hide" data-amount="<%=@order.pmts_total%>"></span>
+		</p>
+		<%=link_to "查看订单详细信息>>",detail_order_path(@order),:target=>"_blank"%>
+	</div>
+
+	<div class="payment">
+		<span class="title"><%=payments[@order.payment][:name]%></span>
+		<%if @order.status == 'active' && @order.pay_status == '0'%>
+		<a href="#" class="change" id="change_payment">更改支付方式>> </a>
+		<%end%>
+		<div><%=payments[@order.payment][:extra].html_safe%></div>
+	</div>
+
+	<div class="payments hide" id="payment_choices">
+			<h5>已选择的支付方式现修改为：</h5>
+
+
+			<%if @order.part_pay?%>
+		 	<label class="checkbox">
+				<%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@order.part_pay.to_i,:id=>"advance" }, @order.part_pay.to_i, 0%> <b>预付款先支付</b>
+				余额(<span>￥<%=@order.part_pay.to_i%></span>)
+			</label>
+			<%end%>
+
+			<label class="radio">
+				<%=f.radio_button :pay_app_id, "bcom", { :checked=>(@order.payment == 'bcom'),:id=>"bcom_payment",:'data-amount'=>(@order.total_amount*0.05).round }%> <b>交通银行网上支付</b>
+				<span class="extra-desc">持交通银行卡在线支付可享受订单金额95折优惠</span>
+			</label>
+		 	<label class="radio">
+				<%=f.radio_button :pay_app_id, "icbc", { :checked=>(@order.payment == 'icbc') }%> <b>工商银行网上支付</b>
+				<span class="extra-desc">
+					<input id="installment_on"  type="checkbox" value="1">
+					申请分期付款 (<span class="highlight">申请信用卡分期付款，超低手续费，月还款无压力！</span>) 
+				</span>
+				<span id="installment_select" class="hide">
+					请选择适合您的期数:
+				<%=f.select :installment,[3,6,9,12,18,24],{:include_blank=>"请选择"}%>期
+				</span>
+			</label>
+			<%if @user.advance >= @order.final_amount%>
+		 	<label class="radio">
+				<%=f.radio_button :pay_app_id, "deposit", { :checked=>(@order.payment == 'deposit') } %> <b>预存款</b>
+			</label>
+			<%end%>
+
+		 	<label class="radio">
+				<%=f.radio_button :pay_app_id, "offline", { :checked=>(@order.payment == 'offline') }%> <b>货到付款</b>
+				<span class="extra-desc"><%=link_to "点击查询货到付款配送区域","http://www.zjs.com.cn/WS_Business/WS_Bussiness_CityArea.aspx?id=6",:target=>"_blank"%></span>
+			</label>
+		 	<label class="radio">
+				<%=f.radio_button :pay_app_id, "99bill", { :checked=>(@order.payment == '99bill') }%> <b>其他银行网上支付</b>
+			</label>
+		 	<label class="radio">
+				<%=f.radio_button :pay_app_id, "alipay", { :checked=>(@order.payment == 'alipay') }%> <b>支付宝</b>
+			</label>
+	</div>
+
+	<div class="actions">
+		<div>支付成功后，可以在<%=link_to "订单详情",detail_order_path(@order),:target=>"_blank"%>处查看订单和追踪订单状态</div>
+		<br>
+		<%=f.submit "安全支付",:class=>"btn  btn-inverse" if @order.pay_status == '0' && @order.status == 'active' && @order.payment != 'offline'%>
+	</div>
+<%end%>
+</div>

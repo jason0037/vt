@@ -1,0 +1,88 @@
+<%= form_for :spec,:url=>@action_url, method: @method,:html => {:class => "form-horizontal"} do |f| %>
+  <%f.object = @spec %>
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :spec_name, "规格名称*", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :spec_name%>
+          <span class="help-inline error"><%=@spec.errors[:spec_name].join(",")%> </span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :spec_memo, "规格备注 ", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :spec_memo%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :alias, "规格别名 ", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :alias%>
+      </div>
+    </div>
+
+   <!--  <div class="control-group">
+      <%= f.label :spec_type, "显示类型 ", :class => "control-label" %>
+      <div class="controls">
+          <label class="radio inline"><%=f.radio_button :spec_type, 'text'%>文字</label>
+           <label class="radio inline"><%=f.radio_button :spec_type, 'image'%>图片</label>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :spec_show_type, "显示方式 ", :class => "control-label" %>
+      <div class="controls">
+           <label class="radio inline"><%=f.radio_button :spec_show_type, 'flat'%>平铺</label>
+           <label class="radio inline"><%=f.radio_button :spec_show_type, 'select'%>下拉</label>
+      </div>
+    </div> -->
+
+
+    <div class="control-group">
+        <label class="control-label">规格值</label>
+        <div class="controls">
+            <ul class="value-list" id="value_list">
+              <li>
+                <span class="name">规格值名称</span>
+                <span class="alias">规格值别名</span>
+                <span class="actions">操作</span>
+              </li>
+              
+              <%@spec.spec_values.order("p_order asc, spec_value_id asc").each do |spec_value|%>
+                    <%=f.fields_for :spec_values, spec_value do |item|%>
+                        <li>
+                             <span class="name">
+                                <%=item.text_field :spec_value,:class=>"span2"%>
+                             </span>
+                             <span class="alias"><%=item.text_field :alias,:class=>"span2"%></span>
+                             <span class="actions">
+                                <%=item.hidden_field :p_order%>
+                                <%=item.hidden_field :spec_value_id%>
+                                <%=item.hidden_field :_destroy,:class=>"_destroy"%>
+                                <a href="#" class="delete">&times;</a>
+                             </span>
+                        </li>
+                   <%end%>
+              <%end%>
+
+            </ul>
+
+            <div><%=link_to "+添加规格值","#",:id=>"add_value"%></div>
+        </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>
+        <%= link_to '返回', admin_specifications_path,:class=>"btn" %>
+      </div>
+    </div>
+    
+
+    
+
+
+  </fieldset>
+<% end %>

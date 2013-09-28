@@ -1,0 +1,9 @@
+
+<ul class="list-tags" data-spy="affix" data-offset-top="600">
+	<div class="tags-header" >往期新品</div>
+	<%@tags.each do |tag|%>
+		<%=content_tag :li do %>
+			<%=link_to tag.tag_ext.issue_no,goods_path(:tag=>tag.tag_name),:class=>"#{:active if tag.tag_name == params[:tag] }"%>
+		<%end if tag.tag_ext%>
+	<%end%>
+</ul>

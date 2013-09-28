@@ -1,0 +1,32 @@
+<div class="tree-menu" id="cats_tree">
+	<% 
+		conditions = {}
+		conditions = { :brand_id=> @brand.brand_id  } if @brand 
+	%>
+	<%@top_cats.each_with_index do |top_cat,index|%>
+		<%if top_cat.all_goods(conditions).size>0%>
+		<div class="title-level1">
+			<%=link_to top_cat.cat_name, brand_path(:cat_id=>top_cat.cat_id)%>
+		</div>
+		<ul class="items-level1 ">
+			<%top_cat.categories.order("p_order asc").each do |scat|%>
+				<%if scat.all_goods(conditions).size > 0%>
+					<li class="item-level1">
+						<div class="title-level2"><%=link_to scat.cat_name,brand_path(:cat_id=>scat.cat_id)%></div>
+						<%if scat.categories.present?%>
+							<ul class="items-level2">
+							<%scat.categories.each do |tcat|%>
+								<%if tcat.all_goods(conditions).size>0%>
+								<li class="item-level2"><%=link_to tcat.cat_name,brand_path(:cat_id=>tcat.cat_id)%></li>
+								<%end%>
+							<%end%>
+							</ul>
+						<%end%>
+					</li>
+				<%end%>
+			<%end%>
+		</ul>
+		<%end%>
+	<%end%>
+
+</div>

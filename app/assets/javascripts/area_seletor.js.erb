@@ -1,0 +1,60 @@
+<%#encoding:utf-8%>
+var _cities = <%=Ecstore::Region.hash_cities.to_json%>;
+var _districts = <%=Ecstore::Region.hash_districts.to_json%>;
+
+
+function selectProvince(sel,citySelector,districtSelector){
+	var province = $(sel).val();
+	
+
+	// $(citySelector).empty().append(new Option("请选择市",''));
+	// $(districtSelector).empty().append(new Option("请选择区/县",''));
+
+	$(citySelector).empty().append('<option>请选择市</option>');
+	$(districtSelector).empty().append('<option>请选择区/县</option>');
+
+
+
+	$(districtSelector).css({ display: 'inline' });
+	for (var e in _cities[province]){
+		var city = _cities[province][e];
+		$(citySelector).append('<option value="'+city.region_id+'">'+city.local_name+'</option>');
+	}
+}
+
+function selectCity(sel,districtSelector){
+	var city = $(sel).val();
+	
+	// $(districtSelector).empty().append(new Option("请选择区/县",''));
+
+	$(districtSelector).empty().append('<option>请选择区/县</option>');
+
+	if( _districts[city].length == 0 ){
+		$(districtSelector).css({ display: 'none' });
+	}else{
+		$(districtSelector).css({ display: 'inline' });
+	}
+	for (var e in _districts[city]){
+		var district = _districts[city][e];
+		// $(districtSelector).append(new Option(district.local_name,district.region_id));
+		$(districtSelector).append('<option value="'+district.region_id+'">'+district.local_name+'</option>');
+
+	}
+	pendAddr()
+}
+
+function selectDistrict(sel){
+	pendAddr()
+}
+
+function pendAddr(){
+	var p = $("#province option:selected").text();
+	var c = $("#city option:selected").text();
+	var dv = $("#district").val();
+	var d = '';
+	if(dv.length>0)
+	   d = $("#district option:selected").text();
+	
+	$("#addr").val(p+c+d);
+}
+

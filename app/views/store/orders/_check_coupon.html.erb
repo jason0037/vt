@@ -1,0 +1,32 @@
+
+<table class="table table-bordered table-striped">
+	<tr>
+		<td>优惠券号码</td>
+		<td>优惠券</td>
+		<td>是否适用</td>
+		<td>优惠金额</td>
+		<td>删除</td>
+	</tr>
+
+	<%@coupons.each_with_index  do |coupon,index|%>
+		<tr class="coupon-item">
+			<td>
+				<%=coupon.current_code%>
+				<%=hidden_field_tag "coupon[codes][]", coupon.current_code if @useable[coupon.current_code]%>
+				<%=hidden_field_tag "codes[]", coupon.current_code unless @useable[coupon.current_code]%>
+			</td>
+			<td><%=coupon.name%></td>
+			<td>
+				<%if @useable[coupon.current_code]%>
+					<span class="yes">是</span>
+				<%else%>
+					<span class="no">否</span>
+				<%end%>
+			</td>
+			<td>
+				<span style="color:red;">￥<%=@useable[coupon.current_code] ? coupon.pmt_amount(@line_items) : 0%></span>
+			</td>
+			<td><%=link_to "&times;".html_safe,check_coupon_orders_path,:class=>"close"%></td>
+		</tr>
+	<%end%>
+</table>

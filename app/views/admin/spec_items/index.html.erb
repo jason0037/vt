@@ -1,0 +1,23 @@
+<%=render "admin/spec_items/header"%>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>字段名</th>
+			<th>字段类型</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@spec_items.each do |spec_item|%>
+		<tr>
+			<td><%=spec_item.name%></td>
+			<td><%=item_types.invert[spec_item.item_type]%></td>
+			<td>
+				<%=link_to "编辑",edit_admin_spec_item_path(spec_item)%>
+				<%=link_to "删除",admin_spec_item_path(spec_item),:method=>:delete,:confirm=>"删除此规格选项将会删除关联商品的可选规格,确定删除吗？"%>
+			</td>
+		</tr>
+		<%end%>
+	</tbody>
+</table>
+<%=link_to "新建",new_admin_spec_item_path%>

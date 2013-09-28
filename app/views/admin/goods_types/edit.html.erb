@@ -1,0 +1,25 @@
+<%= form_for @goodtype,:url => updateType_admin_goods_type_path(@goodtype), :html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+
+    <div class="control-group">
+      <%= f.label :name, "类型名称", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :name%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :spec, "规格", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :spec,options_from_collection_for_select(Ecstore::Spec.all,:spec_id,:memo_name,@spec_ids),{:include_blank=>"请选择"},{:multiple => true, :size => 8} %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '返回', admin_goods_types_path %>
+      </div>
+    </div>
+
+  </fieldset>
+<% end %>

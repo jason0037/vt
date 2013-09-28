@@ -1,0 +1,113 @@
+ /*
+*=require jquery.ui.datepicker
+*=require jquery.ui.slider
+*/
+
+
+.cards{
+	.scope{
+		padding-bottom: 10px;
+		border-bottom: solid 1px #eee;
+		margin-bottom: 15px;
+	}
+
+	#import_log_list{
+		list-style: none;
+		padding: 8px 35px 5px 14px;
+		margin-bottom: 20px;
+		color: #C09853;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+		background-color: #FCF8E3;
+		border: 1px solid #FBEED5;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		margin-left: 0px;
+		ul{
+			list-style: none;
+			margin: 0px;
+		}
+	}
+
+	.actions{
+		margin-bottom: 15px;
+	}
+	.inline{
+		display: inline;
+	}
+
+	.edit-block{
+		background: #eee;
+		.basic,
+		.status,
+		.buyer,
+		.user,
+		.logs{
+			/*height: 80px;*/
+			border:solid 1px #ccc;
+			background: #fff;
+			margin-bottom: 5px;
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			border-radius: 4px;
+
+			h5{
+				padding-left: 10px;
+			}
+			ul{
+				/*float: left;*/
+				display: inline-block;
+				width:910px;
+				margin: 0px;
+				padding:0px 0px 10px 10px;
+				list-style: none;
+				li{
+					list-style: none;
+					display: inline-block;
+					width: 300px;
+					margin-bottom: 5px;
+				}
+
+			}
+
+		}
+		form{
+			margin-bottom: 0px;
+		}
+		select{
+			margin-bottom: 0px;
+		}
+	}
+
+	.sent{
+		color: #08C;
+	}
+
+
+	.tag{
+		display: inline-block;
+		padding: 1px 4px;
+		background-color:#468847;;
+		margin-bottom: 2px;
+		color:#fff;
+		border-radius: 3px;
+		.delete{
+			color: blue;
+			cursor: pointer;
+			font-weight: normal;
+			padding: 0px 3px;
+		}
+	}
+}
+#main .control-label{
+	width: 160px;
+}
+#main .controls{
+	margin-left: 180px;
+}
+
+.plain-text{
+	float: left;
+	padding-top: 5px;
+	margin-right: 10px;
+}

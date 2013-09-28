@@ -1,0 +1,69 @@
+<div class="cards">
+	<div class="form-block">
+		<h4>VIP卡激活确认 </h4>
+
+		<p>请验证您的手机号码</p>
+
+		<%=form_for :card, :url=>confirm_activation_card_path do |f|%>
+			<%=f.hidden_field :no,:value=>@card.no%>
+			<div class="field">
+				<label class="field-label">VIP卡号 : </label>
+				<span class="field-plain"><%=@card.no%></span>
+			</div>
+
+			<%if @card.card_type == "A"%>
+			<div class="field">
+				<label class="field-label ">手机号码 : </label>
+				<span class="field-plain">
+					<%=mask(@card.member_card.user_tel.dup) if @card.member_card%>
+				</span>
+				<span class="sms">
+					<%=hidden_field_tag :tel,@card.member_card.user_tel,:class=>"sms_tel"%>
+					<%=link_to "发送验证码","javascript:void(0)",:"data-url"=>send_sms_code_card_path,:class=>"btn",:id=>"send_sms_code"%>
+					<span class="tip sms_tip"></span>
+					
+				</span>
+			</div>
+			<div class="field">
+				<label class="field-label ">激活码 : </label>
+				<%=text_field_tag :sms_code,"",:class=>"field-input"%>
+				<span class="error"><%=@card.errors.messages[:sms_code].join(",") if @card.errors.messages[:sms_code]%></span>
+				<div class="green-tip">
+						提示：验证码有效期为30分钟，发送后请注意查收。
+				</div>
+			</div>
+
+			<%end%>
+
+			<%if @card.card_type == "B"%>
+			<div class="field">
+				<label class="field-label ">密码 : </label>
+				<%=f.password_field :password,:value=>nil,:class=>"field-input"%>
+				<span class="error"><%=@card.errors.messages[:password].join(",") if @card.errors.messages[:password]%></span>
+			</div>
+			<%end%>
+
+			<div class="field">
+				<%=f.submit "确认提交",:class=>"btn submit"%>
+			</div>
+
+		<%end%>
+
+	</div>
+	<div class="tips-block">
+		<p>小贴士</p>
+		<ul>
+			<li>
+				<strong>什么是验证码？去哪里查我的验证码？</strong>
+				<div>答：为了确保您的VIP卡安全，需要在确认激活前正确输入验证码，验证码为系统随机生成，会自动发送至左侧显示的手机号码中，请注意查收。</div>
+			</li>
+			<li>
+				<strong>我没有收到验证码怎么办？</strong>
+				<div>答：您可以点击按钮“重发验证码”来重新接收。每条验证码都会在30分钟后失效哦！</div>
+			</li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<div class="other-tip "> <span class="required">*</span> 小贴士 :  如果在激活过程中有什么疑问，请致电寻求帮助。客服电话 : 021-60919835 。</div>
+	
+</div>

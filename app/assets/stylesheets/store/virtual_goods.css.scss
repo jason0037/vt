@@ -1,0 +1,307 @@
+//= require jquery.jqzoom
+.virtual_goods{
+	.vgood{
+		position: relative;
+		margin-top: 40px;
+		margin-bottom: 40px;
+		.covers{
+			float: left;
+			position: relative;
+			padding: 2px;
+			border:solid 1px #ccc;
+			
+
+			img{
+				border: none;
+				width: 420px;
+				height: 592px;
+			}
+			.carousel{
+				margin-bottom: 0px;
+				width: 420px;
+				height: 592px;
+			}
+
+			.carousel-next,
+			.carousel-prev{
+				position: absolute;
+				top:50%;
+				display: block;
+				width: 33px;
+				height: 64px;
+				text-indent: -9999px;
+				cursor: pointer;
+				background: url('paddles.png') no-repeat;
+			}
+			.carousel-prev{
+				background-position: 0px 0px;
+				left: -43px;
+			}
+			.carousel-next{
+				background-position: 0px -74px;
+				right: -43px;
+			}
+
+		}
+		.detail{
+			float: right;
+			width: 450px;
+			.brand{
+				text-align: center;
+			}
+			.name{
+				font-size: 20px;
+				margin: 10px 0px;
+				text-align: center;
+			}
+			.price{
+				text-align: center;
+			}
+
+			.desc-block{
+				margin-top: 20px;
+				padding: 8px 10px;
+				background-color: #eee;
+				border:solid 1px #ccc;
+				font-size: 13px;
+				.info{
+					.info-tl{
+						float: left;
+					}
+					.info-bd{
+						float: left;
+						margin-left: 3px;
+					}
+				}
+				.coupon{
+					margin-top: 15px;
+					.cp-name{
+						color:#d30000;
+						font-size: 14px;
+					}
+					.cp-title{
+						font-size: 15px;
+						font-weight: bold;
+					}
+					a{
+						color:#d30000;
+						font-size: 13px;
+						margin-top: 4px;
+					}
+				}
+			}
+
+			.download{
+				text-align: center;
+				margin-top: 40px;
+				.stat{
+					margin-top: 5px;
+					color:#888;
+					font-size:13px;
+					.times{
+						color:red;
+						font-weight: bold;
+					}
+				}
+			}
+
+			.instruction{
+				font-size:13px;
+				margin-top: 50px;
+				.title{
+					font-size: 14px;
+				}
+				ul{
+					margin-top:10px;
+					font-size: 13px;
+					color:#666;
+					li{
+						font-size: 13px;
+					}
+				}
+			}
+		}
+	}
+	.breadcrumb {
+		font-size: 13px;
+		padding: 0px;
+		margin: 0px;
+		margin-bottom: 5px;
+		list-style: none;
+		background-color: white;
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+		border-radius: 0px;
+		a{
+			color:#555;
+		}
+	}
+	
+
+	#rules_and_addrs{
+		margin-top: 20px;
+		color: #777;
+		h3.title{
+			cursor: pointer;
+			border-bottom: 1px solid #BBB;
+			margin: 0;
+			text-align: left;
+			font-size: 16px;
+			font-weight: normal;
+			color: #666;
+			height: 36px;
+			line-height: 36px;
+
+		}
+		 h3.title span.expand{
+		  text-align: right;
+		  float: right;
+		  padding-right: 10px;
+		  color: #777;
+		  width: 20px;
+		  height: 36px;
+		  text-align: center;
+		  background: url('expander.png') 3px 12px no-repeat;
+		}
+
+		h3.title.opened span.expand{
+		  background: url('expander.png') 3px -16px no-repeat;
+		}
+		h3.ui-accordion-header-active span.expand{
+		  background: url('expander.png') 3px -16px no-repeat;
+		}
+		.holder{
+			font-size: 13px;
+			padding-top: 5px;
+		}
+		.show-map{
+			margin-left: 50px;
+			color: #D30000;
+		}
+		.more-addrs{
+			// color: #D30000;
+			color:#222;
+			font-size: 13px;
+			margin-top: -20px;
+		}
+		
+	}
+
+}
+
+#download{
+	h4{
+		text-align: center;
+		font-weight: normal;
+	}
+	.modal-body{
+		padding: 15px 35px;
+	}
+	#send,
+	#result{
+		min-height: 300px;
+	}
+	#result{
+		text-align: center;
+	}
+	.sms{
+		padding: 5px 10px;
+		background-color: #eee;
+		border:solid 1px #ccc;
+		font-size: 13px;
+	}
+	.sms-form{
+		height: 200px;
+		margin-top: 30px;
+
+		.form-horizontal{
+		 	.control-label{
+		 		text-align: left;
+		 		width: 70px;
+		 	}
+		 	.controls{
+				margin-left: 10px;
+		 	}
+		}
+
+		.sending{
+			color:green;
+			font-size: 13px;
+		}
+	}
+}
+#map{
+	.modal-header{
+		padding: 0px 5px;
+		border:none;
+	}
+	.modal-body{
+		padding-top: 0px;
+	}
+	#locate{
+		width: 100%;
+		height: 400px;
+	}
+
+}
+.error{
+	color:red;
+	font-size: 13px;
+}
+.tip{
+	font-size: 13px;
+	color:green;
+}
+
+#newin_vgoods{
+  &>h3{
+    font-weight: normal;
+    border-bottom: solid 1px #222;
+    padding: 10px 0px;
+  }
+  ul{
+    margin-top: 20px;
+    margin-left: -62px;
+    li{
+      float: left;
+      margin-left: 63px;
+      text-align: center;
+      width: 190px;
+      list-style: none;
+      .vgood-img{
+        width: 190px;
+        height: 272px;
+        max-width: none;
+      }
+      .name{
+        margin-top: 3px;
+        a{
+          color:#000;
+        }
+      }
+      .view{
+        a{
+        	color:#d30000;
+        }
+      }
+    }
+  }
+}
+
+// ==== jqzoom css 
+.zoomPreload{
+	width: auto;
+}
+
+#products {
+	display: block;
+	position: relative;
+	.zoomWindow {
+		height: auto;
+		left: 500px;
+		top: 0px;
+	}
+}
+img{
+	max-width: none;
+}

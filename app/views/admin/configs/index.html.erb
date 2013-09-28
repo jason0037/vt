@@ -1,0 +1,21 @@
+<div class="actions">
+<%= link_to '新建配置', new_admin_config_path, :class => "pull-right btn btn-primary" %>
+</div>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>配置名称</th>
+    <th>配置key</th>
+    <th width="50%">配置value</th>
+    <th>操作</th>
+  </tr>
+
+<% @configs.each do |config| %>
+  <tr>
+    <td><%=config.name%></td>
+    <td><%=config.key%></td>
+    <td><%=config.value%></td>
+    <td><%=link_to "修改",edit_admin_config_path(config)%></td>
+  </tr>
+<% end %>
+</table>

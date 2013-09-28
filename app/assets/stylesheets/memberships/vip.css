@@ -1,0 +1,73 @@
+body {
+  height: auto;
+  background-color: #fff;
+}
+#main{
+  margin-top: 5px;
+}
+#header {
+  position: relative;
+}
+#header #imodec_logo {
+  top: 0;
+  position: relative;
+}
+#header #imodec_slogan {
+  position: relative; 
+  top: 0;
+  left: 0;
+}
+#nav_menu {
+  width: 950px;
+  top: auto;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+}
+#nav_menu #search {
+  position: relative;
+  left: auto;
+  top: auto;
+}
+#position {
+  margin-top: 14px;
+}
+#footer {
+  position: relative;
+  bottom: auto;
+}
+#footer .wrapper {
+  width: 950px;
+}
+#footer .copyright {
+  width: 950px;
+}
+#footer .foot_qrcode {
+  left: 300px;
+}
+.VIPtd {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: left;
+    vertical-align: top;
+    text-indent: 12px;
+    background-color: white;
+    padding-right: 10px;
+    font-family: "微软雅黑";
+}
+.VIPtdc {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+  vertical-align: top;
+  text-indent: 12px;
+  color: #A87E30;
+  background-color: #F0F0F0;
+  padding-right: 10px;
+  font-family: "微软雅黑";
+}
+.goldtext {
+  color: #A87E30;
+  font-size: 16px;
+  line-height: 26px;
+}

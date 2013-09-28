@@ -1,0 +1,183 @@
+<div id="delivery">
+   <h4>退货 : <%=@order.order_id%></h4>
+   <hr>
+
+    <%=form_for :reship, :url=>doreship_admin_order_path(@order,:return_url=>@return_url), :html=>{ :class=>"form-horizontal" } do |f|%>
+      <%=f.hidden_field :order_id,:value=>@order.order_id%>
+      <%=f.hidden_field :member_id,:value=>@order.member_id%>
+      <%=f.hidden_field :op_name,:value=>current_admin.login_name%>
+      <%=f.hidden_field :delivery,:value=>1%>
+
+      <div class="control-group">
+        <label class="control-label">订单号:</label>
+        <div class="controls">
+         	<span class="readonly-field"><%=@order.order_id%> (<%=@order.ship_status_text%>)</span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">会员:</label>
+        <div class="controls">
+         	<span class="readonly-field"><%=@order.user.login_name if @order.user%></span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">下单时间:</label>
+        <div class="controls">
+          <span class="readonly-field"><%=@order.created_at%></span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">物流公司:</label>
+        <div class="controls">
+         	<%=f.select :logi_id,Ecstore::Dlycorp.order("ordernum asc").all.collect{|c| [c.name,c.corp_id]},{:include_blank=>"请选择"},{:class=>"span2"}%>
+            <%=f.hidden_field :logi_name%>
+            <span class="help-inline error"><%=@reship.errors[:logi_id].join(",")%></span>
+        </div>
+      </div>
+
+       <div class="control-group">
+        <label class="control-label">物流单号:</label>
+        <div class="controls">
+          <%=f.text_field :logi_no%>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label">物流费用:</label>
+        <div class="controls">
+         	<%=f.number_field :money,:value=>0,:class=>"input-small"%>
+        </div>
+      </div>
+
+       <div class="control-group">
+        <label class="control-label">物流保价:</label>
+        <div class="controls">
+          <label class="radio inline"><%=f.radio_button :is_protect,'true',:checked=>true%>是</label>
+          <label class="radio inline"><%=f.radio_button :is_protect,'false'%>否</label>
+          
+        </div>
+      </div>
+
+      <div class="control-group">
+          <%=f.label :ship_area, "退货地区:".html_safe,:class=>"control-label"%>
+          <div class="controls area">
+
+            <%=f.select :province,options_from_collection_for_select(Ecstore::Region.provinces,:region_id,:local_name,@order.province),{:include_blank=>"请选择省" },{ :onchange=>"selectProvince(this,'#city','#district');",:id=>"province",:class=>"span2" }%>
+            
+            <%if @order&&@order.city%>
+                <%=f.select :city,options_from_collection_for_select(Ecstore::Region.cities_of(@order.province),:region_id,:local_name,@order.city),{:include_blank=>"请选择市"},{ :onchange=>"selectCity(this,'#district');",:id=>"city",:class=>"span2" }%>
+            <%else%>
+                    <%=f.select :city, {}, { :include_blank=>"请选择市" }, { :onchange=>"selectCity(this,'#district');",:id=>"city",:class=>"span2" }%>
+            <%end%>
+
+            <%if @order&&@order.district%>
+              <%=f.select :district,options_from_collection_for_select(Ecstore::Region.districts_of(@order.city),:region_id,:local_name,@order.district),{:include_blank=>"请选择区/县"},{ :onchange=>"selectDistrict(this);",:id=>"district" }%>
+            <%else%>
+              <%=f.select :district, {}, { :include_blank=>"请选择区/县" }, { :onchange=>"selectDistrict(this);",:id=>"district" }%>
+            <%end%>
+
+             <span class="help-inline error"><%=@reship.errors[:ship_area].join(",")%></span>
+          </div>
+      </div>
+
+      <div class="control-group ">
+          <%=f.label :ship_addr, "退货地址:".html_safe,:class=>"control-label"%>
+          <div class="controls addr">
+            <%=f.text_field :ship_addr,:class=>"span5",:id=>"addr"%>
+            <span class="help-inline error"><%=@reship.errors[:ship_addr].join(",")%></span>
+          </div>
+      </div>
+      
+      <div class="control-group ">
+          <%=f.label :ship_zip, "邮编:",:class=>"control-label"%>
+          <div class="controls zip">
+            <%=f.text_field :ship_zip,:class=>"input-small"%>
+          </div>
+      </div>
+
+      <div class="control-group ">
+          <%=f.label :ship_name, "退货人:".html_safe,:class=>"control-label"%>
+          <div class="controls name">
+            <%=f.text_field :ship_name,:class=>"input-small"%>
+            <span class="help-inline error"><%=@reship.errors[:ship_name].join(",")%></span>
+          </div>
+
+      </div>
+
+      <div class="control-group ">
+          <%=f.label :ship_mobile, "手机:".html_safe,:class=>"control-label"%>
+          <div class="controls mobile">
+            <%=f.text_field :ship_mobile,:class=>"span2",:maxlength=>11%>
+            <span class="help-inline error"><%=@reship.errors[:ship_mobile].join(",")%></span>
+          </div>
+      </div>
+      <div class="control-group ">
+          <%=f.label :ship_tel, "固定电话:",:class=>"control-label"%>
+          <div class="controls tel">
+            <%=f.text_field :ship_tel,:class=>"span2"%>
+          </div>
+      </div>
+
+
+      <div class="control-group">
+        <label class="control-label">退货备注:</label>
+        <div class="controls">
+          <%=f.text_area :memo,:class=>"span4",:rows=>2%>
+        </div>
+      </div>  
+      
+
+      <div class="delivery-items">
+            <table class="table table-bordered">
+              <tr>
+                <th>货号</th>
+                <th>商品名称</th>
+                <th>当前库存</th>
+                <th>购买数量</th>
+                <th>已发货数量</th>
+                <th>此单退货数量</th>
+              </tr>
+            
+            <%@order.order_items.each do |order_item|%>
+
+                <tr>
+                    <td><%=order_item.bn%></td>
+                    <td><%=order_item.name%></td>
+                    <td><%=order_item.product.store%></td>
+                    <td><%=order_item.nums%></td>
+                    <td><%=order_item.sendnum%></td>
+                    <td>
+                        <%if order_item.sendnum > order_item.reship_nums%>
+
+                            <%=f.fields_for "reship_items[]", @reship.reship_items do |items|%>
+                              <%=items.hidden_field "order_item_id",:value=>order_item.item_id%>
+                              <%=items.hidden_field :item_type,:value=>order_item.item_type == "product" ? "goods" : order_item.item_type%>
+                              <%=items.hidden_field :product_id,:value=>order_item.product_id%>
+                              <%=items.hidden_field :product_bn,:value=>order_item.bn%>
+                              <%=items.hidden_field :product_name,:value=>order_item.name%>
+                              <%=items.text_field :number,:value=>order_item.sendnum,:class=>"input-mini"%>
+                            <%end%>
+                         <%else%>
+                            已经退货
+                         <%end%>
+                    </td>
+                </tr>
+            <%end%>
+            
+            </table>
+      </div>
+
+
+
+       <div class="control-group">
+        <label class="control-label"></label>
+        <div class="controls">
+         	<%=f.submit "提交",:class=>"btn btn-primary" if !['0','4'].include?(@order.ship_status) %>
+            <%=link_to "取消","#{@return_url}",:class=>"btn"%>
+        </div>
+      </div>
+    <%end%>
+</div>

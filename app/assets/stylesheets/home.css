@@ -1,0 +1,549 @@
+@font-face{
+	font-family:"ModernNAP-Display";
+	font-style:normal;
+	font-weight:normal;
+	src:url("/assets/fonts/modernnap-display.eot");
+	src:url("/assets/fonts/modernnap-display.eot?#iefix") format("embedded-opentype"),url("/assets/fonts/modernnap-display.woff") format("woff"),url("/assets/fonts/modernnap-display.ttf") format("truetype"),url("/assets/fonts/modernnap-display.svg#ModernNAP-Display") format("svg")
+}
+#main{
+	margin-top: 20px;
+}
+
+.big-cover{
+	background: #000;
+}
+#pic_player{
+	background: #000;
+	margin: 0px auto;
+	/*margin-top: 32px;*/
+	/*width: 950px;*/
+}
+img{
+	max-width: none;
+}
+
+.carousel {
+  margin-bottom: 15px;
+  /*padding-bottom: 20px;*/
+}
+.carousel-inner .item{
+	text-align: center;
+}
+.carousel-inner .item a{
+	display: inline;
+}
+.carousel-inner .item img{
+	margin:0px auto;
+	display: inline-block;
+	/*width: auto;*/
+	width:100%;
+	/*height: 100%*/
+}
+
+.carousel-indicators-holder{
+	position: absolute;
+	bottom: 0px;
+	height: 32px;
+	display: block;
+	width: 100%;
+	background-color: rgba(0,0,0,0.5);
+
+}
+.carousel-indicators {
+  position: absolute;
+  display: inline;
+  z-index: 5;
+  margin: 0;
+  list-style: none;
+  left:50%;
+  line-height: 32px;
+  margin-top: 11px;
+}
+
+.carousel-indicators li {
+  /*display: block;*/
+  display: inline;
+  margin-left: 5px;
+  float: left;
+  width: 10px;
+  height: 10px;
+  text-indent: -999px;
+  background-color: #555;
+  /*background-color: rgba(255, 255, 255, 0.25);*/
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.carousel-indicators .active {
+  
+  background-color: #ccc;
+}
+
+.carousel-prev,
+.carousel-next {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: -35px;
+  width: 17px;
+  height: 28px;
+  overflow: hidden;
+  margin-top: -20px;
+  font-size: 70px;
+  font-weight: 100;
+  line-height: 40px;
+  color: #000;
+  text-align: center;
+  /*opacity: 0.5;*/
+  /*filter: alpha(opacity=50);*/
+  background: url(/assets/nav.gif) no-repeat;
+}
+
+.carousel-next {
+  background-position: -17px 0;
+  right: -35px;
+  left: auto;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  color: #b20;
+  text-decoration: none;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+  background-position: 0 -28px;
+}
+.carousel-next:hover {
+  background-position: -17px -28px;
+}
+.carousel-next span, .carousel-prev span {
+  display: none;
+}
+
+/*#main a{
+	color: #000;
+}
+#main a:hover{
+	color:#b20;
+}*/
+
+
+
+#keywords a,
+#products a,
+#brands a,
+#events a,
+#trend a{
+	color: #000;
+	text-decoration: none;
+}
+#keywords a:hover,
+#products a:hover,
+#brands a:hover,
+#events a:hover,
+#trend a:hover{
+	color: #b20;
+}
+
+.brand-name a{
+	font-family: ModernNAP-Display;
+	/*font-size: 16px;*/
+	/*line-height: 25px;*/
+	text-transform: uppercase;
+}
+
+#keywords{
+	color:#000;
+	padding: 3px 0px;
+  background: url('/assets/store/keywords_bg.png') no-repeat;
+  height: 39px;
+}
+#keywords .title{
+	float: left;
+  height: 38px;
+  line-height: 38px;
+  color: #333;
+  font-weight: bold;
+}
+#keywords ul{
+	list-style: none;
+	float: left;
+	margin-left: 0px;
+}
+#keywords ul li{
+	list-style: none;
+	float: left;
+  height: 38px;
+  line-height: 38px;
+	padding: 0px 8px;
+}
+#keywords ul li a{
+  color: #444;
+}
+#keywords ul li.diver{
+	width: auto;
+}
+/*#keywords ul li a{
+	color:#000;
+}
+#keywords ul li a:hover{
+	color:#b20;
+}*/
+
+#products{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#products .left{
+	width: 280px;
+	border-right: dashed 1px black;
+	float: left;
+}
+#products .right{
+	width: 645px;
+	float: right;
+}
+
+#products .left .top-item{
+	margin-top: 15px;
+}
+
+#products .left .top-item .pic{
+	float: left;
+	border: 1px solid #F0F0F0;
+}
+#products .left .top-item .pic img{
+	width: 98px;
+	height: 139px;
+}
+#products .left .top-item .info{
+	float: left;
+	margin-left: 25px;
+}
+#products .right .clothing .more{
+	float: right;
+	line-height: 40px;
+}
+#products .right .clothing ul{
+	width: 645px;
+}
+#products .right .clothing ul li{
+	float: left;
+	width: 193px;
+	margin: 0px 16px;
+}
+#products .right .clothing ul li.first{
+	margin-left: 0px;
+}
+#products .right .clothing ul li.last{
+	margin-right: 0px;
+}
+#products .right .clothing ul li .good-pic{
+	width: 193px;
+	height: 272px;
+}
+
+#products .right .clothing ul li .info{
+	margin-left: 35px;
+}
+
+#products .price{
+	font-size: 13px;
+}
+#products .price .for-vip{
+	color: #D30000;
+	cursor: pointer;
+}
+#products .mktprice{
+	font-size: 13px;
+	color:#666;
+}
+
+.line{
+	border-bottom: dashed black 1px;
+	margin: 20px 0px;
+}
+.other{
+	/*margin-bottom: 50px;*/
+}
+
+#brands{
+
+}
+
+.common .title{
+	margin: 20px 0px 30px  0px;
+	position: relative;
+}
+.common .more{
+	position: absolute;
+	right: 0px;
+}
+
+#brands .left{
+	width: 280px;
+	float: left;
+}
+
+#brands .right{
+	width: 635px;
+	float: right;
+}
+#brands .right ul{
+	list-style: none;
+	margin: 0px;
+}
+#brands .right ul li{
+	width: 310px;
+	float: left;
+	margin-bottom: 22px;
+	list-style: none;
+}
+
+#brands .right .brand-pic{
+	float: left;
+}
+
+#brands .right .brand-info{
+	float: right;
+	width: 160px;
+	margin-top: 40px;
+}
+
+#brands .right .brand-info .brand-name{
+	font-size: 20px;
+	margin-bottom: 10px;
+	
+}
+/*#brands .right .brand-info .brand-name a{
+	color:#000;
+}*/
+
+#trend .left{
+	width: 476px;
+	float: left;
+	margin-left: 24px;
+}
+
+#trend .right{
+	float:right;
+}
+#trend .right .big-cover img{
+	height: 587px;
+	width: 411px;
+}
+
+#trend .trend-pic{
+	float: left;
+}
+#trend .trend-pic img{
+	width: 220px;
+	height: 116px;
+}
+#trend .trend-mid{
+	float: left;
+	width: 30px;
+	height: 116px;
+}
+#trend .trend-desc{
+	float: left;
+	width: 226px;
+}
+
+#trend .trend-desc div{
+
+}
+
+#trend .trend-desc .trend-title{
+	font-size: 20px;
+	padding-top:10px;
+	padding-bottom: 6px;
+}
+
+#events{
+	margin-top: 20px;
+}
+
+#events .event{
+	
+	float:left;
+	border-right:1px dashed #000;
+	margin-left:24px;
+	padding-right:35px;
+}
+
+#events .news{
+	float: right;
+	width: 480px;
+}
+
+#events .news ul li{
+	/*line-height: 26px;*/
+	padding: 3px;
+}
+#events .news ul li.first{
+	padding-top: 0px;
+}
+#events .news ul li.last{
+	padding-bottom: 0px;
+}
+
+#events .news ul li  .date{
+	float: right;
+}
+
+.home_width #main {
+  width: 950px;
+  margin: 48px auto 0 auto;
+}
+ul#suits{
+	
+	list-style: none;
+	margin: 0px;
+	margin-top: 20px;
+}
+ul#suits li{
+	float: left;
+}
+ul#suits li.link img{
+	width: 238px;
+	height: 385px;
+}
+ul#suits li.suit{
+	margin-left: 24px;
+	font-size:12px;
+	text-align: center;
+}
+
+ul#suits li.suit .name{
+	padding-top: 7px;
+	padding-bottom: 1px;
+}
+ul#suits li a{
+	color: #000;
+}
+ul#suits li a:hover{
+	text-decoration: none;
+	color: #b20;
+}
+
+ul#suits li.suit .name a{
+	color: #000;
+}
+ul#suits li.suit .name a:hover{
+	text-decoration: none;
+	color: #b20;
+}
+
+ul#suits li.suit .price{
+	color:#D30000;
+	padding: 2px 0px;
+}
+ul#suits li.suit .savings{
+	color:#555;
+	padding: 0px;
+}
+
+ul#suits li.suit img{
+	width: 213px;
+	height: 313px;
+	
+}
+
+#hots{
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+#hots ul{
+	margin-left: -23px;
+	margin-top: 15px;
+	list-style: none;
+}
+#hots ul li{
+	float: left;
+	margin-left: 44px;
+}
+#hots ul li img{
+	width: 193px;
+	height: 272px;
+}
+#hots ul li div{
+	text-align: center;
+}
+#hots ul li a{
+	color: #000;
+}
+#hots ul li a:hover{
+	text-decoration: none;
+	color: #b20;
+}
+#hots ul li .name{
+	padding-top: 4px;
+}
+#hots ul li .name a{
+	color: #000;
+}
+#hots ul li .name a:hover{
+	text-decoration: none;
+	color: #b20;
+}
+#hots ul li .mktprice{
+	color:#777;
+}
+
+#new_hots{
+	/*margin-top: 20px;*/
+	
+}
+
+#new_hots .col{
+	width: 310px;
+	float: left;
+}
+#new_hots .col2,
+#new_hots .col3{
+	margin-left: 10px;
+}
+
+#new_hots .col > a{
+	position: relative;
+	display: inline-block;
+	margin-bottom: 10px;
+}
+#new_hots .col > a:hover .caption{
+	display: inline-block;
+}
+
+#new_hots .caption{
+	display: none;
+	width: 310px;
+	position: absolute;
+	top:0px;
+	left:0px;
+	height: 100%;
+	background: rgba(0,0,0,0.6);
+}
+#new_hots .caption{
+	color:#fff;
+	text-align: center;
+}
+#new_hots .caption .caption-inner{
+	display: inline-block;
+	top: 50%;
+	position: relative;
+	margin-top: -65px;
+}
+
+#new_hots .caption .caption-inner .brand{
+	font-size: 31px;
+	/*padding: 10px 0px;*/
+	display: block;
+	line-height: 1.2;
+}
+#new_hots .caption .caption-inner .name{
+	font-size: 22px;
+	padding: 10px 0px;
+	display: block;
+}
+

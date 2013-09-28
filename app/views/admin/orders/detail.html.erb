@@ -1,0 +1,494 @@
+<ul class="nav nav-list  affix" id="guide_menu">
+       <li>
+      		<a href="#summary">
+      			<i class="icon-chevron-right pull-right"></i> 订单状态
+      		</a>
+      	</li>
+      	<li>
+      		<a href="#member">
+      			<i class="icon-chevron-right pull-right"></i> 会员信息
+      		</a>
+      	</li>
+      	<li>
+      		<a href="#products">
+      			<i class="icon-chevron-right pull-right"></i> 商品清单
+      		</a>
+      	</li>
+      	<li>
+      		<a href="#pmts">
+      			<i class="icon-chevron-right pull-right"></i> 优惠
+      		</a>
+      	</li>
+      	<li>
+      		<a href="#addr">
+      			<i class="icon-chevron-right pull-right"></i> 收货信息
+      		</a>
+      	</li>
+      	<li>
+      		<a href="#shipment">
+      			<i class="icon-chevron-right pull-right"></i> 支付及配送方式&nbsp;&nbsp;
+      		</a>
+      	</li>
+      	
+	<%if @order.is_tax == 'true'%>
+	<li>
+		<a href="#tax">
+			<i class="icon-chevron-right pull-right"></i> 发票
+		</a>
+	</li>
+	<%end%>
+      
+      	<li>
+      		<a href="#logs">
+      			<i class="icon-chevron-right pull-right"></i> 订单日志
+      		</a>
+      	</li>
+	
+	<%if @order.payments.size > 0%>
+      	<li>
+      		<a href="#payment_bills">
+      			<i class="icon-chevron-right pull-right"></i> 收款单据
+      		</a>
+      	</li>
+      	<%end%>
+	
+	<%if @order.refunds.size > 0%>
+      	<li>
+      		<a href="#refund_bills">
+      			<i class="icon-chevron-right pull-right"></i> 退款单据
+      		</a>
+      	</li>
+      	<%end%>
+
+      	<%if @order.deliveries.size > 0%>
+      	<li>
+      		<a href="#deliveries">
+      			<i class="icon-chevron-right pull-right"></i> 发货单据
+      		</a>
+      	</li>
+      	<%end%>
+
+      	<%if @order.reships.size > 0%>
+      	<li>
+      		<a href="#reships">
+      			<i class="icon-chevron-right pull-right"></i> 退货单据
+      		</a>
+      	</li>
+      	<%end%>
+
+
+
+      	<li>
+      		<a href="#total">
+      			<i class="icon-chevron-right pull-right"></i> 结算信息
+      		</a>
+      	</li>
+</ul>
+
+<div id="order_details">
+	<h4 class="title">订单详情 (<%=@order.order_id%>)</h4>
+
+	<div class="detail summary" id="summary">
+
+		<ul>
+			<li>订单编号 : <strong><%=@order.order_id%></strong></li>
+			<li>订单金额 : &yen;<%=@order.final_amount.to_i%></li>
+			<li>订单状态 : <%=@order.status_text%></li>
+			<li>付款状态 : <%=@order.pay_status_text%></li>
+			<li>发货状态 : <%=@order.ship_status_text%></li>
+			<li>客户备注 : <%=@order.memo%></li>
+		</ul>
+
+	</div>
+
+	<div class="detail" id="member">
+		<div class="subtitle">
+			<strong>会员信息</strong>
+		</div>
+		<%if user = @order.user%>
+		<ul>
+			<li>
+				<span class="name">用户名: </span>
+				<span class="val"><%=user.login_name%></span>
+			</li>
+			<li>
+				<span class="name">姓名 : </span>
+				<span class="val"><%=user.name%></span>
+			</li>
+			<li>
+				<span class="name">手机 : </span>
+				<span class="val"><%=user.mobile%></span>
+			</li>
+			<li>
+				<span class="name">电话 : </span>
+				<span class="val"><%=user.tel%></span>
+			</li>
+			<li>
+				<span class="name">邮箱 : </span>
+				<span class="val"><%=user.email%></span>
+			</li>
+			<li>
+				<span class="name">地址 : </span>
+				<span class="val"><%=user.addr%></span>
+			</li>
+		</ul>
+		<%end%>
+	</div>
+
+	
+
+
+	
+	<div class="detail products" id="products">
+		<div class="subtitle">
+			<strong>商品清单</strong>
+		</div>
+
+		<table class="table table-bordered">
+			<tr>
+				<th width="15%">货品编号</th>
+				<th>供应商货号</th>
+				<th >货品品牌</th>
+				<th >货品名称</th>
+				<th >摩登客价</th>
+				<th width="10%">数量</th>
+				<th width="10%">金额小计</th>
+			</tr>
+			<%@order.order_items.each do |order_item|%>
+			<tr>
+				<td><%=order_item.bn%></td>
+				<td><%=order_item.good.sbn%></td>
+				<td><%=order_item.product.brand.brand_name if order_item.product&&order_item.product.brand%></td>
+				<td>
+					<div>
+						<%=link_to order_item.name,good_path(order_item.good.bn),:target=>"_blank"%>
+						<%if order_item.item_type=="gift"%>
+						<span class="hui">赠品</span>
+						<%end%>
+					<div>
+					<div class="spec-info"><%=order_item.product.spec_info%></div>
+				</td>
+				
+				<td>&yen;<%=order_item.price.to_i%></td>
+				<td><%=order_item.nums.to_i%></td>
+				<td>
+						&yen;<%=(order_item.price * order_item.nums).to_i if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
+				</td>
+			</tr>
+			<%end%>
+		</table>
+	</div>
+	<div class="detail products pmts " id="pmts">
+		<div class="subtitle">
+			<strong>优惠</strong>
+		</div>
+		<table class="table table-bordered">
+			<tr>
+				<th >优惠名称</th>
+				<th >优惠描述</th>
+				<th width="10%">优惠金额</th>
+			</tr>
+			<%@order.order_pmts.each do |pmt|%>
+			<tr>
+				<td><%=pmt.pmt_name%><%="(券)" if pmt.pmt_type=="coupon"%></td>
+				<td><%=pmt.pmt_desc%></td>
+				<td>&yen;<%=pmt.pmt_amount.to_i%></td>
+			</tr>
+			<%end if @order.order_pmts%>
+		</table>
+	</div>
+
+	<div class="detail addr-info" id="addr">
+		<div class="subtitle">
+			<strong>收货信息</strong>
+		</div>
+		<ul>
+			<li>
+				<span class="name">收货人: </span>
+				<span class="val"><%=@order.ship_name%></span>
+			</li>
+			<li>
+				<span class="name">收货地址 : </span>
+				<span class="val"><%=@order.ship_addr%></span>
+			</li>
+			<li>
+				<span class="name">邮编 : </span>
+				<span class="val"><%=@order.ship_zip%></span>
+			</li>
+			<li>
+				<span class="name">手机号码 : </span>
+				<span class="val"><%=@order.ship_mobile%></span>
+			</li>
+			<li>
+				<span class="name">固定电话 : </span>
+				<span class="val"><%=@order.ship_tel%></span>
+			</li>
+			<li>
+				<span class="name">电子邮件 : </span>
+				<span class="val"><%=@order.ship_email%></span>
+			</li>
+		</ul>
+	</div>
+
+	<div class="detail shipment" id="shipment">
+		<div class="subtitle">
+			<strong>支付及配送方式</strong>
+		</div>
+		<ul>
+			<li>
+				<span>支付方式 : </span>
+				<span><%=@order.payment_name%></span>
+			</li>
+
+			<li>
+				<span>配送方式 : </span>
+				<span><%=@order.shipping%></span>
+			</li>
+			<li>
+				<span>配送时间 : </span>
+				<span><%=@order.ship_time%></span>
+			</li>
+		</ul>
+	</div>
+	
+	<%if @order.is_tax == 'true'%>
+	<div class="detail tax" id="tax">
+		<div class="subtitle">
+			<strong>发票</strong>
+		</div>
+		<ul>
+			<li>
+				<span>发票抬头 : </span>
+				<span><%=@order.tax_company%></span>
+			</li>
+		</ul>
+	</div>
+	<%end%>
+
+
+	<div class="detail logs" id="logs">
+		<div class="subtitle">
+			<strong>订单日志</strong>
+		</div>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>时间</th>
+					<th>操作人</th>
+					<th>行为</th>
+					<th>结果</th>
+					<th>备注</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%@order.order_logs.each_with_index do |order_log,index|%>
+				<tr>
+					<td><%=index+1%></td>
+					<td><%=order_log.created_at%></td>
+					<td><%=order_log.op_name%></td>
+					<td><%=order_log.behavior_name%></td>
+					<td><%=order_log.result_name%></td>
+					<td><%=order_log.log_text%></td>
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+	
+	<%if @order.payments.size > 0%>
+	<div class="detail payment-bills" id="payment_bills">
+		<div class="subtitle">
+			<strong>收款单据列表</strong>
+		</div>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>支付单号</th>
+					<th>支付时间</th>
+					<th>操作人</th>
+					<th>支付方式</th>
+					<th>支付金额</th>
+					<th>支付类型</th>
+					<th>支付状态</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%@order.payments.each do |payment|%>
+				<tr>
+					<td><%=payment.payment_id%></td>
+					<td><%=payment.paid_at%></td>
+					<td><%=payment.operator.login_name%></td>
+					<td><%=payment.pay_name%></td>
+					<td>&yen;<%=payment.money%></td>
+					<td><%=payment.pay_type_text%></td>
+					<td><%=payment.status_text%></td>
+					
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+	<%end%>
+
+
+	<%if @order.refunds.size > 0%>
+	<div class="detail refund-bills"  id="refund_bills">
+		<div class="subtitle">
+			<strong>退款单据列表</strong>
+		</div>
+
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>退款单号</th>
+					<th>退款时间</th>
+					<th>操作人</th>
+					<th>退款方式</th>
+					<th>退款金额</th>
+					<th>收款账号</th>
+					<th>退款状态</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%@order.refunds.each do |refund|%>
+				<tr>
+					<td><%=refund.refund_id%></td>
+					<td><%=refund.paid_at%></td>
+					<td><%=refund.operator.login_name%></td>
+					<td><%=refund.pay_name%></td>
+					<td>&yen;<%=refund.money%></td>
+					<td><%=refund.pay_account%></td>
+					<td><%=refund.status_text%></td>
+				</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+	<%end%>
+
+	<%if @order.deliveries.size > 0%>
+	<div class="detail"  id="deliveries">
+		<div class="subtitle">
+			<strong>发货单据</strong>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>发货单号</th>
+						<th>发货时间</th>
+						<th>发货商品</th>
+						<th>物流公司</th>
+						<th>物流单号</th>
+						<th>收货人</th>
+						<th>操作员</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%@order.deliveries.each do |delivery|%>
+					<tr>
+						<td><%=delivery.delivery_id%></td>
+						<td><%=Time.at(delivery.t_begin).strftime("%Y-%m-%d %H:%M:%S") if delivery.present?%></td>
+						<td>
+							<%delivery.delivery_items.each do |item|%>
+								<%=item.product.name if item.product%>
+								[<%=item.product_bn%>]
+								&nbsp;&nbsp;数量: <b><%=item.number.to_i%></b>
+							<%end%>
+						</td>
+						<td><%=delivery.logi_name%></td>
+						<td><%=delivery.logi_no%></td>
+						<td><%=delivery.ship_name%></td>
+						<td><%=delivery.op_name%></td>
+					</tr>
+					<%end%>
+				</tbody>
+			</table>
+	</div>
+	</div>
+	<%end%>
+
+	<%if @order.reships.size > 0%>
+	<div class="detail"  id="reships">
+		<div class="subtitle">
+			<strong>退货单据</strong>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>退货单号</th>
+						<th>退货时间</th>
+						<th>退货商品</th>
+						<th>物流公司</th>
+						<th>物流单号</th>
+						<th>退货人</th>
+						<th>操作员</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%@order.reships.each do |reship|%>
+					<tr>
+						<td><%=reship.reship_id%></td>
+						<td><%=Time.at(reship.t_begin).strftime("%Y-%m-%d %H:%M:%S") if reship.present?%></td>
+						<td>
+							<%reship.reship_items.each do |item|%>
+								<%=item.product.name if item.product%>
+								[<%=item.product_bn%>]
+								&nbsp;&nbsp;数量: <b><%=item.number.to_i%></b>
+							<%end%>
+
+						</td>
+						<td><%=reship.logi_name%></td>
+						<td><%=reship.logi_no%></td>
+						<td><%=reship.ship_name%></td>
+						<td><%=reship.op_name%></td>
+					</tr>
+					<%end%>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<%end%>
+
+
+	<div class="detail total" id="total">
+		<div class="subtitle">
+			<strong>结算信息</strong>
+		</div>
+		<ul>
+			<li>
+				<span class="name">商品总额 : </span>
+				<span class="val"> &yen;<%=@order.products_total%></span>
+			</li>
+
+			<li>
+				<span class="name">+运费 : </span>
+				<span class="val"> &yen;<%=@order.cost_freight.to_i%></span>
+			</li>
+			<li>
+				<span class="name">-优惠 : </span>
+				<span class="val"> &yen;<%=@order.pmts_total%></span>
+			</li>
+			<li>
+				<span class="name">-余额 : </span>
+				<span class="val"> &yen;<%=@order.part_pay.to_i%></span>
+			</li>
+			
+			<%if @order.payment == 'bcom'%>
+			<li>
+				<span class="name">-支付优惠 : </span>
+				<span class="val"> &yen;<%=@order.bcom_discount%></span>
+			</li>
+			<%end%>
+
+			<li class="pay-amount">
+				<span class="name">应付金额 : </span>
+				<span class="val"> &yen;<%=@order.final_pay%></span>
+			</li>
+		</ul>
+	</div>
+
+	<div>
+		<%=link_to "返回",@return_url,:class=>"btn"%>
+	</div>
+
+</div>

@@ -1,0 +1,3 @@
+if(<%=!@comment.errors.present?%>){
+	$("#comments").prepend('<%=escape_javascript(render :partial=>"comments/comment",:locals=>{:comment=>@comment}).html_safe%>');
+}

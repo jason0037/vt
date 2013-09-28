@@ -1,0 +1,30 @@
+// Place all the styles related to the patch/validations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#validation_items{
+	td{
+		padding: 20px;
+		vertical-align: middle;
+		&.desc{
+			width: 30%;
+		}
+		&.title{
+			font-size: 15px;
+		}
+		&.operate{
+			padding-left: 100px;
+		}
+	}
+}
+
+.validations{
+	.form-horizontal{
+		.control-label{
+			width: auto;
+			margin-left: 10px;
+		}
+		.controls{
+			margin-left: 10px;
+		}
+	}
+}

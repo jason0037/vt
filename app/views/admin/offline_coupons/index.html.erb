@@ -1,0 +1,39 @@
+<h4>
+  线下优惠券
+  <%=link_to "添加优惠券",new_admin_offline_coupon_path,:class=>"btn btn-primary pull-right"%>
+</h4>
+<hr>
+
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>所属品牌</th>
+      <th>时间</th>
+      <th>是否开启</th>
+      <th>下载数量</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%@coupons.each do |coupon|%>
+    <tr>
+      <td><%=coupon.name%></td>
+      <td><%=coupon.brand.brand_name if coupon.brand%></td>
+      
+      <td><%=coupon.begin_at&&coupon.begin_at.strftime("%Y-%m-%d")%> ~ <%=coupon.end_at&&coupon.end_at.strftime("%Y-%m-%d")%></td>
+      <td><%=coupon.published ? "是" : "否"%></td>
+      <td><b><%=coupon.download_times%></b>  [<%=link_to "详细",downloads_admin_offline_coupon_path(coupon)%>]</td>
+      <td>
+        <%=link_to "查看", coupon_path(coupon),:target=>"_blank"%>
+        <%=link_to "编辑", edit_admin_offline_coupon_path(coupon)%>
+        <%=link_to "删除", admin_offline_coupon_path(coupon),:method=>:delete,:confirm=>"确定要删除？"%>
+      </td>
+    </tr>
+    <%end%>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <%=will_paginate @coupons,:container=>false%>
+  </div>

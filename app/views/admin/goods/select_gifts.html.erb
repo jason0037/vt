@@ -1,0 +1,156 @@
+<div id="dialog_goods">
+
+        <div class="goods-list clearfix">
+              <table class="table table-bordered table-hover table-striped select-goods" id="goods">
+                   <thead>
+                     <tr>
+                       <th><%=check_box_tag "select_all",1%></th>
+                       <th>货品编号</th>
+                       <th>货品名</th>
+                       <th>单价</th>
+                       <th>库存</th>
+                     </tr>
+                   </thead>
+                   <tbody>
+                    <%@gifts.each do |gift|%>
+                     <tr>
+                       <td><%=check_box_tag "bn", gift.bn, false, {:'data-name'=>"#{gift.name}"}%></td>
+                       <td><%=gift.bn%></td>
+                       <td><%=gift.name%></td>
+                       <td><%=gift.price%></td>
+                       <td><%=gift.store.to_i%></td>
+                     </tr>
+                     <%end%>
+                   </tbody>
+              </table>
+              <div class="pagination">
+                    <%=will_paginate @gifts,:container=>false%>
+              </div>
+        </div>
+       
+       <div class="selected-list clearfix">
+         <div><%=link_to "全部删除","#",:id=>"remove_all"%></div>
+         <ul id="selected_list">
+                <!-- <li>
+                    刺绣袖口抽折套头衫(13000340)
+                    <%=link_to good_path("13000340"),:target=>"_blank" do%>
+                      <i class="icon-share-alt"></i>
+                    <%end%>
+                    <a href="#" class="close">&times;</a>
+                </li> -->
+          </ul>
+        </div>
+
+
+        <div class="actions">
+          <%=link_to "确 定","#",:class=>"btn btn-primary",:id=>"confirm_select"%>
+          <%=link_to "关 闭","javascript:void(0);",:class=>"btn",:id=>"close"%>
+        </div>
+</div>
+
+<script>
+$(document).ready(function(){
+     
+    $("#close").click(function(){
+        window.close();
+    });
+
+    $("#selected_list").on("click","a.close",function(){
+        var input = $(this).parent("li").find("input");
+        var bn = input.val();
+        $("#goods input[value='"+bn+"']").attr("checked",false);
+        $(this).parent("li").remove();
+        return false;
+    });
+    $("#remove_all").click(function(){
+        $("#selected_list a.close").trigger("click");
+    });
+
+    var createSelect = function(jqCheckbox){
+       jqCheckbox.each(function(){
+          var name = $(this).data("name");
+          var bn = $(this).val();
+          if($("#selected_list input[value='"+bn+"']").length == 0){
+              $("#selected_list").append('<li> \
+              '+name+' \
+              <input type="hidden" value="'+bn+'" data-name="'+name+'"> \
+              <a href="/products/'+bn+'" target="_blank"> \
+                <i class="icon-share-alt"></i> \
+              </a> \
+              <a href="#" class="close">×</a> \
+              </li>');
+          }
+          
+       });
+    };
+
+    $("#goods").on("change","#select_all",function(){
+        if($(this).attr("checked")=="checked"){
+          $("#goods tbody :checkbox").attr("checked",true).trigger("change");
+        }else{
+          $("#goods tbody :checkbox").attr("checked",false).trigger("change");
+
+        }
+    });
+
+    $("#goods").on("change","input[name='bn']",function(){
+        if($(this).attr("checked") == "checked"){
+            createSelect($(this));
+        }else{
+            var bn = $(this).val();
+            $("#selected_list").find("input[value='"+bn+"']").parent("li").remove();
+        }
+    });
+
+    $("#goods").on("click","tbody tr",function(e){
+      if($(e.target).is(":checkbox")) return;
+      var checkbox =  $(this).find(":checkbox")
+      checkbox.attr("checked",!(checkbox.attr("checked") == "checked")).trigger("change");
+    });
+
+    var opener = window.opener.document;
+    var target = '#<%=params[:target]%>';
+    var fieldName = '<%=params[:field_name]%>';
+    var modelName = "<%=params[:model_name] || 'promotion'%>"
+    $("#confirm_select").click(function() {
+          $(opener).find(target).empty();
+          $("#selected_list input:hidden").each(function() {
+            var hidden_input, html_bn;
+            html_bn = "" + ($(this).data('name')) + " (" + ($(this).val()) + ")";
+            hidden_input = "<input name='"+modelName+"["+fieldName+"][]' type='hidden' value='" + ($(this).val()) + "' data-name='"+$(this).data('name')+"'>";
+            $(opener).find(target).append("<li>" + html_bn + hidden_input + "</li>");
+          });
+          window.close();
+          return false;
+    });
+
+    $(opener).find(target).find("input:hidden").each(function(){
+            var name = $(this).data("name");
+            var bn = $(this).val();
+            $("#selected_list").append('<li> \
+                '+name+' \
+                <input type="hidden" value="'+bn+'" data-name="'+name+'"> \
+                <a href="/products/'+bn+'" target="_blank"> \
+                  <i class="icon-share-alt"></i> \
+                </a> \
+                <a href="#" class="close">×</a> \
+            </li>');
+    });
+    var checkSelect =  function(){
+      $("#selected_list li input:hidden").each(function(){
+          var bn = $(this).val();
+          $("#goods input[value='"+bn+"']").attr("checked",true);
+      });
+    };
+    
+    checkSelect();
+    
+    $(".pagination").ajaxSuccess(function(){
+      checkSelect();
+    });
+    $("#filters form:visible").ajaxSuccess(function(){
+        checkSelect();
+    });
+
+  });
+</script>

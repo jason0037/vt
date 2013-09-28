@@ -1,0 +1,28 @@
+<%= form_for :footer,:url=>@action_url, method: @method,:html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :title, "名称", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :title%>
+          <span class="help-inline error"><%=@footer.errors[:title].join(",")%> </span>
+
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :body, "页脚内容", :class => "control-label" %>
+      <div class="controls">
+
+        <%= f.cktext_area :body, :toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800 %>
+        <span class="help-block error"><%=@footer.errors[:body].join(",")%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>
+        <%= link_to '返回', admin_footers_path,:class=>"btn" %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

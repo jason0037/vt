@@ -1,0 +1,33 @@
+<div class="cards">
+	<div class="form-block">
+		<h4>请按以下提示操作，激活您的VIP卡 </h4>
+
+
+		<div class="field">
+				<label class="field-label ">VIP卡号 : </label>
+				<span class="field-plain"><%=@card.no%></span>
+		</div>
+
+		<div class="field error locked-msg">
+			您已累积输错5次密码，此卡已锁定，请联系客服021-60919835。
+		</div>
+
+		<div class="field">
+			<%=link_to "关闭",vip_path,:class=>"btn cancel",:style=>"margin-left:100px;"%>
+		</div>
+
+		
+
+	</div>
+	<div class="tips-block">
+		<p>小贴士</p>
+		<ul>
+			<li>
+				<strong> 我的密码找不到了怎么办？</strong>
+				<div>答：为了确保您的VIP卡安全，我们无权为您擅自修改密码，请联系您的发卡方为您重置密码，或联系客服沟通。</div>
+			</li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+	
+</div>

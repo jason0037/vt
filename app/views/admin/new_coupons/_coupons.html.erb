@@ -1,0 +1,9 @@
+<%@coupons.each do |coupon|%>
+          <tr data-page="<%=params[:page] || 1%>">
+              <td><%=check_box_tag "id", coupon.id, false, {:'data-name'=>"#{coupon.name}"}%></td>
+              <td><%=coupon.name%></td>
+              <td><%=coupon.enable?  ? "是" : "否"%></td>
+              <td><%=coupon.quantity%></td>
+              <td><%=coupon.coupon_type%></td>
+           </tr>  
+<%end%>

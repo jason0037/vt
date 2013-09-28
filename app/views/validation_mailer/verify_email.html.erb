@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h5>尊敬的 <%= @user.login_name %> 您好 : </h5>
+    <p>
+      <%=link_to "为了您的账户安全，请点击此处完成邮箱安全认证",@verify_email_url, :target=>"_blank"%> <br/>
+      或者复制如下连接在浏览器输入 : <%=@verify_email_url%>
+    </p>
+  </body>
+</html>

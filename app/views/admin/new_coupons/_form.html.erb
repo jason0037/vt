@@ -1,0 +1,170 @@
+<%if @coupon.errors.size > 0%>
+<div class="alert error">提交失败，请检查数据正确性</div>
+<%end%>
+
+<%=form_for :coupon,:url=>@action_url,:method=>@method,:html=>{:class=>"form-horizontal"} do |f|%>
+
+<div class="control-group">
+    <%=f.label :name, "名称*",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.text_field :name%>
+      <span class="help-inline error"><%=@coupon.errors[:name].join(",")%></span>
+    </div>
+</div>
+
+<div class="control-group">
+    <%=f.label :desc, "描述*",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.text_area :desc,:rows=>3%>
+      <span class="help-inline error"><%=@coupon.errors[:desc].join(",")%></span>
+    </div>
+</div>
+
+
+<div class="control-group">
+    <%=f.label :name, "是否开启*",:class=>"control-label"%>
+    <div class="controls">
+      <label class="radio inline">
+      <%=f.radio_button :enable,true,:checked=>true%> <span>是</span>
+      </label>
+      <label class="radio inline">
+      <%=f.radio_button :enable,false%> <span>否</span>
+      </label>
+    </div>
+</div>
+
+<div class="control-group">
+    <%=f.label :priority, "优先级",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.text_field :priority,:class=>"span2",:placeholder=>"数字越大优先级越高"%>
+    </div>
+</div>
+<div class="control-group">
+    <%=f.label :exclusive, "是否排它*",:class=>"control-label"%>
+
+    <div class="controls">
+      <label class="radio inline">
+      <%=f.radio_button :exclusive,true,:checked=>true%> <span>是</span>
+      </label>
+      <label class="radio inline">
+      <%=f.radio_button :exclusive,false%> <span>否</span>
+      </label>
+       
+    </div>
+
+</div>
+
+<div class="control-group">
+    <label class="control-label">开始时间</label>
+    <div class="controls">
+      <%=f.text_field :begin_at,:value=>@coupon.begin_at&&@coupon.begin_at.strftime("%Y-%m-%d %H:%M:%S"),:class=>"span2 datetime"%>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label">结束时间</label>
+    <div class="controls">
+      <%=f.text_field :end_at,:value=>@coupon.end_at&&@coupon.end_at.strftime("%Y-%m-%d %H:%M:%S"),:class=>"span2 datetime"%>
+    </div>
+</div>
+
+
+<div class="control-group">
+    <%=f.label :coupon_type, "类型*",:class=>"control-label"%>
+    <div class="controls" id="toggle_coupon_type">
+      <label class="radio">
+          <%=f.radio_button :coupon_type,"A",:checked=>true%>
+          <span>A类优惠券</span>
+          <span class="help-inline">
+            只需获得一张，即可在规定的时间内重复使用
+          </span>
+      </label>
+
+      <label class="radio">
+          <%=f.radio_button :coupon_type,"B"%>
+          <span>B类优惠券</span>
+          <span class="help-inline">
+            可一次获得多张，但在规定时间内每张只能使用一次，无法重复使用
+          </span>
+      </label>
+    </div>
+</div>
+
+<div class="control-group">
+    <%=f.label :coupon_prefix, "号码*",:class=>"control-label"%>
+    <div class="controls">
+      <span id="static_coupon_type"><%=@coupon.coupon_type ? @coupon.coupon_type : "A"%></span>
+      <%=f.text_field :coupon_prefix,:value=>@coupon.prefix,:class=>"span2",:readonly=>!@coupon.new_record?%>
+      <span class="help-inline error"><%=@coupon.errors[:coupon_prefix].join(",")%></span>
+    </div>
+
+</div>
+
+
+
+<div class="control-group">
+    <label class="control-label">使用条件</label>
+    <div class="controls" id="conditions">
+       <label class="radio">
+          <%=f.radio_button :condition_type,"order_total_ge_x"%><span>订单金额满X元</span>
+      </label>
+      <label class="radio">
+          <%=f.radio_button :condition_type,"buy_specify_goods"%><span>购买指定商品</span>
+      </label>
+
+       <div class="help-block alert">
+          <span id="condition_val">
+            <%=link_to "+选择商品","#" if @coupon.condition_type == 'buy_specify_goods'%>
+            <%if @coupon.condition_type == 'order_total_ge_x'%>
+              输入 X = <%=f.text_field :condition_val,:class=>"input-mini"%>
+            <%end%>
+          </span>
+         <ul id="selected_goods" class="goods-list">
+          <%@coupon.condition_val.each do |bn|%>
+            <% good =  Ecstore::Good.find_by_bn(bn)%>
+            <li><%=good.name%> <%=bn%></li>
+          <%end if @coupon.condition_val.is_a?(Array)%>
+         </ul>
+       </div>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label">使用方案</label>
+    <div class="controls" id="actions">
+       <label class="radio">
+          <%=f.radio_button :action_type,"order_minus",:checked=>true%><span>订单减去Y元出售</span>
+      </label>
+      <label class="radio">
+          <%=f.radio_button :action_type,"order_discount"%>
+          <span>订单Y(0~100)折扣出售 (如:八折 Y=80)</span>
+      </label>
+
+      <div class="help-block alert">
+          <span id="action_val">
+              输入 Y = <%=f.text_field :action_val,:class=>"input-mini"%>
+          </span>
+       </div>
+
+    </div>
+</div>
+
+
+
+<div class="control-group">
+    <div class="controls">
+      <%=f.submit "提 交",:class=>"btn btn-primary"%>
+      <%=link_to "取消",admin_new_coupons_path,:class=>"btn"%>
+    </div>
+</div>
+<%end%>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#condition_val").on('click','a',function(){
+            window.open('/admin/goods/select_goods?goods_type=normal&target=selected_goods&field_name=condition_val&model_name=coupon', 'newwindow', 'height=500, width=750, top=400, left=600, toolbar=no, menubar=no, scrollbars=no,resizable=yes,location=no, status=no');
+        });
+    });
+</script>

@@ -1,0 +1,23 @@
+<thead>
+      <tr class="header">
+        <th>商品编号</th>
+        <th>商品名</th>
+        <th>销售价</th>
+        <th>品牌</th>
+        <th>分类</th>
+        <th>选择</th>
+      </tr>
+</thead>
+
+<tbody>
+	<%@goods.each do |good|%>
+	      <tr>
+	          <td><%=good.bn%></td>
+	          <td><%=good.name%></td>
+	          <td><%=good.price%></td>
+	          <td><%=good.brand.brand_name if good.brand%></td>
+	          <td><%=good.cat.cat_name if good.cat%></td>
+	          <td><%=link_to "选择","#",:'data-goods_id'=>good.goods_id,:class=>"add-collocation",:'data-name'=>good.name,:'data-image'=>good.list_default_pic,:'data-price'=>good.price.to_i%></td>
+	       </tr>
+	<%end%>
+</tbody>

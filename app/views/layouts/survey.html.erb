@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>摩登客—全球设计品牌精品第e站,都市时尚女性个性首选</title>
+  <meta name="description" content="全球设计精品第e站，都市时尚女性个性首选.">
+  <%= stylesheet_link_tag    "survey", :media => "screen" %>
+  <%= stylesheet_link_tag    "supersized", :media => "screen" %>
+  <%= javascript_include_tag "survey" %>
+  <%=render "shared/baidu"%>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <div id="container">
+    <div id="home_box">
+      <%= yield %>
+    </div>
+  </div>
+<%= javascript_include_tag "google-analytics" %>
+</body>
+</html>

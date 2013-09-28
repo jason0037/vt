@@ -1,0 +1,18 @@
+<div class="semi_custom_form">
+  <ul class="good_spec_items">
+    <%good.good_spec_items.each do |good_spec_item|%>
+    <li>
+      <label><%=good_spec_item.spec_item.name%></label>
+      <%=hidden_field_tag "product[customs][][spec_item_id]",good_spec_item.spec_item_id%>
+      <%=select_tag "product[customs][][value]",options_for_select((good_spec_item.min_value..good_spec_item.max_value).to_a,@user.custom_value_of(good_spec_item.spec_item_id)),:prompt=>"请选择",:'data-corresponding'=>"custom_value_of_#{good_spec_item.spec_item_id}"%>
+    </li>
+    <%end%>
+  </ul>
+  <p class="popover_footer">
+    <%=link_to "保 存","javascript:void(0)",:class=>"mini_black_btn custom-save",:method=>:put,:'data-url'=>user_path(@user) if @user%>
+  </p>
+</div>
+<div class="custom_tip">
+  <p>尊敬的客户，本款商品提供全定制服务，每件商品仅需要支付定金<span class="price">￥500</span>即可下单。</p>
+  <p>我们的定制专员将会尽快与您联系为你服务。</p>
+</div>

@@ -1,0 +1,28 @@
+<h4>
+	所有页面
+	<%=link_to "新建页面",new_admin_static_page_path,:class=>"btn btn-primary pull-right"%>
+</h4>
+<br>
+<table class="table table-striped table-bordered">
+	<tr>
+		<th>名称</th>
+		<th>访问地址</th>
+		<th>更新时间</th>
+		<th>操作</th>
+	</tr>
+	<%@pages.each do |page|%>
+	<tr>
+		<td><%=page.title%></td>
+		<td><%=link_to page.slug, page_path(page),:target=>"_blank"%></td>
+		<td><%=page.updated_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+		<td>
+			<%=link_to "查看",page_path(page),:target=>"_blank"%>
+			<%=link_to "编辑",edit_admin_static_page_path(page)%>
+			<%=link_to "删除",admin_static_page_path(page), method: :delete, confirm: "确定要删除吗?"%>
+		</td>
+	</tr>
+	<%end%>
+</table>
+<div class="pagination">
+	<%=will_paginate @pages, container: false%>
+</div>

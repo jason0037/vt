@@ -1,0 +1,5 @@
+<%= render :partial=>"blog/articles/article", :collection=>@articles %>
+
+<div class="pagination">
+  <%= will_paginate @articles, :container => false %>
+</div>

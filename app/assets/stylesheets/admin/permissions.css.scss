@@ -1,0 +1,47 @@
+// Place all the styles related to the admin/permissions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.permissions{
+	width: 85%;
+	.title{
+		font-size: 15px;
+		font-weight: bold;
+	}
+	#resources_tree{
+		font-size: 16px;
+		margin-top: 20px;
+		ul{
+			list-style: none;
+			li{
+				display: inline-block;
+				float: left;
+				width: 200px;
+				&:after{
+					clear:both;
+					display: block;
+					content: "";
+				}
+				&.controller{
+					min-height: 300px;
+				}
+			}
+			&:after{
+				clear:both;
+				display: block;
+				content: "";
+			}
+		}
+		li{
+			list-style: none;
+			padding: 5px 0px;
+		}
+		label{
+			display: inline-block;
+		}
+		&:after{
+			clear:both;
+			content:"";
+			display: block;
+		}
+	}
+}

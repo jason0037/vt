@@ -1,0 +1,24 @@
+<tr class="class_<%=child.cat_path_rep%>">
+	<td>
+		<%child.cat_path_deep.times.each do%>
+			||||
+		<%end%>
+		<%if child.has_leaf?%>
+			<span class="folder" cat_path="<%=child.cat_path_rep%><%=child.cat_id%>-" style="cursor:pointer;color:red">[+]</span>
+		<%end%>
+		<%=child.cat_name%>
+	</td>
+	<td><%=child.cat_path_rep%></td>
+	<td><%=Ecstore::GoodType.find(child.type_id).name%></td>
+	<td><%=child.p_order%></td>
+	<td>
+		<%=link_to "增加子项",new_admin_goods_cat_path(:cat_id=>child)%>
+		|
+		<%= link_to '编辑', edit_admin_goods_cat_path(child) %>
+		|
+		<%= link_to '删除', admin_goods_cat_path(child), method: :delete, data: { confirm: '确定删除?' } %>
+		|预览</td>
+</tr>
+<%if child.has_leaf?%>
+	<%=render :partial=>"cat",:collection=>child.child_cats,:as=>:child%>
+<%end%>

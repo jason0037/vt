@@ -1,0 +1,136 @@
+//=require patch/profiles
+
+
+
+
+
+// table.list-cards{
+// 	border-collapse: separate;
+// 	border-right:solid 1px #999;
+// 	border-bottom:solid 1px #999;
+// 	border-spacing:0px;
+// 	td,th{
+// 		border-top:solid 1px #999;
+// 		border-left :solid 1px #999;
+// 		padding: 10px 10px;
+// 	}
+// 	th{
+// 		background: #eee;
+// 	}
+// }
+// .field{
+// 	padding: 8px 0px;
+// 	.field-label{
+// 		float: none;
+// 	}
+// 	.sms{
+// 		margin-left: 20px;
+// 	}
+// 	.field-big-label{
+// 		width: 200px;
+// 	}
+// }
+// .btn.disabled{
+// 	background: #ccc;
+// 	border: solid 1px #999;
+// 	color:#999;
+// }
+// #sms_code{
+// 	width: 60px;
+// }
+
+// .cards{
+	
+// 	margin-left: 20px;
+// 	padding: 10px;
+// 	.form-block{
+// 		width: 500px;
+// 		display: inline-block;
+		
+// 		float: left;
+// 	}
+// 	.tips-block{
+// 		width: 300px;
+// 		display: inline-block;
+// 		padding: 0px 20px;
+// 		border-left: solid 1px #ccc;
+// 		color: #999;
+// 		float: left;
+// 		ul{
+// 			list-style: disc inside;
+// 			li{
+// 				padding: 5px;
+// 				div{
+// 					margin-top:3px;
+// 					padding-left: 8px;
+// 					line-height: 20px;
+// 				}
+// 			}
+// 		}
+// 	}
+// 	.field{
+// 		padding:5px 0px;
+// 		margin-bottom: 5px;
+// 		.field-label{
+// 			width: 80px;
+// 			text-align: right;
+// 			display: inline-block;
+// 		}
+// 		.field-label-long{
+// 			width: 150px;
+// 		}
+// 		.field-input{
+// 			width: 150px;
+// 			border: solid 1px #555;
+// 			padding: 3px 5px;
+// 		}
+// 		.field-plain{
+// 			padding: 1px 5px;
+// 		}
+// 		.radio-label{
+// 			margin-right: 20px;
+// 		}
+
+// 		.submit{
+// 			margin-left: 85px;
+// 		}
+// 		.cancel{
+// 			margin-left: 20px;
+// 		}
+// 		.sms{
+// 			margin-left: 30px;
+// 		}
+
+// 	}
+// }
+.cards{
+	.field{
+		padding: 8px 0px;
+		.field-label{
+			float: none;
+		}
+		.sms{
+			margin-left: 20px;
+		}
+		label.field-big-label{
+			width: 200px;
+		}
+	}
+}
+
+
+
+.clear{
+	clear: both;
+	display: block;
+}
+.required{
+	color:red;
+}
+.green-tip {
+	color: #090;
+	margin-left: 130px;
+}
+.tip-in-patch{
+	margin-left: 100px;
+}

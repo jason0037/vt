@@ -1,0 +1,33 @@
+<%= form_for @config,:url=>admin_configs_path,:html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+
+    <div class="control-group">
+      <%= f.label :name, "名称", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :name%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :cover_url, "key", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :key,:placeholder=>"key必须由英文字母或下划线组成"%>
+        <span class="help-inline error"><%=@config.errors[:key].join(",")%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :value, "value", :class => "control-label " %>
+      <div class="controls">
+        <%= f.text_field :value,:class=>"span6"%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '保存', :class => "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= link_to '返回', admin_configs_path %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

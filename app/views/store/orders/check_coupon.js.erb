@@ -1,0 +1,5 @@
+<%if @coupons.size > 0%>
+$("#matched_coupons").html('<%=escape_javascript(render "check_coupon").html_safe%>');
+$("#matched_coupons").attr("data-amount",'<%=@coupon_amount%>');
+<%end%>
+

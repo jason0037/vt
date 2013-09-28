@@ -1,0 +1,6 @@
+$("#user_<%=params[:member_id]%> .codes").append('<span class="code"> \
+						<%=@user_coupon.coupon_code%> \
+						<%=link_to "&times;".html_safe,admin_user_coupon_path(@user_coupon),:remote=>true,:method=>:delete,:confirm=>"确定删除？",:class=>"close"%> \
+					</span>');
+$("#user_<%=params[:member_id]%> .btn-group").removeClass("open");
+

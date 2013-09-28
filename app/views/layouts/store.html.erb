@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%if @good.present?%>
+  <title><%= "#{@good.name} | #{@good.cat.cat_name} | 摩登客"%></title>
+  <meta name="keywords" content='<%="#{@good.name},#{@good.cat.cat_name},#{@good.brand.brand_name},摩登客"%>'>
+  <%else%>
+  <title>新品速递 | 摩登客 体验个性摩登生活方式，尊享会员制精品设计服饰</title>
+  <meta name="keywords" content="摩登客,新品速递,设计服饰">
+  <%end%>
+
+  <meta name="description" content="全球设计精品第e站,都市时尚女性个性首选"> 
+  <%= stylesheet_link_tag    "bootstrap", :media => "all" %>
+  <%= stylesheet_link_tag    "store/base", :media => "all" %>
+  <%= stylesheet_link_tag    "store/screen", :media => "all" %>
+  <%= stylesheet_link_tag	 "store/#{controller_name}",:media=>"all"%>
+  <%= javascript_include_tag "store/base" %>
+  <%= javascript_include_tag "store/#{controller_name}" %>
+
+  <%=render "shared/baidu"%>
+  <%= csrf_meta_tags %>
+</head>
+<body style='<%=body_style%>;'>
+  <div id="preloader"></div>
+  <div id="skrollr-body" page="1">
+    <%= render "store/shared/header" %>
+    <%= render "magazine/shared/topmenu" %>
+    <%= yield %>
+    <% if action_name == "show" && controller_name == "goods" %>
+      <%= render "store/shared/more_products" %>
+    <% else %>
+      <%= render "store/shared/more_arrivals" %>
+      <!--%= render "store/shared/btm_items" %-->
+    <% end %>
+    <%= render "store/shared/footer" %>
+  </div>
+  
+  <%=render "shared/iframe_cart"%>
+
+  <%=render "shared/iframe_login" unless signed_in?%>
+  
+  <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+  <%= javascript_include_tag "google-analytics" %>
+</body>
+</html>

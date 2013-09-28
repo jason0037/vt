@@ -1,0 +1,19 @@
+<div id="btm_items" <div id="btm_items" data-0="bottom: -340px;" data-280="bottom: -340px;" data-520="bottom: 0px;" data-<%=@goods.size * 1000%>="bottom: 0px; display:block" data-<%=@goods.size * 1000+1 %>="display:none" >  
+  <div class="container">
+    <ul id="" class="jcarousel-skin-tango">
+      <%@goods.each do |good|%>
+      <li>
+        <%=link_to good_path(good.bn,:tag=>@tag.tag_name) do %>
+          <%=image_tag good.default_product.list_pictures.first,:size=>"190x268"%>
+        <%end%>
+        <p>
+          <a href="#" class="item"><%=good.default_product.name%></br>
+            <span class="imodec_price">摩登客价￥<%=good.default_product.price.to_i%></span> 
+            <!--span class="market_price">￥<%=good.default_product.mktprice.to_i%></span-->
+          </a>
+        </p>
+      </li>
+      <%end%>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+if($(".addr-list label.active .update-link").next("form").length == 0){
+	$(".addr-list label.active").append('<%=j render(:partial=>"patch/member_addrs/form",:locals=>{:display=>true}).html_safe%>');
+}else{
+	$(".addr-list label.active .update-link").next("form").remove();
+}

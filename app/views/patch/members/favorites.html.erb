@@ -1,0 +1,32 @@
+
+	
+	<table class="table table-striped" id="favorites_list">
+		<tr>
+			<th>商品名称</th>
+			<th>价格</th>
+			<th>操作</th>
+		</tr>
+		<%if @favorites && @favorites.size > 0%>
+			<%@favorites.each do |fav|%>
+				<%if fav.good%>
+					<tr id="good_<%=fav.good.goods_id%>">
+						<td>
+							<%=image_tag fav.good.list_pictures[1],:alt=>fav.good.name,:class=>"thumb"%>
+							<%=link_to fav.good.name,good_path(fav.good.bn),:target=>"_blank"%>
+						</td>
+						<td>&yen;<%=fav.good.price.to_i%></td>
+						<td>
+							<%=link_to "移除",unfav_good_path(fav.good),:class=>"favorite",:remote=>true,:method=>:put%>
+						</td>
+					</tr>
+				<%end%>
+			<%end%>
+		<%else%>
+			<tr class="no-record">
+				<td colspan="3">暂无收藏的商品</td>
+			</tr>
+		<%end%>
+	</table>
+	<div class="pagination">
+		<%=will_paginate @favorites,:container=>false%>
+	</div>

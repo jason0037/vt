@@ -1,0 +1,20 @@
+zh_cn:
+  card:
+    no: "卡号"
+    value: "面值"
+    card_type: "类型"
+    sale_status: "销售状态"
+    use_status: "使用状态"
+    pay_status: "付款状态"
+    status: "卡状态"
+    password: "密码"
+    buyer_id: "购卡者"
+    buyer_tel: "购卡者手机"
+    bank_name: "支付银行"
+    bank_card_no: "支付银行卡号"
+    user_id: "使用者"
+    user_tel: "使用者手机"
+    validate_type: "手机验证方式"
+    sold_at: "付款时间"
+    used_at: "使用时间"
+

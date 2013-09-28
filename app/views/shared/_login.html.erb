@@ -1,0 +1,84 @@
+<%=stylesheet_link_tag "login"%>
+<%=javascript_include_tag "login"%>
+
+<div id="modal_login" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+      <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">I-Modec 摩登客 － 摩登生活 个性衣橱</h3>
+      </div>
+      <div class="modal-body">
+        <div class="login_box">
+          <h5>立即登录网站，即可体验摩登客会员专属权益</h5>
+          <!--login form-->
+          <div class="login_form">
+              <div id="login_msg"></div>
+              <%=form_for :session,:url=>"/login", :remote=>true do |f|%>
+                <%=f.text_field :username,:placeholder=>"邮箱",:class=>"new-input"%>
+                <%=f.password_field :password, :placeholder=>"密码",:class=>"new-input"%>
+                <%=f.submit "登 录",:class=>"btn new_btn"%>
+              <%end%>
+              <div class="clear"></div>
+              <div class="other-login">
+                  <span>
+                     <a class="register_link" href="#">现在注册</a>
+                  </span>
+                 
+                  <ul class="sns_login">
+                    <span>，或选择其他方式登录:</span>
+                    <li>
+                      <a class="tsina" href="/auth/weibo" target="_top">新浪微博</a>
+                    </li>
+                    <li>
+                      <a class="douban" href="/auth/douban" target="_top">豆瓣</a>
+                    </li>
+                    <div class="clear"></div>
+                  </ul>
+                  <div class="clear"></div>
+              </div>
+          </div>
+          <div class="slider-container">
+            <ul class="jcarousel-skin-tango">
+              <li><img src="/assets/login_img1.jpg" width="440" height="225" alt="享受旗下所有设计师品牌提供的VIP专享优惠" /></li>
+              <li><img src="/assets/login_img2.jpg" width="440" height="225" alt="有机会受邀参加摩登客线下会员专享沙龙活动" /></li>
+              <li><img src="/assets/login_img3.jpg" width="440" height="225" alt="获得摩登客提供的最新时尚信息" /></li>
+            </ul>
+            <ul class="modal_login_nav" >
+              <li class="selected">1</li>
+              <li >2</li>
+              <li >3</li>
+            </ul>
+          </div>
+        </div>
+        <!--register form-->
+        <div class="register_box">
+          <h5><!--a class="login_link" href="#">返回登录框</a-->现在注册即可获价值100元现金抵用券</h5>
+          <div class="login_form">
+            <img class="register_girl" src="/assets/register_girl.jpg">
+            <%=form_for :user,:url=>users_path,:remote=>true do |f|%>
+            <ul class="register_ul">
+              <li>
+                <%=f.text_field :login_name,:value=>"",:class=>"new-input",:placeholder=>"用户名"%>
+                <div class="help-block"></div>
+              </li>
+              <li>
+                <%=f.password_field :login_password,:class=>"new-input",:class=>"new-input",:placeholder=>"密码"%>
+              </li>
+              <li>
+                <%=f.password_field :login_password_confirmation,:class=>"new-input",:class=>"new-input",:placeholder=>"确认密码"%>
+              </li>
+              <li>
+                <%=f.text_field :email,:value=>"",:class=>"new-input",:placeholder=>"邮箱"%>
+              </li>
+              <li>
+                <%=f.text_field :mobile,:value=>"",:class=>"new-input",:placeholder=>"手机"%>
+              </li>
+              <li>
+                <%=f.submit "注 册",:class=>"btn register_btn"%>
+                <%=link_to "返 回","#",:class=>"btn back_btn"%>
+              </li>
+            </ul>
+            <%end%>
+          </div>
+        </div>
+      </div>
+</div>

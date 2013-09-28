@@ -1,0 +1,2 @@
+$("#goods_list tbody").html('<%= escape_javascript render("collocation_goods").html_safe%>');
+$(".pagination").html('<%=will_paginate @goods,:container=>false%>');

@@ -1,0 +1,5 @@
+<ul>
+	<%@applicant.errors.messages.each do |key,msg|%>
+	<li><%=msg.join(",")%></li>
+	<%end%>
+</ul>

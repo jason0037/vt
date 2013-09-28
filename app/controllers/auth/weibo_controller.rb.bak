@@ -1,0 +1,60 @@
+require 'digest/md5'
+require 'hashie'
+require 'pp'
+class Auth::WeiboController < ApplicationController
+	skip_before_filter :authorize_user!
+
+	def index 
+		auth_ext = Ecstore::AuthExt.find_by_id(cookies.signed[:_auth_ext].to_i) if cookies.signed[:_auth_ext]
+		session[:from] = "external_auth"
+		
+		if auth_ext&&!auth_ext.expired?&&auth_ext.provider == 'weibo'
+			if auth_ext.account.nil?
+				cookies.delete :_auth_ext
+				redirect_to  Weibo.authorize_url
+			else
+				sign_in(auth_ext.account)
+				redirect_to after_user_sign_in_path
+			end
+		else
+			redirect_to Weibo.authorize_url
+		end
+	end
+
+	def callback
+		return redirect_to(site_path) if params[:error].present?
+
+		token = Weibo.request_token(params[:code])
+		
+
+		auth_ext = Ecstore::AuthExt.where(:provider=>"weibo",
+									:uid=>token.uid).first_or_initialize(
+									:access_token=>token.access_token,
+									:expires_at=>token.expires_at,
+									:expires_in=>token.expires_in)
+
+		client = Weibo.new(:access_token=>token.access_token,
+							:expires_at=>token.expires_at)
+
+		
+		auth_user = client.get('users/show.json',:uid=>token.uid).select do |k,v|
+			%w(avatar_large name gender location screen_name).include?(k)
+		end
+
+		if auth_ext.new_record? || auth_ext.account.nil?
+			session[:_auth_user] = (auth_user = Hashie::Mash.new(auth_user))
+			session[:_auth_ext] = auth_ext
+			@account = Ecstore::Account.new(:login_name=>auth_user.screen_name)
+			@account.auth_ext = auth_ext
+			render "auth/accounts/new", :locals=>{:provider=>'weibo'}
+		else
+			sign_in(auth_ext.account)
+			redirect_to after_user_sign_in_path
+		end
+	# rescue
+	# 	redirect_to auth_weibo_index_path
+	end
+
+	def cancel
+	end
+end

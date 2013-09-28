@@ -1,0 +1,230 @@
+#footer .wrapper{
+  padding: 10px 0px;
+  /*width: 1040px;*/
+  width: 950px;
+  height: 230px;
+  margin: 0 auto;
+  position: relative;
+}
+#footer {
+  /*overflow: none;*/
+  /*top: 0;*/
+  left: 0;
+  right: 0;
+  bottom: -260px;
+  margin: auto;
+  /*height: 100%;*/
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+  /*position:absolute;*/
+  background: #000 url("efingo_footer_bg.jpg") ;
+}
+#footer .why_choose_us {
+  background: #DFDEE5;
+  display: block;
+  height: 22px;
+  padding: 15px 0;
+  text-align: center;
+  border-top: 1px solid #d4d4d4;
+}
+
+
+#footer p,
+#footer a{
+  color: #888;
+  font-size: 12px;
+}
+#footer #links {
+  float: left;
+}
+
+#footer .foot_logo{
+  width: 220px;
+  _width: 220px;
+  height: 100px;
+  _height: 100px;
+  /*float: left;*/
+  display: block;
+  position: absolute;
+  top: 35px;
+  left: 0px;
+}
+#footer .foot_logo img{
+  float: left;
+}
+#footer .foot_hotline{
+  width: 235px;
+  _width: 235px;
+  height: 52px;
+  _height: 52px;
+  /*float: left;*/
+  display: block;
+  position: absolute;
+  top: 33px;
+  left: 0px;
+}
+#footer .foot_hotline img{
+  float: left;
+}
+#footer .foot_qrcode{
+  width: 120px;
+  _width: 120px;
+  position: absolute;
+  top: 25px;
+  left: 300px;
+  text-align: center;
+}
+#footer .foot_qrcode img p{
+  color: #888888;
+}
+#footer .foot_qrcode img{
+  margin: 0 auto;
+}
+#footer .copyright{
+  font-size: 12px;
+  clear:both;
+  line-height: 35px;
+  height:35px;
+  text-align: left;
+  width: 940px;
+  color: #888;
+  position: absolute;
+  bottom: 10px;
+}
+#footer .copyright span.legal_info{ float: left; color: #888; }
+#footer .copyright span.legal_links{ float: right; }
+#footer .copyright span.legal_links a{ color: #888; }
+
+#footer .subscribe {
+  float: left;
+  margin: 90px 0 10px 0;
+  width: 235px;
+}
+#footer .subscribe input.rsstxt {
+  border-color: #7C7C7C #C3C3C3 #C3C3C3 #9A9A9A;
+  border-image: none;
+  border-radius: 3px 3px 3px 3px;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 14px;
+  height: 20px;
+  margin-bottom: 5px;
+  padding: 2px 3px;
+  width: 180px;
+  color: #999;
+  border-color: #ddd;
+  -webkit-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow:inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 2px 3px 2px 5px;
+  float: left;
+  background-color: #eee;
+}
+#footer .subscribe .rssbutton {
+  float: right;
+  width: 38px;
+  border: 1px solid #333;
+}
+#footer .subscribe .rssbutton input {
+  background: none repeat scroll 0 0 #333;
+  border: 1px solid #333;
+  color: #ddd;
+  cursor: pointer;
+  display: block;
+  /*font-weight: bold;*/
+  height: 22px;
+  line-height: 22px;
+  text-align: center;
+  width: 38px;
+  height: 24px;
+  line-height: 24px;
+  outline: 0;
+}
+#footer .subscribe .rssbutton:hover {
+  border: 1px solid #444;
+}
+
+#footer .about{
+  width: 475px;
+  _width: 475px;
+  float: right;
+  margin: 20px 0 0 0;
+  height: 140px;
+}
+#footer .about ul{
+  width: 125px;
+  _width: 115px;
+  float: left;
+  padding-left:5px;
+  margin-bottom: 0;
+  list-style: none;
+}
+#footer .about ul li{
+  padding: 0;
+  text-align: center;
+}
+#footer .about ul li a{
+  line-height: 24px;
+  font-size: 13px;
+  color: #888;
+}
+#footer .about h3{
+  color: #777;
+  font-weight: normal;
+  font-size: 14px;
+  line-height:28px;
+  margin: 0;
+  text-align: center;
+}
+
+#footer .about ul {
+  width: 113px;
+  margin:0px;
+}
+
+#footer .partners {
+  width: 100%;
+  float: left;
+  height: 20px;
+}
+#footer .partners ul {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  float: left;
+}
+#footer .partners ul li {
+  display: inline-block;
+  color: #888888;
+  font-size: 12px;
+   float: left;
+}
+#footer .partners ul li.active {
+/*  background: url(../images/triangle.png) 34px 31px no-repeat;*/
+}
+#footer .partners ul li a {
+  display: inline;
+  height: 34px;
+  color: #888888;
+  text-decoration: none;
+  line-height: 34px;
+  font-family: Arial, Helvetica, Geneva, sans-serif;
+  padding: 0 6px;
+  border-right: 1px solid #444;
+  
+}
+#footer .partners ul li:first-child span{
+  padding: 0;
+  border-right: none;
+  height: 34px;
+  line-height: 34px;
+}
+#footer .partners ul li:last-child a {
+  border-right: none;
+}
+#footer .partners ul li a:hover,
+#footer .partners ul li a:active,
+#footer .partners ul li.active a {
+  text-decoration: underline;
+}

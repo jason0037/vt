@@ -1,0 +1,45 @@
+<%
+  create_or_update_url = admin_pages_path  if action_name == "new"
+  create_or_update_url = admin_page_path(@page) if action_name == "edit"
+%>
+<%= form_for @page,:url=>create_or_update_url,:html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+    <% if @page.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+        <ul>
+        <% @page.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.hidden_field :user_id,:value=>current_admin.account_id if admin_signed_in?%>
+    <div class="control-group">
+      <%= f.label :title, "标题", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :title, :placeholder => "标题" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :topic_id, "所属专题", :class => "control-label" %>
+      <div class="controls">
+        <%= f.select :topic_id, Imodec::Topic.all.collect {|t| [ t.title, t.id ] }, {:prompt => '请选择所属专题'}, :class => "span2" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :body, "内容", :class => "control-label" %>
+      <div class="controls">
+        <!--%= f.cktext_area :body, :toolbar => 'Easy',:language=>'zh-cn',:height => 300 %-->
+        <%= f.text_area :body, :height => 300, :class => "span8" %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '返回', admin_pages_path %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

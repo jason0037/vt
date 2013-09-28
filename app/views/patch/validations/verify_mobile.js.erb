@@ -1,0 +1,6 @@
+$("#verify_form .tip").text("<%=@msg%>")
+<%if @result%>
+ 	window.location.replace("<%=validation_path%>")
+<%else%>
+$("#verify_form :submit").attr("disabled",false)
+<%end%>

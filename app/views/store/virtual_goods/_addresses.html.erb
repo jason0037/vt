@@ -1,0 +1,7 @@
+<%addresses.each do |addr|%>
+  <div><b><%=addr.province%></b></div>
+   <p>
+   		<%=addr.name%>
+   		<%=link_to "[查看地图]","#map",:class=>"show-map", :data=>{:latitude=>addr.latitude,:longitude=>addr.longitude,:toggle=>"modal"}%>
+   </p>
+<%end if addresses%>

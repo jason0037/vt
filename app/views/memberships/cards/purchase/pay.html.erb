@@ -1,0 +1,22 @@
+<div class="cards">
+	<p>您的订单提交成功！</p>
+	<p>
+		本页面将在<span id="sec">5</span>秒后自动跳转至“我的摩登客”中的“我的VIP卡”
+	</p>
+	<p>如页面未跳转, <%=link_to "请点击此处","/member-cards.html",:class=>"jump"%></p>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var t = 5;
+		var countSec = setInterval(function(){
+			t = t - 1;
+			if(t >= 0){
+			    $("#sec").text(t);
+			}else{
+				clearInterval(countSec);
+				window.location.href = $(".jump").attr('href');
+			}
+		},1000);
+	});
+</script>

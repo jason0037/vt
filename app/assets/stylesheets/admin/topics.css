@@ -1,0 +1,39 @@
+ /*
+ *= require jquery.ui.datepicker
+ *= require jquery.ui.slider
+ */
+input.publish_at{
+  margin-bottom: 0px;
+}
+
+.ui-datepicker-div{
+	font-size: 14px;
+}
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; }
+.ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
+
+.ui-datepicker table {width: 100%; font-size: 10px; border-collapse: collapse; margin:0 0 .4em; }
+.ui-widget{
+	font-size: 10px;
+}
+.form-horizontal .page-area{
+	margin-bottom: 10px;
+}
+a.delete-page{
+	font-size: 30px;
+	text-decoration: none;
+	color:red;
+}
+a.remote-delete{
+	font-size: 30px;
+	text-decoration: none;
+	color:red;
+}

@@ -1,0 +1,155 @@
+<%= form_for @topic,:url => @create_or_update_path, :html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+    <% if @topic.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+        <ul>
+        <% @topic.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="control-group">
+      <%= f.label :title, "标题", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :title, :placeholder => "标题" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :slug, "链接名称", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :slug, :placeholder => "链接名称" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :title, "分类", :class => "control-label" %>
+      <div class="controls">
+        <%= f.select :category_id,Imodec::Category.all.collect{|c| [c.name,c.id]},{:include_blank=>"请选择"}%>
+        <%=link_to "添加分类","javascript:void(0);",:"data-url"=>admin_categories_path,:class=>"dialog"%>
+      </div>
+    </div>
+
+  <%if @topic.new_record?%>
+  <div class="control-group">
+      <%= f.label :type, "形式", :class => "control-label" %>
+      <div class="controls">
+        <%= select_tag :type,"<option value='origin'>原始</option><option value='page'>内页</option>".html_safe,:class=>"topic-kind" %>
+      </div>
+    </div>
+    <%end%>
+
+
+    <div class="control-group">
+      <%= f.label :body, "内容", :class => "control-label" %>
+      <div class="controls">
+        <%unless @topic.new_record?%>
+             <%if @topic.body.present?%>
+                  <%= f.cktext_area :body, :toolbar => 'Easy',:language=>'zh-cn',:height => 300 %>
+             <%else%>
+                  <%@topic.pages.each do |page|%>
+                    <span id="page_<%=page.id%>">
+                        <%=hidden_field_tag "imodec_topic[pages][][id]",page.id%>
+                        <%=text_area_tag "imodec_topic[pages][][body]",page.body,:class=>"span6 page-area",:rows => "5"%>
+                        <%=link_to "X",admin_page_path(page),:remote=>true,:method=>:delete,:class=>"remote-delete"%>
+                    </span>
+                  <%end%>
+                  <div>
+                  <%=link_to "+添加内页","#",:id=>"add_page"%>
+                  </div>
+              <%end%>
+        <%else%>
+            <%= f.cktext_area :body, :toolbar => 'Easy',:language=>'zh-cn',:height => 300 %>
+
+            <div id="page-bodies" class="hide">
+                 <span>
+                        <%=text_area_tag "imodec_topic[pages][]","",:class=>"span6 page-area",:rows => "5"%>
+                        <%=link_to "X","#",:class=>"delete-page"%>
+                 </span>
+
+                  <span>
+                        <%=text_area_tag "imodec_topic[pages][]","",:class=>"span6 page-area",:rows => "5"%>
+                        <%=link_to "X","#",:class=>"delete-page"%>
+                 </span>
+              
+                  <div>
+                  <%=link_to "+添加内页","#",:id=>"add_page" unless @topic.body.present?%>
+                  </div>
+               </div>
+        <%end%>
+
+        
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :summary, "摘要", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_area :summary, :class => "span6", :rows => "5" %>
+      </div>
+    </div>
+    <div class="control-group">
+       <%= f.label :cover, "封面", :class => "control-label" %>
+       <div class="controls">
+          <%= f.select :cover_size, Imodec::Topic::COVER_SIZES, {}, :class => "span2" %>
+          <%= f.file_field :cover %><br/><br/>
+          <% if @topic.cover.file? %>
+          <%= image_tag @topic.cover.url(@topic.cover_size) %><br/><br/>
+          <label class="checkbox" for="imodec_topic_remove_cover">
+            <%= f.check_box :remove_cover %>删除封面
+          </label>
+          <% end %>
+       </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">设定</label>
+      <div class="controls">
+        <label class="checkbox" for="imodec_topic_published">
+          <%= f.check_box :published %>立刻发布
+        </label>
+      </div>
+    </div>
+
+     <div class="control-group">
+      <label class="control-label">访问设置</label>
+      <div class="controls">
+        <label class="checkbox" for="imodec_topic_require_login">
+          <%= f.check_box :require_login %> 登录
+        </label>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">评论设置</label>
+      <div class="controls">
+        <label class="checkbox" for="imodec_topic_commentable">
+          <%= f.check_box :commentable %> 开启评论
+        </label>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :page_keywords, "关键字", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :page_keywords, :placeholder => "网页关键字,提示：逗号分割",:class=>"span5" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :page_description, "网页描述", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :page_description, :placeholder => "网页描述",:class=>"span5" %>
+      </div>
+    </div>
+
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '返回', admin_topics_path %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>
+

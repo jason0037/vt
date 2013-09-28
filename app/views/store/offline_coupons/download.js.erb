@@ -1,0 +1,6 @@
+$("#download #result").removeClass("hide");
+$("#download #send").addClass("hide");
+$("#download #tel").text("<%=params[:sms][:mobile]%>");
+$("#send form :submit").removeAttr("disabled").removeClass("disabled");
+$("#send .sending, #send .error").empty();
+$("#send form input[type='text']").val('');

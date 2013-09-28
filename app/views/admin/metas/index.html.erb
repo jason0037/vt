@@ -1,0 +1,31 @@
+<h4>
+	SEO设置列表
+	<%=link_to "新建SEO设置",new_admin_meta_path,:class=>"btn btn-primary pull-right"%>
+</h4>
+<br>
+<table class="table table-striped table-bordered">
+	<tr>
+		<th>访问路径</th>
+		<th>包含参数</th>
+		<th>Page Title</th>
+		<th>Meta Keywords</th>
+		<th>Meta Description</th>
+		<th>操作</th>
+	</tr>
+	<%@metas.each do |meta|%>
+	<tr>
+		<td><%=meta.path%></td>
+		<td><%=meta.params_text%></td>
+		<td><%=meta.title%></td>
+		<td><%=meta.keywords%></td>
+		<td><%=meta.description%></td>
+		<td>
+			<%=link_to "编辑",edit_admin_meta_path(meta)%>
+			<%=link_to "删除",admin_meta_path(meta), method: :delete, confirm: "确定要删除吗?"%>
+		</td>
+	</tr>
+	<%end%>
+</table>
+<div class="pagination">
+	<%=will_paginate @metas, container: false%>
+</div>

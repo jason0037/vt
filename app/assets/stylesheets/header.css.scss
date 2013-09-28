@@ -1,0 +1,187 @@
+#header {
+  margin-bottom: 0;
+  display: block;
+  height: 100px;
+  /*background: url(../images/header_bg.png);*/
+  background: #fff;
+}
+
+#header .container {
+  display: block;
+  height: 100px;
+  width: 950px;
+  margin: 0 auto;
+}
+#header #imodec_logo {
+  float: left;
+  margin: 32px 0 0 2px;
+  width: 210px;
+}
+#header #imodec_slogan {
+  float: left;
+  margin: 43px 0 0 20px;
+  width: 189px;
+}
+#header #account {
+  float: right;
+  margin-top: 20px;
+  overflow: hidden;
+  width: 510px;
+}
+
+#header #account #login_tools {
+    float: right;
+    list-style: none outside none;
+    margin: 13px 0 0;
+    padding: 0;
+    width: 510px;
+}
+#header #account #login_tools li {
+    display: block;
+    float: right;
+    margin: 0 0 0 10px;
+}
+#header #account #login_tools li a {
+    color: #000000;
+    float: left;
+    font-size: 13px;
+    height: 18px;
+    line-height: 18px;
+    opacity: 0.75;
+    text-decoration: none;
+}
+#header #account #login_tools li a:hover {
+    color: #000000;
+    opacity: 1;
+}
+#header #account #login_tools li div.bar {
+    float: left;
+    height: 18px;
+}
+#header #account #login_tools li div.bar a.login,
+#header #account #login_tools li a.girl_head {
+    background: url("/assets/store/minicons.png") no-repeat scroll 0 -1px transparent;
+    height: 17px;
+    line-height: 17px;
+    margin: 0;
+    padding-left: 20px;
+}
+
+#header #account #login_tools li div.bar a {
+    height: 17px;
+    line-height: 17px;
+    margin-top: 1px;
+}
+#header #account #login_tools li span.login_name {
+    background: url("/assets/store/minicons.png") no-repeat scroll 0 -1px transparent;
+    float: left;
+    font-size: 13px;
+    height: 17px;
+    line-height: 17px;
+    margin: 0 0 0 2px;
+    max-width: 150px;
+    opacity: 0.75;
+    overflow: hidden;
+    padding-left: 22px;
+    padding-top: 1px;
+    text-overflow: ellipsis;
+}
+#header #account #login_tools li a.loggedin {
+    margin-left: 6px;
+}
+#header #account #login_tools li a#cart_link {
+    background: url("/assets/store/minicons.png") no-repeat scroll 0 -22px transparent;
+    padding-left: 20px;
+}
+#header #account #login_tools li div#support {
+    background: url("/assets/store/minicons.png") no-repeat scroll 0 -84px transparent;
+    float: left;
+    height: 18px;
+    line-height: 18px;
+    opacity: 0.75;
+    padding-left: 20px;
+}
+#header #account #login_tools li div#support:hover, #header #account #login_tools li div#support a {
+    opacity: 1;
+}
+#header #account #login_tools li div#support a {
+    height: 17px;
+    line-height: 17px;
+    margin-top: 1px;
+}
+#header #account #login_tools li a#reg {
+    margin-left: 5px;
+}
+#header #account #login_tools li #tel {
+    background: url("/assets/store/minicons.png") no-repeat scroll 0 -141px transparent;
+    color: #000000;
+    /*display: none;*/
+    /*float: right;*/
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    /*margin-left: 380px;*/
+    opacity: 0.75;
+    padding: 0 2px 0 20px;
+    /*display: none;*/
+}
+#header #account #vipcard {
+  float: right;
+  width: 82px;
+  height: 14px;
+  background: url("/assets/store/vipcard.png") no-repeat scroll 0 0 transparent;
+  cursor: pointer;
+  opacity: 1;
+  margin: 8px 11px 0 0;
+}
+#header #account #search_wrapper {
+  float: right;
+  height: 30px;
+  width: 366px;
+}
+#header #account a#weibo {
+  float: right;
+  width: 16px;
+  height: 20px;
+  margin: 6px 0 0 0;
+  background: url("/assets/store/minicons.png") no-repeat scroll 0 -122px transparent;
+  cursor: pointer;
+  opacity: 1;
+  /*padding-left: 16px;*/
+}
+#header #account a#weibo:hover {
+  background: url("/assets/store/minicons.png") no-repeat scroll 0 -122px transparent;
+}
+#header #account #search_bar {
+  float: left;
+  width: 244px;
+  height: 27px;
+  border: 1px solid #ccc;
+  color: #777;
+}
+#header #account #search_bar:hover {
+  border: 1px solid #aaa;
+}
+#header #account #search_input {
+  float: left;
+  width: 230px;
+  height: 23px;
+  padding: 2px 8px;
+  margin: 0;
+  width: 200px;
+  color: #888;
+  border: none;
+  outline: none;
+  line-height: 20px;
+}
+#header #account #search_btn {
+  float: right;
+  display: block;
+  width: 27px;
+  height: 27px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  text-indent: -99999px;
+  background: url("/assets/store/minicons.png") no-repeat scroll 5px -198px transparent;
+}

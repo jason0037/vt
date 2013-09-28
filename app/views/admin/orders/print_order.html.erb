@@ -1,0 +1,97 @@
+<h2 class="title">客户订单</h2>
+
+<ul class="basic clearfix">
+	<li>
+		<span class="label">订单编号 : </span>	
+		<span class="value"><%=@order.order_id%></span>
+	</li>
+
+	<li>
+		<span class="label">订购时间 : </span>
+		<span class="value"><%=@order.created_at%></span>
+	</li>
+	<li>
+		<span class="label">收货人 : </span>
+		<span class="value"><%=@order.ship_name%></span>
+	</li>
+	<li>
+		<span class="label">联系方式 : </span>
+		<span class="value"><%=@order.ship_mobile || @order.ship_tel%></span>
+	</li>
+	<li>
+		<span class="label">支付方式 : </span>
+		<span class="value"><%=@order.payment_name%></span>
+	</li>
+	<li>
+		<span class="label">配送时间 : </span>
+		<span class="value"><%=@order.ship_time%></span>
+	</li>
+	<li>
+		<span class="label">收货地址 : </span>
+		<span class="value"><%=@order.ship_addr%></span>
+	</li>
+	<li>
+		<span class="label">邮政编码 : </span>
+		<span class="value"><%=@order.ship_zip%></span>
+	</li>
+</ul>
+
+<br>
+<br>
+<br>
+
+<h3 class="title">订单详情</h3>
+
+<table>
+	<tr>
+		<th>编号</th>
+		<th>商品号</th>
+		<th>商品名称</th>
+		<th>商品单价</th>
+		<th>数量</th>
+		<th>小计</th>
+	</tr>
+	<%@order.order_items.each_with_index do |order_item,index|%>
+	<tr>
+		<td><%=index+1%></td>
+		<td><%=order_item.bn%></td>
+		<td><%=order_item.name%>(<%=order_item.product.spec_info%>)</td>
+		<td>&yen;<%=order_item.price.to_i%></td>
+		<td><%=order_item.nums.to_i%></td>
+		<td>&yen;<%=order_item.amount.to_i%></td>
+	</tr>
+	<%end%>
+
+	<tr>
+		<td colspan="5" class="colspan">合计金额</td>
+		<td>&yen;<%=@order.products_total.to_i%></td>
+	</tr>
+	<tr>
+		<td colspan="5" class="colspan">运费</td>
+		<td>&yen;<%=@order.cost_freight.to_i%></td>
+	</tr>
+	<tr>
+		<td colspan="5" class="colspan">优惠金额</td>
+		<td>&yen;<%=@order.pmts_total.to_i%></td>
+	</tr>
+	<tr>
+		<td colspan="5" class="colspan">支付金额</td>
+		<td>&yen;<%=@order.final_pay.to_i%></td>
+	</tr>
+
+</table>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>温馨提示 : </p>
+<p class="indent">尊敬的会员：请您核对箱内商品信息与商品数量，如有疑问请致电I-Modec摩登客客服中心。</p>
+<p class="indent">服务热线：021-60919835</p>
+<p class="indent">E-Mail邮箱：cs@i-modec.com</p>
+<p class="indent">客服工作时间：每日 9 : 30~18 : 30（国家节假日除外）</p>
+<script type="text/javascript">
+	window.onload = function(){
+		window.print()
+	}
+</script>

@@ -1,0 +1,14 @@
+<li>
+<%=select_tag "good_spec_items[][spec_item_id]",options_from_collection_for_select(@spec_items,:id, :name,item.spec_item_id),{:prompt=>"请选择",:class=>"item-selector"}%>
+
+<%=number_field_tag "good_spec_items[][min_value]",item.min_value,:placeholder=>"最小值",:class=>"input-small"%>
+
+<%=number_field_tag "good_spec_items[][max_value]",item.max_value,:placeholder=>"最大值",:class=>"input-small"%>
+
+<%unless item.new_record? %>
+	<%=link_to 'X','javascript:void(0);',:'data-url'=>remove_spec_item_admin_good_path(@good,:good_spec_item_id=>item.id),:class=>"remove-spec-item",:confirm=>"确定删除该选项?"%>
+<%else%>
+	<%=link_to 'X','javascript:void(0);',:class=>"remove-spec-item",:confirm=>"确定删除该选项?"%>
+<%end%>
+
+</li>

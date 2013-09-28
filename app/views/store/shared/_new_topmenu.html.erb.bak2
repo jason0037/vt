@@ -1,0 +1,80 @@
+<%
+      site_name =  nil
+      site_name = "http://www.i-modec.com" if Rails.env == 'production'
+%>
+
+<div id="topmenu" class="navbar navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li class="home <%= 'active' if controller_name == 'home' %>">
+            <a href="<%=site_name%>/">首页 <span>HOME</span></a>
+          </li>
+          <li class="newin dropdown  <%= 'active' if controller_name == 'goods' %>">
+            <a id="newin" data-target="<%=site_name%>/products/newest" href="<%=site_name%>/products/newest" class="dropdown-toggle" data-toggle="dropdown">新品 <span>NEW IN</span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="newin">
+              <li><a tabindex="-1" href="<%=site_name%>/products/newest">本期新品</a></li>
+              <li><a tabindex="-1" href="<%=site_name%>/products/more">更多新品</a></li>
+            </ul>
+          </li>
+          <li class="brands dropdown">
+            <a id="brands" data-target="<%=site_name%>/brands" href="<%=site_name%>/brands" class="dropdown-toggle" data-toggle="dropdown">品牌 <span>BRANDS</span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="brands">
+
+              <% [58,59,56,19,61,39,41,26,37,36,34,60,33,32,31,62,42,28,29,54,25,20,50].each do |id|
+                   brand = Ecstore::Brand.where(:brand_id=>id).first
+                %>
+                <%if brand%>
+                  <li>
+                    <%=link_to brand.brand_name,"#{site_name}#{brand_path(brand)}" if Rails.env == "production"%>
+                    <%=link_to brand.brand_name, brand_path(brand) if Rails.env == "development"%>
+                  </li>
+                <%end%>
+              <%end%>
+            </ul>
+          </li>
+          <li class="apparel dropdown">
+            <a id="apparel" data-target="<%=site_name%>/gallery/22" href="<%=site_name%>/gallery/22" class="dropdown-toggle" data-toggle="dropdown">时装 <span>APPAREL</span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="apparel">
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/52">外套</a></li>
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/48">针织衫</a></li>
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/29">薄上装</a></li>
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/23">连衣裙</a></li>
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/28">礼服裙</a></li>
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/24">裙子</a></li>
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/37">衬衫</a></li>
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/41">裤子</a></li>
+            </ul>
+          </li>
+          <li class="bags dropdown">
+            <a id="bags" data-target="<%=site_name%>/gallery/59" href="<%=site_name%>/gallery/59" class="dropdown-toggle" data-toggle="dropdown">包袋 <span>BAGS</span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="bags">
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/62">手拿包</a></li>
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/60">挎包</a></li>
+            </ul>
+          </li>
+          <li class="accessories dropdown">
+            <a id="accessories" data-target="<%=site_name%>/gallery/69" href="<%=site_name%>/gallery/69" class="dropdown-toggle" data-toggle="dropdown">配饰 <span>ACCESSORIES</span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="accessories">
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/70">首饰</a></li>
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/77">腰带</a></li>
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/81">眼镜</a></li>
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/80">围巾</a></li>
+              <li><a tabindex="-1" href="<%=site_name%>/gallery/78">手套</a></li>
+            </ul>
+          </li>
+          <li class="news <%= 'active' if controller_name == 'topics' %>">
+            <a href="http://blog.i-modec.com/topics">摩登资讯 <span>NEWS</span></a>
+          </li>
+          <li class="last"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

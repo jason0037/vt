@@ -1,0 +1,12 @@
+<div class="element" >
+  <%= link_to topic_path(topic) do %>
+    <% case topic.cover_size %>
+    <% when "small" %>
+      <%= image_tag topic.cover.url(topic.cover_size), :title => topic.title, :alt => topic.title, :width => "230", :height => "112" %>
+    <% when "normal" %>
+      <%= image_tag topic.cover.url(topic.cover_size), :title => topic.title, :alt => topic.title, :width => "230", :height => "230" %>
+    <% when "big" %>
+      <%= image_tag topic.cover.url(topic.cover_size), :title => topic.title, :alt => topic.title, :width => "465", :height => "230" %>
+    <% end %>
+  <% end %>
+</div>

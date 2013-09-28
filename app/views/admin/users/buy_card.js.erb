@@ -1,0 +1,7 @@
+<%if @buyer_card.errors.messages.empty?%>
+	$("input[name='commit']").next(".msg").html('购卡成功. <%=link_to '返回', admin_cards_path%>');
+<%else%>
+	<%@buyer_card.errors.messages.each do  |key,msgs|%>
+	$("input[name='member_card[<%=key%>]']").nextAll(".help").text("<%=msgs.join(',')%>").addClass("error");
+	<%end%>
+<%end%>

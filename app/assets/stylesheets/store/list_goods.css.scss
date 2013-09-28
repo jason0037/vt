@@ -1,0 +1,102 @@
+.sorter{
+	padding:2px 0px 0px 0px;
+	margin-bottom:20px;
+	font-size:12px;
+	border-bottom:solid 2px #000;
+	a{
+		color:#333;
+		padding:0px 3px;
+		margin-right: 3px;
+		font-size: 11px;
+	}
+}
+.list{
+	font-size: 13px;
+	float:left;
+	list-style: none;
+	margin: 0px;
+	li{
+		list-style: none;
+		float:left;
+		width: 245px;
+		margin-bottom: 20px;
+	}
+	.good-pic{
+		margin-bottom: 5px;
+		img{
+			width: 193px;
+			height: 272px;
+			max-width: none;
+			margin: 0px auto;
+			display: block;
+		}
+		.default{
+			display: block;
+		}
+
+		.hover{
+			display: none;
+		}
+
+		&:hover{
+			.default{
+				display: none;
+			}
+			.hover{
+				display: block;
+			}
+		}
+
+	}
+	.good-info{
+		margin-left: 33px;
+		
+		.brand{
+			font-size: 14px;
+			height: 20px;
+		}
+		.name{
+			height: 20px;
+			a{
+				font-size: 12px;
+				color:#999;
+				text-decoration: none;
+			}
+		}
+		.prices{
+			height: 20px;
+			font-size: 12px;
+			.mtkprice{
+				color:#999;
+				margin-left: 5px;
+			}
+			.login{
+				color:red;
+			}
+		}
+		
+	}
+}
+.pagination{
+	float:right;
+	font-size:12px;
+	&.top{
+		margin: 0px;
+	}
+	a{
+		color:#333;
+		padding:3px 5px;
+
+		&:hover{
+			 color:#8d0a0f;
+		}	
+	}
+	.current{
+		font-weight:bold;
+		padding:3px 5px;
+	}
+	span.disabled{
+		padding:3px 5px;
+		color:#999;
+	}
+}

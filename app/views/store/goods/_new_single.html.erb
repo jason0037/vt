@@ -1,0 +1,158 @@
+<div id="product" class='product_container <%="good_#{good.goods_id}"%>'>
+  <div class="gallery">
+    <ul class="jcarousel-skin-tango">
+      <%good.default_product.pictures(:large).each_with_index do |large, index|%>
+        <li>
+          <%= link_to large, :class=>"jqzoom#{ index + 1 }" do %>
+            <%=image_tag large,:size=>"420x592",:alt=>nil%>
+          <% end %>
+        </li>
+      <%end%>
+    </ul>
+  </div>
+  <div class="paddle pl disabled">
+    <div class="paddle_img"></div>
+  </div>
+  <div class="paddle pr">
+    <div class="paddle_img"></div>
+  </div>
+
+  <%unless  good.has_cols?%>
+  <a href="<%=good.brand&&brand_path(good.brand)%>" class="brand" target="_blank">
+      <%=image_tag good.brand.logo_url if good.brand%>
+  </a>
+  <%end%>
+  <div class="description">
+    <h3><%=good.name %></h3>
+    <p><%=raw good.intro%></p><br>
+    <a class="see_info" href="#">点此查看商品详情 <span> </span></a>
+  </div>
+
+  <div class="meta_info">
+    <%=form_for :product,:url=>add_cart_index_path,:remote=>true do |f|%>
+    <%=f.hidden_field :goods_id,:value=>good.goods_id%>
+    <%=f.hidden_field :type_id,:value=>good.type_id%>
+
+    <h3 class="name_and_price">
+    
+      <div class="name"><%=good.name %></div>
+      
+      <%if good.has_cols? %>
+            <span class="price">套装价
+            <span class="georgia">
+              <% if signed_in? %>
+                ￥<%=good.default_product.price.to_i if good.default_product%>&nbsp;&nbsp;&nbsp;
+              <% else %>
+                <a href="javascript:void(0)" class="login" style="font-size:14px;color:#D30000;">[会员专享]</a>
+              <%end%>
+            </span>
+          </span>
+          <span class="market_price">立省<span class="georgia">￥<%=good.savings.to_i%></span>&nbsp;</span>
+      <%else%>
+        <span class="price"><%=good.default_product&&good.default_product.full_custom? ? "定金" : "摩登客价"%>
+          <span class="georgia">
+            <% if signed_in? %>
+              ￥<span id="product_price"><%=good.default_product.price.to_i if good.default_product%></span>&nbsp;&nbsp;&nbsp;
+            <% else %>
+              <a href="javascript:void(0)" class="login" style="font-size:14px;color:#D30000;">[会员专享]</a>
+            <%end%>
+          </span>
+        </span>
+        <span class="market_price">市场价<span class="georgia">￥<%=good.default_product.mktprice.to_i if good.default_product%></span>&nbsp;</span>
+      <%end%>
+      <span class="product_id">［商品号<%=good.bn%>］</span>
+    
+    </h3> 
+
+    <div class="spec">
+      <%=render :partial=>"store/goods/product/new_spec",:locals=>{ :good=>good }%>
+    </div>
+    
+
+    <div class="actions clearfix">
+      <%if @good.marketable == "true"%>
+            <div id="cart_msg"></div>
+            <%=link_to "加入购物车","javascript:void(0);",:class=>"add_to_cart #{'sold-out' if good.store.to_i == 0 } #{'login' unless signed_in?} #{'buy-cols' if good.has_cols? }",:id=>"add_to_cart"%>
+      <%else%>
+            <%=image_tag  "/assets/store/not_marketing.png", :class=>"not-marketing"%>
+      <%end%>
+
+      <%if signed_in?%>
+      <%=link_to "已收藏",unfav_good_path(good,:rel=>"good_#{good.goods_id}"),:class=>"add_to_favorites",:remote=>true,:method=>:put,:confirm=>"是否取消收藏?" if good.favorited_by?(@user)%>
+      <%=link_to "加入我的收藏夹",fav_good_path(good,:rel=>"good_#{good.goods_id}"),:class=>"add_to_favorites",:remote=>true,:method=>:put unless good.favorited_by?(@user)%>
+      <%else%>
+        <a href="javascript:void(0);" class="add_to_favorites login">加入我的收藏夹</a>
+      <%end%>
+
+    </div>
+
+    <div class="more">
+      <%=render partial: "store/goods/product/more",:locals=>{ :good=>good }%>
+    </div>
+    <%end%>
+
+  </div>
+
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  loadProductInfo("#product");
+  $("#product ul.jcarousel-list li.jcarousel-item").each(function(index,el){
+          $('.jqzoom'+(index+1)).jqzoom({
+              zoomType: 'standard',
+              lens:true,
+              preloadImages: false,
+              alwaysOn:false,
+              zoomWidth: 400,
+              zoomHeight: 592,
+              preloadText: '正在加载图片...',
+              title: false
+          });
+    });
+  
+
+  // $('.jqzoom1').jqzoom({
+  //     zoomType: 'standard',
+  //     lens:true,
+  //     preloadImages: false,
+  //     alwaysOn:false,
+  //     zoomWidth: 400,
+  //     zoomHeight: 592,
+  //     preloadText: '正在加载图片...',
+  //     title: false
+  // });
+  
+  // $('.jqzoom2').jqzoom({
+  //     zoomType: 'standard',
+  //     lens:true,
+  //     preloadImages: false,
+  //     alwaysOn:false,
+  //     zoomWidth: 400,
+  //     zoomHeight: 592,
+  //     preloadText: '正在加载图片...',
+  //     title: false
+  // });
+
+  // $('.jqzoom3').jqzoom({
+  //     zoomType: 'standard',
+  //     lens:true,
+  //     preloadImages: false,
+  //     alwaysOn:false,
+  //     zoomWidth: 400,
+  //     zoomHeight: 592,
+  //     preloadText: '正在加载图片...',
+  //     title: false
+  // });
+
+  // $('.jqzoom4').jqzoom({
+  //     zoomType: 'standard',
+  //     lens:true,
+  //     preloadImages: false,
+  //     alwaysOn:false,
+  //     zoomWidth: 400,
+  //     zoomHeight: 592,
+  //     preloadText: '正在加载图片...',
+  //     title: false
+  // });
+})
+</script>

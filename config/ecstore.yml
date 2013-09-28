@@ -1,0 +1,30 @@
+#database config for ecstore database
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: mdk
+  host: localhost
+  pool: 5
+  username: root
+  password: 
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: mdk
+  host: localhost
+  pool: 5
+  username: root
+  password:
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: mdk
+  pool: 5
+  host: localhost
+  username: root
+  password:

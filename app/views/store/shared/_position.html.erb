@@ -1,0 +1,42 @@
+<div id="position">
+  <div class="container">
+    <div class="current_pos">当前位置 ：</div>
+    <ul class="breadcrumb">
+      <li><a href="http://www.i-modec.com">首页</a> <span class="divider">/</span></li>
+      <%if @tag%>
+      <li>
+        <a href="/products/newest">新品</a>
+        <span class="divider">/</span>
+      </li>
+      <%else%>
+        <%@cat.cat_paths.each_with_index do |cat,index|%>
+        <li>
+          <%=link_to cat.cat_name,cat_path(cat),:target=>"_blank" if cat%>
+          <span class="divider">/</span>
+        </li>
+        <%end if @cat%>
+      <%end%>
+
+      <li class="active">
+          <%if action_name == "newest"%>
+             本期新品
+          <%else%>
+            <%=@tag.tag_ext.issue_no if @tag&&@tag.tag_ext%>
+          <%end%>
+
+          <%if @good&&action_name == "show"%>
+              <%=@good.name%>
+          <%end%>
+      </li>
+
+
+    </ul>
+    <%if @tag && @tag.tag_ext && @tag.newest?%>
+    <div id="clock" deadline='<%=(@tag.tag_ext.deadline.to_f*1000).to_i%>'>
+      限购剩余时间 
+      <span><span id="days"></span>天<span id="hours"></span>小时<span id="minutes"></span>分<span id="seconds"></span>秒
+      </span>
+    </div>
+    <%end%>
+  </div>
+</div>

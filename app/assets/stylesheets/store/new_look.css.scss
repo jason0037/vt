@@ -1,0 +1,151 @@
+#new_look{
+
+      padding: 0px;
+      width: 1040px;
+      margin: 0 auto;
+      position: relative;
+      margin-bottom: 20px;
+
+      h3{
+        border-bottom: 1px solid #D2D2D2;
+        font-size: 24px;
+        color: #333;
+        margin: 5px 0 0 0;
+        padding: 12px 0;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+        font-weight: normal;
+        span{
+          font-size: 19px;
+        }
+      }
+
+      ul.suit-group{
+        margin-top:20px;
+        li{
+          float: left;
+          text-align: center;
+        }
+        .name{
+            padding-top: 6px;
+        }
+        .price{
+          color:#d30000;
+        }
+        .suit{
+          img{
+            width: 152px;
+            height: 222px;
+
+          }
+        }
+        .single{
+          img{
+              width: 150px;
+              height: 220px;
+              border:solid 1px #bbb;
+              max-width: none;
+          }
+
+          a{
+              word-break: break-all;
+               width: 145px;
+               text-align: center;
+               padding: 5px 0px 0px 0px;
+               &:hover{
+                text-decoration: none;
+                color:#000;
+               }
+          }
+        }
+        .equal,
+        .plus{
+              font-size: 50px;
+              width: auto;
+              height: 220px;
+              line-height: 220px;
+              margin: 0px 25px;
+        }
+      }
+
+      .master{
+         float:left;
+         width: 210px;
+         text-align: center;
+         .name{
+            color:#777;
+            padding: 3px 0px;
+         }
+         .price{
+            color: #D30000;
+         }
+         .saving{
+            color:#000;
+         }
+         img{
+            width: 210px;
+            height: 296px;
+         }
+      }
+      .collocations{
+        float: right;
+        width: 800px;
+        height: 400px;
+
+        // h3{
+        //    margin: 0px 0px 10px 0px;
+        //    padding: 0px;
+        //    font-style: italic;
+        //    font-weight: normal;
+        // }
+        
+        .items{
+           border:dotted 1px #444;
+           padding: 30px;
+           float: left;
+           // width: 738px;
+
+           .single{
+             float: left;
+             width: 145px;
+             font-size: 12px;
+             img{
+              border:solid 1px #ccc;
+             }
+             .name{
+               word-break: break-all;
+               width: 145px;
+               text-align: center;
+               padding: 5px 0px 0px 0px;
+               a:hover{
+                text-decoration: none;
+                color:#000;
+               }
+             }
+             .price{
+              text-align: center;
+              color: #D30000;
+             }
+           }
+           .plus{
+              font-size: 50px;
+              width: auto;
+              height: 205px;
+              line-height: 205px;
+              margin: 0px 11px;
+           }
+          
+        }
+        img{
+           width:145px;
+           height: 205px;
+        }
+
+
+      }
+      .clear{
+         clear:both;
+         display: block;
+         content: " ";
+         line-height: 0px;
+      }
+}

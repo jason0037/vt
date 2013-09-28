@@ -1,0 +1,91 @@
+#main{
+	width: 950px;
+}
+
+.applicant-form{
+	width: 960px;
+	margin: 0px auto;
+	text-align: center;
+}
+
+
+.field-holder{
+	padding: 3px;
+	text-align: center;
+	width: 600px;
+	margin: 0px auto;
+}
+.field-holder .field{
+	margin-bottom: 15px;
+}
+.field-holder  label{
+	display: inline;
+
+}
+.field-holder .input{
+	width: 150px;
+	outline: none;
+	border: solid 1px #ccc;
+	padding:5px 5px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	margin-bottom: 0px;
+}
+.field-holder select{
+	width: 50px;
+	margin-bottom: 0px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	padding: 0px;
+}
+.field-holder .age{
+	width: 80px;
+}
+/*overide bootstrap*/
+.field-holder .input:focus{
+	outline: none;
+	-webkit-box-shadow: none;
+     -moz-box-shadow: none;;
+          box-shadow: none;
+      border: solid 1px #ccc;
+}
+
+.field-holder:after{
+	clear: both;
+	display: block;
+	content: " ";
+}
+.clear{
+	clear: both;
+}
+
+.field-holder .field{
+	margin-right: 50px;
+	float: left;
+}
+
+.actions{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.actions .btn-submit{
+	background: url(/assets/recruit_button.jpg) 0 0 no-repeat;
+	width: 160px;
+	height: 43px;
+	border: none;
+	cursor: pointer;
+}
+#msg{
+	text-align: left;
+	color:red;
+	padding:5px;
+}
+#msg ul{
+	list-style: none;
+	margin-left: 210px;
+}
+#msg ul li{
+	list-style: none;
+}

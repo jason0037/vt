@@ -1,0 +1,11 @@
+// Place all the styles related to the admin/emails controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.emails{
+	.top-actions{
+		margin-bottom: 10px;
+		.add-addr{
+			float: right;
+		}
+	}
+}

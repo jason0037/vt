@@ -1,0 +1,132 @@
+<div class="basic">
+    <h5>基本信息</h5>
+    <ul>
+        <li>
+            <strong>卡号 : </strong>
+            <span><%=card.no%></span>
+        </li>
+        <li>
+            <strong>面值 : </strong>
+            <span><%=card.value%></span>
+        </li>
+        <li>
+            <strong>类型 : </strong>
+            <span><%=card.card_type%></span>
+        </li>
+    </ul>
+</div>
+
+<div class="status">
+    <h5>状态</h5>
+    <%=form_for card,:url=>admin_card_path(card),:method=>:put,:remote=>true,:html=>{ :class=>"" } do |f|%>
+    <ul>
+        <li>
+            <strong>销售状态 : </strong>
+            <span><%=card.sale_status%></span>
+        </li>
+        <li>
+            <strong>使用状态 : </strong>
+            <span><%=card.use_status%></span>
+        </li>
+        <li>
+
+            <strong>卡状态 : </strong>
+            <span class="toggle"><%=card.status%></span>
+            <%=f.select :status, unsold_card_status_options, {}, { :class=>"span1 toggle hide" }%>
+        </li>
+
+    </ul>
+    <span>
+        <%=f.submit "保存",:class=>"btn btn-primary toggle hide"%>
+        <%=link_to "取消","#",:class=>"btn cancel toggle hide"%>
+        <%=link_to "修改","#",:class=>"btn update toggle"%>
+    </span>
+
+    <%end%>
+
+</div>
+
+<div class="buyer">
+    <h5>购卡人信息</h5>
+    
+    <ul>
+        <li>
+            <strong>用户名 : </strong>
+            <span><%=card.member_card ? card.member_card.user.name : "未登记"%></span>
+        </li>
+        <li>
+            <strong>手机号码 : </strong>
+            <span><%=card.member_card ? card.member_card.user.mobile : "未登记"%></span>
+        </li>
+        <li>
+            <strong>手机号码验证状态 : </strong>
+            <span><%=card.status%></span>
+        </li>
+        <li>
+            <strong>支付银行卡 : </strong>
+            <span><%=card.member_card ? card.member_card.bank_name : "未登记" %></span>
+        </li>
+        <li>
+            <strong>支付银行卡号 : </strong>
+            <span><%=card.member_card ? card.member_card.bank_card_no : "未登记" %></span>
+        </li>
+    </ul>
+     <span>
+        <%=link_to "购卡","#",:class=>"btn"%>
+    </span>
+
+    <div class="search"></div>
+    
+    <%=form_for card,:url=>admin_card_path(card),:method=>:put,:remote=>true do |f|%>
+        
+      <ul>
+            <li>
+                <strong>用户名 : </strong>
+                <span><%=card.member_card ? card.member_card.user.name : "未登记"%></span>
+            </li>
+            <li>
+                <strong>手机号码 : </strong>
+                <span><%=card.member_card ? card.member_card.user.mobile : "未登记"%></span>
+            </li>
+            <li>
+                <strong>手机号码验证状态 : </strong>
+                <span><%=card.status%></span>
+            </li>
+            <li>
+                <strong>支付银行卡 : </strong>
+                <span><%=card.member_card ? card.member_card.bank_name : "未登记" %></span>
+            </li>
+            <li>
+                <strong>支付银行卡号 : </strong>
+                <span><%=card.member_card ? card.member_card.bank_card_no : "未登记" %></span>
+            </li>
+    </ul>
+
+    <%end%>
+   
+</div>
+
+<div class="user">
+    <h5>用卡人信息</h5>
+    <ul>
+        <li>
+            <strong>用户名 : </strong>
+            <span><%=card.sale_status%></span>
+        </li>
+        <li>
+            <strong>手机号码 : </strong>
+            <span><%=card.use_status%></span>
+        </li>
+        <li>
+            <strong>手机号码验证状态 : </strong>
+            <span><%=card.status%></span>
+        </li>
+         <li>
+            <strong>使用时间 : </strong>
+            <span><%=card.status%></span>
+        </li>
+    </ul>
+</div>
+<div class="logs">
+    <h5>操作日志</h5>
+</div>

@@ -1,0 +1,32 @@
+<% #=content_for :title do  "当季新品 | 摩登客 | 体验个性摩登生活方式，尊享服装配饰设计精品" end%>
+<% #=content_for :keywords do  "当季流行,2013夏装,服装新品,配饰新品" end%>
+<% #=content_for :description do  "摩登客发布2013最新夏季服装配饰流行趋势。" end%>
+
+<%=render "shared/metable", :resource=>nil%>
+
+<div id="products">
+  <%=render :partial=>"new_single",:locals=>{:good=>@goods.first}%>
+  <div class="single-loader"></div>
+  <%
+    cur_page = params[:page].to_i
+    cur_page = 1 if cur_page == 0
+    next_page =  cur_page + 1 if cur_page < @count
+    prev_page = cur_page - 1 if cur_page > 1
+  %>
+  <ul class="products_nav">
+    <li class="first">
+      <a class="prev_item" href="javascript:void(0);">上一款</a>
+    </li>
+    <% @count.times do |i| %>
+      <li>
+        <% if @tag %>
+        <%= link_to i+1, goods_path(:page=>i+1,:tag=>@tag.tag_name), :class => "product_link #{'selected' if cur_page == i+1 }",:remote=>true %>
+        <% else %>
+        <%= link_to i+1, newest_goods_path(:page=>i+1), :class => "product_link #{'selected' if cur_page == i+1 }",:remote=>true %>
+        <% end %>
+      </li>
+    <%end%>
+    <li class="last"><a class="next_item" href="javascript:void(0);">下一款</a></li>
+  </ul>
+
+</div>

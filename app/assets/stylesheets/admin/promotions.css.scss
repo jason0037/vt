@@ -1,0 +1,82 @@
+// Place all the styles related to the admin/promotions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+ /*
+ *= require jquery.ui.datepicker
+ *= require jquery.ui.slider
+ */
+
+.ui-datepicker{
+	width: auto;
+}
+.disable{
+	background-color: #F9F9F9;
+	color:#999;
+}
+.promotions{
+	
+	.in_or_not{
+		padding:0px;
+		height:auto;
+		border-radius:0px;
+	}
+	.divider-line{
+		border-top: solid 1px #ccc;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.pmt-action{
+		padding: 8px 0px 5px 10px;
+		&.active{
+			background-color: #FCF8E3;
+			border: 1px solid #FBEED5;
+		}
+	}
+	.action-content{
+		margin-top: 10px;
+	}
+
+	.gifts{
+		padding: 5px;
+		.gift{
+			display: inline;
+			margin-left: 10px;
+			padding: 3px;
+			.close{
+				float: none;
+			}
+		}
+	}
+
+	.tips{
+		color:#999;
+		margin-top: 5px;
+		margin-left: 20px;
+	}
+	
+	.condition{
+		border: solid 1px #aaa;
+		min-height: 50px;
+		padding: 3px;
+	}
+	.action-value{
+		border: solid 1px #aaa;
+		padding: 5px;
+		min-height: 50px;
+		margin-top: 20px;
+	}
+	
+	#specify_goods,
+	#selected_gifts,
+	#selected_goods,
+	#selected_coupons{
+		list-style: none;
+		margin: 0px;
+		li{
+			list-style: none;
+			
+		}
+	}
+
+}

@@ -1,0 +1,67 @@
+<h5>修改VIP卡信息</h5>
+<hr />
+<%= form_for @card,:url => admin_card_path(@card), :html => {:class => "form-horizontal well edit_form"} do |f| %>
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :no, "卡号 :", :class => "control-label" %>
+      <div class="controls">
+        <span class="plain-text "><%=@card.no%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :value, "面值 :", :class => "control-label" %>
+     <div class="controls">
+        <span class="plain-text">&yen;<%=@card.value%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :card_type, "类型 :", :class => "control-label" %>
+      <div class="controls">
+        <span class="plain-text"><%=@card.card_type%></span>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :status, "状态 :", :class => "control-label" %>
+      <div class="controls">
+        <%unless @card.sale_status%>
+          <%= f.select :status, unsold_card_status_options,{},{:class=>"span1"}%>
+        <%else%>
+          <%= f.select :status, sold_card_status_options,{},{:class=>"span1"}%>
+        <%end%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :pay_status, "付款状态 :", :class => "control-label" %>
+      <div class="controls">
+          <%unless @card.pay_status%>
+          <%= f.select :pay_status, sold_card_pay_status_options,{},{:class=>"span1"} %>
+          <%= f.text_field :sold_at,:class=>"datetime span2 hide",:placeholder=>"付款时间"%>
+          <span class="help"></span>
+          <%else%>
+          <span class="plain-text "><%=@card.pay_status ? "已付款" : "未付款"%></span>
+          <%end%>
+      </div>
+    </div>
+    
+
+    <%if @card.card_type == "B"%>
+    <div class="control-group">
+      <%= f.label :password, "密码 :", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :password,:placehoder=>"密码"%>
+      </div>
+    </div>
+    <%end%>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= link_to '返回', admin_cards_path %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

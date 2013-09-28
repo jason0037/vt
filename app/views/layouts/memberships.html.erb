@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%=page_title.present? ? page_title : 'VIP | 摩登客 | 体验个性摩登生活方式，尊享服装配饰设计精品'%></title>
+  <meta name="keywords" content='<%=page_keywords%>'>
+  <meta name="description" content="<%=page_description%>">
+
+  <%= stylesheet_link_tag    "store/base", :media => "all" %>
+  <%= stylesheet_link_tag    "store/screen", :media => "all" %>
+  <%= stylesheet_link_tag    "blog/articles", :media => "all" %>
+  <%= stylesheet_link_tag    "memberships/vip", :media => "all" %>
+  <%= stylesheet_link_tag    "memberships/#{controller_name}", :media => "all" unless controller_name == 'vip'%>
+  <%= javascript_include_tag "memberships/base", "memberships/#{controller_name}" %>
+  <%=render "shared/baidu"%>
+  <%= csrf_meta_tags %>
+</head>
+<body class="home_width">
+  <%= render "magazine/shared/header" %>
+  <%= render "magazine/shared/topmenu" %>
+
+  <%= yield %>
+  <%=render "shared/iframe_cart" if signed_in?%>
+  <%=render "shared/iframe_login" unless signed_in?%>
+  <%= render "store/shared/footer" %>
+  <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+  <%= javascript_include_tag "google-analytics" %>
+</body>
+</html>

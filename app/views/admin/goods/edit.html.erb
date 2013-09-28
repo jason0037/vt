@@ -1,0 +1,150 @@
+<h4>商品编辑</h4>
+<hr>
+<%= form_for :good,:url => admin_good_path(@good),:method=>:put,:html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+    
+    <div class="control-group">
+      <%= f.label :cat_id, "商品分类", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :cat_id, Ecstore::Category.all.collect {|cat| [cat.full_path_name, cat.cat_id] },{:include_blank=>"请选择"},{:class=>"span3"} %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :name, "商品名称", :class => "control-label" %>
+      <div class="controls">
+      		<!-- <span class="plain"><%=@good.name%></span> -->
+          <%= f.text_field :name,:class=>"span4"%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :bn, "商品编号", :class => "control-label" %>
+      <div class="controls">
+        <%= @good.bn %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :sbn, "供应商编号", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :sbn%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">品牌</label>
+      <div class="controls">
+         <%=f.select :brand_id, Ecstore::Brand.all.collect {|b| [b.brand_name,b.brand_id]},{:include_blank=>"请选择"}%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :price, "摩登客价", :class => "control-label" %>
+      <div class="controls">
+        <%= f.number_field :price%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :mktprice, "市场价", :class => "control-label" %>
+      <div class="controls">
+        <%= f.number_field :mktprice%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :store, "库存", :class => "control-label" %>
+      <div class="controls">
+        <%= f.label :store,@good.store2%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :marketable, "立即上架", :class => "control-label" %>
+      <div class="controls">
+        <label class="radio inline"><%= f.radio_button :marketable,'true'%>是</label>
+        <label class="radio inline"><%= f.radio_button :marketable,'false'%>否</label>
+      </div>
+    </div>
+
+    <!-- <div class="control-group">
+      <%= f.label :uptime, "定时上下架", :class => "control-label" %>
+      <div class="controls">
+        <label class="radio inline"><%= f.radio_button :up_or_down,true%>定时上架</label>
+        <label class="radio inline"><%= f.radio_button :up_or_down,false%>定时下架</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <%=f.text_field :uptime, :value=>@good.up_at, :class=>"datetime"%>
+      </div>
+    </div> -->
+
+
+    <div class="control-group">
+      <%= f.label :desc, "商品描述", :class => "control-label" %>
+      <div class="controls">
+        <%= f.cktext_area :desc, :toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800 %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :body, "材质说明", :class => "control-label" %>
+      <div class="controls">
+        <%= f.cktext_area :material, :toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800  %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :mesure, "尺寸说明", :class => "control-label" %>
+      <div class="controls">
+        <%= f.cktext_area :mesure, :toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800  %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :try_on, "试穿体验", :class => "control-label" %>
+      <div class="controls">
+        <%= f.cktext_area :try_on, :toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800  %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :softness, "柔软度", :class => "control-label" %>
+      <div class="controls">
+         <%=f.select :softness,softness_options,{:include_blank=>"请选择"}%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :thickness, "厚薄度", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :thickness,thickness_options,{:include_blank=>"请选择"}%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :elasticity, "弹力度", :class => "control-label" %>
+      <div class="controls">
+         <%=f.select :elasticity,elasticity_options,{:include_blank=>"请选择"}%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :fitness, "修身度", :class => "control-label" %>
+      <div class="controls">
+      	   <%=f.select :fitness,fitness_options,{:include_blank=>"请选择"}%>
+      </div>
+    </div>
+
+
+    <%=render :partial=>"admin/shared/metable", :locals=>{ :form => f, :resource=> @good }%>
+
+
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>
+        <%= link_to '返回', admin_goods_path,:class=>"btn" %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

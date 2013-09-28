@@ -1,0 +1,27 @@
+<%=render "admin/spec_items/header"%>
+<%=form_for :spec_item,:url=>admin_spec_items_path,:html=>{:class=>"form-horizontal"} do |f|%>
+	 <div class="control-group">
+	    <label class="control-label">名称</label>
+	    <div class="controls">
+	      <%=f.text_field :name%>
+	      <span class="help-block error">
+	      	<%=@spec_item.errors.messages[:name].join("")%>
+	      </span>
+	    </div>
+  	</div>
+
+  	<div class="control-group">
+	    <label class="control-label">类型</label>
+	    <div class="controls">
+	      <%=f.select :item_type,item_types%>
+	    </div>
+  	</div>
+  	<div class="control-group">
+  		<div class="controls">
+	      		<%=f.submit "保存",:class=>"btn btn-primary"%>
+	      		&nbsp;&nbsp;&nbsp;
+	      		<%=link_to "返回",admin_spec_items_path%>
+	    	</div>
+  	</div>
+  	
+<%end%>

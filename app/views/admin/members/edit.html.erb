@@ -1,0 +1,38 @@
+<%=form_for @member,:url=>updateInfo_admin_member_path(@member),:method=>:put,:html=>{:class=>"form-horizontal"} do |f|%>
+	<div class="control-group">
+      <%= f.label :email, "EMAIL:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :email%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :mobile, "手机:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :mobile%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :member_lv_id, "会员等级:", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :member_lv_id,options_from_collection_for_select(Ecstore::MemberLv.all,:member_lv_id,:name,@member.member_lv_id),{:include_blank=>"请选择"},{:class=>"span3"} %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :advance, "预存款:", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :advance%>
+      </div>
+    </div>
+
+  	<div class="control-group">
+  		<div class="controls">
+	      		<%=f.submit "更新",:class=>"btn btn-primary"%>
+	      		&nbsp;&nbsp;&nbsp;
+	      		<%=link_to "返回",admin_members_path%>
+	    	</div>
+  	</div>
+  	
+<%end%>

@@ -1,0 +1,82 @@
+<%if @user%>
+  <%= form_for :member_card,:url => buy_card_admin_user_path(@user),:remote=>true,:method=>:put, :html => {:class => "form-horizontal"} do |f| %>
+        <%=f.hidden_field :card_id,:value=>@card.id%>
+        <%=f.hidden_field :buyer_id,:value=>@user.member_id%>
+
+        <fieldset>
+          <div class="control-group">
+            <%= f.label :login_name, "用户名 :", :class => "control-label" %>
+            <div class="controls">
+              <span class="plain-text "><%=@user.account.login_name%></span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :buyer_tel, "手机号码 :", :class => "control-label" %>
+            <div class="controls">
+                    <% if @user.mobile.blank?%>
+                         <%=f.text_field :buyer_tel%>
+                    <%else%>
+                        <%=f.text_field :buyer_tel,:value=>@user.mobile,:class=>"hide"%>
+                        <span class="plain-text"><%=@user.mobile%></span>
+                         <span class="plain-text">
+                          <%=@user.sms_validate == 'true' ? "已验证" : "未验证"%>
+                        </span>
+                    <%end%>
+                    <%if @user.sms_validate == 'false'%>
+                     &nbsp;&nbsp;&nbsp;
+                    <%=link_to "发送手机验证码","javascript:void(0);",:method=>:put,:class=>"btn send_sms_code",:'data-url'=>send_sms_code_admin_user_path(@user)%>
+                    <span id="return_msg"></span>
+                    <%end%>
+            </div>
+          </div>
+          <%if @user.sms_validate == 'false'%>
+          <div class="control-group">
+            <%= f.label :sms_validate, "手机验证码 :", :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :sms_code,:class=>"input-small"%>
+              <span class="help"></span>
+            </div>
+          </div>
+          <%end%>
+
+   
+           <div class="control-group">
+            <%= f.label :bank_name, "支付银行卡 :", :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :bank_name,:placeholder=>"如:招商银行 白金信用卡"%>
+            </div>
+          </div>
+           <div class="control-group">
+            <%= f.label :bank_card_no, "支付银行卡号 :", :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :bank_card_no%>
+            </div>
+          </div>
+         
+
+          <%if @card.card_type=="A"%>
+          <div class="control-group">
+            <%= f.label :user_tel, "用卡人手机号码 :", :class => "control-label" %>
+            <div class="controls">
+              <%=f.text_field :user_tel%>
+              <span class="help"></span>
+            </div>
+          </div>
+          <%end%>
+
+          <div class="control-group">
+            <div class="controls">
+              <%= f.submit '提交', :class => "btn btn-primary" %>
+              <span class="msg"></span>
+            </div>
+          </div>
+
+        </fieldset>
+  <% end %>
+<%else%>
+  <p class="error">
+    没有找到相关用户!
+     <%=link_to "返回",admin_cards_path%>
+  </p>
+<%end%>

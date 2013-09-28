@@ -1,0 +1,25 @@
+<%= form_for @order,:url => update_memo_admin_order_path, :html => {:class => "form-horizontal"} do |f| %>
+  
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :order_id, "订单号", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :order_id,:readonly=>true%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :memo, "订单备注", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_area :memo%>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '返回', admin_orders_path %>
+      </div>
+    </div>
+
+  </fieldset>
+<% end %>

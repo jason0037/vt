@@ -1,0 +1,26 @@
+
+	<ul class="nav nav-tabs">
+		<li class='<%="active" if @tab == "basic"%>'>
+			<a href="#basic" data-toggle="tab">基本信息</a>
+		</li>
+		<li class='<%="active" if @tab == "details"%>'>
+			<a href="#details" data-toggle="tab">详细资料</a>
+		</li>
+		<li class='<%="active" if @tab == "interest"%>'>
+			<a href="#interest" data-toggle="tab">个人偏好</a>
+		</li>
+	</ul>
+
+	<div class="tab-content">
+		<div class="tab-pane <%='active' if @tab == 'basic'%> " id="basic">
+	                <%=render "patch/profiles/show/basic"%>
+	      </div>
+
+	      <div class="tab-pane <%='active' if @tab == 'details'%>" id="details">
+	                <%=render "patch/profiles/show/details"%>
+	      </div>
+
+	      <div class="tab-pane <%='active' if @tab == 'interest'%>" id="interest">
+	                <%=render "patch/profiles/show/interest"%>
+	      </div>
+	</div>

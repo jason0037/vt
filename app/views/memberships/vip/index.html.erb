@@ -1,0 +1,328 @@
+<%=content_for :title do "VIP卡 | 摩登客 | 体验个性摩登生活方式，尊享服装配饰设计精品" end%>
+<%=content_for :keywords do "VIP卡,摩登客" end%>
+<%=content_for :description do "摩登客汇聚全球设计师服装精品,打造都市时尚女性首选个性网络衣橱." end%>
+<%=content_for :head do%>
+  <%= stylesheet_link_tag "memberships/vip" %>
+<%end%>
+
+<table border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top: 47px;">
+  <tr>
+    <td width="950"><img src="/assets/memberships/banner_h690.jpg" alt="" width="950" height="690" border="0" /></td>
+  </tr>
+</table>
+<table width="950" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#dbdbdb">
+  <tr>
+    <td width="950" align="left" valign="top" style="background:#FFF; "><div style="margin-left:60px; margin-top:50px; width:830px;"><img src="/assets/memberships/choose_your_vipcard.gif" alt="选择您的VIP卡片" width="227" height="44" border="0" /></div>
+    
+    <table border="0" cellspacing="0" cellpadding="0" style="margin-left:60px; margin-bottom:60px;">
+  <tr>
+    <td width="308" align="left" valign="top"><img src="/assets/memberships/vipcard_1.jpg" width="220" height="200" /></td>
+    <td width="308" align="left" valign="top"><img src="/assets/memberships/vipcard_2.jpg" width="220" height="200" /></td>
+    <td align="left" valign="top"><img src="/assets/memberships/vipcard_5.jpg" width="220" height="200" /></td>
+  </tr>
+  <tr>
+    <td align="left" valign="top"><img src="/assets/memberships/vipcard_1t.gif" width="220" height="35" /></td>
+    <td align="left" valign="top"><img src="/assets/memberships/vipcard_2t.gif" width="220" height="35" /></td>
+    <td align="left" valign="top"><img src="/assets/memberships/vipcard_5t.gif" width="220" height="35" /></td>
+  </tr>
+  <tr>
+    <td align="left" valign="top"><img src="/assets/memberships/vipcard_1d.gif" width="220" height="25" /></td>
+    <td align="left" valign="top"><img src="/assets/memberships/vipcard_2d.gif" width="220" height="25" /></td>
+    <td align="left" valign="top"><img src="/assets/memberships/vipcard_5d.gif" width="220" height="25" /></td>
+  </tr>
+
+  <tr>
+    <td align="left" valign="top">
+      <div style="margin-left:13px; margin-top:9px; width:120px;">
+        <%if signed_in?%>
+        <a href="/card/purchase?level=you">
+        <img src="/assets/memberships/buy_button.gif" width="100" height="40"/>
+        </a>
+        <%else%>
+        <a href="javascript:void(0);" class="login">
+        <img src="/assets/memberships/buy_button.gif" width="100" height="40"/>
+        </a>
+        <%end%>
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <div style="margin-left:13px; margin-top:9px; width:120px;">
+        <%if signed_in?%>
+        <a href="/card/purchase?level=chao">
+        <img src="/assets/memberships/buy_button.gif" width="100" height="40" />
+        </a>
+        <%else%>
+        <a href="javascript:void(0);" class="login">
+        <img src="/assets/memberships/buy_button.gif" width="100" height="40"/>
+        </a>
+        <%end%>
+      </div>
+    </td>
+    <td align="left" valign="top">
+      <div style="margin-left:13px; margin-top:9px; width:120px;">
+        <%if signed_in?%>
+        <a href="/card/purchase?level=ding">
+        <img src="/assets/memberships/buy_button.gif" width="100" height="40" />
+        </a>
+        <%else%>
+         <a href="javascript:void(0);" class="login">
+        <img src="/assets/memberships/buy_button.gif" width="100" height="40"/>
+        </a>
+        <%end%>
+      </div>
+    </td>
+  </tr>
+  
+    </table>
+
+    
+    </td>
+  </tr>
+</table>
+<table border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="left" valign="top" style="background:url(/assets/memberships/vipcard_bg.jpg) center  bottom no-repeat; width:950px; height:500px;">
+ <!--   <div style="margin-left:60px; margin-top:60px; width:830px;"><img src="/assets/memberships/purchase_process.gif" alt="购买流程" width="114" height="35" border="0" /></div>
+    
+    <div style="margin-left:60px; margin-top:9px; width:830px;"><img src="/assets/memberships/purchase_process_img.gif" alt="选择您的VIP卡片" width="831" height="40" border="0" />
+
+    </div>
+  -->     
+      <div  style="font-size:16px;  font-family:'最象素', '微软雅黑';  margin-left:70px; margin-top:10px; width:680px; ">如需购买及激活VIP卡，请拨打客服热线：021-60919835 
+      </div>
+      
+<!--     
+      
+      <table border="0" cellspacing="0" cellpadding="0" style="margin-left:60px; margin-top:15px;  ">
+        <tr>
+          <td><img src="/assets/memberships/use_vipcard.gif" width="138" height="40" /></td>
+          <td><img src="/assets/memberships/use_button.gif" width="96" height="40" id="Image4" onmouseover="MM_swapImage('Image4','','/assets/memberships/use_button_h.gif',1)" onmouseout="MM_swapImgRestore()" /></td> <td width="10"></td>
+          <td><img src="/assets/memberships/use_vipcard.gif" width="138" height="40" /></td>
+          <td><img src="/assets/memberships/search_card__button.gif" width="93" height="40" id="Image5" onmouseover="MM_swapImage('Image5','','/assets/memberships/search_card__button_h.gif',1)" onmouseout="MM_swapImgRestore()" /></td>
+        </tr>
+      </table>
+      
+  -->      
+      
+    <div style="margin-left:60px; margin-top:10px; width:830px;"><img src="/assets/memberships/use_scope.gif" alt="选择您的VIP卡片" width="80" height="26" border="0" /></div>
+    <div style="margin-left:70px; margin-top:10px; width:830px; font-family:'最象素', '微软雅黑'; font-size:12px; line-height:18px; ">1.摩登客网站消费使用
+      <br />
+      2.摩登客线下活动使用<br />
+      I-Modec摩登客VIP卡内金额消费完毕，需再次购买VIP卡（可以绑定原会员帐户）<br />
+    服务记录：摩登客为每位尊贵的会员进行独立的管理。<br />
+    会员可以随时通过登录摩登客网站查询VIP卡使用明细</div></td>
+  </tr>
+</table>
+<table width="950" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#dbdbdb">
+  <tr>
+    <td align="left" valign="top" style="background:#FFF; height:623px;">
+
+
+    
+    <div id="a" style="width:100%; background:url(/assets/memberships/tabbg.gif) repeat-x top; padding-bottom:50px;">
+      <table border="0" cellspacing="0" cellpadding="0" style="margin-left:50px;">
+        <tr>
+          <td><a name="a" href="#a" onclick="document.getElementById('a').style.display='';document.getElementById('b').style.display='none';"><img src="/assets/memberships/tab1h.gif" width="148" height="100" border="0" /></a></td>
+          <td><img src="/assets/memberships/tabm.gif" width="26" height="100" /></td>
+          <td><a name="b" href="#b" onclick="document.getElementById('a').style.display='none';document.getElementById('b').style.display='';"><img src="/assets/memberships/tab2.gif" width="120" height="100" border="0" /></a></td>
+        </tr>
+      </table>
+      <div  style="font-size:16px;  font-family:'最象素', '微软雅黑';  margin-left:70px; margin-top:40px; width:680px; ">仅需支付VIP卡充值额，即可享受等同于充值额的商品及以下超值VIP卡权益
+      </div>
+<table border="0" cellpadding="0" cellspacing="1"  style="font-size:12px;  font-family:'最象素', '微软雅黑'; background: #bdbdbd; margin-left:70px; margin-top:10px; ">
+      
+  <tr >
+    <td class="VIPtd">项目 </td>
+    <td class="VIPtd">优摩卡 </td>
+    <td class="VIPtd">超摩卡 </td>
+    <td class="VIPtd"> 顶摩卡 </td>
+  </tr>
+
+  <tr >
+    <td class="VIPtd">VIP卡充值额 </td>
+    <td class="VIPtdc">10000元 </td>
+    <td class="VIPtdc">20000元 </td>
+    <td class="VIPtdc">50000元 </td>
+  </tr>
+  <tr >
+    <td class="VIPtd">纯手工制925银VIP卡 </td>
+    <td class="VIPtdc">1000元 </td>
+    <td class="VIPtdc">1000元 </td>
+    <td class="VIPtdc">1000元 </td>
+  </tr>
+  <!-- <tr >
+    <td class="VIPtd">持卡消费享受摩登客会员积分规则 </td>
+    <td class="VIPtdc">500元 </td>
+    <td class="VIPtdc">1000元 </td>
+    <td class="VIPtdc">3000元 </td>
+  </tr> -->
+  <tr >
+    <td class="VIPtd">专业形象顾问报告（专利评测） </td>
+    <td class="VIPtdc">2000元 </td>
+    <td class="VIPtdc">2000元 </td>
+    <td class="VIPtdc">2000元 </td>
+  </tr>
+  <tr >
+    <td class="VIPtd">一次免费改衣（改尺寸） </td>
+    <td class="VIPtdc">500元 </td>
+    <td class="VIPtdc">500元 </td>
+    <td class="VIPtdc">500元 </td>
+  </tr>
+  <tr >
+    <td class="VIPtd">VIP专线回访 </td>
+    <td class="VIPtdc">免费</td>
+    <td class="VIPtdc">免费</td>
+    <td class="VIPtdc">免费</td>
+  </tr>
+  <tr >
+    <td class="VIPtd">摩登客私享线下主题派对活动以及尊享优惠 </td>
+    <td class="VIPtdc">500元&nbsp;(1次)</td>
+    <td class="VIPtdc">2000元&nbsp;(4次)</td>
+    <td class="VIPtdc">4000元&nbsp;(8次) </td>
+  </tr>
+  <tr >
+    <td class="VIPtd">享受摩登客网站联合的第三方推出的摩登生活方式优惠 </td>
+    <td class="VIPtdc">特定 </td>
+    <td class="VIPtdc">特定 </td>
+    <td class="VIPtdc">特定 </td>
+  </tr>
+  <tr >
+    <td class="VIPtd">免费服装保养一次（价值5000元以上产品）(指定羊绒，皮革) </td>
+    <td class="VIPtd"></td>
+    <td class="VIPtdc">1000元 </td>
+    <td class="VIPtdc">1000元 </td>
+  </tr>
+  <tr >
+    <td class="VIPtd">尊享VIP参加指定品牌时装发布会 </td>
+    <td class="VIPtd"></td>
+    <td class="VIPtdc">1500元 </td>
+    <td class="VIPtdc">1500元 </td>
+  </tr>
+  <tr >
+    <td class="VIPtd">服装定制服务（一年两次，单次定制金额20000元以上） </td>
+    <td class="VIPtd"></td>
+    <td class="VIPtdc">1000元 </td>
+    <td class="VIPtdc">1000元 </td>
+  </tr>
+  <tr >
+    <td class="VIPtd">一年两次造型服务(提前5天预约) </td>
+    <td class="VIPtd"></td>
+    <td class="VIPtd"></td>
+    <td class="VIPtdc">4000元 </td>
+  </tr>
+  <tr >
+    <td class="VIPtd">摩登顾问（每月提供服装搭配定制推荐，以EDM形式发送） </td>
+    <td class="VIPtd"></td>
+    <td class="VIPtd"></td>
+    <td class="VIPtdc">免费 </td>
+  </tr>
+  <tr >
+    <td  colspan="4"  class="VIPtd">以上权益为摩登客为VIP会员设计独享服务内容 
+      所有活动形式摩登客享有最终解释权 </td>
+  </tr>
+  </table>
+    </div>
+    
+    <div id="b" style="width:100%; background:url(/assets/memberships/tabbg.gif) repeat-x top; display:none;">
+      <table border="0" cellspacing="0" cellpadding="0" style="margin-left:50px;">
+        <tr>
+          <td><a name="a" href="#a" onclick="document.getElementById('a').style.display='';document.getElementById('b').style.display='none';"><img src="/assets/memberships/tab1.gif" width="148" height="100" border="0" /></a></td>
+          <td><img src="/assets/memberships/tabm.gif" width="26" height="100" /></td>
+          <td><a name="b" href="#b" onclick="document.getElementById('a').style.display='none';document.getElementById('b').style.display='';"><img src="/assets/memberships/tab2h.gif" width="120" height="100" border="0" /></a></td>
+        </tr>
+      </table>
+      <div style="margin-left:70px; margin-top:30px; padding-bottom:50px; width:830px; font-family:'最象素', '微软雅黑'; font-size:12px; line-height:18px; "> 
+      
+<span class="goldtext">如何购买VIP卡？</span><br />
+        在线购买：点击VIP卡专区，购买您需要的VIP卡，享受VIP卡权益<br />
+        线下沙龙活动购买：请咨询现场工作人员，购买您需要的VIP卡，现场即可抵用<br /><br />        
+        
+        <span class="goldtext">VIP卡如何使用？</span><br />
+        参加摩登客线下沙龙时使用<br /><br /> 
+        
+        <span class="goldtext">
+        购买VIP卡线上支付时必须开通网银吗？</span>
+        <br />
+        是的。在线购买VIP卡流程与您购买商品流程一样。我们的VIP卡为贵金属制作，您订购成功后一周内会快递给您<br /><br /> 
+        
+        <span class="goldtext">
+        在线购买的VIP卡可以马上使用吗？</span><br />
+        可以，请在页面上点击&quot;使用VIP卡&quot;按钮，并按提示完成操作即可在付款时以预存款结算的方式支付订单<br /><br /> 
+        
+        <span class="goldtext">
+        线下活动购买的VIP卡可以现场使用吗？</span><br />
+        可以。请直接出示您的VIP卡。或者您的会员号码等<br /><br /> 
+        
+        <span class="goldtext">
+        我为什么付不了钱？</span><br />
+        由于您的此笔支付金额较大，请致电您的刷卡银行询问您银行卡的网银支付单笔最大支付额度<br /><br />
+        
+         <span class="goldtext">
+        为什么买卡的时候需要验证我的手机号码，这么麻烦？</span><br />
+        由于您的交易金额较大，为了保障您的交易安全，我们要求您必须完成手机号码的验证。同时将来您所有的售后服务均需要验证手机号码<br /><br />
+        
+         <span class="goldtext">
+        为什么买卡的时候还需要登记用卡人的手机号码？</span><br />
+        由于您的交易金额较大，为了保障您卡的安全，登记用卡人手机号码可以防止卡被他人盗用，同时用卡人在使用该卡时也需要认证手机号码<br /><br />
+        
+         <span class="goldtext">
+        如果我买卡的时候不登记用卡人手机号码，会有什么问题？</span><br />
+        如果您购卡时未登记用卡人手机号码，我们将不为用卡人提供查询及挂失服务。同时如果您的VIP卡遗失，将会大大增加被他人盗用的风险，因此我们建议您选择登记用卡人的手机号码<br /><br /> 
+        
+        <span class="goldtext">
+        如果我登记了用卡人的手机号码，将来可以修改吗？</span><br />
+        VIP卡的购买者在该卡未被使用前可以随时修改该卡的用卡人手机号<br /><br /> 
+        
+        <span class="goldtext">
+        如果我买的卡遗失了怎么办？</span><br />
+        如您的卡遗失了，请及时申请挂失，挂失处理请致电客服021-60919835，已申请挂失的卡在您申请取消挂失之前无法进行任何操作<br /><br /> 
+        
+        <span class="goldtext">
+        VIP卡必须要激活才可以使用吗？如何激活？</span><br />
+        是的。为了您的充值资金安全VIP卡必须激活验证才可使用。请您输入购买时预留的信息进行验证。验证后的VIP卡将绑定您的会员信息<br /><br />
+        
+         <span class="goldtext">
+        激活VIP卡后是否更改绑定账户？</span><br />
+        不可以。</span><br />
+        VIP卡激活时的绑定的账户是唯一账户。不能更改。请妥善保管您的信息与密码   <br /><br />
+        
+         <span class="goldtext">
+        激活后的账户余额是否有使用期限？</span><br />
+        卡内金额没有限制使用使用期限。但是VIP卡权益自您购买之日一年内有效，请及时享用
+        <br /><br />
+        
+        <span class="goldtext">
+        购买VIP卡是否可以升级成为VIP会员？</span><br />
+        VIP卡不单单是充值消费卡，更是提前获得摩登客VIP会员权益的方式。请查看您的权益内容<br /><br /> 
+        
+        <span class="goldtext">
+        我购买多张VIP会员卡，享受哪一级持卡权益？</span><br />
+        享受所购卡中最高一级的权益。不合并累积<br /><br /> 
+        
+        <span class="goldtext">
+        购买后的VIP卡可以享受7天退换的待遇吗？</span><br />
+        是的。退换货与正常购买一样。退款会直接进入您的充值账户中<br /><br /> 
+        
+        <span class="goldtext">
+        VIP卡是否可以充值？</span><br />
+        不可以。卡内金额使用完毕后，需要您重新购买VIP卡。摩登客会累积您的购买金额，升级您的权益（权益不叠加使用）<br /><br /> 
+        
+        <span class="goldtext">
+        使用VIP卡可以享受哪些优惠？</span><br />
+        请查看您的VIP卡权益以及摩登客不定期优惠公告<br /><br />
+        
+        <span class="goldtext">
+        VIP卡服务热线是多少？</span><br />
+        021-60919835 工作时间：9:30-18:30 （节假日休息）
+        
+        
+        
+         </div>
+    </div>
+    
+    
+    
+    </td>
+  </tr>
+</table>
+<p></p>

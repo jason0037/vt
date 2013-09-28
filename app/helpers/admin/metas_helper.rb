@@ -1,0 +1,2 @@
+module Admin::MetasHelper
+end

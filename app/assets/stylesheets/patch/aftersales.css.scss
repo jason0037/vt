@@ -1,0 +1,27 @@
+.instruct{
+	padding: 0px 20px;
+	.next{
+		text-align: center;
+	}
+	p{
+		margin-bottom: 0px;
+		font-size: 12px;
+	}
+}
+table{
+	border: solid 1px #DDD;
+}
+
+.thumb{
+	height: 50px;
+}
+.error{
+	color:red;
+}
+.field_with_errors{
+	display: inline;
+}
+
+#aftersale_order_items{
+	margin-bottom: 0px;
+}

@@ -1,0 +1,6 @@
+<%if @payment && @payment.status == 'ready'%>
+<%=render "form"%>
+<%else%>
+<p class="required"><%= flash[:msg]%>。</p>
+<%end%>
+

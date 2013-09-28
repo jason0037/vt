@@ -1,0 +1,73 @@
+<br>
+<p class="large-title">订单调货（备货）凭证</p>
+
+<span class="no">制单编号：CS - 20120821 - 001</span>
+<span class="printer">打单员：</span>
+<span class="date">日期：<%=Time.now.strftime("%Y-%m-%d %H:%M:%S")%></span>
+<table>
+	<tr>
+		<td>订单号</td>
+		<td colspan="2"><%=@order.order_id%></td>
+		<td >订单日期</td>
+		<td colspan="2" style="width:190px;"><%=Time.at(@order.createtime).strftime("%Y-%m-%d")%></td>
+		<td colspan="4">商务部/客服配合填写</td>
+		<td colspan="3">(2次填写)商品入库时确认</td>
+	</tr>
+	<tr>
+		<td>品牌名称</td>
+		<td>商品编号	</td>
+		<td>品牌商品编号</td>
+		<td>商品名称</td>
+		<td>数量</td>
+		<td style="width:30px;">发票抬头</td>
+		<td style="width:30px;">库存情况</td>
+		<td style="width:30px;">订单状态</td>
+		<td style="width:30px;">代理费率</td>
+		<td style="width:30px;">快递公司</td>
+		<td style="width:30px;">入库快递单号</td>
+		<td style="width:30px;">快递费用</td>
+		<td style="width:30px;">入库时间</td>
+	</tr>
+	<%@order.order_items.each do |order_item|%>
+	<tr>
+		<td><%=order_item.good.brand.brand_name if order_item.good.brand%></td>
+		<td><%=order_item.bn%></td>
+		<td></td>
+		<td><%=order_item.name%>(<%=order_item.product.spec_info%>)</td>
+		<td><%=order_item.nums.to_i%></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<%end%>
+
+	<tr>
+		<td>资料核对</td>
+		<td>发票 <input type="checkbox"></td>
+		<td>赠品 <input type="checkbox"></td>
+		<td colspan="10" style="text-align:left;padding-left:10px;">其他：</td>
+	</tr>
+
+	<tr>
+		<td>订单备注</td>
+		<td colspan="12"></td>
+	</tr>
+</table>
+<p>流转说明 :</p>
+<p class="pad">1. 客服制单打印“订单调货（备货）凭证”——晓晓 （同时电子文档发给晓晓，晓晓用于商品订单）</p>
+
+<p class="pad">2. 晓晓电话品牌确认 有 无 并且在“电话确认”中备注后，交还——客服——更改订单状态
+    <br>晓晓发出调配单给每个品牌 （可能会多张订单合并发出）</p>
+<p class="pad">3. 品牌发货给晓晓，晓晓入库检验、整理，按订单通知 客服领取商品 （按先后订单领取）客服签收晓晓使用的验收文档，同时，晓晓完成此凭证项目，交回客服</p>
+
+
+<script type="text/javascript">
+	window.onload = function(){
+		window.print()
+	}
+</script>

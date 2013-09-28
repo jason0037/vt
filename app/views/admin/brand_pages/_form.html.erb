@@ -1,0 +1,105 @@
+<%=form_for :brand_page,:url=>@action_url,:method=>@method do |f|%>
+<%=f.hidden_field :brand_id,:value=>@brand.brand_id%>
+<fieldset>
+  <h5>品牌访问地址</h5>
+  <div>
+    <%=text_field_tag "brand[slug]",@brand.slug ? @brand.slug : @brand.brand_name,:placeholder=>"品牌Logo图片地址",:class=>"span3"%>
+    <span>如: http://www.i-modec.com/brands/<span style="background-color:#ccc;"><%=@brand.slug||@brand.brand_name%></span> </span>
+  </div>
+</fieldset>
+
+<fieldset>
+  <h5>品牌描述</h5>
+  <div>
+    <%=text_area_tag "brand[brand_desc]",@brand.brand_desc,:placeholder=>"品牌简单描述",:class=>"span5",:rows=>3%>
+  </div>
+</fieldset>
+
+<fieldset>
+  <h5>品牌状态</h5>
+  <div>
+    <select id="brand_status" name="brand[status]">
+      <%=brand_status_options(@brand.status)%>
+    </select>
+  </div>
+</fieldset>
+
+<br />
+<br />
+<br />
+
+
+
+<fieldset>
+  <h5>品牌页Logo地址</h5>
+  <div>
+    <%=f.text_field :logo_url,:value=>@brand_page&&@brand_page.logo_url,:placeholder=>"品牌页Logo地址",:class=>"span4"%>
+  </div>
+</fieldset>
+
+
+<fieldset id="menus">
+  <h5>品牌页菜单</h5>
+  <div class="alert">提示: 多张图片用'|'分割,对应的alt也使用'|'分割,如：http://www.i-modec.com/image1.jpg|http://www.i-modec.com/image2.jpg ，对应alt为： 图片描述1|图片描述2</div>
+  <%if @brand_page%>
+      <%@brand_page.context.each_with_index do |menu,index|%>
+      <div class="item">
+        <span class='no'><%=index+1%>.</span>
+        <%=text_field_tag "brand_page[context][][menu_name]",menu["menu_name"],:placeholder=>"菜单名",:class=>"input_small"%>
+        <%=text_field_tag "brand_page[context][][image_url]",menu["image_url"],:placeholder=>"图片地址",:class=>"span4"%>
+         <%=text_field_tag "brand_page[context][][image_alt]",menu["image_alt"],:placeholder=>"图片描述信息(alt)",:class=>"span4"%>
+        <%=link_to "&times;".html_safe,"javascript:void(0);",:class=>"delete"%>
+        <span class="pos-control">
+              <i class=" icon-arrow-up"></i>
+              <i class=" icon-arrow-down"></i>
+        </span>
+      </div>
+      <%end if @brand_page&&@brand_page.context%>
+  <%else%>
+      <%3.times do |i|%>
+      <div class="item">
+        <span class='no'><%=i+1%>.</span>
+        <%=text_field_tag "brand_page[context][][menu_name]","",:placeholder=>"菜单名",:class=>"input_small"%>
+        <%=text_field_tag "brand_page[context][][image_url]","",:placeholder=>"图片地址",:class=>"span4"%>
+         <%=text_field_tag "brand_page[context][][image_alt]","",:placeholder=>"图片描述信息(alt)",:class=>"span4"%>
+        <%=link_to "&times;".html_safe,"javascript:void(0);",:class=>"delete"%>
+        <span class="pos-control">
+              <i class=" icon-arrow-up"></i>
+              <i class=" icon-arrow-down"></i>
+        </span>
+      </div>
+      <%end%>
+  <%end%>
+  <div><%=link_to "+添加","javascript:void(0);",:class=>"add"%></div>
+  <br />
+  <br />
+</fieldset>
+
+<fieldset>
+  <h5>品牌内容(优先显示这里的内容)</h5>
+  <div>
+   <%= f.cktext_area :new_body, :toolbar => 'Easy',:language=>'zh-cn',:height => 300 %>
+  </div>
+</fieldset>
+
+<br />
+<br />
+<br />
+
+
+<fieldset>
+  <h5>品牌推荐内容(品牌首页顶部内容)</h5>
+  <div>
+   <%= f.cktext_area :brand_reco, :toolbar => 'Easy',:language=>'zh-cn',:height => 300 %>
+  </div>
+</fieldset>
+
+
+<br>
+<%=f.submit "提 交",:class=>"btn btn-large btn-primary"%>
+
+<%end%>
+<br />
+<br />  
+<br />
+<br />

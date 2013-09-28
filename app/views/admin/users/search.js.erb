@@ -1,0 +1,19 @@
+<%if @member_type == 'buyer'%>
+	$("#buyer_list").empty();
+	$("#buyer").empty();
+	<%if @users%>
+		$("#buyer_list").show().html('<%=escape_javascript(render :partial=>"admin/users/member_list")%>');
+	<%else%>
+		$("#buyer").show().html('<%=escape_javascript(render :partial=>"admin/cards/buy_form")%>');
+	<%end%>
+
+<%else%>
+	$("#user_list").empty();
+	$("#user").empty();
+	<%if @users%>
+		$("#user_list").show().html('<%=escape_javascript(render :partial=>"admin/users/member_list")%>');
+	<%else%>
+		$("#user").show().html('<%=escape_javascript(render :partial=>"admin/cards/use_form")%>');
+	<%end%>
+<%end%>
+

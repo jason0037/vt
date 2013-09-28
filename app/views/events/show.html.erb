@@ -1,0 +1,11 @@
+
+<%=content_for :title do "活动在线招募 | 摩登客 | 全球设计品牌精品第e站,都市时尚女性个性首选" end%>
+<%=content_for :head do stylesheet_link_tag("events") end%>
+
+
+<div>
+	<%=raw @event.body%>
+</div>
+<div class="applicant-form" id="form">
+	<%=render "events/applicants/form"%>
+</div>

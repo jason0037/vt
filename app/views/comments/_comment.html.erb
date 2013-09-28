@@ -1,0 +1,9 @@
+<li class="comment">
+    <div class="info">
+      <span class="user"><%=comment.user ? comment.user.login_name : "匿名"%> : </span>
+      <span class="created-at"><%=comment.created_at.strftime("%m月%d日 %H:%M")%></span>
+    </div>
+    <div class="content">
+       <%=comment.content.html_safe%>
+    </div>
+</li>

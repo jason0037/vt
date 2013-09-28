@@ -1,0 +1,14 @@
+#select_coupons,
+#select_goods{
+	th,td{
+		padding: 5px;
+	}
+
+	tr.checked td{
+		background-color: #DFF0D8;
+	}
+}
+.container{
+	width: 96%;
+	margin: 0px auto;
+}

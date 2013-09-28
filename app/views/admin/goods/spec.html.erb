@@ -1,0 +1,108 @@
+<div>
+	<%if @good.spec_desc && @good.spec_desc.is_a?(Hash)%>
+	<ul class="nav nav-tabs">
+		<%@good.spec_desc.keys.each_with_index do |spec_id,index|%>
+			<li class="<%='active' if index == 0%>">
+				<%=link_to Ecstore::Spec.find(spec_id).spec_name,"#spec_#{spec_id}",:"data-toggle"=>"tab"%>
+			</li>
+		<%end%>
+	</ul>
+	<div class="tab-content">
+		<%@good.spec_desc.keys.each_with_index do |spec_id,index|%>
+		<div class="tab-pane <%='active' if index == 0%>" id='<%="spec_#{spec_id}"%>'>
+                	<table class="table table-bordered">
+                		<thead>
+                			<tr>
+                				<th>规格值</th>
+                				<th>关联商品图册图片</th>
+                				<th>操作</th>
+                			</tr>
+                		</thead>
+
+	                	<%@good.spec_desc[spec_id].each do |ident,spec|%>
+	                		
+	                		<tr id='<%="spec_value_#{spec['spec_value_id']}"%>'>
+	                			<td><%=spec["spec_value"]%></td>
+	                			
+	                			<td>--</td>
+	                			<td>
+	                				<%=link_to "展开","#",:class=>"expand" if expandable?(spec["spec_value"])%>
+	                          	</td>
+	                		</tr>
+	                		<%if expandable?(spec["spec_value"])%>
+	                		<tr>
+	                			<td colspan="4">
+	                				<div class="good-spec-header">
+	                					<strong>可选规格</strong>
+	                					&nbsp;&nbsp;&nbsp;
+            							<%=link_to "+新增字段","javascript:void(0)",:'data-url'=>admin_spec_items_path,:class=>"add-spec-item-field"%>
+            							<%=link_to "+添加选项","javascript:void(0);",:'data-url'=>add_spec_item_admin_good_path(@good,:spec_value_id=>spec["spec_value_id"]),:class=>"add-spec-item"%>
+	                				</div>
+	                				<%=form_for :good_spec_items,:url=>update_spec_admin_good_path(@good),:method=>:put,:remote=>true do |f|%>
+	                					<%=hidden_field_tag "spec_value_id",spec["spec_value_id"]%>
+		                				<ul class="good-spec-items" id='<%="good_spec_value_#{spec['spec_value_id']}"%>'>
+		                					<%@good.good_spec_items.where(:spec_value_id=>spec["spec_value_id"]).each do |item|%>
+		                						<%=render :partial=>"admin/goods/spec_item",:locals=>{:item=>item}%>
+		                					<%end%>
+		                				</ul>
+		                				<div class="actions">
+		                					<%=f.submit "保存",:class=>"btn btn-primary",:disabled=>true%>
+		                				</div>
+	                				<%end%>
+	                			</td>
+	                		</tr>
+	                		<%end%>
+	                	<%end%>
+                	</table>
+                	
+             </div>
+		<%end%>
+	</div>
+	<%end%>
+</div>
+
+<div>
+	<%=form_for :good,:url => admin_good_path(@good),:method=>:put do |f|%>
+	<%f.object = @good %>
+	<div>共<%=@products.size%>件货品</div>
+  	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<th>上架</th>
+			<th>规格值</th>
+			<th>货号</th>
+			<th>库存</th>
+			<th>销售价</th>
+			<th>定金</th>
+			<th>市场价</th>
+			<!-- <th>重量</th>
+			<th>货位</th> -->
+		</tr>
+		</thead>
+		<tbody>
+
+			<%@products.each do |product|%>
+				<%=f.fields_for :products, product do |p|%>
+				<tr>
+					<td>
+						<%=p.check_box :marketable,{:checked=>product.marketable=='true'},'true','false'%>
+						<%=p.hidden_field :product_id,:value=>product.product_id%>
+					</td>
+					<td><%=product.spec_info%></td>
+					<td><%=p.text_field :bn,:value=>product.bn,:class=>"span2",:data=>{:login_name=>'231'}%></td>
+					<td><%=p.number_field :store,:value=>product.store,:class=>"input-mini"%></td>
+					<td><%=p.number_field :price,:value=>product.price,:class=>"input-mini"%></td>
+					<td>--</td>
+					<td><%=p.number_field :mktprice,:value=>product.mktprice,:class=>"input-mini"%></td>
+					<!-- <td><%=product.weight%></td>
+					<td><%=product.store_place%></td> -->
+				</tr>
+				<%end%>
+			<%end%>
+			
+		</tbody>
+	</table>
+	<%=f.submit "保存修改",:class=>"btn btn-primary"%>
+	<%=link_to "取消",admin_goods_path,:class=>"btn" %>
+	<%end%>
+</div>

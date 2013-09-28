@@ -1,0 +1,41 @@
+<div class="cards">
+	<div class="form-block">
+		<h4>温馨提示 </h4>
+
+		<%=form_for :card, :url=>update_mobile_card_path,:method=>:put do |f|%>
+			<%=f.hidden_field :no,:value=>@card.no%>
+
+			<div class="field">
+				<label class="field-label ">手机号码 : </label>
+				<span class="field-plain">
+					<%=@user.mobile%>
+				</span>
+			</div>
+
+			<div class="field">
+				<p class="note"><strong class="required">注意 : </strong>您此次输入的手机号码与您注册时登记的手机号码不同，请确认是否更新您注册时登记的手机号码？</p>
+			</div>
+
+
+			<div class="field">
+				<%=f.submit "确认更改",:class=>"btn submit"%>
+				<%=link_to "以后再说",cancel_mobile_card_path(:no=>@card.no),:class=>"btn submit"%>
+			</div>
+
+		<%end%>
+
+	</div>
+	<div class="tips-block">
+		<p>小贴士</p>
+		<ul>
+			<li>
+				<strong>为什么要更改手机号码？</strong>
+				<div>答：更新为有效的手机号码，方便我们短信通知您。</div>
+			</li>
+			
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<div class="other-tip "> <span class="required">*</span> 小贴士 :  如果在激活过程中有什么疑问，请致电寻求帮助。客服电话 : 021-60919835 。</div>
+	
+</div>

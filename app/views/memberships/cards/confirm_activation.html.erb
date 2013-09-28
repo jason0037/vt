@@ -1,0 +1,53 @@
+<div class="cards">
+	<div class="form-block">
+		<h4>VIP卡激活确认 </h4>
+
+		<p>请再次核对以下信息是否正确</p>
+
+		<%=form_for :card, :url=>activate_card_path do |f|%>
+			<%=f.hidden_field :no,:value=>@card.no%>
+			<div class="field">
+				<label class="field-label field-label-long">待激活VIP卡号 : </label>
+				<span class="field-plain"><%=@card.no%></span>
+			</div>
+
+			<div class="field">
+				<label class="field-label field-label-long">充值预存款帐号 : </label>
+				<span class="field-plain"><%=@card.member_card.user.login_name if @card.member_card && @card.member_card.user%></span>
+			</div>
+
+			<div class="field">
+				<label class="field-label field-label-long">充值金额 : </label>
+				<span class="field-plain">&yen;<%=@card.value%></span>
+			</div>
+
+			<div class="field">
+				<label class="field-label field-label-long">VIP卡持有人手机号码 : </label>
+				<span class="field-plain"><%=@card.member_card.buyer_tel if @card.member_card%></span>
+			</div>
+
+			<div class="field">
+				<%=f.submit "确认激活",:class=>"btn submit"%>
+				<%=link_to "取消",vip_path,:class=>"btn cancel"%>
+			</div>
+
+		<%end%>
+
+	</div>
+	<div class="tips-block">
+		<p>小贴士</p>
+		<ul>
+			<li>
+				<strong>如何激活我的VIP卡?</strong>
+				<div>答：</div>
+			</li>
+			<li>
+				<strong>怎么用VIP卡里面的余额付款?</strong>
+				<div>答：</div>
+			</li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<div class="other-tip "> <span class="required">*</span> 小贴士 :  如果在激活过程中有什么疑问，请致电寻求帮助。客服电话 : 021-60919835 。</div>
+	
+</div>

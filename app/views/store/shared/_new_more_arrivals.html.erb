@@ -1,0 +1,17 @@
+<% if @goods %>
+<div id="more_arrivals" data-<%=@goods.size * 1000 %>="bottom: -400px;" data-<%=@goods.size * 1000 + 400%>="bottom: 0px;"  data-<%=@goods.size * 1000 + 400 + 280%>="bottom: 280px;">
+  <div class="wrapper">
+    <div class="titre"></div>
+    <ul id="" class="jcarousel-skin-tango">
+        <%@tags.each do |tag|%>
+        <li>
+          <%=link_to goods_path(:tag=>tag.tag_name) do%>
+            <%=image_tag tag.tag_ext.cover_url,:size=>"215x140",:alt=>nil if tag.tag_ext%>
+          <%end%>
+          <p><%=link_to tag.tag_ext.issue_no,goods_path(:tag=>tag.tag_name) if tag.tag_ext%></p>
+        </li>
+        <%end%>
+      </ul>
+  </div>
+</div>
+<% end %>

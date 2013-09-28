@@ -1,0 +1,11 @@
+<%if @user.errors.messages.empty?%>
+	$("input[name='commit']").next(".msg").html('充值成功. <%=link_to '返回', admin_cards_path%>');
+<%else%>
+	<%@user.errors.messages.each do  |key,msgs|%>
+	<%if key.to_s == 'global'%>
+		$(".global").text("<%=msgs.join(',')%>").addClass("error");
+	<%end%>
+	$("input[name='member_card[<%=key%>]']").next(".help").text("<%=msgs.join(',')%>").addClass("error");
+	
+	<%end%>
+<%end%>

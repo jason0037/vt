@@ -1,0 +1,152 @@
+.cards{
+	margin: 47px auto 0px auto;
+	width: 900px;
+	min-height: 530px;
+	border:solid 1px #e5e5e5;
+	margin-bottom: 20px;
+	padding: 25px;
+	font-size: 12px;
+	.form-block{
+		width: 500px;
+		display: inline-block;
+		
+		float: left;
+	}
+	.tips-block{
+		width: 355px;
+		display: inline-block;
+		padding: 0px 20px;
+		border-left: solid 1px #ccc;
+		color: #999;
+		float: left;
+		ul{
+			list-style: disc inside;
+			li{
+				padding: 5px;
+				div{
+					margin-top:3px;
+					padding-left: 8px;
+					line-height: 20px;
+				}
+			}
+		}
+	}
+	.field{
+		padding:5px 0px;
+		margin-bottom: 5px;
+		.field-label{
+			width: 80px;
+			text-align: right;
+			display: inline-block;
+		}
+		.field-label-long{
+			width: 150px;
+		}
+		.field-input{
+			width: 150px;
+			border: solid 1px #555;
+			padding: 3px 5px;
+		}
+		.field-plain{
+			padding: 1px 5px;
+		}
+		.radio-label{
+			margin-right: 20px;
+		}
+
+		.submit{
+			margin-left: 85px;
+		}
+		.cancel{
+			margin-left: 20px;
+		}
+		.sms{
+			margin-left: 30px;
+		}
+
+	}
+	.actions{
+		margin-top: 20px;
+	}
+
+	form{
+		&.user_tel{
+			display: none;
+		}
+	}
+
+	table.list-cards{
+		border-collapse: separate;
+		border-right:solid 1px #999;
+		border-bottom:solid 1px #999;
+		border-spacing:0px;
+		td,th{
+			border-top:solid 1px #999;
+			border-left :solid 1px #999;
+			padding: 5px 10px;
+		}
+		td{
+			color:#555;
+		}
+	}
+	a.jump{
+		color:blue;
+	}
+	a.pay{
+		color:red;
+	}
+}
+
+.btn{
+	background: black;
+	color:#fff;
+	padding: 0 15px 0 0;
+	border: solid 1px #000;
+	border-radius: 3px;
+	text-align: center;
+	padding: 5px 10px;
+	cursor: pointer;
+	text-decoration: none;
+}
+.btn.disabled{
+	background: #ccc;
+	border: solid 1px #999;
+	color:#999;
+}
+.clear{
+	clear: both;
+}
+.required{
+	color: red;
+}
+.other-tip{
+	padding: 3px 0px;
+	margin-top: 40px;
+}
+.error{
+	color:red;
+	font-size: 13px;
+}
+.field_with_errors{
+	display: inline;
+}
+.note{
+	padding: 5px 20px;
+	line-height: 20px;
+}
+.green-tip{
+	color:#090;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+#sms_code{
+	width: 80px;
+}
+.locked-msg{
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+.center{
+	text-align: center;
+}
+

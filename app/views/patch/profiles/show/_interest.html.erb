@@ -1,0 +1,76 @@
+<div>
+	<div class="field">
+		<label class="field-label">常出席的场合:</label>
+		<ul class="options">
+		<%if @user.places.size > 0%>
+			<%@user.places.each do |place|%>
+				<div><%=place%></div>
+			<%end%>
+		<%else%>
+			<div>未选择，可选场合如下：</div>
+			<%place_options.each do |v| %>
+			   <li class="option">
+				<label class="radio-label color-label">
+					<%=v%>
+				</label>
+			   </li>
+			<%end%>
+			
+		<%end%>
+		</ul>
+	</div>
+
+	<div class="field">
+		<label >常买的服装价位:</label>
+		<span><%=@user.price||'未选择'%></span>
+	</div>
+
+	<div class="field">
+		<label class="field-label">兴趣爱好:</label>
+		<ul class="options">
+		<% if @user.interests.size > 0%>
+			<%@user.interests.each do |interest|%>
+			 	<div><%=interest%></div>
+		 	<%end%>
+		<%else%>
+			<div>未选择，可选兴趣爱好如下：</div>
+			<%interest_options.each_with_index do |e,index| %>
+				<li class="option">
+				<label for='<%="interest_#{index}"%>' class="radio-label"><%=e%></label>
+				</li>
+			<%end%>
+		<%end%>
+		</ul>
+	</div>
+
+	<div class="field">
+		<label class="field-label">喜欢的颜色:</label>
+		<ul class="options">
+		<%if @user.colors.size>0%>
+			<%color_options.each do |key,val|%>
+			 	<%if @user.colors.include?(val)%>
+			 		<div>
+			 			<%=image_tag "colors/#{key}.jpg",:size=>"10x10",:style=>"border:solid 1px #000;"%>
+			 			<%=val%>
+			 		</div>
+			 	<%end%>
+		 	<%end%>
+		</ul>
+
+		<%else%>
+			<div>未选择，可选颜色如下：</div>
+			<%color_options.each do |key,val| %>
+			   <li class="option">
+				<label for='<%="color_#{key}"%>' class="radio-label color-label"><%=val%></label>
+				<%=image_tag "colors/#{key}.jpg",:size=>"10x10",:class=>"color"%>
+			   </li>
+			<%end%>
+		<%end%>
+		</ul>
+	</div>
+	
+
+	<div class="actions">
+		<%=link_to "修改",edit_profile_path(:tab=>'interest'),:class=>"btn"%>
+	</div>
+</div>

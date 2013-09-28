@@ -1,0 +1,21 @@
+<%if @user.email_validated? %>
+	<p>您的邮箱 <b> <%=@user.mask_email %> </b>  已认证，如需更换邮箱请发送认证邮件 : </p>
+<%else%>
+	<p>您的邮箱未认证，请发送认证邮件 : </p>
+<%end%>
+
+<%=form_for :validation,:url=>sent_validation_path,:html=>{:class=>"form-horizontal",:id=>"email_form"} do |f|%>
+	<div class="control-group ">
+	    <%=f.label :email, "邮箱：",:class=>"control-label"%>
+	    <div class="controls">
+	      <%=f.text_field :email, :value=>"#{@user.email unless @user.email_validated? }",:id=>"email"%>
+	      <span class="help-inline error"></span>
+	      <span class="help-block">务必填写正确的电子邮箱，以便及时收到邮件。</span>
+	    </div>
+	</div>
+	<div class="control-group ">
+	    <div class="controls">
+	     <%=f.submit "发送验证邮件",:class=>"btn btn-inverse"%>
+	    </div>
+	</div>
+<%end%>

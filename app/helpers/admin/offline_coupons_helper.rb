@@ -1,0 +1,2 @@
+module Admin::OfflineCouponsHelper
+end

@@ -1,0 +1,34 @@
+<ul class="report-top clearfix">
+	<%Ecstore::Config.report_top.each do |arr|%>
+		<li>
+			<%=link_to arr[1] do%>
+				<%=image_tag arr[0],:alt=>""%>
+			<%end%>
+		</li>
+	<%end%>
+</ul>
+
+<div class="reports">
+	<ul class="clearfix">
+		<%@topics.each do |topic|%>
+		<li class="clearfix">
+			<span class="title"><%=link_to topic.title, topic_path(topic)%></span>
+			<span class="time"><%=topic.created_at.strftime("%m.%d")%></span>
+		</li>
+		<%end%>
+	</ul>
+	<div class="pagination">
+		<%=will_paginate @topics,:container=>false%>
+	</div>
+</div>
+
+
+<ul class="report-right clearfix">
+	<%Ecstore::Config.report_right.each do |arr|%>
+	<li>
+		<%=link_to arr[1] do%>
+			<%=image_tag arr[0],:alt=>""%>
+		<%end%>
+	</li>
+	<%end%>
+</ul>

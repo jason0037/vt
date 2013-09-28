@@ -1,0 +1,24 @@
+<div class="login well">
+<% if flash[:notice].present?%>
+<div class="alert"><%=flash[:notice]%></div>
+<%end%>
+<%=form_for :session,:url=>admin_sessions_path,:html=>{:class=>"form-horizontal"} do |f|%>
+<div class="control-group">
+    <label class="control-label" for="inputEmail">用户名</label>
+    <div class="controls">
+      <%=f.text_field :login_name,:placeholder=>"用户名"%>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="inputPassword">密 码</label>
+    <div class="controls">
+      <%=f.password_field :login_password,:placeholder=>"密 码"%>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary">登 录</button>
+    </div>
+  </div>
+<%end%>
+</div>

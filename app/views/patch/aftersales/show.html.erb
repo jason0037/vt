@@ -1,0 +1,21 @@
+
+<p>订单编号 : <%=@aftersale.order_id%></p>
+<p>申请标题 : <%=@aftersale.title%></p>
+<p>申请说明 : <%=@aftersale.content%></p>
+<p>申请时间 : <%=@aftersale.add_at%></p>
+<br>
+<div>申请商品</div>
+<table class="table table-striped table-bordered" id="aftersale_products">
+		<tr>
+			<th>货号</th>
+			<th>商品名称</th>
+			<th>数量</th>
+		</tr>
+		<%@aftersale.product_data.each do |data|%>
+		<tr>
+			<td><%=data["bn"]%></td>
+			<td><%=data["name"]%></td>
+			<td><%=data["num"]%></td>
+		</tr>
+		<%end%>
+</table>

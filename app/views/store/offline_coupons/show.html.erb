@@ -1,0 +1,130 @@
+<%=content_for :head do %>
+	<%= stylesheet_link_tag "store/offline_coupons" %>
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<%= javascript_include_tag "store/offline_coupons", "gmaps"%>
+<%end%>
+
+<div id="position">
+	<ul class="breadcrumb">
+      <li>
+      	 当前位置 :
+      </li>
+      <li>
+      		<a href="http://www.i-modec.com">首页</a> 
+      		<span class="divider">/</span>
+      	</li>
+       <li>
+         <%=link_to @coupon.brand.brand_name, brand_path(@coupon.brand)%>
+         <span class="divider">/</span>
+       </li>
+
+       <li class="active">优惠券</li>
+    </ul>
+</div>
+
+<div class="offline_coupon clearfix">
+	<div class="covers">
+		<div id="cover_carousel" class="carousel slide" data-interval="false">
+			<div class="carousel-inner"  >
+				<%@coupon.covers.each_with_index do |url,index|%>
+				<div class="item <%='active' if index==0%>">
+					<%=image_tag url%>
+				</div>
+				<%end%>
+			</div>
+			<!-- Carousel nav -->
+			<a class="carousel-prev" href="#cover_carousel" data-slide="prev"><span>Prev</span></a>
+			<a class="carousel-next" href="#cover_carousel" data-slide="next"><span>Next</span></a>
+		</div>
+	</div>
+
+	<div class="detail">
+		<div class="brand">
+			<a href="<%=brand_path(@brand)%>" class="brand" target="_blank">
+      			<%=image_tag @brand.logo_url if @brand%>
+  			</a>
+		</div>
+		<div class="name">
+			<%=@coupon.name%>
+		</div>
+		<div class="sms">
+			<div class="title">
+				短信VIP体验券 :  下载以下短信至店铺购买可享特别优惠
+			</div>
+
+			<div class="text">
+				<%=@coupon.sms_text%>
+			</div>
+
+			<div class="tip">
+				说明 : 短信下载完全免费, 我们会严格保密您的手机号码
+			</div>
+		</div>
+		<div class="download">
+			<%if @coupon.start?%>
+				<div class="btn btn-inverse btn-large disabled">暂未开始</div>
+			<%elsif @coupon.expired?%>
+				<div class="btn btn-inverse btn-large disabled">优惠已过期</div>
+				<div class="stat">共下载 <span class="times"><%=@coupon.download_times%></span> 次</div>
+			<%else%>
+				<%=link_to "免费短信下载","#{ signed_in? ? '#download' : '#' }", data: { toggle: "modal" }, :class=>"btn btn-inverse btn-large #{'login' unless signed_in? }"%>
+				<div class="stat">已下载 <span class="times"><%=@coupon.download_times%></span> 次</div>
+			<%end%>
+
+			
+
+			
+		</div>
+
+		<div class="instruction">
+			<div class="title">VIP体验券使用说明：</div>
+			<ul>
+				<li>我们会将VIP体验券号发送至您的手机中，请正确填写您的手机。</li>
+				<li>购买时候请想店铺服务人员出示该短信确认。</li>
+				<li>请在有效期内前往店铺体验此项VIP服务。</li>
+				<li>本VIP体验券使用规则最终解释权归I-MODEC摩登客所有。</li>
+			</ul>	
+		</div>
+	</div>
+</div>
+
+<div class="other">
+	<div class="addrs" id="addrs">
+		<h3>店铺地址</h5>
+		<div class="content">
+			<%@brand.addresses.each_with_index do |addr,index|%>
+				<div class="address <%='hide' if index>=2%>">
+					<div><b><%=addr.province%></b></div>
+					<p>
+						<%=addr.name%>
+						<%=link_to "[查看地图]","#map",:class=>"show-map", :data=>{:latitude=>addr.latitude,:longitude=>addr.longitude,:toggle=>"modal"}%>
+					</p>
+				</div>
+			<%end%>
+			<%if @brand.addresses.size>2%>
+			<p>
+				<a href="#" class="show-all">+查看全部 <%=@brand.addresses.size%> 家店铺地址</a>
+			</p>
+			<%end%>
+		</div>
+
+	</div>
+
+	<div class="desc">
+		<h3>品牌介绍</h3>
+		<div class="content">
+			<%=raw @brand.detail_desc%>
+		</div>
+	</div>
+
+	<div class="newin">
+		<%=render "store/virtual_goods/newin_vgoods" if @newin_vgoods && @newin_vgoods.size > 0%>
+	</div>
+
+	<div class="maybe">
+		<%=render "maybe_coupons" if @maybe_coupons && @maybe_coupons.size > 0%>
+	</div>
+</div>
+
+<%=render "download_modal"%>
+<%=render "map_modal"%>

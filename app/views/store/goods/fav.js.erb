@@ -1,0 +1,3 @@
+$("#<%=params[:rel]%> .favorite").replaceWith(' <%=link_to "取消收藏",unfav_good_path(@good,:rel=>params[:rel]),:class=>"favorite",:remote=>true,:method=>:put%>');
+
+$(".<%=params[:rel]%> .add_to_favorites").replaceWith(' <%=link_to "已收藏",unfav_good_path(@good,:rel=>params[:rel]),:class=>"add_to_favorites",:remote=>true,:method=>:put,:confirm=>"是否取消收藏?"%>');

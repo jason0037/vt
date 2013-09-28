@@ -1,0 +1,45 @@
+body{margin:0px;padding:0px;font-size:12px;font-family:arial,"微软雅黑";}
+div,dl,dd,dt{margin:0px;padding:0px;}
+a,a img{color:#000;text-decoration:none;border:none;}
+a:hover,a img:hover{color:#000;border:none;text-decoration:underline;}
+
+.top{margin:auto;width:950px;}
+.center_top{width:950px;margin:auto;margin-top:55px;}
+.center{margin:auto;width:910px;margin-top:20px;;height:730px;}
+	.center dl{width:251px;height:200px;float:left;margin:20px 25px;}
+	.center dd{background:url(issue_frame.jpg) 0 0 no-repeat;width:251px;height:172px;}
+.center dd img{
+	/*margin:6px 6px 9px 5px; 
+	border:none;
+	width:240px;
+	height:156px;*/
+	margin: 10px 6px 9px 9px;
+	border: none;
+	width: 232px;
+	height: 148px;
+}
+	.center dt{line-height:26px;text-align:center;}
+
+.center_bottom{padding:3px;margin:5px auto;width:950px;text-align: center;}
+.center_bottom a{border: #fff 1px solid;padding:4px 8px;}
+.center_bottom a:hover {border:#9f9f9f 1px solid;text-decoration:none;}
+.center_bottom em.current {
+	border:2px #fff solid;
+	padding: 4px 8px;
+	color:#000;
+	background:#fff;
+	font-weight:bold;
+	display: inline-block;
+	font-style:normal;
+}
+/*.previous_page,
+.next_page{
+	text-indent: -9999px;
+	content: none;
+}
+.previous_page:before{
+	content: '<'
+}
+.next_page:after{
+	content: '>';
+}*/

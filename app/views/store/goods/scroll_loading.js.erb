@@ -1,0 +1,15 @@
+
+<%if @goods.size > 0 %>
+	<%@goods.each_with_index do | good, index | %>
+		$("#skrollr-body").append('<%=escape_javascript(render :partial=>"product",:locals=>{:good=>good,:index=>(index+10*(params[:page].to_i-1))})%>');
+	<%end%>
+	var bodyHeight = $("body").height();
+	$("body").css({
+		height: (bodyHeight + <%=@goods.size * 1000%>)+'px'
+	});
+	<%if @goods.size < 10%>
+		$("body").data("end",true);
+	<%end%>
+<%else%>
+	$("body").data("end",true);
+<%end%>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title><%=page_title%></title>
+  <meta name="keywords" content="<%=meta_keywords%>" />
+  <meta name="description" content="<%=meta_description%>" />
+
+  <%= stylesheet_link_tag    "blog/articles" %>
+  <%= stylesheet_link_tag    "store/goods" %>
+  <%= stylesheet_link_tag    "magazine/magazine" %>
+  <%= stylesheet_link_tag    "magazine/reset" %>
+  <%= javascript_include_tag "magazine/topics" unless controller_name == "goods" && action_name=="suits"%>
+  <%=yield :head%>
+
+  <%=render "shared/baidu" if Rails.env == "production"%>
+  <%= csrf_meta_tags %>
+
+</head>
+
+<body class="<%= 'home_width' if %w(home brands cats).include?(controller_name) || (controller_name== 'topics' && action_name == 'show') %>">
+  <%= render "magazine/shared/header" %>
+  <%= render "magazine/shared/topmenu" %>
+
+  
+  <div id="main" class="magazine <%= 'show' if controller_name== 'topics' && action_name == 'show'%>">
+    <%= yield %>
+  </div>
+
+  <%= render "store/shared/footer" %>
+  <%= render "shared/iframe_cart" if signed_in?%>
+  <%=render "shared/iframe_login" unless signed_in?%>
+  
+  <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+
+  <!-- <footer id="footer" class="footer magazine">
+    <div class="container">
+        <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+        <ul class="btmenu">
+          <li><a target="_blank" href="http://www.rayli.com.cn/">瑞丽网</a></li>
+          <li><a target="_blank" href="http://www.metroer.com">都市客</a></li>
+          <li><a target="_blank" href="http://www.cnarts.net">中国艺术品</a></li>
+          <li><a target="_blank" href="http://www.yoka.com">YOKA时尚网</a></li>
+          <li><a target="_blank" href="http://www.weartrends.com">华纺资讯</a></li>
+          <li><a target="_blank" href="http://www.smartshe.com/">她时代</a></li>
+        </ul>
+        <p class="copyright"><small>&copy;2012 i-modec.com 沪ICP备11043780号-1 上海静友信息科技有限公司</small></p>
+    </div>
+  </footer> -->
+  <%= javascript_include_tag "google-analytics" if Rails.env == "production"%>
+
+</body>
+</html>

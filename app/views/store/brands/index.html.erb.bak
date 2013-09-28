@@ -1,0 +1,17 @@
+<%=content_for :title do "设计师品牌 | 摩登客 | 体验个性摩登生活方式,尊享服装配饰设计品牌精品" end%>
+<%=content_for :head do%>
+<%= stylesheet_link_tag "store/brands" %>
+<%end%>
+
+<%=render "store/shared/brand_position"%>
+<div class="container">
+	<ul class="brands clearfix">
+		<%@brands.each do |brand|%>
+			<li>
+				<%=link_to brand_path(brand) do%>
+					<%image_tag brand.list_logo,:alt=>brand.brand_name,:name=>brand.brand_name%>
+				<%end%>
+			</li>
+		<%end%>
+	</ul>
+</div>

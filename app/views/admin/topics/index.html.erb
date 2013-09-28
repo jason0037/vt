@@ -1,0 +1,49 @@
+<div class="page-header">
+  <h2>所有专题
+    <%= link_to '新建专题', new_admin_topic_path, :class => "pull-right btn btn-primary" %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= link_to '添加分类', "javascript:void(0);", :class => "pull-right btn btn-primary dialog", :'data-url'=>admin_categories_path,:style=>"margin-right:10px;" %>
+  </h2>
+
+</div>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>分类</th>
+    <th>专题标题</th>
+    <th>发布时间</th>
+    <th>是否发布</th>
+    <th>是否登录访问</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @topics.each do |topic| %>
+  <tr>
+    <td><%= topic.category.name if topic.category %></td>
+    <td><%= topic.title %></td>
+    <td>
+      <%if topic.published%>
+        <span class="time-holder" data-time='<%=topic.published_at.strftime("%Y-%m-%d %H:%M:%S")%>'>
+          <%=topic.published_at.strftime("%Y-%m-%d %H:%M:%S")%>
+        </span>
+        <%=link_to "#",:title=>"修改发布时间",:class=>"edit-time",:'data-url'=>published_at_admin_topic_path(topic),:remote=>true do %>
+          <i class="icon-edit" title="修改发布时间"></i>
+        <%end%>
+      <%else%>
+        草稿
+      <%end%>
+    </td>
+    <td><%= topic.published ? '是' : '否' %></td>
+    <td><%= topic.require_login ? '是' : '否' %></td>
+    <td><%= link_to '查看', topic_path(topic) %></td>
+    <td><%= link_to '编辑', edit_admin_topic_path(topic) %></td>
+    <td><%= link_to '删除', admin_topic_path(topic), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<div class="pagination">
+  <%= will_paginate @topics, :container => false %>
+</div>

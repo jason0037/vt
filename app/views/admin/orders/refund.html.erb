@@ -1,0 +1,123 @@
+<div id="refund">
+    <h4>退款 : <%=@order.order_id%></h4>
+    <hr>
+<%=form_for :refund, :url=>dorefund_admin_order_path(@order,:return_url=>@return_url), :html=>{ :class=>"form-horizontal" } do |f|%>
+   <%=f.hidden_field :member_id, :value=>@order.member_id%>
+   <%=f.hidden_field :op_id, :value=>current_admin.account_id%>
+
+  <div class="control-group">
+    <label class="control-label">订单号:</label>
+    <div class="controls">
+     	<span class="readonly-field"><%=@order.order_id%> (<%=@order.pay_status_text%>)</span>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">下单时间:</label>
+    <div class="controls">
+      <span class="readonly-field"><%=@order.created_at%></span>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">会员:</label>
+    <div class="controls">
+     	<span class="readonly-field"><%=@order.user.login_name if @order.user%></span>
+     
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">订单金额:</label>
+    <div class="controls">
+     	<span class="readonly-field">&yen;<%=@order.final_amount.to_i%></span>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">已付金额:</label>
+    <div class="controls">
+      <span class="readonly-field">&yen;<%=@order.paid_amount.to_i%></span>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">退款类型:</label>
+    <div class="controls">
+      <label  class="radio inline"><%=f.radio_button :pay_type,"online",:checked=>@order.pay_type=="online"%>在线支付</label>
+      <br>
+      <label  class="radio inline"><%=f.radio_button :pay_type,"offline",:checked=>@order.pay_type=="offline"%>线下支付</label>
+      <br>
+      <label  class="radio inline"><%=f.radio_button :pay_type,"deposit",:checked=>@order.pay_type=="deposit"%>预存款支付</label>
+      
+    </div>
+  </div>
+  
+
+   <div class="control-group">
+    <label class="control-label">退款方式:</label>
+    <div class="controls">
+       <%=f.hidden_field  :pay_name%>
+     	<select class="span2" id="refund_pay_app_id" name="refund[pay_app_id]">
+     		<option></option>
+     		<%payment_options.merge("offline"=>"线下支付").each do |value,text|%>
+		<option value="<%=value%>"><%=text%></option>
+		<%end%>
+	</select>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">退款银行:</label>
+    <div class="controls">
+      <%=f.text_field :bank,:class=>"input-meduim"%>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">退款帐号:</label>
+    <div class="controls">
+      <%=f.text_field :account,:class=>"input-meduim"%>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">交易号:</label>
+    <div class="controls">
+     	<%=f.text_field :trade_no%>
+    </div>
+  </div>
+
+   <div class="control-group">
+    <label class="control-label">收款人:</label>
+    <div class="controls">
+     	<%=f.text_field :pay_account%>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">退款金额:</label>
+    <div class="controls">
+      <%=f.number_field :money,:value=>@order.paid_amount - @order.refunded_amount,:class=>"input-small"%>
+    </div>
+  </div>
+
+
+  <div class="control-group">
+    <label class="control-label">备注:</label>
+    <div class="controls">
+     	<%=f.text_field :memo,:class=>"span4"%>
+    </div>
+  </div>
+
+   <div class="control-group">
+    <label class="control-label"></label>
+    <div class="controls">
+     	<%=f.submit "提交",:class=>"btn btn-primary" if %w(1 2 3 4).include?(@order.pay_status)%>
+     	<a href="<%=@return_url%>" class="btn" data-dismiss="modal">取消</a>
+    </div>
+  </div>
+  
+
+<%end%>
+</div>

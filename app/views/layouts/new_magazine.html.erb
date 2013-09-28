@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>摩登资讯—体验个性摩登生活方式,尊享服装配饰设计品牌精品</title>
+  		<meta name="description" content="摩登客 | 体验个性摩登生活方式,尊享服装配饰设计品牌精品">
+		<%=stylesheet_link_tag "magazine/magazine","magazine/reset"%>
+		<%=javascript_include_tag "magazine/magazine"%>
+		<%= stylesheet_link_tag    "blog/articles" %>
+		 <%=render "shared/baidu"%>
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
+		<%= render "blog/shared/topmenu" %>
+		<div id="iModecMagazine">
+			<div class="iModecMagazine-container">
+				
+		  	</div>
+
+			<!-- 杂志左右按钮 -->
+			<a class="jcarousel-prev jcarousel-prev-dis" href="#">
+				<span>Prev</span>
+			</a>
+    			<a class="jcarousel-next" href="#">
+    				<span>Next</span>
+    			</a>
+
+	    		<!-- 杂志底部页码 -->
+	    		<span class="bottomPageNum">1</span>
+
+	    		<!-- 杂志底部导航 -->
+	    		<div class="bottomNav bottomNavHide">
+	    			<!--b>按钮</b-->
+	    			<div class="bottomNavbg"></div>
+	    			<a class="more" href="javascript:void(0);">更多专题</a>
+	    			<div class="bottomNavItem">
+		    			<ul class="clearfix">
+		    			</ul>
+		    			<!-- <div class="thumbnail">
+		    				<img src="test.jpg" height="45"/>
+		    			</div> -->
+		    			<p class="title">杂志</p>
+		    		</div>
+	    		</div>
+		</div>
+		 <%= render "store/shared/footer" %>
+  		  <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+	</body>
+
+	<%=yield :js%>
+	<%= javascript_include_tag "google-analytics" %>
+</html>

@@ -1,0 +1,60 @@
+<%
+  create_or_update_url = admin_articles_path  if action_name == "new"
+  create_or_update_url = admin_article_path(@article) if action_name == "edit"
+%>
+<%= form_for @article,:url=>create_or_update_url,:html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+    <% if @article.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+        <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.hidden_field :user_id,:value=>current_admin.account_id if admin_signed_in?%>
+    <div class="control-group">
+      <%= f.label :title, "标题", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :title, :placeholder => "标题" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :body, "内容", :class => "control-label" %>
+      <div class="controls">
+        <%= f.cktext_area :body, :toolbar => 'Easy',:language=>'zh-cn',:height => 300 %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :summary, "摘要", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_area :summary, :class => "span6", :rows => "5" %>
+      </div>
+    </div>
+    <div class="control-group">
+       <%= f.label :cover, "封面", :class => "control-label" %>
+       <div class="controls">
+          <%= f.file_field :cover %>
+       </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">设定</label>
+      <div class="controls">
+        <label class="checkbox" for="imodec_article_published">
+          <%= f.check_box :published %>立刻发布
+        </label>
+        <label class="checkbox" for="imodec_article_headlined">
+          <%= f.check_box :headlined %>首页推荐
+        </label>
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '返回', admin_articles_path %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

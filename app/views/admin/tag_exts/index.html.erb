@@ -1,0 +1,32 @@
+<%=form_for :search,:url=>admin_tag_exts_path,:html=>{:class=>"form-search"},:method=>:get do |f|%>
+<%=f.text_field :key,:placeholder=>"标签",:value=>params[:search]&&params[:search][:key]%>
+<%=f.submit "搜索",:class=>"btn"%>
+<%end%>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>期号</th>
+    <th>标签</th>
+    <th>封面链接</th>
+    <th>截止时间</th>
+    <th>操作</th>
+  </tr>
+
+<% @tags.each do |tag| %>
+  <tr>
+    <td><%=tag.tag_ext.issue_no if tag.tag_ext%></td>
+    <td>
+    	<span style="background-color:<%=tag.tag_bgcolor%>;color:<%=tag.tag_fgcolor%>;padding:3px;">
+    		<%= tag.tag_name %>
+    	</span>
+    </td>
+    <td><%= image_tag tag.tag_ext.cover_url,:alt=>tag.tag_ext.cover_url,:title=>tag.tag_ext.cover_url,:size=>"100x100" if tag.tag_ext%></td>
+    <td><%= tag.tag_ext.deadline.strftime("%Y-%m-%d %H:%M:%S") if tag.tag_ext&&tag.tag_ext.deadline.present?%></td>
+    <td><%=link_to "编辑",edit_admin_tag_ext_path(tag)%></td>
+  </tr>
+<% end %>
+</table>
+
+<div class="pagination">
+  <%= will_paginate @tags, :container => false %>
+</div>

@@ -1,0 +1,4 @@
+$(".options,.mobile_form").show();
+$(".loading").hide();
+$(".mobile_form .help-block").text("<%=@user.errors.messages[:mobile].join(' ')%>").show();
+$("#survey_mobile").focus();

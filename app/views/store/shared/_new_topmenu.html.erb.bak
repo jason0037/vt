@@ -1,0 +1,87 @@
+<div id="topmenu" class="navbar navbar-inverse">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li class="home <%= 'active' if controller_name == 'home' %>">
+            <a href="http://www.i-modec.com">首页 <span>HOME</span></a>
+          </li>
+          <li class="newin dropdown  <%= 'active' if controller_name == 'goods' %>">
+            <a id="newin" data-target="http://www.i-modec.com/products/newest" href="http://www.i-modec.com/products/newest" class="dropdown-toggle" data-toggle="dropdown">新品 <span>NEW IN</span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="newin">
+              <li><a tabindex="-1" href="http://www.i-modec.com/products/newest">本期新品</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/products/more">更多新品</a></li>
+            </ul>
+          </li>
+          <li class="brands dropdown">
+            <a id="brands" data-target="http://www.i-modec.com/article-pinpaiyemian-100.html" href="http://www.i-modec.com/article-pinpaiyemian-100.html" class="dropdown-toggle" data-toggle="dropdown">品牌 <span>BRANDS</span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="brands">
+               <li><a tabindex="-1" href="http://www.i-modec.com/brand-58.html">BABYGHOST</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-59.html">chows</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-56.html">CRUSH</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-19.html">D-SATA by CuR</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-61.html">ESTUNE</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-39.html">Eyedress</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-41.html">Helen Lee</a></li>          
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-26.html">Jade en plus加是</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-37.html">姜茶</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-36.html">La Vie</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-34.html">MATCHBOX</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-60.html">MyCALUMA</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-33.html">NICOLE ZHANG </a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-32.html">NuoMi糯米</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-31.html">OSKA</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-62.html">REINEREN</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-42.html">RIPPLE FIT COLLECTION</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-28.html">SHOKAY</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-29.html">STEPHANE CHEUNG</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-54.html">Tina Couture</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-25.html">榭俪尚海</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-20.html">亦·哲</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/brand-50.html">熙素</a></li>
+            </ul>
+          </li>
+          <li class="apparel dropdown">
+            <a id="apparel" data-target="http://www.i-modec.com/gallery-22.html?openTab=1" href="http://www.i-modec.com/gallery-22.html?openTab=1" class="dropdown-toggle" data-toggle="dropdown">时装 <span>APPAREL</span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="apparel">
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-52.html?openTab=1">外套</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-48.html?openTab=1">针织衫</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-29.html?openTab=1">薄上装</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-23.html?openTab=1">连衣裙</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-28.html?openTab=1">礼服裙</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-24.html?openTab=1">裙子</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-37.html?openTab=1">衬衫</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-41.html?openTab=1">裤子</a></li>
+            </ul>
+          </li>
+          <li class="bags dropdown">
+            <a id="bags" data-target="http://www.i-modec.com/gallery-59.html?openTab=2" href="http://www.i-modec.com/gallery-59.html?openTab=2" class="dropdown-toggle" data-toggle="dropdown">包袋 <span>BAGS</span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="bags">
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-62.html?openTab=2">手拿包</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-60.html?openTab=2">挎包</a></li>
+            </ul>
+          </li>
+          <li class="accessories dropdown">
+            <a id="accessories" data-target="http://www.i-modec.com/gallery-69.html?openTab=3" href="http://www.i-modec.com/gallery-69.html?openTab=3" class="dropdown-toggle" data-toggle="dropdown">配饰 <span>ACCESSORIES</span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="accessories">
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-70.html?openTab=3">首饰</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-77.html?openTab=3">腰带</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-81.html?openTab=3">眼镜</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-80.html?openTab=3">围巾</a></li>
+              <li><a tabindex="-1" href="http://www.i-modec.com/gallery-78.html?openTab=3">手套</a></li>
+            </ul>
+          </li>
+          <li class="news <%= 'active' if controller_name == 'topics' %>">
+            <a href="http://blog.i-modec.com/topics">摩登资讯 <span>NEWS</span></a>
+          </li>
+          <li class="last"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

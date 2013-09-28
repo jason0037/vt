@@ -1,0 +1,48 @@
+<%= form_for :page,:url=>@action_url, method: @method,:html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :title, "名称", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :title,:placeholder=>"如: 关于我们"%>
+          <span class="help-inline error"><%=@page.errors[:title].join(",")%> </span>
+
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :slug, "访问地址", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :slug,:placeholder=>"拼音或英文,如: about"%>
+          <span class="help-inline error"><%=@page.errors[:slug].join(",")%> </span>
+          <span class="help-block">如：http://www.i-modec.com/page/<b style="color:green;">about</b></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :layout, "页面布局", :class => "control-label" %>
+      <div class="controls">
+          <%=f.select :layout, {"标准"=>"standard","无(完全自定义)"=>"" }%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :body, "页面内容", :class => "control-label" %>
+      <div class="controls">
+
+        <%= f.cktext_area :body,:toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800, :fullPage=>@page.new_record? || @page.layout.present? ? false : true %>
+        <span class="help-block error"><%=@page.errors[:body].join(",")%></span>
+      </div>
+    </div>
+
+   
+
+    <%=render :partial=>"admin/shared/metable", :locals=>{ :form=>f, :resource=> @page }%>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>
+        <%= link_to '返回', admin_static_pages_path,:class=>"btn" %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

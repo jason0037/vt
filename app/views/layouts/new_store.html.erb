@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%=page_title%></title>
+  <meta name="keywords" content="<%=meta_keywords%>" />
+  <meta name="description" content="<%=meta_description%>" />
+
+  <%= stylesheet_link_tag    "bootstrap", :media => "all" %>
+  <%= stylesheet_link_tag    "store/base", :media => "all" %>
+  <%= stylesheet_link_tag    "store/new_screen", :media => "all" %>
+  <%= stylesheet_link_tag    "store/#{controller_name}",:media=>"all"%>
+  <%= javascript_include_tag "store/new_base" %>
+  <%= javascript_include_tag "store/new_#{controller_name}" %>
+
+  <%=render "shared/baidu" if Rails.env == "production"%>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="preloader"></div>
+  <% # render "store/shared/new_header" %>
+  <% # render "store/shared/new_topmenu" %>
+
+  <%= render "shared/header" %>
+  <%= render "shared/top_menu" %>
+
+
+  <%= render "store/shared/position" if @cat%>
+  <% # render "store/shared/mini_items" %>
+
+  <%= yield %>
+
+  <% if %w(index newest).include?(action_name) && controller_name == "goods" %>
+    <% # render "store/shared/new_more_arrivals" %>
+  <% end %>
+
+  <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+
+  <% #render "store/shared/footer" %>
+  <%= render "shared/common_footer" %>
+
+  <%=render "shared/iframe_cart" if signed_in?%>
+
+  <%=render "shared/iframe_login" unless signed_in?%>
+  
+  
+  <%= javascript_include_tag "google-analytics" if Rails.env == "production" %>
+</body>
+</html>

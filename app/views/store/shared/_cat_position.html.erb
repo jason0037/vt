@@ -1,0 +1,21 @@
+<div id="position">
+  <div class="container">
+    <div class="current_pos">当前位置 ：</div>
+    <ul class="breadcrumb">
+      <li><a href="http://www.i-modec.com">首页</a> <span class="divider">/</span></li>
+        <%@cat.cat_paths.each_with_index do |cat,index|%>
+            <%if index != @cat.cat_paths.size - 1%>
+              <li>
+                <%=link_to cat.cat_name,cat_path(cat),:target=>"_blank" if cat%>
+                <span class="divider">/</span>
+              </li>
+            <%else%>
+               <li class="active">
+                <%=cat.cat_name if cat%>
+              </li>
+            <%end%>
+
+        <%end%>
+    </ul>
+   </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="modal hide " role="dialog" id="download">
+  <div class="modal-body">
+      <div id="send">
+              <h4>短信VIP体验券下载</h4>
+              <p>您将收到如下短信 : </p>
+              <div class="sms"><%=@coupon.sms_text%></div>
+              <%if @coupon.enable_of(@user)%>
+                <div class="sms-form">
+                    <%=form_for :sms, :url=>download_coupon_path(@coupon),:remote=>true, :html=>{:class=>"form-horizontal"} do |f|%>
+                      <div class="control-group">
+                          <%=f.label :mobile, "手机号码 : ",:class=>"control-label"%>
+                          <div class="controls">
+                            <%=f.text_field :mobile,:class=>"span2",:maxlength=>11,:placeholder=>"正确的手机号码"%>
+                            <span class="help-inline error"></span>
+                          </div>
+                      </div>
+                       <div class="control-group">
+                          <div class="controls">
+                            <%=f.submit "免费发送",:class=>"btn btn-inverse"%> <span  class="sending"></span>
+                          </div>
+                      </div>
+                    <%end%>
+                </div>
+              <%else%>
+                 <br>
+                 <p class="tip">您已经下载过该优惠券,如果没有收到短信,请于<%=(@coupon.coupon_downloads.last.downloaded_at+30.minutes).strftime("%Y-%m-%d %H:%M:%S")%>后再次下载!</p>
+                 <br>
+                 <br>
+                 <p style="text-align:center;">
+                    <%=link_to "关闭","#",:class=>"btn", :data=>{:dismiss=>"modal"}%>
+                </p>
+              <%end%>
+              
+      </div>
+      <div id="result" class="hide">
+            <h4>短信VIP体验券已发送</h4>
+            <br>
+            <br>
+            <p>
+              VIP体验券已发送到您的手机 :  <b><span id="tel"></span></b>
+              <div>如果十分钟内仍未收到短信请重新下载</div>
+            </p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <p>
+                <%=link_to "关闭","#",:class=>"btn", :data=>{:dismiss=>"modal"}%>
+            </p>
+      </div>
+
+      <div>本VIP体验券使用规则最终解释权归I-MODEC摩登客所有。</div>
+
+  </div>
+</div>

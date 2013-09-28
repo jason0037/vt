@@ -1,0 +1,10 @@
+.configs{
+	.actions{
+		margin-bottom:10px;
+		&:after{
+			display:block;
+			content: "";
+			clear: both;
+		}
+	}
+}

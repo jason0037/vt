@@ -1,0 +1,73 @@
+<div class="well">
+      1. 访问参数和访问路径共同组成访问的URL,例如：访问路为<b>/products</b> , 访问参数为 <b>tag=z0729</b>,
+      即当访问 <b>http://www.i-modec.com/products?tag=z0729</b> 时会设置指定的SEO.
+      <br>
+      2. 访问参数可以不填写,即当访问 <b>http://www.i-modec.com/products</b> 时会设置指定的SEO.
+      <br>
+      3. 访问参数值支持正则表达式.如 tag=z\d{4},则匹配所有tag以z开头,后面4位数字的参数,如 : z0912, z1024.
+</div>
+
+<%= form_for :meta,:url=>@action_url, method: @method,:html => {:class => "form-horizontal"} do |f| %>
+  <%=f.hidden_field :metable_type%>
+  <fieldset>
+   
+    <div class="control-group">
+      <%= f.label :path, "访问路径", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :path,:placeholder=>"如：/products/newest"%>
+          <span class="help-inline error"><%=@meta.errors[:path].join(",")%></span>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :params, "访问参数", :class => "control-label" %>
+
+      <div class="controls" id="params">
+          <%@meta.params.each do |key,value|%>
+            <div class="sub">
+                <%=text_field_tag "meta[params][][k]",key, :class=>"input-small",:placeholder=>"参数名"%>
+                <%=text_field_tag "meta[params][][v]",value, :class=>"input-small",:placeholder=>"参数值"%>
+                <a href="#" class="delete">&times;</a>
+            </div>
+            <%end%>
+         <span class="help-block"><%=link_to "+添加参数","#", :id=>"add_params"%></span>
+      </div>
+      
+    </div>
+
+    
+
+
+    <div class="control-group">
+      <%= f.label :title, "Page Title", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :title,:class=>"span5"%>
+          <span class="help-inline error"></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :keywords, "Meta Keywords", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :keywords,:class=>"span5"%>
+          <span class="help-inline error"><%=@meta.errors[:title].join(",")%> </span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :description, "Meta Description", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :description,:class=>"span5"%>
+      </div>
+    </div>
+
+    
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>
+        <%= link_to '返回', admin_metas_path,:class=>"btn" %>
+      </div>
+    </div>
+     
+  </fieldset>
+<% end %>

@@ -1,0 +1,7 @@
+if($("#main").hasClass("member_addrs")){
+	window.location.href = '/member_addrs';
+	return;
+}
+
+$(".addr-list label.active form").remove();
+$(".addr-list label.active .addr-line").text('<%=@addr.addr_line%>');

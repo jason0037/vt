@@ -1,0 +1,7 @@
+<%if @member_card.errors.messages.empty?%>
+	$("input[name='commit']").next(".msg").html('更新信息成功. ');
+<%else%>
+	<%@member_card.errors.messages.each do  |key,msgs|%>
+	$("input[name='user_card[<%=key%>]']").next(".help").text("<%=msgs.join(',')%>").addClass("error");
+	<%end%>
+<%end%>

@@ -1,0 +1,7 @@
+<%if @member_type == 'buyer'%>
+	$("#buyer_list").hide();
+	$("#buyer").html('<%=escape_javascript(render :partial=>"admin/cards/buy_form")%>');
+<%else%>
+	$("#user_list").hide();
+	$("#user").html('<%=escape_javascript(render :partial=>"admin/cards/use_form")%>');
+<%end%>

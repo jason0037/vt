@@ -1,0 +1,30 @@
+
+<%=content_for :keywords do "摩登客,摩登资讯" end%>
+<%=content_for :description do "全球设计精品第e站，都市时尚女性个性首选." end%>
+
+<% if request.url.include?("subscription_success") %>
+<h2 style="color: #D30000;">您已成功订阅摩登客EDM，您将定期收到摩登客专享的最新资讯和内容！</h2>
+<br>
+<% end %>
+
+<div class="categories clearfix">
+  <div class="btn-group">
+    <%=link_to "查看所有" , "/topics", :class=>"btn"%>
+    <%Imodec::Category.all.each do |category|%>
+    <%=link_to category.name,"?category_id=#{category.id}",:class=>"btn #{'active' if params[:category_id] == category.id.to_s }"%>
+    <%end%>
+  </div>
+</div>
+
+<%if @cat&&@cat.name == "摩登报道"%>
+	<%=render "reports"%>
+<%else%>
+	<div id="container">
+		<%= render :partial => "magazine/topics/topic", :collection => @topics %>
+		<div id="shadow"></div>
+	</div>
+	<div id="page_nav">
+	  <a href="/more_topics?page=2&category_id=<%=params[:category_id]%>">page 2</a>
+	</div>
+<%end%>
+

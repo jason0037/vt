@@ -1,0 +1,106 @@
+<div id="dialog_goods">
+
+<div>已经选中<b id="selected_count">0</b>条</div>
+<table class="table table-bordered table-hover" id="select_coupons">
+          <tr class="header">
+            <th><%=check_box_tag "select_all",1%></th>
+            <th>优惠券名称</th>
+            <th>是否启用</th>
+            <th>获取总数量</th>
+            <th>优惠券类型</th>
+          </tr>
+        <%=render "coupons"%>
+</table>
+
+<div class="pagination">
+  <%=will_paginate @coupons,:container=>false%>
+</div>
+
+<div>
+  <%=link_to "确 定","#",:class=>"btn btn-primary",:id=>"confirm_select"%>
+</div>
+<br>
+<script>
+  $(document).ready(function(){
+    
+    var counterSelect = function(){
+        var counter = $("#select_coupons input[name='id']:checked").length;
+        $("#selected_count").text(counter)
+    };
+
+    $("#select_coupons").on("change","#select_all",function(){
+        if($(this).attr("checked") == "checked"){
+           $("#select_coupons input[name='id']").attr("checked",true)
+           $("#select_coupons input[name='id']").closest("tr").addClass("checked");
+        }else{
+          $("#select_coupons input[name='id']").attr("checked",false)
+          $("#select_coupons input[name='id']").closest("tr").removeClass("checked");
+        }
+        counterSelect();
+    });
+    $("#select_coupons").on("change","input[name='id']",function(event,checked){
+
+        if($(this).attr("checked")=="checked"){
+            $(this).attr("checked",true);
+            $(this).closest("tr").addClass("checked");
+        }else{
+            $(this).attr("checked",false);
+            $(this).closest("tr").removeClass("checked");
+        }
+        counterSelect();
+    });
+
+   var opener = window.opener.document;
+    var target = '#<%=params[:target]%>';
+    var fieldName = "<%=params[:field_name] || 'action_val'%>";
+    var modelName = "<%=params[:model_name] || 'promotion'%>"
+    $("#confirm_select").click(function() {
+          $(opener).find(target).empty();
+          $("#select_coupons input[name='id']:checked").each(function() {
+            var hidden_input, html_bn;
+            html_bn = $(this).data('name');
+            hidden_input = "<input name='"+modelName+"["+fieldName+"][]' type='hidden' value='" + ($(this).val()) + "' >";
+            $(opener).find(target).append("<li>" + html_bn + hidden_input + "</li>");
+          });
+          window.close();
+          return false;
+    });
+    
+    var selectedGoods = []
+
+    $(opener).find(target).find("input:hidden").each(function(){
+             selectedGoods.push($(this).val());
+            // $("input[value='"+$(this).val()+"']").attr("checked",true).trigger("change");
+    });
+
+
+
+    var doSelect = function(){
+       var dels = []
+        for(var i in selectedGoods){
+           var bn = selectedGoods[i];
+           if( $("input[value='"+bn+"']").length>0 ){
+              $("input[value='"+bn+"']").attr("checked",true).trigger("change");
+              dels.push(i)
+           } 
+        }
+        for(var d in dels){
+          selectedGoods.splice(dels[d],1);
+        }
+    };
+    doSelect()
+    
+    $("#selected_count").text($(opener).find(target).find("input:hidden").length);
+
+    $("#dialog_goods .pagination").on('click', 'a', function() {
+      var url;
+      url = $(this).attr("href");
+      $.getScript(url,function(){
+        doSelect();
+      });
+      return false;
+    });
+
+  });
+</script>
+</div>

@@ -1,0 +1,31 @@
+<h3>
+	整套搭配推荐
+	<span>LOOK</span>
+</h3>
+<ul class="suit-group clearfix">
+	<li class="suit">
+		<img src="<%=@good.default_product.pictures(:large).first%>">
+		<div class="name">
+			<%=truncate2(@good.name,:length=>15)%>
+		</div>
+		<div class="price">套装价: &yen;<%=@good.price.to_i%> </div>
+		<div class="saving">立省: &yen;<%=@good.savings.to_i%></div>
+	</li>
+	<li class="equal">=</li>
+	<%@good.collocation_goods.each_with_index do |good,index|%>
+	<li class="single">
+		<a href="<%=good_path(good.bn)%>" target="_blank">
+			<img src="<%=good.list_default_pic%>">
+		</a>
+		<div class="name">
+			<a href="<%=good_path(good.bn)%>" target="_blank">
+				<%=truncate2(good.name,:length=>10)%>
+			</a>
+		</div>
+		<div class="price">摩登客价: &yen;<%=good.price.to_i%></div>
+	</li>
+	<%if index < @good.collocation_goods.size - 1%>
+	<li class="plus">+</li>
+	<%end%>
+	<%end%>
+</ul>

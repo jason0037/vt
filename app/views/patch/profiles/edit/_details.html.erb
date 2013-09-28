@@ -1,0 +1,42 @@
+
+<%=form_for @user,:url=>profile_path,:method=>:put do |f|%>
+	<%=hidden_field_tag :tab,"details"%>
+	<div class="field">
+		<label>教育程度:</label>
+		<%=f.select :edu,education_options,{:include_blank=>"请选择"}%>
+	</div>
+
+	<div class="field">
+		<label>所属行业:</label>
+		<%=f.select :voc,vocation_options,{:include_blank=>"请选择"}%>
+	</div>
+
+	<div class="field">
+		<label>从事职业:</label>
+		<%=f.select :job,job_options,{:include_blank=>"请选择"}%>
+	</div>
+
+	<div class="field">
+		<label>家庭月收入:</label>
+		<%=f.select :income,income_options,{:include_blank=>"请选择"}%>
+	</div >
+
+	<div class="field">
+		<label>身高(cm):</label>
+		<%=f.select :height,height_options,{:include_blank=>"请选择"}%>
+	</div>
+
+	<div class="field">
+		<label>体重(kg):</label>
+		<%=f.select :weight,weight_options,{:include_blank=>"请选择"}%>
+	</div>
+
+	<div class="field">
+		<label>鞋码:</label>
+		<%=f.select :shoesize,shoe_size_options,{:include_blank=>"请选择"}%>
+	</div>
+
+	<div class="actions">
+		<%=f.submit "保存",:class=>"btn"%>
+	</div>
+<%end%>

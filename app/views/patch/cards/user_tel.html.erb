@@ -1,0 +1,59 @@
+<strong>申请修改联系方式</strong>
+<br />
+<br />
+
+<table class="table table-striped table-bordered">
+	<tr>
+		<th>卡号</th>
+		<th>面值</th>
+		<th>购买时间</th>
+		<th>激活时间</th>
+		<th>状态</th>
+	</tr>
+	
+	<tr>
+		<td><%=@card.no%></td>
+		<td><%=@card.value%></td>
+		<td><%=@card.sold_at%></td>
+		<td><%=@card.used? ? @card.used_at :  "未激活"%></td>
+		<td><%=@card.status%></td>
+	</tr>
+</table>
+
+
+<div class="field">
+	<label class="field-label">用卡人联系方式 : </label>
+	<span class="field-plain"><%=mask(@card.member_card.user_tel)%></span>
+	<span class="sms">
+		<%if @card.use_status%>
+		<%=hidden_field_tag :tel,@card.member_card.user_tel,:class=>"sms_tel"%>
+		<%else%>
+		<%=hidden_field_tag :tel,@card.member_card.buyer_tel,:class=>"sms_tel"%>
+		<%end%>
+		
+		<%=link_to "获取验证码","javascript:void(0)",:"data-url"=>send_sms_code_card_path,:class=>"btn",:id=>"send_sms_code"%>
+		<span class="tip sms_tip"></span>
+	</span>
+</div>
+
+<%=form_for :card,:url=>update_user_tel_card_path(@card),:html=>{:id=>"update_tel_form"} do |f|%>
+<div class="field">
+	<label class="field-label">输入验证码 : </label>
+	<%=text_field_tag :sms_code,@sms_code,:class=>"span2"%>
+	<span class="msg <%='help-block' if @card.errors.messages[:sms_code]%>"><%=@card.errors.messages[:sms_code].join(",") if @card.errors.messages[:sms_code]%></span>
+	<div class="green-tip tip-in-patch">提示：验证码将会在30分钟后失效</div>
+</div>
+
+<div class="field">
+	<label class="field-label">新联系方式 : </label>
+	<%=text_field_tag :user_tel,@user_tel,:class=>"new-tel"%>
+	<span class="msg <%='help-block' if @card.errors.messages[:user_tel]%>" ><%=@card.errors.messages[:user_tel].join(",") if @card.errors.messages[:user_tel]%></span>
+</div>
+<div class="actions">
+	<%=f.submit "确认修改",:class=>"btn"%>
+</div>
+<%end%>
+
+<br>
+<p> 如需帮助请致电客服 : 021-60919835 </p>
+

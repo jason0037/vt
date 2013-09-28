@@ -1,0 +1,198 @@
+/*
+ *= require jquery.ui.datepicker
+ *= require jquery.ui.slider
+ */
+ 
+.goods{
+	margin-bottom: 50px;
+	&.search{
+		width: 90%;
+
+		.table{
+			th,td{
+				padding-right:0px;
+				padding-left: 2px;
+			}
+		}
+	}
+	input{
+		margin-bottom: 0px;
+	}
+	
+	.add-spec-item{
+		float: right;
+	}
+	.remove-item{
+		font-size: 40px;
+		&:hover {
+			text-decoration: none;
+		}
+	}
+	.good-spec-header{
+		/*background-color:#F9F9F9;*/
+		/*border:1px solid #DDD;*/
+		border-bottom:none;
+		padding: 5px;
+	}
+	form{
+		.actions{
+			/*margin-top: 10px;*/
+			float: right;
+		}
+	}
+	.good-spec-items{
+		/*border:1px solid #DDD;*/
+
+		padding: 5px 0px 10px 0px;
+		list-style: none;
+		margin: 0px;
+		li{
+			list-style: none;
+			margin: 0px;
+			margin-top: 10px;
+			width: 370px;
+			display: inline-block;
+			select{
+				width: 100px;
+				margin-bottom: 0px;
+				margin-left: 10px;
+			}
+		}
+		
+	}
+	.control-group .control-label:after{
+		content:":";
+	}
+	.controls {
+		padding-top:5px;
+	}
+
+	#collocations{
+		margin: 0px;
+		padding: 5px 0px;
+		float: left;
+			
+		li{
+			position: relative;
+			list-style: none;
+			margin: 0px;
+			padding: 3px;
+			display: inline-block;
+			float: left;
+			height: 350px;
+			margin-right: 5px;
+			.name{
+				width: 193px;
+				word-break:break-all;
+			}
+			img{
+				width: 193px;
+				height: 272px;
+			}
+			.close{
+				position: absolute;
+				top:-5px;
+				right: -5px;
+				color:red;
+			}
+		}
+	}
+
+	#goods{
+		thead{
+			th.order{
+				cursor: pointer;
+				&.asc:after{
+					content: "↑";
+				}
+				&.desc:after{
+					content: "↓";
+				}
+			}
+
+		}
+		tr.selected td{
+			background: #FFC;
+		}
+		.td-teg{
+			padding-right: 0px;
+			width: auto;
+		}
+
+	}
+	.batch-destroy{
+		margin-bottom: 0px;
+		display: inline;
+	}
+
+
+	#filters{
+		padding: 10px 20px;
+		border: solid 1px #ccc;
+		border-radius: 3px;
+		margin-bottom: 20px;
+		.filter-item{
+			margin: 8px 0px;
+		}
+		#simple_search{
+			margin-bottom: 5px;
+		}
+		#toggle_search{
+			text-decoration: none;
+		}
+	}
+
+	.select-goods{
+		width: 600px;
+		float: left;
+	}
+	.goods-list{
+		float: left;
+		margin-bottom: 50px;
+	}
+	.selected-list{
+		float: left;
+		margin-left: 20px;
+	}
+	#selected_list{
+		float: left;
+		width: 220px;
+		margin:0px;
+		float: left;
+		list-style: none;
+		margin-bottom: 50px;
+
+		li{
+			list-style: none;
+			border-bottom: solid 1px #ccc;
+			border-left: solid 1px #ccc;
+			border-right:solid 1px #ccc;
+			padding: 3px;
+			cursor: pointer;
+			color:#444;
+			&:hover{
+				background-color: #FCF8E3;
+			}
+			&:first-child{
+				border-top: solid 1px #ccc;
+			}
+		}
+	}
+
+	#dialog_goods{
+		#goods{
+			tr{
+				cursor: pointer;
+			}
+		}
+	}
+
+	.actions{
+		position: fixed;
+		bottom: 0px;
+		background-color: #eee;
+		width: 100%;
+		text-align: center;
+		padding: 5px 0px;
+	}
+}

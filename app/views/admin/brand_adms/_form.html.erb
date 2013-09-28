@@ -1,0 +1,45 @@
+<%= form_for :brand,:url =>@action_url, :method=>@method, :html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :brand_name, "品牌名称*", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :brand_name%>
+        <span class="help-inline error"><%=@brand.errors[:brand_name].join(",")%></span>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :slug, "访问地址*", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :slug%>
+        <span class="help-inline error"><%=@brand.errors[:slug].join(",")%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :brand_desc, "品牌简介", :class => "control-label" %>
+      <div class="controls">
+        <%=f.text_area :brand_desc,:placeholder=>"品牌简单描述",:class=>"span5",:rows=>3%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :detail_desc, "详细简介", :class => "control-label" %>
+      <div class="controls">
+        <%= f.cktext_area :detail_desc, :toolbar => 'Easy',:language=>'zh-cn',:height => 300 %>
+      </div>
+    </div>
+
+    <%=render "admin/shared/addressable_form", :form=>f, :resource=>@brand%>
+    <br>
+    <br>
+    <%=render "admin/shared/metable", :form=>f, :resource=>@brand%>
+    
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '返回', admin_brand_adms_path %>
+      </div>
+    </div>
+
+  </fieldset>
+<% end %>

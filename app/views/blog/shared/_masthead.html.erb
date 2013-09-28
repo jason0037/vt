@@ -1,0 +1,11 @@
+<div id="masthead" class="<%= 'mini' if controller_name == 'articles' && action_name == 'show' %>" >
+  <ul id="blog_items" class="jcarousel-skin-tango">
+    <% @headlined_articles.each do |article| %>
+    <li>
+      <%=link_to (image_tag article.cover.url(:cover),:size=>"215x140",:alt=>nil), article_path(article) %>
+      <h3><%= link_to truncate2(article.title,:length=>13), article_path(article) %></h3>
+      <p><%= link_to truncate2(article.summary,:length=>33), article_path(article) %></p>
+    </li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,26 @@
+<div>SEO设置</div>
+<hr>
+<%=form.fields_for :meta_seo_attributes do |seo_form|%>
+
+	<div class="control-group">
+	      <%= seo_form.label :title, "Page Title", :class => "control-label" %>
+	      <div class="controls">
+	      	   <%=seo_form.text_field :title,:class=>"span5",:value=>resource.meta_seo&&resource.meta_seo.title%>
+	      </div>
+    	</div>
+
+    	<div class="control-group">
+	      <%= seo_form.label :keywords, "Meta keywords", :class => "control-label" %>
+	      <div class="controls">
+	      	   <%=seo_form.text_field :keywords,:class=>"span5",:value=>resource.meta_seo&&resource.meta_seo.keywords,:placeholder=>"逗号分割关键字"%>
+	      </div>
+    	</div>
+
+    	<div class="control-group">
+	      <%= seo_form.label :description, "Meta description", :class => "control-label" %>
+	      <div class="controls">
+	      	   <%=seo_form.text_field :description,:class=>"span5",:value=>resource.meta_seo&&resource.meta_seo.description%>
+	      </div>
+    	</div>
+
+<%end%>

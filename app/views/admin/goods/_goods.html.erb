@@ -1,0 +1,23 @@
+  <thead>
+      <tr class="header">
+        <th><%=check_box_tag "select_all",1%></th>
+        <th>编号</th>
+        <th>商品名</th>
+        <th>单价</th>
+        <th>库存</th>
+        <th>品牌</th>
+      </tr>
+</thead>
+<tbody>
+<%@goods.each do |good|%>
+          <tr data-page="<%=params[:page] || 1%>">
+              <td><%=check_box_tag "bn", good.bn, false, {:'data-name'=>"#{good.name}"}%></td>
+              <td><%=good.bn%></td>
+              <td><%=good.name%></td>
+              <td><%=good.price%></td>
+              <td><%=good.store.to_i%></td>
+             <!--  <td><%=good.marketable == 'true' ? '是' : '否'%></td> -->
+              <td><%=good.brand.brand_name if good.brand%></td>
+           </tr>  
+<%end%>
+</tbody>

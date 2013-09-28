@@ -1,0 +1,24 @@
+<div id="newin_vgoods">
+        <h3>新品</h3>
+        <ul class="clearfix">
+          <%@newin_vgoods.each do |vgood|%>
+              <li>
+                <%=link_to vgood_path(vgood) do %>
+                    <%=image_tag vgood.pictures(:list).first,:size=>"190x268",:alt=>vgood.name,:class=>"vgood-img"%>
+                <%end%>
+                <div class="name">
+                    <%=link_to vgood_path(vgood) do %>
+                      <%=truncate2(vgood.name,:length=>12)%>
+                    <%end%>
+                </div>
+                <div class="price">
+                    <span>店铺零售价 : </span>
+                    &yen;<%=vgood.price.to_i%>
+                </div>
+                <div class="view">
+                    <%=link_to "查看商品","#"%>
+                </div>
+              </li>
+          <%end%>
+        </ul>
+</div>

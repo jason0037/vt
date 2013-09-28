@@ -1,0 +1,116 @@
+<div id="products" class="clearfix">
+	<%if @home.pops%>
+	<div class="hots left">
+		<div class="title">
+			<%=image_tag "/assets/home/top_5.jpg"%>
+		</div>
+		<%@home.goods_of_pops.each_with_index do |good,index|%>
+		<div class="top-item clearfix">
+
+			<%=link_to good_path_ext(good),:class=>"pic",:target=>"_blank" do%>
+				<%=image_tag good.home_top_thumbnail%>
+			<%end%>
+			<div class="info">
+				<%=image_tag "/assets/home/top_no#{index+1}.jpg"%>
+				<div class="brand-name"><%=link_to truncate2(good.brand.brand_name,:length=>8),good.brand.brand_url,:target=>"_blank" if good.brand%></div>
+				<a class="name" href="<%=good_path_ext(good)%>" target="_blank" title="<%=good.name%>"><%=truncate2(good.name,:length=>10)%></a>
+				<div class="price">
+					摩登客价 : 
+					<%if signed_in?%>
+						¥ <%=good.price.to_i%>
+					<%else%>
+						<span class="for-vip login">会员专享</span>
+					<%end%>
+				</div>
+				<div class="mktprice">市场价 : ¥ <%=good.mktprice.to_i%></div>
+			</div>
+		</div>
+		<%end%>
+	</div>
+	<%end%>
+
+	<div class="right">
+		<%if @home.clothing%>
+		<div class="clothing clearfix">
+			<div>
+				<a href="/gallery-22.html?openTab=1&token=A130419001" class="title" target="_blank">
+					<%=image_tag "/assets/home/clothing.jpg"%>
+				</a>
+				<a href="/gallery-22.html?openTab=1&token=A130419002" class="more" target="_blank">
+					<%=image_tag "/assets/home/more.jpg"%></a>
+			</div>
+			<ul class="clearfix">
+				<%@home.goods_of_clothing.each_with_index do |good,index|%>
+				<%
+					style = "first" if index==0
+					style = "last" if index == @home.goods_of_clothing.size - 1
+				%>
+
+				<li class="<%=style%>">
+					<%=link_to good_path_ext(good),:target=>"_blank" do%>
+						<%=image_tag good.home_picture_cover,:class=>"good-pic"%>
+					<%end%>
+					<div class="info">
+						<div class="brand-name"><%=link_to truncate2(good.brand.brand_name,:length=>9),good.brand.brand_url,:target=>"_blank" if good.brand%></div>
+						<div>
+							<a class="name" href="<%=good_path_ext(good)%>" target="_blank" title="<%=good.name%>"><%=truncate2(good.name,:length=>10)%></a>
+						</div>
+						<div class="price">
+							摩登客价 : 
+							<%if signed_in?%>
+								¥ <%=good.price.to_i%>
+							<%else%>
+								<span class="for-vip login">会员专享</span>
+							<%end%>
+						</div>
+						<div class="mktprice">市场价 : ¥ <%=good.mktprice.to_i%></div>
+					</div>
+				</li>
+				<%end%>
+			</ul>
+		</div>
+		<%end%>
+		<%if @home.bags%>
+		<div class="line"></div>
+
+		<div class="bags clothing">
+			<div>
+				<a href="/gallery-59.html?openTab=2&token=A130419001" class="title" target="_blank">
+					<%=image_tag "/assets/home/bags.jpg"%>
+				</a>
+				<a href="/gallery-59.html?openTab=2&token=A130419002" class="more" target="_blank"><%=image_tag "/assets/home/more.jpg"%></a>
+			</div>
+			<ul class="clearfix">
+				<%@home.goods_of_bags.each_with_index do |good,index|%>
+				<%
+					style = "first" if index==0
+					style = "last" if index == @home.goods_of_clothing.size - 1
+				%>
+
+				<li class="<%=style%>">
+					<%=link_to good_path_ext(good),:target=>"_blank" do%>
+						<%=image_tag good.home_picture_cover,:class=>"good-pic"%>
+					<%end%>
+					<div class="info">
+						<div class="brand-name"><%=link_to truncate2(good.brand.brand_name,:length=>9),good.brand.brand_url,:target=>"_blank" if good.brand%></div>
+						<div>
+							<a class="name" href="<%=good_path_ext(good)%>" target="_blank"><%=truncate2(good.name,:length=>10)%></a>
+						</div>
+						<div class="price">
+							摩登客价 : 
+							<%if signed_in?%>
+								¥ <%=good.price.to_i%>
+							<%else%>
+								<span class="for-vip login">会员专享</span>
+							<%end%>
+						</div>
+						<div class="mktprice">市场价 : ¥ <%=good.mktprice.to_i%></div>
+					</div>
+				</li>
+				<%end%>
+			</ul>
+
+		</div>
+		<%end%>
+	</div>
+</div>

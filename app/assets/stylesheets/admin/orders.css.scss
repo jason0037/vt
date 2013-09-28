@@ -1,0 +1,235 @@
+// Place all the styles related to the admin/orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.orders{
+	width: 90%;
+	.table{
+		font-size:11px;
+		th{
+			// font-weight: normal;
+			background: #D9EDF7;
+		}
+		td{
+			padding: 4px;
+			// font-weight: bold;
+
+		}
+
+		tr{
+			&.active > td{
+				font-weight: bold;
+			}
+			&.finish > td{
+				// background-color: #FCF8E3;
+			}
+			&.dead > td{
+				color:#888;
+			}
+		}
+		
+		tr.selected td{
+			background: #FFC;
+		}
+
+		.dropdown-menu{
+			min-width: 50px;
+			top:20px;
+			left: 50px;
+		}
+		.dropdown:hover .dropdown-menu{
+			display: block;
+		}
+			
+		
+
+	}
+	
+
+	.modal{
+		width: 800px;
+		margin-left: -400px;
+	}
+
+	.form-horizontal{
+		margin-left: 50px;
+		.control-group{
+			margin-bottom: 10px;
+		}
+	}
+	
+	.readonly-field{
+		line-height: 30px;
+	}
+
+	#delivery{
+		width: 1170px;
+		margin: 0px auto;
+
+		.delivery-items{
+			margin-top: 30px;
+		}
+	}
+	
+	#refund,
+	#pay{
+		width: 1170px;
+		margin: 0px auto;
+	}
+
+
+
+}
+.field_with_errors{
+	display: inline;
+}
+
+#guide_menu{
+
+	background: #F9F9F9;
+	border: solid 1px #E5E5E5;
+	border-top: none;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
+	-moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .065);
+	& > li > a{
+		border-top: 1px solid #E5E5E5;
+		padding: 8px 8px;
+	}
+}
+
+#order_details{
+	// width: 850px;
+	// margin: 0px auto;
+	margin-left: 180px;
+	.title{
+		// border-bottom: solid 1px #333;
+		padding: 5px;
+	}
+	.subtitle{
+		padding: 8px 0px;
+	}
+	
+
+
+	.detail{
+		margin-bottom: 20px;
+		ul{
+			list-style: none;
+			margin: 0px;
+			padding: 5px;
+			border:solid 1px #ddd;
+			background-color: #F9F9F9;
+			li{
+				list-style: none;
+				padding: 3px;
+			}
+		}
+	}
+	.summary{
+		.status{
+			&.active{
+				color:red;
+			}
+			&.finish{
+				color:green;
+			}
+			&.dead{
+				color:#999;
+			}
+		}
+	}
+	.track{
+		ul{
+			background: #fff;
+		}
+		.flow{
+			text-align: center;
+			span{
+				display: inline-block;
+				width: 180px;
+				text-align: center;
+			}
+		}
+		.flow-progress{
+			background: url('/assets/store/flow.gif') no-repeat center 0px;
+			height: 40px;
+
+			&.active{
+				background-position: center -61px;
+			}
+
+			&.dead{
+				background-position: center -61px;
+			}
+
+			&.paid{
+				background-position: center -114px;
+			}
+			&.shipping{
+				background-position: center -161px;
+			}
+			&.finish{
+				background-position: center -220px;
+			}
+		}
+	}
+
+	.products{
+		.table{
+			tr{
+				th{
+					background-color: #F9F9F9;
+					border-radius: 0px;
+				}
+				td{
+					border-radius: 0px;
+				}
+				border-radius: 0px;
+			}
+		}
+		.spec-info{
+			color:#999;
+		}
+	}
+
+	.pmts{
+		.pmt-name{
+			margin-right: 100px;
+			font-weight: bold;
+			width: 200px;
+			display: inline-block;
+		}
+	}
+	.addr-info{
+		.name{
+			margin-right: 10px;
+			display: inline-block;
+			width: 70px;
+			text-align: right;
+		}
+	}
+	.total{
+		ul{
+			li{
+				text-align: right;
+				.name{
+					width: 200px;
+					text-align: right;
+					display: inline-block;
+				}
+				.val{
+					width: 60px;
+					text-align: left;
+					display: inline-block;
+				}
+				&.pay-amount{
+					font-weight: bold;
+					font-size: 16px;
+				}
+			}
+		}
+	}
+}

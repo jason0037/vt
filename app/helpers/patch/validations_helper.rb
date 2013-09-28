@@ -1,0 +1,2 @@
+module Patch::ValidationsHelper
+end

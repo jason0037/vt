@@ -1,0 +1,4 @@
+$("#orders tbody").html('<%= j render(:partial=>"order_tr",:collection=>@orders,:as=>:order)%>');
+$(".pagination").html('<%= j will_paginate(@orders,:container=>false)%>');
+$("#orders").attr("data-url","<%=request.fullpath%>");
+window.location.hash = "#page=<%=params[:page] || 1%>";

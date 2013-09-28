@@ -1,0 +1,6 @@
+
+<%if @result%>
+$("#send_form .tip").text("<%=@msg%>")
+<%else%>
+$("#send_form :submit").attr("disabled",false)
+<%end%>

@@ -1,0 +1,24 @@
+.value-list{
+	list-style:none;
+	padding: 0px;
+	margin: 0px;
+	li{
+		list-style: none;
+		margin: 5px 0px;
+	}
+
+	.name{
+		display: inline-block;
+		width: 170px;
+	}
+	.alias{
+		width: 170px;
+		display: inline-block;
+	}
+}
+.delete{
+	font-size: 20px;
+	&:hover{
+		text-decoration: none;
+	}
+}

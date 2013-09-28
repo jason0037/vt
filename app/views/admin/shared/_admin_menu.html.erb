@@ -1,0 +1,14 @@
+<ul class="nav nav-list sidenav affix-top">
+  <li class="<%= 'active' if controller_name == 'articles' && action_name == 'index' %>">
+    <a href="/admin/articles"><i class="icon-chevron-right"></i> 所有文章</a>
+  </li>
+  <li class="<%= 'active' if controller_name == 'articles' && action_name == 'new' %>">
+    <a href="/admin/articles/new"><i class="icon-chevron-right"></i> 新建文章</a>
+  </li>
+  <li class="">
+    <a href="#fluidGridSystem"><i class="icon-chevron-right"></i> 图片处理</a>
+  </li>
+  <li class="">
+    <a href="#layouts"><i class="icon-chevron-right"></i> 优惠券管理</a>
+  </li>
+</ul>

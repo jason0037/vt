@@ -1,0 +1,22 @@
+
+<%@order_promotions.each do |promotion|%>
+	<%(promotion.action_val||[]).each do |bn|%>
+		<% gift = Ecstore::Product.find_by_bn(bn)%>
+		<%=hidden_field_tag "gifts[]",gift.product_id%>
+		<tr class="product-info">
+			<td class="product-info">
+				<%=link_to good_path(gift.bn),:class=>"thumb",:target=>"_blank" do%>
+					<%=image_tag gift.gift_image_url,:size=>"35x50",:alt=>gift.name%>
+				<%end%>
+				<div class="info clearfix">
+					<div class="name"><%=link_to gift.name,good_path(gift.bn),:target=>"_blank"%></div>
+					<div class="spec-info"></div>
+				</div>
+			</td>
+			<td><%=number_to_currency gift.price.to_i,:unit=>"&yen;",:precision=>0%></td>
+			<td>1</td>
+			<td><span >订单赠送</span></td>
+		</tr>
+
+	<%end if promotion.action_type == 'gift'%>
+<%end if @order_promotions.present?%>

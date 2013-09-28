@@ -1,0 +1,26 @@
+<div id="pic_player" class="carousel slide">
+  
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <%@home.sliders.each_with_index do |slider,i|%>
+    <div class="item <%='active' if i == 0 %>">
+    	<%=link_to slider["link_url"],:target=>"_blank" do%>
+    		<%=image_tag slider["pic_url"]%>
+    	<%end%>
+    </div>
+    <%end%>
+  </div>
+  <!-- Carousel nav -->
+  <!-- <a class="carousel-prev" href="#pic_player" data-slide="prev"><span>Prev</span></a>
+  <a class="carousel-next" href="#pic_player" data-slide="next"><span>Next</span></a> -->
+ 
+  <div class="carousel-indicators-holder">
+        <ol class="carousel-indicators">
+          <%@home.sliders.size.times do |i|%>
+          <li data-target="#pic_player" data-slide-to="<%=i%>" class="<%='active' if i==0%>"></li>
+          <%end%>
+        </ol>
+  </div>
+
+</div>
+

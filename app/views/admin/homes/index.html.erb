@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h2>所有首页
+    <%= link_to '新建首页', new_admin_home_path, :class => "pull-right btn btn-primary" %>
+  </h2>
+
+</div>
+
+<table class="table table-bordered table-hover">
+  <thead>
+  <tr>
+    <th>创建时间</th>
+    <th>备注</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+    <% @homes.each do |home| %>
+      <tr>
+        <td><%= home.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td><%= home.note%></td>
+        <td>
+          <%= link_to '查看', root_path,:target=>"_blank" %>
+          <%= link_to '编辑', edit_admin_home_path(home) %>
+          <%= link_to '删除', admin_home_path(home), method: :delete, data: { confirm: '确定删除?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="pagination">
+  <%= will_paginate @homes, :container => false %>
+</div>

@@ -1,0 +1,76 @@
+<div id="product<%=index+1%>" class="product_container" data-0="margin-top: 180px;" data-100="margin-top: 80px;" data-138="margin-top: 0px;" data-500="margin-top: 0px;" data-2400="margin-top: 0px;" data-3050="margin-top: -750px;" style="z-index:500; box-shadow: none;">
+
+  <div class="gallery" data-138="margin-top: 0px;" data-200="margin-top: 0px;" data-800="margin-top: -1200px;" data-1400="margin-top: -2400px;" data-2000="margin-top: -3600px;" data-2600="margin-top: -3900px;">
+    <ul class="vertical">
+      <%good.default_product.pictures(:large).each do |large|%>
+        <li><%=image_tag large,:size=>"780x1100",:alt=>nil%></li>
+      <%end%>
+    </ul>
+  </div>
+
+  <ul class="gallery_nav"  data-<%=1000*index%>="opacity: 1;" <%="data-#{1000*index+1}='opacity:1;' " if index > 0%> data-<%=1000*index+800%>="opacity: 1;" data-<%=1000*index+1000%>="opacity: 0;">
+    <li class="selected">1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+
+  <div class="description" data-220="opacity: 1; margin-top: 0px;" data-360="opacity: 0; margin-top: -400px;" >
+    <h3><%=good.name%></h3>
+    <p><%=raw good.intro%></p>
+  </div>
+
+  <div class="meta_info" data-220="opacity: 0; display: none;" data-360="opacity: 0; display: block;" data-380="opacity: 1;" >
+    <%=form_for :product,:url=>add_cart_index_path,:remote=>true do |f|%>
+    <%=f.hidden_field :goods_id,:value=>good.goods_id%>
+    <%=f.hidden_field :type_id,:value=>good.type_id%>
+
+    <a href="<%=good.brand.brand_url if good.brand%>" class="brand">
+      <%=image_tag good.brand.logo_url%>
+    </a>
+  
+
+    <h3 class="name_and_price">
+    <%=link_to good_path(good.bn,:tag=>@tag&&@tag.tag_name) do%>
+      <%=good.name%><br/>
+      <span class="price"><%=good.default_product&&good.default_product.full_custom? ? "定金" : "摩登客价"%>
+        <span class="georgia">
+          <% if signed_in? %>
+            ￥<%=good.default_product.price.to_i if good.default_product%>&nbsp;&nbsp;&nbsp;
+          <% else %>
+            <a href="javascript:void(0)" class="login" style="font-size:14px;color:red;">[会员专享]</a>
+          <%end%>
+        </span>
+      </span><span class="market_price">市场价<span class="georgia">￥<%=good.default_product.mktprice.to_i if good.default_product%></span>&nbsp;</span><span class="product_id">［商品号<%=good.bn%>］</span>
+    <%end%>
+    </h3>
+
+
+
+
+    <div class="spec">
+      <%=render :partial=>"store/goods/product/spec",:locals=>{ :good=>good }%>
+    </div>
+
+    <div class="actions">
+      <%=link_to "加入购物车","javascript:void(0);",:class=>"add_to_cart #{'login' unless signed_in?}"%>
+      <a href="#" class="see_more">更多详情</a>
+    </div>
+
+    <div class="more">
+      <%=render partial: "store/goods/product/more",:locals=>{ :good=>good }%>
+    </div>
+    <%end%>
+
+  </div>
+
+
+</div>
+
+<script type="text/javascript">
+    loadProductInfo("#product<%=index+1%>");
+</script>
+
+
+
+

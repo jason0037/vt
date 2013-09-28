@@ -1,0 +1,39 @@
+
+<div class="new">
+	<%=link_to "+添加新地址",new_member_addr_path%>
+</div>
+
+<table class="table table-striped">
+	<tr>
+		<th>收货人</th>
+		<th>所在地区</th>
+		<th width="30%">收货地址</th>
+		<th>手机</th>
+		<th>默认</th>
+		<th>操作</th>
+	</tr>
+	<%if @addrs && @addrs.size > 0%>
+		<%@addrs.each  do |addr|%>
+		<tr class="<%='success' if addr.def_addr%>">
+			<td><%=addr.name%></td>
+			<td><%=addr.display_area%></td>
+			<td><%=addr.addr%></td>
+			
+			<td><%=addr.mobile%></td>
+			<td><%=addr.def_addr ? "是" : "否"%></td>
+			<td>
+				<%=link_to "修改",edit_member_addr_path(addr)%>
+				<%=link_to "删除",member_addr_path(addr),:method=>:delete,:confirm=>"确定要删除吗？"%>
+				<%=link_to "设为默认",member_addr_path(addr,"addr[def_addr]"=>1),:method=>:put unless addr.def_addr%>
+			</td>
+		</tr>
+		<%end%>
+	<%else%>
+		<tr class="no-record">
+			<td colspan="5">您还没有收货地址</td>
+		</tr>
+	<%end%>
+</table>
+<div class="pagination">
+	<%=will_paginate @addrs,:container=>false%>
+</div>

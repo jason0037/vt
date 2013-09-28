@@ -1,0 +1,24 @@
+<%if @users&&@users.size > 0%>
+<p>搜索到多个用户，请先选择用户。</p>
+<table class="table table-bordered table-hover" id="cards_list">
+  
+  <tr>
+    <th>用户名</th>
+    <th>邮箱</th>
+    <th>手机号码</th>
+    <th>手机是否验证</th>
+    <th>操作</th>
+  </tr>
+  <%@users.each do |user|%>
+  <tr>
+    <td><%=user.account.login_name if user.account%></td>
+    <td><%=user.email%></td>
+    <td><%=user.mobile%></td>
+    <td><%=user.sms_validated? ? "是" : "否"%></td>
+    <td><%=link_to "选择",select_admin_user_path(user,:card=>@card.id,:member_type=>@member_type),:remote=>true%></td>
+  </tr>
+  <%end%>
+</table>
+<%else%>
+    <p class="well">没有找到相关用户,<%=link_to "返回",admin_cards_path%></p>
+<%end%>

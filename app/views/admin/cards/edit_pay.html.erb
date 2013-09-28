@@ -1,0 +1,35 @@
+<h5>修改支付信息</h5>
+<div>
+  卡号 : <%=@card.no%>  (<%=@card.card_type%>类卡)
+</div>
+
+<hr />
+
+<%= form_for :user_card,:url => admin_member_card_path(@member_card),:method=>:put,:remote=>true,:html => {:class => "form-horizontal well"} do |f| %>
+  <%=f.hidden_field :buyer_id,:value=>@member_card.buyer_id%>
+  <fieldset>
+     <div class="control-group">
+      <%= f.label :bank_name, "支付银行 :", :class => "control-label " %>
+      <div class="controls">
+        <%= f.text_field :bank_name,:placeholder=>"支付银行"%>
+      </div>
+    </div>
+
+     <div class="control-group">
+      <%= f.label :bank_card_no, "支付银行卡号 :", :class => "control-label" %>
+      
+      <div class="controls">
+        <%= f.text_field :bank_card_no,:placeholder=>"支付银行卡号"%>
+        <span class="help"></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '保存', :class => "btn btn-primary" if @member_card%>
+        <span class="msg"></span>
+        <%=link_to '返回', admin_cards_path%>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

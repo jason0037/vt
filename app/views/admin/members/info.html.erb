@@ -1,0 +1,35 @@
+<h4>
+  会员信息
+</h4>
+<br>
+<fieldset>
+<ul>
+  <li>
+      会员Id:<%=@member.member_id%>
+  </li>
+  <li>
+      用户名:<%=@member.account.login_name%>
+  </li>
+  <li>
+      姓名:<%=@member.name%>
+  </li>
+  <li>
+      积分:<%=@member.point%>
+  </li>
+  <li>
+      email: <%=@member.email%>
+  </li>
+  <li>
+      手机: <%=@member.mobile%>
+  </li>
+  <li>
+      注册日期: <%=Time.at(@member.regtime).strftime("%Y-%m-%d %H:%M:%S")%>
+  </li>
+  <li>
+      注册IP: <%=@member.reg_ip%>
+  </li>
+  <li>
+      预存款: <%=@member.advance%>
+  </li>
+</ul>
+</fieldset>

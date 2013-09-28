@@ -1,0 +1,38 @@
+<%=render "shared/metable", :resource=>nil%>
+
+<%=content_for :head do%>
+<%= stylesheet_link_tag "store/brands" %>
+<%end%>
+
+<%=content_for :cover do%>
+	<%=raw Ecstore::Config.get(:brand_cover) %>
+<%end%>
+
+<%render "store/shared/brand_position"%>
+<div class="container">
+
+	<ul class="brands clearfix">
+		<div class="title">品牌索引</div>
+
+		<%@brands.each do |brand|%>
+			<li>
+				<div>
+				<%=link_to brand_path(brand),:class=>"name #{brand.status}" do%>
+					<%=brand.brand_name%>
+					<%=image_tag '/assets/store/hot2.gif' if brand.status=='special'%>
+					<%=image_tag '/assets/store/new.png' if brand.status=='new'%>
+				<%end%>
+				</div>
+				<div>
+					<%=link_to truncate2(brand.brand_desc.html_safe,:length=>15),brand_path(brand),:class=>"desc",:title=>brand.brand_desc.html_safe%>
+				</div>
+				<%if brand.status == 'coming'%>
+				<div><%=image_tag '/assets/store/comingsoon2.gif'%></div>
+				<%end%>
+
+			</li>
+		<%end%>
+	</ul>
+</div>
+<%=javascript_include_tag "bootstrap-transition","bootstrap-carousel"%>
+

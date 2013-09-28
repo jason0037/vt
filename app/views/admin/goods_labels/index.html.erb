@@ -1,0 +1,30 @@
+<h4>
+	标签列表
+	<%=link_to "新增标签",new_admin_goods_label_path,:class=>"btn btn-primary pull-right"%>
+</h4>
+<br>
+<table class="table table-bordered table-striped table-hover">
+	<thead>
+		<tr>
+			<th>标签名称</th>
+			<th>颜色</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@labels.each do |label|%>
+			<tr>
+				<td><%=label.tag_name%></td>
+				<td><span style="padding:5px;background:<%=label.tag_bgcolor%>">标签</span></td>
+				<td>
+					<%= link_to '编辑', edit_admin_goods_label_path(label) %>
+					|
+					<%= link_to '删除', admin_goods_label_path(label), method: :delete, data: { confirm: '确定删除?' } %>
+				</td>
+			</tr>
+		<%end%>
+	</tbody>
+</table>
+<div class="pagination">
+	<%=will_paginate @labels,:container=>false%>
+</div>

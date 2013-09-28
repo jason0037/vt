@@ -1,0 +1,96 @@
+<%if @user%>
+<%= form_for :member_card,:url => buy_card_admin_user_path(@user),:remote=>true,:method=>:put, :html => {:class => "form-horizontal well"} do |f| %>
+        <%=f.hidden_field :card_id,:value=>@card.id%>
+        <%=f.hidden_field :buyer_id,:value=>@user.member_id%>
+
+        <fieldset>
+          <div class="control-group">
+            <%= f.label :login_name, "用户名 :", :class => "control-label" %>
+            <div class="controls">
+              <span class="plain-text "><%=@user.account.login_name%></span>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <%= f.label :buyer_tel, "手机号码 :", :class => "control-label" %>
+            <div class="controls">
+                    <% if @user.mobile.blank?%>
+                          <%=f.text_field :buyer_tel,:class=>"input-small span2"%>
+                    <%else%>
+                        <%=f.hidden_field :buyer_tel,:value=>@user.mobile%>
+                        <span class="plain-text"><%=@user.mobile%></span>
+                         <span class="plain-text">
+                          <%=@user.sms_validate == 'true' ? "已验证" : "未验证"%>
+                        </span>
+                    <%end%>
+                    <span class="help"></span>
+            </div>
+          </div>
+
+          <%unless @user.sms_validated?%>
+            <div class="control-group">
+              <%= f.label :validate_type, "手机验证方式 :", :class => "control-label" %>
+              <div class="controls">
+                <%= f.radio_button :validate_type,"hand",:checked=>true,:class=>"validate-by-hand"%>
+                <%= f.label :validate_type_hand, "直接通过验证", :class => "inline" %>
+                <%= f.radio_button :validate_type,"sms",:class=>"validate-by-sms"%>
+                <%= f.label :validate_type_sms, "手机验证码", :class => "inline" %>
+              </div>
+            </div>
+
+            <div class="control-group hide  rel-sms">
+              <%= f.label :sms_validate, "手机验证码 :", :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :sms_code,:class=>"input-small"%>
+                <%=link_to "发送手机验证码","javascript:void(0);",:method=>:put,:class=>"btn send_sms_code",:'data-url'=>send_sms_code_admin_user_path(@user),:id=>"send_sms_code"%>
+                <span class="help"></span>
+              </div>
+            </div>
+          <%end%>
+
+          <div class="control-group">
+            <%= f.label :pay_status, "支付 :", :class => "control-label" %>
+            <div class="controls">
+              <%= f.radio_button :pay_status,true,:checked=>true,:class=>"pay-now"%>
+              <%= f.label :pay_status_true, "现在支付", :class => "inline" %>
+              <%= f.radio_button :pay_status,false,:class=>"pay-later"%>
+              <%= f.label :pay_status_false, "以后支付", :class => "inline" %>
+            </div>
+          </div>
+
+           <div class="control-group rel-pay">
+            <%= f.label :bank_name, "支付银行卡 :", :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :bank_name,:placeholder=>"如:招商银行 白金信用卡"%>
+            </div>
+          </div>
+           <div class="control-group rel-pay">
+            <%= f.label :bank_card_no, "支付银行卡号 :", :class => "control-label" %>
+            <div class="controls">
+              <%= f.text_field :bank_card_no%>
+            </div>
+          </div>
+         
+
+          <%if @card.card_type=="A"%>
+          <div class="control-group">
+            <%= f.label :user_tel, "用卡人手机号码 :", :class => "control-label" %>
+            <div class="controls">
+              <%=f.text_field :user_tel%>
+              <span class="help"></span>
+            </div>
+          </div>
+          <%end%>
+
+          <div class="control-group">
+            <div class="controls">
+              <%= f.submit '购买', :class => "btn btn-primary",:id=>"buy_card",:confirm=>"确定购买？" %>
+              <span class="msg"></span>
+            </div>
+          </div>
+
+        </fieldset>
+  <% end %>
+<%else%>
+<p class="well">没有找到相关用户,<%=link_to "返回",admin_cards_path%></p>
+<%end%>

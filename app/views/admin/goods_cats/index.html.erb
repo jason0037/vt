@@ -1,0 +1,32 @@
+<table class="table table-bordered table-striped table-hover">
+	<thead>
+		<tr>
+			<th>分类名称</th>
+			<th>上一级</th>
+			<th>类型</th>
+			<th>排序</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@top_cats.each do |cat|%>
+			<tr class="class_<%=cat.cat_path_rep%>">
+				<td><span class="folder" cat_path="<%=cat.cat_path_rep%><%=cat.cat_id%>-" style="cursor:pointer;color:red">[+]</span><%=cat.cat_name%></td>
+				<td><%=cat.cat_path_rep%></td>
+				<td><%=Ecstore::GoodType.find(cat.type_id).name if !cat.type_id.nil?%></td>
+				<td><%=cat.p_order%></td>
+				<td>
+					<%=link_to "增加子项",new_admin_goods_cat_path(:cat_id=>cat)%>
+					|
+					<%= link_to '编辑', edit_admin_goods_cat_path(cat) %>
+					|
+					<%= link_to '删除', admin_goods_cat_path(cat), method: :destroy, data: { confirm: '确定删除?' } %>
+					|预览</td>
+			</tr>
+			<%=render :partial=>"cat",:collection=>cat.child_cats,:as=>:child%>
+		<%end%>
+	</tbody>
+</table>
+<div class="pagination">
+	<%=will_paginate @top_cats,:container=>false%>
+</div>

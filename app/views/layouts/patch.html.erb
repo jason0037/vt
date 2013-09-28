@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>我的摩登客</title>
+  <%=javascript_include_tag "standard","patch/#{controller_name}"%>
+  <%=stylesheet_link_tag "standard","patch","patch/#{controller_name}", "patch/menu"%>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <%= render "shared/header" %>
+  <%= render "shared/top_menu" %>
+  
+  <div id= "main" class="<%=controller_name%> <%=action_name%> profiles clearfix">
+      
+      <div class="top-nav">
+        <%breadcrumbs.each_with_index do |bread,index|%>
+          <% name, path  =  bread%>
+          <%if index == 0 %>
+              <%if path%>
+                <%=link_to name,Rails.application.routes.url_helpers.send(path)%>
+             <%else%>
+                <%=name%>
+             <%end%>
+          <%else%>
+            <%if path%>
+              <%=link_to name,Rails.application.routes.url_helpers.send(path)%>
+            <%else%>
+              <span class="txt"> > <%=name%></span>
+            <%end%>
+          <%end%>
+        <%end if breadcrumbs%>
+      </div>
+
+      <div class="menu">
+          <%=render "patch/shared/menu"%>
+      </div>
+      <div class="content">
+        <%= yield%>
+      </div>
+  </div>
+  
+  <%= render "shared/common_footer" %>
+  <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+
+  <%=render "shared/iframe_cart" if signed_in?%>
+</body>
+</html>

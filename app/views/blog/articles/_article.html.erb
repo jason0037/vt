@@ -1,0 +1,11 @@
+<div id="article-<%= article.id %>">
+  <h2 class='page-header'>
+    <%= link_to article.title, article_path(article) %>
+  </h2>
+  <%= raw(article.body) %>
+  <div class='meta'>
+    <p>
+      <small>发布时间：<%= l(article.published_at, :format => :default) if article.published_at %>&nbsp;&nbsp;&nbsp;&nbsp;<!--%= link_to "0条评论", "#" %--></small>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+
+  <h4>
+    <b><%=@event.name%></b>
+    报名者(<%=@applicants.size%>)
+  </h4>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>姓名</th>
+    <th>性别</th>
+    <th>年龄</th>
+    <th>手机</th>
+    <th>邮箱</th>
+    <th>报名时间</th>
+  </tr>
+
+<% @applicants.each do |applicant| %>
+  <tr>
+    <td><%=applicant.name%></td>
+    <td><%=applicant.sex%></td>
+    <td><%=applicant.age%></td>
+    <td><%=applicant.mobile%></td>
+    <td><%=applicant.email%></td>
+    <td><%=applicant.created_at%></td>
+  </tr>
+<% end %>
+</table>
+
+<div class="pagination">
+  <%= will_paginate @applicants, :container => false if @applicants.size > 0%>
+</div>

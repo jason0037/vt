@@ -1,0 +1,60 @@
+<tr class="<%=order.status%>" id="order_<%=order.order_id%>">
+	<td>
+		<%= check_box_tag nil, order.order_id, false,:id=>"check_#{order.order_id}",:class=>"order"%>
+	</td>
+	<td><%=order.order_id%></td>
+	
+	<td><%=link_to "详细",detail_admin_order_path(order),:target=>"_blank"%></td>
+
+	<td class="dropdown">
+		<%if order.status == "active"%>
+			<%=link_to "#",:class=>"dropdown-toggle",:data=>{:toggle=>"dropdown"} do%>
+				订单操作 <b class="caret"></b>
+			<%end%>
+			<ul class="dropdown-menu">
+				<!-- <li><%=link_to "编辑",edit_admin_order_path(order),:target=>"_blank" if order.status == 'active'%></li> -->
+				
+				<li>
+					<%=link_to "支付",pay_admin_order_path(order,:page=>params[:page]) if order.pay_status == '0'%>
+
+					<%link_to "支付",pay_admin_order_path(order,:page=>params[:page]),:data=>{:target=>"#ajax_modal",:remote=>pay_admin_order_path(order) },:class=>"remote-modal" if order.pay_status == '0'%>
+				</li>
+
+				<li><%=link_to "退款", refund_admin_order_path(order,:page=>params[:page]) unless %w(0 5).include?(order.pay_status)%></li>
+
+				<li><%=link_to "发货",delivery_admin_order_path(order,:page=>params[:page]) if ['0','2'].include?(order.ship_status)%></li>
+
+				<li>
+					<%=link_to "退货",reship_admin_order_path(order,:page=>params[:page]) if !['0','4'].include?(order.ship_status)%>
+				</li>
+
+				<li><%=link_to "完成",admin_order_path(order,:order=>{:status=>'finish'}),:method=>:put,:remote=>true,:confirm=>"完成操作会将该订单归档并且不允许再做任何操作，确认要执行吗?" if order.status == 'active'%></li>
+				<li><%=link_to "作废",admin_order_path(order,:order=>{:status=>'dead'}),:method=>:put,:remote=>true,:confirm=>"作废后该订单将不能做任何操作，确认要执行吗?" if order.status == 'active'%></li>
+				<li>
+					<%=link_to "订单备注",comment_admin_order_path(order,:page=>params[:page])%>
+				</li>
+				</ul>
+			<%end%>
+	</td>
+	<td>
+		<%=link_to "购", print_order_admin_order_path(order),:target=>"_blank"%>
+		<%=link_to "配", print_preparer_admin_order_path(order),:target=>"_blank"%>
+	</td>
+	<td>
+		<%order.tegs.each do |teg|%>
+			<span class="teg" style="background-color:<%=teg.tag_bgcolor%>;color:<%=teg.tag_fgcolor%>">
+				<%=teg.tag_name%>
+			</span>
+		<%end%>
+	</td>
+	<td><%=order.user.login_name if order.user%></td>
+	<td><%=order.created_at%></td>
+	<td><%=order.payment_name%></td>
+	<td><%=order.status_text%></td>
+	<td><%=order.pay_status_text%></td>
+	<td><%=order.ship_status_text%></td>
+	<td><%=number_to_currency order.final_amount.to_i,:unit=>"&yen;",:precision=>0%></td>
+	<td><%=order.ship_name%></td>
+	<td><%=order.ship_addr%></td>
+	<td><%=order.ship_mobile%></td>
+</tr>

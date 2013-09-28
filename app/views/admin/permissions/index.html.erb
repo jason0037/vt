@@ -1,0 +1,20 @@
+<table class="table table-bordered">
+	<thead>
+	<tr>
+		<th>姓名</th>
+		<th>用户名</th>
+		<th>超级管理员</th>
+		<th>启用</th>
+		<th>操作</th>
+	</tr>
+	</thead>
+	<%@managers.each do |manager|%>
+	<tr>
+		<td><%=manager.name%></td>
+		<td><%=manager.account.login_name%></td>
+		<td><%=manager.super=="1" ? "是" : "否"%></td>
+		<td><%=manager.status=="1" ? "是" : "否"%></td>
+		<td><%=link_to "编辑",edit_admin_permission_path(manager)%></td>
+	</tr>
+	<%end%>
+</table>

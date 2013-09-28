@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  priority: 
+  begin_at: 2013-06-10 15:03:28
+  end_at: 2013-06-10 15:03:28
+  exclusive: false
+  promotion_type: MyString
+  condition: MyString
+  action: MyString
+
+two:
+  name: MyString
+  priority: 
+  begin_at: 2013-06-10 15:03:28
+  end_at: 2013-06-10 15:03:28
+  exclusive: false
+  promotion_type: MyString
+  condition: MyString
+  action: MyString

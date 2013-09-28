@@ -1,0 +1,6 @@
+$('<%="#good_spec_value_#{params[:spec_value_id]}"%>').html('<%=escape_javascript(render :partial=>"admin/goods/spec_item",:collection=>@good.good_spec_items.where(:spec_value_id=>params[:spec_value_id]),:as=>:item )%>')
+if(<%=@updated%>){
+   alert("保存成功！");
+}else{
+   alert("保存失败！");
+}

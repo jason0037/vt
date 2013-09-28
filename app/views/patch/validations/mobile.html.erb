@@ -1,0 +1,42 @@
+<%if @user.email_validated? %>
+	<p>您的手机 <b><%=@user.mask_mobile%></b> 已认证，如需更换了手机号码请重新发送手机验证码 : </p>
+<%else%>
+	<p>您的手机未认证，请证码 您的手机: </p>
+<%end%>
+
+<hr>
+<p>第一步 : 输入手机号码，发送手机验证码。</p>
+<%=form_for :validation,:url=>sent_validation_path,:remote=>true,:html=>{:class=>"form-horizontal", :id=>"send_form" } do |f|%>
+	<div class="control-group ">
+	    <%=f.label :mobile, "手机号码：",:class=>"control-label"%>
+	    <div class="controls">
+	      <%=f.text_field :mobile, :value=>"#{@user.mobile unless @user.sms_validated?}",:id=>"mobile", maxlength: 14%>
+	      <span class="help-inline error"></span>
+	      <span class="help-block">务必填写正确的手机，以便及时收到手机验证码。</span>
+	    </div>
+	</div>
+	<div class="control-group ">
+	    <div class="controls">
+	     <%=f.submit "发送验证码",:class=>"btn btn-inverse"%>
+	     <span  class="tip"></span>
+	    </div>
+	</div>
+<%end%>
+
+<hr>
+<p>第二步：输入验证码，确认验证。</p>
+<%=form_for :validation,:url=>verify_validation_path,:remote=>true,:html=>{:class=>"form-horizontal",:id=>"verify_form"} do |f|%>
+	<div class="control-group ">
+	    <%=f.label :sms_code, "输入手机验证码：",:class=>"control-label"%>
+	    <div class="controls">
+	      <%=f.text_field :sms_code, :class=>"input-small",:id=>"sms_code"%>
+	      <span class="help-inline error"></span>
+	    </div>
+	</div>
+	<div class="control-group ">
+	    <div class="controls">
+	     <%=f.submit "验证手机",:class=>"btn btn-inverse"%>
+	     <span  class="tip"></span>
+	    </div>
+	</div>
+<%end%>

@@ -1,0 +1,218 @@
+<div id="topmenu" class="navbar navbar-inverse navbar-static-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a> -->
+        <a class="brand" href="#">摩登客管理系统</a>
+        <%if admin_signed_in?%>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+           
+            <%if current_admin.has_right_of("topics","index") || current_admin.has_right_of("articles","index")%>
+               <li class="<%='active' if %w(topics articles).include?(controller_name)%>">
+                    <%=link_to admin_topics_path,:class=>"dropdown-toggle" do %>
+                      专题 <b class="caret" style="border-top-color: #fff;border-bottom-color: #fff; margin-top:7px;margin-left:2px;"></b>
+                    <%end%>
+                    <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
+                      <li>
+                          <%=link_to "所有专题",admin_topics_path if current_admin.has_right_of("topics","index")%>
+                      </li>
+                      <li>
+                          <%=link_to "所有文章",admin_articles_path if current_admin.has_right_of("articles","index")%>
+                      </li>
+                    </ul>
+               </li>
+            <%end%>
+
+
+            <%if current_admin.has_right_of("events","index")%>
+            <li class="<%='active' if controller_name=='events'%>">
+              <%=link_to "摩登活动",admin_events_path%>
+            </li>
+            <%end%>
+
+            <%if current_admin.has_right_of("homes","index") || 
+              current_admin.has_right_of("static_pages","index") ||
+              current_admin.has_right_of("footers","index")%>
+               
+               <li class="<%='active' if %w(homes static_pages footers).include?(controller_name)%>">
+                    <%=link_to admin_static_pages_path,:class=>"dropdown-toggle" do %>
+                      自定义页面 <b class="caret" style="border-top-color: #fff;border-bottom-color: #fff; margin-top:7px;margin-left:2px;"></b>
+                    <%end%>
+
+                    <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
+                      <li>
+                          <%=link_to "自定义页面",admin_static_pages_path if current_admin.has_right_of("static_pages","index")%>
+                      </li>
+
+                      <li>
+                          <%=link_to "网站首页",admin_homes_path if current_admin.has_right_of("homes","index")%>
+                      </li>
+
+                      <li>
+                          <%=link_to "页脚",admin_footers_path if current_admin.has_right_of("footers","index")%>
+                      </li>
+                      
+                    </ul>
+               </li>
+            <%end%>
+
+            <%if current_admin.has_right_of("metas","index")%>
+                  <li class="<%='active' if controller_name=='metas'%>">
+                    <%=link_to "SEO管理",admin_metas_path%>
+                  </li>
+            <%end%>
+
+             <%if current_admin.has_right_of("brand_pages","index")%>
+                  <li class="<%='active' if controller_name=='brand_pages'%>">
+                    <%=link_to "品牌页管理",admin_brand_pages_path%>
+                  </li>
+            <%end%>
+
+            <li class="<%='active' if %w(offline_coupons virtual_goods).include?(controller_name)%>">
+                    <%=link_to admin_virtual_goods_path,:class=>"dropdown-toggle" do %>
+                      虚拟商品 <b class="caret" style="border-top-color: #fff;border-bottom-color: #fff; margin-top:7px;margin-left:2px;"></b>
+                    <%end%>
+                    <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
+                      <li>
+                          <%=link_to "虚拟商品",admin_virtual_goods_path if current_admin.has_right_of("virtual_goods","index")%>
+                      </li>
+
+                      <li>
+                          <%=link_to "线下优惠券",admin_offline_coupons_path if current_admin.has_right_of("offline_coupons","index")%>
+                      </li>
+                    </ul>
+            </li>
+            
+            <%if current_admin.has_right_of("tags","index") || 
+              current_admin.has_right_of("tag_exts","index") %>
+
+               <li class="<%='active' if %w(tags tag_exts).include?(controller_name)%>">
+                        <%=link_to "标签管理",admin_tags_path%>
+                        <ul class="dropdown-menu">
+                            <li>
+                              <%=link_to "标签管理",admin_tags_path if current_admin.has_right_of("tags","index")%>
+                            </li>
+                            <li>
+                              <%=link_to "新品标签设置",admin_tag_exts_path if current_admin.has_right_of("tag_exts","index")%>
+                            </li>
+                        </ul>
+                </li>
+            <%end%>
+
+            <%if current_admin.has_right_of("tags","index") || 
+              current_admin.has_right_of("goods_cats","index") ||
+              current_admin.has_right_of("goods_types","index") ||
+              current_admin.has_right_of("brand_adms","index") ||
+              current_admin.has_right_of("specifications","index")%>
+
+                <li class="<%='active' if %w(goods goods_cats goods_types brand_adms specifications).include?(controller_name)%>">
+                    <%=link_to admin_goods_path,:class=>"dropdown-toggle" do %>
+                      商品 <b class="caret" style="border-top-color: #fff;border-bottom-color: #fff; margin-top:7px;margin-left:2px;"></b>
+                    <%end%>
+                    <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
+                      <li>
+                          <%=link_to "商品管理",admin_goods_path  if current_admin.has_right_of("goods","index")%>
+                      </li>
+
+                      <li>
+                          <%=link_to "商品分类",admin_goods_cats_path  if current_admin.has_right_of("goods_cats","index")%>
+                      </li>
+                      <li>
+                          <%=link_to "商品类型",admin_goods_types_path  if current_admin.has_right_of("goods_types","index")%>
+                      </li>
+                      <li>
+                          <%=link_to "商品品牌",admin_brand_adms_path  if current_admin.has_right_of("brand_adms","index")%>
+                      </li>
+                     
+                      <li>
+                          <%=link_to "商品规格",admin_specifications_path  if current_admin.has_right_of("specifications","index")%>
+                      </li>
+
+                    </ul>
+                </li>
+            <%end%>
+
+            
+
+
+            <%if current_admin.has_right_of("orders","index")%>
+            <li class="<%='active' if controller_name=='orders'%>">
+              <%=link_to "订单管理",admin_orders_path%>
+            </li>
+            <%end%>
+
+             <%if current_admin.has_right_of("promotions","index")||
+              current_admin.has_right_of("new_coupons","index")||
+              current_admin.has_right_of("user_coupons","index")%>
+            <li class="<%='active' if %w(promotions new_coupons user_coupons).include?(controller_name)%>">
+                <%=link_to admin_promotions_path,:class=>"dropdown-toggle" do %>
+                  促销管理 <b class="caret" style="border-top-color: #fff;border-bottom-color: #fff; margin-top:7px;margin-left:2px;"></b>
+                <%end%>
+                <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
+                  <li>
+                      <%=link_to "订单促销",admin_promotions_path(:type=>"order") if current_admin.has_right_of("promotions","index")%>
+                  </li>
+                  <li>
+                      <%=link_to "商品促销",admin_promotions_path(:type=>"goods") if current_admin.has_right_of("promotions","index")%>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                      <%=link_to "优惠券列表",admin_new_coupons_path if current_admin.has_right_of("new_coupons","index")%>
+                  </li>
+                  <li>
+                      <%=link_to "会员优惠券管理",admin_user_coupons_path if current_admin.has_right_of("user_coupons","index")%>
+                  </li>
+                </ul>
+            </li>
+            <%end%>
+
+            <%if current_admin.has_right_of("members","index")%>
+            <li class="<%='active' if controller_name=='members'%>">
+              <%=link_to "会员管理",admin_members_path%>
+            </li>
+            <%end%>
+
+            <%if current_admin.has_right_of("cards","index")%>
+            <li class="<%='active' if controller_name=='cards'%>">
+              <%=link_to "会员VIP卡管理",admin_cards_path%>
+            </li>
+            <%end%>
+
+            <%if current_admin.has_right_of("emails","index")%>
+            <li class="<%='active' if controller_name=='emails'%>">
+              <%=link_to "邮件发送",admin_emails_path%>
+            </li>
+            <%end%>
+
+            <%if current_admin.has_right_of("configs","index")%>
+            <li class="<%='active' if controller_name=='configs'%>">
+              <%=link_to "商店配置",admin_configs_path%>
+            </li>
+            <%end%>
+
+            <%if current_admin.super?%>
+            <li class="<%='active' if controller_name=='payment_logs'%>">
+              <%=link_to "支付日志",admin_payment_logs_path%>
+            </li>
+
+            <li class="<%='active' if controller_name=='permissions'%>">
+              <%=link_to "权限管理",admin_permissions_path%>
+            </li>
+            <%end%>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+
+        <span class="admin-info">
+            <span><%=current_admin.login_name%></span> | 
+            <%=link_to "退出",admin_logout_path%>
+        </span>
+      <%end%>
+
+      </div>
+    </div>
+  </div>

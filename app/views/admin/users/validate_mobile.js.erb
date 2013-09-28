@@ -1,0 +1,5 @@
+<%if @user.errors.messages.empty?%>
+	$("input[name='member_card[buyer_tel]']").nextAll(".help").html('验证手机号码完成').addClass("success");
+<%else%>
+	$("input[name='member_card[buyer_tel]']").nextAll(".help").html(' <%=@user.errors.messages[:mobile].join(",")%>').addClass("error");
+<%end%>

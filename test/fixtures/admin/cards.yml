@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  no: MyString
+  value: 1
+  card_type: MyString
+  sale_status: MyString
+  use_status: MyString
+  status: MyString
+  buyer_tel: MyString
+  user_tel: MyString
+
+two:
+  no: MyString
+  value: 1
+  card_type: MyString
+  sale_status: MyString
+  use_status: MyString
+  status: MyString
+  buyer_tel: MyString
+  user_tel: MyString

@@ -1,0 +1,33 @@
+<h4>
+	品牌列表
+	<%=link_to "新增品牌",new_admin_brand_adm_path,:class=>"btn btn-primary pull-right"%>
+</h4>
+<br>
+
+<table class="table table-bordered table-striped table-hover">
+	<thead>
+		<tr>
+			<th>品牌名</th>
+			<th>访问地址</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@brands.each do |brand|%>
+			<tr>
+				<td><%=brand.brand_name%></td>
+				<td><%=brand_path(brand)%></td>
+				<td>
+					<%=link_to "查看", brand_path(brand), :target=>"_blank"%>
+					|
+					<%= link_to '编辑', edit_admin_brand_adm_path(brand) %>
+					|
+					<%= link_to '删除', admin_brand_adm_path(brand), method: :delete, data: { confirm: '确定删除?' } %>
+				</td>
+			</tr>
+		<%end%>
+	</tbody>
+</table>
+<div class="pagination">
+	<%=will_paginate @brands,:container=>false%>
+</div>

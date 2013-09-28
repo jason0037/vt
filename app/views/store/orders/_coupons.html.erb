@@ -1,0 +1,21 @@
+<div class="coupons">
+	<span>优惠券</span>
+
+	<div class="control-group">
+	    <label class="control-label">优惠券名称：</label>
+	    <div class="controls">
+	      <%=select_tag nil,options_from_collection_for_select(@coupons,'coupon_code','coupon_name'),{:prompt=>"--请选择优惠券--",:class=>"span2",:id=>"coupon_options"}%>
+	    </div>
+	</div>
+
+	<div class="control-group">
+	    <label class="control-label">优惠券号码：</label>
+	    <div class="controls">
+	      <input class="span2" id="coupon_code" type="text" value="" placeholder="输入优惠券号码">
+	      <%=link_to "使用",check_coupon_orders_path,:class=>"btn btn-inverse",:id=>"check_coupon"%>
+	    </div>
+	</div>
+	
+	<div class="control-group" id="matched_coupons">
+	</div>
+</div>

@@ -1,0 +1,245 @@
+.offline_coupon{
+	margin-top: 40px;
+	margin-bottom: 20px;
+	.covers{
+		float: left;
+		position: relative;
+		padding: 2px;
+		border:solid 1px #ccc;
+		img{
+			border: none;
+			width: 420px;
+			height: 592px;
+		}
+		.carousel{
+			margin-bottom: 0px;
+			width: 420px;
+			height: 592px;
+		}
+		.carousel-next,
+		.carousel-prev{
+			position: absolute;
+			top:50%;
+			display: block;
+			width: 33px;
+			height: 64px;
+			text-indent: -9999px;
+			cursor: pointer;
+			background: url('paddles.png') no-repeat;
+		}
+		.carousel-prev{
+			background-position: 0px 0px;
+			left: -43px;
+		}
+		.carousel-next{
+			background-position: 0px -74px;
+			right: -43px;
+		}
+
+	}
+	.detail{
+		float: right;
+		width: 400px;
+		.brand{
+			text-align: center;
+		}
+		.name{
+			font-size: 20px;
+			margin: 10px 0px;
+			text-align: center;
+		}
+		.sms{
+			font-size: 13px;
+			margin: 20px 0px;
+			.title{
+				text-align: center;
+				margin-bottom: 5px;
+			}
+			.text{
+				padding: 5px 10px;
+				background-color: #eee;
+				border:solid 1px #ccc;
+				font-size: 13px;
+			}
+
+			.tip{
+				margin-top: 5px;
+				color:#999;
+			}
+		}
+
+		.download{
+			text-align: center;
+			.stat{
+				margin-top: 5px;
+				color:#888;
+				font-size:13px;
+				.times{
+					color:red;
+					font-weight: bold;
+				}
+			}
+		}
+
+		.instruction{
+			font-size:13px;
+			margin-top: 50px;
+			.title{
+				font-size: 14px;
+			}
+			ul{
+				margin-top:10px;
+				font-size: 13px;
+				color:#666;
+				li{
+					font-size: 13px;
+				}
+			}
+		}
+	}
+	
+}
+.other{
+	.addrs,
+	.desc,
+	.newin,
+	.maybe{
+		margin-bottom: 30px;
+		h3{
+			border-bottom: solid 1px #999;
+			padding: 10px 0px;
+			font-weight: normal;
+			font-size: 20px;
+		}
+		.content{
+			padding-left: 20px;
+			padding-right: 20px;
+			font-size: 13px;
+			.address{
+				margin-bottom: 15px;
+			}
+		}
+		.show-map{
+			margin-left: 50px;
+			color: #D30000;
+		}
+		.show-all{
+			color:#999;
+		}
+	}
+}
+
+#download{
+	h4{
+		text-align: center;
+		font-weight: normal;
+	}
+	.modal-body{
+		padding: 15px 35px;
+	}
+	#send,
+	#result{
+		min-height: 300px;
+	}
+	#result{
+		text-align: center;
+	}
+	.sms{
+		padding: 5px 10px;
+		background-color: #eee;
+		border:solid 1px #ccc;
+		font-size: 13px;
+	}
+	.sms-form{
+		height: 200px;
+		margin-top: 30px;
+
+		.form-horizontal{
+		 	.control-label{
+		 		text-align: left;
+		 		width: 70px;
+		 	}
+		 	.controls{
+				margin-left: 10px;
+		 	}
+		}
+
+		.sending{
+			color:green;
+			font-size: 13px;
+		}
+	}
+}
+
+#map{
+	.modal-header{
+		padding: 0px 5px;
+		border:none;
+	}
+	.modal-body{
+		padding-top: 0px;
+	}
+	#locate{
+		width: 100%;
+		height: 400px;
+	}
+
+}
+
+.error{
+	color:red;
+	font-size: 13px;
+}
+.tip{
+	font-size: 13px;
+	color:green;
+}
+.breadcrumb {
+	font-size: 13px;
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 5px;
+	list-style: none;
+	background-color: white;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	a{
+		color:#555;
+	}
+}
+#maybe_coupons,
+#newin_vgoods{
+  &>h3{
+    font-weight: normal;
+    border-bottom: solid 1px #999;
+    padding: 10px 0px;
+  }
+  ul{
+    margin-top: 20px;
+    margin-left: -62px;
+    li{
+      float: left;
+      margin-left: 63px;
+      text-align: center;
+      width: 190px;
+      list-style: none;
+      .vgood-img{
+        width: 190px;
+        height: 272px;
+        max-width: none;
+      }
+      .name{
+        margin-top: 3px;
+        a{
+          color:#000;
+        }
+      }
+      .view{
+        a{
+        	color:#d30000;
+        }
+      }
+    }
+  }
+}

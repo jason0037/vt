@@ -1,0 +1,63 @@
+<%=form_for :aftersale,:url=>aftersales_path,:html=>{ :class=> "form-horizontal" } do |f|%>
+	<%=f.hidden_field :order_id,:value=>@order.order_id%>
+	
+	<table class="table table-striped table-bordered" id="aftersale_order_items">
+		<tr>
+			<th>选择</th>
+			<th>货号</th>
+			<th>商品名称</th>
+			<th>数量</th>
+		</tr>
+		<%@order.order_items.each_with_index do |order_item,index|%>
+		
+			<%=f.fields_for "items[]", [] do |fields|%>
+			<tr>
+				<td>
+					<%=fields.check_box :checked, {:checked=>@aftersale.items.blank? ? true : @aftersale.items.select{|item| item[:bn] ==order_item.bn && item[:checked] == "true" }.present? }, true, false%>
+				</td>
+				<td>
+					<%=order_item.bn%>
+					<%=fields.hidden_field :bn,:value=>order_item.bn%>
+				</td>
+				<td>
+					<%=order_item.name%>  (<%=order_item.product.spec_info if order_item.product%>)
+
+					<%=fields.hidden_field :name,:value=>"#{order_item.name}(#{order_item.product.spec_info})"%>
+				</td>
+				<td>
+					<%if order_item.nums.to_i > 1%>
+						<%=fields.number_field :num,:value=>order_item.nums.to_i,:class=>"input-mini",:min=>1,:max=>order_item.nums.to_i%>
+					<%else%>
+						<%=order_item.nums.to_i%>
+						<%=fields.hidden_field :num, :value=>order_item.nums.to_i%>
+					<%end%>
+				</td>
+			</tr>
+			<%end%>
+		<%end%>
+	</table>
+	<div class="error"><%=@aftersale.errors[:items].join(",")%></div>
+	<br>
+	<br>
+	<div class="control-group ">
+	    <%=f.label :title, "标题：",:class=>"control-label"%>
+	    <div class="controls">
+	      <%=f.text_field :title,:class=>"span5"%>
+	    </div>
+	</div>
+	
+	<div class="control-group ">
+	    <%=f.label :content, "*详细说明：",:class=>"control-label"%>
+	    <div class="controls">
+	      <%=f.text_area :content,:rows=>3,:class=>"span5"%>
+	       <span class="help-block error"><%=@aftersale.errors[:content].join(",")%></span>
+	    </div>
+	</div>
+
+	<div class="control-group">
+	    <div class="controls">
+	    	<%=f.submit "确认申请",:class=>"btn btn-inverse" %>
+	    </div>
+	</div>
+
+<%end%>

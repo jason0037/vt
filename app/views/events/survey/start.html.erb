@@ -1,0 +1,47 @@
+<div id="login_radio">
+  <ul id="login_radio_ul">
+    <li id="login_li" class="selected" unselectable="on" ref="#login">请选择您的奖品</li>
+  </ul>
+</div>
+<div class="options">
+  <%=link_to wizard_path(:i_like_coupon), :class=>"coupon", :method=>:put, :remote=>true do %>
+    <span></span>
+  <% end %>
+  <!--
+  <%=link_to wizard_path(:go_to_salon), :class=>"salon", :method=>:put,:remote=>true do %>
+    <span></span>
+  <% end %>
+  -->
+</div>
+
+<div class="loading hide">
+  <div class="img">
+    <%=image_tag "progress.gif"%>
+  </div>
+  <div class="text">正在处理...</div>
+</div>
+<div class="mobile_form hide">
+<div class="instruction">
+  <!-- 输入您的手机号码，方便我们通知您参加。您提供的个人信息，只是为了确保我们更好、更顺利的为您提供服务. -->
+  请正确输入您的手机号码，以便我们及时将最新的会员尊享服务信息发送给您。
+</div>
+<%=form_for :survey,:url=>add_mobile_user_survey_index_path,:method=>:post,:remote=>true do |f|%>
+  <%=f.hidden_field :gift%>
+  <ul class="istyle">
+    <li><%=f.text_field :mobile, :placeholder=>"输入手机号码", :class=> "trinput" %></li>
+    <li class="help-block"></li>
+    <li><a href="javascript:void(0);" class="btn" >完&nbsp;&nbsp;&nbsp;成</a></li>
+  </ul>
+<%end%>
+</div>
+
+
+<div class="separator"></div>
+<p class="introduction">
+  <!-- 选项一： 价值100元现金抵用券,每笔订单满1480元即可使用。<br/> -->
+  <!-- 选项二：获得VIP会员私密线下主题沙龙活动资格(仅上海地区)<br/><br/> -->
+  <!-- <i>* 以上二重礼遇任选其一，活动不与其他优惠同时享受，最终解释权归摩登客所有。</i> -->
+   领取方法：点击以上图片即可获得价值100元现金抵用券，每笔订单满1480元即可使用。 </br></br>
+   <i>* 本次活动不与其他优惠同时享受，活动最终解释权归摩登客所有</i>
+</p>
+<div class="login_logo"></div>

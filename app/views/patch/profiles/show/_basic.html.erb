@@ -1,0 +1,58 @@
+<div id="show_basic">
+	<%=hidden_field_tag :tab,"basic"%>
+	<div class="field">
+		<label>真实姓名:</label>
+		<span><%=@user.name.present? ? @user.name : "未填写"%></span>
+	</div>
+	<div class="field">
+		<label>性别:</label>
+		<span>
+			<%=@user.sex_text%>
+		</span>
+	</div>
+	<div class="field">
+		<label>出生日期:</label>
+		<span><%=@user.birthday%></span>
+		<span class="tip">您将会在生日当天获得一份生日礼物</span>
+	</div>
+
+	<div class="field">
+		<label>收信邮箱:</label>
+		<span><%=@user.mask_email%></span>
+		<%=link_to "修改邮箱>>",edit_profile_path(:tab=>'basic',:modify=>'email'),:class=>"modify"%>
+		<%if @user.email_validate=='true'%>
+		<span class="tip">邮箱已认证</span>
+		<%else%>
+		<%=link_to "去验证>>","/member-sms_validate.html?tab=email",:class=>"modify",:target=>"_top"%>
+		<%end%>
+	</div>
+
+	<div class="field">
+		<label>收货区域:</label>
+		<%unless @user.province.blank? and @user.city.blank? and @user.district.blank?%>
+		<span><%=@user.province_text%></span>
+		<span><%=@user.city_text%></span>
+		<span><%=@user.district_text%></span>
+		<%else%>
+		<span>未填写</span>
+		<%end%>
+	</div>
+	<div class="field">
+		<label>详细地址</label>
+		<span><%=@user.addr.present? ? @user.addr : "未填写" %></span>
+	</div>
+	<div class="field">
+		<label>手机:</label>
+		<span><%=@user.mask_mobile%></span>
+		<%=link_to "修改手机>>",edit_profile_path(:tab=>'basic',:modify=>'mobile'),:class=>"modify"%>
+		<%if @user.sms_validate=='true'%>
+		<span class="tip">手机已认证</span>
+		<%else%>
+		<%=link_to "去验证>>","/member-sms_validate.html?tab=mobile",:class=>"modify",:target=>"_top"%>
+		<%end%>
+
+	</div>
+	<div class="actions">
+		<%=link_to "修改",edit_profile_path(:tab=>'basic'),:class=>"btn"%>
+	</div>
+</div>

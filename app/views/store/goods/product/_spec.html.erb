@@ -1,0 +1,51 @@
+<table class="spec_bar">
+  <tbody>
+      <tr class="labelx">
+        <td>选择颜色</td>
+        <td></td>
+        <td>选择尺寸 (<a href="#" class="size_helper">帮助</a> / <a href="#" class="cs_helper">客服</a>) </td>
+        <td></td>
+        <td>购买数量</td>
+      </tr>
+
+      <tr>
+            <td>
+                 <%good.color_specs.each_with_index do |color,index|%>
+                         <%=link_to "javascript:void(0);",:title=>color.spec_value,:style=>"background:url(#{good.custom_picture(color.abbr)})",:class=>"color #{'selected' if color.spec_value_id.to_s==good.default_product.color_id.to_s} #{'logined' if signed_in?}",:'data-value'=>color.spec_value_id,:'data-images'=>good.pictures(:large,color.abbr),:rel=>"tooltip",:'data-url'=>price_good_path(good) do %>
+                              <div class="mask"></div>
+                         <%end%>
+                 <%end%>
+
+                 <%=hidden_field_tag "product[specs][]",good.default_product.color_id%>
+            </td>
+
+            <td class="bullet"></td>
+
+            <td>
+                  <%if good.size_specs%>
+                  <%good.size_specs.each_with_index do |size,index|%>
+                     <%=link_to "","javascript:void(0);",:class=>"size #{size.css_name_of_spec_value} #{'selected' if size.spec_value_id.to_s==good.default_product.size_id.to_s} #{'logined' if signed_in?}",:title=>size.spec_value,:'data-value'=>size.spec_value_id,:rel=>"tooltip",:'data-url'=>price_good_path(good)%>
+                  <%end%>
+                  <%=hidden_field_tag "product[specs][]",good.default_product.size_id%>
+                  <%end%>
+            </td>
+
+            <td class="bullet"></td>
+
+            <td>
+                  <div class="number_container">
+                    <a class="number_select" href="javascript:void(0);">1</a>
+                    <%=hidden_field_tag "product[quantity]",1,:class=>"hidden_number"%>
+                    <ul class="number_dropdown">
+                      <%(1..10).each do |i|%>
+                      <li><%=11 - i%></li>
+                      <%end%>
+                    </ul>
+                  </div>
+            </td>
+            
+      </tr>
+  </tbody>
+</table>
+
+<%=render partial: "store/goods/product/custom",:locals=>{ :good=>good }%>

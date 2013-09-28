@@ -1,0 +1,43 @@
+<strong>申请修改联系方式</strong>
+<br>
+<br>
+<table class="table table-striped table-bordered">
+	<tr>
+		<th>卡号</th>
+		<th>面值</th>
+		<th>购买时间</th>
+		<th>激活时间</th>
+		<th>状态</th>
+	</tr>
+	
+	<tr>
+		<td><%=@card.no%></td>
+		<td>&yen;<%=@card.value%></td>
+		<td><%=@card.sold_at%></td>
+		<td><%=@card.used? ? @card.used_at :  "未激活"%></td>
+		<td><%=@card.status%></td>
+	</tr>
+
+</table>
+
+<p>请选择需要修改的联系方式</p>
+
+<div class="field">
+	<label class="field-label field-big-label">购卡人联系方式 : </label>
+	<span class="field-plain">
+		<%=mask @card.member_card.buyer_tel%>
+		<%=link_to "申请修改",buyer_tel_card_path(@card),:class=>"btn"%>
+	</span>
+</div>
+
+<div class="field">
+	<label class="field-label field-big-label">已指定的用卡人联系方式 : </label>
+	<span class="field-plain">
+		<%=mask @card.member_card.user_tel%>
+		<%=link_to "申请修改",user_tel_card_path(@card),:class=>"btn"%>
+	</span>
+</div>
+
+<br>
+<p> 如需帮助请致电客服 : 021-60919835 </p>
+

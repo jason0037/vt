@@ -1,0 +1,48 @@
+<%= form_for :goods_type,:url => admin_goods_types_path, :html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :use_brand, "是否和品牌关联", :class => "control-label" %>
+      <div class="controls">
+        <label class="radio inline"><%= f.radio_button :use_brand,'true'%>是</label>
+        <label class="radio inline"><%= f.radio_button :use_brand,'false'%>否</label>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :use_props, "是否启用商品扩展属性", :class => "control-label" %>
+      <div class="controls">
+        <label class="radio inline"><%= f.radio_button :use_props,'true'%>是</label>
+        <label class="radio inline"><%= f.radio_button :use_props,'false'%>否</label>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :use_params, "是否启用商品参数表", :class => "control-label" %>
+      <div class="controls">
+        <label class="radio inline"><%= f.radio_button :use_params,'true'%>是</label>
+        <label class="radio inline"><%= f.radio_button :use_params,'false'%>否</label>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :name, "类型名称", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :name%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :spec, "规格", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :spec,options_from_collection_for_select(Ecstore::Spec.all,:spec_id,:memo_name,params[:spec_id].to_i),{:include_blank=>"请选择"},{:multiple => true, :size => 8} %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '返回', admin_goods_types_path %>
+      </div>
+    </div>
+
+  </fieldset>
+<% end %>

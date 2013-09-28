@@ -1,0 +1,41 @@
+<div>
+	<%=hidden_field_tag :tab,"details"%>
+	<div class="field">
+		<label>教育程度:</label>
+		<span><%=@user.edu || '未选择'%></span>
+	</div>
+
+	<div class="field">
+		<label>所属行业:</label>
+		<span><%=@user.voc|| '未选择'%></span>
+	</div>
+
+	<div class="field">
+		<label>从事职业:</label>
+		<span><%=@user.job|| '未选择'%></span>
+	</div>
+
+	<div class="field">
+		<label>家庭月收入:</label>
+		<span><%=@user.income|| '未选择'%></span>
+	</div >
+
+	<div class="field">
+		<label>身高(cm):</label>
+		<span><%=@user.height|| '未选择'%></span>
+	</div>
+
+	<div class="field">
+		<label>体重(kg):</label>
+		<span><%=@user.weight|| '未选择'%></span>
+	</div>
+
+	<div class="field">
+		<label>鞋码:</label>
+		<span><%=@user.shoesize|| '未选择'%></span>
+	</div>
+
+	<div class="actions">
+		<%=link_to "修改",edit_profile_path(:tab=>'details'),:class=>"btn"%>
+	</div>
+</div>

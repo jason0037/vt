@@ -1,0 +1,51 @@
+<%if @cards.size > 0%>
+<table class="table table-striped table-bordered">
+	<tr>
+		<th>卡号</th>
+		<th>面值</th>
+		<th>购买者</th>
+		<th>购买时间</th>
+		<th>激活时间</th>
+		<th>状态</th>
+		<th>操作</th>
+	</tr>
+	<%@cards.each do |card|%>
+	<tr>
+		<td><%=card.no%></td>
+		<td><%=number_to_currency(card.value,:unit=>"&yen;",:precision=>0)%></td>
+		<td><%=card.member_card.buyer.login_name%></td>
+		<td>
+		<%if card.pay_status%>
+			<%=card.sold_at.strftime("%Y-%m-%d %H:%M:%S")  if card.sold_at.present?%>
+		<%else%>
+			未付款
+		<%end%>
+		</td>
+		<td><%=card.used? ? card.used_at.strftime("%Y-%m-%d %H:%M:%S") :  "未激活"%></td>
+		<td><%=card.status%></td>
+		<td>
+			<%=link_to "恢复",cancel_loss_card_path(card,:operator=>"user") if card.locked?%>
+			<%=link_to "挂失",loss_card_path(card,:operator=>"user") unless card.locked?%>
+
+			<%if card.pay_status%>
+				<%=link_to "激活",search_card_path(:"search[no]"=>card.no),:target=>"_top" if  card.normal?%>
+			<%else%>
+				<%=link_to "去付款","/member-orders.html",:target=>"_top"%>
+			<%end%>
+
+		</td>
+	</tr>
+	<%end%>
+</table>
+<p>如果这里没有显示您的VIP会员卡，您可以<%=link_to "点击这里",activation_card_path,:target=>"_top"%>直接激活</p>
+
+<br />
+<p><span class="required">*</span> 小提示：如您的VIP卡已确认遗失，请在完成挂失操作后联系客服。</p>
+<p><span class="required">*</span> 如需帮助请致电客服：021-60919835</p>
+<%else%>
+<p>如果这里没有显示您的VIP会员卡，您可以<%=link_to "点击这里",activation_card_path,:target=>"_top"%>直接激活</p>
+<p> 您没有可激活的VIP卡，可 <%=link_to "点击此处","/vip",:target=>"_top"%> 购买 </p>
+<p> 如有疑问请联系客服：021-60919835 </p>
+
+<%end%>
+

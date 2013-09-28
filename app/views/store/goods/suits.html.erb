@@ -1,0 +1,16 @@
+<%=render "shared/metable", :resource=>nil%>
+
+<%=content_for :head do %>
+<%=stylesheet_link_tag "store/flow_suits"%>
+<%= javascript_include_tag "store/flow_suits" %>
+<%end%>
+
+<ul class="flow-suits" id="container">
+	<li class="item">
+		<img src="/assets/store/suit_block.gif" alt="套装推荐">
+	</li>
+	<%=render :partial=>"suit",:collection=>@goods, :as=>:good%>
+</ul>
+<div id="page_nav">
+  <a href="/products/more_suits?page=2"></a>
+</div>

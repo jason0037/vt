@@ -1,0 +1,15 @@
+// Place all the styles related to the admin/metas controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.sub{
+	margin-bottom: 10px;
+}
+.delete{
+	font-size: 20px;
+	line-height: 20px;
+	color:red;
+	&:hover{
+		text-decoration: none;
+		color:red;
+	}
+}

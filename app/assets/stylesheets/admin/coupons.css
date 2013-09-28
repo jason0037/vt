@@ -1,0 +1,14 @@
+.coupons{
+
+}
+
+.coupons .cancel{
+	color:blue;
+	cursor: pointer;
+	font-weight: normal;
+	padding: 0px 3px;
+}
+.coupons .tip{
+	float: right;
+	margin-top: 5px;
+}

@@ -1,0 +1,135 @@
+<%=form_for :promotion,:url=>@action_url,:method=>@method,:html=>{:class=>"form-horizontal"} do |f|%>
+<%=f.hidden_field :promotion_type, :value=>"order" %>
+<div class="control-group">
+    <%=f.label :name, "名称*",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.text_field :name%>
+    </div>
+</div>
+
+
+<div class="control-group">
+    <%=f.label :name, "是否开启*",:class=>"control-label"%>
+    <div class="controls">
+      <label class="radio inline">
+      <%=f.radio_button :enable,true,:checked=>true%> <span>是</span>
+      </label>
+      <label class="radio inline">
+      <%=f.radio_button :enable,false%> <span>否</span>
+      </label>
+    </div>
+</div>
+
+<div class="control-group">
+    <%=f.label :priority, "优先级",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.text_field :priority,:value=>"1",:class=>"span2",:placeholder=>"数字越大优先级越高"%>
+    </div>
+</div>
+<div class="control-group">
+    <%=f.label :exclusive, "是否排它*",:class=>"control-label"%>
+
+    <div class="controls">
+      <label class="radio inline">
+      <%=f.radio_button :exclusive,true,:checked=>true%> <span>是</span>
+      </label>
+      <label class="radio inline">
+      <%=f.radio_button :exclusive,false%> <span>否</span>
+      </label>
+       <span class="help-inline tips">即只能满足一个促销，如果订单同时满足两个促销，则取优先级高的一个</span>
+    </div>
+
+
+</div>
+
+<div class="control-group">
+    <label class="control-label">开始时间</label>
+    <div class="controls">
+      <%=f.text_field :begin_at,:class=>"span2 datetime"%>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label">结束时间</label>
+    <div class="controls">
+      <%=f.text_field :end_at,:class=>"span2 datetime"%>
+    </div>
+</div>
+
+
+<div class="control-group">
+    <%=f.label :condition, "促销条件*",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.select :condition_exp, promotion_conditions,{},:class=>"span2"%>
+      <%=f.text_field :condition_val, :class=>"input-mini",:placeholder=>"金额"%>元
+    </div>
+</div>
+
+<div class="control-group">
+    <%=f.label :action, "促销方案*",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.select :action_type,promotion_actions,{},:class=>"input-small"%>
+      <span class="action-content clearfix">
+      <%if @promotion.action_type == "minus" || @promotion.action_type.nil?%>
+        
+                订单金额减去<%=f.text_field :action_content,:class=>"input-mini"%>元
+       
+      <%end%>
+
+      <%if @promotion.action_type == "discount"%>
+
+              订单金额乘<%=f.text_field :action_content,:class=>"input-mini",:placeholder=>"0~100"%>%折扣
+
+      <%end%>
+
+      <%if @promotion.action_type == "gift"%>
+
+         <%Ecstore::Good.gifts.each do |gift|%>
+          <label class="checkbox">
+              <%=check_box_tag "promotion[action_content][]",gift.bn,@promotion.action_content.include?(gift.bn)%><span><%="#{gift.name}(#{gift.bn})"%></span>
+          </label>
+        <%end%>
+
+      <%end%>
+
+      <%if @promotion.action_type == "coupon"%>
+
+        <%=link_to "+送优惠券","#"%>
+
+      <%end%>
+       </span>
+
+    </div>
+
+</div>
+
+
+
+<div class="control-group">
+    <div class="controls">
+      <%=f.submit "提 交",:class=>"btn btn-primary"%>
+    </div>
+</div>
+<%end%>
+
+<div class="hide" id="pmt_actions">
+  <span class="minus">
+              订单金额减去<%=text_field_tag "promotion[action_content]",(@promotion.action_content if @promotion.action_type=="minus"),:class=>"input-mini"%>元
+    </span>
+
+<span class="discount">
+              订单金额乘<%=text_field_tag "promotion[action_content]",(@promotion.action_content if @promotion.action_type=="discount"),:class=>"input-mini",:placeholder=>"0~100"%>%折扣
+</span>
+
+<span class="gift">
+  <%Ecstore::Good.gifts.each do |gift|%>
+    <label class="checkbox">
+        <%=check_box_tag "promotion[action_content][]",gift.bn,(@promotion.action_content||[]).include?(gift.bn)%><span><%="#{gift.name}(#{gift.bn})"%></span>
+    </label>
+  <%end%>
+</span>
+
+<span class="coupon">
+  
+</span>
+</div>

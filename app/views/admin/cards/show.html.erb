@@ -1,0 +1,115 @@
+<h5>VIP卡信息</h5>
+<hr />
+<div class="form-horizontal well">
+  <fieldset>
+    <div class="control-group">
+      <label class="control-label">卡号:</label>
+      <div class="controls">
+        <span class="plain-text "><%=@card.no%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+       <label class="control-label">面值:</label>
+     <div class="controls">
+        <span class="plain-text">&yen;<%=@card.value%> <%="[#{level(@card.value)}]" if level(@card.value).present?%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+       <label class="control-label">类型:</label>
+      <div class="controls">
+        <span class="plain-text"><%=@card.card_type%></span>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label">状态:</label>
+      <div class="controls">
+        <span class="plain-text"><%=@card.status%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">销售状态:</label>
+      <div class="controls">
+        <span class="plain-text"><%=@card.sale_status ? "已出售" : "未出售"%></span>
+      </div>
+    </div>
+
+    
+
+    <div class="control-group">
+      <label class="control-label">购卡者:</label>
+      <div class="controls">
+          <span class="plain-text "><%=@card.member_card&&@card.member_card.buyer ? @card.member_card.buyer.login_name : "未登记" %></span>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label">购卡者手机:</label>
+      <div class="controls">
+          <span class="plain-text "><%=@card.member_card&&@card.member_card.buyer_tel.present? ? @card.member_card.buyer_tel : "未登记"%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">使用状态:</label>
+      <div class="controls">
+          <span class="plain-text "><%=@card.use_status ? "已使用" : "未使用"%></span>
+      </div>
+    </div>
+
+     
+
+    <div class="control-group">
+      <label class="control-label">使用者:</label>
+      <div class="controls">
+          <span class="plain-text "><%=@card.member_card&&@card.member_card.user ? @card.member_card.user.login_name : "未登记"%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">使用者手机:</label>
+      <div class="controls">
+          <span class="plain-text "><%=@card.member_card&&@card.member_card.user_tel.present? ? @card.member_card.user_tel : "未登记"%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">付款状态:</label>
+      <div class="controls">
+          <span class="plain-text "><%=@card.pay_status ? "已付款" : "未付款"%></span>
+      </div>
+    </div>
+
+    <%if @card.pay_status && @card.sold_at.present?%>
+    <div class="control-group">
+      <label class="control-label">付款日期:</label>
+      <div class="controls">
+          <span class="plain-text "><%=@card.sold_at.strftime("%Y-%m-%d %H:%M:%S")%></span>
+      </div>
+    </div>
+    <%end%>
+    <%if @card.pay_status%>
+    <div class="control-group">
+      <label class="control-label">支付银行:</label>
+      <div class="controls">
+          <span class="plain-text "><%=@card.member_card && @card.member_card.bank_name.present?  ? @card.member_card.bank_name : "未登记" %></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">支付银行卡号:</label>
+      <div class="controls">
+          <span class="plain-text "><%=@card.member_card && @card.member_card.bank_card_no.present? ? @card.member_card.bank_card_no : "未登记"%></span>
+      </div>
+    </div>
+    <%end%>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= link_to '返回', admin_cards_path %>
+      </div>
+    </div>
+  </fieldset>
+</div>

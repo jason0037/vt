@@ -1,0 +1,51 @@
+<h4>
+	标签列表
+	<%=link_to "新增标签",new_admin_tag_path,:class=>"btn btn-primary pull-right"%>
+</h4>
+<hr>
+<p>
+	<%=link_to "商品标签",admin_tags_path(:tag_type=>"goods"),:class=>"btn"%>
+	<%=link_to "订单标签",admin_tags_path(:tag_type=>"orders"),:class=>"btn"%>
+	<%=link_to "会员标签",admin_tags_path(:tag_type=>"members"),:class=>"btn"%>
+
+</p>
+
+
+<table class="table table-bordered table-striped table-hover">
+	<thead>
+		<tr>
+			<th>标签名称</th>
+			<th>所属</th>
+			<th>标签备注</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@tags.each do |tag|%>
+			<tr>
+				<td>
+					<span class="teg" style="background:<%=tag.tag_bgcolor%>;color:<%=tag.tag_fgcolor%>">
+						<%=tag.tag_name%>
+					</span>
+					
+				</td>
+				<td>
+					<%="商品" if tag.tag_type == "goods"%>
+					<%="订单" if tag.tag_type == "orders"%>
+					<%="会员" if tag.tag_type == "members"%>
+				</td>
+				<td>
+					<%=tag.tag_abbr%>
+				</td>
+				<td>
+					<%= link_to '编辑', edit_admin_tag_path(tag) %>
+					|
+					<%= link_to '删除', admin_tag_path(tag), method: :delete, data: { confirm: '确定删除?' } %>
+				</td>
+			</tr>
+		<%end%>
+	</tbody>
+</table>
+<div class="pagination">
+	<%=will_paginate @tags,:container=>false%>
+</div>

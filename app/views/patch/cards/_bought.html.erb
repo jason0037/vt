@@ -1,0 +1,48 @@
+<%if @cards.size > 0%>
+<table class="table table-striped table-bordered" id="cards_list">
+	<tr>
+		<th>卡号</th>
+		<th>面值</th>
+		<th>购买时间</th>
+		<th>激活时间</th>
+		<th>状态</th>
+		<th>操作</th>
+	</tr>
+	<%@cards.each do |card|%>
+	<tr>
+		<td><%=card.no%></td>
+		<td><%=number_to_currency(card.value,:unit=>"&yen;",:precision=>0)%></td>
+
+		<td>
+		<%if card.pay_status%>
+			<%=card.sold_at.strftime("%Y-%m-%d %H:%M:%S")  if card.sold_at.present?%>
+		<%else%>
+			未付款
+		<%end%>
+		</td>
+		<td><%=card.used? ? card.used_at.strftime("%Y-%m-%d %H:%M:%S") :  "未激活" if card.used_at.present?%></td>
+		<td><%=card.status%></td>
+		<td>
+			<%if card.pay_status%>
+				<%=link_to "挂失",loss_card_path(card,:operator=>"buyer") if  card.normal?%>
+				<%=link_to "恢复",cancel_loss_card_path(card,:operator=>"buyer") if card.locked?%>
+				<%=link_to "修改联系方式",contact_card_path(card)%>
+			<%else%>
+				<%=link_to "去付款",goto_pay_path,:target=>"_top"%>
+			<%end%>
+		</td>
+	</tr>
+	<%end%>
+</table>
+<div class="pagination">
+	<%=will_paginate @cards, :container=>false%>
+</div>
+<br />
+	<p>
+		<span class="required">*</span> 小提示：您可以在您所购买的VIP卡被激活前修改购卡人及用卡人联系方式，为了确保您的VIP卡可以正常使用，请务必填写用卡人联系方式。</p>
+	<p><span class="required">*</span> 如需帮助请致电客服：021-60919835</p>
+<%else%>
+	<p> 您尚未购买过VIP卡，可 <%=link_to "点击此处","/vip",:target=>"_top"%> 购买</p>
+	<p> 如有疑问请联系客服：021-60919835 </p>
+<%end%>
+

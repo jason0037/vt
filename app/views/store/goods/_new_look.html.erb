@@ -1,0 +1,29 @@
+<div class="master">
+	<img src="<%=@good.default_product.pictures(:large).first%>">
+	<div class="name">
+		<%=truncate2(@good.name,:length=>15)%>
+	</div>
+	<div class="price">套装价: &yen;<%=@good.price.to_i%> </div>
+	<div class="saving">立省: &yen;<%=@good.savings.to_i%></div>
+</div>
+<div class="collocations">
+	<h3>单品搭配 ITEM</h3>
+	<div class="items clearfix">
+		<%@good.collocation_goods.each_with_index do |good,index|%>
+		<div class="single">
+			<a href="<%=good_path(good.bn)%>" target="_blank">
+				<img src="<%=good.list_default_pic%>">
+			</a>
+			<div class="name">
+				<a href="<%=good_path(good.bn)%>" target="_blank">
+					<%=truncate2(good.name,:length=>10)%>
+				</a>
+			</div>
+			<div class="price">摩登客价: &yen;<%=good.price.to_i%></div>
+		</div>
+		<%if index < @good.collocation_goods.size - 1%>
+			<div class="single plus">+</div>
+		<%end%>
+		<%end%>
+	</div>
+</div>

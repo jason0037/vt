@@ -1,0 +1,26 @@
+<%=render "shared/metable", :resource => @home%>
+<%=content_for :head do %>
+  <%=stylesheet_link_tag "home"%>
+<%end%>
+
+<%=content_for :notice do %>
+	<%=render "shared/notice"%>
+<%end%>
+
+<%=content_for :cover do %>
+<div class="big-cover">
+  <%=render "slider" if @home.sliders%>
+</div>
+<%end%>
+
+<%=render "keywords" if @home.keywords%>
+
+<%render "suit_products"%>
+
+
+<div class="other">
+	<%render "new_hots"%>
+	<%=@home.body.html_safe if @home.body.present?%>
+</div>	
+
+<%=javascript_include_tag "bootstrap-transition","bootstrap-carousel"%>

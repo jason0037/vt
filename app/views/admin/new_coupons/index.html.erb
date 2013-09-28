@@ -1,0 +1,47 @@
+<h4>
+  优惠券
+</h4>
+<hr>
+
+<h1>
+  <%=link_to "添加优惠券",new_admin_new_coupon_path,:class=>"btn btn-primary right"%>
+</h1>
+
+<table class="table table-bordered table-hover">
+    <tr>
+      <th>名称</th>
+      <th>类型</th>
+      <th>开启状态</th>
+      <th>是否排它</th>
+      <th>有效期</th>
+      <th>优先级</th>
+      <th>数量</th>
+      <td>优惠券号码</td>
+      <th>操作</th>
+    </tr>
+    
+  <%@coupons.each do |coupon|%>
+    <tr class="<%= 'disable' unless coupon.enable?%>">
+      <td><%=coupon.name%></td>
+      <td><%=coupon.coupon_type%></td>
+      <td><%=coupon.enable ? "是" : "否"%></td>
+      <td><%=coupon.exclusive ? "是" : "否"%></td>
+      <td><%=coupon.begin_at.strftime("%Y-%m-%d %H:%M:%S") if coupon.begin_at.present?%> ~ <%=coupon.end_at.strftime("%Y-%m-%d %H:%M:%S") if coupon.end_at.present?%></td>
+      <td><%=coupon.priority%></td>
+      <td><%=coupon.quantity%></td>
+      <td><%=coupon.coupon_prefix%></td>
+      <td>
+        <%=link_to "编辑", edit_admin_new_coupon_path(coupon)%>
+        
+        <%=link_to "删除", admin_new_coupon_path(coupon),:method=>:delete,:confirm=>"确定要删除？"%>
+
+
+        <%=link_to "下载", download_admin_new_coupon_path(coupon),:class=>"download" if coupon.coupon_type=="B" && coupon.enable? %>
+      </td>
+    </tr>
+    <%end%>
+  </table>
+
+  <div class="pagination">
+    <%=will_paginate @coupons,:container=>false%>
+  </div>

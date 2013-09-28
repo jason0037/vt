@@ -1,0 +1,30 @@
+<h4>
+	类型列表
+	<%=link_to "新增商品类型",new_admin_goods_type_path,:class=>"btn btn-primary pull-right"%>
+</h4>
+<br>
+<table class="table table-bordered table-striped table-hover">
+	<thead>
+		<tr>
+			<th>实体商品</th>
+			<th>类型名称</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@types.each do |type|%>
+			<tr>
+				<td><%=type.is_physical_value%></td>
+				<td><%=type.name%></td>
+				<td>
+					<%= link_to '编辑', edit_admin_goods_type_path(type) %>
+					|
+					<%= link_to '删除', admin_goods_type_path(type), method: :delete, data: { confirm: '确定删除?' } %>
+				</td>
+			</tr>
+		<%end%>
+	</tbody>
+</table>
+<div class="pagination">
+	<%=will_paginate @types,:container=>false%>
+</div>

@@ -1,0 +1,58 @@
+<%=form_for :good,:url=>import_admin_goods_path,:html => {:multipart => true} ,:method=>:post do |f|%>
+	<div class="btn-group">
+	    <%= file_field :good, :file, :id=>'csvfile',:accept => "text/csv" %> 
+	    <%= f.submit '导入商品', :class => "btn btn-primary" %>
+	</div>
+<%end%>
+<%=render "goods_filters"%>
+<div>
+	<p>
+		<div id="batch_inputs" class="hide"></div>
+		
+		<div id="batch_actions">
+			<%=link_to "删除","#",:class=>"btn batch",:data=>{:act=>:destroy},:confirm=>"确定删除吗?"%>
+			<%=link_to "导出","#",:class=>"btn batch",:data=>{:act=>:export}%>
+			<div class="btn-group">
+			  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+			    批量操作
+			    <span class="caret"></span>
+			  </a>
+			  <ul class="dropdown-menu">
+			    <li><a href="#" data-act="up" class="batch">批量上架</a></li>
+			    <li><a href="#" data-act="down" class="batch">批量下架</a></li>
+			    <!-- <li class="divider"></li> -->
+			    <!-- <li><a href="#">link</a></li> -->
+			  </ul>
+			</div>
+
+			<div class="btn-group">
+			  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+			    标签
+			    <span class="caret"></span>
+			  </a>
+			  <ul class="dropdown-menu">
+			    <li><a href="#tegs"  id="pop_tegs">为选中项打标签</a></li>
+			    <li class="divider"></li>
+			    <li><a href="/admin/tags?tag_type=goods" target="_blank">标签设置</a></li>
+			  </ul>
+			</div>
+		</div>
+	</p>
+
+	<div id="selection">已选择了<b id="count">0</b>条记录! 
+		&nbsp;
+		<%=link_to "选择全部","#",:id=>"select_all"%>
+		&nbsp;
+		<%=link_to "取消选择","#",:id=>"cancel_all"%> 
+	</div>
+	<table class="table table-bordered table-striped" id="goods" data-url="<%=request.fullpath.html_safe%>" count="<%=@count%>" goods_ids="<%=@goods_ids%>" >
+		<%=render "index_goods"%>
+	</table>
+</div>
+
+<div class="pagination">
+  	<%= will_paginate @goods, :container => false,:params=>{ :page=>params[:page] } %>
+</div>
+
+
+<%=render "admin/shared/modal_tegs", :tegs=> Ecstore::Teg.good_tegs %>

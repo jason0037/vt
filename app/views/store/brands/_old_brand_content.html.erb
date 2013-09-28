@@ -1,0 +1,57 @@
+<div class="brand-page container">
+	<%if @brand_page%>
+	<div class="brand-content gallery clearfix">
+		<div class="gallery clearfix tab-content">
+			<%@brand_page.context.each_with_index do |menu,index|%>
+			<%imgs = menu["image_url"].split("|").zip(menu["image_alt"].split("|"))%>
+			<div class="tab-pane <%='has-slider' if imgs.size>1%> <%='active' if index==0%>" id="tab<%=index%>">
+				<%if imgs.size > 1%>
+				<div class="carousel slide" id="tab<%=index%>_carousel">
+					<div class="carousel-inner">
+						<%imgs.each_with_index do |arr,i|%>
+							<div class="item <%='active' if i == 0 %>">
+		                  				<%=image_tag arr[0],:alt=>arr[1]%>
+		                  			</div>
+		                  		<%end%>
+	                  		</div>
+	                  		<ol class="carousel-indicators">
+					    <%imgs.size.times do |i|%>
+					    <li data-target="#tab<%=index%>_carousel" data-slide-to="<%=i%>" class="<%='active' if i==0%>"></li>
+					    <%end%>
+					</ol>
+				</div>
+				<%else%>
+					<%=image_tag imgs[0][0],:alt=>imgs[0][1] if imgs[0]%>
+				<%end%>
+                	</div>
+                	<%end%>
+
+		</div>
+
+		<div class="tabs-left">
+			<span class="brand-logo"><%=image_tag @brand_page.logo_url,:alt=>@brand.brand_name%></span>
+			<ul class="nav nav-list">
+			    <%@brand_page.context.each_with_index do |menu,index|%>
+			    	<%if menu["menu_name"].present?%>
+				    <li class="<%='active' if index == 0%>">
+				    	<a href="#tab<%=index%>" data-toggle="tab"><%=menu['menu_name']%></a>
+				    </li>
+				<%end%>
+			    <%end%>
+			</ul>
+			<%=image_tag '/assets/store/big_comingsoon.gif', :class=>"coming" if @brand.status == 'coming' || @goods.blank? %>
+		</div>
+	</div>
+	<%end%>
+</div>
+
+<%if @brand.status != 'disabled' &&  @goods.size > 0%>
+<div class="products clearfix">
+	<div class="left">
+		<%=render "store/goods/brand_tree_menu"%>
+	</div>
+	<div class="right">
+		<%=render "store/goods/list_goods"%>
+	</div>
+</div>
+<%end%>

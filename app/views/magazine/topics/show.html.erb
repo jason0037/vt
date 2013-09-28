@@ -1,0 +1,84 @@
+<%=content_for :title do "#{@topic.title} | 摩登资讯 | 摩登客" end%>
+<%=content_for :keywords do @topic.page_keywords end%>
+<%=content_for :description do @topic.page_description end%>
+
+<%if @topic.body.present?%>
+	<div id="topic">
+	  <%= raw(@topic.body) %>
+	</div>
+<%else%>
+	<div id="iModecMagazine">
+	<div class="iModecMagazine-container">
+		
+  	</div>
+
+	<!-- 杂志左右按钮 -->
+	<a class="jcarousel-prev jcarousel-prev-dis" href="#">
+		<span>Prev</span>
+	</a>
+	<a class="jcarousel-next" href="#">
+		<span>Next</span>
+	</a>
+
+	<!-- 杂志底部页码 -->
+	<span class="bottomPageNum">1</span>
+
+	<!-- 杂志底部导航 -->
+	<div class="bottomNav bottomNavHide">
+		<!--b>按钮</b-->
+		<div class="bottomNavbg"></div>
+		<a class="more" href="javascript:void(0);">更多专题</a>
+		<div class="bottomNavItem">
+			<ul class="clearfix">
+			</ul>
+			<!-- <div class="thumbnail">
+				<img src="test.jpg" height="45"/>
+			</div> -->
+			<p class="title">杂志</p>
+		</div>
+	</div>
+	</div>
+	<%= javascript_include_tag "magazine/magazine" %>
+	<script type="text/javascript">
+		    magazineInit('<%=@topic.id%>');
+		    //使用该方法可直接跳转到杂志制定页面
+		    // pageJump(2)
+	</script>
+
+<%end%>
+
+<%if @topic.commentable%>
+	<div class="topic-comments clearfix">
+		<div id="hd">
+			<span class="txt">商品评论</span>
+			<hr>
+		</div>
+
+		<div id="comment_form" class="clearfix">
+			<div class="title">
+				我要点评
+				<span class="count">评论(<%=@topic.comments.size%>)</span>
+			</div>
+			<%=render :partial=>"comments/form",:locals=>{:commentable_id=>@topic.id,:commentable_type=>"topic",:return_url=>"#{request.url}#comments" }%>
+		</div>
+		<ul id="comments" class="clearfix">
+			<%if @topic.comments.size > 0%>
+			<%=render :partial=>"comments/comment", :collection=>@comments,:as=>:comment %>
+			<%else%>
+				<div class="no-comment">暂无评论</div>
+			<%end%>
+
+			<div class="pagination">
+				<%=will_paginate @comments,:container=>false,:previous_label=>"<",:next_label=>">"%>
+			</div>
+		</ul>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#comments .pagination a").attr("href",function(){
+					return $(this).attr("href") + "#comments";
+				});
+			});
+		</script>
+	</div>
+<%end%>
+

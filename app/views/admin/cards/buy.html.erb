@@ -1,0 +1,33 @@
+<h4>购买VIP卡 </h4>
+
+<div>
+  卡号 : <%=@card.no%>  (<%=@card.card_type%>, <%=@card.sale_status ? "已出售" : "未出售"%>)
+</div>
+
+<hr />
+
+<div class>
+  <%=form_for :search,:url=>search_admin_users_path(:card_id=>@card.id),:html=>{:class=>"form-horizontal search"},:method=>:get,:remote=>true do |f|%>
+  <%= f.hidden_field :member_type,:value=>"buyer"%>
+  <fieldset>
+      <div class="control-group">
+        <label class="control-label"></label>
+        <div class="controls">
+          <%= f.select :type,search_options,{},{:class=>"span2"}%>
+          <%= f.text_field :key%>
+          <%=f.submit "搜索",:class=>"btn"%>
+        </div>
+      </div>
+  </fieldset>
+  
+  <%end%>
+
+</div>
+
+<div id="buyer_list">
+
+</div>
+
+<div id="buyer">
+  <p class="well">请先输入用户名或手机号码进行搜索</p>
+</div>

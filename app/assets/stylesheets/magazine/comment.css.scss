@@ -1,0 +1,72 @@
+
+
+.topic-comments{
+	margin-bottom: 20px;
+	padding: 0px 27px;
+	#hd{
+		font-size: 20px;
+		text-align: center;
+		padding: 10px 0px;
+		.txt{
+			padding: 0px 5px;
+			background: #fff;
+		}
+		hr{
+			border: none;
+			border-top: solid 1px #000;
+			margin:0px;
+			margin-top: -10px;
+		}
+	}
+	#comment_form{
+		float: left;
+		textarea{
+			padding:5px;
+			height: 200px;
+		}
+		input[type='submit']{
+			float: right;
+			margin-top: 10px;
+		}
+		.title{
+			padding: 5px 0px;
+		}
+		.count{
+			float: right;
+		}
+	}
+	#comments{
+		float: left;
+		margin-left: 20px;
+		width: 578px;
+		margin-top: 30px;
+		.comment{
+			padding: 15px 0px;
+			.info{
+				margin-bottom: 5px;
+			}
+			.content{
+				margin-top:5px;
+			}
+		}
+		.no-comment{
+			color:#777;
+			margin-top: 10px;
+		}
+
+		.pagination{
+			margin-top: 10px;
+			float: right;
+			font-size: 12px;
+			& > *{
+				padding: 0px 3px;
+			}
+			a{
+				color:#000;
+			}
+			.current{
+				color:#d30000;
+			}
+		}
+	}
+}

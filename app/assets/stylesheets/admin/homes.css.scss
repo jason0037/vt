@@ -1,0 +1,33 @@
+// Place all the styles related to the admin/homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.homes{
+	.delete{
+		font-size: 20px;
+		color:red;
+		text-decoration: none;
+	}
+
+
+
+	.pos-control{
+		height: 30px;
+		width: 30px;
+		display: inline-block;
+		margin-left: 20px;
+		i{
+			cursor: pointer;
+		}
+	}
+	.item{
+		margin-bottom: 10px;
+		.no{
+			width: 20px;
+			display: inline-block;
+		}
+		&.cur{
+			background-color:#F7F7F9;
+		}
+	}
+}

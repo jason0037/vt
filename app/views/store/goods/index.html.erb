@@ -1,0 +1,29 @@
+<%=render "shared/metable", :resource=>nil%>
+<%=content_for :head do%>
+    <%= stylesheet_link_tag "store/newest" %>
+<%end%>
+
+
+<ul class="breadcrumb">
+	<span class="current_pos">当前位置 ：</span>
+	<li>
+		<a href="http://www.i-modec.com">首页</a> <span class="divider">/</span>
+	</li>
+	<li class="active">
+		<%= @tag.tag_ext ? @tag.tag_ext.issue_no : "本期新品"%>
+	</li>
+</ul>
+
+
+
+<%=render "store/shared/cover"%>
+<div class="products clearfix">
+  <div class="left">
+    <%=render "store/goods/list_tags"%>
+  </div>
+  <div class="right">
+    <%=render "store/goods/list_goods"%>
+  </div>
+</div>
+
+<%= javascript_include_tag "bootstrap-carousel"%>

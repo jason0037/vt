@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>摩登客—全球设计品牌精品第e站,都市时尚女性个性首选</title>
+  <meta name="description" content="全球设计精品第e站，都市时尚女性个性首选.">
+  <%= stylesheet_link_tag    "patch/profiles" %>
+  <%= javascript_include_tag "patch/profiles" %>
+  <%= stylesheet_link_tag    "patch/#{controller_name}"  if controller_name != "profiles"%>
+  <%= javascript_include_tag "patch/#{controller_name}" if controller_name != "profiles"%>
+  <%=render "shared/baidu"%>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+<%= javascript_include_tag "google-analytics" %>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<div id="login_radio">
+  <ul id="login_radio_ul">
+    <li id="login_li" class="selected" unselectable="on" ref="#login">完成注册信息</li>
+  </ul>
+</div>
+<div id="register">
+  <div class="notice notice_big">
+    <h3>新会员注册有礼</h3>
+    <div class="detail">奖励方式：现在注册即可获得价值100元现金抵用券</div>
+  </div>
+  <%=form_for @account, :url => auth_accounts_path,:id=>"reg_form" do |f|%>
+  <ul class="istyle">
+    <li>
+        <%if session[:_auth_user] %>
+        <%= image_tag(session[:_auth_user].avatar, :size => "64x64")%>
+        <span class="login_name">
+            <%= session[:_auth_user].name %>
+        </span>
+        <%end%>
+    </li>
+    <li>
+    	<%= f.text_field :login_name, :placeholder=>"用户名", :class=>"trinput" %>
+    	<div class="help-block">
+    		<%=@account.errors.messages[:login_name].join(" ")%>
+    	</div>
+    </li>
+
+    <li>
+    	<%= f.password_field :login_password, :placeholder=>"密码", :class=>"trinput" %>
+    	<div class="help-block">
+    		<%=@account.errors.messages[:login_password].join(" ")%>
+    	</div>
+    </li>
+    <li><%= f.password_field :login_password_confirmation, :placeholder=>"确认密码", :class=>"trinput" %>
+    	<div class="help-block">
+    		<%=@account.errors.messages[:login_password_confirmation].join(" ")%>
+    	</div>
+    </li>
+    <li><%= f.text_field :email, :placeholder=>"电子邮件", :class=>"trinput" %>
+	<div class="help-block">
+    		<%=@account.errors.messages[:email].join(" ")%>
+    	</div>
+    </li>
+    <li>
+            <%= f.text_field :mobile, :placeholder=>"移动电话", :class=>"trinput" %>
+    	<div class="help-block">
+    		<%=@account.errors.messages[:mobile].join(" ")%>
+    	</div>
+    </li>
+
+    <li>
+        <%=f.submit "完         成",:class=>"form-button"%>
+    </li>
+  </ul>
+  <% end %>
+</div>
+<div class="login_logo"></div>

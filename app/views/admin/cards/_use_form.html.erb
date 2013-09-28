@@ -1,0 +1,78 @@
+<%if @user%>
+  
+  <%= form_for :member_card,:url => use_card_admin_users_path,:remote=>true,:method=>:put, :html => {:class => "form-horizontal well"} do |f| %>
+        <%=f.hidden_field :card_id,:value=>@card.id%>
+        <%=f.hidden_field :user_id,:value=>@user.member_id%>
+
+          <fieldset>
+
+            <div class="control-group">
+              <label></label>
+              <div class="controls">
+                <span class="global"></span>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <%= f.label :login_name, "用户名 :", :class => "control-label" %>
+              <div class="controls">
+                <span class="plain-text ">
+                  <%=@user.account.login_name if @user.account%>
+                </span>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <%= f.label :user_tel, "手机号码 :", :class => "control-label" %>
+              <div class="controls">
+                      <% if @user.mobile.blank?%>
+                           <%=f.text_field :user_tel%>
+                      <%else%>
+                          <%=f.text_field :user_tel,:value=>@user.mobile,:class=>"hide"%>
+                          <span class="plain-text"><%=@user.mobile%></span>
+                           <!-- <span class="plain-text">
+                            <%=@user.sms_validate == 'true' ? "已验证" : "未验证"%>
+                          </span> -->
+                      <%end%>
+                      
+                       <!-- &nbsp;&nbsp;&nbsp;
+                      <%=link_to "发送手机验证码","javascript:void(0);",:method=>:put,:class=>"btn send_sms_code",:'data-url'=>send_sms_code_admin_user_path(@user)%>
+                      <span id="return_msg" class="help"></span> -->
+                      
+              </div>
+            </div>
+
+
+            <!-- <div class="control-group">
+              <%= f.label :sms_validate, "手机验证码 :", :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :sms_code,:class=>"input-small"%>
+                <span class="help"></span>
+              </div>
+            </div> -->
+
+            <%if @card.card_type == "B"%>
+            <div class="control-group">
+              <%= f.label :password, "卡密码 :", :class => "control-label" %>
+              <div class="controls">
+                <%= f.password_field :password,:class=>"input-small"%>
+                <span class="help"></span>
+              </div>
+            </div>
+            <%end%>
+
+            <div class="control-group">
+              <div class="controls">
+                <%= f.submit '使用VIP卡', :class => "btn btn-primary",:id=>"use_card"%>
+                <span class="msg"></span>
+              </div>
+            </div>
+
+          </fieldset>
+    <% end %>
+<%else%>
+  <p class="well error">
+     没有找到相关用户, 请先注册用户 !
+     <%=link_to "返回",admin_cards_path%>
+  </p>
+<%end%>

@@ -1,0 +1,33 @@
+<%=render "shared/metable",  :resource=>nil%>
+<%=content_for :head do %>
+<%=stylesheet_link_tag 'store/more'%>
+<%end%>
+
+<div class="center_top">
+	<!-- <img src="top.jpg" width="950" height="70"> -->
+	<%=image_tag '/assets/store/top.jpg'%>
+</div>
+
+<div class="center">
+
+    <%@tags.each do |tag|%>
+            <%unless tag.tag_ext&&tag.tag_ext.disabled%>
+            <dl>
+            	<dd>
+            		<%=link_to goods_path(:tag=>tag.tag_name) do%>
+            			<%=image_tag tag.tag_ext.cover_url,:size=>"232x148"  if tag.tag_ext%>
+            		<%end%>
+            	</dd>
+               <dt>
+               	<%if tag.tag_ext%>
+                		<%=link_to tag.tag_ext.title.present? ? tag.tag_ext.title : tag.tag_ext.issue_no, goods_path(:tag=>tag.tag_name) %>
+                	<%end%>
+               </dt>
+            </dl>
+            <%end%>
+    <%end%>
+</div>
+
+<div class="center_bottom pagination">
+  <%= will_paginate @tags, :container => false  if @tags.size > 0 %>
+</div>

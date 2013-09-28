@@ -1,0 +1,62 @@
+<div>
+  <h4>所有品牌页</h4>
+
+</div>
+<div id="search">
+  <%=form_for :search,:url=>admin_brand_pages_path,:html=>{:class=>"form-search"},:method=>:get do |f|%>
+  <%=hidden_field_tag :scope,params[:scope]%>
+  <%=f.text_field :key,:placeholder=>"品牌名",:value=>params[:search]&&params[:search][:key]%>
+  <%=f.submit "搜索",:class=>"btn"%>
+  <%end%>
+</div>
+
+<div>
+  <span>默认只显示有效品牌,</span>
+  <%=link_to "显示全部品牌","?scope=unscoped" if params[:scope].blank?%>
+  <%=link_to "只显示有效品牌","?" if params[:scope]  == 'unscoped'%>
+</div>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>品牌</th>
+    <th>品牌状态</th>
+    <th>品牌推荐</th>
+    <th>有无品牌页</th>
+    <th>是否启用</th>
+    <th>排序(双击修改,>=0整数)</th>
+    <th></th>
+  </tr>
+
+<% @brands.each do |brand| %>
+  <tr class="<%='success' if brand.reco%> <%='error' if brand.disabled=='true'%>">
+    <td><%= link_to brand.brand_name,brand_path(brand),:target=>"_blank" if brand %></td>
+    <td><%= brand_statuses[brand.status.to_sym]%></td>
+     <td><%= brand.reco ? "是" : "否"%></td>
+    <td><%= brand.brand_page.present? ? "有" : "无"%></td>
+    <td><%= brand.disabled == 'false' ? "是" : "否"%></td>
+    <td class="ordernum" data-url="<%=order_admin_brand_page_path(brand)%>">
+        <%=brand.ordernum%>
+    </td>
+    <td>
+      <%=link_to "查看",brand_path(brand),:target=>"_blank"%>
+       &nbsp;&nbsp;
+      <%= link_to toggle_admin_brand_page_path(brand) do%>
+        <%=brand.disabled == 'false' ? "关闭" : "开启"%>
+      <%end%>
+      &nbsp;&nbsp;
+
+      <%if brand.disabled == 'false'%>
+      <%=link_to "推荐", reco_admin_brand_page_path(brand),:method=>:put%>
+      &nbsp;&nbsp;
+      <%= link_to '编辑', edit_admin_brand_page_path(brand) %>
+      &nbsp;&nbsp;
+      <%= link_to '删除', admin_brand_page_path(brand.brand_page), method: :delete, data: { confirm: '确定删除?' }  if brand.brand_page.present?%></td>
+
+      <%end%>
+  </tr>
+<% end %>
+</table>
+
+<div class="pagination">
+  <%= will_paginate @brands, :container => false %>
+</div>

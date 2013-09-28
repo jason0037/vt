@@ -1,0 +1,76 @@
+<% if action_name == "show" %>
+<div id="footer" class="black_bg" data-<%=2850%>="bottom: -280px;" data-<%=3130%>="bottom: 0px;">
+<% else %>
+<div id="footer" class="black_bg" data-<%=((@goods&&@goods.size) || 1) * 1000 + 400 %>="bottom: -280px;" data-<%=((@goods&&@goods.size) || 1) * 1000 + 280 + 400 %>="bottom: 0px;">
+<% end %>
+  <div class="why_choose_us"><img src="/assets/store/why_choose_us.png"></div>
+  <div class="wrapper box-shadow">
+    <!-- <div class="foot_logo"><img src="/assets/store/logo_white.png"></div> -->
+    <div class="foot_hotline"><img src="/assets/store/hotline.png"></div>
+    <div class="subscribe">
+      <form action="http://imodec.createsend.com/t/t/s/zjiyu/" method="post" id="subForm" style="height: 40px;">
+        <input type="text" name="cm-zjiyu-zjiyu" id="zjiyu-zjiyu" placeholder="请输入邮箱订阅摩登客EDM" class="rsstxt" value="请输入邮箱订阅摩登客EDM"/>
+        <div class="rssbutton"><input type="submit" value="订阅"></div>
+      </form>
+    </div>
+    <div class="foot_qrcode"><p>摩登客微信二维码</p><img src="/assets/store/weixin.jpg" width="77" height="77"></div>
+    
+    <div class="about">
+      <ul>
+        <h3>帐户管理</h3>
+        <li><a href="http://www.i-modec.com/article-CONTENT_NULL-136.html">帐户管理</a></li>
+        <li><a href="http://www.i-modec.com/article-CONTENT_NULL-137.html">会员权益</a></li>
+        <li><a href="http://www.i-modec.com/article-CONTENT_NULL-51.html">FAQ常见问题</a></li>
+        <!-- <li><a href="http://www.i-modec.com/article-cominfo_contact-170.html">联系我们</a></li> -->
+      </ul>
+      <!--
+      <ul>
+        <h3>更多内容</h3>
+        <li><a href="/pages/faq">关于我们</a></li>
+        <li><a href="/pages/faq">摩登杂志</a></li>
+        <li><a href="/pages/faq">摩登资讯</a></li>
+      </ul>
+      -->
+      <ul>
+        <h3>购物帮助</h3>
+        <li><a href="http://www.i-modec.com/article-CONTENT_NULL-47.html">购物流程</a></li>
+        <li><a href="http://www.i-modec.com/article-CONTENT_NULL-48.html">购物须知</a></li>
+      </ul>
+      <ul>
+        <h3>支付/配送方式</h3>
+        <li><a href="http://www.i-modec.com/article-CONTENT_NULL-40.html">商品配送</a></li>
+        <li><a href="http://www.i-modec.com/article-CONTENT_NULL-41.html">付款方式</a></li>
+      </ul>
+      <ul>
+        <h3>售后服务</h3>
+        <li><a href="http://www.i-modec.com/article-CONTENT_NULL-46.html">退换货服务</a></li>
+      </ul>
+    </div>
+    <div class="partners">
+      <ul>
+        <li><span>友情链接：</span></li>
+        <li><a href="http://www.rayli.com.cn/" target="_blank">瑞丽网</a></li>
+        <li><a href="http://www.yoka.com" target="_blank">YOKA时尚网</a></li>
+        <li><a href="http://www.metroer.com" target="_blank">都市客</a></li>
+        <li><a href="http://www.smartshe.com" target="_blank">她时代</a></li>
+        <li><a href="http://www.linkchic.com" target="_blank">LC风格网</a></li>
+        <li><a href="http://www.fashiontrenddigest.com" target="_blank">观潮时尚网</a></li>
+        <li><a href="http://www.bomoda.com" target="_blank">BOMODA摩登系</a></li>
+        <li><a href="http://fashion.pps.tv/" target="_blank">PPS时尚频道</a></li>
+        <li><a href="http://www.cnarts.net" target="_blank">中国艺术品</a></li>
+        <li><a href="http://www.weartrends.com" target="_blank">华纺资讯</a></li>
+        <li><a href="http://www.fashiondes.com" target="_blank">FASHIONDES时尚要闻</a></li>
+      </ul>
+    </div>
+    <div class="copyright">
+      <span class="legal_info">沪ICP备11043780号-1  Copyright &copy; 2012 i-modec.com 版权所有 上海静友信息科技有限公司 All rights reserved</span>
+      <span class="legal_links">
+        <a href="http://www.i-modec.com/article-cominfo_about-180.html">关于i-modec </a>&nbsp;&nbsp;|&nbsp;
+        <!-- <a href="#">使用条款</a>&nbsp;&nbsp;|&nbsp; -->
+        <a href="http://www.i-modec.com/article-cominfo_contact-170.html">联系我们</a>&nbsp;&nbsp;|&nbsp;
+        <a href="http://www.i-modec.com/article-cominfo_jianduzhongxin-171.html">监督中心</a>&nbsp;&nbsp;|&nbsp;
+        <a href="http://www.i-modec.com/sitemaps-catalog.xml">网站地图</a>
+      </span>
+    </div>
+  </div>
+</div>

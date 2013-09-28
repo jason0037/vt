@@ -1,0 +1,55 @@
+<%= form_for @tag_ext,:url=>admin_tag_ext_path,:method=>:put,:html => {:class => "form-horizontal"} do |f| %>
+  <%=f.hidden_field :tag_id%>
+  <%=f.hidden_field :tag_name%>
+  <fieldset>
+
+    <div class="control-group">
+      <%= f.label :tag_name, "名称", :class => "control-label" %>
+      <div class="controls">
+        <%= @tag_ext.tag_name %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :issue_no, "期号", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :issue_no%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :title, "标题语", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :title%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :deadline, "截止时间", :class => "control-label " %>
+      <div class="controls">
+        <%= f.text_field :deadline,:value=>(@tag_ext.deadline.strftime("%Y-%m-%d %H:%M:%S") if @tag_ext.deadline.present?),:class=>"datetime"%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :cover_url, "封面链接", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :cover_url%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :disabled, "是否禁用", :class => "control-label" %>
+      <div class="controls">
+        <%= f.check_box :disabled%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '保存', :class => "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= link_to '返回', admin_tag_exts_path %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

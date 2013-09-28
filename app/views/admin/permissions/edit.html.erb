@@ -1,0 +1,56 @@
+<div class="page-header">
+    <h4>管理员 :
+        <%=@manager.account.login_name%>
+        (<%=@manager.super? ? "超级管理员" : @manager.name%>)
+    </h4>
+</div>
+<%if @manager.super?%>
+    <div>哇，您是超级管理员哦,拥有所有权限!!!</div>
+<%end%>
+<%if flash[:notice]%>
+<div class="alert"><%=flash[:notice]%></div>
+<%end%>
+
+<%=form_for :permission,:url=>admin_permission_path(@manager.user_id),:method=>:put do |f|%>
+<div id="resources_tree">
+    <div class="title">权限分配</div>
+    <br>
+    
+    <% %w(goods order user article system).each do |pcat|%>
+        <ul>
+        <%Imodec::Resource.send("#{pcat}_resources").each do |controller|%>
+            <li class="controller">
+                    <%if @manager.has_right_of(controller.name)%>
+                        <%=check_box_tag "#{controller.name}","",:checked%>
+                    <%else%>
+                        <%=check_box_tag "#{controller.name}"%>
+                    <%end%>
+                    <label for="<%=controller.name%>">
+                        <strong><%=controller.description%></strong>
+                    </label>
+                    
+                    <ul>
+                        <%controller.actions.each do |action|%>
+                        <li>
+                                <%=f.check_box "#{controller.name}[#{action.name}]",:checked=>@manager.has_right_of(controller.name,action.name)%>
+                                <label for='permission_<%="#{controller.name}[#{action.name}]"%>'>
+                                    <%=action.description%>
+                                </label>
+                        </li>
+                        <%end%>
+                    </ul>
+            </li>
+        <%end%>
+        </ul>
+        <hr>
+    <%end%>
+    
+</div>
+
+
+<div class="form-actions">
+    <%=f.submit "保存",:class=>"btn btn-primary"%>
+    <%=link_to  "返回",admin_permissions_path,:class=>"btn"%>
+</div>
+    
+<%end unless @manager.super?%>

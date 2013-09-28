@@ -1,0 +1,58 @@
+<div id="header">
+  <div class="container">
+    <div id="imodec_logo">
+      <a href="http://www.i-modec.com"><img alt="摩登客" src="/assets/store/logo_big.png"></a>
+    </div>
+    <div id="imodec_slogan">
+      <img alt="摩登生活，个性衣橱" src="/assets/store/slogan.png">
+    </div>
+    <div id="account">
+      <div id="search_wrapper">
+        <div id="search_bar">
+          <form accept-charset="UTF-8" action="/search" method="get">
+            <input id="search_input" name="q" placeholder="请输入搜索关键字" value="<%=Ecstore::Config.search_value%>">
+            <button id="search_btn" type="submit">搜索</button>
+          </form>
+        </div>
+        <a href="http://weibo.com/imodec" target="_blank" id="weibo"></a>
+        <a href="http://www.i-modec.com/vip" target="_blank" id="vipcard"></a>
+      </div>
+      <ul id="login_tools" class="clearfix">
+        <li><div id="tel">021-60919835</div></li>
+
+        <li>
+          <div id="support">
+            <script language="javascript" src="http://kf1.learnsaas.com/chat/chatClient/textButton.js?companyID=18880&configID=42678&codeType=custom" ></script>
+          </div>
+        </li>
+
+        <li>
+            <a id="cart_link" href="#" class="cart-link <%='login' unless signed_in?%>">
+              购物袋
+              <span class="cart-number">(<%=@cart_total_quantity%>)</span></a>
+        </li>
+
+        <%if @user%>
+        <li>
+          <div style="display: block;" id="member_bar_253" class="bar">
+            <span class="login_name" id="uname_253">
+              <%=truncate2(@user.account.login_name,:length=>5)%>
+            </span>
+            <a class="loggedin" href="http://www.i-modec.com/member.html">我的摩登客</a>
+            <a class="loggedin" href="/logout">退出</a>
+          </div>
+        </li>
+        
+        <%else%>
+        <li>
+            <a class="loggedin login girl_head" href="javascript:void(0);">登录</a>
+            <a class="loggedin login" href="javascript:void(0);" id="reg">注册</a>
+        </li>
+        <%end%>
+        
+        
+        
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div id="filters">
+	<%=form_for :s, :url=>search_admin_goods_path,:method=>:get,:remote=>true,:html=>{:class=>"form-search",:id=>"simple_search"} do |f|%>
+		<%=hidden_field_tag :view,@view%>
+		<%=hidden_field_tag :template,@template%>
+
+		<%=f.text_field :q,:placeholder=>"货号/商品名"%>
+		<%=f.submit "搜索",:class=>"btn btn-success",:name=>nil%> 
+		<%=link_to "清除",admin_goods_path,:class=>"btn"%> 
+	<%end%>
+
+	<%=link_to "高级搜索>>","#",:id=>"toggle_search"%>
+
+	<%=form_for :ad, :url=>search_admin_goods_path,:method=>:get,:remote=>true,:html=>{:class=>"form-search hide",:id=>"advanced_search"} do |f|%>
+		<%=hidden_field_tag :view,@view%>
+		<%=hidden_field_tag :template,@template%>
+		
+		<div class="filter-item">
+			<span>品牌: </span>
+			<%=f.select :brand, Ecstore::Brand.all.collect {|brand| [brand.brand_name, brand.brand_id] },:include_blank=>"请选择" %>
+		</div>
+
+		<div class="filter-item">
+			<span>分类: </span>
+			<%=f.select :cat, Ecstore::Category.all.collect {|cat| [cat.full_path_name, cat.cat_id] },{:include_blank=>"请选择"},{:class=>"span3"} %>
+		</div>
+
+		<div class="filter-item">
+			<span>编号: </span>
+			<%=f.text_field :bn%>
+		</div>
+
+		<div class="filter-item">
+			<span>价格: </span>
+			<%=f.select :price_op,{"大于"=>"gt","等于"=>"eq","小于"=>"lt","大于等于"=>"ge","小于等于"=>"le" },{},:class=>"input-small" %>
+			<%=f.text_field :price,:class=>"input-small"%>
+		</div>
+
+		<div class="filter-item">
+			<span>上架: </span>
+			<label for="ad_marketable_true"><%=f.radio_button :marketable,'true',:checked=>params[:ad]&&params[:ad][:marketable] == 'true'%>是</label>
+			&nbsp;&nbsp;
+			<label for="ad_marketable_false"><%=f.radio_button :marketable,'false'%>否</label>
+		</div>
+
+		<div class="filter-actions">
+			<%=f.submit "搜索",:name=>nil,:class=>"btn btn-success"%> 
+			<%=link_to "清除","#",:class=>"btn",:id=>"reset_form"%> 
+		</div>
+	<%end%>
+</div>

@@ -1,0 +1,101 @@
+--- 
+1-member_id-会员ID: 
+  - 会员ID
+  - member_id
+  - "true"
+10-account_name-用户名: 
+  - 用户名
+  - account.name
+  - "true"
+11-name-姓名: 
+  - 姓名
+  - name
+  - "true"
+12-member_lv_id-会员等级: 
+  - 会员等级
+  - member_lv.name
+  - "true"
+13-email-邮箱: 
+  - 邮箱
+  - email
+  - "true"
+14-tag-标签: 
+  - 标签
+  - tag.getTagName
+  - "true"
+15-mobile-手机: 
+  - 手机
+  - mobile
+  - "true"
+16-job-从事职业: 
+  - 从事职业
+  - user.job
+  - "true"
+17-income-家庭月收入: 
+  - 家庭月收入
+  - user.income
+  - "true"
+18-education-教育程度: 
+  - 教育程度
+  - user.edu
+  - "true"
+19-gift-注册有礼: 
+  - 注册有礼
+  - user.gift
+  - "true"
+20-weight-体重: 
+  - 体重
+  - user.weight
+  - "true"
+21-colors-喜欢的颜色: 
+  - 喜欢的颜色
+  - user.colors
+  - "true"
+22-price-常买衣服的价位: 
+  - 常买衣服的价位
+  - user.price
+  - "true"
+23-places-常出席的场合: 
+  - 常出席的场合
+  - user.places
+  - "true"
+24-height-身高: 
+  - 身高
+  - user.height
+  - "true"
+25-shoesize-鞋码: 
+  - 鞋码
+  - user.shoesize
+  - "true"
+26-interests-兴趣爱好: 
+  - 兴趣爱好
+  - user.interests
+  - "true"
+27-voc-所属行业: 
+  - 所属行业
+  - user.voc
+  - "true"
+28-email_validate-邮箱验证: 
+  - 邮箱验证
+  - email_validate_name
+  - "true"
+29-sms_validate-手机验证: 
+  - 手机验证
+  - sms_validate_name
+  - "true"
+5-order_num-订单数: 
+  - 订单数
+  - order_num
+  - "true"
+6-regtime-注册时间: 
+  - 注册时间
+  - reg_time
+  - "true"
+7-point-积分: 
+  - 积分
+  - point
+  - "true"
+9-sex-性别: 
+  - 性别
+  - sex_name
+  - "true"

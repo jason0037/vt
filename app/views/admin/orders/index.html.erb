@@ -1,0 +1,77 @@
+<%=render "filter"%>
+
+<p>
+	<div id="batch_inputs" class="hide"></div>
+
+	<div id="batch_actions">
+		<%=link_to "导出","#",:class=>"btn batch",:data=>{:act=>:export}%>
+		<div class="btn-group">
+		  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+		    标签
+		    <span class="caret"></span>
+		  </a>
+		  <ul class="dropdown-menu">
+		    <li><a href="#tegs"  id="pop_tegs">为选中项打标签</a></li>
+		    <li class="divider"></li>
+		    <li><a href="/admin/tags?tag_type=orders" target="_blank">标签设置</a></li>
+		  </ul>
+		</div>
+	</div>
+</p>
+
+<div id="selection">已选择了<b id="count">0</b>条记录! 
+	&nbsp;
+	<%=link_to "选择全部","#",:id=>"select_all"%>
+	&nbsp;
+	<%=link_to "取消选择","#",:id=>"cancel_all"%> 
+</div>
+
+<table class="table table-bordered table-striped table-hover" id="orders" order_ids="<%=@order_ids.join(",")%>" count="<%=@order_ids.count%>" data-url="<%=request.fullpath%>">
+	<thead>
+		<tr>
+
+			<th>
+				<%= check_box_tag nil, nil ,false,:id=>"select_page"%>
+			</th>
+
+			<th>订单号</th>
+			<th>查看</th>
+			<th class="dropdown">
+				<%=link_to "#",:class=>"dropdown-toggle",:data=>{:toggle=>"dropdown"} do%>
+					订单操作 <b class="caret"></b>
+				<%end%>
+				<ul class="dropdown-menu">
+					<li>
+						<%=link_to "全部",admin_orders_path%>
+						<%=link_to "已支付待发货",admin_orders_path(:pay_status=>1,:ship_status=>0)%>
+						<%=link_to "已发货",admin_orders_path(:pay_status=>1,:ship_status=>1)%>
+						<%=link_to "已完成",admin_orders_path(:status=>"finish")%>
+						<%=link_to "已作废",admin_orders_path(:status=>"dead")%>
+					</li>
+				</ul>
+			</th>
+			<th>打印</th>
+			<th>标签</th>
+			<th>会员</th>
+			<th>下单时间</th>
+			<th>支付方式</th>
+			<th>订单状态</th>
+			<th>付款状态</th>
+			<th>发货状态</th>
+			<th>订单金额</th>
+			<th>收货人</th>
+			<th>收货地址</th>
+			<th>收货人手机</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%=render :partial=>"order_tr",:collection=>@orders,:as=>:order%>
+	</tbody>
+</table>
+<div class="pagination">
+	<%=will_paginate @orders,:container=>false%>
+</div>
+
+<%=render "admin/shared/modal_tegs", :tegs=> Ecstore::Teg.order_tegs %>
+
+<%= javascript_include_tag "admin/indicate_order" %>

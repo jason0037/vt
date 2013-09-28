@@ -1,0 +1,41 @@
+<%= form_for(@card) do |f| %>
+
+  <div class="field">
+    <%= f.label :no %><br />
+    <%= f.text_field :no %>
+  </div>
+
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.number_field :value %>
+  </div>
+
+  <div class="field">
+    <%= f.label :card_type %><br />
+    <%= f.text_field :card_type %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :sale_status %><br />
+    <%= f.text_field :sale_status %>
+  </div>
+  <div class="field">
+    <%= f.label :use_status %><br />
+    <%= f.text_field :use_status %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :buyer_tel %><br />
+    <%= f.text_field :buyer_tel %>
+  </div>
+  <div class="field">
+    <%= f.label :user_tel %><br />
+    <%= f.text_field :user_tel %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

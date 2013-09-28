@@ -1,0 +1,30 @@
+<%= form_for :goods_cat,:url => admin_goods_cats_path, :html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :addr, "分类名称", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :cat_name%>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :addr, "上级分类", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :cat,options_from_collection_for_select(Ecstore::Category.all,:cat_id,:full_path_name,params[:cat_id].to_i),{:include_blank=>"请选择"},{:class=>"span3"} %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :addr, "商品类型", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :type, options_from_collection_for_select(Ecstore::GoodType.all,:type_id,:name,Ecstore::GoodCat.find(params[:cat_id]).type_id),{:include_blank=>"请选择"},{:class=>"span3"} %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '返回', admin_goods_cats_path %>
+      </div>
+    </div>
+
+  </fieldset>
+<% end %>

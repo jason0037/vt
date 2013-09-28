@@ -1,0 +1,57 @@
+<div class="well">
+	<%=link_to "更新分类数量",refresh_admin_images_path,:class=>"btn btn-success",:remote=>true,:method=>:post%>
+	<span class="help-block">注 : 更新表'sdb_b2c_goods_cat'的googs_count字段</span>
+</div>
+
+<div class="well">
+	<h4>说明:</h4>
+	<p>1.添加水印的图片为商品详情页面的中图</p>
+	<p>2.查询条件为商品上架时间范围</p>
+	<p>3.先选择水印图片再点击添加水印按钮</p>
+	<p>4."恢复",将图片回复到原始图片</p>
+
+<%=form_for :mark,:url=>mark_admin_images_path,:html=>{:class=>"form-search"},:remote=>true do |f|%>
+<span>上架开始时间</span>
+<%=f.text_field :start,:value=>@start_time,:placeholder=>"开始时间",:class=>"datetime"%>
+<span>上架结束时间</span>
+<%=f.text_field :end,:value=>@end_time,:placeholder=>"结束时间",:class=>"datetime"%>
+<%=link_to "搜索","#",:class=>"btn",:id=>"search"%>
+
+
+<div class="mark-section">
+<span>选择水印</span>
+<%=f.select :water,@water_options%>
+<%=image_tag "/watermarks/watermark_gray_small.png",:id=>"water"%>
+<%=f.submit "批量添加水印",:class=>"btn btn-primary",:id=>"submit_mark"%>
+<%=link_to "恢复","#",:class=>"btn btn-danger",:id=>"rollback"%>
+</div>
+
+<%end%>
+
+
+
+<table class="table table-bordered">
+	<thead>
+	<tr>
+		<th>商品编号</th>
+		<th>商品名称</th>
+		<th>商品中图</th>
+		<th>上架时间</th>
+	</tr>
+	</thead>
+	<%@goods.each do |good|%>
+	<tr>
+		<td><%=good.bn%></td>
+		<td><%=good.name%></td>
+		<td>
+			<%good.images.each do |image|%>
+				<div><%=link_to image.m_url,"http://www.i-modec.com/#{image.m_url}",:target=>"_blank"%></div>
+			<%end%>
+		</td>
+		<td>
+			<%=Time.at(good.uptime).to_s(:db)%>
+		</td>
+	</tr>
+	<%end if @goods%>
+</table>
+</div>

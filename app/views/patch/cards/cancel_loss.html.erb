@@ -1,0 +1,60 @@
+<strong>申请恢复</strong>
+<%=form_for :card,:url=>confirm_cancel_card_path(@card,:operator=>params[:operator]) do |f|%>
+<div class="field">
+	<label class="field-label">VIP卡号 : </label>
+	<span class="field-plain"><%=@card.no%></span>
+</div>
+
+<div class="field">
+	<label class="field-label">面值 : </label>
+	<span class="field-plain">&yen;<%=@card.value%></span>
+</div>
+
+<div class="field">
+	<label class="field-label">当前状态 : </label>
+	<span class="field-plain"><%=@card.status%></span>
+</div>
+
+<%if params[:operator] == "buyer"%>
+	<div class="field">
+		<label class="field-label">购卡人电话 : </label>
+		<span class="field-plain"><%=mask(@card.member_card.buyer_tel)%></span>
+		<span class="sms">
+			<%=hidden_field_tag :tel,@card.member_card.buyer_tel,:class=>"sms_tel"%>
+			<%=link_to "获取验证码","javascript:void(0)",:"data-url"=>send_sms_code_card_path,:class=>"btn",:id=>"send_sms_code"%>
+			<span class="tip sms_tip"></span>
+		</span>
+	</div>
+<%end%>
+
+<%if params[:operator] == "user"%>
+	<div class="field">
+		<label class="field-label">用卡人电话 : </label>
+		<span class="field-plain"><%=mask(@card.member_card.user_tel)%></span>
+		<span class="sms">
+			<%=hidden_field_tag :tel,@card.member_card.user_tel,:class=>"sms_tel"%>
+			<%=link_to "获取验证码","javascript:void(0)",:"data-url"=>send_sms_code_card_path,:class=>"btn",:id=>"send_sms_code"%>
+			<span class="tip sms_tip"></span>
+		</span>
+	</div>
+<%end%>
+
+<div class="field">
+	<label class="field-label">输入验证码 : </label>
+	<%=text_field_tag :sms_code,"",:class=>"field-input span2"%>
+	<%if flash[:error]%>
+	<span class="help-block"><%=flash[:error]%></span>
+	<%end%>
+	<div class="green-tip">
+		提示：验证码有效期为30分钟，发送后请注意查收。
+	</div>
+</div>
+
+
+<div class="actions">
+	<%=f.submit "确认恢复",:class=>"btn"%>
+</div>
+
+<%end%>
+<p> 如需帮助请致电客服 : 021-60919835 </p>
+

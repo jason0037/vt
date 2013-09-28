@@ -1,0 +1,49 @@
+.tree-menu{
+	font-size:13px;
+	overflow:hidden;
+	a{
+		text-decoration: none;
+		color:#333;
+	}
+	.title-level1{
+		margin:2px 0px;
+		
+		a{
+			text-decoration: none;
+			background: #000 url('list-title-bg.jpg') no-repeat center left;
+			display: block;
+			color:#fff;
+			text-indent: 10px;
+		}
+	}
+	.items-level1{
+		margin-left: 15px;
+		list-style: none;
+		.item-level1{
+			list-style: none;
+			padding: 2px 0px;
+		}
+	}
+
+	.title-level2{
+		padding: 2px 0px;
+	}
+	.items-level2{
+		margin-left: 10px;
+		list-style: none;
+		.item-level2{
+			padding: 2px 0px;
+			list-style: none;
+			&:before{
+				content:  " - ";
+			}
+		}
+	}
+
+	.folded{
+		display: none;
+	}
+	.expand{
+		display: block;
+	}
+}

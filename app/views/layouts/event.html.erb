@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>新品速递 | 体验个性摩登生活方式,尊享服装配饰设计品牌精品</title>
+  <%= stylesheet_link_tag    "store/base", :media => "all" %>
+  <%= stylesheet_link_tag    "store/screen", :media => "all" %>
+  <%= stylesheet_link_tag    "memberships/vip", :media => "all" %>
+  <%= stylesheet_link_tag    "events"%>
+  <%= javascript_include_tag "events" %>
+  <%=render "shared/baidu"%>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= render "memberships/shared/header" %>
+  <%= yield %>
+    <%=render "shared/iframe_login" unless signed_in?%>
+  <%= render "store/shared/footer" %>
+  <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+
+  <%= javascript_include_tag "google-analytics" %>
+</body>
+</html>

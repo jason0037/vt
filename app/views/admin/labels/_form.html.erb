@@ -1,0 +1,4 @@
+ <%=form_for :label,:url=>admin_labels_path,:html=>{:class=>"form-search"} do |f|%>
+<%=f.text_field :name,:placeholder=>"标签"%>
+<%=f.submit "添加",:class=>"btn"%>
+<%end%>

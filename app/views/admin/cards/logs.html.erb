@@ -1,0 +1,16 @@
+<table class="table table-bordered">
+  <tr>
+    <th>序号</th>
+    <th>操作时间</th>
+    <th>操作人</th>
+    <th>操作记录</th>
+  </tr>
+ <%@logs.each_with_index do |log,index|%>
+    <tr>
+        <td><%=index + 1%></td>
+        <td><%=log.created_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+        <td><%=log.account.login_name%></td>
+        <td><%=log.message%></td>
+    </tr>
+ <%end%>
+</table>

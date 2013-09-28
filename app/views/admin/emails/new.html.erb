@@ -1,0 +1,18 @@
+<%= form_for :email,:url => admin_emails_path, :html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+    
+    <div class="control-group">
+      <%= f.label :addr, "邮箱地址", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :addr, :placeholder => "example@demo.com" %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '返回', admin_emails_path %>
+      </div>
+    </div>
+
+  </fieldset>
+<% end %>

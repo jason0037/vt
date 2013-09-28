@@ -1,0 +1,68 @@
+<p class="alert">
+	旧系统的优惠券管理,系统迁移之前可以使用,系统迁移之后使用 <%=link_to "会员优惠券管理",admin_user_coupons_path%>	!!
+</p>
+
+<%=form_for :search,:url=>admin_coupons_path,:html=>{:class=>"form-search"},:method=>:get do |f|%>
+<%=f.text_field :key,:placeholder=>"用户名",:value=>params[:search]&&params[:search][:key]%>
+<%=f.submit "搜索",:class=>"btn"%>
+<span class="tip">
+	提示:
+	<span class="label">已使用</span>
+	<span class="label label-success">未使用</span>
+</span>
+<%end%>
+
+<table class="table table-bordered">
+	<thead>
+	<tr>
+		<th>用户名</th>
+		<th>注册时间</th>
+		<th>EMAIL</th>
+		<th>优惠券</th>
+		<th>操作</th>
+	</tr>
+	</thead>
+	<%@users.each do |user|%>
+	<%if user%>
+	<tr>
+		<td><%=user.account&&user.account.login_name%></td>
+		<td><%=Time.at(user.regtime).strftime("%Y-%m-%d %H:%M:%S")%></td>
+		<td><%=user.email%></td>
+		<td id="coupon_<%=user.member_id%>">
+			<%user.member_coupons.where(:memc_enabled=>'true').each do |mc|%>
+				<%if mc&&mc.coupon%>
+				<div>
+					<span class="label <%="label-success" unless mc.used?%>" id="mc_<%=mc.memc_code%>" title='<%="#{mc.memc_code}(#{mc.coupon.cpns_name})"%>'>
+						<%=mc.memc_code%>
+						(<%=mc.coupon.cpns_name.truncate(10)%>)
+						<%if current_admin.has_right_of(controller_name,"destroy")%>
+						<%=link_to "x",admin_coupon_path(mc.coupon.cpns_id,:member_id=>user.member_id,:memc_code=>mc.memc_code),:title=>"删除",:class=>"cancel",:confirm=>"确定删除优惠券#{mc.memc_code}？",:remote=>true,:method=>:delete%>
+						<%end%>
+					</span>
+					
+				</div>
+				<%end%>
+			<%end%>
+		</td>
+		
+		<td>
+			<%if current_admin.has_right_of(controller_name,"create")%>
+			<div class="btn-group">
+				<a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					赠送优惠券<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<%@coupons.each do |coupon|%>
+					<li><%=link_to coupon.cpns_name.truncate(10),admin_coupons_path(:member_id=>user.member_id,:cpns_id=>coupon.cpns_id),:title=>coupon.cpns_name,:method=>:post,:remote=>true%></li>
+					<%end%>
+				</ul>
+			</div>
+			<%end%>
+		</td>
+	</tr>
+	<%end%>
+	<%end if @users%>
+</table>
+<div class="pagination">
+  <%= will_paginate @users, :container => false %>
+</div>

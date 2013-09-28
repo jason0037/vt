@@ -1,0 +1,129 @@
+
+/**
+ * Grid container
+ */
+#tiles {
+list-style-type: none;
+position: relative; /** Needed to ensure items are laid out relative to this container **/
+margin: 0;
+}
+
+/**
+ * Grid items
+ */
+#tiles li {
+width: 143px;
+background-color: #fff;
+border: 1px solid #bbb;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border-radius: 5px;
+padding-bottom: 4px;
+display: none; /** Hide items initially to avoid a flicker effect **/
+cursor: pointer;
+overflow: hidden;
+/*box-shadow: 0 1px 0px rgba(0,0,0,.05);*/
+box-shadow: 0 1px 1px rgba(0,0,0,.07);
+/*padding: 4px;*/
+}
+#tiles li a {
+text-decoration: none;
+display: block;
+position: relative;
+overflow: hidden;
+}
+#tiles li a::before
+{
+display:block;
+content:'';
+position:absolute;
+width:100%;
+height:100%;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+border-radius: 6px;
+-moz-box-shadow:inset 0 0 5px rgba(255,255,255,0.8);
+-webkit-box-shadow:inset 0 0 5px rgba(255,255,255,0.8);
+box-shadow:inset 0 0 5px rgba(255,255,255,0.8);
+}
+#tiles li a:hover {
+text-decoration: none;
+}
+#tiles li img {
+background-color: #d7d6de;
+display: block;
+-moz-border-top-left-radius: 6px;
+-webkit-border-top-left-radius: 6px;
+border-top-left-radius: 6px;
+-moz-border-top-right-radius: 6px;
+-webkit-border-top-right-radius: 6px;
+border-top-right-radius: 6px;
+/*box-shadow: inset 0 0 5px rgba(255,255,255,1);*/
+}
+#tiles li div.meta {
+background-color: #fff;
+}
+
+/**
+ * Grid item text
+ */
+ #tiles li h3 {
+color: #222;
+font-size: 12px;
+font-weight: bold;
+padding: 7px 7px 2px 7px;
+margin: 0;
+}
+#tiles li p {
+color: #555;
+font-size: 11px;
+padding: 0 0 3px 7px;
+margin: 0;
+}
+#tiles li p span{
+color: #333;
+padding-left: 2px;
+font-family: Georgia;
+}
+
+/**
+ * Some extra styles to randomize heights of grid items.
+ */
+#tiles ali:nth-child(3n) {
+height: 175px;
+}
+
+#tiles ali:nth-child(4n-3) {
+padding-bottom: 30px;
+}
+
+#tiles ali:nth-child(5n) {
+height: 250px;
+}
+
+/** General page styling **/
+  
+html,
+body {
+background-color: #ccc;
+}
+
+#main {
+padding: 20px 0 30px 0;
+}
+
+header h1 {
+text-align: center;
+font-size: 24px;
+/*font-weight: normal;*/
+margin: 20px 0 3px 0;
+text-shadow: 0 1px 0 rgba(255,255,255,.6);
+}
+
+header p {
+text-align: center;
+font-size: 16px;
+color: #555;
+margin: 0;
+text-shadow: 0 1px 0 rgba(255,255,255,.6);
+}

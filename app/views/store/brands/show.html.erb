@@ -1,0 +1,16 @@
+<%=render "shared/metable", :resource=>@brand%>
+
+<%=content_for :head do%>
+<%= stylesheet_link_tag "store/brands" %>
+<%= javascript_include_tag "store/brands" %>
+<%end%>
+
+<%=render "store/shared/brand_position"%>
+
+<%if @brand_page&&@brand_page.new_body.present?%>
+<%=render "new_body"%>
+<%else%>
+<%=render "old_brand_content"%>
+<%end%>
+
+

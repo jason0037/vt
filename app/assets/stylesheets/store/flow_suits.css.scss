@@ -1,0 +1,99 @@
+$page_width: 1040px;
+
+#header,
+#topmenu,
+{
+	.container{
+		width: $page_width;
+	}
+	&.navbar .nav > li.home {
+		width: 136px;
+	}
+	&.navbar .nav > li.newin {
+		width: 144px;
+	}
+	&.navbar .nav > li.brands {
+		width: 145px;
+	}
+	&.navbar .nav > li.apparel {
+		width: 144px;
+	}
+	&.navbar .nav > li.bags {
+		width: 141px;
+	}
+	&.navbar .nav > li.news {
+		width: 144px;
+	}
+}
+#main {
+	width: $page_width;
+	#container{
+		width: $page_width;
+		margin-left:-10px;
+	}
+}
+
+.flow-suits{
+	list-style: none;
+	margin-top: 10px;
+	margin-left: -10px;
+	li{
+		list-style: none;
+		float: left;
+		margin-left: 10px;
+		padding-bottom: 10px;
+	}
+
+	li.item{
+		text-align: center;
+		img{
+			width: 250px;
+			max-width: none;
+		}
+		.name{
+			padding-top: 3px;
+		}
+		.price{
+			padding-top: 3px;
+			color:#D30000;
+		}
+	}
+}
+
+// .isotope,
+// .isotope .isotope-item {
+//   /* change duration value to whatever you like */
+//   -webkit-transition-duration: 0.8s;
+//      -moz-transition-duration: 0.8s;
+//       -ms-transition-duration: 0.8s;
+//        -o-transition-duration: 0.8s;
+//           transition-duration: 0.8s;
+// }
+
+// .isotope {
+//   -webkit-transition-property: height, width;
+//      -moz-transition-property: height, width;
+//       -ms-transition-property: height, width;
+//        -o-transition-property: height, width;
+//           transition-property: height, width;
+// }
+
+// .isotope .isotope-item {
+//   -webkit-transition-property: -webkit-transform, opacity;
+//      -moz-transition-property:    -moz-transform, opacity;
+//       -ms-transition-property:     -ms-transform, opacity;
+//        -o-transition-property:      -o-transform, opacity;
+//           transition-property:         transform, opacity;
+// }
+
+// /**** disabling Isotope CSS3 transitions ****/
+
+// .isotope.no-transition,
+// .isotope.no-transition .isotope-item,
+// .isotope .isotope-item.no-transition {
+//   -webkit-transition-duration: 0s;
+//      -moz-transition-duration: 0s;
+//       -ms-transition-duration: 0s;
+//        -o-transition-duration: 0s;
+//           transition-duration: 0s;
+// }

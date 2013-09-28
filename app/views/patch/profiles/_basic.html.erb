@@ -1,0 +1,67 @@
+<%=form_for @user,:url=>patch_profile_path,:method=>:put,:html=>{:id=>"basic_form"} do |f|%>
+	<%=hidden_field_tag :tab,"basic"%>
+	<div class="field">
+		<label>真实姓名:</label>
+		<%=f.text_field :name%>
+	</div>
+	<div class="field">
+		<label>性别:</label>
+		<span>
+			<%=f.radio_button :sex, 1%>
+			<label for="ecstore_user_sex_1" class="radio-label">男</label>
+			<%=f.radio_button :sex, 0%>
+			<label for="ecstore_user_sex_0" class="radio-label">女</label>
+		</span>
+	</div>
+	<div class="field">
+		<label>出生日期:</label>
+
+		<%=f.select :b_year,year_options,{:include_blank=>"请选择"}%>
+
+		<span>年</span>
+		<%=select_month @user.b_month,:field_name=>:b_month,:use_month_numbers=>true,:prompt=>"请选择"%>
+		<span>月</span>
+		<%=select_day @user.b_day,:field_name=>:b_day,:prompt=>"请选择"%>
+		<span>日</span>
+
+		<span class="tip">您将会在生日当天获得一份生日礼物</span>
+	</div>
+
+	<div class="field">
+		<label><em class="required">*</em> 收信邮箱:</label>
+		<%=f.text_field :email%>
+		<%if @user.email_validate=='true'%>
+		<span class="help-block"></span>
+		<span class="tip">邮箱已认证</span>
+		<%end%>
+	</div>
+
+	<div class="field">
+		<label>收货区域:</label>
+		<%=f.hidden_field :area%>
+
+		<%=f.select :province,Ecstore::Region.provinces.collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择"}%>
+		<%if @user.city%>
+			<%=f.select :city,Ecstore::Region.cities_of(@user.province).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择"},{:onchange=>"selectDistrict(this);"}%>
+		<%end%>
+		<%if @user.district%>
+			<%=f.select :district,Ecstore::Region.districts_of(@user.city).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择"},{:onchange=>"makeAddr(this);"}%>
+		<%end%>
+	</div>
+	<div class="field">
+		<%=f.label :addr,"详细地址:",:class=>"field-label"%>
+		<%=f.text_area :addr,:rows=>2,:cols=>30%>
+	</div>
+	<div class="field">
+		<label>手机:</label>
+		<%=f.text_field :mobile%>
+		<%if @user.sms_validate=='true'%>
+		<span class="tip">手机已认证</span>
+		<%end%>
+
+	</div>
+	<div class="actions">
+		<%=f.submit "保存",:class=>"btn" if action_name=='edit'%>
+		<%=link_to "修改","#",:class=>"btn edit"%>
+	</div>
+<%end%>

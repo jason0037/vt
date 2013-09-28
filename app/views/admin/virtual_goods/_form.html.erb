@@ -1,0 +1,74 @@
+<%= form_for :vgood,:url =>@action_url,:method=>@method,:html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+    
+    <div class="control-group">
+      <%= f.label :cat_id, "商品分类", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :cat_id, Ecstore::Category.all.collect {|cat| [cat.full_path_name, cat.cat_id] },{:include_blank=>"请选择"},{:class=>"span3"} %>
+        <span class="help-inline error"><%=@vgood.errors[:cat_id].join(",")%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :name, "商品名称*", :class => "control-label" %>
+      <div class="controls">
+          <%= f.text_field :name,:class=>"span4"%>
+          <span class="help-inline error"><%=@vgood.errors[:name].join(",")%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :bn, "商品编号", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :bn%>
+        <span class="help-inline error"><%=@vgood.errors[:bn].join(",")%></span>
+      </div>
+    </div>
+
+
+    <div class="control-group">
+      <label class="control-label">品牌</label>
+      <div class="controls">
+         <%=f.select :brand_id, Ecstore::Brand.all.collect {|b| [b.brand_name,b.brand_id]},{:include_blank=>"请选择"}%>
+         <span class="help-inline error"><%=@vgood.errors[:brand_id].join(",")%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :price, "摩登客价*", :class => "control-label" %>
+      <div class="controls">
+        <%= f.number_field :price,:min=>0%>
+        <span class="help-inline error"><%=@vgood.errors[:price].join(",")%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :marketable, "立即上架", :class => "control-label" %>
+      <div class="controls">
+        <label class="radio inline"><%= f.radio_button :marketable,true%>是</label>
+        <label class="radio inline"><%= f.radio_button :marketable,false%>否</label>
+      </div>
+    </div>
+
+
+    <div class="control-group">
+      <%= f.label :desc, "商品描述", :class => "control-label" %>
+      <div class="controls">
+        <%= f.cktext_area :desc, :toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800 %>
+      </div>
+    </div>
+
+
+    <%=render :partial=>"admin/shared/metable", :locals=>{ :form => f, :resource=> @vgood }%>
+
+
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>
+        <%= link_to '返回', admin_virtual_goods_path,:class=>"btn" %>
+      </div>
+    </div>
+
+  </fieldset>
+<% end %>

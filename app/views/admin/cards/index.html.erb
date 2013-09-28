@@ -1,0 +1,151 @@
+
+<div class="scope">
+    <%=link_to "未出售的卡",admin_cards_path(:sold=>0),:class=>"btn"%>
+    <%=link_to "已出售的卡",admin_cards_path(:sold=>1),:class=>"btn"%>
+</div>
+
+<%=form_for :card,:url=>import_admin_cards_path,:html => {:multipart => true} ,:method=>:post do |f|%>
+
+  <div class="btn-group">
+    <%= file_field :card, :file, :id=>'csvfile',:accept => "text/csv" %> 
+    <%= f.submit '导入', :class => "btn btn-primary" %>
+  </div>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <%=link_to "下载csv模板","/pic/card_模板.csv"%>
+<%end%>
+
+<%if flash[:notice] && flash[:notice].is_a?(Hash)%>
+<div id="import_log_list" class="alert">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <ul>
+    <%flash[:notice].each do |row_no,msg|%>
+        <% if row_no.to_i < 2+5 %>
+          <li>行号[<%=row_no%>] : <%=msg%></li>
+        <%else%>
+          <li class="hide">行号[<%=row_no%>] : <%=msg%></li>
+        <%end%>
+    <%end%>
+  </ul>
+  <%=link_to "显示全部","#",:id=>"show_all"  if flash[:notice].size > 5%>
+</div>
+<%end%>
+
+<%=form_for :search,:url=>admin_cards_path,:html=>{:class=>"form-search"},:method=>:get do |f|%>
+<%=f.text_field :key,:placeholder=>"卡号",:value=>params[:search]&&params[:search][:key]%>
+<%=f.submit "搜索",:class=>"btn"%>
+<%end%>
+<%=form_for :card,:url=>export_admin_cards_path,:method=>:post do |f|%>
+<%= f.hidden_field :select_all,:class=>"sel_operation", :value => 0 %>
+<div class="actions">
+    <%=f.submit "导出",:class=>"export_btn btn" %>
+    
+    <div class="btn-group">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+        标签
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <%=link_to "javascript:void(0);",:'data-url'=>admin_labels_path,:class=>"dialog" do %>
+            添加标签
+          <%end%>
+        </li>
+        <li class="divider"></li>
+        <%@labels.each do |label|%>
+        <li>
+          <%=link_to label.name,"javascript:void(0);",:'data-url'=>tag_admin_cards_path(:label=>label.id),:class=>"tagd"%>
+        </li>
+        <%end%>
+      </ul>
+    </div>
+
+
+</div>
+
+<div class='sel_banner' style="display:none">
+  您当前选定了<a class='sel_nums'>0</a>条记录！  <a href='#' class='cancel_all'>取消选定</a> <a href='#' class='sel_all'>选定全部</a>
+  <p class="total_card hidden"><%=@cards_total%></p>
+</div>
+
+<table class="table table-bordered table-hover" id="cards_list">
+  <tr>
+    <th>
+        <%=check_box_tag "select_all","all"%>
+        <label for="select_all" class="inline">全选</label>  
+    </th>
+    <th>卡号</th>
+    <th>面值</th>
+    <th>类型</th>
+    <th>销售状态</th>
+    <th>下单时间</th>
+    <th>使用状态</th>
+    <th>付款状态</th>
+    <th>卡状态</th>
+    <th>购卡者</th>
+    <th>使用者手机</th>
+    <th>标签</th>
+    <!-- <th>支付银行</th>
+    <th>银行卡号</th> -->
+    <th>操作</th>
+  </tr>
+
+<% @cards.each do |card| %>
+  <tr id="card_<%=card.id%>">
+    <td><%=check_box_tag "selected_cards[]", card.id,false,:class =>'operate_ids'%></td>
+    
+    <!-- <td >
+        <%=link_to admin_card_path(card),:class=>"editable",:remote=>"true" do%>
+            <%=image_tag "finder_drop_arrow.gif"%>
+        <%end%> 
+    </td> -->
+
+    <td><%=link_to  card.no,admin_card_path(card) %></td>
+    <td>&yen;<%= card.value %><%="[#{level(card.value)}]" if level(card.value)%></td>
+    <td><%= card.card_type %></td>
+    <td><%= card.sale_status ? "已出售" : "未出售" %></td>
+    <td><%= card.member_card.created_at.strftime("%Y-%m-%d %H:%S:%M") if card.member_card %></td>
+    <td><%= card.use_status ?  "已使用" : "未使用"%></td>
+    <td><%= card.pay_status ?  "付款" : "未付款"%></td>
+    <td><%= card.status %></td>
+    <td>
+        <div>
+          账户:<%=card.member_card&&card.member_card.buyer ? card.member_card.buyer.login_name : "未登记"%>
+        </div>
+        <div>
+          手机:<%= card.member_card&&card.member_card.buyer_tel.present? ? card.member_card.buyer_tel : "未登记" %>
+        </div>
+    </td>
+   
+    <td><%= card.member_card&&card.member_card.user_tel.present? ? card.member_card.user_tel : "未登记" %></td>
+    <td>
+      <%card.labels.each do |label|%>
+        <span class="tag" label="<%=label.id%>">
+          <%=label.name%><%=link_to "x",untag_admin_card_path(card,:label=>label.id),:remote=>true,:method=>:put,:class=>"delete"%>
+        </span>
+      <%end%>
+    </td>
+    <!-- <td>
+      <%= card.member_card.bank_name if !card.member_card.nil?%>
+    </td>
+    <td>
+      <%= card.member_card.bank_card_no if !card.member_card.nil?%>
+    </td> -->
+    <td>
+        <%=link_to "日志",logs_admin_card_path(card)%>
+        <%=link_to "取消订单",cancel_order_admin_card_path(card),:method=>:put,:confirm=>"确定取消订单？" if card.sale_status && !card.pay_status && card.normal?%>
+
+        <%unless card.use_status%>
+          <%=link_to "修改",edit_admin_card_path(card)%>
+          <%=link_to "修改支付信息",edit_pay_admin_card_path(card) if !card.member_card.nil?%>
+          <%=link_to "修改用卡人",edit_user_admin_card_path(card) if card.sale_status && card.card_type=="A" && card.status!="作废"&&card.status!="锁定"%>
+          <%=link_to "购卡",buy_admin_card_path(card)  if card.can_buy?%>
+          <%=link_to "使用",use_admin_card_path(card)  if card.can_use?%>
+        <%end%>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%end%>
+<div class="pagination">
+  <%= will_paginate @cards, :container => false %>
+</div>

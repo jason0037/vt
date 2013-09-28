@@ -1,0 +1,48 @@
+<div class="cards">
+	<div class="form-block">
+		<h4>请按下面提示激活您的VIP卡 </h4>
+
+		<p>请输入您的手机号码</p>
+
+		<%=form_for :card, :url=>input_mobile_card_path do |f|%>
+			<%=f.hidden_field :no,:value=>@card.no%>
+			<div class="field">
+				<label class="field-label "><span class="required">*</span>手机号码 : </label>
+				<%=text_field_tag :tel,@card.member_card&&@card.member_card.user_tel,:class=>"field-input sms_tel"%>
+				
+				<span class="sms">
+					<%=link_to "发送激活码","javascript:void(0)",:"data-url"=>send_sms_code_card_path,:class=>"btn",:id=>"send_sms_code"%>
+					<span class="tip sms_tip"></span>
+				</span>
+			</div>
+			<div class="field">
+				<label class="field-label "><span class="required">*</span>激活码 : </label>
+				<%=text_field_tag :sms_code,"",:class=>"field-input"%>
+				<span class="error"><%=@card.errors.messages[:sms_code].join(",") if @card.errors.messages[:sms_code]%></span>
+				<div class="green-tip">注意：验证码将会在30分钟后失效。</div>
+			</div>
+
+			<div class="field">
+				<%=f.submit "确认提交",:class=>"btn submit"%>
+			</div>
+
+		<%end%>
+
+	</div>
+	<div class="tips-block">
+		<p>小贴士</p>
+		<ul>
+			<li>
+				<strong>如何激活我的VIP卡?</strong>
+				<div>答：</div>
+			</li>
+			<li>
+				<strong>怎么用VIP卡里面的余额付款?</strong>
+				<div>答：</div>
+			</li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<div class="other-tip "> <span class="required">*</span> 小贴士 :  如果在激活过程中有什么疑问，请致电寻求帮助。客服电话 : 021-60919835 。</div>
+	
+</div>

@@ -1,0 +1,26 @@
+<%if @order_promotions.present?%>
+<div class="pmt-holder">
+	<%@order_promotions.each_with_index do |promotion,index|%>
+		<div class="pmt" id="pmt_<%=promotion.id%>" data-amount="<%=promotion.pmt_amount(@line_items)%>">
+			<span class="pmt-name" title="<%=promotion.desc%>"><%=promotion.name%></span>
+			<span>优惠 : </span>
+			<span class="pmt-amount"> ￥<%=promotion.pmt_amount(@line_items)%></span>
+		</div>
+	<%end%>
+</div>
+<%end%>
+
+<%if @goods_promotions.present?%>
+<div class="pmt-holder">
+	<%@goods_promotions.each_with_index do |promotion,index|%>
+		<div class="pmt" id="pmt_<%=promotion.id%>" data-amount="<%=promotion.goods_pmt_amount(@line_items)%>">
+			<span class="pmt-name" title="<%=promotion.desc%>"><%=promotion.name%></span>
+			<span>优惠 : </span>
+			<span class="pmt-amount"> ￥<%=promotion.goods_pmt_amount(@line_items)%></span>
+		</div>
+	<%end%>
+</div>
+<%end%>
+
+
+

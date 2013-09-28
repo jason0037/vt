@@ -1,0 +1,67 @@
+<div class="cards">
+	<div class="form-block">
+		<h4>请按以下提示操作，请选择您要激活的VIP卡 </h4>
+
+		
+
+		<%if @cards.size > 0%>
+			<p>以下为您所有可以激活的VIP卡，请选择</p>
+			<%=form_for :card,:url=>select_card_path,:html=>{:id=>"select_card"} do  |f|%>
+				<table class="list-cards">
+					<tr>
+						<th>选择</th>
+						<th>卡号</th>
+						<th>面值</th>
+						<th>状态</th>
+					</tr>
+					<%@cards.each do |card|%>
+					<tr>
+						<td>
+							<%=radio_button_tag :card,card.no if card.pay_status&&!card.used?&&card.normal?%>
+						</td>
+						<td><%=card.no%></td>
+						<td><%=number_to_currency card.value,:unit=>"&yen;",:precision=>0%></td>
+						<td>
+							<%if card.pay_status%>
+								<%=card.used? ? "已激活" :  card.status %>
+							<%else%>
+								未支付,请先<%=link_to "支付","/member-orders.html",:class=>"pay"%>
+							<%end%>
+						</td>
+					</tr>
+					<%end%>
+				</table>
+				<div class="field actions">
+					<%if @cards.select { |c| c.pay_status&&!c.used?&&c.normal? }.size > 0%>
+						<%=f.submit "确认选择",:class=>"btn submit"%>
+						<span class="error"></span>
+					<%else%>
+						<div>没有可激活的VIP卡  <%=link_to "返回",activation_card_path,:class=>"btn"%></div>
+					<%end%>
+					
+				</div>
+			<%end%>
+		<%else%>
+			<p>没有找到相关VIP卡</p>
+		<%end%>
+
+		
+	
+	</div>
+	<div class="tips-block">
+		<p>小贴士</p>
+		<ul>
+			<li>
+				<strong>为什么要填手机号码？</strong>
+				<div>答：为了保障VIP卡的使用安全，每一张卡在购买时均已指定使用者手机号码，您只有在正确输入手机号码时才可以使用您的VIP卡。</div>
+			</li>
+			<li>
+				<strong>为什么还要验证手机号码?</strong>
+				<div>答：为了保障VIP卡的使用安全，在您激活VIP卡时，我们需要验证您的身份真实性。</div>
+			</li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<div class="other-tip "> <span class="required">*</span> 重要提示 :  当点击“确认激活”后，即完成预存账户充值,不可再修改。 如需帮助请致电 : 021-60919835 。</div>
+	
+</div>

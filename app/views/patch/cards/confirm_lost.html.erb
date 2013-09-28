@@ -1,0 +1,23 @@
+<strong>已成功申请挂失</strong>
+<p>您的VIP卡已成功申请挂失，您可自行申请回复此卡</p>
+
+<div class="field">
+	<label class="field-label">VIP卡号 : </label>
+	<span class="field-plain"><%=@card.no%></span>
+</div>
+
+<div class="field">
+	<label class="field-label">面值 : </label>
+	<span class="field-plain">&yen;<%=@card.value%></span>
+</div>
+
+<div class="field">
+	<label class="field-label">当前状态 : </label>
+	<span class="field-plain"><%=@card.status%></span>
+</div>
+
+
+<div class="actions">
+	<%=link_to "关闭",cards_path(:tab=>"bought"),:class=>"btn"%>
+</div>
+<p> 如需帮助请致电客服 : 021-60919835 </p>

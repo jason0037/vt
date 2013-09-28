@@ -1,0 +1,68 @@
+
+<%=form_for :s,:url=>admin_user_coupons_path,:html=>{:class=>"form-search"},:method=>:get do |f|%>
+	<%=f.text_field :q,:placeholder=>"用户名",:value=>params[:s]&&params[:s][:q]%>
+	<%=f.submit "搜索",:class=>"btn",:name=>nil%>
+<%end%>
+
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th>
+				<%if @field == "login_name"%>
+					<%=link_to "用户名","?order=#{@next_order}"%>
+				<%else%>
+					<%=link_to "用户名","?order=login_name-asc"%>
+				<%end%>
+			</th>
+
+			<th>
+				<%if @field == "regtime"%>
+					<%=link_to "注册时间","?order=#{@next_order}"%>
+				<%else%>
+					<%=link_to "注册时间","?order=regtime-asc"%>
+				<%end%>
+			</th>
+			<th>
+				<%if @field == "email"%>
+					<%=link_to "邮箱","?order=#{@next_order}"%>
+				<%else%>
+					<%=link_to "邮箱","?order=email-asc"%>
+				<%end%>
+			</th>
+			<th width="30%">优惠券</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<%@users.each do |user|%>
+		<tr id="user_<%=user.member_id%>">
+			<td><%=user.login_name%></td>
+			<td><%=Time.at(user.regtime).strftime("%Y-%m-%d %H:%M:%S")%></td>
+			<td><%=user.email%></td>
+			<td class="codes">
+				<%user.user_coupons.each do |user_coupon|%>
+					<span class="code <%=user_coupon.can_use? ? 'enable' : 'disable'%>" id="code_<%=user_coupon.coupon_code%>" title="<%=user_coupon.new_coupon.name%>">
+						<%=user_coupon.coupon_code%>
+						<%=link_to "&times;".html_safe,admin_user_coupon_path(user_coupon),:remote=>true,:method=>:delete,:confirm=>"确定删除？",:class=>"close"%>
+					</span>
+				<%end%>
+			</td>
+			<td>
+				<%if current_admin.has_right_of(controller_name,"create")%>
+				<div class="btn-group">
+					<a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+						赠送优惠券<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<%@coupons.each do |coupon|%>
+						<li><%=link_to "(#{coupon.coupon_type})#{coupon.name}".truncate(20),admin_user_coupons_path(:coupon_id=>coupon.id,:member_id=>user.member_id),:method=>:post,:remote=>true%></li>
+						<%end%>
+					</ul>
+				</div>
+				<%end%>
+			</td>
+		</tr>
+	<%end if @users.present?%>
+</table>
+<div class="pagination">
+  <%= will_paginate @users, :container => false %>
+</div>

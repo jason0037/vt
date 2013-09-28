@@ -1,0 +1,18 @@
+// Place all the styles related to the admin/user_coupons controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.user_coupons{
+	.code{
+		padding: 3px 5px;
+		background:#5BB75B;
+		color:#fff;
+		float: left;
+		width: 140px;
+		margin-right: 10px;
+		margin-bottom: 10px;
+		&.disable{
+			background: #ccc;
+			color:#666;
+		}
+	}
+}

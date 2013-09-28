@@ -1,0 +1,188 @@
+/*
+ *= require bootstrap
+ *= require bootstrap_responsive
+ */
+
+body {
+  
+}
+.admin{
+  
+}
+.admin-info{
+  float: right;
+  padding: 10px 20px 10px;
+  color:#fff;
+}
+.admin-info a{
+  color:#fff;
+}
+
+#topmenu {
+  
+}
+#topmenu .container{
+  width:100%;
+}
+#topmenu.navbar-inverse .nav .active > a,
+#topmenu.navbar-inverse .nav .active > a:hover,
+#topmenu.navbar-inverse .nav .active > a:focus {
+  background-image: url(../blog/menu_active_bg.png);
+}
+#topmenu.navbar-inverse .brand {
+  color: #eee;
+  font-size: 16px;
+}
+#topmenu .navbar-inner {
+  background-image: url(../blog/menu_bg.png);
+}
+#main {
+  margin-top: 40px;
+  background: #ffffff /*url(../blog/main_bg.png) no-repeat*/;
+}
+#main .page-header {
+  margin: 30px 0;
+}
+#main .control-label {
+  width: 60px;
+}
+#main .controls {
+  margin-left: 80px;
+}
+#main .table-bordered td {
+  font-size: 13px;
+}
+#footer {
+  background-color: #ffffff;
+  padding: 50px 0 20px 0;
+}
+#footer .copyright {
+  text-align: center;
+  color: #999999;
+}
+
+
+
+
+/* Sidenav for Docs
+-------------------------------------------------- */
+
+.sidenav {
+  width: 258px;
+  margin: 30px 0 0;
+  padding: 0;
+  background-color: #fff;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+     -moz-box-shadow: 0 1px 4px rgba(0,0,0,.065);
+          box-shadow: 0 1px 4px rgba(0,0,0,.065);
+}
+.sidenav > li > a {
+  display: block;
+  width: 190px \9;
+  margin: 0 0 -1px;
+  padding: 8px 14px;
+  border: 1px solid #e5e5e5;
+}
+.sidenav > li:first-child > a {
+  -webkit-border-radius: 6px 6px 0 0;
+     -moz-border-radius: 6px 6px 0 0;
+          border-radius: 6px 6px 0 0;
+}
+.sidenav > li:last-child > a {
+  -webkit-border-radius: 0 0 6px 6px;
+     -moz-border-radius: 0 0 6px 6px;
+          border-radius: 0 0 6px 6px;
+}
+.sidenav > .active > a {
+  position: relative;
+  z-index: 2;
+  padding: 9px 15px;
+  border: 0;
+  text-shadow: 0 1px 0 rgba(0,0,0,.15);
+  -webkit-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+     -moz-box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+          box-shadow: inset 1px 0 0 rgba(0,0,0,.1), inset -1px 0 0 rgba(0,0,0,.1);
+}
+/* Chevrons */
+.sidenav .icon-chevron-right {
+  float: right;
+  margin-top: 2px;
+  margin-right: -6px;
+  opacity: .25;
+}
+.sidenav > li > a:hover {
+  background-color: #f5f5f5;
+}
+.sidenav a:hover .icon-chevron-right {
+  opacity: .5;
+}
+.sidenav .active .icon-chevron-right,
+.sidenav .active a:hover .icon-chevron-right {
+  background-image: url(../img/glyphicons-halflings-white.png);
+  opacity: 1;
+}
+.sidenav.affix {
+  top: 40px;
+}
+.sidenav.affix-bottom {
+  position: absolute;
+  top: auto;
+  bottom: 270px;
+}
+.field_with_errors{
+  display: inline;
+}
+.error{
+  color:#f00;
+}
+.success{
+  color:#08C;
+}
+
+.navbar .nav > li{
+   position: relative;
+}
+.navbar .nav > li:hover .dropdown-menu {
+  display: block;
+  margin-top: -1px;
+} 
+
+.pagination > * {
+   padding: 3px 5px;
+}
+.pagination em.current{
+   font-style: normal;
+   font-weight: bold;
+   background: #ccc;
+}
+
+.teg{
+  padding: 2px 4px;
+  margin-right: 3px;
+  color: #4E6A81;
+  background: #F1F4F7;
+  border-radius: 3px;
+}
+
+.tri-checkbox{
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+} 
+
+.tri-checkbox[state="all"]{
+    background: url('sti_checkbox.jpg') 0px -34px no-repeat;
+    /*background: url('http://www.i-modec.com/app/desktop/statics/bundle/tag_all.gif') center center no-repeat;*/
+}
+.tri-checkbox[state="part"]{
+    /*background: url('http://www.i-modec.com/app/desktop/statics/bundle/tag_part.gif') center center no-repeat;*/
+    background: url('sti_checkbox.jpg') 0px -17px no-repeat;
+}
+.tri-checkbox[state="none"]{
+    /*background: url('http://www.i-modec.com/app/desktop/statics/bundle/tag_none.gif') center center no-repeat;*/
+    background: url('sti_checkbox.jpg') 0px 0px no-repeat;
+}

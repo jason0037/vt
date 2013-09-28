@@ -1,0 +1,285 @@
+<%=form_for :promotion,:url=>@action_url,:method=>@method,:html=>{:class=>"form-horizontal"} do |f|%>
+<%=f.hidden_field :promotion_type,:value=>"goods"%>
+<div class="control-group">
+    <%=f.label :name, "名称*",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.text_field :name%>
+    </div>
+</div>
+
+<div class="control-group">
+    <%=f.label :desc, "描述*",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.text_area :desc,:rows=>3%>
+    </div>
+</div>
+
+
+<div class="control-group">
+    <%=f.label :name, "是否开启*",:class=>"control-label"%>
+    <div class="controls">
+      <label class="radio inline">
+      <%=f.radio_button :enable,true,:checked=>true%> <span>是</span>
+      </label>
+      <label class="radio inline">
+      <%=f.radio_button :enable,false%> <span>否</span>
+      </label>
+    </div>
+</div>
+
+<div class="control-group">
+    <%=f.label :priority, "优先级",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.text_field :priority,:class=>"span2",:placeholder=>"数字越大优先级越高"%>
+    </div>
+</div>
+<div class="control-group">
+    <%=f.label :exclusive, "是否排它*",:class=>"control-label"%>
+
+    <div class="controls">
+      <label class="radio inline">
+      <%=f.radio_button :exclusive,true,:checked=>true%> <span>是</span>
+      </label>
+      <label class="radio inline">
+      <%=f.radio_button :exclusive,false%> <span>否</span>
+      </label>
+       <!-- <span class="help-inline tips">即只能满足一个促销，如果订单同时满足两个促销，则取优先级高的一个</span> -->
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label">开始时间</label>
+    <div class="controls">
+      <%=f.text_field :begin_at,:class=>"span2 datetime"%>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label">结束时间</label>
+    <div class="controls">
+      <%=f.text_field :end_at,:class=>"span2 datetime"%>
+    </div>
+</div>
+
+
+<div class="control-group">
+    <label class="control-label">筛选商品</label>
+    <div class="controls">
+      <%=f.select :field_name,{'所有商品'=>'','商品品牌'=>"brand_id",'商品分类'=>'cat_id','指定商品'=>'bn'},{},{:id=>"select_field",:class=>"input-small"}%>
+      <!-- <select class="input-small" name="promotion[field_name]" id="select_field">
+            <option value="">所有商品</option>
+            <option value="brand_id">商品品牌</option>
+            <option value="cat_id">商品分类</option>
+            <option value="bn">指定商品</option>
+      </select> -->
+    </div>
+    
+
+    
+    <div class="controls alert <%='hide' if @promotion.field_name.blank?%>" id="in_or_not">
+       <label>
+          <%=f.select :in_or_not,{'包含'=>'in','不包含'=>'not_in'},{},{:class=>"input-small in_or_not"}%>
+        </label>
+      
+      <div id="choices">
+            <div class="<%='hide' if @promotion.field_name != 'brand_id' %>" id="brands" for="brand_id">
+               <label class="checkbox inline" style="color:#333;">
+                  <%=check_box_tag nil, "all_brands", false, :id=>"select_all_brands"%>全选
+                </label>
+              <%Ecstore::Brand.all.each do |brand|%>
+                <label class="checkbox inline" style="color:#333;">
+                  <%=check_box_tag "promotion[brand_ids][]",brand.brand_id, @promotion.brand_ids.include?(brand.brand_id.to_s)%><%=brand.brand_name%>
+                </label>
+              <%end%>
+            </div>
+
+            <div class="<%='hide' if @promotion.field_name != 'cat_id' %>" id="cats" for="cat_id">
+
+                <label class="checkbox inline" style="color:#333;">
+                    <%=check_box_tag nil, "all_cats", false, :id=>"select_all_cats"%>全选
+                </label>
+
+                <%Ecstore::Category.where(:parent_id => 0).all.each do |cat1|%>
+                    <div class="divider-line"></div>
+                    <label class="checkbox inline"  style="color:#333;">
+                      <%=check_box_tag "promotion[cat_ids][]",cat1.cat_id, @promotion.cat_ids.include?(cat1.cat_id.to_s), :'data-parent_id'=>cat1.parent_id%><%=cat1.cat_name%>
+                    </label>
+                    <%cat1.categories.each do |cat2|%>
+                      <label class="checkbox inline"  style="color:#333;">
+                        <%=check_box_tag "promotion[cat_ids][]",cat2.cat_id,  @promotion.cat_ids.include?(cat2.cat_id.to_s), :'data-parent_id'=>cat2.parent_id%><%=cat2.cat_name%>
+                      </label>
+                      <%cat2.categories.each do |cat3|%>
+                         <label class="checkbox inline"  style="color:#333;">
+                        <%=check_box_tag "promotion[cat_ids][]",cat3.cat_id,  @promotion.cat_ids.include?(cat3.cat_id.to_s), :'data-parent_id'=>cat3.parent_id%><%=cat3.cat_name%>
+                        </label>
+                      <%end%>
+                    <%end%>
+                    
+                  <%end%>
+           
+            </div>
+
+            <div class="<%='hide' if @promotion.field_name != 'bn' %>" for="bn">
+              <%=link_to "+选择商品","javascript:void(0);",:class=>"specify-goods"%>
+              <ul id="specify_goods">
+                  <%@promotion.bns.each do |bn|%>
+                    <li>
+                    <%=Ecstore::Good.find_by_bn(bn).name%> (<%=bn%>)
+                    <%=hidden_field_tag "promotion[bns][]",bn%>
+                    </li>
+                  <%end%>
+              </ul>
+            </div>
+      </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+</div>
+
+
+
+<div class="control-group">
+    <%=f.label :condition, "优惠条件*",:class=>"control-label"%>
+    <div class="controls"  id="conditions">
+
+      <label class="radio">
+          <%=f.radio_button :condition_type,"goods_total_ge_x"%><span>指定商品总价满X元</span>
+      </label>
+
+      <label class="radio">
+          <%=f.radio_button :condition_type,"goods_count_ge_x"%><span>同时购买指定商品X件(可以是相同商品)</span>
+      </label>
+
+      <label class="radio">
+          <%=f.radio_button :condition_type,"none"%>
+          <span>无条件</span>
+      </label>
+
+      <div class="help-block alert <%='hide' if  @promotion.condition_type == 'none'%>" id="condition_input">
+          输入X = <%=f.text_field :condition_val,:class=>"input-mini"%>
+      </div>
+    </div>
+</div>
+
+
+
+<div class="control-group">
+    <%=f.label :action, "优惠方案*",:class=>"control-label"%>
+    <div class="controls" id="actions" data-val="<%=@promotion.action_val%>">
+      
+      <label class="radio">
+          <%=f.radio_button :action_type, "good_price_minus",:'data-desc'=>"符合条件的单个商品单价减去Y元出售"%>
+          <span>符合条件的单个商品单价减去Y元出售</span>
+      </label>
+
+      <label class="radio">
+          <%=f.radio_button :action_type, "good_price_discount",:'data-desc'=>"符合条件的单个商品单价固定折扣Y出售"%>
+          <span>符合条件的单个商品单价固定折扣Y出售(如8折,Y=80)</span>
+      </label>
+      
+
+      <label class="radio">
+          <%=f.radio_button :action_type, "goods_total_minus",:'data-desc'=>"符合条件的所有商品总额减去Y元出售"%>
+          <span>符合条件的所有商品总额减去Y元出售</span>
+      </label>
+
+      <!-- <label class="radio">
+          <%=f.radio_button :action_type, "goods_total_discount",:'data-desc'=>"符合条件的所有商品总额固定折扣Y出售"%>
+          <span>符合条件的所有商品总额固定折扣Y出售(如8折,Y=80)</span>
+      </label> -->
+
+
+
+      <label class="radio">
+          <%=f.radio_button :action_type,"coupon"%><span>赠送优惠券</span>
+      </label>
+
+       <label class="radio">
+          <%=f.radio_button :action_type,"gift"%><span>送赠品</span>
+      </label>
+
+      <!-- <label class="radio">
+          <%=f.radio_button :action_type,"good"%><span>送商品</span>
+      </label> -->
+
+    </div>
+
+
+        <!--
+        <%=link_to "+选择赠品","#",:class=>"select-gifts" if @promotion.action_type == 'gift'%>
+        <%=link_to "+选择商品","#",:class=>"select-goods" if @promotion.action_type == 'good'%>
+        <%=link_to "+选择优惠券","#",:class=>"select-coupons" if @promotion.action_type == 'coupon'%>
+      -->
+
+    <div class="control-group">
+      <div class="controls alert">
+
+      <span id="solution">
+        
+      </span>
+
+       <ul id="selected_gifts">
+            <%(@promotion.action_val || []).each do |bn|%>
+             <li>
+              <%=Ecstore::Product.find_by_bn(bn).name%> (<%=bn%>)
+              <%=hidden_field_tag "promotion[action_val][]",bn%>
+             </li>
+            <%end if @promotion.action_type == 'gift'%>
+       </ul>
+
+       <ul id="selected_goods">
+             <%(@promotion.action_val || []).each do |bn|%>
+             <li>
+              <%=Ecstore::Good.find_by_bn(bn).name%> (<%=bn%>)
+              <%=hidden_field_tag "promotion[action_val][]",bn%>
+             </li>
+            <%end if @promotion.action_type == 'good'%>
+       </ul>
+
+       <ul id="selected_coupons">
+       </ul>
+
+      </div>
+    </div>
+</div>
+
+
+
+<div class="control-group">
+    <div class="controls">
+      <%=f.submit "提 交",:class=>"btn btn-primary"%>
+    </div>
+</div>
+<%end%>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".specify-goods").click(function(){
+            window.open('/admin/goods/select_goods?goods_type=normal&target=specify_goods&field_name=bns', 'newwindow', 'height=600, width=900, top=400, left=600, toolbar=no, menubar=no, scrollbars=no,resizable=yes,location=no, status=no');
+        });
+
+        $("#solution").on("click",".select-gifts",function(){
+            window.open('/admin/goods/select_gifts?goods_type=gift&target=selected_gifts&field_name=action_val', 'newwindow', 'height=600, width=900, top=400, left=600, toolbar=no, menubar=no, scrollbars=no,resizable=yes,location=no, status=no');
+            return false;
+        });
+
+        $("#solution").on("click",".select-goods",function(){
+            window.open('/admin/goods/select_goods?goods_type=normal&target=selected_goods&field_name=action_val', 'newwindow', 'height=600, width=900, top=400, left=600, toolbar=no, menubar=no, scrollbars=no,resizable=yes,location=no, status=no');
+            return false;
+        });
+
+        $("#solution").on("click",".select-coupons",function(){
+            window.open('/admin/new_coupons/select_coupons?target=selected_coupons', 'newwindow', 'height=500, width=750, top=400, left=600, toolbar=no, menubar=no, scrollbars=no,resizable=yes,location=no, status=no');
+            return false;
+        });
+
+    });
+</script>

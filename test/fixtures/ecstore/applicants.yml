@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+yxf:
+  name: yxf
+  sex: male
+  age: 28
+  mobile: '12397898787'
+  email: yxf@test.com
+
+demo:
+  name: demo
+  sex: female
+  age: 30
+  mobile: '13947958981'
+  email: demo@test.com

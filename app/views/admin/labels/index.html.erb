@@ -1,0 +1,20 @@
+<%=render "form"%>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>标签</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@labels.each do |label|%>
+		<tr>
+			<td><%=label.name%></td>
+			<td>
+				<%=link_to "编辑",edit_admin_label_path(label)%>
+				<%=link_to "删除",admin_label_path(label),:method=>:delete,:confirm=>"确定删除吗？"%>
+			</td>
+		</tr>
+		<%end%>
+	</tbody>
+</table>

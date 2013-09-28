@@ -1,0 +1,52 @@
+<%= form_for :tag,:url=>@action_url, :method=>@method, :html => {:class => "form-horizontal"} do |f| %>
+<%=f.hidden_field :app_id, :value=>"b2c"%>
+
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :tag_name, "标签名称", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :tag_name%>
+          <span class="help-inline error"><%=@tag.errors[:tag_name].join(",")%></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :tag_abbr, "标签备注", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :tag_abbr%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :tag_type, "所属", :class => "control-label" %>
+      <div class="controls">
+          <%=f.select :tag_type,{"商品"=>"goods","订单"=>"orders","会员"=>"members"}%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :tag_bgcolor, "标签颜色", :class => "control-label" %>
+      <div class="controls">
+         <%=f.hidden_field :tag_bgcolor,:id=>"bgcolor"%>
+         <%=f.hidden_field :tag_fgcolor,:id=>"fgcolor"%>
+
+         <span id="color">标签</span>
+
+         <div id="colorpicker"></div>
+       
+      </div>
+      
+    </div>
+
+
+
+    
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>
+        <%= link_to '返回', admin_tags_path,:class=>"btn" %>
+      </div>
+    </div>
+     
+  </fieldset>
+<% end %>

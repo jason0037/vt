@@ -1,0 +1,174 @@
+/*
+ *= require magazine/comment
+ */
+
+body{font-family: Helvetica, Arial, "Hiragino Sans GB", "Microsoft YaHei", sans-serif;}
+
+#iModecMagazine ul{
+	margin: 0px;
+}
+#iModecMagazine dt,
+#iModecMagazine dl{
+	line-height: 30px;
+}
+#iModecMagazine .jcarousel-prev,
+#iModecMagazine .jcarousel-next,
+#iModecMagazine .bottomNav b,
+#iModecMagazine .style1 a span,
+#iModecMagazine .style1 .hover,
+#iModecMagazine a.goods span,
+#iModecMagazine a.goods.hover div{
+	background: url(/assets/nav.gif) no-repeat;
+}
+
+#iModecMagazine{
+	width: 950px;
+	height: 625px;
+	overflow: hidden;
+	margin: 0 auto;
+	padding: 0 27px;
+	position: relative;
+	background: #fff;
+	font-size: 12px;
+	margin-top: 50px;
+	margin-bottom: 10px;
+}
+
+	#iModecMagazine a,
+	#iModecMagazine a:hover{color: #fff;text-decoration: none;}
+	.iModecMagazine-container{width: 950px;overflow: hidden;position: relative;height: 625px;}
+	.iModecMagazine-container ul{width: 999999px;position: absolute;}
+	.iModecMagazine-container li{width: 950px;height: 624px;float: left;text-align: center;position: relative;}
+	#iModecMagazine .jcarousel-prev,
+	#iModecMagazine .jcarousel-next{position: absolute;top:298px;width: 17px;height: 28px;overflow: hidden;}
+	#iModecMagazine .jcarousel-prev span,
+	#iModecMagazine .jcarousel-next span{display: none;}
+	#iModecMagazine .jcarousel-prev{left: 0;background-position: 0 0;}
+	#iModecMagazine .jcarousel-next{right: 0;background-position: -17px 0;}
+	#iModecMagazine .jcarousel-prev:hover{background-position: 0 -28px;}
+	#iModecMagazine .jcarousel-next:hover{background-position: -17px -28px;}
+	#iModecMagazine .jcarousel-prev-dis,
+	#iModecMagazine .jcarousel-next-dis{display: none;}
+
+/*底部页码*/
+#iModecMagazine .bottomPageNum{position: absolute;right: 30px;bottom: 3px;font-size: 12px;}
+
+
+/*底部导航*/
+#iModecMagazine .bottomNav{height: 2px;border-bottom: 1px dashed #bdbdbd;position: absolute;width: 910px;bottom: 0;left: 27px;padding: 0 20px;font-size: 12px;color: #fff;overflow: visible!important;z-index: 9999;}
+	/*#iModecMagazine .bottomNav b{position: absolute;width: 7px;height: 8px;overflow: hidden;background-position: 0 -65px;left: 0;top: -10px;display: block;text-indent: -9999px;cursor: pointer;}*/
+	#iModecMagazine .bottomNav b{position: absolute;width: 7px;height: 8px;overflow: hidden;background-position: 0 100px;left: 0;top: -10px;display: block;text-indent: -9999px;cursor: pointer;}
+	#iModecMagazine .bottomNavHide b{background-position: 0 -74px;}
+	#iModecMagazine .bottomNav .bottomNavbg{background: #000;height: 130px;width: 950px;filter:alpha(opacity=50);opacity:0.5;position: absolute;top: 0;left: 0;}
+	#iModecMagazine .bottomNavHide .bottomNavbg{display: none;}
+	#iModecMagazine .bottomNav .more,
+	#iModecMagazine .bottomNav .bottomNavItem{position: absolute;z-index: 999;}
+	#iModecMagazine .bottomNav .more{right: 20px; top: 10px;}
+	#iModecMagazine .bottomNav .bottomNavItem{left: 20px;top: 0;border-left: 1px solid #fff;}
+	#iModecMagazine .bottomNav .bottomNavItem li{float: left;display: inline;width: 20px;height: 20px;margin-left: 2px;padding-top: 3px;}
+	#iModecMagazine .bottomNav .bottomNavItem li a{display: block;width: 19px;height: 19px;text-align: center;line-height: 20px;padding: 1px;}
+	#iModecMagazine .bottomNav .bottomNavItem li a:hover{border: 1px solid #fff;padding: 0;}
+	#iModecMagazine .bottomNav .bottomNavItem .thumbnail{margin: 7px 0 0 4px;}
+	#iModecMagazine .bottomNav .bottomNavItem .title{margin: 10px 0 0 4px;}
+
+#iModecMagazine .style{position: absolute;width: 950px;height: 624px;left: 0;top: 0;}
+
+/* 点击购买样式 WRONG VERSION, PLEASE JUST KEEP THIS CODE */
+#iModecMagazine .style1 a{position: absolute;color: #000;z-index: 99;padding-left: 16px;_height: 100%;height: 18px;line-height: 18px;display: block;}
+#iModecMagazine .style1 a:hover{color: #b30707;text-decoration: none;}
+#iModecMagazine .style1 a span{
+	position: absolute;
+	display: block;
+	width: 13px;
+	height: 12px;
+	left: 0;
+	top: 2px;
+	background-position: 0 -87px;
+	overflow: hidden;
+}
+#iModecMagazine .style1 .hover{ background-position: 0 -99px; }
+#iModecMagazine .style1 .hover:hover span{ left: -1000px; }
+
+#iModecMagazine .style2 a{position: absolute;color: #000;z-index: 99;padding-left: 8px;_height: 100%;height: 18px;line-height: 18px;display: block;}
+
+
+/* 点击购买样式 CORRECT VERSION */
+#iModecMagazine a.goods {position: absolute;color: #000;z-index: 99;_height: 100%;height: 16px;line-height: 16px;display: block;}
+#iModecMagazine a.goods div {padding-left: 16px;position: relative; display: block; min-width: 40px; height: 16px;}
+#iModecMagazine a.goods:hover{color: #b30707;text-decoration: none;}
+#iModecMagazine a.goods span{position: absolute;display: block;width: 13px;height: 12px;left: 0;top: 2px;background-position: 0 -87px;overflow: hidden;}
+#iModecMagazine a.goods.hover div {background-position: 0 -99px;}
+#iModecMagazine a.goods.hover:hover span{left: -1000px;}
+
+/*气泡显示样式*/
+	#iModecMagazine .goodsBox{position: absolute;width: 185px;height: 80px;overflow: hidden;text-align: left;display: none;}
+	#iModecMagazine .goodsBox-hd{height: 20px;padding: 0 15px;line-height: 20px;font-size: 14px;color: #fff;position: relative;}
+	#iModecMagazine .goodsBox-hd .bg{position: absolute;left: 0;top: 0;width: 185px;height: 20px;background: #000;filter:alpha(opacity=50);opacity:0.5;}
+	#iModecMagazine .goodsBox-hd p{position: relative;z-index: 999;}
+	#iModecMagazine .goodsBox-bd{height: 60px;padding: 0 15px;background: #fff;line-height: 18px;}
+	#iModecMagazine .goodsBox-bd a{color: #b82122;}
+
+
+
+/*杂志目录*/
+#iModecMagazine .magazineList{margin-left: 75px;}
+	#iModecMagazine .magazineList dd,
+	#iModecMagazine .magazineList dt{float: left;}
+	#iModecMagazine .magazineList dt{width: 810px;margin-bottom: 20px;}
+	#iModecMagazine .magazineList dt h3{font-size: 24px;font-weight: bold; margin: 0;}
+	#iModecMagazine .magazineList dt .back_to_topics {color: #333; text-indent: -99999px; display: inline-block; background: url(/assets/back_to_topics.png) no-repeat; height: 33px; line-height: 33px; width: 132px; margin-top: 7px;}
+	#iModecMagazine .magazineList dd{margin: 0 55px 10px 0;}
+	#iModecMagazine .magazineList dd .img{width: 232px;height: 115px;overflow: hidden;}
+	#iModecMagazine .magazineList dd .txt{line-height: 16px;}
+	#iModecMagazine .magazineList dd .txt p{margin: 5px 0 0 0;}
+	#iModecMagazine .magazineList dd .txt a{color: #000;}
+
+
+
+/*点击购买定位*/
+#iModecMagazine .page2 .goods1{left: 277px;;top: 86px;}
+#iModecMagazine .page2 .goods2{left: 43px;;top: 386px;}
+#iModecMagazine .page2 .goods3{left: 469px;;top: 509px;}
+
+.reports{
+	float:left;
+	margin-top: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
+	width: 700px;
+}
+
+.reports li{
+	padding: 5px 0px;
+}
+.reports li .title{
+	width: 550px;
+	float: left;
+}
+.reports li .time{
+	float: left;
+}
+.reports li .title a{
+	color: #333;
+}
+.report-top{
+	list-style: none;
+}
+.report-top li{
+	float: left;
+	margin-left: 5px;
+}
+
+.report-right{
+	float: right;
+	width: 230px;
+	margin-top: 20px;
+}
+.report-right li{
+	margin-bottom: 20px;
+	float: right;
+}
+
+.pagination{
+	text-align: center;
+}

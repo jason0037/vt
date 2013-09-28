@@ -1,0 +1,86 @@
+<%if @coupon.errors.size > 0%>
+<div class="alert error">提交失败，请检查数据正确性</div>
+<%end%>
+
+<%=form_for :coupon,:url=>@action_url,:method=>@method,:html=>{:class=>"form-horizontal"} do |f|%>
+<div class="control-group">
+    <%=f.label :brand_id, "品牌*",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.select :brand_id,Ecstore::Brand.all.collect {|brand| [brand.brand_name,brand.brand_id] },:include_blank=>"选择品牌" %>
+      <span class="help-inline error"><%=@coupon.errors[:brand_id].join(",")%></span>
+    </div>
+</div>
+
+<div class="control-group">
+    <%=f.label :name, "名称*",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.text_field :name%>
+      <span class="help-inline error"><%=@coupon.errors[:name].join(",")%></span>
+    </div>
+</div>
+
+<div class="control-group">
+    <%=f.label :discount, "折扣*",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.text_field :discount,:class=>"span2",:placeholder=>"0~10之间的数字"%>
+      <span class="help-inline error"><%=@coupon.errors[:discount].join(",")%></span>
+    </div>
+</div>
+
+<div class="control-group">
+    <%=f.label :code, "优惠号码*",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.text_field :code%>
+      <span class="help-inline error"><%=@coupon.errors[:code].join(",")%></span>
+    </div>
+</div>
+
+<div class="control-group">
+    <%=f.label :sms_text, "短信内容*",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.text_area :sms_text,:rows=>3,:class=>"span3"%>
+      <span class="help-inline error"><%=@coupon.errors[:sms_text].join(",")%></span>
+    </div>
+</div>
+
+<div class="control-group">
+    <%=f.label :cover_urls, "封面*",:class=>"control-label"%>
+    <div class="controls">
+      <%=f.text_area :cover_urls,:rows=>5,:class=>"span6",:placeholder=>"每张张封面占用一行"%>
+      <span class="help-inline error"><%=@coupon.errors[:cover_urls].join(",")%></span>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label">开始时间</label>
+    <div class="controls">
+      <%=f.text_field :begin_at,:value=>@coupon.begin_at&&@coupon.begin_at.strftime("%Y-%m-%d %H:%M:%S"),:class=>"span2 datetime"%>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label">结束时间</label>
+    <div class="controls">
+      <%=f.text_field :end_at,:value=>@coupon.end_at&&@coupon.end_at.strftime("%Y-%m-%d %H:%M:%S"),:class=>"span2 datetime"%>
+    </div>
+</div>
+
+<div class="control-group">
+    <%=f.label :published, "是否开启*",:class=>"control-label"%>
+    <div class="controls">
+      <label class="radio inline">
+      <%=f.radio_button :published,true,:checked=>true%> <span>是</span>
+      </label>
+      <label class="radio inline">
+      <%=f.radio_button :published,false%> <span>否</span>
+      </label>
+    </div>
+</div>
+
+<div class="control-group">
+    <div class="controls">
+      <%=f.submit "提 交",:class=>"btn btn-primary"%>
+      <%=link_to "取消",admin_offline_coupons_path,:class=>"btn"%>
+    </div>
+</div>
+<%end%>

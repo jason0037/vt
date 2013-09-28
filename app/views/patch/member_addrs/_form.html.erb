@@ -1,0 +1,81 @@
+<%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
+
+	<div class="new-addr <%='hide' unless display==true%>" id="addr_form">
+		<div class="control-group">
+		    <%=f.label :area, "<span class='required'>*</span>收货地区：".html_safe,:class=>"control-label"%>
+		    <div class="controls area">
+		      <%=f.select :province,Ecstore::Region.provinces.collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择省" },{ :onchange=>"selectProvince(this,'#city','#district');",:id=>"province" }%>
+		      <%if @addr&&@addr.city%>
+		      		<%=f.select :city,Ecstore::Region.cities_of(@addr.province).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择市"},{ :onchange=>"selectCity(this,'#district');",:id=>"city" }%>
+			<%else%>
+		      		<%=f.select :city, {}, { :include_blank=>"请选择市" }, { :onchange=>"selectCity(this,'#district');",:id=>"city" }%>
+			<%end%>
+
+			<%unless @addr&&@addr.new_record?%>
+				<%=f.select :district,Ecstore::Region.districts_of(@addr&&@addr.city).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择区/县" },{ :onchange=>"selectDistrict(this);",:id=>"district",:style=>"#{'display:none;' if @addr.district.blank? }" } %>
+			<%else%>
+				<%=f.select :district, {}, { :include_blank=>"请选择区/县" }, { :onchange=>"selectDistrict(this);",:id=>"district" }%>
+			<%end%>
+		       <span class="help-inline error"></span>
+		    </div>
+		</div>
+
+		<div class="control-group ">
+		    <%=f.label :addr, "<span class='required'>*</span>收货地址：".html_safe,:class=>"control-label"%>
+		    <div class="controls addr">
+		      <%=f.text_field :addr,:class=>"span5", :id=>"addr"%>
+		      <span class="help-inline error"></span>
+		    </div>
+		</div>
+		
+		<div class="control-group ">
+		    <%=f.label :zip, "邮编：",:class=>"control-label"%>
+		    <div class="controls zip">
+		      <%=f.text_field :zip,:class=>"input-small"%>
+		    </div>
+		</div>
+
+		<div class="control-group ">
+		    <%=f.label :name, "<span class='required'>*</span>收货人姓名：".html_safe,:class=>"control-label"%>
+		    <div class="controls name">
+		      <%=f.text_field :name,:class=>"input-small"%>
+		      <span class="help-inline error"></span>
+		    </div>
+		</div>
+
+		<div class="control-group ">
+		    <%=f.label :mobile, "<span class='required'>*</span>手机：".html_safe,:class=>"control-label"%>
+		    <div class="controls mobile">
+		      <%=f.text_field :mobile,:class=>"span2",:maxlength=>11%>
+		      <span class="help-inline error"></span>
+		    </div>
+		</div>
+		<div class="control-group ">
+		    <%=f.label :tel, "固定电话：",:class=>"control-label"%>
+		    <div class="controls tel">
+		      <%=f.text_field :tel,:class=>"span2"%>
+		    </div>
+		</div>
+
+		<div class="control-group ">
+		    <%=f.label :def_addr, "设置默认：",:class=>"control-label"%>
+		    <div class="controls def_addr">
+		    	<label class="checkbox">
+		    		<%=f.check_box :def_addr, {}, 1, 0 %><span>设置为默认地址</span>
+		    	</label>
+		    </div>
+		</div>
+		
+
+		<div class="control-group">
+		    <div class="controls">
+		    	<%if @method == :put%>
+		      <%=f.submit "修 改",:class=>"btn btn-inverse" %>
+		      <%else%>
+		      <%=f.submit "确认收货地址",:class=>"btn btn-inverse" %>
+		      <%end%>
+		    </div>
+		</div>
+	</div>
+
+<%end%>

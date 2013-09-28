@@ -1,0 +1,52 @@
+
+<h4>
+  <%if params[:type]=="order" || params[:type].nil?%>
+  订单促销
+  <%else%>
+  商品促销
+  <%end%>
+</h4>
+<hr>
+
+
+<h1>
+  <%=link_to "添加订单促销",new_admin_promotion_path,:class=>"btn btn-primary right" if params[:type]=="order" || params[:type].nil?%>
+  <%=link_to "添加商品促销",new_admin_promotion_path(:type=>"goods"),:class=>"btn btn-primary right" if params[:type] == 'goods'%>
+</h1>
+
+
+
+        <table class="table table-bordered table-hover">
+          <tr>
+            <th>促销名称</th>
+            <th>开启状态</th>
+            <th>是否排它</th>
+            <th>有效期</th>
+            <th>优先级</th>
+            <th>操作</th>
+          </tr>
+          
+        <%@promotions.each do |promotion|%>
+          <tr class="<%= 'disable' unless promotion.enable?%>">
+            <td><%=promotion.name%></td>
+            <td><%=promotion.enable ? "是" : "否"%></td>
+            <td><%=promotion.exclusive ? "是" : "否"%></td>
+            <td><%=promotion.begin_at.strftime("%Y-%m-%d %H:%M:%S") if promotion.begin_at.present?%> ~ <%=promotion.end_at.strftime("%Y-%m-%d %H:%M:%S") if promotion.end_at.present?%></td>
+            <td><%=promotion.priority%></td>
+            <td>
+              <%=link_to "编辑", edit_admin_promotion_path(promotion,:type=>promotion.promotion_type)%>
+              <%=link_to "删除", admin_promotion_path(promotion),:method=>:delete,:confirm=>"确定要删除？"%>
+            </td>
+          </tr>
+          <%end%>
+        </table>
+
+        <div class="pagination">
+          <%=will_paginate @promotions,:container=>false%>
+        </div>
+
+
+
+
+
+

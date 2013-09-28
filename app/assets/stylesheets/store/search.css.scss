@@ -1,0 +1,24 @@
+@import 'list_goods.css';
+
+.list{
+	list-style: none;
+	margin-left: 0px;
+	li{
+		list-style: none;
+		width:237px;
+		.good-info{
+			.name a{
+				color:#666;
+			}
+		}
+	}
+}
+
+.highlight{
+	color: #FF2900;
+}
+
+.keywords{
+	font-weight: bold;
+	color: #FF2900;
+}

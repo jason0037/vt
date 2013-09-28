@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>摩登资讯—全球设计品牌精品第e站,都市时尚女性个性首选</title>
+  <meta name="description" content="全球设计精品第e站，都市时尚女性个性首选.">
+  <%= stylesheet_link_tag    "blog/articles" %>
+  <%= javascript_include_tag "blog/articles" %>
+  <%=render "shared/baidu"%>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <%= render "blog/shared/topmenu" %>
+
+  <%= render "blog/shared/masthead" %>
+
+  <div id="main">
+    <div class="container">
+      <div class="row">
+        <div class="span8">
+          <%= yield %>
+        </div>
+        <div class="span4" id="sidebar">
+          <%= render "blog/shared/sidebar" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= render "store/shared/footer" %>
+  <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+
+  <!-- <footer id="footer" class="footer">
+    <div class="container">
+        <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+        <ul class="btmenu">
+          <li><a target="_blank" href="http://www.rayli.com.cn/">瑞丽网</a></li>
+          <li><a target="_blank" href="http://www.metroer.com">都市客</a></li>
+          <li><a target="_blank" href="http://www.cnarts.net">中国艺术品</a></li>
+          <li><a target="_blank" href="http://www.yoka.com">YOKA时尚网</a></li>
+          <li><a target="_blank" href="http://www.weartrends.com">华纺资讯</a></li>
+          <li><a target="_blank" href="http://www.smartshe.com/">她时代</a></li>
+        </ul>
+        <p class="copyright"><small>&copy;2012 i-modec.com 沪ICP备11043780号-1 上海静友信息科技有限公司</small></p>
+    </div>
+  </footer> -->
+  <%= javascript_include_tag "google-analytics" %>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<% if action_name == "show" %>
+  <div id="header" data-0="top: 0px;" data-180="top: -180px;">
+<% else %>
+  <div id="header" data-0="top: 0px;" data-530="top: -530px;">
+<% end %>
+  <div class="container">
+    <div id="imodec_logo">
+      <a href="http://www.i-modec.com"><img alt="摩登客" src="/assets/store/logo_big.png"></a>
+    </div>
+    <div id="imodec_slogan">
+      <img alt="摩登生活，个性衣橱" src="/assets/store/slogan.png">
+    </div>
+    <!--div id="search">
+      
+          <input type="text" class="inputstyle" id="search_text" value="<%=@search_key%>" >
+          <input type="submit" id="btn_search" value="搜索">
+      
+    </div-->
+    <div id="account">
+      <div id="search_wrapper">
+        <div id="search_bar">
+          <input id="search_input" placeholder="请输入搜索关键字" value="<%=Ecstore::Config.search_value%>">
+          <button id="search_btn">搜索</button>
+        </div>
+        <a href="http://weibo.com/imodec" target="_blank" id="weibo"></a>
+        <a href="/vip" target="_blank" id="vipcard"></a>
+      </div>
+
+      <ul id="login_tools" class="clearfix">
+        <li><div id="tel">021-60919835</div></li>
+        <li>
+          <div id="support">
+            <script language="javascript" src="http://kf1.learnsaas.com/chat/chatClient/textButton.js?companyID=18880&configID=42678&codeType=custom" ></script>
+          </div>
+        </li>
+
+         <li>
+            <a id="cart_link" href="#" class="cart-link <%='login' unless signed_in?%>">
+              购物袋
+              <span class="cart-number">(<%=@cart_total_quantity%>)</span></a>
+        </li>
+
+        <%if @user%>
+        <li>
+          <div style="display: block;" id="member_bar_253" class="bar">
+            <span class="login_name" id="uname_253">
+              <%=truncate2(@user.account.login_name,:length=>5)%>
+            </span>
+            <a class="loggedin" href="/member.html">我的摩登客</a>
+            <a class="loggedin" href="/logout">退出</a>
+          </div>
+        </li>
+        <%else%>
+        <li>
+            <a class="loggedin login girl_head" href="javascript:void(0);">登录</a>
+            <a class="loggedin login" href="javascript:void(0);" id="reg">注册</a>
+        </li>
+        <%end%>
+
+        
+        
+        
+        
+      </ul>
+    </div>
+  </div>
+
+  <div id="position">
+    <div class="container">
+      <div class="current_pos">当前位置 ：</div>
+      <ul class="breadcrumb">
+        <li><a href="http://www.i-modec.com">首页</a> <span class="divider">/</span></li>
+        <li><a href="/products/newest">新品</a> <span class="divider">/</span></li>
+        <li class="active">
+            <%if action_name == "newest"%>
+               本期新品
+            <%else%>
+              <%=@tag.tag_ext.issue_no if @tag&&@tag.tag_ext%>
+            <%end%>
+
+            <%if @good&&action_name == "show"%>
+                <%=@good.name%>
+            <%end%>
+        </li>
+
+      </ul>
+      <%if @tag && @tag.tag_ext && @tag.newest?%>
+      <div id="clock" deadline='<%=(@tag.tag_ext.deadline.to_f*1000).to_i%>'>
+        限购剩余时间 
+        <span><span id="days"></span>天<span id="hours"></span>小时<span id="minutes"></span>分<span id="seconds"></span>秒
+        </span>
+      </div>
+      <%end%>
+
+    </div>
+  </div>
+
+
+  <% if @tag && ["index", "newest", "newin"].include?(action_name) %>
+  <div id="items">
+    <div class="container">
+      <ul id="" class="jcarousel-skin-tango">
+        <%@tag.goods.order("uptime desc").each do |good|%>
+        <li>
+          <%=link_to good_path(good.bn,:tag=>@tag.tag_name) do %>
+            <%=image_tag good.default_product.list_pictures.first,:size=>"190x268"%>
+          <%end%>
+          <p>
+            <a href="#" class="item"><%=good.default_product.name%></br>
+              <span class="imodec_price"><a href="javascript:void(0)" class="login" style="font-size:13px;color:#D30000;">摩登客价<%= signed_in? ? "￥#{good.default_product.price.to_i}" : "[会员专享]"%></a></span> 
+              <br />
+              <span class='imodec_price' style="font-size:13px;">市场价￥<%=good.default_product.mktprice.to_i if good.default_product%></span>
+            </a>
+          </p>
+        </li>
+        <%end%>
+      </ul>
+    </div>
+  </div>
+  <%end%>
+  
+</div>

@@ -1,0 +1,21 @@
+<div class="top-actions">
+	<%=link_to "发送所有邮件",send_all_admin_emails_path,:class=>"btn btn-primary send-all"%>
+	<%=link_to "添加邮箱",new_admin_email_path,:class=>"btn btn-primary add-addr"%>
+</div>
+<table class="table table-bordered table-hover" id="cards_list">
+  <tr>
+    <th>邮箱</th>
+    <th>操作</th>
+  </tr>
+
+  <% @emails.each do |email| %>
+    <tr>
+        <td><%=email.addr%></td>
+        <td><%=link_to "删除",admin_email_path(email),:method=>:delete,:confirm=>"确定删除吗?"%></td>
+    </tr>
+  <% end %>
+</table>
+
+<div class="pagination">
+  <%= will_paginate @cards, :container => false %>
+</div>

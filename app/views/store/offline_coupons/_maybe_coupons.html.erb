@@ -1,0 +1,17 @@
+<div id="maybe_coupons">
+        <h3>您可能感兴趣的</h3>
+        <ul class="clearfix">
+          <%@maybe_coupons.each do |coupon|%>
+              <li>
+                <%=link_to coupon_path(coupon) do %>
+                    <%=image_tag coupon.covers.first,:size=>"190x268",:alt=>coupon.name,:class=>"vgood-img"%>
+                <%end%>
+                <div class="name">
+                    <%=link_to coupon_path(coupon) do %>
+                      <%=truncate2(coupon.name,:length=>12)%>
+                    <%end%>
+                </div>
+              </li>
+          <%end%>
+        </ul>
+</div>

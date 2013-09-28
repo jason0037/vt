@@ -1,0 +1,8 @@
+$("#count").text('<%=@count%>');
+
+$("#goods .good").attr("checked",function(){
+	$(this).closest("tr").addClass("selected");
+	return true;
+});
+
+$("#batch_inputs").empty().html('<input name="batch[select_all]" type="checkbox" value="all">');

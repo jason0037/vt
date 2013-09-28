@@ -1,0 +1,26 @@
+<link type="text/css" rel="stylesheet" media="screen" href="/assets/bootstrap.css">
+<link type="text/css" rel="stylesheet" media="screen" href="/assets/blog/topmenu.css">
+<script type="text/javascript" src="/assets/jquery.js"></script>
+<script type="text/javascript" src="/assets/bootstrap-dropdown.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $(window.parent.document).find("#topmenu .dropdown").hover(function() {
+    $(this).find('.dropdown-menu').stop(true, true).show();
+    $(this).addClass('open');
+  }, function() {
+    $(this).find('.dropdown-menu').stop(true, true).hide();
+    $(this).removeClass('open');
+  });
+
+  $(window.parent.document).find("#search_input").val('<%=Ecstore::Config.search_value%>');
+  $(window.parent.document).find("#account").css({ width: '510px' });
+
+  <%if signed_in?%>
+  $(window.parent.document).find("#login_tools .login_name").text('<%=truncate2(@user.login_name, :length=>5)%>');
+  <%end%>
+  
+});
+
+
+</script>
+

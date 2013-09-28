@@ -1,0 +1,35 @@
+<h5>修改用卡人信息</h5>
+<div>
+  卡号 : <%=@card.no%>  (<%=@card.card_type%>类卡)
+</div>
+
+<hr />
+
+<%= form_for :user_card,:url => admin_member_card_path(@member_card),:method=>:put,:remote=>true,:html => {:class => "form-horizontal well"} do |f| %>
+  <%=f.hidden_field :buyer_id,:value=>@member_card.buyer_id%>
+  <fieldset>
+     <div class="control-group">
+      <%= f.label :login_name, "购卡用户名 :", :class => "control-label " %>
+      <div class="controls">
+        <span class="plain-text "><%=@buyer&&@buyer.account ? @buyer.account.login_name : "未登记"%></span>
+      </div>
+    </div>
+
+     <div class="control-group">
+      <%= f.label :user_tel, "用卡人手机号码 :", :class => "control-label" %>
+      
+      <div class="controls">
+        <%= f.text_field :user_tel,:placeholder=>"用卡人手机号码"%>
+        <span class="help"></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '保存', :class => "btn btn-primary" if @buyer%>
+        <span class="msg"></span>
+        <%=link_to '返回', admin_cards_path%>
+      </div>
+    </div>
+  </fieldset>
+<% end %>

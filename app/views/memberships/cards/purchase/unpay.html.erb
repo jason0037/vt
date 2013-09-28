@@ -1,0 +1,5 @@
+<div class="cards">
+	<p>您的订单 [<strong><%=link_to @order.order_id,"/member-orderdetail-#{@order.order_id}.html",:target=>"_blank"%></strong>] 还没有付款！
+		<%=link_to "立即支付>>","/member-orderPayments-#{@order.order_id}.html",:class=>"btn",:target=>"_blank"%>
+	</p>
+</div>

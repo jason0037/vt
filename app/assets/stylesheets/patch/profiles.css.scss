@@ -1,0 +1,200 @@
+// Place all the styles related to the patch/profile controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.profiles .content{
+
+	select{
+		background: white;
+		border: 1px solid #666;
+		font-size: 14px;
+		padding: 4px;
+		width: auto;
+		margin-right: 5px;
+	}
+	
+	input[type="text"],
+	input[type="password"],
+	textarea,
+	select{
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+		
+		-webkit-transition: none;
+		-moz-transition: none;
+		-o-transition: none;
+		transition: none;
+
+		-webkit-border-radius: none;
+		-moz-border-radius: none;
+		-o-border-radius: none;
+		border-radius: 0px;
+		
+		color:#222;
+
+		// -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+		// -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+		// -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+		// transition: border linear 0.2s, box-shadow linear 0.2s;
+
+		&:focus{
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+			border:solid 1px #999;
+			outline: none;
+		}
+	}
+	
+
+
+
+	.field_with_errors{
+		display: inline;
+	}
+	.help-block{
+		padding: 2px 12px;
+		margin: 0 2px 1px 2px;
+		border: 1px solid #FCC;
+		background: #FFFFE6;
+		color: red;
+		display: inline-block;
+	}
+
+	.notice{
+		padding: 5px 10px;
+		text-indent: 10px;
+		border: 1px solid #C4D6DA;
+		color: #367EC1;
+	}
+	.field{
+		padding:5px 0px;
+	}
+
+	.field label{
+		margin-left: 20px;
+		margin-right: 10px;
+		width: 110px;
+		text-align: right;
+		display: inline-block;
+
+	}
+	.field .radio-label{
+		display: inline;
+		margin: 0px;
+	}
+	.field .field-label{
+		float: left;
+		/*margin-top: 5px;*/
+	}
+	.field .tip{
+		color:#999;
+		margin-left: 10px;
+	}
+	.field .required{
+		color:#f00;
+	}
+	.actions{
+		margin-top: 10px;
+	}
+	.actions .btn{
+		margin-left: 133px;
+	}
+	.color{
+		float: right;
+		margin-top: 5px;
+		margin-right: 10px;
+		border: solid 1px #000;
+	}
+	.btn{
+		background: black;
+		color:#fff;
+		padding: 0 15px 0 0;
+		border: solid 1px #000;
+		border-radius: 3px;
+		text-align: center;
+		padding: 5px 10px;
+		cursor: pointer;
+		text-decoration: none;
+	}
+	.nav{
+
+	}
+	.nav-tabs{
+		border-bottom: 1px solid #aaa;
+	}
+	.nav li{
+		display: inline-block;
+		margin:0px;
+		padding: 0px;
+		margin-bottom: -1px;
+	}
+	.nav li a{
+		display: block;
+		padding: 3px 15px;
+		line-height: 20px;
+		border: 1px solid transparent;
+		border: 1px solid #aaa;
+
+		-webkit-border-radius: 4px 4px 0 0;
+		-moz-border-radius: 4px 4px 0 0;
+		border-radius: 4px 4px 0 0;
+		color:#333;
+		text-decoration: none;
+	}
+	.nav li.active a{
+		color: #555;
+		cursor: default;
+		background-color: white;
+		border: 1px solid #aaa;
+		border-bottom-color: transparent;
+		font-weight: bold;
+	}
+	.tab-content > .tab-pane{
+		display: none;
+	}
+	.tab-content > .active{
+		display: block;
+	}
+	.fade.in {
+		opacity: 1;
+	}
+	.fade {
+		opacity: 0;
+		-webkit-transition: opacity 0.15s linear;
+		-moz-transition: opacity 0.15s linear;
+		-o-transition: opacity 0.15s linear;
+		transition: opacity 0.15s linear;
+	}
+	.modify{
+		text-decoration: none;
+		margin-left: 5px;
+		color:#000;
+	}
+	.modify:hover{
+		color: #F60;
+		text-decoration: underline;
+	}
+
+	ul.options{
+		display: inline-block;
+		margin:0px;
+		padding: 0px;
+		width: 400px;
+
+	}
+	ul.options:after{
+		display: block;
+		clear: both;
+		content: " ";
+	}
+	ul.options div{
+		margin-bottom: 5px;
+	}
+	ul.options .option{
+		display: inline-block;
+		margin: 0px;
+		width: 100px;
+		padding: 2px;
+	}
+}

@@ -1,0 +1,13 @@
+<%if resource&&resource.meta_seo%>
+	<%=content_for :title do resource.meta_seo.title end %>
+	<%=content_for :keywords do resource.meta_seo.keywords end %>
+	<%=content_for :description do resource.meta_seo.description end %>
+<%elsif @meta_seo%>
+	<%=content_for :title do @meta_seo.title end %>
+	<%=content_for :keywords do @meta_seo.keywords end %>
+	<%=content_for :description do @meta_seo.description end %>
+<%else%>
+	<%=content_for :title do Ecstore::Config.get(:page_title) end %>
+	<%=content_for :keywords do Ecstore::Config.get(:keywords) end %>
+	<%=content_for :description do Ecstore::Config.get(:keywords) end %>
+<%end%>

@@ -1,0 +1,44 @@
+<%=form_for @user,:url=>patch_profile_path,:method=>:put do |f|%>
+	<%=hidden_field_tag :tab,"interest"%>
+	<div class="field">
+		<label>常出席的场合:</label>
+		<%place_options.each_with_index do |e,index| %>
+			<%=check_box_tag "ecstore_user[places][]",e,@user.places.include?(e),:id=>"place_#{index}"%>
+			<label for='<%="place_#{index}"%>' class="radio-label"><%=e%></label>
+		<%end%>
+	</div>
+
+	<div class="field">
+		<label >常买的服装价位:</label>
+		<%=f.select :price,price_options,{:include_blank=>"请选择"}%>
+	</div>
+
+	<div class="field">
+		<label class="field-label">兴趣爱好:</label>
+		<ul class="options">
+		<%interest_options.each_with_index do |e,index| %>
+			<li class="option">
+			<%=check_box_tag "ecstore_user[interests][]",e,@user.interests.include?(e),:id=>"interest_#{index}"%>
+			<label for='<%="interest_#{index}"%>' class="radio-label"><%=e%></label>
+			</li>
+		<%end%>
+		</ul>
+	</div>
+
+	<div class="field">
+		<label class="field-label">喜欢的颜色:</label>
+		<ul class="options">
+		<%color_options.each do |key,val| %>
+		   <li class="option">
+			<%=check_box_tag "ecstore_user[colors][]",val,@user.colors.include?(val),:id=>"color_#{key}"%>
+			<label for='<%="color_#{key}"%>' class="radio-label color-label"><%=val%></label>
+			<%=image_tag "colors/#{key}.jpg",:size=>"10x10",:class=>"color"%>
+		   </li>
+		<%end%>
+		</ul>
+	</div>
+
+	<div class="actions">
+		<%=f.submit "保存",:class=>"btn"%>
+	</div>
+<%end%>

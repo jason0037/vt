@@ -1,0 +1,5 @@
+<%=form_for :s,:url=>search_admin_orders_path,:method=>:get,:html=>{:class=>"form-search"} do |f|%>
+<%=f.text_field :q, :value=>params[:s]&&params[:s][:q],:placeholder=>"订单号/收货人"%>
+<input type="submit" value="搜索" class="btn btn-success">
+<%=link_to "清除",admin_orders_path,:class=>"btn"%>
+<%end%>

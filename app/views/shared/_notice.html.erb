@@ -1,0 +1,7 @@
+<%if (notice = Ecstore::Config.get(:notice)).present?%>
+<div id="notice">
+	<div class="container">
+		<%=notice%>
+	</div>
+</div>
+<%end%>

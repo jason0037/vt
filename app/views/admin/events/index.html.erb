@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h2>所有摩登活动
+    <%= link_to '新建摩登活动', new_admin_event_path, :class => "pull-right btn btn-primary" %>
+  </h2>
+
+</div>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>活动名</th>
+    <!-- <th>活动时间</th> -->
+    <th>创建时间</th>
+    <th></th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%=event.name%></td>
+    <td><%=event.created_at%></td>
+    <td><%= link_to '查看', event_path(event),:target=>"_blank" %></td>
+    <td><%= link_to '查看报名者', applicants_admin_event_path(event) %></td>
+    <td><%= link_to '编辑', edit_admin_event_path(event) %></td>
+    <td><%= link_to '删除', admin_event_path(event), method: :delete, data: { confirm: '确定删除吗?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<div class="pagination">
+  <%= will_paginate @events, :container => false %>
+</div>

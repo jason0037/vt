@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>打印 - <%=@title%></title>
+  <%= stylesheet_link_tag  "print", :media => "all" %>
+</head>
+<body>
+
+<div>
+	<img src="http://www.i-modec.com/public/images/16/f2/ee/b405f25ea183e9c550107c07b76900de.jpg" />
+</div>
+
+<%= yield %>
+
+</body>
+</html>

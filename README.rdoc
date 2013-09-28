@@ -1,0 +1,29 @@
+APP LAYOUTS
+
+application_controller.rb       layout "survey"
+events_controller.rb            layout 'magazine'
+home_controller.rb              layout 'magazine'
+sessions_controller.rb          layout 'login'
+blog/base_controller.rb         layout 'blog'
+events/applicants_controller.rb layout  nil
+
+admin/base_controller.rb        layout 'admin'
+admin/categories_controller.rb  layout 'dialog'
+admin/labels_controller.rb      layout 'dialog'
+admin/spec_items_controller.rb  layout 'dialog'
+
+magazine/base_controller.rb     layout 'magazine'
+magazine/pages_controller.rb    layout false
+magazine/topics_controller.rb
+
+memberships/cards_controller.rb layout 'memberships'
+memberships/vip_controller.rb   layout 'memberships'
+
+store/brands_controller.rb      layout 'magazine'
+store/cats_controller.rb        layout 'magazine'
+store/cart_controller.rb        layout "cart"
+store/goods_controller.rb       layout 'new_store', 'memberships'
+
+patch/cards_controller.rb       layout "profile"
+patch/profiles_controller.rb    layout "profile"
+
