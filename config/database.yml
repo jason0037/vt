@@ -12,10 +12,10 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: blog
+  database: trade
   #pool: 15
-  username: root
-  password: 
+  username: trade
+  password: qwer1234
   address: localhost
 
 # Warning: The database defined as "test" will be erased and

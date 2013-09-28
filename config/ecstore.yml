@@ -6,8 +6,8 @@ development:
   database: mdk
   host: localhost
   pool: 5
-  username: root
-  password: 
+  username: trade
+  password: qwer1234
 
 test:
   adapter: mysql2
