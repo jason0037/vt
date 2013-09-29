@@ -24,7 +24,7 @@
             </ul>
           </li>
           <li class="brands dropdown">
-            <a id="brands" data-target="<%=site_name%>/brands" href="<%=site_name%>/brands" class="dropdown-toggle" data-toggle="dropdown">品牌 <span>BRANDS</span></a>
+            <a id="brands" data-target="<%=site_name%>/brands" href="<%=site_name%>/brands" class="dropdown-toggle" data-toggle="dropdown">现货 <span>GOODS</span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="brands">
                <% Ecstore::Brand.menu_brands.each do |brand|%>
                 <%if brand%>
@@ -38,7 +38,7 @@
           </li>
          
           <li class="apparel dropdown">
-            <a id="apparel" data-target="<%=site_name%>/gallery/22" href="<%=site_name%>/gallery/22" class="dropdown-toggle" data-toggle="dropdown">时装 <span>APPAREL</span></a>
+            <a id="apparel" data-target="<%=site_name%>/gallery/22" href="<%=site_name%>/gallery/22" class="dropdown-toggle" data-toggle="dropdown">期货 <span>FUTURES</span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="apparel">
               <%Ecstore::Category.apparel_menus.each do |cat|%>
                 <li><a tabindex="-1" href="<%=site_name%><%=cat_path(cat)%>"><%=cat.cat_name.split(/\s+/)[0]%></a></li>
@@ -46,14 +46,14 @@
             </ul>
           </li>
           <li class="bags dropdown">
-            <a id="bags" data-target="<%=site_name%>/gallery/59" href="<%=site_name%>/gallery/59" class="dropdown-toggle" data-toggle="dropdown">鞋包 <span>SHOES&BAGS</span></a>
+            <a id="bags" data-target="<%=site_name%>/gallery/59" href="<%=site_name%>/gallery/59" class="dropdown-toggle" data-toggle="dropdown">类目 <span>CATEGORY</span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="bags">
               <li><a tabindex="-1" href="<%=site_name%>/gallery/486">女鞋</a></li>
               <li><a tabindex="-1" href="<%=site_name%>/gallery/62">手拿包</a></li>
               <li><a tabindex="-1" href="<%=site_name%>/gallery/60">挎包</a></li>
             </ul>
           </li>
-          <li class="accessories dropdown">
+          <!-- <li class="accessories dropdown">
             <a id="accessories" data-target="<%=site_name%>/gallery/69" href="<%=site_name%>/gallery/69" class="dropdown-toggle" data-toggle="dropdown">配饰 <span>ACCESSORIES</span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="accessories">
               <li><a tabindex="-1" href="<%=site_name%>/gallery/70">首饰</a></li>
@@ -63,9 +63,9 @@
               <li><a tabindex="-1" href="<%=site_name%>/gallery/80">围巾</a></li>
               <li><a tabindex="-1" href="<%=site_name%>/gallery/78">手套</a></li>
             </ul>
-          </li>
+          </li> -->
           <li class="news <%= 'active' if controller_name == 'topics' %>">
-            <a href="http://blog.i-modec.com/topics">摩登资讯 <span>NEWS</span></a>
+            <a href="http://blog.i-modec.com/topics">国别中心 <span>COUNTRYS</span></a>
           </li>
           <li class="last"></li>
         </ul>
