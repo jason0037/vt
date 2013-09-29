@@ -70,7 +70,7 @@ module ApplicationHelper
       end
 
       def page_title
-        (content_for :title).present? ? (content_for :title) : '摩登客 | 体验个性摩登生活方式,尊享服装配饰设计品牌精品'
+        (content_for :title).present? ? (content_for :title) : 'trade-V 跨境贸易直通车'
       end
 
       def meta_keywords
@@ -78,7 +78,7 @@ module ApplicationHelper
       end
 
       def meta_description
-        (content_for :description).present? ? (content_for :description) : '摩登客汇聚全球设计师服装精品，打造都市时尚女性首选个性网络衣橱.'
+        (content_for :description).present? ? (content_for :description) : 'trade-V 跨境贸易直通车.'
       end
 
 end

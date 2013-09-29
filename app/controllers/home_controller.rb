@@ -20,7 +20,7 @@ class HomeController < ApplicationController
 	end
 	
 	def subscription_success
-		@title = "摩登客—全球设计品牌精品第e站,都市时尚女性个性首选"
+		@title = "trade-V 跨境贸易直通车"
 	end
 
 end
