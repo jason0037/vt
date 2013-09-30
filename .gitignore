@@ -28,3 +28,7 @@ sprockets*
 /tmp/cache/assets/DDB/6A0/sprockets%2F49f3ccff2f63cc0856f36541e9c2debf
 /tmp/cache/assets/E59/F30/sprockets%2F1bb0ee2e91fa8f6e32b55cfca7af44cf
 /tmp/cache/assets/EB9/390/sprockets%2Feafc84ebc0ce4241fefcf9cb5bea54f1
+/.DS_Store
+/config/ecstore.yml
+/config/database.yml
+/db_sql/apollo_2013-09-29:03:34:41.sql
