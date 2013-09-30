@@ -132,6 +132,8 @@ img{
 #keywords a,
 #products a,
 #brands a,
+#goods a,
+#future a,
 #events a,
 #trend a{
 	color: #000;
@@ -139,6 +141,8 @@ img{
 }
 #keywords a:hover,
 #products a:hover,
+#goods a:hover,
+#future a:hover,
 #brands a:hover,
 #events a:hover,
 #trend a:hover{
@@ -281,37 +285,37 @@ img{
 	right: 0px;
 }
 
-#brands .left{
+#brands .left,#goods .left,#future .left{
 	width: 280px;
 	float: left;
 }
 
-#brands .right{
+#brands .right,#goods .right,#future .right{
 	width: 635px;
 	float: right;
 }
-#brands .right ul{
+#brands .right ul,#goods .right ul,#future .right ul{
 	list-style: none;
 	margin: 0px;
 }
-#brands .right ul li{
+#brands .right ul li,#goods .right ul li,#future .right ul li{
 	width: 310px;
 	float: left;
 	margin-bottom: 22px;
 	list-style: none;
 }
 
-#brands .right .brand-pic{
+#brands .right .brand-pic,#goods .right .brand-pic,#future .right .brand-pic{
 	float: left;
 }
 
-#brands .right .brand-info{
+#brands .right .brand-info,#goods .right .brand-info,#future .right .brand-info{
 	float: right;
 	width: 160px;
 	margin-top: 40px;
 }
 
-#brands .right .brand-info .brand-name{
+#brands .right .brand-info .brand-name,#goods .right .brand-info .brand-name,#future .right .brand-info .brand-name{
 	font-size: 20px;
 	margin-bottom: 10px;
 	
