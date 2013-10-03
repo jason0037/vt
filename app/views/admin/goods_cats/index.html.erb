@@ -18,10 +18,10 @@
 				<td>
 					<%=link_to "增加子项",new_admin_goods_cat_path(:cat_id=>cat)%>
 					|
-					<%= link_to '编辑', edit_admin_goods_cat_path(cat) %>
+					<%=link_to '编辑', edit_admin_goods_cat_path(cat) %>
 					|
-					<%= link_to '删除', admin_goods_cat_path(cat), method: :destroy, data: { confirm: '确定删除?' } %>
-					|预览</td>
+					<%=link_to "删除",admin_goods_cat_path(cat),:method=>:delete,:confirm=>"确定删除吗？"%>
+				</td>
 			</tr>
 			<%=render :partial=>"cat",:collection=>cat.child_cats,:as=>:child%>
 		<%end%>
