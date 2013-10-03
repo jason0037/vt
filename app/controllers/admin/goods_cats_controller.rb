@@ -10,6 +10,23 @@ class Admin::GoodsCatsController < Admin::BaseController
     @goods_cat = Ecstore::GoodCat.find(params[:id])
   end
 
+  def create_top
+  end
+
+  def save_top
+      @goodcat = Ecstore::GoodCat.new
+      @goodcat.cat_name = params[:goods_cat][:cat_name]
+      @goodcat.type_id = params[:goods_cat][:type]
+      @goodcat.parent_id = 0
+      @goodcat.cat_path = ","
+
+      if @goodcat.save
+        redirect_to admin_goods_cats_path
+      else
+        render "new"
+      end
+  end
+
   def create
       @goodcat = Ecstore::GoodCat.new
       @goodcat.cat_name = params[:goods_cat][:cat_name]

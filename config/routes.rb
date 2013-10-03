@@ -99,7 +99,10 @@ Modengke::Application.routes.draw do
         resources :permissions
         resources :sessions
         resources :coupons
-        resources :goods_cats
+        resources :goods_cats do
+          get :create_top,:on=>:collection
+          post :save_top,:on=>:collection
+        end
         resources :goods_types do
           put :updateType,:on=>:member
         end

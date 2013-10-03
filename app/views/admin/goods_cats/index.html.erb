@@ -1,3 +1,6 @@
+<div>
+    <%=link_to "新建类目",create_top_admin_goods_cats_path %>
+</div>
 <table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
@@ -13,7 +16,7 @@
 			<tr class="class_<%=cat.cat_path_rep%>">
 				<td><span class="folder" cat_path="<%=cat.cat_path_rep%><%=cat.cat_id%>-" style="cursor:pointer;color:red">[+]</span><%=cat.cat_name%></td>
 				<td><%=cat.cat_path_rep%></td>
-				<td><%=Ecstore::GoodType.find(cat.type_id).name if !cat.type_id.nil?%></td>
+				<td><%#=Ecstore::GoodType.find(cat.type_id).name if !cat.type_id.nil?%></td>
 				<td><%=cat.p_order%></td>
 				<td>
 					<%=link_to "增加子项",new_admin_goods_cat_path(:cat_id=>cat)%>

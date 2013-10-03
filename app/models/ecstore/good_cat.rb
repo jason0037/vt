@@ -6,6 +6,10 @@ class Ecstore::GoodCat < Ecstore::Base
   	childs = Ecstore::GoodCat.where(:parent_id=>self.cat_id)
   end
 
+  def self.top_cats
+    cats = Ecstore::GoodCat.where(:parent_id=>0)
+  end
+
   def start_blank
   	num = self.cat_path.split(",").length
   	str =""
