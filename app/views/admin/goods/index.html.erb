@@ -1,6 +1,6 @@
 <%=form_for :good,:url=>import_admin_goods_path,:html => {:multipart => true} ,:method=>:post do |f|%>
 	<div class="btn-group">
-	    <%= file_field :good, :file, :id=>'csvfile',:accept => "text/csv" %> 
+	    <%= file_field :good, :file, :id=>'csvfile',:accept => "application/msexcel" %> 
 	    <%= f.submit '导入商品', :class => "btn btn-primary" %>
 	</div>
 <%end%>

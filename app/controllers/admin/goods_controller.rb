@@ -1,5 +1,5 @@
 #encoding:utf-8
-require 'csv'
+require 'spreadsheet'
 require "iconv"
 
 module Admin
@@ -245,272 +245,84 @@ module Admin
 
       def import(options={:encoding=>"GB18030:UTF-8"})
         file = params[:good][:file].tempfile
-        csv_rows = CSV.read(file,options)
-        @logger ||= Logger.new("log/good.log")
-        # csv_rows  = CSV.parse(file_data)
-        @cols = Ecstore::CvsColumn.new
-        first_row = 0
-        @cols.parseModel(csv_rows[first_row])
-        csv_rows.shift
-        @serials_num = Time.now().to_i
-        @specs=[]
+        book = Spreadsheet.open(file)
+        pp "starting import ..."
+        sheet = book.worksheet(0)
+        spec_id = ""
         @good = Ecstore::Good.new
-        begin
-            Ecstore::Good.transaction do
-                ibn_index = @cols.index("规格货号")
-                row_index = 0
-                csv_rows.each do |row|
-                    if row[ibn_index].nil?||row[ibn_index].empty? #规格为空的为商品
-                        @good = self.save_import_cvs_goods(row,row_index)
-                        if @good.nil?
-                            next
-                        end
-                        # spec_index = @cols.index("规格")
-                        spec_array = ['颜色','尺码']
-                        # @specs = spec_array
-                        @good_spec = spec_array
+        sheet.each_with_index do |row,i|
+            if i>4
+                if row[10].blank? #规格为空的为商品
+                    pp "staring...."
+                    @new_good = Ecstore::Good.find_by_bn(row[5].to_i)
+                    if @new_good&&@new_good.persisted?
+                        @good = @new_good
                     else
-                        @specs = self.save_import_cvs_product(row,@good,@good_spec)
+                        @good = Ecstore::Good.new
                     end
-                    @good.spec_desc = @good.specs_desc_serialize
-                    @logger.info("importing...."+@good.name)
+                    cat_arr = row[1].split("->")
+                    cat_deep = cat_arr.length - 1
+                    good_cat = Ecstore::GoodCat.find_by_cat_name(cat_arr[cat_deep])
+                    @good.cat_id = good_cat.cat_id
+                    good_type = Ecstore::GoodType.find_by_name(row[0])
+                    @good.type_id = good_type.type_id
+                    @good.small_pic = row[2]
+                    @good.medium_pic = row[3]
+                    @good.big_pic = row[4]
+                    brand = Ecstore::Brand.unscoped.find_by_brand_name(row[6])
+                    if !brand.blank?
+                        @good.brand_id = brand.brand_id
+                    end
+                    @good.bn = row[5].to_i.to_s
+                    @good.name = row[7]
+                    @good.unit = row[9]
+                    @good.price = row[18]
+                    @good.mktprice = row[19]
+                    @good.bulk = row[16]
+                    @good.wholesale = row[15]
+                    @good.promotion=row[17]
+                    @good.supplier = row[11]
+                    @good.place = row[13]
+                    if row[14] == "上架"
+                        @good.marketable = 'true'
+                    else
+                        @good.marketable = 'false'
+                    end
+                    spec_id = Ecstore::Spec.where(:spec_name=>row[8]).first.spec_id
                     @good.save!
-                    row_index = row_index + 1
+                else
+                    pp "here...."
+                    @new_product = Ecstore::Product.find_by_bn(row[5])
+                    if !@new_product.nil? && @new_product.persisted?
+                        @product = @new_product
+                    else
+                        @product = Ecstore::Product.new
+                    end
+                    @product.goods_id = @good.goods_id
+                    @product.bn = row[5]
+                    @product.name = row[7]
+                    @product.store_time = row[10]
+                    @product.store = row[12]
+                    @product.price = row[18]
+                    @product.mktprice = row[19]
+                    @product.bulk = row[16]
+                    @product.wholesale = row[15]
+                    @product.promotion=row[17]
+                    @product.save!
+                    Ecstore::GoodSpec.where(:product_id=>@product.product_id).delete_all
+                    sp_val_id = Ecstore::SpecValue.where(:spec_value=>row[8],:spec_id=>spec_id).first.spec_value_id
+                    Ecstore::GoodSpec.new do |gs|
+                        gs.type_id =  @good.type_id
+                        gs.spec_id = spec_id
+                        gs.spec_value_id = sp_val_id
+                        gs.goods_id = @good.goods_id
+                        gs.product_id = @product.product_id
+                    end.save
                 end
             end
-        rescue Exception => e
-            @logger.error("[error]import cvs error: "+e.to_s)
-            raise e
         end
         redirect_to admin_goods_path
       end
-
-      def save_import_cvs_goods(row,index)
-            bn_index = @cols.index("商品编号")
-            @new_good = Ecstore::Good.find_by_bn(row[bn_index].to_i)
-            if @new_good&&@new_good.persisted?
-                @good = @new_good
-            else
-                @good = Ecstore::Good.new
-            end
-            @good.bn = row[bn_index].to_i
-            name_index = @cols.index("商品名称")
-            @good.name = row[name_index]
-            # type_index = @cols.index("时装")
-            # @logger ||= Logger.new("log/good.log")
-            if row[0].nil?
-                return
-            end
-            good_type = Ecstore::GoodType.find_by_name(row[0])
-            sbn_index = @cols.index("供应商货号")
-            if !sbn_index.blank?
-                @good.sbn = row[sbn_index]
-            end
-            @good.type_id = good_type.type_id
-            cat_index = @cols.index("分类")
-            cat_arr = row[cat_index].split("->")
-            cat_deep = cat_arr.length - 1
-            good_cat = Ecstore::GoodCat.find_by_cat_name(cat_arr[cat_deep])
-            @good.cat_id = good_cat.cat_id
-            brand_index = @cols.index("品牌")
-            @logger ||= Logger.new("log/good.log")
-            @logger.info("brand:"+row[brand_index])
-            brand = Ecstore::Brand.unscoped.find_by_brand_name(row[brand_index])
-            @good.brand_id = brand.brand_id
-            @good.uptime = Time.now().to_i.to_s
-            @good.last_modify = Time.now().to_i.to_s
-            market_index = @cols.index("上架")
-            if row[market_index] == 'Y'
-                @good.marketable = 'true'
-            else
-                @good.marketable = 'false'
-            end
-            desc_index = @cols.index("商品详情")
-            @good.desc = row[desc_index]
-            @good.save!
-
-            tag_index = @cols.index("风格")
-            tag_obj = Ecstore::TagName.find_by_tag_name(row[tag_index])
-            @new_tag = Ecstore::Tag.find_by_tag_id(tag_obj.tag_id)
-            if @new_tag.persisted?
-                @tag = @new_tag
-            else
-                @tag = Ecstore::Tag.new
-            end
-            @tag.tag_type = 'goods'
-            @tag.app_id = 'b2c'
-            @tag.tag_id = tag_obj.tag_id
-            @tag.rel_id = @good.goods_id
-            @tag.save!
-            
-            keyword_index = @cols.index("商品关键字")
-            Ecstore::GoodKeyword.delete_all(["goods_id = ?",@good.goods_id])
-            if !row[keyword_index].blank?
-                keywords_a = row[keyword_index].split("|")
-                keywords_a.each do |keyword|
-                    @nkw = Ecstore::GoodKeyword.where(:goods_id=>@good.goods_id,:keyword=>keyword).first
-                    if @nkw&&@nkw.persisted?
-                        next
-                    else
-                        @kw = Ecstore::GoodKeyword.new
-                        @kw.goods_id = @good.goods_id
-                        @kw.keyword = keyword
-                        @kw.res_type = 'goods'
-                        @kw.save!
-                    end
-                end
-            end
-
-            #新品速递相关字段
-            new_index = @cols.index("商品简述")
-            @good.intro = row[new_index]
-
-            new_index = @cols.index("材质说明")
-            @good.material = row[new_index]
-
-            new_index = @cols.index("尺寸说明")
-            @good.mesure = row[new_index]
-
-            new_index = @cols.index("柔软度")
-            if !row[new_index].nil?
-                @good.softness = row[new_index].to_i
-            end
-
-            new_index = @cols.index("薄厚度")
-            if !row[new_index].nil?
-                @good.thickness = row[new_index].to_i
-            end
-
-            new_index = @cols.index("弹力度")
-            if !row[new_index].nil?
-                @good.elasticity = row[new_index].to_i
-            end
-
-            new_index = @cols.index("修身度")
-            if !row[new_index].nil?
-                @good.fitness = row[new_index].to_i
-            end
-
-            new_index = @cols.index("试穿体验说明")
-            if !row[new_index].nil?
-                @good.try_on = row[new_index]
-            end
-
-            new_index = @cols.index("库存")
-            if !row[new_index].nil?
-                @good.store = row[new_index].to_i
-            end 
-
-            return @good
-      end
-
-      def is_in_array(array,obj)
-        if array.empty? 
-            return false
-        end
-        array.each do |item|
-            if item == obj
-                return true
-            end
-        end
-        return false
-      end
-
-      def save_import_cvs_product(row,good,specs)
-            ibn_index = @cols.index("规格货号")
-            @new_product = Ecstore::Product.find_by_bn(row[ibn_index])
-            if !@new_product.nil? && @new_product.persisted?
-                @product = @new_product
-            else
-                @product = Ecstore::Product.new
-            end
-            @product.goods_id = good.goods_id
-            @product.bn = row[ibn_index]
-            mktprice_index = @cols.index("市场价")
-            @product.mktprice = row[mktprice_index]
-            good.mktprice = row[mktprice_index]
-            price_index = @cols.index("销售价")
-            @product.price = row[price_index]
-            good.price = row[price_index]
-            o_index = @cols.index("定金")
-            if !row[o_index].blank?
-                @product.mktprice = row[mktprice_index]
-                good.mktprice = row[mktprice_index]
-                @product.price = row[o_index]
-                good.price = row[price_index]
-            end
-            name_index = @cols.index("商品名称")
-            @product.name = row[name_index]
-            # @logger1 ||= Logger.new("log/good.log")
-            # @logger1.info("------------------------a")
-            # @logger1.info(@product.name)
-            store_index = @cols.index("库存")
-            @product.store = row[store_index]
-
-
-            c_index = @cols.index("颜色")
-            m_index = @cols.index("尺码")
-            @spec_info = "颜色：#{row[c_index]}、尺码：#{row[m_index]}"
-            specs_array = []
-            specs_array.push row[c_index];
-            specs_array.push row[m_index];
-            private_value_array = []
-
-            spec_value_array = []
-            @spec_obj = Ecstore::SpecValue.find_by_spec_value(row[c_index])
-            spec_value_array.push @spec_obj.spec_value_id if !@spec_obj.nil?
-            @spec_m_obj = Ecstore::SpecValue.find_by_spec_value(row[m_index])
-            spec_value_array.push @spec_m_obj.spec_value_id if !@spec_m_obj.nil?
-            prd_spec_info = [row[c_index],row[m_index]]
-
-            if !is_in_array(good.colors_a,row[c_index])
-                good.colors_a.push row[c_index]
-                private_value_array.push @serials_num
-                spec_value = {'private_spec_value_id'=>@serials_num,'spec_value'=>row[c_index],'spec_value_id'=>@spec_obj.spec_value_id} #'spec_goods_images'=>row[img_index]
-                good.colors_serialize[@serials_num]=spec_value
-                @serials_num = @serials_num+1
-            end
-
-            if !is_in_array(good.sizes_a,row[m_index])
-                good.sizes_a.push row[m_index]
-                private_value_array.push @serials_num
-                spec_value = {'private_spec_value_id'=>@serials_num,'spec_value'=>row[m_index],'spec_value_id'=>@spec_m_obj.spec_value_id} #'spec_goods_images'=>row[img_index]
-                good.sizes_serialize[@serials_num]=spec_value
-                @serials_num = @serials_num + 1
-            end
-
-            @prd_spec = {'spec_value'=>specs_array,'spec_private_value_id'=>private_value_array,"spec_value_id"=>spec_value_array}
-            @product.last_modify = Time.now().to_i.to_s
-            @product.spec_info = @spec_info
-            @product.spec_desc = @prd_spec.serialize
-            @product.save!
-            good.save!
-
-
-            spec_ids = specs.collect do |name|
-                Ecstore::Spec.where(:spec_name=>name).collect do |spec|
-                    Ecstore::GoodTypeSpec.where(:type_id=>good.type_id,:spec_id=>spec.spec_id).pluck(:spec_id)
-                end
-            end.flatten.compact
-            
-            Ecstore::GoodSpec.where(:product_id=>@product.product_id).delete_all
-            spec_ids.each_index do |i|
-                sp_val_id = Ecstore::SpecValue.where(:spec_value=>prd_spec_info[i],:spec_id=>spec_ids[i]).first.spec_value_id
-                Ecstore::GoodSpec.new do |gs|
-                    gs.type_id =  good.type_id
-                    gs.spec_id = spec_ids[i]
-                    gs.spec_value_id = sp_val_id
-                    gs.goods_id = good.goods_id
-                    gs.product_id = @product.product_id
-                end.save
-
-            end
-
-            # return spec_desc
-      end
-
-
-     
 
       def collocation
         @good = Ecstore::Good.find(params[:id])
