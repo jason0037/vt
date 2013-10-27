@@ -982,8 +982,12 @@ line-height: 36px;
     display: none;
 }
 
+
+
 #products.show .brand{
-  top: 10px;
+  top: 85px;
+  font-size: 30px;
+  font-weight: bold;
 }
 #products.show .description {
   display: none;

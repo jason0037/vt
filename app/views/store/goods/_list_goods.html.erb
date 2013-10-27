@@ -36,7 +36,7 @@
 		<div class="good-pic good-<%=good.goods_id%>">
 			<%=link_to good_path(good.bn), :target=>"_blank" do %>
 				<%=image_tag good.list_default_pic,:alt=>good.name,:class=>"default"%>
-				<%=image_tag good.list_hover_pic,:alt=>good.name,:class=>"hover"%>
+				<%#=image_tag good.list_hover_pic,:alt=>good.name,:class=>"hover"%>
 			<%end%>
 		</div>
 		<div class="good-info">
@@ -77,7 +77,7 @@
 			</div>
 			<div class="prices">
 				<span>
-					摩登客价: 
+					会员价: 
 					<%if signed_in?%>
 					&yen;<%=good.price.to_i%>
 					<%else%>

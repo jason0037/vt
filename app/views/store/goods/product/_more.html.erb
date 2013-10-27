@@ -6,104 +6,25 @@
 </div>
 
 <h3 class="title title-<%=good.goods_id%> material">
-  材质说明<span class="expand"></span>
+  产地说明<span class="expand"></span>
 </h3>
 <div class="detail detail-<%=good.goods_id%>">
-  <%=raw good.material%>
+  <%=raw good.place_info%>
 </div>
 
 <h3 class="title title-<%=good.goods_id%> mesure">
-  尺寸说明<span class="expand"></span>
+  规格说明<span class="expand"></span>
 </h3>
 <div class="detail detail-<%=good.goods_id%> mesure_detail">
-      <%=raw good.mesure%>
+      <%=raw good.spec_info%>
 </div>
 
-<h3 class="title title-<%=good.goods_id%> expr">
-  穿衣体验<span class="expand"></span>
+<!-- <h3 class="title title-<%=good.goods_id%> expr">
+  使用体验<span class="expand"></span>
 </h3>
 <div class="detail detail-<%=good.goods_id%>">     
       <%if good.try_on%>
           <%=good.try_on%>
       <%end%>
-      <table class="expr_table">
-        <%if good.softness%>
-        <tr>
-          <th>柔软度</th>
-          <td>
-            <div class="progressbg">
-              <%if good.softness.to_i==1%>
-                  <div class="progress" style="width:8%>%;"></div>
-              <%else%>
-                  <div class="progress" style="width:<%=(good.softness.to_i-1)*25%>%;"></div>
-              <%end%>
-              <!-- <div class="progress_right"></div> -->
-            </div>
-            <div class="expr_label">
-              <div class="expr_label_left">柔软</div>
-              <div class="expr_label_center">适中</div>
-              <div class="expr_label_right">硬挺</div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>厚薄度</th>
-          <td>
-            <div class="progressbg">
-              <!-- <div class="progress" style="width:<%=(good.thickness.to_i-1)/2.0*100%>%;"></div> -->
-              <%if good.thickness.to_i==1%>
-                  <div class="progress" style="width:8%>%;"></div>
-              <%else%>
-                  <div class="progress" style="width:<%=(good.thickness.to_i-1)*25%>%;"></div>
-              <%end%>
-              <!-- <div class="progress_right"></div> -->
-            </div>
-            <div class="expr_label">
-              <div class="expr_label_left">轻薄</div>
-              <div class="expr_label_center">适中</div>
-              <div class="expr_label_right">厚重</div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>弹力度</th>
-          <td>
-            <div class="progressbg">
-              <!-- <div class="progress" style="width:<%=(good.elasticity.to_i-1)/2.0*100%>%;"></div> -->
-              <%if good.elasticity.to_i==1%>
-                  <div class="progress" style="width:8%>%;"></div>
-              <%else%>
-                  <div class="progress" style="width:<%=(good.elasticity.to_i-1)*25%>%;"></div>
-              <%end%>
-              <!-- <div class="progress_right"></div> -->
-            </div>
-            <div class="expr_label">
-              <div class="expr_label_left">无弹</div>
-              <div class="expr_label_center">适中</div>
-              <div class="expr_label_right">高弹</div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th>修身度</th>
-          <td>
-            <div class="progressbg">
-              <!-- <div class="progress" style="width:<%=(good.fitness.to_i-1)/2.0*100%>%;"></div> -->
-              <%if good.fitness.to_i==1%>
-                  <div class="progress" style="width:8%>%;"></div>
-              <%else%>
-                  <div class="progress" style="width:<%=(good.fitness.to_i-1)*25%>%;"></div>
-              <%end%>
-              <!-- <div class="progress_right"></div> -->
-            </div>
-            <div class="expr_label">
-              <div class="expr_label_left">宽松</div>
-              <div class="expr_label_center">合身</div>
-              <div class="expr_label_right">紧身</div>
-            </div>
-          </td>
-        </tr>
-        <%end%>
-      </table>
-</div>
+</div> -->
 

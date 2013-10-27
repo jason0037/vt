@@ -283,6 +283,9 @@ module Admin
                     @good.promotion=row[17]
                     @good.supplier = row[11]
                     @good.place = row[13]
+                    @good.desc = row[20]
+                    @good.place_info = row[21]
+                    @good.spec_info = row[22]
                     if row[14] == "上架"
                         @good.marketable = 'true'
                     else

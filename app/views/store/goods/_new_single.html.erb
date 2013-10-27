@@ -1,7 +1,7 @@
 <div id="product" class='product_container <%="good_#{good.goods_id}"%>'>
   <div class="gallery">
     <ul class="jcarousel-skin-tango">
-      <%good.default_product.pictures(:large).each_with_index do |large, index|%>
+      <%good.pictures(:large).each_with_index do |large, index|%>
         <li>
           <%= link_to large, :class=>"jqzoom#{ index + 1 }" do %>
             <%=image_tag large,:size=>"420x592",:alt=>nil%>
@@ -17,24 +17,25 @@
     <div class="paddle_img"></div>
   </div>
 
-  <%unless  good.has_cols?%>
-  <a href="<%=good.brand&&brand_path(good.brand)%>" class="brand" target="_blank">
-      <%=image_tag good.brand.logo_url if good.brand%>
-  </a>
-  <%end%>
   <div class="description">
     <h3><%=good.name %></h3>
     <p><%=raw good.intro%></p><br>
     <a class="see_info" href="#">点此查看商品详情 <span> </span></a>
   </div>
 
+  <h3 class="name_and_price">
+      <%unless  good.has_cols?%>
+        <a href="<%=good.brand&&brand_path(good.brand)%>" class="brand" target="_blank">
+            <%= good.brand.brand_name if good.brand%>
+        </a>
+      <%end%>
+  </h3>
+
   <div class="meta_info">
     <%=form_for :product,:url=>add_cart_index_path,:remote=>true do |f|%>
     <%=f.hidden_field :goods_id,:value=>good.goods_id%>
     <%=f.hidden_field :type_id,:value=>good.type_id%>
-
     <h3 class="name_and_price">
-    
       <div class="name"><%=good.name %></div>
       
       <%if good.has_cols? %>
@@ -49,7 +50,7 @@
           </span>
           <span class="market_price">立省<span class="georgia">￥<%=good.savings.to_i%></span>&nbsp;</span>
       <%else%>
-        <span class="price"><%=good.default_product&&good.default_product.full_custom? ? "定金" : "摩登客价"%>
+        <span class="price"><%#=good.default_product&&good.default_product.full_custom? ? "定金" : "摩登客价"%>
           <span class="georgia">
             <% if signed_in? %>
               ￥<span id="product_price"><%=good.default_product.price.to_i if good.default_product%></span>&nbsp;&nbsp;&nbsp;

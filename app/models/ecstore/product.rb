@@ -65,11 +65,16 @@ class Ecstore::Product < Ecstore::Base
 	end
 
 	def pictures(style,format='jpg')
-		return []  if self.color.blank?
-		pattern  = "#{Rails.root}/public/pic/product/#{self.good.bn}/#{style}/#{self.color}/*.#{format}"
-		Dir.glob(pattern).collect do  |file| 
-	          "/pic/product/#{self.good.bn}/#{style}/#{self.color}/#{File.basename(file)}"
-		end.sort{|x,y| y<=>x}
+		# return []  if self.color.blank?
+		# pattern  = "#{Rails.root}/public/pic/product/#{self.good.bn}/#{style}/#{self.color}/*.#{format}"
+		# Dir.glob(pattern).collect do  |file| 
+	 #          "/pic/product/#{self.good.bn}/#{style}/#{self.color}/#{File.basename(file)}"
+		# end.sort{|x,y| y<=>x}
+		return [] if self.big_pic.blank?
+
+	    pics = self.big_pic.split("|")
+
+	    return pics
 	end
 
 	def list_pictures(format='jpg')

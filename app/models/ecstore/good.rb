@@ -217,12 +217,17 @@ class Ecstore::Good < Ecstore::Base
   end
 
   def pictures(style=:large,color=nil,format=:jpg)
-    return []  if color.blank?
-    pattern  = "#{Rails.root}/public/pic/product/#{self.bn}/#{style}/#{color}/*.#{format}"
+    return [] if self.big_pic.blank?
 
-    Dir.glob(pattern).collect do  |file| 
-          "/pic/product/#{self.bn}/#{style}/#{color}/#{File.basename(file)}"
-    end.sort{|x,y| y<=>x}
+    pics = self.big_pic.split("|")
+
+    return pics
+    # return []  if color.blank?
+    # pattern  = "#{Rails.root}/public/pic/product/#{self.bn}/#{style}/#{color}/*.#{format}"
+
+    # Dir.glob(pattern).collect do  |file| 
+    #       "/pic/product/#{self.bn}/#{style}/#{color}/#{File.basename(file)}"
+    # end.sort{|x,y| y<=>x}
   end
 
   def large_pictures(color,format=:jpg)
@@ -237,13 +242,14 @@ class Ecstore::Good < Ecstore::Base
   end
 
   def list_default_pic
-    if self.goods_id > NEW_GOOD_START_ID
-      list_pictures[0]
-    else
-      pic = Ecstore::Image.find_by_image_id(self.image_default_id)
-      return "http://www.i-modec.com/#{pic.s_url}" if pic
-      nil
-    end
+    return self.medium_pic if !self.medium_pic.blank?
+    # if self.goods_id > NEW_GOOD_START_ID
+    #   list_pictures[0]
+    # else
+    #   pic = Ecstore::Image.find_by_image_id(self.image_default_id)
+    #   return "http://www.i-modec.com/#{pic.s_url}" if pic
+    #   nil
+    # end
   end
 
   def list_hover_pic

@@ -33,20 +33,6 @@
 		.default{
 			display: block;
 		}
-
-		.hover{
-			display: none;
-		}
-
-		&:hover{
-			.default{
-				display: none;
-			}
-			.hover{
-				display: block;
-			}
-		}
-
 	}
 	.good-info{
 		margin-left: 33px;
