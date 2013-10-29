@@ -30,6 +30,25 @@ class Admin::UsersController < Admin::BaseController
 		
 	end
 
+	def newuser
+		account = Ecstore::Account.new
+		account.account_type = "shopadmin"
+		account.login_name = params[:manager][:name]
+		account.login_password = params[:manager][:password]
+		account.createtime = Time.now.to_i
+		account.login_password_confirmation = params[:manager][:password]
+		account.email = params[:manager][:email]
+		account.mobile = params[:manager][:mobile]
+		account.license = true
+		account.save!
+		manager = Ecstore::Manager.new
+		manager.user_id = account.account_id
+		manager.status = 1
+		manager.name = params[:manager][:desc]
+		manager.save!
+		redirect_to admin_permissions_path
+	end
+
 
 	def send_sms_code
 

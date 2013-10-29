@@ -4,6 +4,9 @@ class Admin::PermissionsController < Admin::BaseController
     @managers = Ecstore::Manager.all
   end
 
+  def new
+  end
+
   def update
    
     manager_id = params[:id]

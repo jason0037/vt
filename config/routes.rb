@@ -96,7 +96,9 @@ Modengke::Application.routes.draw do
         get 'logout'=>'sessions#destroy'
 
         resources :resources
-        resources :permissions
+        resources :permissions do
+
+        end
         resources :sessions
         resources :coupons
         resources :goods_cats do
@@ -170,6 +172,7 @@ Modengke::Application.routes.draw do
 
         resources :users do 
           get 'search',:on=>:collection
+          post 'newuser',:on=>:collection
           put 'send_sms_code',:on=>:member
           put 'buy_card',:on=>:member
           put 'use_card',:on=>:collection

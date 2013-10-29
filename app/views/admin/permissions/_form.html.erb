@@ -1,0 +1,49 @@
+<%= form_for :manager,:url=>newuser_admin_users_path, :method=>@method, :html => {:class => "form-horizontal"} do |f| %>
+<%=f.hidden_field :app_id, :value=>"b2c"%>
+
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :name, "用户名：", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :name%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :email, "Email：", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :email%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :mobile, "手机：", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :mobile%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :desc, "说明：", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :desc%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :password, "密码：", :class => "control-label" %>
+      <div class="controls">
+          <%=f.password_field :password%>
+      </div>
+    </div>
+
+    
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>
+        <%= link_to '返回', admin_tags_path,:class=>"btn" %>
+      </div>
+    </div>
+     
+  </fieldset>
+<% end %>
