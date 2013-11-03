@@ -137,6 +137,8 @@ goods_cats:
   desc: "商品分类"
   index: "列表"
   new.create: "新建"
+  create_top: "新建商品分类"
+  save_top: "保存商品分类"
   edit.update: "编辑"
   destroy: "删除"
 goods_types:
