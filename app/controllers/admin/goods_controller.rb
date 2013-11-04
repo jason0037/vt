@@ -251,8 +251,8 @@ module Admin
         spec_id = ""
         @good = Ecstore::Good.new
         sheet.each_with_index do |row,i|
-            if i>4
-                if row[10].blank? #规格为空的为商品
+            if i>4 && !row[1].blank? && !row[0].blank?
+                if !row[20].blank? #规格为空的为商品
                     pp "staring...."
                     @new_good = Ecstore::Good.find_by_bn(row[5].to_i)
                     if @new_good&&@new_good.persisted?
