@@ -138,7 +138,7 @@ class Ecstore::Good < Ecstore::Base
     pic = ""
     if !self.medium_pic.blank?
       if self.medium_pic.index("|") != -1
-          pic = self.medium_pic.split("|")(0)
+          pic = self.medium_pic.split("|").first
       else
           pic = self.medium_pic
       end
