@@ -1,9 +1,30 @@
+.country_item{
+	padding-top:5px;
+	padding-left:10px;
+}
+
+.country_item a{
+	padding-left:10px;
+	padding-right:10px;
+	padding-top:2px;
+	padding-bottom:2px;
+	color:#333;
+}
+
+.country_item a:hover{
+	background:#000;
+	color:white;
+}
+
+a.selected_item{
+	background:#000;
+	color:white;
+}
 .tree-menu{
 	font-size:13px;
 	overflow:hidden;
 	a{
 		text-decoration: none;
-		color:#333;
 	}
 	.title-level1{
 		margin:2px 0px;
@@ -11,6 +32,8 @@
 		a{
 			text-decoration: none;
 			background: #000;
+			padding-top:5px;
+			padding-bottom:5px;
 			display: block;
 			color:#fff;
 			text-indent: 10px;

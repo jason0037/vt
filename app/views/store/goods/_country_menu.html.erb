@@ -1,0 +1,16 @@
+<div class="tree-menu" id="cats_tree">
+	<div class="title-level1">
+		<%=link_to "国别中心", "#"%>
+	</div>
+	<ul class="unstyled">
+		<%Ecstore::Country.all.each do |country|%>
+		<li class="country_item">
+			<%if country.country_id.to_s == params[:id]%>
+				<%=link_to country.country_name,country_path(country),:class=>"selected_item"%>
+			<%else%>
+				<%=link_to country.country_name,country_path(country)%>
+			<%end%>
+		</li>
+		<%end%>
+	</ul>
+</div>

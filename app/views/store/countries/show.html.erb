@@ -1,0 +1,17 @@
+<%=render "shared/metable", :resource=>@cat%>
+
+<%=content_for :head do%>
+	<%= stylesheet_link_tag "store/countries" %>
+	<%= javascript_include_tag "store/countries" %>
+<%end%>
+
+<%=render "store/shared/country_position"%>
+
+<div class="products clearfix">
+	<div class="left">
+		<%=render "store/goods/country_menu"%>
+	</div>
+	<div class="right">
+		<%=render "store/goods/list_goods"%>
+	</div>
+</div>

@@ -5,13 +5,13 @@ class Store::CatsController < ApplicationController
   	
   	def show
   	      @cat = Ecstore::Category.find_by_cat_id(params[:id])
-             @all_goods = @cat.all_goods
+          @all_goods = @cat.all_goods
 
-  		order = params[:order]
+      		order = params[:order]
 
-	  	if order.present?
-	  		col, sorter = order.split("-")
-	  	end
+    	  	if order.present?
+    	  		col, sorter = order.split("-")
+    	  	end
               
              page  =  (params[:page] || 1).to_i
              per_page = 18

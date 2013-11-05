@@ -1,0 +1,11 @@
+<div id="position">
+  <div class="container">
+    <div class="current_pos">当前位置 ：</div>
+    <ul class="breadcrumb">
+      <li><a href="/">首页</a> <span class="divider">/</span></li>
+          <li class="active">
+              <%=Ecstore::Country.find_by_country_id(params[:id]).country_name%>
+          </li>
+    </ul>
+   </div>
+</div>

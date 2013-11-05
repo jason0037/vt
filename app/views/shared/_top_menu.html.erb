@@ -64,8 +64,16 @@
               <li><a tabindex="-1" href="<%=site_name%>/gallery/78">手套</a></li>
             </ul>
           </li> -->
-          <li class="news <%= 'active' if controller_name == 'topics' %>">
-            <a href="http://blog.i-modec.com/topics">国别中心 <span>COUNTRYS</span></a>
+          <li class="news dropdown">
+            <a href="http://blog.i-modec.com/topics" class="dropdown-toggle" data-toggle="dropdown">国别中心 <span>COUNTRIES</span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="news">
+               <% Ecstore::Country.all.each do |country|%>
+                  <li>
+                    <%#=link_to brand.brand_name,"#{site_name}#{brand_path(brand)}" if Rails.env == "production"%>
+                    <%=link_to country.country_name, country_path(country) if Rails.env == "development"%>
+                  </li>
+              <%end%>
+            </ul>
           </li>
           <li class="last"></li>
         </ul>

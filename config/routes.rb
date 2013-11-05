@@ -289,6 +289,7 @@ Modengke::Application.routes.draw do
       end
       resources :brands,:only=>[:index,:show]
       resources :users
+      resources :country, :as=>"countries", :controller=>"countries"
       resources :gallery, :as=>"cats", :controller=>"cats"
 
       resources :orders, :except=>[:index] do 

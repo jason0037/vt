@@ -282,6 +282,14 @@ module Admin
                     @good.wholesale = row[15]
                     @good.promotion=row[17]
                     @good.supplier = row[11]
+                    if !row[13].blank?
+                        result = Ecstore::Country.find_by_country_name(row[13])
+                        if result.blank?
+                            country = Ecstore::Country.new
+                            country.country_name = row[13]
+                            country.save
+                        end
+                    end
                     @good.place = row[13]
                     @good.desc = row[20]
                     @good.place_info = row[21]
