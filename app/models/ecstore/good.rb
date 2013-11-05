@@ -134,6 +134,17 @@ class Ecstore::Good < Ecstore::Base
   end
 
 
+  def rec_image
+    pic = ""
+    if !self.medium_pic.blank?
+      if self.medium_pic.index("|") != -1
+          pic = self.medium_pic.split("|")(0)
+      else
+          pic = self.medium_pic
+      end
+    end
+  end
+
   def reco_collocation_goods
       cat = Ecstore::Category.find_by_cat_id(self.cat_id)
       cat.goods.where("goods_id <> ?", self.goods_id).order("goods_id desc").limit(10)
