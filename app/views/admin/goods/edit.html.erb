@@ -35,21 +35,28 @@
     <div class="control-group">
       <%= f.label :small_pic, "小图", :class => "control-label" %>
       <div class="controls">
-        <%= f.text_field :small_pic%>
+        <%= f.text_field :small_pic,:class=>"span10"%>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :medium_pic, "中图", :class => "control-label" %>
       <div class="controls">
-        <%= f.text_field :medium_pic%>
+        <%= f.text_field :medium_pic,:class=>"span10"%>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :big_pic, "大图", :class => "control-label" %>
       <div class="controls">
-        <%= f.text_field :big_pic%>
+        <%= f.text_field :big_pic,:class=>"span10"%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :place, "产地", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :place%>
       </div>
     </div>
 
@@ -61,7 +68,7 @@
     </div>
 
     <div class="control-group">
-      <%= f.label :price, "摩登客价", :class => "control-label" %>
+      <%= f.label :price, "会员价", :class => "control-label" %>
       <div class="controls">
         <%= f.number_field :price%>
       </div>
