@@ -2,13 +2,18 @@
 	<div class="title-level1">
 		<%=link_to "国别中心", "#"%>
 	</div>
+	<ul class="unstyled choose_items">
+		<li class="cho_item <%if params[:gtype]=="1"%>sell_item<%end%>"><a href="?gtype=1">现货</a></li>
+		<li class="cho_item <%if params[:gtype]=="2"%>sell_item<%end%>"><a href="?gtype=2">期货</a></li>
+		<li class="cho_item <%if params[:gtype]=="3"%>sell_item<%end%>"><a href="?gtype=3">代购</a></li>
+	</ul>
 	<ul class="unstyled">
 		<%Ecstore::Country.all.each do |country|%>
 		<li class="country_item">
 			<%if country.country_id.to_s == params[:id]%>
-				<%=link_to country.country_name,country_path(country),:class=>"selected_item"%>
+				<%=link_to country.country_name,country_path(country,:gtype=>params[:gtype]),:class=>"selected_item"%>
 			<%else%>
-				<%=link_to country.country_name,country_path(country)%>
+				<%=link_to country.country_name,country_path(country,:gtype=>params[:gtype])%>
 			<%end%>
 		</li>
 		<%end%>

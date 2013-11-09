@@ -3,6 +3,44 @@
 	width: 950px;
 }
 
+.choose_items{
+	float:left;
+	width:100%;
+	border-bottom:#000 2px solid;
+}
+
+.cho_item{
+	width:20%;
+	float:left;
+	padding-top:5px;
+	padding-bottom:5px;
+	padding-left:15px;
+}
+.cho_item a{
+	color:#000;
+	padding-left:5px;
+	padding-right:5px;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+.cho_item a:hover{
+	color:#fff;
+	background:#000;
+	padding-left:5px;
+	padding-right:5px;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+.sell_item a{
+	color:#fff;
+	background:#000;
+	padding-left:5px;
+	padding-right:5px;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
 
 .products{
 	// margin-top: 7px;

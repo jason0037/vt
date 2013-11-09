@@ -86,7 +86,7 @@
                <% Ecstore::Country.all.each do |country|%>
                   <li>
                     <%#=link_to brand.brand_name,"#{site_name}#{brand_path(brand)}" if Rails.env == "production"%>
-                    <%=link_to country.country_name, country_path(country) if Rails.env == "development"%>
+                    <%=link_to country.country_name, country_path(country,:gtype=>"1") if Rails.env == "development"%>
                   </li>
               <%end%>
             </ul>

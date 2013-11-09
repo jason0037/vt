@@ -6,6 +6,13 @@ class Store::CountriesController < ApplicationController
   	def show
         country_name = Ecstore::Country.find_by_country_id(params[:id]).country_name
         conditions = {:place=>country_name}
+        if params[:gtype] == "1"
+             conditions["sell"] = 'true' 
+        elsif params[:gtype] == "2"
+             conditions["future"] = 'true'
+        elsif params[:gtype] == "3"
+             conditions["agent"] = 'true'
+        end
         conditions.each do |key,val|
           raise "Field `#{key}`  is existence" unless Ecstore::Good.attribute_names.include?(key.to_s)
         end if conditions.present?
