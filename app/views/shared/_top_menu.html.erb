@@ -15,17 +15,22 @@
           <li class="home <%= 'active' if controller_name == 'home' %>">
             <a href="<%=site_name%>/">首页 <span>HOME</span></a>
           </li>
-          <li class="newin dropdown  <%= 'active' if controller_name == 'goods' %>">
+          <!-- <li class="newin dropdown  <%= 'active' if controller_name == 'goods' %>">
             <a id="newin" data-target="<%=site_name%>/products/newest" href="<%=site_name%>/products/newest" class="dropdown-toggle" data-toggle="dropdown">新品 <span>NEW IN</span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="newin">
               <li><a tabindex="-1" href="<%=site_name%>/products/newest">本期新品</a></li>
               <li><a tabindex="-1" href="<%=site_name%>/products/more">更多新品</a></li>
               <li><a tabindex="-1" href="<%=site_name%>/products/suits">搭配推荐</a></li>
             </ul>
-          </li>
+          </li> -->
           <li class="brands dropdown">
             <a id="brands" data-target="<%=site_name%>/brands" href="<%=site_name%>/brands" class="dropdown-toggle" data-toggle="dropdown">现货 <span>GOODS</span></a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="brands">
+            <ul class="dropdown-menu" role="menu" aria-labelledby="bags">
+              <%Ecstore::GoodCat.top_cats.each do |cat|%>
+                <li><a tabindex="-1" href="<%=site_name%>/gallery/<%=cat.cat_id%>"><%=cat.cat_name%></a></li>
+              <%end%>
+            </ul>
+            <!-- <ul class="dropdown-menu" role="menu" aria-labelledby="brands">
                <% Ecstore::Brand.menu_brands.each do |brand|%>
                 <%if brand%>
                   <li>
@@ -34,19 +39,24 @@
                   </li>
                 <%end%>
               <%end%>
-            </ul>
+            </ul> -->
           </li>
          
           <li class="apparel dropdown">
             <a id="apparel" data-target="<%=site_name%>/gallery/22" href="<%=site_name%>/gallery/22" class="dropdown-toggle" data-toggle="dropdown">期货 <span>FUTURES</span></a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="apparel">
+            <ul class="dropdown-menu" role="menu" aria-labelledby="bags">
+              <%Ecstore::GoodCat.top_cats.each do |cat|%>
+                <li><a tabindex="-1" href="<%=site_name%>/gallery/<%=cat.cat_id%>"><%=cat.cat_name%></a></li>
+              <%end%>
+            </ul>
+            <!-- <ul class="dropdown-menu" role="menu" aria-labelledby="apparel">
               <%Ecstore::Category.apparel_menus.each do |cat|%>
                 <li><a tabindex="-1" href="<%=site_name%><%=cat_path(cat)%>"><%=cat.cat_name.split(/\s+/)[0]%></a></li>
               <%end%>
-            </ul>
+            </ul> -->
           </li>
           <li class="bags dropdown">
-            <a id="bags" data-target="<%=site_name%>/gallery/59" href="<%=site_name%>/gallery/59" class="dropdown-toggle" data-toggle="dropdown">类目 <span>CATEGORY</span></a>
+            <a id="bags" data-target="<%=site_name%>/gallery/59" href="<%=site_name%>/gallery/59" class="dropdown-toggle" data-toggle="dropdown">代购 <span>CATEGORY</span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="bags">
               <%Ecstore::GoodCat.top_cats.each do |cat|%>
                 <li><a tabindex="-1" href="<%=site_name%>/gallery/<%=cat.cat_id%>"><%=cat.cat_name%></a></li>
