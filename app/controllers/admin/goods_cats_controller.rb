@@ -13,6 +13,35 @@ class Admin::GoodsCatsController < Admin::BaseController
   def create_top
   end
 
+  def toggle_future
+    return_url =  request.env["HTTP_REFERER"]
+    return_url =  admin_good_cats_url if return_url.blank?
+    @cat = Ecstore::GoodCat.find(params[:id])
+    pp @cat
+    val = @cat.future == 'false' ? 'true' : 'false'
+    @cat.update_attribute :future, val
+    redirect_to return_url
+  end
+
+  def toggle_agent
+    return_url =  request.env["HTTP_REFERER"]
+    return_url =  admin_good_cats_url if return_url.blank?
+    @cat = Ecstore::GoodCat.find(params[:id])
+    pp @cat
+    val = @cat.agent == 'false' ? 'true' : 'false'
+    @cat.update_attribute :agent, val
+    redirect_to return_url
+  end
+
+  def toggle_sell
+    return_url =  request.env["HTTP_REFERER"]
+    return_url =  admin_good_cats_url if return_url.blank?
+    @cat = Ecstore::GoodCat.find(params[:id])
+    val = @cat.sell == 'false' ? 'true' : 'false'
+    @cat.update_attribute :sell, val
+    redirect_to return_url
+  end
+
   def save_top
       @goodcat = Ecstore::GoodCat.new
       @goodcat.cat_name = params[:goods_cat][:cat_name]

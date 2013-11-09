@@ -24,6 +24,18 @@
 					<%=link_to '编辑', edit_admin_goods_cat_path(cat) %>
 					|
 					<%=link_to "删除",admin_goods_cat_path(cat),:method=>:delete,:confirm=>"确定删除吗？"%>
+					|
+					<%= link_to toggle_future_admin_goods_cat_path(cat) do%>
+			        	<%=cat.future == 'false' ? "设置期货" : "期货关闭"%>
+			      	<%end%>
+					|
+					<%= link_to toggle_agent_admin_goods_cat_path(cat) do%>
+			        	<%=cat.agent == 'false' ? "设置代购" : "代购关闭"%>
+			      	<%end%>
+					|
+					<%= link_to toggle_sell_admin_goods_cat_path(cat) do%>
+			        	<%=cat.sell == 'false' ? "设置现货" : "现货关闭"%>
+			      	<%end%>
 				</td>
 			</tr>
 			<%=render :partial=>"cat",:collection=>cat.child_cats,:as=>:child%>

@@ -103,6 +103,9 @@ Modengke::Application.routes.draw do
         resources :coupons
         resources :goods_cats do
           get :create_top,:on=>:collection
+          get :toggle_future,:on=>:member
+          get :toggle_agent,:on=>:member
+          get :toggle_sell,:on=>:member
           post :save_top,:on=>:collection
         end
         resources :goods_types do
