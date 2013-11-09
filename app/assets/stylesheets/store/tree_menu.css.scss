@@ -7,13 +7,14 @@
 	}
 	.title-level1{
 		margin:2px 0px;
-		
 		a{
 			text-decoration: none;
 			background: #000;
 			display: block;
 			color:#fff;
 			text-indent: 10px;
+			padding-top: 2px;
+			padding-bottom: 2px;
 		}
 	}
 	.items-level1{
@@ -21,7 +22,6 @@
 		list-style: none;
 		.item-level1{
 			list-style: none;
-			padding: 2px 0px;
 		}
 	}
 
@@ -32,7 +32,6 @@
 		margin-left: 10px;
 		list-style: none;
 		.item-level2{
-			padding: 2px 0px;
 			list-style: none;
 			&:before{
 				content:  " - ";

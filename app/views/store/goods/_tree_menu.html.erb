@@ -7,12 +7,12 @@
 			<%top_cat.categories.order("p_order asc").each do |scat|%>
 				<%if scat.all_goods.size > 0%>
 					<li class="item-level1">
-						<div class="title-level2"><%=link_to scat.cat_name,cat_path(scat)%></div>
+						<div class="title-level2"><%=link_to scat.cat_name,cat_path(scat,:gtype=>params[:gtype])%></div>
 						<%if scat.categories.present?%>
 							<ul class="items-level2">
 							<%scat.categories.each do |tcat|%>
 								<%if tcat.all_goods.size>0%>
-								<li class="item-level2"><%=link_to tcat.cat_name,cat_path(tcat)%></li>
+								<li class="item-level2"><%=link_to tcat.cat_name,cat_path(tcat,:gtype=>params[:gtype])%></li>
 								<%end%>
 							<%end%>
 							</ul>
@@ -22,39 +22,5 @@
 			<%end%>
 		</ul>
 	<%end%>
-	
-	<%if @menu_colors.present?%>
-		<div class="title-level1">
-			<%=link_to "颜色 Colors", "#"%>
-		</div>
-		<ul class="items-level1">
-			<%@menu_colors.each do |spec_value_id,count|%>
-			<%spec_color = Ecstore::SpecValue.find_by_spec_value_id(spec_value_id)%>
-			<li class="item-level1">
-				<div class="title-level2">
-					<%=link_to "#{spec_color.spec_value}(#{count})",cat_path(@cat,:brand=>params[:brand],:color=>spec_value_id)%>
-				</div>
-			</li>
-			<%end%>
-		</ul>
-	<%end%>
-
-	<% if @menu_brands.present?%>
-		<div class="title-level1">
-			<%=link_to "品牌 Brands", "#"%>
-		</div>	
-		<ul class="items-level1">
-			
-			<%@menu_brands.each do |brand_id,count|%>
-				<%brand = Ecstore::Brand.find_by_brand_id(brand_id)%>
-				<li>
-					<div class="title-level2">
-						<%=link_to "#{brand.brand_name}(#{count})",cat_path(@cat,:brand=>brand_id,:color=>params[:color]) %>
-					</div>
-				</li>
-			<%end%>
-		</ul>
-	<%end%>
-	
 
 </div>

@@ -50,12 +50,16 @@
 				<%=link_to "查看",good_path(good.bn),:target=>"_blank"%>
 				<%=link_to "编辑",edit_admin_good_path(good)%>
 				<%=link_to "编辑规格",spec_admin_good_path(good)%>
-				<%=link_to "商品搭配",collocation_admin_good_path(good)%>
-				<%if good.p_50 == 'true'%>
-					<%=link_to "取消搭配设置",cancel_suits_admin_good_path(good)%>
-				<%else%>
-					<%=link_to "设置搭配",set_suits_admin_good_path(good)%>
-				<%end%>
+				<%= link_to toggle_future_admin_good_path(good) do%>
+			        <%=good.future == 'false' ? "设置期货" : "期货关闭"%>
+			    <%end%>
+			    <%= link_to toggle_agent_admin_good_path(good) do%>
+			        <%=good.agent == 'false' ? "设置代购" : "代购关闭"%>
+			    <%end%>
+				<%= link_to toggle_sell_admin_good_path(good) do%>
+			        <%=good.sell == 'false' ? "设置现货" : "现货关闭"%>
+			    <%end%>
+				
 			</td>
 		</tr>
 	<%end%>

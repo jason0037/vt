@@ -134,6 +134,9 @@ Modengke::Application.routes.draw do
           get 'select_gifts',:on=>:collection
           put 'batch',:on=>:collection
           get 'select_all',:on=>:collection
+          get :toggle_future,:on=>:member
+          get :toggle_agent,:on=>:member
+          get :toggle_sell,:on=>:member
         end
         resources :spec_items
         

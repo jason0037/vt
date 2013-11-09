@@ -106,6 +106,33 @@ module Admin
             @spec_items = Ecstore::SpecItem.all
       end
 
+      def toggle_future
+        return_url =  request.env["HTTP_REFERER"]
+        return_url =  admin_goods_url if return_url.blank?
+        @good = Ecstore::Good.find(params[:id])
+        val = @good.future == 'false' ? 'true' : 'false'
+        @good.update_attribute :future, val
+        redirect_to return_url
+      end
+
+      def toggle_agent
+        return_url =  request.env["HTTP_REFERER"]
+        return_url =  admin_goods_url if return_url.blank?
+        @good = Ecstore::Good.find(params[:id])
+        val = @good.agent == 'false' ? 'true' : 'false'
+        @good.update_attribute :agent, val
+        redirect_to return_url
+      end
+
+      def toggle_sell
+        return_url =  request.env["HTTP_REFERER"]
+        return_url =  admin_goods_url if return_url.blank?
+        @good = Ecstore::Good.find(params[:id])
+        val = @good.sell == 'false' ? 'true' : 'false'
+        @good.update_attribute :sell, val
+        redirect_to return_url
+      end
+
       def spec
             @good =  Ecstore::Good.find(params[:id])
             @products = @good.products
@@ -294,6 +321,21 @@ module Admin
                     @good.desc = row[20]
                     @good.place_info = row[21]
                     @good.spec_info = row[22]
+                    if row[23] == "是"
+                        @good.sell = 'true'
+                    else
+                        @good.sell = 'false'
+                    end
+                    if row[24] == "是"
+                        @good.agent = 'true'
+                    else
+                        @good.agent = 'false'
+                    end
+                    if row[25] == "是"
+                        @good.future = 'true'
+                    else
+                        @good.future = 'false'
+                    end
                     if row[14] == "上架"
                         @good.marketable = 'true'
                     else

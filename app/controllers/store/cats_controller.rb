@@ -5,7 +5,13 @@ class Store::CatsController < ApplicationController
   	
   	def show
   	      @cat = Ecstore::Category.find_by_cat_id(params[:id])
-          @all_goods = @cat.all_goods
+          if params[:gtype] == "1"
+             @all_goods = @cat.all_goods(:sell=>"true")
+          elsif params[:gtype] == "2"
+             @all_goods = @cat.all_goods(:future=>"true")
+          elsif params[:gtype] == "3"
+             @all_goods = @cat.all_goods(:agent=>"true")
+          end
 
       		order = params[:order]
 
