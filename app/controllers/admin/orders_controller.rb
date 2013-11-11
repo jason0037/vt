@@ -249,7 +249,7 @@ class Admin::OrdersController < Admin::BaseController
 		if @delivery.save
 			begin
 				tel  =@delivery.ship_mobile
-				text = "您的订单#{@order.order_id}已发货,使用#{@delivery.logi_name},单号为#{@delivery.logi_no}.请注意查收! [I-Modec摩登客]"
+				text = "您的订单#{@order.order_id}已发货,使用#{@delivery.logi_name},单号为#{@delivery.logi_no}.请注意查收! [TRADE-V]"
 				Sms.send(tel,text)
 			rescue Exception => e
 			end

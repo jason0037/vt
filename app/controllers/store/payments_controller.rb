@@ -31,7 +31,7 @@ class Store::PaymentsController < ApplicationController
 			payment.pay_ver = '1.0'
 			payment.paycost = 0
 
-			payment.account = '摩登客 | 体验个性摩登生活方式，尊享服装配饰设计精品'
+			payment.account = 'TRADE | 跨境贸易 一键直达'
 			payment.member_id = payment.op_id = @user.member_id
 			payment.pay_account = @user.login_name
 			payment.ip = request.remote_ip

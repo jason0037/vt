@@ -7,7 +7,7 @@ class Patch::MembersController < ApplicationController
 
 	before_filter do
 		clear_breadcrumbs
-		add_breadcrumb("我的摩登客",:member_path)
+		add_breadcrumb("我的TRADE",:member_path)
 	end
 
 	
@@ -17,7 +17,7 @@ class Patch::MembersController < ApplicationController
 	def show
 		@orders = @user.orders.limit(5)
 		@unpay_count = @user.orders.where(:pay_status=>'0',:status=>'active').size
-		add_breadcrumb("我的摩登客")
+		add_breadcrumb("我的TRADE")
 	end
 
 	def orders
