@@ -279,6 +279,8 @@ module Admin
         @good = Ecstore::Good.new
         sheet.each_with_index do |row,i|
             if i>4 && !row[1].blank? && !row[0].blank?
+                pp "spec info ......"
+                pp row[20]
                 if !row[20].blank? #规格为空的为商品
                     pp "staring...."
                     @new_good = Ecstore::Good.find_by_bn(row[5].to_i)

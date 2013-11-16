@@ -6,13 +6,13 @@ namespace :imodec do
 		# ======migrate brands seo=======
 		Ecstore::Brand.unscoped.all.each do |brand|
 			if brand.meta_seo
-				brand.meta_seo.update_attributes(:title=>"#{brand.brand_name} | 摩登客 | 体验个性摩登生活方式,尊享服装配饰设计品牌精品",
+				brand.meta_seo.update_attributes(:title=>"#{brand.brand_name} | TRADE-V | 跨境贸易，一键直达",
 									    :keywords =>brand.seo&&brand.seo.keywords,
 									    :description =>brand.seo&&brand.seo.description)
 
 				puts "=============updating brand `#{brand.brand_name}` ok============="
 			else
-				brand.create_meta_seo(:title=>"#{brand.brand_name} | 摩登客 | 体验个性摩登生活方式,尊享服装配饰设计品牌精品",
+				brand.create_meta_seo(:title=>"#{brand.brand_name} | TRADE-V | 跨境贸易，一键直达",
 									    :keywords =>brand.seo&&brand.seo.keywords,
 									    :description =>brand.seo&&brand.seo.description)
 				puts "=============migrating brand `#{brand.brand_name}` ok============="
@@ -23,14 +23,14 @@ namespace :imodec do
 		Ecstore::Category.all.each do |cat|
 
 			if cat.meta_seo
-				cat.meta_seo.update_attributes(:title=>"#{cat.cat_name} | 摩登客 | 体验个性摩登生活方式,尊享服装配饰设计品牌精品",
+				cat.meta_seo.update_attributes(:title=>"#{cat.cat_name} | TRADE-V | 跨境贸易，一键直达",
 									    :keywords =>cat.seo&&cat.seo.keywords,
 									    :description =>cat.seo&&cat.seo.description)
 
 				puts "=============updating cat `#{cat.cat_name}` ok============="
 				
 			else
-				cat.create_meta_seo(:title=>"#{cat.cat_name} | 摩登客 | 体验个性摩登生活方式,尊享服装配饰设计品牌精品",
+				cat.create_meta_seo(:title=>"#{cat.cat_name} | TRADE-V | 跨境贸易，一键直达",
 									    :keywords =>cat.seo&&cat.seo.keywords,
 									    :description =>cat.seo&&cat.seo.description)
 				puts "=============migrating cat `#{cat.cat_name}` ok============="
@@ -44,17 +44,17 @@ namespace :imodec do
 			title << good.name 
 			title << good.brand.brand_name if good.brand
 			title << good.cat.cat_name if good.cat
-			title << "摩登客"
-			title << "体验个性摩登生活方式,尊享服装配饰设计品牌精品"
+			title << "TRADE-V"
+			title << "TRADE-V | 跨境贸易，一键直达"
 
 			keywords = [] 
 			keywords << good.name
 			keywords << good.brand.brand_name if good.brand
 			keywords << good.cat.cat_name if good.cat
-			keywords << "摩登客"
+			keywords << "TRADE-V"
 
 		      description = []
-		      description << "摩登客2013最新当季时尚优雅设计师品牌"
+		      description << "TRADE-V | 跨境贸易，一键直达"
 		      description << strip_tags(good.desc) if good.desc.present?
 
 

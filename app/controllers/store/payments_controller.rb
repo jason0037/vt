@@ -73,7 +73,7 @@ class Store::PaymentsController < ApplicationController
 				pay.pay_id = @payment.payment_id
 				pay.pay_amount = @payment.cur_money.to_i
 				pay.pay_time = Time.now
-				pay.subject = "摩登客订单(#{order_id})"
+				pay.subject = "贸威订单(#{order_id})"
 				pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
 			end
 			render :inline=>@modec_pay.html_form

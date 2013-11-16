@@ -35,7 +35,7 @@
     </div>
 
     <div class="control-group">
-      <%= f.label :price, "摩登客价*", :class => "control-label" %>
+      <%= f.label :price, "会员价*", :class => "control-label" %>
       <div class="controls">
         <%= f.number_field :price,:min=>0%>
         <span class="help-inline error"><%=@vgood.errors[:price].join(",")%></span>
