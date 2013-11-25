@@ -1,0 +1,27 @@
+<%=image_tag @supplier.logo if @supplier.logo%>
+<div class="attrs">
+		
+		<%#=render "store/brands/attr_line", :label=>"诞生时间",:value=>@brand.birthday%>
+		<%#=render "store/brands/attr_line", :label=>"设计师",:value=>@brand.designer%>
+		<%#=render "store/brands/attr_line", :label=>"设计理念",:value=>@brand.concept%>
+		<%#=render "store/brands/attr_line", :label=>"市场定位",:value=>@brand.market_position%>
+		<%#=render "store/brands/attr_line", :label=>"官网",:value=>@brand.site, :type=>"link"%>
+		<%#=render "store/brands/attr_line", :label=>"微博",:value=>@brand.weibo, :type=>"link"%>
+		<%#=render "store/brands/attr_line", :label=>"店铺",:value=>@brand.shop, :type=>"link"%>
+</div>
+<div class="div-line"></div>
+<div class="attr-block">
+		<div class="title"><span>供应商介绍</span></div>
+		<div class="cont">
+			<span class="truncated">
+				<p>
+					<%=@supplier.desc%>
+				</p>
+			</span>
+			<span class="all hide">
+				<p>
+					<%=@supplier.desc%>
+				</p>
+			</span>
+		</div>
+</div>

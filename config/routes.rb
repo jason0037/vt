@@ -99,6 +99,7 @@ Modengke::Application.routes.draw do
         resources :permissions do
 
         end
+        resources :suppliers
         resources :sessions
         resources :coupons
         resources :goods_cats do
@@ -282,6 +283,8 @@ Modengke::Application.routes.draw do
           get 'suits', :on=>:collection
           get 'more_suits', :on=>:collection
       end
+
+      resources :suppliers
 
       resources :coupons, :controller=>"offline_coupons" do 
          post 'download',:on=>:member

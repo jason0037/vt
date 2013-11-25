@@ -1,0 +1,24 @@
+<div id="brand_position">
+  <div class="container">
+    <ul class="breadcrumb">
+      <li>
+        <span>当前位置 ：</span>
+      </li>
+      <%if action_name == 'index'%>
+              <li class="active">供应商专区</li>
+      <%end%>
+
+      <%if action_name == 'show'%>
+            <li>
+              <%#=link_to "供应商专区", suppliers_path%>
+              供应商专区
+              <span class="divider">/</span>
+            </li>
+            <li class="active">
+              <%=@supplier.name if @supplier%>
+            </li>
+      <%end%>
+    </ul>
+
+  </div>
+</div>

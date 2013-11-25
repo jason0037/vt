@@ -69,6 +69,16 @@
               <%end%>
             </ul>
           </li>
+
+          <li class="bags_two dropdown">
+            <a id="bags" data-target="<%=site_name%>/gallery/483?gtype=3" href="<%=site_name%>/supplier/" class="dropdown-toggle" data-toggle="dropdown">供应商 <span>SUPPLIER</span></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="bags">
+              <%Ecstore::Supplier.all.each do |supplier|%>
+                  <li><a tabindex="-1" href="<%=site_name%>/suppliers/<%=supplier.id%>"><%=supplier.name%></a></li>
+              <%end%>
+            </ul>
+          </li>
+
           <!-- <li class="accessories dropdown">
             <a id="accessories" data-target="<%=site_name%>/gallery/69" href="<%=site_name%>/gallery/69" class="dropdown-toggle" data-toggle="dropdown">配饰 <span>ACCESSORIES</span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="accessories">

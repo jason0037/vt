@@ -1,0 +1,45 @@
+<%= form_for :supplier,:url =>@action_url, :method=>@method, :html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :name, "名称", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :name%>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :logo, "logo", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :logo%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :url, "访问地址", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :url%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :desc, "供应商简介", :class => "control-label" %>
+      <div class="controls">
+        <%=f.text_area :desc,:placeholder=>"供应商简介",:class=>"span5",:rows=>3%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :goods_area, "商品区域", :class => "control-label" %>
+      <div class="controls">
+       <%= f.cktext_area :goods_area, :toolbar => 'Easy',:language=>'zh-cn',:height => 300 %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '返回', admin_suppliers_path %>
+      </div>
+    </div>
+
+  </fieldset>
+<% end %>

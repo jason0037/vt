@@ -237,5 +237,152 @@ ul.brands{
 		}
 	}
 }
+
+.brand{
+	font-size: 13px;
+	.left{
+		float: left;
+		width:245px;
+		margin-right: 20px;
+		.brand-try-icon{
+			margin-top: 10px;
+		}
+
+		.attrs{
+			margin-top: 10px;
+			// border-bottom: dashed 1px #000;
+			padding-bottom: 20px;
+			.attr-line{
+				margin-bottom: 2px;
+				.lab{
+					color: #666;
+					float: left;
+				}
+				.val{
+					width:178px;
+					float: left;
+					margin-left: 2px;
+					color: #000;
+					word-break: break-all;
+					word-wrap: break-word;
+					a{
+						color: #000;
+					}
+					.addr{
+						color: #000;
+						margin-bottom: 2px;
+					}
+				}
+			}
+		}
+		.div-line{
+			border-bottom: dashed 1px #000;
+		}
+		.attr-block{
+			margin-top: 20px;
+			padding-bottom: 20px;
+			.title{
+				margin-bottom: 5px;
+				span{
+					background-color: #000;
+					color: white;
+					line-height: 21px;
+					padding: 3px;
+				}
+			}
+			.cont{
+				word-break:break-all;
+				word-wrap: break-word;
+				.expand{
+					text-align: right;
+					a{
+						color:#000;
+						margin-right: 5px;
+					}
+				}
+			}
+		}
+	}
+	.right{
+		float: right;
+		width: 683px;
+		.carousel-indicators{
+			bottom:10px;
+		}
+		.focus-img{
+			width:683px;
+			height: 361px;
+		}
+	}
+
+	.mod{
+		margin-top: 30px;
+		.name{
+			font-size: 18px;
+			border-bottom: solid 1px #000;
+			padding-bottom: 5px;
+			font-weight: bold;
+			margin-bottom: 20px;
+			.more{
+				font-size: 13px;
+				font-weight: normal;
+				color:#000;
+				float: right;
+				margin-top: 5px; 
+			}
+		}
+		.goods{
+			list-style: none;
+			margin: 0px;
+			padding:0px;
+			margin-left: -17px;
+			li{
+				list-style: none;
+				float: left;
+				margin-left: 34px;
+				margin-top: 5px;
+				.good-img{
+					width:193px;
+					height: 272px;
+				}
+				.info{
+					text-align: center;
+					font-size: 13px;
+					.blackadd{
+						background: url('blackadd.png') no-repeat;
+						padding-left: 14px;
+						&:hover{
+							background: url('redadd.png') no-repeat;
+						}
+					}
+					a{
+						color:#000;
+						&:hover{
+							color: #B20000;
+							text-decoration: none;
+						}
+					}
+				}
+			}	
+		}
+		.topics{
+			li{
+				.topic-title{
+					text-align: center;
+					margin-top: 2px;
+					color:#000;
+					font-weight: bold;
+					font-size: 12px;
+					overflow: hidden;
+					padding: 0px 5px;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+				}
+			}
+		}
+	}
+}
+
+
 @import 'tree_menu.css';
 @import 'list_goods.css';

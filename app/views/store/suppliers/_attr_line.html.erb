@@ -1,0 +1,12 @@
+<%if value.present?%>
+<div class="attr-line clearfix">
+	<span class="lab"><%=label%>: </span>
+	<span class="val">
+		<%if defined?(type)%>
+			<%= type&&type == "link" ? link_to(value,value,:target=>"_blank") : value%>
+		<%else%>
+			<%=value%>
+		<%end%>
+	</span>
+</div>
+<%end%>

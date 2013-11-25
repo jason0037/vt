@@ -1,0 +1,32 @@
+<div>
+  <h4>所有供应商</h4>
+</div>
+<%= link_to '新建供应商', new_admin_supplier_path, :class => "pull-right btn btn-primary" %>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>名字</th>
+    <th>logo</th>
+    <th>描述</th>
+    <th>url</th>
+    <th>操作</th>
+  </tr>
+
+<% @suppliers.each do |supplier| %>
+  <tr>
+    <td><%=supplier.name%></td>
+    <td><%=supplier.logo%></td>
+    <td><%=supplier.desc%></td>
+    <td><%=supplier.url%></td>
+    <td>
+        <%= link_to '编辑', edit_admin_supplier_path(supplier) %>
+          |
+        <%= link_to '删除', admin_supplier_path(supplier), method: :delete, data: { confirm: '确定删除?' } %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<div class="pagination">
+  <%= will_paginate @suppliers, :container => false %>
+</div>

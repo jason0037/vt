@@ -1,0 +1,23 @@
+<div class="mod">
+	<div class="name">
+		最新商品
+	</div>
+		<%goods = Ecstore::Good.where(:supplier=>@supplier.name,:marketable=>'true').order("uptime desc").limit(12)%>
+	<ul class="goods clearfix">
+			<%goods.each do |good|%>
+				<li>
+					<%=link_to good_path(good.bn) do %>
+						<%=image_tag good.list_default_pic,:class=>"good-img"%>
+					<%end%>
+					<div class="info">
+							<div><%=truncate2(good.name,:length=>12)%></div>
+							<div>
+								<span>摩登客价: </span> 
+								&yen;<%=good.price.to_i%>
+							</div>
+							<%=link_to "点击购买",good_path(good.bn),:class=>"blackadd"%>
+					</div>
+				</li>
+			<%end%>
+	</ul>
+</div>
