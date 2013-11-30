@@ -194,6 +194,13 @@
             </li>
             <%end%>
 
+            <%if current_admin.has_right_of("suppliers","index")%>
+            <li class="<%='active' if controller_name=='suppliers'%>">
+              <%=link_to "供应商管理",admin_suppliers_path%>
+            </li>
+            <%end%>
+
+
             <%if current_admin.super?%>
             <li class="<%='active' if controller_name=='payment_logs'%>">
               <%=link_to "支付日志",admin_payment_logs_path%>
@@ -203,9 +210,6 @@
               <%=link_to "权限管理",admin_permissions_path%>
             </li>
 
-            <li class="<%='active' if controller_name=='suppliers'%>">
-              <%=link_to "供应商管理",admin_suppliers_path%>
-            </li>
             <%end%>
 
           </ul>
