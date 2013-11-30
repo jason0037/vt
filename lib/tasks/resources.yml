@@ -189,3 +189,8 @@ virtual_goods:
   edit.create: "编辑"
   destroy: "删除"
   import: "导入"
+suppliers:
+  index: "列表"
+  new.create: "新建"
+  edit.update: "编辑"
+  destroy: "删除"
