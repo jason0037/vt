@@ -190,6 +190,7 @@ virtual_goods:
   destroy: "删除"
   import: "导入"
 suppliers:
+  desc: "供应商"
   index: "列表"
   new.create: "新建"
   edit.update: "编辑"

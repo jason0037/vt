@@ -8,7 +8,7 @@ class Imodec::Resource < ActiveRecord::Base
   class << self
 
   	def goods_resources
-  		ctrls =  %w(goods goods_types goods_cats specifications brand_adms tag_exts)
+  		ctrls =  %w(suppliers goods goods_types goods_cats specifications brand_adms tag_exts)
   		where(:name=>ctrls).order("FIELD(name,#{ctrls.map{|e| "'#{e}'" }.join(',') })")
   	end
 
