@@ -250,11 +250,11 @@ $(document).ready(function(){
         return false;
     }
 
-     var spec_type_size =  $("#specs_container").attr("spec-type-size")*1;
-      if($("#specs_container input:hidden[value!='']").length != spec_type_size){
-        $("#cart_msg").text("请您选择您要购买的商品信息 ! ");
-        return false;
-      }
+     // var spec_type_size =  $("#specs_container").attr("spec-type-size")*1;
+     //  if($("#specs_container input:hidden[value!='']").length != spec_type_size){
+     //    $("#cart_msg").text("请您选择您要购买的商品信息 ! ");
+     //    return false;
+     //  }
 
     if($(this).hasClass("login")) return false;
     $(".size_helper, .semi_custom").popover('hide');
