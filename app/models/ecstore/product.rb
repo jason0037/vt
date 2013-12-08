@@ -98,7 +98,7 @@ class Ecstore::Product < Ecstore::Base
 	end
 
 	def spec_desc
-     		super.deserialize
+     		# super.deserialize
   	end
 
   	def sold_out?
