@@ -26,7 +26,7 @@ class Store::CartController < ApplicationController
 		# end.first
 
 		@product  =  @good.products.select do |p|
-	        	p.good_specs.pluck(:spec_value_id).map{ |x| x.to_s }.sort == specs.sort || p.spec_desc["spec_value_id"].values.map{ |x| x.to_s }.sort == specs.sort
+	        p.good_specs.pluck(:spec_value_id).map{ |x| x.to_s }.sort == specs.sort
 	    end.first
 
 		if signed_in?
