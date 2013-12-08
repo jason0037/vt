@@ -46,16 +46,16 @@
             </td>
             <td>
               ￥<%=line_item.product.price.to_i%>
-              <%if line_item.product.full_custom?%>
-                (<span class="red">定金</span>)
-              <%end%>
+              <%#if line_item.product.full_custom?%>
+                <!-- (<span class="red">定金</span>) -->
+              <%#end%>
             </td>
             <td>
-              <%if line_item.product.semi_custom?%>
-                <%=text_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity",:readonly=>true,:title=>"半定制不可直接修改数量"%>
-              <%else%>
+              <%#if line_item.product.semi_custom?%>
+                <%#=text_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity",:readonly=>true,:title=>"半定制不可直接修改数量"%>
+              <%#else%>
                 <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
-              <%end%>
+              <%#end%>
             </td>
             <td class="line-total">￥<%=(line_item.product.price*line_item.quantity).to_i%></td>
             

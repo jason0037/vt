@@ -53,17 +53,17 @@ class Store::CartController < ApplicationController
 			@cart.quantity = (@cart.quantity+1)
 		end
 		
-		if @product.semi_custom?
-			ident = "#{@user.member_id}#{@product.product_id}#{Time.now.to_i}"
-			customs.each do |cus_val|
-				cus_val.merge!(:product_id=>@product.product_id,
-								:member_id=>@user.member_id,
-								:name=>Ecstore::SpecItem.find(cus_val["spec_item_id"]).name,
-								:ident=>ident)
+		# if @product.semi_custom?
+		# 	ident = "#{@user.member_id}#{@product.product_id}#{Time.now.to_i}"
+		# 	customs.each do |cus_val|
+		# 		cus_val.merge!(:product_id=>@product.product_id,
+		# 						:member_id=>@user.member_id,
+		# 						:name=>Ecstore::SpecItem.find(cus_val["spec_item_id"]).name,
+		# 						:ident=>ident)
 
-				Ecstore::CustomValue.create(cus_val)
-			end if customs
-		end
+		# 		Ecstore::CustomValue.create(cus_val)
+		# 	end if customs
+		# end
 
 		#calculate cart_total and cart_total_quantity
 		find_cart!
