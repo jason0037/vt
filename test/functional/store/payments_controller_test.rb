@@ -13,7 +13,7 @@ class Store::PaymentsControllerTest < ActionController::TestCase
 		                    :sign_type=>"MD5",
 		                    :sign=>"",
 		                    :out_trade_no=>'',
-		                    :subject=>'摩登客订单(20130606105700)',
+		                    :subject=>'订单(20130606105700)',
 		                    :total_fee=>'1254',
 		                    :trade_no=>'2013060613057894',
 		                    :trade_status=>'TRADE_FINISHED',
