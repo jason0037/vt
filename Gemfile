@@ -1,4 +1,4 @@
-source 'http://gems.gzruby.org/'
+source 'http://ruby.taobao.org/'
 
 gem 'rails', '3.2.8'
 
