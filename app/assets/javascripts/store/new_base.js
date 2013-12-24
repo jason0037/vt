@@ -144,39 +144,39 @@ $(document).ready(function(){
   //   return false;
   // });
 
-  $(".spec_bar a.size").live("click",function(){
+  // $(".spec_bar a.size").live("click",function(){
     
-    $(this).parent().find("a.size").removeClass("selected");
-    $(this).addClass("selected");
-    $(this).closest("td").find(":hidden").val($(this).data("value"));
+  //   $(this).parent().find("a.size").removeClass("selected");
+  //   $(this).addClass("selected");
+  //   $(this).closest("td").find(":hidden").val($(this).data("value"));
 
-    var url = $(this).data("url");
-    var spec_size_id = $(this).data("value");
-    var spec_color_id = $(this).closest("table.spec_bar").find(".color.selected").data("value");
+  //   var url = $(this).data("url");
+  //   var spec_size_id = $(this).data("value");
+  //   var spec_color_id = $(this).closest("table.spec_bar").find(".color.selected").data("value");
 
-    var params = { spec_values : [spec_size_id,spec_color_id] };
+  //   var params = { spec_values : [spec_size_id,spec_color_id] };
 
-    getPrice(this,url,params);
+  //   getPrice(this,url,params);
 
-    return false;
-  });
+  //   return false;
+  // });
 
 
-  $(".spec_bar .number_select").live("click",function(){
-    $(this).parent().find("ul.number_dropdown").show();
-    return false;
-  });
+  // $(".spec_bar .number_select").live("click",function(){
+  //   $(this).parent().find("ul.number_dropdown").show();
+  //   return false;
+  // });
 
-  $(".spec_bar ul.number_dropdown").live("mouseleave",function(){
-    $(this).hide();
-  });
+  // $(".spec_bar ul.number_dropdown").live("mouseleave",function(){
+  //   $(this).hide();
+  // });
 
-  $(".spec_bar ul.number_dropdown li").live("click",function(){
-    // $(this).parent().find("a.number_select").text($(this).text());
-    $(this).parents(".number_container").find("a.number_select").text($(this).text());
-    $(this).parents(".number_container").find("input.hidden_number").val($(this).text());
-    $(this).parent().hide();
-  });
+  // $(".spec_bar ul.number_dropdown li").live("click",function(){
+  //   // $(this).parent().find("a.number_select").text($(this).text());
+  //   $(this).parents(".number_container").find("a.number_select").text($(this).text());
+  //   $(this).parents(".number_container").find("input.hidden_number").val($(this).text());
+  //   $(this).parent().hide();
+  // });
 
   // $(".see_more").live("click",function(){
   //   // $(".drawer").animate()
