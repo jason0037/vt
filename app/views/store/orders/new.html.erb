@@ -107,7 +107,7 @@
 				<%=hidden_field_tag "products[]",line_item.product.product_id%>
 				<td class="product-info">
 					<%=link_to good_path(line_item.good.bn),:class=>"thumb",:target=>"_blank" do%>
-						<%=image_tag line_item.product.list_pictures[1],:size=>"35x50",:alt=>line_item.product.name%>
+						<%=image_tag line_item.good.medium_pic,:size=>"35x50",:alt=>line_item.product.name%>
 					<%end%>
 					<div class="info clearfix">
 						<div class="name">
