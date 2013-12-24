@@ -18,15 +18,15 @@
           <tr id='line_<%=line_item.obj_ident%>'>
             <td>
               <div class="product_img">
-                <%if line_item.good.default_image&&line_item.product.list_pictures.first.blank?%>
+                <%#if line_item.good.default_image&&line_item.product.list_pictures.first.blank?%>
                     <%=link_to "/product-"+line_item.good.goods_id.to_s+".html",:target=>"_blank" do%>
                         <%=image_tag "/"+line_item.good.medium_pic,:size=>"50x50"%>
                     <%end%>
-                <%else%>
-                    <%=link_to good_path(line_item.good.bn),:target=>"_blank" do%>
+                <%#else%>
+<!--                     <%=link_to good_path(line_item.good.bn),:target=>"_blank" do%>
                       <%=image_tag line_item.product.list_pictures.first,:size=>"50x50"%>
-                    <%end%>
-                <%end%>
+                    <%end%> -->
+                <%#end%>
               </div>
               <div class="goodinfo">
                 <h3>
