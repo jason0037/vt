@@ -23,12 +23,12 @@ module SessionsHelper
          expires = nil
          expires = 1.week.from_now if remember_me == "1"
          if Rails.env == "production"
-	         cookies[:MEMBER] = {:value=>account.gen_secret_string_for_cookie,:expires=>expires,:domain=>'.i-modec.com'}
-	         cookies[:loginName] = {:value=>account.login_name,:expires=>expires,:domain=>'.i-modec.com'}
-	         cookies[:UNAME] = {:value=>account.login_name,:expires=>expires,:domain=>'.i-modec.com'}
-	         cookies[:MLV] = {:value=>account.user.member_lv_id,:expires=>expires,:domain=>'.i-modec.com'}
-	         cookies[:CUR] = {:value=>account.user.cur,:expires=>expires,:domain=>'.i-modec.com'}
-	         cookies[:LANG] = {:value=>account.user.lang,:expires=>expires,:domain=>'.i-modec.com'}
+	         cookies[:MEMBER] = {:value=>account.gen_secret_string_for_cookie,:expires=>expires,:domain=>'.trade-v.com'}
+	         cookies[:loginName] = {:value=>account.login_name,:expires=>expires,:domain=>'.trade-v.com'}
+	         cookies[:UNAME] = {:value=>account.login_name,:expires=>expires,:domain=>'.trade-v.com'}
+	         cookies[:MLV] = {:value=>account.user.member_lv_id,:expires=>expires,:domain=>'.trade-v.com'}
+	         cookies[:CUR] = {:value=>account.user.cur,:expires=>expires,:domain=>'.trade-v.com'}
+	         cookies[:LANG] = {:value=>account.user.lang,:expires=>expires,:domain=>'.trade-v.com'}
 	   else
 	   	   cookies[:MEMBER] = {:value=>account.gen_secret_string_for_cookie,:expires=>expires}
 	         cookies[:loginName] = {:value=>account.login_name,:expires=>expires}
@@ -43,7 +43,7 @@ module SessionsHelper
 		current_account = nil
 		[:MEMBER,:loginName,:UNAME,:MLV,:CUR,:LANG].each do |e|
 			if Rails.env == "production"
-				cookies.delete(e.to_s,:domain=>".i-modec.com")
+				cookies.delete(e.to_s,:domain=>".trade-v.com")
 			else
 				cookies.delete(e.to_s)
 			end
@@ -62,7 +62,7 @@ module SessionsHelper
 
   		
 
-            cookies[:unlogin_url] = {:value=>return_url,:domain=>".i-modec.com"}
+            cookies[:unlogin_url] = {:value=>return_url,:domain=>".trade-v.com"}
 
             "http://#{subdomain}.#{request.domain}/passport-login.html"
 	end
@@ -76,13 +76,13 @@ module SessionsHelper
 	end
 
 	def site_path
-		return "http://test2.i-modec.com/" if Rails.env == "development"
-		"http://www.i-modec.com/"
+		return "http://www.trade-v.com/" if Rails.env == "development"
+		"http://www.trade-v.com/"
 	end
 
 	def site
-		return "http://test2.i-modec.com" if Rails.env == "development"
-		"http://www.i-modec.com"
+		return "http://www.trade-v.com/" if Rails.env == "development"
+		"http://www.trade-v.com/"
 	end
 
 
