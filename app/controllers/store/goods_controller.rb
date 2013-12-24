@@ -142,7 +142,7 @@ class Store::GoodsController < ApplicationController
         p.good_specs.pluck(:spec_value_id).map{ |x| x.to_s }.sort == params[:spec_values].sort || p.spec_desc["spec_value_id"].values.map{ |x| x.to_s }.sort == params[:spec_values].sort
       end.first
       
-      render :json=>{ :price=>@product.price.to_i,:store=>@product.p_store }
+      render :json=>{ :price=>@product.price,:store=>@product.p_store }
   end
 
 

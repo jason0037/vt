@@ -88,7 +88,7 @@ class Memberships::CardsController < ApplicationController
 		product_bn = Ecstore::Config.find_by_key("#{level}_bn").value
 		@product = Ecstore::Product.find_by_bn(product_bn)
 
-		@card = Ecstore::Card.where(:value=>@product.price.to_i,
+		@card = Ecstore::Card.where(:value=>@product.price,
 									  :card_type=>"A",
 									  :sale_status=>false,
 									  :use_status=>false,

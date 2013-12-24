@@ -38,7 +38,7 @@ class Memberships::MemberCardsController < ApplicationController
 	# 	@order_items.each do |item|
 	# 		product = Ecstore::Product.find_by_product_id(item.product_id)
 			
-	# 		@cards = Ecstore::Card.joins(:member_card).where("sdb_imodec_member_cards.buyer_id = ? and pay_status = ? and  sale_status = ? and value = ?",@user.member_id,false,true,product.price.to_i)
+	# 		@cards = Ecstore::Card.joins(:member_card).where("sdb_imodec_member_cards.buyer_id = ? and pay_status = ? and  sale_status = ? and value = ?",@user.member_id,false,true,product.price)
 			
 	# 		if @cards.size ==  item.nums.to_i
 	# 			@cards.update_all(:pay_status=>true)
@@ -47,7 +47,7 @@ class Memberships::MemberCardsController < ApplicationController
 	# 		else
 	# 			@cards.update_all(:pay_status=>true)
 	# 			(item.nums.to_i - @cards.size).times do
-	# 				card = Ecstore::Card.where(:value=>product.price.to_i,
+	# 				card = Ecstore::Card.where(:value=>product.price,
 	# 									  :card_type=>"A",
 	# 									  :sale_status=>false,
 	# 									  :use_status=>false,
@@ -61,7 +61,7 @@ class Memberships::MemberCardsController < ApplicationController
 	# 		end
 
 	# 		item.nums.to_i.times do 
-	# 			card = Ecstore::Card.where(:value=>product.price.to_i,
+	# 			card = Ecstore::Card.where(:value=>product.price,
 	# 								  :card_type=>"A",
 	# 								  :sale_status=>false,
 	# 								  :use_status=>false,
