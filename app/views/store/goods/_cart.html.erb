@@ -20,7 +20,7 @@
               <div class="product_img">
                 <%if line_item.good.default_image&&line_item.product.list_pictures.first.blank?%>
                     <%=link_to "/product-"+line_item.good.goods_id.to_s+".html",:target=>"_blank" do%>
-                        <%=image_tag "/"+line_item.good.default_image.s_url,:size=>"50x50"%>
+                        <%=image_tag "/"+line_item.good.medium_pic,:size=>"50x50"%>
                     <%end%>
                 <%else%>
                     <%=link_to good_path(line_item.good.bn),:target=>"_blank" do%>
