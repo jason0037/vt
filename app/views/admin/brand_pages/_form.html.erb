@@ -4,7 +4,7 @@
   <h5>品牌访问地址</h5>
   <div>
     <%=text_field_tag "brand[slug]",@brand.slug ? @brand.slug : @brand.brand_name,:placeholder=>"品牌Logo图片地址",:class=>"span3"%>
-    <span>如: http://www.i-modec.com/brands/<span style="background-color:#ccc;"><%=@brand.slug||@brand.brand_name%></span> </span>
+    <span>如: http://www.TRADE-V.com/brands/<span style="background-color:#ccc;"><%=@brand.slug||@brand.brand_name%></span> </span>
   </div>
 </fieldset>
 
@@ -40,7 +40,7 @@
 
 <fieldset id="menus">
   <h5>品牌页菜单</h5>
-  <div class="alert">提示: 多张图片用'|'分割,对应的alt也使用'|'分割,如：http://www.i-modec.com/image1.jpg|http://www.i-modec.com/image2.jpg ，对应alt为： 图片描述1|图片描述2</div>
+  <div class="alert">提示: 多张图片用'|'分割,对应的alt也使用'|'分割,如：http://www.TRADE-V.com/image1.jpg|http://www.TRADE-V.com/image2.jpg ，对应alt为： 图片描述1|图片描述2</div>
   <%if @brand_page%>
       <%@brand_page.context.each_with_index do |menu,index|%>
       <div class="item">

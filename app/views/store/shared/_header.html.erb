@@ -5,7 +5,7 @@
 <% end %>
   <div class="container">
     <div id="imodec_logo">
-      <a href="http://www.i-modec.com"><img alt="摩登客" src="/assets/store/logo_big.png"></a>
+      <a href="http://www.TRADE-V.com"><img alt="贸威" src="/assets/store/logo_big.png"></a>
     </div>
     <div id="imodec_slogan">
       <img alt="摩登生活，个性衣橱" src="/assets/store/slogan.png">
@@ -46,7 +46,7 @@
             <span class="login_name" id="uname_253">
               <%=truncate2(@user.account.login_name,:length=>5)%>
             </span>
-            <a class="loggedin" href="/member.html">我的摩登客</a>
+            <a class="loggedin" href="/member.html">我的贸威</a>
             <a class="loggedin" href="/logout">退出</a>
           </div>
         </li>
@@ -69,7 +69,7 @@
     <div class="container">
       <div class="current_pos">当前位置 ：</div>
       <ul class="breadcrumb">
-        <li><a href="http://www.i-modec.com">首页</a> <span class="divider">/</span></li>
+        <li><a href="http://www.TRADE-V.com">首页</a> <span class="divider">/</span></li>
         <li><a href="/products/newest">新品</a> <span class="divider">/</span></li>
         <li class="active">
             <%if action_name == "newest"%>
@@ -107,7 +107,7 @@
           <%end%>
           <p>
             <a href="#" class="item"><%=good.default_product.name%></br>
-              <span class="imodec_price"><a href="javascript:void(0)" class="login" style="font-size:13px;color:#D30000;">摩登客价<%= signed_in? ? "￥#{good.default_product.price.to_i}" : "[会员专享]"%></a></span> 
+              <span class="imodec_price"><a href="javascript:void(0)" class="login" style="font-size:13px;color:#D30000;">贸威价<%= signed_in? ? "￥#{good.default_product.price.to_i}" : "[会员专享]"%></a></span> 
               <br />
               <span class='imodec_price' style="font-size:13px;">市场价￥<%=good.default_product.mktprice.to_i if good.default_product%></span>
             </a>
