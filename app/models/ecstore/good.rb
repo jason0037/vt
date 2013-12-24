@@ -46,8 +46,8 @@ class Ecstore::Good < Ecstore::Base
                               product.bn.to_s, #规格货号
                               nil, #分类
                               nil, #品牌
-                              product.mktprice.to_i, #市场价
-                              product.price.to_i,  #销售价
+                              product.mktprice.to_f, #市场价
+                              product.price.to_f,  #销售价
                               product.name, #商品名称
                               product.marketable=="true" ? "Y" : "N", #上架
                               spec_values, #规格

@@ -40,7 +40,7 @@
 					<i class="icon-camera"></i>
 				<%end%>
 			</td>
-			<td>&yen;<%=good.price.to_i%></td>
+			<td>&yen;<%=good.price%></td>
 			<td><%=good.store.to_i%></td>
 			<td><%=good.marketable == 'true' ? '是' : '否'%></td>
 			<td><%=Time.at(good.uptime).strftime("%Y-%m-%d %H:%M:%S") if good.uptime.present?%></td>

@@ -15,14 +15,14 @@
 				<div class="brand-name"><%=link_to truncate2(good.brand.brand_name,:length=>8),good.brand.brand_url,:target=>"_blank" if good.brand%></div>
 				<a class="name" href="<%=good_path_ext(good)%>" target="_blank" title="<%=good.name%>"><%=truncate2(good.name,:length=>10)%></a>
 				<div class="price">
-					摩登客价 : 
+					会员价 : 
 					<%if signed_in?%>
-						¥ <%=good.price.to_i%>
+						¥ <%=good.price%>
 					<%else%>
 						<span class="for-vip login">会员专享</span>
 					<%end%>
 				</div>
-				<div class="mktprice">市场价 : ¥ <%=good.mktprice.to_i%></div>
+				<div class="mktprice">市场价 : ¥ <%=good.mktprice%></div>
 			</div>
 		</div>
 		<%end%>
@@ -56,14 +56,14 @@
 							<a class="name" href="<%=good_path_ext(good)%>" target="_blank" title="<%=good.name%>"><%=truncate2(good.name,:length=>10)%></a>
 						</div>
 						<div class="price">
-							摩登客价 : 
+							会员价 : 
 							<%if signed_in?%>
-								¥ <%=good.price.to_i%>
+								¥ <%=good.price%>
 							<%else%>
 								<span class="for-vip login">会员专享</span>
 							<%end%>
 						</div>
-						<div class="mktprice">市场价 : ¥ <%=good.mktprice.to_i%></div>
+						<div class="mktprice">市场价 : ¥ <%=good.mktprice%></div>
 					</div>
 				</li>
 				<%end%>
@@ -97,14 +97,14 @@
 							<a class="name" href="<%=good_path_ext(good)%>" target="_blank"><%=truncate2(good.name,:length=>10)%></a>
 						</div>
 						<div class="price">
-							摩登客价 : 
+							会员价 : 
 							<%if signed_in?%>
-								¥ <%=good.price.to_i%>
+								¥ <%=good.price%>
 							<%else%>
 								<span class="for-vip login">会员专享</span>
 							<%end%>
 						</div>
-						<div class="mktprice">市场价 : ¥ <%=good.mktprice.to_i%></div>
+						<div class="mktprice">市场价 : ¥ <%=good.mktprice%></div>
 					</div>
 				</li>
 				<%end%>

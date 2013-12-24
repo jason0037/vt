@@ -10,9 +10,9 @@
           <%end%>
           <p>
             <a href="#" class="item"><%=good.default_product.name%></br>
-              <span class="imodec_price"><a href="javascript:void(0)" class="login" style="font-size:13px;color:#D30000;">摩登客价<%= signed_in? ? "￥#{good.default_product.price.to_i}" : "[会员专享]"%></a></span> 
+              <span class="imodec_price"><a href="javascript:void(0)" class="login" style="font-size:13px;color:#D30000;">会员价<%= signed_in? ? "￥#{good.default_product.price}" : "[会员专享]"%></a></span> 
               <br />
-              <span class='imodec_price' style="font-size:13px;">市场价￥<%=good.default_product.mktprice.to_i if good.default_product%></span>
+              <span class='imodec_price' style="font-size:13px;">市场价￥<%=good.default_product.mktprice if good.default_product%></span>
             </a>
           </p>
         </li>

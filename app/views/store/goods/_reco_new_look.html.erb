@@ -11,7 +11,7 @@
                   <%end%>
                   <p>
                     <a href="#" class="item"><%=truncate2(good.name,:length=>13)%></br>
-                      <span class="imodec_price"><a href="javascript:void(0)" class="login" style="font-size:13px;color:#D30000;">套装价<%= signed_in? ? "￥#{good.price.to_i}" : "[会员专享]"%></a></span> 
+                      <span class="imodec_price"><a href="javascript:void(0)" class="login" style="font-size:13px;color:#D30000;">套装价<%= signed_in? ? "￥#{good.price}" : "[会员专享]"%></a></span> 
                       <br />
                       <span class='imodec_price' style="font-size:13px;">立省￥<%=good.savings.to_i%></span>
                     </a>

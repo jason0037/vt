@@ -54,7 +54,7 @@
 			<tr>
 				<th width="15%">商品编号</th>
 				<th >商品名称</th>
-				<th >摩登客价</th>
+				<th >会员价</th>
 				<th width="10%">数量</th>
 				<th width="10%">金额小计</th>
 			</tr>
@@ -70,7 +70,7 @@
 					<div>
 					<div class="spec-info"><%=order_item.product.spec_info%></div>
 				</td>
-				<td>&yen;<%=order_item.price.to_i%></td>
+				<td>&yen;<%=order_item.price%></td>
 				<td><%=order_item.nums.to_i%></td>
 				<td>
 						&yen;<%=(order_item.price * order_item.nums).to_i if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>

@@ -13,7 +13,7 @@
 							<div><%=truncate2(good.name,:length=>12)%></div>
 							<div>
 								<span>会员价: </span> 
-								&yen;<%=good.price.to_i%>
+								&yen;<%=good.price%>
 							</div>
 							<%=link_to "点击购买",good_path(good.bn),:class=>"blackadd"%>
 					</div>

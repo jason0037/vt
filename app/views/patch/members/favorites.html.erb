@@ -14,7 +14,7 @@
 							<%=image_tag fav.good.list_pictures[1],:alt=>fav.good.name,:class=>"thumb"%>
 							<%=link_to fav.good.name,good_path(fav.good.bn),:target=>"_blank"%>
 						</td>
-						<td>&yen;<%=fav.good.price.to_i%></td>
+						<td>&yen;<%=fav.good.price%></td>
 						<td>
 							<%=link_to "移除",unfav_good_path(fav.good),:class=>"favorite",:remote=>true,:method=>:put%>
 						</td>

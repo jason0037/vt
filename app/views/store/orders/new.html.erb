@@ -117,7 +117,7 @@
 						<div class="spec-info"><%=line_item.product.spec_info%></div>
 					</div>
 				</td>
-				<td><%=number_to_currency line_item.product.price.to_i,:unit=>"&yen;",:precision=>0%></td>
+				<td><%=number_to_currency line_item.product.price,:unit=>"&yen;",:precision=>0%></td>
 				<td><%=line_item.quantity.to_i%></td>
 				<td>
 					<%=number_to_currency line_item.line_total.to_i,:unit=>"&yen;",:precision=>0%>

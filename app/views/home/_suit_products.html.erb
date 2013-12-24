@@ -13,7 +13,7 @@
 				<%=image_tag good.home_suit_pic,:alt=>good.name%>
 			</a>
 			<div class="name"><%=link_to truncate2(good.name,:length=>15),suit["link"],:target=>"_blank"%></div>
-			<div class="price">套餐价 : ¥ <%=good.price.to_i%></div>
+			<div class="price">套餐价 : ¥ <%=good.price%></div>
 			<div class="savings">立省 : ¥ <%=good.savings.to_i%></div>
 		<%end%>
 	</li>
@@ -29,14 +29,14 @@
 				<%=image_tag good.home_picture_cover,:alt=>good.name%>
 			</a>
 			<div class="name"><%=link_to truncate2(good.name,:length=>15),good_path(good.bn)%></div>
-			<div class="price">摩登客价 : 
+			<div class="price">会员价 : 
 				<%if signed_in? %>
-				¥ <%=good.price.to_i%>
+				¥ <%=good.price%>
 				<%else%>
 					<a href="javascript:void(0);" class="login" style="color:#D30000;">会员专享</a>
 				<%end%>
 			</div>
-			<div class="mktprice">市场价 : ¥ <%=good.mktprice.to_i%></div>
+			<div class="mktprice">市场价 : ¥ <%=good.mktprice%></div>
 		</li>
 		<%end%>
 

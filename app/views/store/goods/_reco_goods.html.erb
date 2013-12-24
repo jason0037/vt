@@ -18,12 +18,12 @@
                 <span>
                   会员价: 
                   <%if signed_in?%>
-                    &yen;<%=good.price.to_i%>
+                    &yen;<%=good.price%>
                   <%else%>
                     <a href="javascript:void(0)" class="login">[会员专享]</a>
                   <%end%>
                 </span>
-                <span class="mtkprice">市场价: &yen;<%=good.mktprice.to_i%></span>
+                <span class="mtkprice">市场价: &yen;<%=good.mktprice%></span>
               </div>
 
             </div>

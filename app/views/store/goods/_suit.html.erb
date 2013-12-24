@@ -4,10 +4,10 @@
 	</a>
 	<div class="name"><%=truncate2(good.name,:length=>16)%></div>
 	<%if good.has_cols?%>
-	<div class="price">套餐价 &yen;<%=good.price.to_i%></div>
+	<div class="price">套餐价 &yen;<%=good.price%></div>
 	<div class="savings">立省 &yen;<%=good.savings.to_i%></div>
 	<%else%>
-	<div class="price">摩登客 &yen;<%=good.price.to_i%></div>
-	<div class="savings">市场价 &yen;<%=good.mktprice.to_i%></div>
+	<div class="price">摩登客 &yen;<%=good.price%></div>
+	<div class="savings">市场价 &yen;<%=good.mktprice%></div>
 	<%end%>
 </li>
