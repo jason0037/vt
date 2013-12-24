@@ -34,8 +34,8 @@ end
 
 gem  'sitemap_generator'
 
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
+gem 'jquery-rails',  '~> 2.1.4'
+gem 'jquery-ui-rails',  '~> 2.0.2'
 
 gem 'rmagick'
 
