@@ -1,0 +1,61 @@
+//= require header
+//= require footer
+
+#header{
+	margin-bottom: 20px;
+	.container{
+		border-bottom:  solid 5px #000;
+	}
+}
+
+#main{
+	min-height: 500px;
+
+	.forgot-password-holder{
+		margin: 0px auto;
+		margin-top: 0px;
+		border:solid 1px #ccc;
+		padding: 20px 20px 10px 50px;
+		.tip{
+			color: green;
+		}
+	}
+}
+
+input[type="text"],
+input[type="password"],
+textarea,
+select{
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	
+	-webkit-transition: none;
+	-moz-transition: none;
+	-o-transition: none;
+	transition: none;
+
+	-webkit-border-radius: none;
+	-moz-border-radius: none;
+	-o-border-radius: none;
+	border-radius: 0px;
+	
+	color:#222;
+
+	// -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+	// -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+	// -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+	// transition: border linear 0.2s, box-shadow linear 0.2s;
+
+	&:focus{
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+		border:solid 1px #999;
+		outline: none;
+	}
+}
+select{
+	width: auto;
+}
+

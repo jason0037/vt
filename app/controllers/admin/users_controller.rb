@@ -56,7 +56,7 @@ class Admin::UsersController < Admin::BaseController
 
 		sms_code = rand(1000000).to_s(16)
 		tel = params[:tel]
-		text = "您的VIP卡验证码是：#{sms_code}，如此条验证码非您本人申请，请立即致电客服021-60919835核实[TRADE-V]"
+		text = "您的VIP卡验证码是：#{sms_code}，如此条验证码非您本人申请，请立即致电客服18917937822核实[TRADE-V]"
 
 		
 		@sms_log ||= Logger.new('log/sms.log')

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%=@title%></title>
+  <%= stylesheet_link_tag "bootstrap","simple" %>
+  <%= javascript_include_tag "simple" %>
+  <%=yield :head%>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%=render "shared/simple_header" %>
+
+<div id="main" class="container">
+	<%= yield %>
+</div>
+
+<%=render "shared/common_footer"%>
+</body>
+</html>
