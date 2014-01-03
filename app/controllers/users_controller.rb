@@ -65,11 +65,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.js { render :nothing=>true }
-      if @by == "mobile"
-        format.html { render  "sms_code" }
-      else
-        format.html
-      end
+      format.html
     end
 
   end

@@ -25,8 +25,8 @@ Modengke::Application.configure do
             :address              => "smtp.exmail.qq.com",
             :port                 => 25,
             :domain               => 'qq.com',
-            :user_name            => 'cs@i-modec.com',
-            :password             => 'imodec1024',
+            :user_name            => 'cs@iotps.com',
+            :password             => 'iotps123',
             :authentication       => 'plain',
             :enable_starttls_auto => true  }
 

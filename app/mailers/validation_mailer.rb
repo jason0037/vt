@@ -1,6 +1,6 @@
 #encoding:utf-8
 class ValidationMailer < ActionMailer::Base
-  default from: "IMODEC<cs@i-modec.com>"
+  default from: "TRADE-V<cs@iotps.com>"
 
 
   def verify_email(user)

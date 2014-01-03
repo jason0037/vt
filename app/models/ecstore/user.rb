@@ -276,6 +276,28 @@ class Ecstore::User < Ecstore::Base
     total
  end
 
+ def send_reset_password_instruction(email_or_mobile)
+    if email_or_mobile.to_s == "email"
+      return send_reset_password_email
+    end
+    if email_or_mobile.to_s == "mobile"
+      return send_reset_password_sms
+    end
+ end
+
+ def send_reset_password_email
+    self.reset_password_token = self.class.generate_reset_password_token
+    self.reset_password_sent_at = Time.now
+    save(:validate=>false)
+    begin
+      ResetPasswordMailer.reset_password_email(self).deliver
+      return true
+    rescue
+      errors.add :send_reset_password_instruction, "发送重设密码邮件失败"
+      return false
+    end
+ end
+
 
  def custom_value_of(spec_item_id)
     return nil  if self.custom_values.blank?
@@ -307,6 +329,70 @@ class Ecstore::User < Ecstore::Base
     else
       return false
     end
+ end
+
+ def send_reset_password_instruction(email_or_mobile)
+    if email_or_mobile.to_s == "email"
+      return send_reset_password_email
+    end
+    if email_or_mobile.to_s == "mobile"
+      return send_reset_password_sms
+    end
+ end
+
+ def send_reset_password_email
+    self.reset_password_token = self.class.generate_reset_password_token
+    self.reset_password_sent_at = Time.now
+    save(:validate=>false)
+    begin
+      ResetPasswordMailer.reset_password_email(self).deliver
+      return true
+    rescue
+      errors.add :send_reset_password_instruction, "发送重设密码邮件失败"
+      return false
+    end
+ end
+
+ def send_reset_password_sms
+    sms_code = self.class.generate_sms_token
+    self.reset_password_token = sms_code
+    self.reset_password_sent_at = Time.now
+    save(:validate=>false)
+    template = Ecstore::Config.get(:reset_password_sms_template)
+    text = template.gsub('#{code}',sms_code)
+    
+    begin
+      if Sms.send(self.mobile,text)
+        return true
+      else
+         errors.add :send_reset_password_instruction, "发送手机验证码失败"
+         return false
+      end
+    rescue
+        errors.add :send_reset_password_instruction, "发送手机验证码错误"
+        return false
+    end
+ end
+ 
+ def reset_password_token_expired?
+    return true if self.reset_password_sent_at.blank?
+    self.reset_password_sent_at  + 2.hours < Time.now
+ end
+
+ def clear_reset_password_token
+    self.reset_password_token = nil
+    self.reset_password_sent_at = nil
+    save(:validate => false)
+ end
+
+
+ 
+ def self.generate_reset_password_token
+    SecureRandom.urlsafe_base64(15)
+ end
+ 
+ def self.generate_sms_token
+    (0..5).map { rand(10) }.join
  end
 
 end
