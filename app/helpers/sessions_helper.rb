@@ -51,7 +51,7 @@ module SessionsHelper
 	end
 
 	def after_user_sign_in_path
-		user_survey_index_path
+		root_path
 	end
 
 	def login_path
