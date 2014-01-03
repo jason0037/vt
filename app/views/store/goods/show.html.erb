@@ -1,7 +1,10 @@
 <%= render "shared/metable", :resource=>@good%>
 
 <div id="products" class="show">
-<%= render :partial=>"new_single",:locals=>{ :good=>@good } %>
+	<%= render :partial=>"new_single",:locals=>{ :good=>@good } %>
+</div>
+<div id="product_detail">
+	<%= render :partial=>"new_detail",:locals=>{ :good=>@good } %>
 </div>
 
 <%if @good.has_cols? %>

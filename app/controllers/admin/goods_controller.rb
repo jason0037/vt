@@ -324,17 +324,18 @@ module Admin
                     @good.desc = row[20]
                     @good.place_info = row[21]
                     @good.spec_info = row[22]
-                    if row[23] == "是"
+                    @good.intro = row[23]
+                    if row[24] == "是"
                         @good.sell = 'true'
                     else
                         @good.sell = 'false'
                     end
-                    if row[24] == "是"
+                    if row[25] == "是"
                         @good.agent = 'true'
                     else
                         @good.agent = 'false'
                     end
-                    if row[25] == "是"
+                    if row[26] == "是"
                         @good.future = 'true'
                     else
                         @good.future = 'false'
