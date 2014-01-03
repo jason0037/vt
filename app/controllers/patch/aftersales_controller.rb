@@ -4,7 +4,7 @@ class Patch::AftersalesController < ApplicationController
 	
 	before_filter do
 		clear_breadcrumbs
-		add_breadcrumb("我的TRADE",:member_path)
+		add_breadcrumb("我的贸威",:member_path)
 	end
 
 	def index

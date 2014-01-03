@@ -19,7 +19,13 @@ Modengke::Application.routes.draw do
   end
 
   resources :sessions
-  resources :users
+  resources :users do 
+    get 'forgot_password', :on=>:collection
+    post 'send_reset_password_instruction', :on=>:collection
+    get 'reset_password',:on=>:collection
+    post 'search', :on=>:collection
+    post 'change_password',:on=>:collection
+  end
 
   get 'login'=>"sessions#new"
   post 'login'=>"sessions#create"
