@@ -21,7 +21,7 @@ Modengke::Application.configure do
             :port                 => 25,
             :domain               => 'qq.com',
             :user_name            => 'cs@iotps.com',
-            :password             => 'iotps123',
+            :password             => 'iotps1234',
             :authentication       => 'plain',
             :enable_starttls_auto => true  }
 
