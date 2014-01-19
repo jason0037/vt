@@ -42,10 +42,10 @@ class Store::OrdersController < ApplicationController
 				order_item.amount = order_item.price * order_item.nums
 
 				product_attr = {}
-				product.spec_desc["spec_value"].each  do |spec_id,spec_value|
-					spec = Ecstore::Spec.find_by_spec_id(spec_id)
-					product_attr.merge!(spec_id=>{"label"=>spec.spec_name,"value"=>spec_value})
-				end
+				# product.spec_desc["spec_value"].each  do |spec_id,spec_value|
+				# 	spec = Ecstore::Spec.find_by_spec_id(spec_id)
+				# 	product_attr.merge!(spec_id=>{"label"=>spec.spec_name,"value"=>spec_value})
+				# end
 				order_item.addon = { :product_attr => product_attr }.serialize
 
 				# @order.total_amount += order_item.calculate_amount
