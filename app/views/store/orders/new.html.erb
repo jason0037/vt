@@ -60,9 +60,12 @@
 			余额(<span>￥<%=@user.advance.to_i%></span>)
 		</label>
 		<%end%>
-
+      <label class="radio">
+        <%=f.radio_button :payment, "ips", :checked=>true%> <b>环迅人民币支付</b>
+        <span class="extra-desc"><img src="/assets/store/ipslogo_120X55.gif"/></span>
+      </label>
 		<label class="radio">
-			<%=f.radio_button :payment, "bcom", :checked=>true,:'data-amount'=>(@cart_total*0.05).round, :id=>"bcom_payment"%> <b>交通银行网上支付</b>
+			<%=f.radio_button :payment, "bcom",:'data-amount'=>(@cart_total*0.05).round, :id=>"bcom_payment"%> <b>交通银行网上支付</b>
 			<span class="extra-desc">持交通银行卡在线支付可享受订单金额95折优惠</span>
 		</label>
 	 	<label class="radio">

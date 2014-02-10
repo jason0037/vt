@@ -37,7 +37,10 @@
 				余额(<span>￥<%=@order.part_pay.to_i%></span>)
 			</label>
 			<%end%>
-
+          <label class="radio">
+            <%=f.radio_button :pay_app_id, "ips", { :checked=>(@order.payment == 'ips') }%> <b>环迅人民币支付</b>
+            <span class="extra-desc"></span>
+          </label>
 			<label class="radio">
 				<%=f.radio_button :pay_app_id, "bcom", { :checked=>(@order.payment == 'bcom'),:id=>"bcom_payment",:'data-amount'=>(@order.total_amount*0.05).round }%> <b>交通银行网上支付</b>
 				<span class="extra-desc">持交通银行卡在线支付可享受订单金额95折优惠</span>

@@ -12,6 +12,7 @@ class Ecstore::Payment < Ecstore::Base
 	has_one :payment_log
 
 	PAYMENTS = {
+    :ips => { :pay_name=>'环迅支付', :bank=> '环迅人民币支付', :pay_type=>"online" },
 		:bcom => { :pay_name=>'交通银行', :bank=> '交通银行网上支付', :pay_type=>"online" },
 		:icbc => { :pay_name=>'工商银行', :bank=> '工商银行网上支付', :pay_type=>"online" },
 		:deposit => { :pay_name=>'预存款', :bank=> '预存款', :pay_type=>"deposit" },

@@ -216,6 +216,7 @@ class Ecstore::Order < Ecstore::Base
        end
 
        def payment_name
+          return "环迅人民币支付" if payment == "ips"
           return "交通银行网上支付" if payment == "bcom"
           return "工商银行网上支付" if payment == "icbc"
           return "预存款在线支付" if payment == "deposit"

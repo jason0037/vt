@@ -4,7 +4,7 @@ class Store::PaymentsController < ApplicationController
 	layout 'order'
 
 	skip_before_filter :verify_authenticity_token,:only=>[:callback,:notify]
-
+ 
 	def create
 		rel_id = params[:order_id]
 		@order  = Ecstore::Order.find_by_order_id(rel_id)
@@ -148,7 +148,25 @@ class Store::PaymentsController < ApplicationController
 				pay.fields = {}
 
 				time = Time.now
-
+        if adapter == "ips"
+          # ===Ips
+          pay.fields["Mer_code"] = "000015"
+          pay.fields["Billno"] = @payment.payment_id,
+          pay.fields["Amount"] = @payment.cur_money.round(2)
+          pay.fields["Date"] = time.strftime("%Y-%m-%d")
+          pay.fields["Currency_Type"] = "RMB"
+          pay.fields["Gateway_Type"] = "01"
+          pay.fields["Lang"] = "GB"
+          pay.fields["Merchanturl"] = ""
+          pay.fields["FailUrl"] = @payment.payment_id
+          pay.fields["ErrorUrl"] = ""
+          pay.fields["Attach"] = ""
+          pay.fields["OrderEncodeType"] = "5"
+          pay.fields["RetEncodeType"] = "17"
+          pay.fields["Rettype"] = "1"
+          pay.fields["ServerUrl"] = ""
+          pay.fields["SignMD5"] = ""
+        end
 				if adapter == "alipay"
 					# ===Alipay
 					pay.fields["discount"] = "0.00"
