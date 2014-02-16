@@ -484,6 +484,7 @@ body {
 #products .meta_info .spec table.spec_bar td a.number_select:hover {
   text-decoration: none;
 }
+.goods_spec_number_down{width:50px;}
 
 #products .meta_info .spec table.spec_bar td ul.number_dropdown {
   display: block;

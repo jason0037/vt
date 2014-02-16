@@ -11,7 +11,7 @@ class Ecstore::Member < Ecstore::Base
 
 
 	def reg_time
-		return Time.at(self.regtime).strftime("%Y-%m-%d %H:%M:%S")
+		return #Time.at(self.regtime).strftime("%Y-%m-%d %H:%M:%S")
 	end
 
 	def sex_name

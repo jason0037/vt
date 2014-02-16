@@ -50,7 +50,7 @@
 
     <div class="spec-item clearfix">
       <span>购买数量 : </span>
-      <%=select_tag "product[quantity]",options_for_select((good.store.to_i > 0 ? 1 : 0)..(good.store.to_i>10 ? 10 : good.store.to_i)),:class=>"span1",:id=>"store"%>
+      <%=select_tag "product[quantity]",options_for_select((good.store.to_i > 0 ? 1 : 0)..(good.store.to_i>10 ? 10 : good.store.to_i)),:id=>"store",:class=>"goods_spec_number_down",:style=>"width:50px"%>
       <span class="store-count">(库存 <span id="product_store"><%=good.store2.to_i%></span> 件)</span>
     </div>
 </div>
