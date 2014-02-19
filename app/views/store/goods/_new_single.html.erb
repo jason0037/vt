@@ -42,7 +42,9 @@
             <span class="price">套装价
             <span class="georgia">
               <% if signed_in? %>
-                ￥<%=good.default_product.price if good.default_product%>&nbsp;&nbsp;&nbsp;
+
+                      ￥<%=good.default_product.price if good.default_product%>&nbsp;&nbsp;&nbsp;
+
               <% else %>
                 <a href="javascript:void(0)" class="login" style="font-size:14px;color:#D30000;">[会员专享]</a>
               <%end%>
@@ -53,15 +55,22 @@
         <span class="price"><%#=good.default_product&&good.default_product.full_custom? ? "定金" : "会员价"%>
           <span class="georgia">
             <% if signed_in? %>
+                <% if session[:username]=="channel_0001"%>
+                <span class="market_price">[渠道价<span class="georgia">￥<%=format("%.2f",good.default_product.price*0.9)%></span>]&nbsp;</span>
+                      <%else%>
               ￥<span id="product_price"><%=good.default_product.price if good.default_product%></span>&nbsp;&nbsp;&nbsp;
+
+                      <%end%>
+                <span class="market_price">[渠道价<span class="georgia">￥<%=format("%.2f",good.default_product.price*0.9)%></span>]&nbsp;</span>
             <% else %>
               <a href="javascript:void(0)" class="login" style="font-size:14px;color:#D30000;">[会员专享]</a>
             <%end%>
           </span>
         </span>
         <span class="market_price">市场价<span class="georgia">￥<%=good.default_product.mktprice if good.default_product%></span>&nbsp;</span>
+
       <%end%>
-      <span class="product_id">［商品号<%=good.bn%>］</span>
+      <span class="product_id">［商品号<%=good.bn%>］<%=@user.account.login_name%></span>
     
     </h3> 
 

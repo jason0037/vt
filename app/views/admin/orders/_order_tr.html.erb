@@ -5,7 +5,7 @@
 	<td><%=order.order_id%></td>
 	
 	<td><%=link_to "详细",detail_admin_order_path(order),:target=>"_blank"%></td>
-
+  <%if current_admin.has_right_of("orders","delivery")%>
 	<td class="dropdown">
 		<%if order.status == "active"%>
 			<%=link_to "#",:class=>"dropdown-toggle",:data=>{:toggle=>"dropdown"} do%>
@@ -40,6 +40,7 @@
 		<%=link_to "购", print_order_admin_order_path(order),:target=>"_blank"%>
 		<%=link_to "配", print_preparer_admin_order_path(order),:target=>"_blank"%>
 	</td>
+      <%end%>
 	<td>
 		<%order.tegs.each do |teg|%>
 			<span class="teg" style="background-color:<%=teg.tag_bgcolor%>;color:<%=teg.tag_fgcolor%>">
@@ -54,6 +55,9 @@
 	<td><%=order.pay_status_text%></td>
 	<td><%=order.ship_status_text%></td>
 	<td><%=number_to_currency order.final_amount.to_i,:unit=>"&yen;",:precision=>0%></td>
+  <%if current_admin.has_right_of("members","index")%>
+    <td><%=number_to_currency order.final_amount.to_i*0.1,:unit=>"&yen;",:precision=>0%></td>
+  <%end%>
 	<td><%=order.ship_name%></td>
 	<td><%=order.ship_addr%></td>
 	<td><%=order.ship_mobile%></td>

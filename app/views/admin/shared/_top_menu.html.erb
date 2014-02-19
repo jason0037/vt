@@ -71,7 +71,7 @@
                     <%=link_to "品牌页管理",admin_brand_pages_path%>
                   </li>
             <%end%>
-
+            <%if current_admin.has_right_of("virtual_goods","index")%>
             <li class="<%='active' if %w(offline_coupons virtual_goods).include?(controller_name)%>">
                     <%=link_to admin_virtual_goods_path,:class=>"dropdown-toggle" do %>
                       虚拟商品 <b class="caret" style="border-top-color: #fff;border-bottom-color: #fff; margin-top:7px;margin-left:2px;"></b>
@@ -86,7 +86,7 @@
                       </li>
                     </ul>
             </li>
-            
+            <%end%>
             <%if current_admin.has_right_of("tags","index") || 
               current_admin.has_right_of("tag_exts","index") %>
 
@@ -103,7 +103,8 @@
                 </li>
             <%end%>
 
-            <%if current_admin.has_right_of("tags","index") || 
+            <%if current_admin.has_right_of("goods","index") ||
+                    current_admin.has_right_of("tags","index") ||
               current_admin.has_right_of("goods_cats","index") ||
               current_admin.has_right_of("goods_types","index") ||
               current_admin.has_right_of("brand_adms","index") ||
@@ -211,6 +212,9 @@
             </li>
 
             <%end%>
+          <li class="active">
+            <a href="#">账务</a>
+          </li>
 
           </ul>
         </div><!--/.nav-collapse -->

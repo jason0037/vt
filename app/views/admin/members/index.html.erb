@@ -1,6 +1,6 @@
 <%=form_for :member,:url=>export_admin_members_path,:method=>:post do |f|%>
 <%= f.hidden_field :select_all,:class=>"sel_operation", :value => 0 %>
-<div class="page-header">
+<div class="page-header"  style="display:none">
   <h2>所有会员</h2>
   <div class="btn-group">
     <%= f.submit '导出会员', :class => "btn btn-primary" %>
@@ -37,7 +37,7 @@
         <th><%=column.last.first%></th>
       <%end%>
     <%end%>
-    <th colspan="3">操作</th>
+    <th colspan="3" style="display:none">操作</th>
   </tr>
 
 <% @members.each do |member| %>
@@ -50,9 +50,9 @@
             <td><%= getColumnValue(column.last[1],member) %></td>
         <%end%>
     <% end %>
-    <td><%=link_to "查看",info_admin_member_path(member)%></td>
-    <td><%=link_to "编辑",edit_admin_member_path(member)%></td>
-    <td>删除</td>
+    <td style="display:none"><%=link_to "查看",info_admin_member_path(member)%></td>
+    <td style="display:none"><%=link_to "编辑",edit_admin_member_path(member)%></td>
+    <td style="display:none">删除</td>
   </tr>
 <% end %>
 </table>

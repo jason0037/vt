@@ -110,7 +110,9 @@ class Ecstore::Account < Ecstore::Base
 
 	def self.user_authenticate(name,password)
 		#username
-		account = self.where(:login_name=>name,:account_type=>"member").first
+		#account = self.where(:login_name=>name,:account_type=>"member").first
+    #运行后台管理员登录前台
+    account = self.where(:login_name=>name).first
 
 		unless account
 			#email
