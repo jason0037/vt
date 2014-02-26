@@ -37,7 +37,11 @@
         <th><%=column.last.first%></th>
       <%end%>
     <%end%>
-    <th colspan="3" style="display:none">操作</th>
+    <%if (current_admin.login_name=="admin")%>
+    <th colspan="3">操作</th>
+        <%else%>
+        <th colspan="3" style="display:none">操作</th>
+    <%end%>
   </tr>
 
 <% @members.each do |member| %>
@@ -50,9 +54,15 @@
             <td><%= getColumnValue(column.last[1],member) %></td>
         <%end%>
     <% end %>
-    <td style="display:none"><%=link_to "查看",info_admin_member_path(member)%></td>
-    <td style="display:none"><%=link_to "编辑",edit_admin_member_path(member)%></td>
-    <td style="display:none">删除</td>
+    <%if (current_admin.login_name=="admin")%>
+    <td><%=link_to "查看",info_admin_member_path(member)%></td>
+    <td><%=link_to "编辑",edit_admin_member_path(member)%></td>
+    <td>删除</td>
+        <%else%>
+        <td style="display:none"><%=link_to "查看",info_admin_member_path(member)%></td>
+        <td style="display:none"><%=link_to "编辑",edit_admin_member_path(member)%></td>
+        <td style="display:none">删除</td>
+    <%end%>
   </tr>
 <% end %>
 </table>

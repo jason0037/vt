@@ -21,9 +21,6 @@ class Store::OrdersController < ApplicationController
 		params[:order].merge!(:ip=>request.remote_ip)
 		params[:order].merge!(:member_id=>@user.member_id)
 
-		
-
-
 		@order = Ecstore::Order.new params[:order]
 
 		@line_items.each do |line_item|
@@ -36,7 +33,11 @@ class Store::OrdersController < ApplicationController
 				order_item.type_id = good.type_id
 				order_item.bn = product.bn
 				order_item.name = product.name
-				order_item.price = product.price
+        if cookies[:MLV] == "10"
+				  order_item.price = product.bulk
+        else
+          order_item.price = product.price
+        end
 				order_item.nums = line_item.quantity.to_i
 				order_item.item_type = "product"
 				order_item.amount = order_item.price * order_item.nums

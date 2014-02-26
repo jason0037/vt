@@ -64,11 +64,11 @@
         <%=f.radio_button :payment, "ips", :checked=>true%> <b>环迅人民币支付</b>
         <span class="extra-desc"><img src="/assets/store/ipslogo_120X55.gif"/></span>
       </label>
-		<label class="radio">
+		<label class="radio" style="display:none">
 			<%=f.radio_button :payment, "bcom",:'data-amount'=>(@cart_total*0.05).round, :id=>"bcom_payment"%> <b>交通银行网上支付</b>
 			<span class="extra-desc">持交通银行卡在线支付可享受订单金额95折优惠</span>
 		</label>
-	 	<label class="radio">
+	 	<label class="radio" style="display:none">
 			<%=f.radio_button :payment, "icbc"%> <b>工商银行网上支付</b>
 			<span class="extra-desc">
 				<input id="installment_on"  type="checkbox" value="1">
@@ -79,7 +79,7 @@
 				</span>
 		</label>
 		<%if @user.advance >= @cart_total%>
-	 	<label class="radio">
+	 	<label class="radio" >
 			<%=f.radio_button :payment, "deposit"%> <b>预存款</b>
 		</label>
 		<%end%>
@@ -87,10 +87,10 @@
 			<%=f.radio_button :payment, "offline"%> <b>货到付款</b>
 			<span class="extra-desc"><%=link_to "点击查询货到付款配送区域","http://www.zjs.com.cn/WS_Business/WS_Bussiness_CityArea.aspx?id=6",:target=>"_blank"%></span>
 		</label>
-	 	<label class="radio">
+	 	<label class="radio" style="display:none">
 			<%=f.radio_button :payment, "99bill"%> <b>其他银行网上支付</b>
 		</label>
-	 	<label class="radio">
+	 	<label class="radio" style="display:none">
 			<%=f.radio_button :payment, "alipay"%> <b>支付宝</b>
 		</label>
 	 	
@@ -120,10 +120,20 @@
 						<div class="spec-info"><%=line_item.product.spec_info%></div>
 					</div>
 				</td>
-				<td><%=number_to_currency line_item.product.price,:unit=>"&yen;",:precision=>0%></td>
+				<td>
+                  <%if cookies[:MLV] == "10"%>
+                    <%=number_to_currency line_item.product.bulk,:unit=>"&yen;",:precision=>0%>
+                  <%else%>
+                      <%=number_to_currency line_item.product.price,:unit=>"&yen;",:precision=>0%>
+                  <%end%>
+                </td>
 				<td><%=line_item.quantity.to_i%></td>
 				<td>
-					<%=number_to_currency line_item.line_total.to_i,:unit=>"&yen;",:precision=>0%>
+                  <%if cookies[:MLV] == "10"%>
+					   <%=number_to_currency (line_item.product.bulk*line_item.quantity).to_i,:unit=>"&yen;",:precision=>0%>
+                  <%else%>
+                      <%=number_to_currency line_item.line_total.to_i,:unit=>"&yen;",:precision=>0%>
+                  <%end%>
 				</td>
 				</tr>
 			<%end%>
@@ -220,7 +230,7 @@
 				<%end%>
 
 				
-				<div class="item bcom" for="#order_payment_bcom">
+				<div class="item bcom" for="#order_payment_bcom" style="display:none">
 					<span class="text">支付优惠(交通银行)：</span>
 					<span class="rmb-symbol">￥</span>
 					<span class="money bcom-discount" id="bcom_discount"></span>

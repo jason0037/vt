@@ -6,6 +6,7 @@ module Admin::OrdersHelper
 		"deposit"=>"预存款支付",
 		"offline"=>"货到付款",
 		"99bill"=>"快钱网上支付",
-		"alipay"=>"支付宝支付"}
+		"alipay"=>"支付宝支付",
+    "ips"=>"环迅人民币支付"}
 	end
 end

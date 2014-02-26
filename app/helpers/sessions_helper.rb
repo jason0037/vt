@@ -29,8 +29,8 @@ module SessionsHelper
 	         cookies[:MLV] = {:value=>account.user.member_lv_id,:expires=>expires,:domain=>'.trade-v.com'}
 	         cookies[:CUR] = {:value=>account.user.cur,:expires=>expires,:domain=>'.trade-v.com'}
 	         cookies[:LANG] = {:value=>account.user.lang,:expires=>expires,:domain=>'.trade-v.com'}
-	   else
-	   	   cookies[:MEMBER] = {:value=>account.gen_secret_string_for_cookie,:expires=>expires}
+	       else
+	   	     cookies[:MEMBER] = {:value=>account.gen_secret_string_for_cookie,:expires=>expires}
 	         cookies[:loginName] = {:value=>account.login_name,:expires=>expires}
 	         cookies[:UNAME] = {:value=>account.login_name,:expires=>expires}
 	         cookies[:MLV] = {:value=>account.user.member_lv_id,:expires=>expires}

@@ -38,7 +38,13 @@
 </div>
 
 <br>
-
+<div class="title">
+<% if (@user.login_name=="user_0001")%>
+  您的导购员是：sale_0001
+ <%elsif (@user.login_name=="user_0002")%>
+您的导购员是：sale_0002
+<%end%>
+</div>
 <div class="title">
 	最近订单
 	<%=link_to "所有订单>>",orders_member_path,:class=>"all-orders"%>

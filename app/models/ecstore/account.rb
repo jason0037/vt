@@ -36,9 +36,7 @@ class Ecstore::Account < Ecstore::Base
 	validates :mobile,:format=>{:with=>/^\d{11}$/,:message=>"手机号码必须是11位数字"},
 					    :if=>Proc.new{ |c| c.mobile.present? }
 
-
-
-      validates :license, :presence=>{:presence=>true,:message=>"您还没有阅读注册协议"}, :if=>Proc.new{ |c| c.new_record? }
+  validates :license, :presence=>{:presence=>true,:message=>"您还没有阅读注册协议"}, :if=>Proc.new{ |c| c.new_record? }
 
 	validate :check_login_name_duplicated,:check_email_duplicated,:check_mobile_duplicated
 
@@ -111,7 +109,7 @@ class Ecstore::Account < Ecstore::Base
 	def self.user_authenticate(name,password)
 		#username
 		#account = self.where(:login_name=>name,:account_type=>"member").first
-    #运行后台管理员登录前台
+    #允许后台管理员登录前台
     account = self.where(:login_name=>name).first
 
 		unless account

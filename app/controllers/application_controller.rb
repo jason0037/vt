@@ -37,9 +37,11 @@ class ApplicationController < ActionController::Base
               @line_items = Ecstore::Cart.where(:member_ident=>member_ident)
             end
             @cart_total_quantity = @line_items.inject(0){ |t,l| t+=l.quantity }.to_i || 0
-
-            @cart_total = @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.price*x.quantity).to_i }.inject(:+) || 0
-            
+            if cookies[:MLV] == "10"
+              @cart_total = @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.bulk*x.quantity).to_i }.inject(:+) || 0
+            else
+              @cart_total = @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.price*x.quantity).to_i }.inject(:+) || 0
+            end
             @pmtable = @line_items.select { |line_item| line_item.good.is_suit? }.size == 0
 
     end

@@ -54,7 +54,7 @@
 			<tr>
 				<th width="15%">商品编号</th>
 				<th >商品名称</th>
-				<th >会员价</th>
+				<th >单价</th>
 				<th width="10%">数量</th>
 				<th width="10%">金额小计</th>
 			</tr>
@@ -67,7 +67,7 @@
 						<%if order_item.item_type=="gift"%>
 						<span class="hui">赠品</span>
 						<%end%>
-					<div>
+					</div>
 					<div class="spec-info"><%=order_item.product.spec_info%></div>
 				</td>
 				<td>&yen;<%=order_item.price%></td>

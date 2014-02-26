@@ -320,8 +320,7 @@ class Ecstore::User < Ecstore::Base
    self.account&&self.account.login_name
  end
 
-
- def check_sms(sms_code)
+  def check_sms(sms_code)
     return false if sms_code.blank?
     if self.sms_code == sms_code && ( self.sent_sms_at + 60*30 > Time.now ) 
             self.update_attribute :sms_code,nil

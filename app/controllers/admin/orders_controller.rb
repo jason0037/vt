@@ -19,8 +19,17 @@ class Admin::OrdersController < Admin::BaseController
 		end
 		@order_ids = @orders_nw.pluck(:order_id)
 
-		@orders = @orders_nw.includes(:user).paginate(:page=>params[:page],:per_page=>30)
-
+    if (current_admin.login_name=="sale_0001")
+      @orders = @orders_nw.includes(:user).where(:member_id=>"2455").paginate(:page=>params[:page],:per_page=>30)
+    elsif (current_admin.login_name=="sale_0002")
+      @orders = @orders_nw.includes(:user).where(:member_id=>"2456").paginate(:page=>params[:page],:per_page=>30)
+    elsif (current_admin.login_name=="vendor_0001")
+      @orders = @orders_nw.includes(:user).joins(:order_items).where('sdb_b2c_order_items.product_id =8294').paginate(:page=>params[:page],:per_page=>30)
+    elsif (current_admin.login_name=="vendor_0002")
+      @orders = @orders_nw.includes(:user).joins(:order_items).where('sdb_b2c_order_items.product_id <>8294').paginate(:page=>params[:page],:per_page=>30)
+    else
+      @orders = @orders_nw.includes(:user).paginate(:page=>params[:page],:per_page=>30)
+    end
 		respond_to do |format|
 			format.js
 			format.html

@@ -41,7 +41,14 @@ module Admin
 
             @order = "goods_id desc" if @order.blank?
 
-            @goods = Ecstore::Good.order(@order).includes(:cat,:brand,:good_type,:tegs)
+            if (current_admin.login_name=="vendor_0001")
+              @goods = Ecstore::Good.where(:goods_id =>3465).order(@order).includes(:cat,:brand,:good_type,:tegs)
+            elsif (current_admin.login_name=="vendor_0002")
+              @goods = Ecstore::Good.where('goods_id<>3465').order(@order).includes(:cat,:brand,:good_type,:tegs)
+            else
+              @goods = Ecstore::Good.order(@order).includes(:cat,:brand,:good_type,:tegs)
+            end
+
 
             if marketable.present?
                 @goods =  @goods.where(:marketable=>marketable)
@@ -280,8 +287,8 @@ module Admin
         sheet.each_with_index do |row,i|
             if i>4 && !row[1].blank? && !row[0].blank?
                 pp "spec info ......"
-                pp row[20]
-                if !row[20].blank? #规格为空的为商品
+                pp row[21]
+                if !row[21].blank? #规格为空的为商品
                     pp "staring...."
                     @new_good = Ecstore::Good.find_by_bn(row[5].to_i)
                     if @new_good&&@new_good.persisted?
@@ -305,11 +312,12 @@ module Admin
                     @good.bn = row[5].to_i.to_s
                     @good.name = row[7]
                     @good.unit = row[9]
-                    @good.price = row[18]
-                    @good.mktprice = row[19]
+                    @good.price = row[19]
+                    @good.mktprice = row[20]
                     @good.bulk = row[16]
-                    @good.wholesale = row[15]
-                    @good.promotion=row[17]
+                    @good.cost = row[15]
+                    @good.wholesale = row[16]
+                    @good.promotion=row[18]
                     @good.supplier = row[11]
                     @good.store = row[12]
                     if !row[13].blank?
@@ -321,21 +329,21 @@ module Admin
                         end
                     end
                     @good.place = row[13]
-                    @good.desc = row[20]
-                    @good.place_info = row[21]
-                    @good.spec_info = row[22]
-                    @good.intro = row[23]
-                    if row[24] == "是"
+                    @good.desc = row[21]
+                    @good.place_info = row[22]
+                    @good.spec_info = row[23]
+                    @good.intro = row[24]
+                    if row[25] == "是"
                         @good.sell = 'true'
                     else
                         @good.sell = 'false'
                     end
-                    if row[25] == "是"
+                    if row[26] == "是"
                         @good.agent = 'true'
                     else
                         @good.agent = 'false'
                     end
-                    if row[26] == "是"
+                    if row[27] == "是"
                         @good.future = 'true'
                     else
                         @good.future = 'false'
@@ -360,11 +368,11 @@ module Admin
                     @product.name = row[7]
                     @product.store_time = row[10]
                     @product.store = row[12]
-                    @product.price = row[18]
-                    @product.mktprice = row[19]
-                    @product.bulk = row[16]
-                    @product.wholesale = row[15]
-                    @product.promotion=row[17]
+                    @product.price = row[19]
+                    @product.mktprice = row[20]
+                    @product.bulk = row[17]
+                    @product.wholesale = row[16]
+                    @product.promotion=row[18]
                     @product.save!
                     Ecstore::GoodSpec.where(:product_id=>@product.product_id).delete_all
                     sp_val_id = Ecstore::SpecValue.where(:spec_value=>row[8],:spec_id=>spec_id).first.spec_value_id

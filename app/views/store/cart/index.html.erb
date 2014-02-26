@@ -45,7 +45,11 @@
               </div>
             </td>
             <td>
-              ￥<%=line_item.product.price%>
+              <% if cookies[:MLV] == "10" %>
+                  ￥<%=line_item.product.bulk%>
+              <%else%>
+                  ￥<%=line_item.product.price%>
+              <%end%>
               <%#if line_item.product.full_custom?%>
                 <!-- (<span class="red">定金</span>) -->
               <%#end%>
@@ -57,7 +61,13 @@
                 <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
               <%#end%>
             </td>
-            <td class="line-total">￥<%=(line_item.product.price*line_item.quantity).to_i%></td>
+            <td class="line-total">
+              <% if cookies[:MLV] == "10" %>
+                  ￥<%=(line_item.product.bulk*line_item.quantity).to_i%>
+              <%else%>
+                  ￥<%=(line_item.product.price*line_item.quantity).to_i%>
+              <%end%>
+            </td>
             
             <!-- <td><span class="left_time">1天5小时30分</span></td> -->
             <td>
