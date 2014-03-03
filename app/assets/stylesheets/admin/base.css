@@ -18,6 +18,8 @@ body {
   color:#fff;
 }
 
+.checkbox-verticle{float:left;width:150px;height:24px;line-height:24px;}
+
 #topmenu {
   
 }

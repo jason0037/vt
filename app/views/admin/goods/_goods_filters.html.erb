@@ -1,4 +1,4 @@
-<div id="filters">
+<div id="filters" style="float:left">
 	<%=form_for :s, :url=>search_admin_goods_path,:method=>:get,:remote=>true,:html=>{:class=>"form-search",:id=>"simple_search"} do |f|%>
 		<%=hidden_field_tag :view,@view%>
 		<%=hidden_field_tag :template,@template%>

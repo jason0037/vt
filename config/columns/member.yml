@@ -22,7 +22,7 @@
 14-tag-标签: 
   - 标签
   - tag.getTagName
-  - "true"
+  - "false"
 15-mobile-手机: 
   - 手机
   - mobile
@@ -42,31 +42,31 @@
 19-gift-注册有礼: 
   - 注册有礼
   - user.gift
-  - "true"
+  - "false"
 20-weight-体重: 
   - 体重
   - user.weight
-  - "true"
+  - "false"
 21-colors-喜欢的颜色: 
   - 喜欢的颜色
   - user.colors
-  - "true"
+  - "false"
 22-price-常买衣服的价位: 
   - 常买衣服的价位
   - user.price
-  - "true"
+  - "false"
 23-places-常出席的场合: 
   - 常出席的场合
   - user.places
-  - "true"
+  - "false"
 24-height-身高: 
   - 身高
   - user.height
-  - "true"
+  - "false"
 25-shoesize-鞋码: 
   - 鞋码
   - user.shoesize
-  - "true"
+  - "false"
 26-interests-兴趣爱好: 
   - 兴趣爱好
   - user.interests
@@ -78,11 +78,11 @@
 28-email_validate-邮箱验证: 
   - 邮箱验证
   - email_validate_name
-  - "true"
+  - "false"
 29-sms_validate-手机验证: 
   - 手机验证
   - sms_validate_name
-  - "true"
+  - "false"
 5-order_num-订单数: 
   - 订单数
   - order_num

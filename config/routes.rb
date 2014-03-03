@@ -127,6 +127,7 @@ Modengke::Application.routes.draw do
           put :update_brand,:on=>:member
         end
         resources :goods do
+          post "export", :on=>:collection
           post "import", :on=>:collection
           post "remove_spec_item",:on=>:member
           get "add_spec_item",:on=>:member

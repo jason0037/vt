@@ -32,6 +32,7 @@
 
 <ul class="list clearfix" id="goods">
 	<%@goods.each do |good|%>
+		<%if good.price!=0 || cookies[:MLV] == "10" %>
 	<li>
 		<div class="good-pic good-<%=good.goods_id%>">
 			<%=link_to good_path(good.bn), :target=>"_blank" do %>
@@ -77,17 +78,21 @@
 			</div>
 			<div class="prices">
 				<span>
-					会员价: 
+
+					会员价:
 					<%if signed_in?%>
 					&yen;<%=good.price%>
 					<%else%>
 					<a href="javascript:void(0);" class="login">会员专享</a>
 					<%end%>
+
 				</span>
 				<span class="mtkprice">市场价: &yen;<%=good.mktprice%></span>
 			</div>
 		</div>
 	</li>
+
+	<%end%>
 	<%end if @goods%>
 </ul>
 <div class="clearfix"></div>

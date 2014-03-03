@@ -1,6 +1,7 @@
 <%=form_for :member,:url=>export_admin_members_path,:method=>:post do |f|%>
 <%= f.hidden_field :select_all,:class=>"sel_operation", :value => 0 %>
-<div class="page-header"  style="display:none">
+<%if current_admin.login_name=="admin" %>
+<div class="page-header">
   <h2>所有会员</h2>
   <div class="btn-group">
     <%= f.submit '导出会员', :class => "btn btn-primary" %>
@@ -9,23 +10,24 @@
   <%=link_to "短信自定义发送","#sms_define",:class=>"btn btn-primary",:'data-toggle'=>"modal"%>
   <ul class="clearfix unstyled">
     <% @column_data.each do |column| %>
-      <li style="float:left;width:150px;height:24px;line-height:24px;">
+      <li class="checkbox-verticle">
         <%if column.last.last == "true" %>
             <%= check_box_tag "fields[]",column.first,true,:class =>'sel_reload'%>
         <%else%>
             <%= check_box_tag "fields[]",column.first,false,:class =>'sel_reload'%>
-        <%end%>  
+        <%end%>
         &nbsp;&nbsp;<%=column.last.first%>
       </li>
     <%end%>
   </ul>
 </div>
+<%end%>
 
 
 
-<div class='sel_banner' style="display:none">
+<div class='sel_banner'>
   您当前选定了<a class='sel_nums'>0</a>条记录！  <a href='' class='cancel_all'>取消选定</a> <a href='' class='sel_all'>选定全部</a>
-  <p class="total_member hidden"><%=@total_member%></a>
+  <p class="total_member hidden"><%=@total_member%></p>
 </div>
 <table class="table table-bordered table-hover">
   <tr>

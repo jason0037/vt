@@ -126,7 +126,7 @@ module Admin
       def export
         fields =  params[:fields]
         if params[:member][:select_all].to_i > 0
-           members = Ecstore::Member.all  #找出所以数据
+           members = Ecstore::Member.all  #找出所有数据
         else
            members = Ecstore::Member.find(:all,:conditions => ["member_id in (?)",params[:ids]])
         end

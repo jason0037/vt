@@ -7,16 +7,19 @@
 		<th class="order" data-field="bn" data-sorter="asc">商品编号</th>
 		<th class="order" data-field="name" data-sorter="asc">商品名称</th>
 		<th width="50px" align="center">缩略图</th>
-		<th class="order" data-field="price" data-sorter="asc">零销售</th>
       <%if current_admin.has_right_of("goods","edit")%>
-        <th class="order" data-field="price" data-sorter="asc">进货价</th>
+          <th class="order" data-field="cost" data-sorter="asc">进货价</th>
       <%end%>
+      <%if current_admin.has_right_of("orders","delivery")%>
+          <th class="order" data-field="bulk" data-sorter="asc">渠道价</th>
+      <%end%>
+        <th class="order" data-field="wholesale" data-sorter="asc">批发价</th>
+		<th class="order" data-field="price" data-sorter="asc">会员价</th>
+        <th class="order" data-field="mktprice" data-sorter="asc">市场价</th>
       <%if current_admin.has_right_of("members","index")%>
         <th class="order" data-field="price" data-sorter="asc">佣金</th>
       <%end%>
-      <%if not current_admin.has_right_of("orders","index")%>
-          <th class="order" data-field="price" data-sorter="asc">渠道价</th>
-      <%end%>
+
 		<th class="order" data-field="store" data-sorter="asc">库存</th>
 		<th class="order" data-field="marketable" data-sorter="asc">上架</th>
 		<th class="order" data-field="uptime" data-sorter="asc"  style="display:none">上架时间</th>
@@ -43,32 +46,34 @@
 			</td>
 
 			<td><%=good.bn%></td>
-			<td><%=good.name%></td>
+			<td><%=link_to good.name,good_path(good.bn),:target=>"_blank"%></td>
 			<td align="center">
 				<%=link_to "#", :class=>"hover-thumb", :data=>{ :thumb => good.list_default_pic||"",:title=>"#{good.name}(#{good.bn})" } do%>
 					<i class="icon-camera"></i>
 				<%end%>
 			</td>
-			<td>&yen;<%=format("%.2f",good.price)%></td>
           <%if current_admin.has_right_of("goods","edit")%>
-            <td>&yen;<%=format("%.2f",good.price*0.8)%></td>
+              <td>&yen;<%=format("%.2f",good.cost)%></td>
           <%end%>
+          <%if current_admin.has_right_of("orders","delivery")%>
+              <td>&yen;<%=format("%.2f",good.bulk)%></td>
+          <%end%>
+            <td>&yen;<%=format("%.2f",good.wholesale)%></td>
+			<td>&yen;<%=format("%.2f",good.price)%></td>
+            <td>&yen;<%=format("%.2f",good.mktprice)%></td>
           <%if current_admin.has_right_of("members","index")%>
-            <td>&yen;<%=format("%.3f",good.price*0.1)%></td>
+            <td>&yen;<%=format("%.2f",good.price*0.1)%></td>
           <%end%>
-          <%if not current_admin.has_right_of("orders","index")%>
-              <td>&yen;<%=format("%.2f",good.price*0.9)%></td>
-          <%end%>
+
 			<td><%=good.store.to_i%></td>
 			<td><%=good.marketable == 'true' ? '是' : '否'%></td>
 			<td style="display:none"><%=Time.at(good.uptime).strftime("%Y-%m-%d %H:%M:%S") if good.uptime.present?%></td>
 			<td><%=good.cat.cat_name if good.cat%></td>
 			<td><%=good.good_type.name if good.good_type%></td>
 			<td>
-				<%=link_to "查看",good_path(good.bn),:target=>"_blank"%>
               <%if current_admin.has_right_of("goods","edit")%>
 				<%=link_to "编辑",edit_admin_good_path(good)%>
-				<%=link_to "编辑规格",spec_admin_good_path(good)%>
+				<%=link_to "规格",spec_admin_good_path(good)%>
 				<%= link_to toggle_future_admin_good_path(good) do%>
 			        <%=good.future == 'false' ? "设置期货" : "期货关闭"%>
 			    <%end%>

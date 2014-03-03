@@ -37,7 +37,7 @@
     <%=f.hidden_field :type_id,:value=>good.type_id%>
     <h3 class="name_and_price">
       <div class="name"><%=good.name %></div>
-      
+
       <%if good.has_cols? %>
             <span class="price">套装价
             <span class="georgia">
@@ -55,7 +55,11 @@
         <span class="price"><%#=good.default_product&&good.default_product.full_custom? ? "定金" : "会员价"%>
           <span class="georgia">
             <% if signed_in? %>
-                [会员价￥<span id="product_price"><%=good.default_product.price if good.default_product%></span>]&nbsp;&nbsp;&nbsp;
+            <% if good.default_product.price !=0%>
+                [会员价￥<span id="product_price"><%=good.default_product.price if good.default_product%></span>]
+            <%else%>
+            [渠道专供]
+            <%end%>    &nbsp;&nbsp;&nbsp;
                 <% if cookies[:MLV] == "10" %>
                     <span class="market_price">[渠道价<span class="georgia">￥<%=format("%.2f",good.default_product.bulk)%></span>]&nbsp;</span>
                 <%else%>
@@ -72,13 +76,13 @@
 
       <%end%>
       <span class="product_id">［商品号<%=good.bn%>]</span>
-    
-    </h3> 
+
+    </h3>
 
     <div class="spec">
       <%=render :partial=>"store/goods/product/new_spec",:locals=>{ :good=>good }%>
     </div>
-    
+
 
     <div class="actions clearfix">
       <%if @good.marketable == "true"%>
@@ -120,7 +124,7 @@ $(document).ready(function(){
               title: false
           });
     });
-  
+
 
   // $('.jqzoom1').jqzoom({
   //     zoomType: 'standard',
@@ -132,7 +136,7 @@ $(document).ready(function(){
   //     preloadText: '正在加载图片...',
   //     title: false
   // });
-  
+
   // $('.jqzoom2').jqzoom({
   //     zoomType: 'standard',
   //     lens:true,

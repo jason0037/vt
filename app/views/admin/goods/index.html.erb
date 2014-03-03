@@ -1,6 +1,6 @@
 <%=form_for :good,:url=>import_admin_goods_path,:html => {:multipart => true} ,:method=>:post do |f|%>
 	<div class="btn-group">
-	    <%= file_field :good, :file, :id=>'csvfile',:accept => "application/msexcel" %> 
+	    <%= file_field :good, :file, :id=>'csvfile',:accept => "application/msexcel" %>
 	    <%= f.submit '导入商品', :class => "btn btn-primary" %>
 	</div>
 <%end%>
@@ -8,10 +8,10 @@
 <div>
 	<p>
 		<div id="batch_inputs" class="hide"></div>
-		
-		<div id="batch_actions" style="display:none">
+
+		<div id="batch_actions">
 			<%=link_to "删除","#",:class=>"btn batch",:data=>{:act=>:destroy},:confirm=>"确定删除吗?"%>
-			<%=link_to "导出","#",:class=>"btn batch",:data=>{:act=>:export}%>
+			<%#=link_to "导出","#",:class=>"btn batch",:data=>{:act=>:export}%>
 			<div class="btn-group">
 			  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 			    批量操作
@@ -38,16 +38,30 @@
 			</div>
 		</div>
 	</p>
-
-	<div id="selection">已选择了<b id="count">0</b>条记录! 
+  <%=form_for :good,:url=>export_admin_goods_path,:method=>:post do |f|%>
+      <%= f.hidden_field :select_all,:class=>"sel_operation", :value => 0 %>
+      <input type="hidden" name="all_goods_ids" value="<%=@goods_ids%>" />
+	<div id="selection">已选择了<b id="count">0</b>条记录!
 		&nbsp;
 		<%=link_to "选择全部","#",:id=>"select_all"%>
 		&nbsp;
-		<%=link_to "取消选择","#",:id=>"cancel_all"%> 
+		<%=link_to "取消选择","#",:id=>"cancel_all"%>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <%= f.submit '导出商品', :class => "btn btn-primary" %>
+      <div style="float:right;">
+        <ul class="clearfix unstyled">
+          <li class="checkbox-verticle"><%= check_box_tag "fields[]","进货价",true%>进货价</li>
+          <li class="checkbox-verticle"><%= check_box_tag "fields[]","渠道价",true%>渠道价</li>
+          <li class="checkbox-verticle"><%= check_box_tag "fields[]","批发价",true%>批发价</li>
+          <li class="checkbox-verticle"><%= check_box_tag "fields[]","会员价",true%>会员价</li>
+          <li class="checkbox-verticle"><%= check_box_tag "fields[]","市场价",true%>市场价</li>
+        </ul>
+      </div>
 	</div>
 	<table class="table table-bordered table-striped" id="goods" data-url="<%=request.fullpath.html_safe%>" count="<%=@count%>" goods_ids="<%=@goods_ids%>" >
 		<%=render "index_goods"%>
 	</table>
+  <%end%>
 </div>
 
 <div class="pagination">

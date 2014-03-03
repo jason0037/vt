@@ -23,12 +23,19 @@ class Admin::OrdersController < Admin::BaseController
       @orders = @orders_nw.includes(:user).where(:member_id=>"2455").paginate(:page=>params[:page],:per_page=>30)
     elsif (current_admin.login_name=="sale_0002")
       @orders = @orders_nw.includes(:user).where(:member_id=>"2456").paginate(:page=>params[:page],:per_page=>30)
-    elsif (current_admin.login_name=="vendor_0001")
-      @orders = @orders_nw.includes(:user).joins(:order_items).where('sdb_b2c_order_items.product_id =8294').paginate(:page=>params[:page],:per_page=>30)
-    elsif (current_admin.login_name=="vendor_0002")
-      @orders = @orders_nw.includes(:user).joins(:order_items).where('sdb_b2c_order_items.product_id <>8294').paginate(:page=>params[:page],:per_page=>30)
-    else
+      elsif (current_admin.login_name=="vendor_0001") #味来岛
+      @orders = @orders_nw.includes(:user).joins(:order_items).where('sdb_b2c_order_items.goods_id in (3469,3465)').paginate(:page=>params[:page],:per_page=>30)
+      elsif (current_admin.login_name=="vendor_0002") #数贸
+      @orders = @orders_nw.includes(:user).joins(:order_items).where('sdb_b2c_order_items.goods_id<3469').paginate(:page=>params[:page],:per_page=>30)
+      elsif (current_admin.login_name=="vendor_ybpx") #
+      @orders = @orders_nw.includes(:user).joins(:order_items).where('sdb_b2c_order_items.goods_id=3468').paginate(:page=>params[:page],:per_page=>30)
+      elsif (current_admin.login_name=="vendor_xss") #
+      @orders = @orders_nw.includes(:user).joins(:order_items).where('sdb_b2c_order_items.goods_id in (3466,3467)').paginate(:page=>params[:page],:per_page=>30)
+
+    elsif (current_admin.login_name=="admin")
       @orders = @orders_nw.includes(:user).paginate(:page=>params[:page],:per_page=>30)
+  else
+  	  @orders = @orders_nw.includes(:user).where(:member_id=>"0").paginate(:page=>params[:page],:per_page=>30)
     end
 		respond_to do |format|
 			format.js
@@ -127,7 +134,7 @@ class Admin::OrdersController < Admin::BaseController
 
 
 		if act == "get_same_tags"
-			
+
 			tag_ids = Ecstore::Tagable.where(:rel_id=>order_ids,:tag_type=>"orders").pluck(:tag_id)
 
 			hash = Hash.new(0)
@@ -187,7 +194,7 @@ class Admin::OrdersController < Admin::BaseController
 
 		@payment = Ecstore::Payment.new params[:payment]  do |payment|
 			payment.payment_id = Ecstore::Payment.generate_payment_id
-			
+
 			payment.status = 'ready'
 			payment.pay_ver = '1.0'
 			payment.paycost = 0
@@ -232,7 +239,7 @@ class Admin::OrdersController < Admin::BaseController
 	end
 
 	def delivery
-		
+
 
 		@order = Ecstore::Order.find_by_order_id(params[:id])
 		@delivery = Ecstore::Delivery.new do |delivery|
@@ -341,7 +348,7 @@ class Admin::OrdersController < Admin::BaseController
 				@order.update_attributes(:pay_status=>'5')
 				txt_key = "订单已退款 ! "
 			end
-			
+
 			Ecstore::OrderLog.new do |order_log|
 				order_log.rel_id = @order.order_id
 				order_log.op_id = current_admin.account_id
@@ -433,5 +440,5 @@ class Admin::OrdersController < Admin::BaseController
 	def get_return_url
 		@return_url = request.env["HTTP_REFERER"] || admin_orders_url(:page=>params[:page])
 	end
-	
+
 end

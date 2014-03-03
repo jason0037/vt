@@ -60,6 +60,7 @@ $(document).ready(function(){
 		$("#batch_inputs").empty();
 		$("#goods .good").attr("checked",false).trigger("change");
 		$("#select_page_all").attr("checked",false);
+        $(".sel_operation").val(0);
 		return false;
 	});
 
@@ -73,6 +74,7 @@ $(document).ready(function(){
 		});
 		$("#count").text($("#goods").attr("count"));
 		$("#goods .good").attr("checked",true);
+        $(".sel_operation").val(1);
 		return false;
 	});
 

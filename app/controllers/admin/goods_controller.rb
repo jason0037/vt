@@ -5,10 +5,130 @@ require "iconv"
 module Admin
     class GoodsController < Admin::BaseController
       # skip_before_filter :require_permission!
-
+      BOM = "\377\376" #Byte Order Mark
       skip_before_filter :verify_authenticity_token,:only=>[:batch]
 
-      
+
+      def export
+        fields =  params[:fields]
+
+       #需要在此判断params[:batch][:goods_ids]是否为空
+        goods_ids =  params[:batch][:goods_ids] || []
+
+
+
+        if params[:good][:select_all].to_i > 0
+         #找出所有数据
+          conditions = "goods_id in ("+params[:all_goods_ids]+")"
+        else
+          conditions = { :goods_id=>goods_ids }
+        end
+
+        # conditions = nil  if goods_ids.include?("all")
+        goods = Ecstore::Good.where(conditions).includes(:good_type,:brand,:cat,:products)
+        content = Ecstore::Good.export(fields,goods)
+      #  content = Iconv.conv("UTF-16LE", "UTF-8", content)
+        #   content = "\xFF\xFE" + content
+      #  content = BOM + Iconv.conv("UTF-16LE", "UTF-8", content)
+       #content= Iconv.conv("utf-16le", "utf-8", "\ufeff" + content)
+       # content = "\xFF\xFE" + Iconv.conv("utf-16le", "utf-8", content)
+        #send_data content, :filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv"
+
+
+        send_data(content, :type => 'text/csv',:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv")
+      end
+
+      def batch
+        act = params[:act]
+        goods_ids =  params[:goods_ids] || []
+
+        conditions = { :goods_id=>goods_ids }
+        # conditions = nil  if goods_ids.include?("all")
+
+        if act == "export"
+          goods = Ecstore::Good.where(conditions).includes(:good_type,:brand,:cat,:products)
+          file = Ecstore::Good.exporttmp(goods)
+          return render :json=>{:csv=>"/tmp/goods.csv"}
+          #return send_file file, :filename=>"goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv", :type=>"text/csv"
+
+        end
+
+        if act == "destroy"
+          Ecstore::Good.where(conditions).destroy_all
+        end
+
+        if act == "up"
+          Ecstore::Good.where(conditions).update_all(:marketable=>'true',:uptime=>Time.now.to_i)
+        end
+
+        if act == "down"
+          Ecstore::Good.where(conditions).update_all(:marketable=>'false',:downtime=>Time.now.to_i)
+        end
+
+        if act=="tag"
+          tegs = params[:tegs] || {}
+
+          tegs.values.each  do |teg|
+            if teg[:def] == "checked"
+              Ecstore::Tagable.where(:rel_id=>goods_ids,:tag_type=>"goods",:tag_id=>teg[:tag_id]).delete_all if teg[:state] == "none"
+            end
+
+            if teg[:def] == "uncheck"
+              goods_ids.each do |order_id|
+                Ecstore::Tagable.create(:rel_id=>order_id,:tag_id=>teg[:tag_id],:tag_type=>"goods",:app_id=>"b2c")
+              end
+            end
+
+            if teg[:def] == "partcheck"
+              if teg[:state] == "all"
+                goods_ids.each do |order_id|
+                  tagable = Ecstore::Tagable.where(:rel_id=>order_id,:tag_id=>teg[:tag_id],:tag_type=>"goods").first_or_initialize(:app_id=>"b2c")
+                  tagable.save
+                end
+              end
+
+              if teg[:state] == "none"
+                Ecstore::Tagable.where(:rel_id=>goods_ids,:tag_type=>"goods",:tag_id=>teg[:tag_id]).delete_all
+              end
+            end
+          end
+        end
+
+        if act == "get_same_tags"
+          tag_ids = Ecstore::Tagable.where(:rel_id=>goods_ids,:tag_type=>"goods").pluck(:tag_id)
+
+          hash = Hash.new
+
+          tag_ids.each do |id|
+            if hash[id]
+              hash[id] += 1
+            else
+              hash[id] = 1
+            end
+          end
+          stat = Hash.new
+
+          hash.each do |tag_id,count|
+            if count>0 && count == goods_ids.size
+              stat[tag_id] = "all"
+            end
+
+            if count > 0 && count < goods_ids.size
+              stat[tag_id] = "part"
+            end
+
+            if count == 0
+              stat[tag_id] = "none"
+            end
+          end
+
+          return render :json=>stat
+        end
+
+
+        render :nothing=>true
+      end
+
       def index
         redirect_to search_admin_goods_path(:template=>"index_goods",:view=>"index")
       end
@@ -42,13 +162,17 @@ module Admin
             @order = "goods_id desc" if @order.blank?
 
             if (current_admin.login_name=="vendor_0001")
-              @goods = Ecstore::Good.where(:goods_id =>3465).order(@order).includes(:cat,:brand,:good_type,:tegs)
+              @goods = Ecstore::Good.where(:supplier =>"味来岛").order(@order)
             elsif (current_admin.login_name=="vendor_0002")
-              @goods = Ecstore::Good.where('goods_id<>3465').order(@order).includes(:cat,:brand,:good_type,:tegs)
+              @goods = Ecstore::Good.where(:supplier =>"数贸").order(@order)
+            elsif (current_admin.login_name=="vendor_ybpx")
+              @goods = Ecstore::Good.where(:supplier =>"亿百葩鲜").order(@order)
+            elsif (current_admin.login_name=="vendor_xss")
+              @goods = Ecstore::Good.where(:supplier =>"炫食尚").order(@order)
             else
-              @goods = Ecstore::Good.order(@order).includes(:cat,:brand,:good_type,:tegs)
+              @goods = Ecstore::Good.order(@order)
             end
-
+			@goods = @goods.includes(:cat,:brand,:good_type,:tegs)
 
             if marketable.present?
                 @goods =  @goods.where(:marketable=>marketable)
@@ -99,7 +223,7 @@ module Admin
             @goods_ids = @goods.pluck(:goods_id).join(",")
             @goods = @goods.paginate(:page=>params[:page],:per_page=>20)
 
-            
+
 
             respond_to do |format|
                 format.html { render @view,:layout=> @layout }
@@ -144,7 +268,7 @@ module Admin
             @good =  Ecstore::Good.find(params[:id])
             @products = @good.products
             @spec_items = Ecstore::SpecItem.all
-      end 
+      end
 
       def add_spec_item
             @good =  Ecstore::Good.find(params[:id])
@@ -161,7 +285,7 @@ module Admin
       end
 
       def update
-            @good  =  Ecstore::Good.find(params[:id]) 
+            @good  =  Ecstore::Good.find(params[:id])
             @good.update_attributes(params[:good])
             redirect_to admin_goods_url
       end
@@ -184,96 +308,6 @@ module Admin
                 @updated = true
                 render "update"
             end
-      end
-
-      def batch
-            act = params[:act]
-            goods_ids =  params[:goods_ids] || []
-
-            conditions = { :goods_id=>goods_ids }
-            # conditions = nil  if goods_ids.include?("all")
-
-            if act == "destroy"
-                Ecstore::Good.where(conditions).destroy_all
-            end
-
-            if act == "up"
-                Ecstore::Good.where(conditions).update_all(:marketable=>'true',:uptime=>Time.now.to_i)
-            end
-
-            if act == "down"
-                Ecstore::Good.where(conditions).update_all(:marketable=>'false',:downtime=>Time.now.to_i)
-            end
-
-            if act == "export"
-                goods = Ecstore::Good.where(conditions).includes(:good_type,:brand,:cat,:products)
-                file = Ecstore::Good.export(goods)
-                return render :json=>{:csv=>"/tmp/goods.csv"}
-                # return send_file file, :filename=>"goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv", :type=>"text/csv"
-            end
-
-            if act=="tag"
-                  tegs = params[:tegs] || {}
-
-                  tegs.values.each  do |teg|
-                        if teg[:def] == "checked"
-                            Ecstore::Tagable.where(:rel_id=>goods_ids,:tag_type=>"goods",:tag_id=>teg[:tag_id]).delete_all if teg[:state] == "none"
-                        end
-
-                        if teg[:def] == "uncheck"
-                            goods_ids.each do |order_id|
-                                Ecstore::Tagable.create(:rel_id=>order_id,:tag_id=>teg[:tag_id],:tag_type=>"goods",:app_id=>"b2c")
-                            end
-                        end
-
-                        if teg[:def] == "partcheck"
-                            if teg[:state] == "all"
-                                goods_ids.each do |order_id|
-                                 tagable = Ecstore::Tagable.where(:rel_id=>order_id,:tag_id=>teg[:tag_id],:tag_type=>"goods").first_or_initialize(:app_id=>"b2c")
-                                 tagable.save
-                             end
-                            end
-
-                            if teg[:state] == "none"
-                                Ecstore::Tagable.where(:rel_id=>goods_ids,:tag_type=>"goods",:tag_id=>teg[:tag_id]).delete_all
-                            end
-                        end
-                  end
-            end
-
-            if act == "get_same_tags"
-                tag_ids = Ecstore::Tagable.where(:rel_id=>goods_ids,:tag_type=>"goods").pluck(:tag_id)
-
-                hash = Hash.new
-
-                tag_ids.each do |id|
-                    if hash[id]
-                        hash[id] += 1
-                    else
-                        hash[id] = 1
-                    end
-                end
-                stat = Hash.new
-
-                hash.each do |tag_id,count|
-                    if count>0 && count == goods_ids.size
-                        stat[tag_id] = "all"
-                    end
-
-                    if count > 0 && count < goods_ids.size
-                        stat[tag_id] = "part"
-                    end
-
-                    if count == 0
-                        stat[tag_id] = "none"
-                    end
-                end
-
-                return render :json=>stat
-            end
-
-
-            render :nothing=>true
       end
 
 
@@ -426,5 +460,5 @@ module Admin
       end
 
   end
-    
+
 end

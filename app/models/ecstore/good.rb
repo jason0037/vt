@@ -1,13 +1,74 @@
 #encoding:utf-8
 require 'csv'
+
 class Ecstore::Good < Ecstore::Base
 
   NEW_GOOD_START_ID = 0  #2398
 
   SUIT_NAME = "套装 Suit"
 
+  def self.export(fields, goods)
+    field_name = [ '类型', '商品编号','规格货号','分类','品牌','商品名称','上架','规格','库存']
+    #price_fields = convert_array(fields)  #csv文件的头（标题）
+    field_name += fields
 
-  def self.export(goods = [], file = "#{Rails.root}/public/tmp/goods.csv")
+    output = CSV.generate do |csv|
+      csv << field_name
+      goods.each do |good|
+        spec_names = good.specs.order("sdb_b2c_specification.spec_id asc").pluck(:spec_name).join("|")
+        csv << [ good.good_type&&good.good_type.name, #类型
+                 good.bn.to_s,  #商品编号
+                 nil, #规格货号
+                 good.cat&&good.cat.full_path_name, #分类
+                 good.brand&&good.brand.brand_name, #品牌
+                 good.name,#商品名称
+                 good.marketable=="true" ? "Y" : "N", #上架
+                 spec_names, #规格
+                 good.store,  #库存
+                 nil,#成本价
+                 nil,  #渠道价
+                 nil, #批发价
+                 nil, #会员价
+                 nil  #市场价
+        ]
+
+        good.products.each do |product|
+          spec_values = product.spec_values.order("sdb_b2c_spec_values.spec_id asc").pluck(:spec_value).join("|")
+          content = [ good.good_type&&good.good_type.name, #类型
+                      good.bn.to_s, #商品编号
+                      product.bn.to_s, #规格货号
+                      nil, #分类
+                      nil, #品牌
+                      product.name, #商品名称
+                      product.marketable=="true" ? "Y" : "N", #上架
+                      spec_values, #规格
+                      product.store #库存
+          ]
+
+                   if (fields.include?("进货价"))
+                     content.push product.cost.to_f
+                   end
+                   if (fields.include?("渠道价"))
+                      content.push product.bulk.to_f
+                   end
+                  if (fields.include?("批发价"))
+                    content.push product.wholesale.to_f
+                  end
+                  if (fields.include?("会员价"))
+                    content.push product.price.to_f
+                  end
+                  if (fields.include?("市场价"))
+                   content.push product.mktprice.to_f
+                  end
+
+          csv << content
+        end
+      end
+      end
+
+  end
+
+  def self.exporttmp(goods = [], file = "#{Rails.root}/public/tmp/goods.csv")
 
       CSV.open(file,"w:GB18030") do |csv|
           csv << [ '*:类型',
