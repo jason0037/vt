@@ -36,7 +36,8 @@ class Store::CatsController < ApplicationController
              elsif col&&sorter == 'desc'
                   @goods = @all_goods.sort{ |x,y| y.attributes[col] <=> x.attributes[col] }.paginate(page,per_page)
              else
-                  @goods = @all_goods.sort{ |x,y| y.uptime <=> x.uptime }.paginate(page,per_page)
+                 # @goods = @all_goods.sort{ |x,y| y.uptime <=> x.uptime }.paginate(page,per_page)
+               @goods = @all_goods.paginate(page,per_page)
              end
 
              # @menu_brands = Hash.new

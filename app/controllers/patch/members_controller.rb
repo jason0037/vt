@@ -10,9 +10,6 @@ class Patch::MembersController < ApplicationController
 		add_breadcrumb("我的贸威",:member_path)
 	end
 
-	
-	
-
 
 	def show
 		@orders = @user.orders.limit(5)
@@ -28,7 +25,12 @@ class Patch::MembersController < ApplicationController
 	def coupons
 		@user_coupons = @user.user_coupons.paginate(:page=>params[:page],:per_page=>10)
 		add_breadcrumb("我的优惠券")
-	end
+  end
+
+  def goods
+    @orders = @user.orders.paginate(:page=>params[:page],:per_page=>10)
+    add_breadcrumb("我的商品")
+  end
 
 	def advance
 		@advances = @user.member_advances.paginate(:page=>params[:page],:per_page=>10)

@@ -3,7 +3,6 @@ class Store::OrdersController < ApplicationController
 
 	layout 'order'
 
-
 	def index
 		@orders =  @user.orders.order("createtime desc")
 	end

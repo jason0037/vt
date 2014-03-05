@@ -308,10 +308,16 @@ Modengke::Application.routes.draw do
       resources :country, :as=>"countries", :controller=>"countries"
       resources :gallery, :as=>"cats", :controller=>"cats"
 
+      resources :goods,  :as=>"orders", :controller=>"orders" do
+        member do
+          get :goods
+        end
+      end
       resources :orders, :except=>[:index] do 
         member do 
           post :pay
           get :detail
+          get :goods
         end
         collection do
           get 'check_coupon'
@@ -354,8 +360,6 @@ Modengke::Application.routes.draw do
 
     end
 
-    
-
 
     scope :module => "patch" do 
       resource :profile do
@@ -387,8 +391,10 @@ Modengke::Application.routes.draw do
             get 'advance'
             get 'after_sale'
             get 'favorites'
+            get 'goods'
           end
       end
+
       resources :member_addrs
 
       resources :aftersales do
@@ -408,9 +414,7 @@ Modengke::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-  
 
-  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

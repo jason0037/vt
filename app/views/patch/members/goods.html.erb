@@ -1,0 +1,47 @@
+<table class="table table-striped" id="order_list">
+  <tr>
+    <th>商品号</th>
+    <th>商品名</th>
+    <th>商品图片</th>
+    <th>数量</th>
+    <th>总价金额</th>
+    <th>购买时间</th>
+  </tr>
+  <%if @orders&&@orders.count > 0%>
+
+      <%@orders.each  do |order|%>
+          <%order.order_items.each_with_index do |order_item,index|%>
+          <tr>
+            <td><%=link_to order_item.product.product_id, order_path(order),:target=>"_blank"%></td>
+            <td>
+              <%=link_to order_item.name, good_path(order_item.good.bn),:target=>"_blank"%>
+            </td>
+            <td>
+
+                  <%
+                     link_title = order_item.name
+                     link_title = "赠品:#{link_title}" if order_item.item_type == 'gift'
+                  %>
+                  <%=link_to good_path(order_item.good.bn),:title=>link_title,:target=>"_blank",:class=>"thumb-link" do %>
+                      <%=image_tag order_item.good.medium_pic,:class=>"thumb",:alt=>order_item.name if order_item.product&&order_item.item_type == 'product'%>
+                      <%=image_tag order_item.product.gift_image_url,:class=>"thumb",:alt=>order_item.name if order_item.product&&order_item.item_type == 'gift'%>
+                  <%end%>
+            </td>
+
+            <td><%=order_item.nums%></td>
+            <td>&yen;<%=order.final_amount.to_i%></td>
+            <td><%=order.created_at%></td>
+
+          </tr>
+          <%end%>
+      <%end%>
+  <%else%>
+      <tr class="no-record" >
+        <td colspan="6">没有符合条件的商品</td>
+      </tr>
+  <%end%>
+</table>
+<div class="pagination">
+  <%=will_paginate @orders,:container=>false%>
+</div>
+</div>

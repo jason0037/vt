@@ -8,6 +8,9 @@
   <li class="<%='active' if action_name == "coupons"%>">
   	<%=link_to "我的优惠券",coupons_member_path%>
   </li>
+  <li class="<%='active' if action_name == "goods"%>">
+    <%=link_to "我的商品",goods_member_path%>
+  </li>
   <li class="<%='active' if controller_name == "cards"%>">
   	<%=link_to "我的VIP卡",cards_path(tab: "bought")%>
   </li>

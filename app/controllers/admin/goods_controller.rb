@@ -5,16 +5,13 @@ require "iconv"
 module Admin
     class GoodsController < Admin::BaseController
       # skip_before_filter :require_permission!
-      BOM = "\377\376" #Byte Order Mark
       skip_before_filter :verify_authenticity_token,:only=>[:batch]
-
 
       def export
         fields =  params[:fields]
 
        #需要在此判断params[:batch][:goods_ids]是否为空
         goods_ids =  params[:batch][:goods_ids] || []
-
 
 
         if params[:good][:select_all].to_i > 0
@@ -26,16 +23,20 @@ module Admin
 
         # conditions = nil  if goods_ids.include?("all")
         goods = Ecstore::Good.where(conditions).includes(:good_type,:brand,:cat,:products)
-        content = Ecstore::Good.export(fields,goods)
+
+      #content = Ecstore::Good.export_cvs(fields,goods) #导出cvs
+      # MS Office 需要转码
+      # BOM = "\377\376" #Byte Order Mark
       #  content = Iconv.conv("UTF-16LE", "UTF-8", content)
-        #   content = "\xFF\xFE" + content
-      #  content = BOM + Iconv.conv("UTF-16LE", "UTF-8", content)
-       #content= Iconv.conv("utf-16le", "utf-8", "\ufeff" + content)
-       # content = "\xFF\xFE" + Iconv.conv("utf-16le", "utf-8", content)
-        #send_data content, :filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv"
+      #  content = "\xFF\xFE" + content
+      #  content = BOM + content
+      #  content= Iconv.conv("utf-16le", "utf-8", "\ufeff" + content)
 
+      # send_data(content, :type => 'text/csv',:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv")
 
-        send_data(content, :type => 'text/csv',:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv")
+        content = Ecstore::Good.export_xls(fields,goods) #导出excel
+        send_data(content, :type => "text/excel;charset=utf-8; header=present",
+                           :filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xls")
       end
 
       def batch

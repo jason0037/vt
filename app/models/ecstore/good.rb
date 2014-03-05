@@ -1,5 +1,6 @@
 #encoding:utf-8
 require 'csv'
+require 'spreadsheet'
 
 class Ecstore::Good < Ecstore::Base
 
@@ -7,7 +8,76 @@ class Ecstore::Good < Ecstore::Base
 
   SUIT_NAME = "套装 Suit"
 
-  def self.export(fields, goods)
+  def  self.export_xls(fields, goods)
+
+    xls_report = StringIO.new
+    book = Spreadsheet::Workbook.new
+    sheet1 = book.create_worksheet :name => "Products"
+
+    bold = Spreadsheet::Format.new :color => :black, :weight => :bold, :size => 10
+    sheet1.row(0).default_format = bold
+
+    sheet1.row(0).concat %w{类型  商品编号 规格货号 分类 品牌 商品名称 上架 规格 库存}
+    field_count=9
+
+    fields.each do |field|
+      sheet1[0,field_count] = field
+      field_count +=1
+    end
+
+    row_count=0
+    row_conten=""
+    goods.each do |good|
+      row_count +=1
+      sheet1.row(row_count).default_format = bold
+      sheet1[row_count,0] = good.good_type&&good.good_type.name #类型
+      sheet1[row_count,1] = good.bn.to_s  #商品编号
+      sheet1[row_count,3] = good.cat&&good.cat.full_path_name #分类
+      sheet1[row_count,4] = good.brand&&good.brand.brand_name #品牌
+      sheet1[row_count,5] = good.name #商品名称
+      sheet1[row_count,6] = good.marketable=="true" ? "Y" : "N" #上架
+      sheet1[row_count,7] = good.specs.order("sdb_b2c_specification.spec_id asc").pluck(:spec_name).join("|") #规格
+
+      good.products.each do |product|
+        row_count +=1
+        spec_values = product.spec_values.order("sdb_b2c_spec_values.spec_id asc").pluck(:spec_value).join("|")
+        sheet1[row_count,0] = good.good_type&&good.good_type.name, #类型
+        sheet1[row_count,1] = good.bn.to_s, #商品编号
+        sheet1[row_count,2] = product.bn.to_s, #规格货号
+        sheet1[row_count,5] = product.name, #商品名称
+        sheet1[row_count,6] = product.marketable=="true" ? "Y" : "N", #上架
+        sheet1[row_count,7] =  spec_values, #规格
+        sheet1[row_count,8] = product.store #库存
+
+        field_count=9
+        if (fields.include?("进货价"))
+          sheet1[row_count,field_count] = product.cost.to_f
+          field_count +=1
+        end
+        if (fields.include?("渠道价"))
+          sheet1[row_count,field_count] = product.bulk.to_f
+          field_count +=1
+        end
+        if (fields.include?("批发价"))
+          sheet1[row_count,field_count] = product.wholesale.to_f
+          field_count +=1
+        end
+        if (fields.include?("会员价"))
+          sheet1[row_count,field_count] = product.price.to_f
+          field_count +=1
+        end
+        if (fields.include?("市场价"))
+          sheet1[row_count,field_count] = product.mktprice.to_f
+          field_count +=1
+        end
+      end
+    end
+
+    book.write xls_report
+    xls_report.string
+  end
+
+  def self.export_cvs(fields, goods)
     field_name = [ '类型', '商品编号','规格货号','分类','品牌','商品名称','上架','规格','库存']
     #price_fields = convert_array(fields)  #csv文件的头（标题）
     field_name += fields
