@@ -31,12 +31,21 @@ module Admin
       #  content = "\xFF\xFE" + content
       #  content = BOM + content
       #  content= Iconv.conv("utf-16le", "utf-8", "\ufeff" + content)
-
+      #content.serialize("#{Rails.root}/tmp/goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv")
+      #send_file("#{Rails.root}/tmp/goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv",
+      #           filename: "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv",
+      #           type: "text/csv")
       # send_data(content, :type => 'text/csv',:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv")
 
-        content = Ecstore::Good.export_xls(fields,goods) #导出excel
-        send_data(content, :type => "text/excel;charset=utf-8; header=present",
-                           :filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xls")
+
+       content = Ecstore::Good.export_xls_with_pic(fields,goods) #导出excel
+       content.serialize("#{Rails.root}/tmp/goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx")
+       send_file("#{Rails.root}/tmp/goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx",
+                  filename: "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx",
+                  type: "application/vnd.ms-excel")
+
+       # content = Ecstore::Good.export_xls(fields,goods) #导出excel
+       # send_data(content, :type => "text/excel;charset=utf-8; header=present",:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xls")
       end
 
       def batch

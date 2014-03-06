@@ -1,12 +1,87 @@
 #encoding:utf-8
 require 'csv'
 require 'spreadsheet'
+require 'axlsx'
 
 class Ecstore::Good < Ecstore::Base
 
   NEW_GOOD_START_ID = 0  #2398
 
   SUIT_NAME = "套装 Suit"
+
+  def self.export_xls_with_pic(f,goods)
+    package = Axlsx::Package.new
+    workbook = package.workbook
+    workbook.styles do |s|
+      black_cell = s.add_style :bg_color => "00", :fg_color => "FF", :sz => 14, :alignment => { :horizontal=> :center }
+      blue_cell =  s.add_style :bg_color => "0000FF", :fg_color => "FF", :sz => 20, :alignment => { :horizontal=> :center }
+
+      workbook.add_worksheet(:name => "Product") do |sheet|
+
+       sheet.add_row ["类型","商品编号","规格货号","分类","品牌","图片","商品名称","上架", "规格","库存" ,f[0],f[1],f[2],f[3],f[4]], :b => true
+
+       row_count=0
+
+       goods.each do |good|
+
+         goodsType=good.good_type&&good.good_type.name
+         goodsBn=good.bn.to_s
+         goodsCat=good.cat&&good.cat.full_path_name
+         goodsBrand=good.brand&&good.brand.brand_name
+         goodsMt =good.marketable=="true" ? "Y" : "N"
+         goodsSpec =good.specs.order("sdb_b2c_specification.spec_id asc").pluck(:spec_name).join("|")
+         sheet.add_row [goodsType,goodsBn,nil,goodsCat,goodsBrand,nil,good.name,goodsMt,goodsSpec],:b => true
+         row_count +=1
+
+         filename="/home/trade/pics#{good.medium_pic}"
+         if not FileTest::exist?(filename)
+           filename = "#{Rails.root}/app/assets/images/gray_bg.png"
+         end
+         img = File.expand_path(filename)
+         sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
+             image.width=50
+             image.height=80
+             image.start_at 5,  row_count
+         end
+
+         good.products.each do |product|
+           row_count +=1
+           productBn = product.bn.to_s
+           productMt =product.marketable=="true" ? "Y" : "N"
+           spec_values = product.spec_values.order("sdb_b2c_spec_values.spec_id asc").pluck(:spec_value).join("|")
+           v =[]
+           f.each do |field|
+             if field=="进货价"
+               v.push(product.cost)
+             end
+
+             if field=="渠道价"
+               v.push(product.bulk)
+             end
+
+             if field=="批发价"
+               v.push(product.wholesale)
+             end
+
+             if field=="会员价"
+               v.push(product.price)
+             end
+
+             if field=="市场价"
+               v.push(product.mktprice)
+             end
+           end
+           sheet.add_row [nil,nil,productBn,nil,nil,nil,product.name, productMt,spec_values,product.store,v[0],v[1],v[2],v[3],v[4]]
+         end
+
+         sheet.column_widths nil, nil,nil,nil,nil,10
+       end
+     end
+
+    end
+
+    return package
+  end
 
   def  self.export_xls(fields, goods)
 
@@ -138,7 +213,7 @@ class Ecstore::Good < Ecstore::Base
 
   end
 
-  def self.exporttmp(goods = [], file = "#{Rails.root}/public/tmp/goods.csv")
+  def self.export_cvs_file(goods = [], file = "#{Rails.root}/public/tmp/goods.csv")
 
       CSV.open(file,"w:GB18030") do |csv|
           csv << [ '*:类型',
