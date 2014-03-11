@@ -18,6 +18,7 @@ module Store::OrdersHelper
 
 	def payments
 		{
+      "term"=>{ :name=>"账期支付",:extra=>"与供应商协商"},
       "ips"=>{ :name=>"环迅人民币支付",:extra=>""},
 			"bcom"=>{ :name=>"交通银行网上支付", :extra=>"持交通银行卡在线支付可享受订单金额95折优惠" },
 			"icbc"=>{ :name=>"工商银行网上支付", :extra=>'申请分期付款 (<span class="highlight">申请信用卡分期付款，超低手续费，月还款无压力！</span>)' },

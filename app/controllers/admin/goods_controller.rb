@@ -172,13 +172,13 @@ module Admin
             @order = "goods_id desc" if @order.blank?
 
             if (current_admin.login_name=="vendor_0001")
-              @goods = Ecstore::Good.where(:supplier =>"味来岛").order(@order)
+              @goods = Ecstore::Good.where(:supplier =>"66").order(@order)
             elsif (current_admin.login_name=="vendor_0002")
-              @goods = Ecstore::Good.where(:supplier =>"数贸").order(@order)
+              @goods = Ecstore::Good.where(:supplier =>"65").order(@order)
             elsif (current_admin.login_name=="vendor_ybpx")
-              @goods = Ecstore::Good.where(:supplier =>"亿百葩鲜").order(@order)
+              @goods = Ecstore::Good.where(:supplier =>"72").order(@order)
             elsif (current_admin.login_name=="vendor_xss")
-              @goods = Ecstore::Good.where(:supplier =>"炫食尚").order(@order)
+              @goods = Ecstore::Good.where(:supplier =>"73").order(@order)
             else
               @goods = Ecstore::Good.order(@order)
             end
@@ -327,99 +327,112 @@ module Admin
         pp "starting import ..."
         sheet = book.worksheet(0)
         spec_id = ""
+        supplier =sheet[0,1]
+        supplierT = Ecstore::Supplier.unscoped.find_by_name(supplier)
+        if !supplierT.blank?
+          supplier = supplierT.id
+        end
+        good_type = Ecstore::GoodType.find_by_name(sheet[1,1])
         @good = Ecstore::Good.new
         sheet.each_with_index do |row,i|
-            if i>4 && !row[1].blank? && !row[0].blank?
+            #if i>4 && !row[1].blank? && !row[0].blank?
+            if i>3
                 pp "spec info ......"
-                pp row[21]
-                if !row[21].blank? #规格为空的为商品
+                pp row[20]
+                bn = row[4].strip
+                #if !row[20].blank? #规格为空的为商品
+                if !row[0].blank? #品类为空的为商品
                     pp "staring...."
-                    @new_good = Ecstore::Good.find_by_bn(row[5].to_i)
+                    @new_good = Ecstore::Good.find_by_bn(bn)
                     if @new_good&&@new_good.persisted?
                         @good = @new_good
                     else
                         @good = Ecstore::Good.new
+                        @good.bn = bn
                     end
-                    cat_arr = row[1].split("->")
+                    @good.type_id = good_type.type_id
+
+                    cat_arr = row[0].split("->")
                     cat_deep = cat_arr.length - 1
                     good_cat = Ecstore::GoodCat.find_by_cat_name(cat_arr[cat_deep])
                     @good.cat_id = good_cat.cat_id
-                    good_type = Ecstore::GoodType.find_by_name(row[0])
-                    @good.type_id = good_type.type_id
-                    @good.small_pic = row[2]
-                    @good.medium_pic = row[3]
-                    @good.big_pic = row[4]
-                    brand = Ecstore::Brand.unscoped.find_by_brand_name(row[6])
+
+                    @good.medium_pic = row[2]
+                    @good.big_pic = row[3]
+                    brand = Ecstore::Brand.unscoped.find_by_brand_name(row[1])
                     if !brand.blank?
                         @good.brand_id = brand.brand_id
                     end
-                    @good.bn = row[5].to_i.to_s
-                    @good.name = row[7]
-                    @good.unit = row[9]
-                    @good.price = row[19]
-                    @good.mktprice = row[20]
-                    @good.bulk = row[16]
-                    @good.cost = row[15]
-                    @good.wholesale = row[16]
-                    @good.promotion=row[18]
-                    @good.supplier = row[11]
-                    @good.store = row[12]
-                    if !row[13].blank?
-                        result = Ecstore::Country.find_by_country_name(row[13])
+                    @good.name = row[6]
+                    @good.unit = row[8]
+                    @good.price = row[17]
+                    @good.mktprice = row[18]
+                    @good.bulk = row[15]
+                    @good.cost = row[13]
+                    @good.wholesale = row[14]
+                    @good.promotion=row[16]
+                    @good.supplier = supplier
+                    @good.store = row[10]
+                    country_name =row[11]
+                    if !country_name.blank?
+                        result = Ecstore::Country.find_by_country_name(country_name)
                         if result.blank?
                             country = Ecstore::Country.new
-                            country.country_name = row[13]
+                            country.country_name = country_name
                             country.save
                         end
                     end
-                    @good.place = row[13]
-                    @good.desc = row[21]
-                    @good.place_info = row[22]
-                    @good.spec_info = row[23]
-                    @good.intro = row[24]
-                    if row[25] == "是"
+                    @good.place = row[11]
+                    @good.desc = row[19]
+                    @good.place_info = row[20]
+                    @good.spec_info = row[21]
+                    #@good.intro = row[23]
+                    if row[22] == "是"
                         @good.sell = 'true'
                     else
                         @good.sell = 'false'
                     end
-                    if row[26] == "是"
+                    if row[23] == "是"
                         @good.agent = 'true'
                     else
                         @good.agent = 'false'
                     end
-                    if row[27] == "是"
+                    if row[24] == "是"
                         @good.future = 'true'
                     else
                         @good.future = 'false'
                     end
-                    if row[14] == "上架"
+                    if row[12] == "上架"
                         @good.marketable = 'true'
                     else
                         @good.marketable = 'false'
                     end
-                    spec_id = Ecstore::Spec.where(:spec_name=>row[8]).first.spec_id
+                    spec_id = Ecstore::Spec.where(:spec_name=>row[7]).first.spec_id
                     @good.save!
                 else
                     pp "here...."
-                    @new_product = Ecstore::Product.find_by_bn(row[5])
+                    @new_product = Ecstore::Product.find_by_bn(bn)
                     if !@new_product.nil? && @new_product.persisted?
                         @product = @new_product
                     else
                         @product = Ecstore::Product.new
+                        @product.bn = bn
                     end
+                    @product.barcode = row[5]
                     @product.goods_id = @good.goods_id
-                    @product.bn = row[5]
-                    @product.name = row[7]
-                    @product.store_time = row[10]
-                    @product.store = row[12]
-                    @product.price = row[19]
-                    @product.mktprice = row[20]
-                    @product.bulk = row[17]
-                    @product.wholesale = row[16]
-                    @product.promotion=row[18]
+                    @product.name = row[6]
+                    @product.store_time = row[9]
+                    @product.store = row[10]
+                    @product.cost= row[13]
+                    @product.wholesale = row[14]
+                    @product.bulk = row[15]
+                    @product.promotion=row[16]
+                    @product.price = row[17]
+                    @product.mktprice = row[18]
+
                     @product.save!
                     Ecstore::GoodSpec.where(:product_id=>@product.product_id).delete_all
-                    sp_val_id = Ecstore::SpecValue.where(:spec_value=>row[8],:spec_id=>spec_id).first.spec_value_id
+                    sp_val_id = Ecstore::SpecValue.where(:spec_value=>row[7],:spec_id=>spec_id).first.spec_value_id
                     Ecstore::GoodSpec.new do |gs|
                         gs.type_id =  @good.type_id
                         gs.spec_id = spec_id
@@ -430,6 +443,7 @@ module Admin
                 end
             end
         end
+
         redirect_to admin_goods_path
       end
 

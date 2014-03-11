@@ -45,7 +45,6 @@ class Ecstore::Order < Ecstore::Base
           self.status = "active"
           self.cost_item = 0
           self.discount = 0
-          self.shipping = '快递'
           self.currency = "CNY"
 
           if self.ship_day == 'special'
@@ -56,6 +55,10 @@ class Ecstore::Order < Ecstore::Base
 
        end
 
+       def shipping
+         return "快递" if self.shipping_id==1
+         return "自提" if self.shipping_id==0
+       end
 
        before_create :calculate_order_amount
 
@@ -216,6 +219,7 @@ class Ecstore::Order < Ecstore::Base
        end
 
        def payment_name
+          return "账期" if payment == "term"
           return "环迅人民币支付" if payment == "ips"
           return "交通银行网上支付" if payment == "bcom"
           return "工商银行网上支付" if payment == "icbc"

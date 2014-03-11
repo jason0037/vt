@@ -6,6 +6,7 @@
     <th>数量</th>
     <th>总价金额</th>
     <th>购买时间</th>
+    <th>操作</th>
   </tr>
   <%if @orders&&@orders.count > 0%>
 
@@ -31,6 +32,11 @@
             <td><%=order_item.nums%></td>
             <td>&yen;<%=order.final_amount.to_i%></td>
             <td><%=order.created_at%></td>
+            <td>
+              <%= link_to to_inventory_order_path(order_item.id) do%>
+                  入库
+              <%end%>
+            </td>
 
           </tr>
           <%end%>

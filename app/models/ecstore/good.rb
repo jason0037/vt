@@ -18,7 +18,7 @@ class Ecstore::Good < Ecstore::Base
 
       workbook.add_worksheet(:name => "Product") do |sheet|
 
-       sheet.add_row ["类型","商品编号","规格货号","分类","品牌","图片","商品名称","上架", "规格","库存" ,f[0],f[1],f[2],f[3],f[4]], :b => true
+       sheet.add_row ["类型","商品编号","规格货号","分类","品牌","图片","商品名称","上架", "规格","库存" ,f[0],f[1],f[2],f[3],f[4],f[5]], :b => true
 
        row_count=0
 
@@ -58,7 +58,9 @@ class Ecstore::Good < Ecstore::Base
              if field=="渠道价"
                v.push(product.bulk)
              end
-
+             if field=="渠道零售价"
+               v.push(product.promotion)
+             end
              if field=="批发价"
                v.push(product.wholesale)
              end
@@ -133,6 +135,10 @@ class Ecstore::Good < Ecstore::Base
           sheet1[row_count,field_count] = product.bulk.to_f
           field_count +=1
         end
+        if (fields.include?("渠道零售价"))
+          sheet1[row_count,field_count] = product.promotion.to_f
+          field_count +=1
+        end
         if (fields.include?("批发价"))
           sheet1[row_count,field_count] = product.wholesale.to_f
           field_count +=1
@@ -172,6 +178,7 @@ class Ecstore::Good < Ecstore::Base
                  good.store,  #库存
                  nil,#成本价
                  nil,  #渠道价
+                 nil,  #渠道零售价
                  nil, #批发价
                  nil, #会员价
                  nil  #市场价
@@ -196,6 +203,9 @@ class Ecstore::Good < Ecstore::Base
                    if (fields.include?("渠道价"))
                       content.push product.bulk.to_f
                    end
+                  if (fields.include?("渠道零售价"))
+                    content.push product.promotion.to_f
+                  end
                   if (fields.include?("批发价"))
                     content.push product.wholesale.to_f
                   end

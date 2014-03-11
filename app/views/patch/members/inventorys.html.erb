@@ -1,0 +1,44 @@
+<table class="table table-striped" id="order_list">
+  <tr>
+    <th>商品号</th>
+    <th>商品名</th>
+    <th>商品图片</th>
+    <th>数量</th>
+    <th>总价金额</th>
+    <th>操作</th>
+  </tr>
+  <%if @inventorys&&@inventorys.count > 0%>
+
+      <%@inventorys.each  do |inventory|%>
+          <tr>
+            <td><%=link_to inventory.product_id, good_path(inventory.good.bn),:target=>"_blank"%></td>
+            <td>
+              <%=link_to inventory.name, good_path(inventory.good.bn),:target=>"_blank"%>
+            </td>
+            <td>
+                  <%=link_to good_path(inventory.good.bn),:title=>inventory.name,:target=>"_blank",:class=>"thumb-link" do %>
+                      <%=image_tag inventory.good.medium_pic,:class=>"thumb",:alt=>inventory.name%>
+
+                  <%end%>
+            </td>
+
+            <td><%=inventory.quantity%></td>
+            <td>&yen;<%=inventory.quantity*inventory.price%></td>
+            <td>
+              <%= link_to to_inventory_order_path(inventory.product_id) do%>
+                  出库
+              <%end%>
+            </td>
+
+          </tr>
+      <%end%>
+  <%else%>
+      <tr class="no-record" >
+        <td colspan="6">没有符合条件的商品</td>
+      </tr>
+  <%end%>
+</table>
+<div class="pagination">
+  <%#=will_paginate @inventorys,:container=>false%>
+</div>
+</div>

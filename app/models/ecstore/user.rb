@@ -23,10 +23,13 @@ class Ecstore::User < Ecstore::Base
 
   has_many :member_addrs, :foreign_key=>"member_id"
 
-
   has_many :user_coupons, :foreign_key=>"member_id"
 
   has_many :orders, :foreign_key=>"member_id"
+
+  has_many :inventorys, :foreign_key=>"member_id"
+
+  has_many :inventory_log, :foreign_key=>"member_id"
 
   has_many :favorites, :foreign_key=>"member_id", :conditions=> { :type=>"fav" }
 

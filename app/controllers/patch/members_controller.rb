@@ -27,9 +27,15 @@ class Patch::MembersController < ApplicationController
 		add_breadcrumb("我的优惠券")
   end
 
+
   def goods
-    @orders = @user.orders.paginate(:page=>params[:page],:per_page=>10)
+    @orders = @user.orders.joins(:order_items).where('sdb_b2c_order_items.storaged is null').paginate(:page=>params[:page],:per_page=>10)
     add_breadcrumb("我的商品")
+  end
+
+  def inventorys
+    @inventorys = @user.inventorys.paginate(:page=>params[:page],:per_page=>10)
+    add_breadcrumb("我的库存")
   end
 
 	def advance

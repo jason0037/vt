@@ -9,7 +9,7 @@
 			<%@addrs.each_with_index do |addr,index|%>
 				<%if @def_addr == addr%>
 					<label class="radio active">
-						<%=radio_button_tag "member_addr", addr.addr_id,:checked=>true%> 
+						<%=radio_button_tag "member_addr", addr.addr_id,:checked=>true%>
 						<span class="addr-line"><%=addr.addr_line%></span>
 						<%=link_to "修改",edit_member_addr_path(addr),:remote=>true,:class=>"update-link"%>
 					</label>
@@ -23,23 +23,28 @@
 			<%end%>
 
 			<label class="radio">
-				<%=radio_button_tag "member_addr", "new"%> 
+				<%=radio_button_tag "member_addr", "new"%>
 				<span>使用新地址+</span>
 			</label>
 		<%end%>
+
 		</div>
 
 		<%=render :partial=>"patch/member_addrs/form",:locals=>{ :display=>( @addrs.size == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
-	</div>
+
+    </div>
 
 	<%=form_for :order,:url=>orders_path,:html=>{ :class=>"form-horizontal",:id=>"order_form" } do |f|%>
 		<%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
 
 	<div class="section shipment">
 		<h5>配送方式</h5>
+      <label class="radio active">
+        <%=f.radio_button :shipping_id, 0%><span class="addr-line">自提</span>
+      </label>
 		<label class="radio">
 			<%=f.radio_button :shipping_id, 1, :checked=>true%> 快递
-			<span class="extra-info">+ ￥0 </span>全场免运费
+			<span class="extra-info">+ ￥10</span>
 		</label>
 		<div class="control-group">
 		    <%=f.label :ship_time, "收货时间：",:class=>"control-label"%>
@@ -53,6 +58,12 @@
 
 	<div class="section payment" id="payments">
 		<h5>支付方式</h5>
+      <% if cookies[:MLV] == "10" %>
+          <label class="radio">
+            <%=f.radio_button :payment, "term"%> <b>账期（与供应商协商）</b>
+         </label>
+          <br/>
+      <%end%>
 			
 		<%if @user.advance>0 && @user.advance < @cart_total%>
 	 	<label class="checkbox">

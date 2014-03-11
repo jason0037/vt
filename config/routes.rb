@@ -237,7 +237,7 @@ Modengke::Application.routes.draw do
             put 'batch'
           end
           
-           member do 
+           member do
              get 'detail'
              get 'pay'
              post 'dopay'
@@ -314,7 +314,8 @@ Modengke::Application.routes.draw do
         end
       end
       resources :orders, :except=>[:index] do 
-        member do 
+        member do
+          get 'to_inventory'
           post :pay
           get :detail
           get :goods
@@ -392,6 +393,7 @@ Modengke::Application.routes.draw do
             get 'after_sale'
             get 'favorites'
             get 'goods'
+            get 'inventorys'
           end
       end
 

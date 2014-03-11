@@ -9,7 +9,7 @@ class Store::GoodsController < ApplicationController
 
   def index
       tag_name  = params[:tag]
-      @tag = Ecstore::Teg.find_by_tag_name(params[:tag])
+      @tag = Ecstore::Teg.find_by_tag_name(tag_name)
        if @tag
               order = params[:order]
               order_string = "goods_id desc"

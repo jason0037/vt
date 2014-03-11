@@ -3,6 +3,52 @@ class Store::OrdersController < ApplicationController
 
 	layout 'order'
 
+  def to_inventory
+       return_url =  request.env["HTTP_REFERER"]
+       return_url =  member_goods_url if return_url.blank?
+
+       @order_item =  Ecstore::OrderItem.find(params[:id])
+
+       @new_inventory = Ecstore::Inventory.where(:member_id=>current_account,:product_id=>@order_item.product_id).first
+
+       @inventory =  Ecstore::Inventory.new
+
+      if @new_inventory.blank?
+        @inventory.member_id = @order_item.order.member_id
+        @inventory.goods_id =@order_item.goods_id
+        @inventory.product_id =@order_item.product_id
+        @inventory.price = @order_item.price
+        @inventory.quantity =@order_item.nums
+        @inventory.name =@order_item.name
+        @inventory.bn = @order_item.bn
+        @inventory.barcode = @order_item.product.barcode
+        @inventory.save
+      else
+        quantity =  @new_inventory.quantity + @order_item.nums
+        Ecstore::Inventory.where(:member_id=>current_account,:product_id=>@order_item.product_id).update_all(:quantity=>quantity)
+      end
+
+
+       Ecstore::InventoryLog.new do |inventory_log|
+         inventory_log.in_or_out =true
+         inventory_log.order_item_id=@order_item.item_id
+         inventory_log.order_id = @order_item.order_id
+         inventory_log.member_id = @order_item.order.member_id
+         inventory_log.goods_id =@order_item.goods_id
+         inventory_log.product_id =@order_item.product_id
+         inventory_log.price = @order_item.price
+         inventory_log.quantity =@order_item.nums
+         inventory_log.name =@order_item.name
+         inventory_log.bn = @order_item.bn
+         inventory_log.barcode = @order_item.product.barcode
+         inventory_log.createtime = Time.now.to_i
+       end.save
+
+
+      @order_item.update_attribute :storaged, true
+      redirect_to return_url
+  end
+
 	def index
 		@orders =  @user.orders.order("createtime desc")
 	end
@@ -148,6 +194,7 @@ class Store::OrdersController < ApplicationController
 			@coupons = @user.usable_coupons
 		end
 	end
+
 
 
 	def pay

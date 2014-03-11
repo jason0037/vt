@@ -70,9 +70,13 @@
 		<tr>
 			<th>上架</th>
 			<th>规格值</th>
+            <th>条形码</th>
 			<th>货号</th>
 			<th>库存</th>
-			<th>销售价</th>
+            <th>进货价</th>
+            <th>渠道价</th>
+			<th>会员价</th>
+            <th>批发价</th>
 			<th>定金</th>
 			<th>市场价</th>
 			<!-- <th>重量</th>
@@ -89,8 +93,12 @@
 						<%=p.hidden_field :product_id,:value=>product.product_id%>
 					</td>
 					<td><%=product.spec_info%></td>
+                    <td><%=p.text_field :bn,:value=>product.barcode,:class=>"span2",:data=>{:login_name=>'231'}%></td>
 					<td><%=p.text_field :bn,:value=>product.bn,:class=>"span2",:data=>{:login_name=>'231'}%></td>
 					<td><%=p.number_field :store,:value=>product.store,:class=>"input-mini"%></td>
+                  <td><%=p.number_field :price,:value=>product.cost,:class=>"input-mini"%></td>
+                  <td><%=p.number_field :price,:value=>product.bulk,:class=>"input-mini"%></td>
+                  <td><%=p.number_field :price,:value=>product.wholesale,:class=>"input-mini"%></td>
 					<td><%=p.number_field :price,:value=>product.price,:class=>"input-mini"%></td>
 					<td>--</td>
 					<td><%=p.number_field :mktprice,:value=>product.mktprice,:class=>"input-mini"%></td>
