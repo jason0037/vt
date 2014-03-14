@@ -1,0 +1,16 @@
+<div class="coupons">
+	<span>导购员</span>
+
+	<div class="control-group">
+	    <label class="control-label">导购员：</label>
+	    <div class="controls">
+	      <%#=select_tag nil, Ecstore::Region.provinces.collect{|p| [p.local_name,p.region_id] },{:prompt=>"--请选择您的导购员--",:class=>"span2",:id=>"sale_options"}%>
+          <%=select 'order','desktop_user_id',Ecstore::DesktopHasrole.sales.collect{|p| [p.desktop_user.name,p.user_id] },{:include_blank=>"--请选择您的导购员--" },{:id=>"province" }%>
+
+	    </div>
+	</div>
+
+
+	<div class="control-group" id="matched_sales">
+	</div>
+</div>

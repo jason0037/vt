@@ -20,9 +20,9 @@ class Admin::OrdersController < Admin::BaseController
 		@order_ids = @orders_nw.pluck(:order_id)
 
     if (current_admin.login_name=="sale_0001")
-      @orders = @orders_nw.includes(:user).where(:member_id=>"2455").paginate(:page=>params[:page],:per_page=>30)
+      @orders = @orders_nw.where(:desktop_user_id=>current_admin.account_id).paginate(:page=>params[:page],:per_page=>30)
     elsif (current_admin.login_name=="sale_0002")
-      @orders = @orders_nw.includes(:user).where(:member_id=>"2456").paginate(:page=>params[:page],:per_page=>30)
+      @orders = @orders_nw.where(:desktop_user_id=>current_admin.account_id).paginate(:page=>params[:page],:per_page=>30)
       elsif (current_admin.login_name=="vendor_0001") #味来岛
       @orders = @orders_nw.includes(:user).joins(:order_items).where('sdb_b2c_order_items.goods_id in (3469,3465)').paginate(:page=>params[:page],:per_page=>30)
       elsif (current_admin.login_name=="vendor_0002") #数贸

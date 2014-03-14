@@ -394,6 +394,7 @@ Modengke::Application.routes.draw do
             get 'favorites'
             get 'goods'
             get 'inventorys'
+            get 'inventorylog'
           end
       end
 

@@ -114,8 +114,7 @@ class Store::OrdersController < ApplicationController
 				order_item.addon = nil
 				order_item.amount = 0
 			end
-		end 
-
+		end
 
 
 	     if @pmtable

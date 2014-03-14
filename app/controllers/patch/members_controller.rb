@@ -38,6 +38,11 @@ class Patch::MembersController < ApplicationController
     add_breadcrumb("我的库存")
   end
 
+  def inventorylog
+    @inventorylog = @user.inventory_log.paginate(:page=>params[:page],:per_page=>10)
+    add_breadcrumb("出入库记录")
+  end
+
 	def advance
 		@advances = @user.member_advances.paginate(:page=>params[:page],:per_page=>10)
 		add_breadcrumb("我的预存款")

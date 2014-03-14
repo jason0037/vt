@@ -63,9 +63,9 @@
             </td>
             <td class="line-total">
               <% if cookies[:MLV] == "10" %>
-                  ￥<%=(line_item.product.bulk*line_item.quantity).to_i%>
+                  ￥<%=(line_item.product.bulk*line_item.quantity)%>
               <%else%>
-                  ￥<%=(line_item.product.price*line_item.quantity).to_i%>
+                  ￥<%=(line_item.product.price*line_item.quantity)%>
               <%end%>
             </td>
             

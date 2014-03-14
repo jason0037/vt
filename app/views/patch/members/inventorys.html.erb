@@ -1,3 +1,14 @@
+<ul class="nav nav-tabs">
+  <li class=''>
+    <a href="/member/goods">未入库商品</a>
+  </li>
+  <li  class='active'>
+    <a href="/member/inventorys">已入库商品</a>
+  </li>
+  <li class=''>
+    <a href="/member/inventorylog">出入库记录</a>
+  </li>
+</ul>
 <table class="table table-striped" id="order_list">
   <tr>
     <th>商品号</th>
@@ -39,6 +50,6 @@
   <%end%>
 </table>
 <div class="pagination">
-  <%#=will_paginate @inventorys,:container=>false%>
+  <%=will_paginate @inventorys,:container=>false%>
 </div>
 </div>

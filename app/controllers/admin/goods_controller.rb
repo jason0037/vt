@@ -1,5 +1,4 @@
 #encoding:utf-8
-require 'spreadsheet'
 require "iconv"
 
 module Admin
@@ -24,28 +23,22 @@ module Admin
         # conditions = nil  if goods_ids.include?("all")
         goods = Ecstore::Good.where(conditions).includes(:good_type,:brand,:cat,:products)
 
-      #content = Ecstore::Good.export_cvs(fields,goods) #导出cvs
-      # MS Office 需要转码
-      # BOM = "\377\376" #Byte Order Mark
-      #  content = Iconv.conv("UTF-16LE", "UTF-8", content)
-      #  content = "\xFF\xFE" + content
-      #  content = BOM + content
-      #  content= Iconv.conv("utf-16le", "utf-8", "\ufeff" + content)
-      #content.serialize("#{Rails.root}/tmp/goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv")
-      #send_file("#{Rails.root}/tmp/goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv",
-      #           filename: "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv",
-      #           type: "text/csv")
-      # send_data(content, :type => 'text/csv',:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv")
+        filename = "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx"
+        wholepath = "#{Rails.root}/tmp/#{filename}"
 
+        content=Ecstore::Good.export_xls_with_pic(fields,goods) #导出excel
+        content.serialize(wholepath)
+        send_file(wholepath,filename: filename, type: "application/xlsx")
 
-       content = Ecstore::Good.export_xls_with_pic(fields,goods) #导出excel
-       content.serialize("#{Rails.root}/tmp/goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx")
-       send_file("#{Rails.root}/tmp/goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx",
-                  filename: "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx",
-                  type: "application/vnd.ms-excel")
+        if File.exist?(wholepath)
+            File.delete(wholepath)
+        end
+        #content = Ecstore::Good.export_cvs(fields,goods) #导出cvs
+        # MS Office 需要转码
+        # send_data(content, :type => 'text/csv',:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv")
 
-       # content = Ecstore::Good.export_xls(fields,goods) #导出excel
-       # send_data(content, :type => "text/excel;charset=utf-8; header=present",:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xls")
+        # content = Ecstore::Good.export_xls(fields,goods) #导出excel
+        # send_data(content, :type => "text/excel;charset=utf-8; header=present",:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xls")
       end
 
       def batch

@@ -48,6 +48,17 @@ class Ecstore::Cart < Ecstore::Base
 	# end
 
 	def line_total
-		(self.product.price*self.quantity).to_i
-	end
+
+		(self.product.price*self.quantity)
+  end
+
+  def line_total_bulk
+
+    (self.product.bulk*self.quantity)
+  end
+
+  def line_total_wholesale
+
+    (self.product.wholesale*self.quantity)
+  end
 end

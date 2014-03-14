@@ -67,8 +67,8 @@
 			
 		<%if @user.advance>0 && @user.advance < @cart_total%>
 	 	<label class="checkbox">
-			<%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance.to_i, :id=>"advance" }, @user.advance.to_i, 0%> <b>预存款先支付</b>
-			余额(<span>￥<%=@user.advance.to_i%></span>)
+			<%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%> <b>预存款先支付</b>
+			余额(<span>￥<%=@user.advance%></span>)
 		</label>
 		<%end%>
       <label class="radio">
@@ -133,17 +133,17 @@
 				</td>
 				<td>
                   <%if cookies[:MLV] == "10"%>
-                    <%=number_to_currency line_item.product.bulk,:unit=>"&yen;",:precision=>0%>
+                    <%=number_to_currency line_item.product.bulk,:unit=>"&yen;",:precision=>2%>
                   <%else%>
-                      <%=number_to_currency line_item.product.price,:unit=>"&yen;",:precision=>0%>
+                      <%=number_to_currency line_item.product.price,:unit=>"&yen;",:precision=>2%>
                   <%end%>
                 </td>
-				<td><%=line_item.quantity.to_i%></td>
+				<td><%=line_item.quantity%></td>
 				<td>
                   <%if cookies[:MLV] == "10"%>
-					   <%=number_to_currency (line_item.product.bulk*line_item.quantity).to_i,:unit=>"&yen;",:precision=>0%>
+					   <%=number_to_currency line_item.line_total_bulk,:unit=>"&yen;",:precision=>2%>
                   <%else%>
-                      <%=number_to_currency line_item.line_total.to_i,:unit=>"&yen;",:precision=>0%>
+                      <%=number_to_currency line_item.line_total,:unit=>"&yen;",:precision=>2%>
                   <%end%>
 				</td>
 				</tr>
@@ -162,6 +162,10 @@
 	</div>
 	<%end%>
 
+        <div class="section promotions">
+          <h5>导购信息: </h5>
+          <%=render "sales"%>
+        </div>
 	<div class="section checkout clearfix">
 		<h5>结算信息</h5>
 		<div class="left">
@@ -218,8 +222,6 @@
 						 -0
 					</span>
 				</div>
-
-				
 				
 				<div class="item">
 					<span class="text">订单总金额：</span>
@@ -230,16 +232,15 @@
 			</div>
 			<div class="total" id="order_bill">
 				
-				<%unless @user.advance.to_i == 0%>
+				<%unless @user.advance == 0%>
 				<div class="item">
 					<span class="text">预付金额：</span>
 					<span class="rmb-symbol">￥</span>
 					<span class="money part" id="part_amount">
-						-<%=@user.advance < @cart_total && @user.advance>0 ? @user.advance.to_i : 0%>
+						-<%=@user.advance < @cart_total && @user.advance>0 ? @user.advance : 0%>
 					</span>
 				</div>
 				<%end%>
-
 				
 				<div class="item bcom" for="#order_payment_bcom" style="display:none">
 					<span class="text">支付优惠(交通银行)：</span>

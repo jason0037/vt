@@ -9,48 +9,47 @@ window.compute_payment = null
 $ ->
   window.compute_payment = ->
 
-      pmt_total = 0
+      pmt_total = 0.0
       $(".promotions .pmt").each ->
-         pmt_total += parseInt $(this).data("amount") || 0
+         pmt_total += parseFloat $(this).data("amount") || 0
 
-      coupon_total = 0
-      coupon_total = parseInt($("#matched_coupons").attr("data-amount")) || 0
-
+      coupon_total = 0.0
+      coupon_total =  parseFloat($("#matched_coupons").attr("data-amount")) || 0
 
       pmt_amount = pmt_total + coupon_total
       $("#pmt_amount").text(-pmt_amount).attr("data-amount",pmt_amount)
 
-      order_amount = parseInt($("#order_amount").data("amount")) || 0
+      order_amount =  parseFloat($("#order_amount").data("amount")) || 0
       
-      coupon_amount = parseInt($("#coupon_amount").data("amount")) || 0
+      coupon_amount =  parseFloat($("#coupon_amount").data("amount")) || 0
 
-      part_amount = 0
-      part_amount = parseInt $("#advance").data("amount") if $("#advance").attr("checked") == "checked"
+      part_amount = 0.0
+      part_amount =  parseFloat $("#advance").data("amount") if $("#advance").attr("checked") == "checked"
 
       pay_amount = order_amount - coupon_amount - pmt_amount
       $("#final_amount").text(pay_amount)
 
-      bcom_discount = 1
+      bcom_discount = 1.0
       if $("#bcom_payment").attr("checked") == "checked"
         bcom_discount = 0.95
-        bcom_discount_amount = pay_amount - Math.round(pay_amount*bcom_discount)
+        bcom_discount_amount = pay_amount -pay_amount*bcom_discount
         $("#bcom_discount").text(-bcom_discount_amount)
       
-      pay_amount = Math.round(pay_amount * bcom_discount - part_amount)
+      pay_amount = pay_amount * bcom_discount - part_amount
       $("#pay_amount").text(pay_amount)
   
   window.compute_payment2 = ->
-    products_total = 0
-    products_total =  parseInt($("#products_total").data("amount")) || 0 
+    products_total = 0.0
+    products_total =   parseFloat($("#products_total").data("amount")) || 0
 
-    part_pay =  0
-    part_pay = parseInt($("#advance").data("amount")) || 0  if $("#advance").attr("checked") == "checked"
+    part_pay = 0.0
+    part_pay =  parseFloat($("#advance").data("amount")) || 0  if $("#advance").attr("checked") == "checked"
 
-    pmts_total = 0
-    pmts_total = parseInt($("#pmts_total").data("amount")) || 0
+    pmts_total = 0.0
+    pmts_total =  parseFloat($("#pmts_total").data("amount")) || 0
     
     order_total =  products_total - pmts_total
-    bcom_discount = 0 
+    bcom_discount = 0.0
     bcom_discount  = order_total - Math.round(order_total*0.95) if $("#bcom_payment").attr("checked") == "checked"
 
     $("#final_pay").text(order_total - bcom_discount - part_pay)

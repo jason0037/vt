@@ -4,7 +4,6 @@ class Store::CartController < ApplicationController
 
 
 	def index
-		
 		render :layout=>"cart"
 	end
 	
@@ -36,7 +35,6 @@ class Store::CartController < ApplicationController
 			member_id = -1
 			member_ident = @m_id
 		end
-
 
 		@cart = Ecstore::Cart.where(:obj_ident=>"goods_#{goods_id}_#{@product.product_id}",
 									  :member_ident=>member_ident).first_or_initialize do |cart|

@@ -10,15 +10,18 @@ class Ecstore::Good < Ecstore::Base
   SUIT_NAME = "套装 Suit"
 
   def self.export_xls_with_pic(f,goods)
+    #filename= 'goods_'+ Time.now.strftime('%Y%m%d%H%M%S') + '.xlsx'
     package = Axlsx::Package.new
     workbook = package.workbook
     workbook.styles do |s|
-      black_cell = s.add_style :bg_color => "00", :fg_color => "FF", :sz => 14, :alignment => { :horizontal=> :center }
-      blue_cell =  s.add_style :bg_color => "0000FF", :fg_color => "FF", :sz => 20, :alignment => { :horizontal=> :center }
+       head_cell = s.add_style  :b=>true, :sz => 10, :alignment => { :horizontal => :center,
+                                                                  :vertical => :center}
+     goods_cell = s.add_style :b=>true,:bg_color=>"FFFACD", :sz => 10, :alignment => {:vertical => :top}
+     product_cell =  s.add_style  :sz => 9
 
       workbook.add_worksheet(:name => "Product") do |sheet|
 
-       sheet.add_row ["类型","商品编号","规格货号","分类","品牌","图片","商品名称","上架", "规格","库存" ,f[0],f[1],f[2],f[3],f[4],f[5]], :b => true
+       sheet.add_row ["类型","商品编号","规格货号","分类","品牌","图片","商品名称","上架", "规格","库存" ,f[0],f[1],f[2],f[3],f[4],f[5]], :style=>head_cell
 
        row_count=0
 
@@ -30,7 +33,8 @@ class Ecstore::Good < Ecstore::Base
          goodsBrand=good.brand&&good.brand.brand_name
          goodsMt =good.marketable=="true" ? "Y" : "N"
          goodsSpec =good.specs.order("sdb_b2c_specification.spec_id asc").pluck(:spec_name).join("|")
-         sheet.add_row [goodsType,goodsBn,nil,goodsCat,goodsBrand,nil,good.name,goodsMt,goodsSpec],:b => true
+         sheet.add_row [goodsType,goodsBn.strip,nil,goodsCat.strip,goodsBrand,nil,good.name.strip,goodsMt,goodsSpec],:style=>goods_cell,:height=>30
+
          row_count +=1
 
          filename="/home/trade/pics#{good.medium_pic}"
@@ -73,15 +77,13 @@ class Ecstore::Good < Ecstore::Base
                v.push(product.mktprice)
              end
            end
-           sheet.add_row [nil,nil,productBn,nil,nil,nil,product.name, productMt,spec_values,product.store,v[0],v[1],v[2],v[3],v[4]]
+           sheet.add_row [nil,nil,productBn,nil,nil,nil,product.name.strip, productMt,spec_values,product.store,v[0],v[1],v[2],v[3],v[4],v[5]],:style=>product_cell
          end
 
          sheet.column_widths nil, nil,nil,nil,nil,10
        end
      end
-
     end
-
     return package
   end
 

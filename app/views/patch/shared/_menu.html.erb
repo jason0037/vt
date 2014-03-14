@@ -12,9 +12,6 @@
   <li class="<%='active' if action_name == "goods"%>">
     <%=link_to "我的商品",goods_member_path%>
   </li>
-  <li class="<%='active' if action_name == "inventory"%>">
-    <%=link_to "我的库存",inventorys_member_path%>
-  </li>
 <%end%>
   <li class="<%='active' if controller_name == "cards"%>">
   	<%=link_to "我的VIP卡",cards_path(tab: "bought")%>

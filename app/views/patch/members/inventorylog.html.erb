@@ -1,0 +1,53 @@
+<ul class="nav nav-tabs">
+  <li class=''>
+    <a href="/member/goods">未入库商品</a>
+  </li>
+  <li class='' >
+    <a href="/member/inventorys">已入库商品</a>
+  </li>
+  <li class='active'>
+    <a href="/member/inventorylog">出入库记录</a>
+  </li>
+</ul>
+<table class="table table-striped" id="order_list">
+  <tr>
+    <th>商品号</th>
+    <th>商品名</th>
+    <th>商品图片</th>
+    <th>数量</th>
+    <th>总价金额</th>
+    <th>出/入库</th>
+    <th>操作时间</th>
+  </tr>
+  <%if @inventorylog&&@inventorylog.count > 0%>
+
+      <%@inventorylog.each  do |inventorylog|%>
+          <tr>
+            <td><%=link_to inventorylog.product_id, good_path(inventorylog.good.bn),:target=>"_blank"%></td>
+            <td>
+              <%=link_to inventorylog.name, good_path(inventorylog.good.bn),:target=>"_blank"%>
+            </td>
+            <td>
+                  <%=link_to good_path(inventorylog.good.bn),:title=>inventorylog.name,:target=>"_blank",:class=>"thumb-link" do %>
+                      <%=image_tag inventorylog.good.medium_pic,:class=>"thumb",:alt=>inventorylog.name%>
+
+                  <%end%>
+            </td>
+
+            <td><%=inventorylog.quantity%></td>
+            <td>&yen;<%=inventorylog.quantity*inventorylog.price%></td>
+            <td><%=inventorylog.in_or_out%></td>
+            <td><%=Time.at(inventorylog.createtime)%></td>
+
+          </tr>
+      <%end%>
+  <%else%>
+      <tr class="no-record" >
+        <td colspan="6">没有符合条件的商品</td>
+      </tr>
+  <%end%>
+</table>
+<div class="pagination">
+  <%=will_paginate @inventorylog,:container=>false%>
+</div>
+</div>
