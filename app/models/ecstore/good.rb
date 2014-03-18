@@ -1,7 +1,6 @@
 #encoding:utf-8
 require 'csv'
 require 'spreadsheet'
-require 'axlsx'
 
 class Ecstore::Good < Ecstore::Base
 
@@ -9,83 +8,54 @@ class Ecstore::Good < Ecstore::Base
 
   SUIT_NAME = "套装 Suit"
 
-  def self.export_xls_with_pic(f,goods)
-    #filename= 'goods_'+ Time.now.strftime('%Y%m%d%H%M%S') + '.xlsx'
-    package = Axlsx::Package.new
-    workbook = package.workbook
-    workbook.styles do |s|
-       head_cell = s.add_style  :b=>true, :sz => 10, :alignment => { :horizontal => :center,
-                                                                  :vertical => :center}
-     goods_cell = s.add_style :b=>true,:bg_color=>"FFFACD", :sz => 10, :alignment => {:vertical => :top}
-     product_cell =  s.add_style  :sz => 9
+  self.table_name = "sdb_b2c_goods"
 
-      workbook.add_worksheet(:name => "Product") do |sheet|
+  scope :selling, where(:marketable=>'true')
 
-       sheet.add_row ["类型","商品编号","规格货号","分类","品牌","图片","商品名称","上架", "规格","库存" ,f[0],f[1],f[2],f[3],f[4],f[5]], :style=>head_cell
+  # attr_accessible :desc, :material, :mesure, :softness, :thickness, :elasticity, :fitness, :try_on,:price,:mktprice,:store,:name,
+  #                          :cat_id,:brand_id
 
-       row_count=0
+  accessible_all_columns
 
-       goods.each do |good|
+  attr_accessor :up_or_down
+  attr_accessible :up_or_down
 
-         goodsType=good.good_type&&good.good_type.name
-         goodsBn=good.bn.to_s
-         goodsCat=good.cat&&good.cat.full_path_name
-         goodsBrand=good.brand&&good.brand.brand_name
-         goodsMt =good.marketable=="true" ? "Y" : "N"
-         goodsSpec =good.specs.order("sdb_b2c_specification.spec_id asc").pluck(:spec_name).join("|")
-         sheet.add_row [goodsType,goodsBn.strip,nil,goodsCat.strip,goodsBrand,nil,good.name.strip,goodsMt,goodsSpec],:style=>goods_cell,:height=>30
+  has_many :image_attachs,
+  		       :foreign_key=>"target_id",
+  		       :conditions=>{:target_type=>"goods"}
 
-         row_count +=1
+  has_many :images,
+  			:through=>:image_attachs
 
-         filename="/home/trade/pics#{good.medium_pic}"
-         if not FileTest::exist?(filename)
-           filename = "#{Rails.root}/app/assets/images/gray_bg.png"
-         end
-         img = File.expand_path(filename)
-         sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
-             image.width=50
-             image.height=80
-             image.start_at 5,  row_count
-         end
+  belongs_to :cat,:class_name=>"Category",:foreign_key=>"cat_id"
 
-         good.products.each do |product|
-           row_count +=1
-           productBn = product.bn.to_s
-           productMt =product.marketable=="true" ? "Y" : "N"
-           spec_values = product.spec_values.order("sdb_b2c_spec_values.spec_id asc").pluck(:spec_value).join("|")
-           v =[]
-           f.each do |field|
-             if field=="进货价"
-               v.push(product.cost)
-             end
 
-             if field=="渠道价"
-               v.push(product.bulk)
-             end
-             if field=="渠道零售价"
-               v.push(product.promotion)
-             end
-             if field=="批发价"
-               v.push(product.wholesale)
-             end
+  belongs_to :brand, :foreign_key=>"brand_id"
+  belongs_to :default_image, :foreign_key=>"image_default_id",:class_name=>"Image"
 
-             if field=="会员价"
-               v.push(product.price)
-             end
+  attr_accessible :products_attributes
+  has_many :products, :foreign_key=>"goods_id",:class_name=>"Ecstore::Product",:dependent=>:destroy
+  accepts_nested_attributes_for :products
 
-             if field=="市场价"
-               v.push(product.mktprice)
-             end
-           end
-           sheet.add_row [nil,nil,productBn,nil,nil,nil,product.name.strip, productMt,spec_values,product.store,v[0],v[1],v[2],v[3],v[4],v[5]],:style=>product_cell
-         end
+  has_many :good_specs, :foreign_key=>"goods_id"
+  has_many :spec_values, :through=>:good_specs
+  has_many :specs, :through=>:good_specs, :uniq=>true
 
-         sheet.column_widths nil, nil,nil,nil,nil,10
-       end
-     end
-    end
-    return package
-  end
+  has_many :good_spec_items,:foreign_key=>"goods_id"
+
+  has_one :seo, :foreign_key=>:pk,:conditions=>{ :mr_id => 2 }
+
+  has_one :good_collocation, :foreign_key=>"goods_id"
+
+  has_many :comments, :foreign_key=>"commentable_id",:conditions=>{ :commentable_type=>"goods" }
+
+  include Ecstore::Metable
+
+  belongs_to :good_type, :foreign_key=>"type_id"
+  has_many :good_type_specs, :through=>:good_type
+
+  has_many :tagables, :foreign_key=>"rel_id"
+  has_many :tegs, :through=>:tagables
 
   def  self.export_xls(fields, goods)
 
@@ -121,12 +91,12 @@ class Ecstore::Good < Ecstore::Base
         row_count +=1
         spec_values = product.spec_values.order("sdb_b2c_spec_values.spec_id asc").pluck(:spec_value).join("|")
         sheet1[row_count,0] = good.good_type&&good.good_type.name, #类型
-        sheet1[row_count,1] = good.bn.to_s, #商品编号
-        sheet1[row_count,2] = product.bn.to_s, #规格货号
-        sheet1[row_count,5] = product.name, #商品名称
-        sheet1[row_count,6] = product.marketable=="true" ? "Y" : "N", #上架
-        sheet1[row_count,7] =  spec_values, #规格
-        sheet1[row_count,8] = product.store #库存
+            sheet1[row_count,1] = good.bn.to_s, #商品编号
+            sheet1[row_count,2] = product.bn.to_s, #规格货号
+            sheet1[row_count,5] = product.name, #商品名称
+            sheet1[row_count,6] = product.marketable=="true" ? "Y" : "N", #上架
+            sheet1[row_count,7] =  spec_values, #规格
+            sheet1[row_count,8] = product.store #库存
 
         field_count=9
         if (fields.include?("进货价"))
@@ -199,139 +169,84 @@ class Ecstore::Good < Ecstore::Base
                       product.store #库存
           ]
 
-                   if (fields.include?("进货价"))
-                     content.push product.cost.to_f
-                   end
-                   if (fields.include?("渠道价"))
-                      content.push product.bulk.to_f
-                   end
-                  if (fields.include?("渠道零售价"))
-                    content.push product.promotion.to_f
-                  end
-                  if (fields.include?("批发价"))
-                    content.push product.wholesale.to_f
-                  end
-                  if (fields.include?("会员价"))
-                    content.push product.price.to_f
-                  end
-                  if (fields.include?("市场价"))
-                   content.push product.mktprice.to_f
-                  end
+          if (fields.include?("进货价"))
+            content.push product.cost.to_f
+          end
+          if (fields.include?("渠道价"))
+            content.push product.bulk.to_f
+          end
+          if (fields.include?("渠道零售价"))
+            content.push product.promotion.to_f
+          end
+          if (fields.include?("批发价"))
+            content.push product.wholesale.to_f
+          end
+          if (fields.include?("会员价"))
+            content.push product.price.to_f
+          end
+          if (fields.include?("市场价"))
+            content.push product.mktprice.to_f
+          end
 
           csv << content
         end
       end
-      end
+    end
 
   end
 
   def self.export_cvs_file(goods = [], file = "#{Rails.root}/public/tmp/goods.csv")
 
-      CSV.open(file,"w:GB18030") do |csv|
-          csv << [ '*:类型',
-                        'col:商品编号',
-                        'col:规格货号',
-                        'col:分类',
-                        'col:品牌',
-                        'col:市场价',
-                        'col:销售价',
-                        'col:商品名称',
-                        'col:上架',
-                        'col:规格',
-                        'col:库存',
-                        'col:商品描述'
-                      ]
-          goods.each do |good|
-              spec_names = good.specs.order("sdb_b2c_specification.spec_id asc").pluck(:spec_name).join("|")
-              csv << [ good.good_type&&good.good_type.name, #类型
-                           good.bn.to_s,  #商品编号
-                           nil, #规格货号
-                           good.cat&&good.cat.full_path_name, #分类
-                           good.brand&&good.brand.brand_name, #品牌
-                           nil,  #市场价
-                           nil, #销售价
-                           good.name,#商品名称
-                           good.marketable=="true" ? "Y" : "N", #上架
-                           spec_names, #规格
-                           good.store,  #库存
-                           good.desc #商品描述
-                         ]
+    CSV.open(file,"w:GB18030") do |csv|
+      csv << [ '*:类型',
+               'col:商品编号',
+               'col:规格货号',
+               'col:分类',
+               'col:品牌',
+               'col:市场价',
+               'col:销售价',
+               'col:商品名称',
+               'col:上架',
+               'col:规格',
+               'col:库存',
+               'col:商品描述'
+      ]
+      goods.each do |good|
+        spec_names = good.specs.order("sdb_b2c_specification.spec_id asc").pluck(:spec_name).join("|")
+        csv << [ good.good_type&&good.good_type.name, #类型
+                 good.bn.to_s,  #商品编号
+                 nil, #规格货号
+                 good.cat&&good.cat.full_path_name, #分类
+                 good.brand&&good.brand.brand_name, #品牌
+                 nil,  #市场价
+                 nil, #销售价
+                 good.name,#商品名称
+                 good.marketable=="true" ? "Y" : "N", #上架
+                 spec_names, #规格
+                 good.store,  #库存
+                 good.desc #商品描述
+        ]
 
-              good.products.each do |product|
-                 spec_values = product.spec_values.order("sdb_b2c_spec_values.spec_id asc").pluck(:spec_value).join("|")
-                 csv << [ good.good_type&&good.good_type.name, #类型
-                              good.bn.to_s, #商品编号
-                              product.bn.to_s, #规格货号
-                              nil, #分类
-                              nil, #品牌
-                              product.mktprice.to_f, #市场价
-                              product.price.to_f,  #销售价
-                              product.name, #商品名称
-                              product.marketable=="true" ? "Y" : "N", #上架
-                              spec_values, #规格
-                              product.store, #库存
-                              nil #商品描述
-                           ]
-              end
-          end
+        good.products.each do |product|
+          spec_values = product.spec_values.order("sdb_b2c_spec_values.spec_id asc").pluck(:spec_value).join("|")
+          csv << [ good.good_type&&good.good_type.name, #类型
+                   good.bn.to_s, #商品编号
+                   product.bn.to_s, #规格货号
+                   nil, #分类
+                   nil, #品牌
+                   product.mktprice.to_f, #市场价
+                   product.price.to_f,  #销售价
+                   product.name, #商品名称
+                   product.marketable=="true" ? "Y" : "N", #上架
+                   spec_values, #规格
+                   product.store, #库存
+                   nil #商品描述
+          ]
+        end
       end
-      file
+    end
+    file
   end
-
-  self.table_name = "sdb_b2c_goods"
-
-  scope :selling, where(:marketable=>'true')
-
-  # attr_accessible :desc, :material, :mesure, :softness, :thickness, :elasticity, :fitness, :try_on,:price,:mktprice,:store,:name,
-  #                          :cat_id,:brand_id
-
-  accessible_all_columns
-
-  attr_accessor :up_or_down
-  attr_accessible :up_or_down
-
-  has_many :image_attachs,
-  		       :foreign_key=>"target_id",
-  		       :conditions=>{:target_type=>"goods"}
-
-  has_many :images,
-  			:through=>:image_attachs
-
-  belongs_to :cat,:class_name=>"Category",:foreign_key=>"cat_id"
-
-
-  belongs_to :brand, :foreign_key=>"brand_id"
-  belongs_to :default_image, :foreign_key=>"image_default_id",:class_name=>"Image"
-
-  attr_accessible :products_attributes
-  has_many :products, :foreign_key=>"goods_id",:class_name=>"Ecstore::Product",:dependent=>:destroy
-  accepts_nested_attributes_for :products
-
-  
-
-
-  has_many :good_specs, :foreign_key=>"goods_id"
-  has_many :spec_values, :through=>:good_specs
-  has_many :specs, :through=>:good_specs, :uniq=>true
-
-  has_many :good_spec_items,:foreign_key=>"goods_id"
-
-  has_one :seo, :foreign_key=>:pk,:conditions=>{ :mr_id => 2 }
-
-  has_one :good_collocation, :foreign_key=>"goods_id"
-
-  has_many :comments, :foreign_key=>"commentable_id",:conditions=>{ :commentable_type=>"goods" }
-
-
-  include Ecstore::Metable
-
-  belongs_to :good_type, :foreign_key=>"type_id"
-  has_many :good_type_specs, :through=>:good_type
-
-  has_many :tagables, :foreign_key=>"rel_id"
-  has_many :tegs, :through=>:tagables
-
-
 
   def collocation_goods
      return  self.good_collocation.collocations.collect do |goods_id|
@@ -589,7 +504,7 @@ class Ecstore::Good < Ecstore::Base
 
   def gift_image_url
     img = Ecstore::Image.find_by_image_id self.image_default_id
-    "http://www.i-modec.com/#{img.s_url}"
+    "#{img.s_url}"
   end
 
   def up_at

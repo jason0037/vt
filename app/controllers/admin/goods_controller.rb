@@ -1,5 +1,6 @@
 #encoding:utf-8
 require "iconv"
+require 'axlsx'
 
 module Admin
     class GoodsController < Admin::BaseController
@@ -23,11 +24,85 @@ module Admin
         # conditions = nil  if goods_ids.include?("all")
         goods = Ecstore::Good.where(conditions).includes(:good_type,:brand,:cat,:products)
 
+        #content=Ecstore::Good.export_xls_with_pic(fields,goods) #导出excel
+        package = Axlsx::Package.new
+        workbook = package.workbook
+        workbook.styles do |s|
+          head_cell = s.add_style  :b=>true, :sz => 10, :alignment => { :horizontal => :center,
+                                                                        :vertical => :center}
+          goods_cell = s.add_style :b=>true,:bg_color=>"FFFACD", :sz => 10, :alignment => {:vertical => :top}
+          product_cell =  s.add_style  :sz => 9
+
+          workbook.add_worksheet(:name => "Product") do |sheet|
+
+          sheet.add_row ["类型","商品编号","规格货号","分类","品牌","图片","商品名称","上架", "规格","库存" ,fields[0],fields[1],fields[2],fields[3],fields[4],fields[5]],
+                        :style=>head_cell
+
+            row_count=0
+
+            goods.each do |good|
+
+              goodsType=good.good_type&&good.good_type.name
+              goodsBn=good.bn.to_s
+              goodsCat=good.cat&&good.cat.full_path_name
+              goodsBrand=good.brand&&good.brand.brand_name
+              goodsMt =good.marketable=="true" ? "Y" : "N"
+              goodsSpec =good.specs.order("sdb_b2c_specification.spec_id asc").pluck(:spec_name).join("|")
+              sheet.add_row [goodsType,goodsBn.strip,nil,goodsCat.strip,goodsBrand,nil,good.name.strip,goodsMt,goodsSpec],:style=>goods_cell,:height=>30
+
+              row_count +=1
+
+              filename="/home/trade/pics#{good.medium_pic}"
+              if not FileTest::exist?(filename)
+                filename = "#{Rails.root}/app/assets/images/gray_bg.png"
+              end
+              img = File.expand_path(filename)
+              sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
+                image.width=50
+                image.height=80
+                image.start_at 5,  row_count
+              end
+
+              good.products.each do |product|
+                row_count +=1
+                productBn = product.bn.to_s
+                productMt =product.marketable=="true" ? "Y" : "N"
+                spec_values = product.spec_values.order("sdb_b2c_spec_values.spec_id asc").pluck(:spec_value).join("|")
+                v =[]
+                fields.each do |field|
+                  if field=="进货价"
+                    v.push(product.cost)
+                  end
+
+                  if field=="渠道价"
+                    v.push(product.bulk)
+                  end
+                  if field=="渠道零售价"
+                    v.push(product.promotion)
+                  end
+                  if field=="批发价"
+                    v.push(product.wholesale)
+                  end
+
+                  if field=="会员价"
+                    v.push(product.price)
+                  end
+
+                  if field=="市场价"
+                    v.push(product.mktprice)
+                  end
+                end
+                sheet.add_row [nil,nil,productBn,nil,nil,nil,product.name.strip, productMt,spec_values,product.store,v[0],v[1],v[2],v[3],v[4],v[5]],:style=>product_cell
+              end
+
+              sheet.column_widths nil, nil,nil,nil,nil,10
+            end
+          end
+        end
+
         filename = "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx"
         wholepath = "#{Rails.root}/tmp/#{filename}"
-
-        content=Ecstore::Good.export_xls_with_pic(fields,goods) #导出excel
-        content.serialize(wholepath)
+        package.serialize(wholepath)
         send_file(wholepath,filename: filename, type: "application/xlsx")
 
         if File.exist?(wholepath)
