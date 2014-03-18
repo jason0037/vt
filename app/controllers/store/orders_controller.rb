@@ -3,6 +3,39 @@ class Store::OrdersController < ApplicationController
 
 	layout 'order'
 
+  def out_inventory
+    return_url =  request.env["HTTP_REFERER"]
+    return_url =  member_goods_url if return_url.blank?
+
+
+    @inventory = Ecstore::Inventory.where(:member_id=>current_account,:product_id=>params[:id]).first
+
+     if @inventory.blank?
+#全部出库，删除记录
+     else
+       #部分出库，修改数量
+      quantity =  @inventory.quantity - @inventory.quantity
+      Ecstore::Inventory.where(:member_id=>current_account,:product_id=>params[:id]).update_all(:quantity=>quantity)
+    end
+
+
+    Ecstore::InventoryLog.new do |inventory_log|
+      inventory_log.in_or_out =false
+      inventory_log.member_id = @inventory.member_id
+      inventory_log.goods_id =@inventory.goods_id
+      inventory_log.product_id =@inventory.product_id
+      inventory_log.price = @inventory.price
+      inventory_log.quantity =@inventory.quantity
+      inventory_log.name =@inventory.name
+      inventory_log.bn = @inventory.bn
+      inventory_log.barcode = @inventory.barcode
+      inventory_log.createtime = Time.now.to_i
+    end.save
+
+
+    redirect_to return_url
+  end
+
   def to_inventory
        return_url =  request.env["HTTP_REFERER"]
        return_url =  member_goods_url if return_url.blank?

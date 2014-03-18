@@ -316,6 +316,7 @@ Modengke::Application.routes.draw do
       resources :orders, :except=>[:index] do 
         member do
           get 'to_inventory'
+          get 'out_inventory'
           post :pay
           get :detail
           get :goods

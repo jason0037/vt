@@ -36,7 +36,11 @@
             <td><%=inventory.quantity%></td>
             <td>&yen;<%=inventory.quantity*inventory.price%></td>
             <td>
-              <%= link_to to_inventory_order_path(inventory.product_id) do%>
+              <%#=text_field :quaintity,:value=>@inventory.quaintity,:placeholder=>"出口数量"%>
+              <%#=link_to "出库","javascript:void(0);",
+                         :class=>"out_inventory #{'sold-out' if good.store.to_i == 0 } #{'login' unless signed_in?} #{'buy-cols' if good.has_cols? }",
+                         :id=>"out_inventory"%>
+              <%= link_to out_inventory_order_path(inventory.product_id) do%>
                   出库
               <%end%>
             </td>

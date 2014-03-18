@@ -73,7 +73,7 @@
           <li class="bags_two dropdown">
             <a id="bags" data-target="<%=site_name%>/gallery/483?gtype=3" href="<%=site_name%>/supplier/" class="dropdown-toggle" data-toggle="dropdown">供应商 <span>SUPPLIER</span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="bags">
-              <%Ecstore::Supplier.all.each do |supplier|%>
+              <%Ecstore::Supplier.where(:status=>true).each do |supplier|%>
                   <li><a tabindex="-1" href="<%=site_name%>/suppliers/<%=supplier.id%>"><%=supplier.name%></a></li>
               <%end%>
             </ul>

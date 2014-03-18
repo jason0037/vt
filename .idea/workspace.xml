@@ -2,25 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="551a286c-2c66-41e3-9022-bb03cf26743e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/patch/members/inventorylog.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/store/orders/_gifts.html.erb" afterPath="$PROJECT_DIR$/app/views/store/orders/_gifts.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/patch/shared/_menu.html.erb" afterPath="$PROJECT_DIR$/app/views/patch/shared/_menu.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ecstore/cart.rb" afterPath="$PROJECT_DIR$/app/models/ecstore/cart.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/store/cart_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/store/cart_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ecstore/good.rb" afterPath="$PROJECT_DIR$/app/models/ecstore/good.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/patch/members/goods.html.erb" afterPath="$PROJECT_DIR$/app/views/patch/members/goods.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/admin/goods_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/admin/goods_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/goods/index.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/goods/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/store/cart/index.html.erb" afterPath="$PROJECT_DIR$/app/views/store/cart/index.html.erb" />
+      <change type="DELETED" beforePath="D:\rubyweb\vt\app\models\ecstore\desktop_hasrole.rb" afterPath="" />
+      <change type="DELETED" beforePath="D:\rubyweb\vt\app\models\ecstore\desktop_role.rb" afterPath="" />
+      <change type="DELETED" beforePath="D:\rubyweb\vt\app\models\ecstore\desktop_user.rb" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/goods/_index_goods.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/goods/_index_goods.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/store/suppliers/_mod.html.erb" afterPath="$PROJECT_DIR$/app/views/store/suppliers/_mod.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/store/goods/_new_single.html.erb" afterPath="$PROJECT_DIR$/app/views/store/goods/_new_single.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/orders/_order_tr.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/orders/_order_tr.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/store/orders/_sales.html.erb" afterPath="$PROJECT_DIR$/app/views/store/orders/_sales.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/shared/_top_menu.html.erb" afterPath="$PROJECT_DIR$/app/views/shared/_top_menu.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/orders/detail.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/orders/detail.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/store/orders/detail.html.erb" afterPath="$PROJECT_DIR$/app/views/store/orders/detail.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/patch/members/inventorys.html.erb" afterPath="$PROJECT_DIR$/app/views/patch/members/inventorys.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ecstore/manager.rb" afterPath="$PROJECT_DIR$/app/models/ecstore/manager.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/patch/members_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/patch/members_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/store/orders/new.html.erb" afterPath="$PROJECT_DIR$/app/views/store/orders/new.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ecstore/order.rb" afterPath="$PROJECT_DIR$/app/models/ecstore/order.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/store/orders.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/store/orders.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/admin/orders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/admin/orders_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/store/orders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/store/orders_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/patch/members/show.html.erb" afterPath="$PROJECT_DIR$/app/views/patch/members/show.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ecstore/user.rb" afterPath="$PROJECT_DIR$/app/models/ecstore/user.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="vt.iws" />
@@ -44,19 +44,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="_admin_menu.html.erb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/admin/shared/_admin_menu.html.erb">
+      <file leaf-file-name="members_controller.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/patch/members_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="574">
+            <state line="41" column="62" selection-start="1016" selection-end="1016" vertical-scroll-proportion="0.31911263" vertical-offset="592" max-vertical-offset="1178">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_top_menu.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/admin/shared/_top_menu.html.erb">
+      <file leaf-file-name="goods_controller.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/store/goods_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="105" column="62" selection-start="5154" selection-end="5204" vertical-scroll-proportion="-10.178572" vertical-offset="1710" max-vertical-offset="4465">
+            <state line="8" column="0" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3458">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_mod.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/store/suppliers/_mod.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="110" selection-start="157" selection-end="157" vertical-scroll-proportion="-2.7142856" vertical-offset="0" max-vertical-offset="551">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/routes.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="318" column="18" selection-start="8392" selection-end="8392" vertical-scroll-proportion="-7.3333335" vertical-offset="5844" max-vertical-offset="9215">
               <folding />
             </state>
           </provider>
@@ -75,14 +93,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/views/store/orders/detail.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/admin/members_controller.rb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/admin/goods.js" />
-        <option value="$PROJECT_DIR$/app/views/admin/goods/_goods_filters.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/admin/base.css" />
-        <option value="$PROJECT_DIR$/app/views/admin/members/index.html.erb" />
-        <option value="$PROJECT_DIR$/app/models/ecstore/member.rb" />
-        <option value="$PROJECT_DIR$/config/environment.rb" />
         <option value="$PROJECT_DIR$/config/initializers/mime_types.rb" />
         <option value="$PROJECT_DIR$/app/views/store/orders/goods.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/store/mygoods_controller.rb" />
@@ -90,9 +100,6 @@
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/config/unicorn.rb" />
         <option value="$PROJECT_DIR$/app/views/admin/goods/spec.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/admin/goods/_index_goods.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/store/suppliers/_mod.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/store/goods_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/store/cats_controller.rb" />
         <option value="$PROJECT_DIR$/app/helpers/store/orders_helper.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20140310170622_create_table_inventory.rb" />
@@ -100,13 +107,9 @@
         <option value="$PROJECT_DIR$/app/controllers/patch/inventory_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/ecstore/inventory_log.rb" />
         <option value="$PROJECT_DIR$/app/models/ecstore/inventory.rb" />
-        <option value="$PROJECT_DIR$/app/models/ecstore/user.rb" />
         <option value="$PROJECT_DIR$/app/views/patch/members/inventory.html.erb" />
         <option value="$PROJECT_DIR$/app/views/patch/shared/_menu.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/patch/members/inventorys.html.erb" />
         <option value="$PROJECT_DIR$/app/views/patch/members/goods.html.erb" />
-        <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/patch/members_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/patch/members/inventorylog.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/admin/goods_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/ecstore/good.rb" />
@@ -118,22 +121,36 @@
         <option value="$PROJECT_DIR$/app/models/ecstore/role.rb" />
         <option value="$PROJECT_DIR$/app/views/store/orders/_gifts.html.erb" />
         <option value="$PROJECT_DIR$/app/views/store/orders/new.html.erb" />
-        <option value="$PROJECT_DIR$/app/models/ecstore/desktop_hasrole.rb" />
-        <option value="$PROJECT_DIR$/app/models/ecstore/desktop_role.rb" />
-        <option value="$PROJECT_DIR$/app/models/ecstore/desktop_user.rb" />
-        <option value="$PROJECT_DIR$/app/models/ecstore/order.rb" />
-        <option value="$PROJECT_DIR$/app/views/store/orders/_sales.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/store/orders_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/admin/orders_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/admin/goods/index.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/store/orders/detail.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/admin/orders/detail.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/admin/orders/_order_tr.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/shared/_top_menu.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/admin/goods/_index_goods.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/store/suppliers/_mod.html.erb" />
+        <option value="$PROJECT_DIR$/app/models/ecstore/desktop_hasrole.rb" />
+        <option value="$PROJECT_DIR$/app/models/ecstore/desktop_user.rb" />
+        <option value="$PROJECT_DIR$/app/models/ecstore/desktop_role.rb" />
+        <option value="$PROJECT_DIR$/app/models/ecstore/order.rb" />
+        <option value="$PROJECT_DIR$/app/models/ecstore/manager.rb" />
+        <option value="$PROJECT_DIR$/app/models/ecstore/hasrole.rb" />
+        <option value="$PROJECT_DIR$/app/models/ecstore/user.rb" />
+        <option value="$PROJECT_DIR$/app/views/store/orders/_sales.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/patch/members/show.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/store/goods/_new_single.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/patch/members/inventorys.html.erb" />
+        <option value="$PROJECT_DIR$/config/routes.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/store/orders_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/store/goods_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/patch/members_controller.rb" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="-8" />
-    <option name="width" value="1310" />
-    <option name="height" value="784" />
+    <option name="x" value="71" />
+    <option name="width" value="1295" />
+    <option name="height" value="768" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -215,7 +232,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
+              <option name="myItemId" value="store" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -237,11 +254,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="admin" />
+              <option name="myItemId" value="store" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="shared" />
+              <option name="myItemId" value="suppliers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -261,8 +278,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="RailsProjectView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -430,7 +447,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-8" width="1310" height="784" extended-state="6" />
+    <frame x="71" y="0" width="1295" height="768" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -438,7 +455,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27236423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24090542" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -446,12 +463,12 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290938" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -470,13 +487,13 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27236423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
-    <option name="RECENTLY_FILTERED_USERS">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
       <collection />
     </option>
   </component>
@@ -494,349 +511,301 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/patch/members/inventorys.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="33" selection-start="211" selection-end="211" vertical-scroll-proportion="-0.0" vertical-offset="152" max-vertical-offset="1159" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/store/users_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="580" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/patch/aftersales_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1140" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="26" selection-start="84" selection-end="88" vertical-scroll-proportion="-1.4074074" vertical-offset="0" max-vertical-offset="2071" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="608" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/patch/validations_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1843" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/auth/accounts_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="16" selection-start="69" selection-end="71" vertical-scroll-proportion="-0.7037037" vertical-offset="0" max-vertical-offset="874" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ecstore/cart.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="26" selection-start="1379" selection-end="1379" vertical-scroll-proportion="0.0" vertical-offset="731" max-vertical-offset="1311" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/store/cart_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="23" selection-start="1920" selection-end="1928" vertical-scroll-proportion="-6.814815" vertical-offset="1051" max-vertical-offset="1843" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/store/cart/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="43" selection-start="4064" selection-end="4064" vertical-scroll-proportion="-9.5" vertical-offset="1330" max-vertical-offset="1881" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="113" selection-start="1278" selection-end="1278" vertical-scroll-proportion="-14.555555" vertical-offset="405" max-vertical-offset="1919" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/sessions_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="850" selection-end="850" vertical-scroll-proportion="0.79385173" vertical-offset="188" max-vertical-offset="741" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/sessions_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2736" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/application_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="10" selection-start="1412" selection-end="1412" vertical-scroll-proportion="0.8189655" vertical-offset="551" max-vertical-offset="1710" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/store/users_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="580" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/store/cart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="722" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/store/orders_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="859" selection-end="859" vertical-scroll-proportion="0.8064516" vertical-offset="114" max-vertical-offset="703" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/store/payments.js.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="602">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/store/orders/_promotions.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="608">
-          <folding>
-            <marker date="1392004841889" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004841889" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004841889" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004841889" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/store/orders/_coupons.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="589">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ecstore/new_coupon.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2812">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ecstore/user_coupon.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1045">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/permissions/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="580">
-          <folding>
-            <marker date="1392004835081" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835081" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835081" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835081" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/imodec/permission.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="580">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/permissions/_form.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1026">
-          <folding>
-            <marker date="1392004835061" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835061" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835061" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835061" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835061" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835061" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835061" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835061" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835061" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835061" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835061" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835061" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1392004835061" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ecstore/rule.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="580">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/ecstore/order_item.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="3" selection-start="479" selection-end="479" vertical-scroll-proportion="0.80344826" vertical-offset="28" max-vertical-offset="608">
-          <folding />
-        </state>
+        <state line="26" column="3" selection-start="479" selection-end="479" vertical-scroll-proportion="0.80344826" vertical-offset="28" max-vertical-offset="608" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/admin/permissions/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="580">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ecstore/account.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="0" selection-start="3237" selection-end="3237" vertical-scroll-proportion="0.36860672" vertical-offset="1653" max-vertical-offset="4921">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ecstore/user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="284" column="7" selection-start="8533" selection-end="8533" vertical-scroll-proportion="0.0" vertical-offset="4959" max-vertical-offset="7714">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="580" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/admin/permissions_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="73" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/patch/members/inventorylog.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="10" selection-start="1348" selection-end="1348" vertical-scroll-proportion="-9.857142" vertical-offset="541" max-vertical-offset="1121">
-          <folding />
-        </state>
+        <state line="13" column="73" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/patch/member_addrs.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="536">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="536" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/store/orders.js.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="21" selection-start="3717" selection-end="3728" vertical-scroll-proportion="0.33333334" vertical-offset="1894" max-vertical-offset="3990">
-          <folding />
-        </state>
+        <state line="109" column="21" selection-start="3717" selection-end="3728" vertical-scroll-proportion="0.33333334" vertical-offset="1894" max-vertical-offset="3990" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/store/orders/_gifts.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="77" selection-start="641" selection-end="641" vertical-scroll-proportion="0.5163044" vertical-offset="0" max-vertical-offset="552">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/patch/members_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="36" selection-start="990" selection-end="990" vertical-scroll-proportion="0.61206895" vertical-offset="424" max-vertical-offset="1178">
-          <folding />
-        </state>
+        <state line="15" column="77" selection-start="641" selection-end="641" vertical-scroll-proportion="0.5163044" vertical-offset="0" max-vertical-offset="552" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/patch/member_addrs/_form.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="398" selection-end="597" vertical-scroll-proportion="0.20320855" vertical-offset="0" max-vertical-offset="1634">
-          <folding />
-        </state>
+        <state line="6" column="0" selection-start="398" selection-end="597" vertical-scroll-proportion="0.20320855" vertical-offset="0" max-vertical-offset="1634" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/ecstore/region.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="413" selection-end="478" vertical-scroll-proportion="0.34717607" vertical-offset="0" max-vertical-offset="1140">
+        <state line="11" column="0" selection-start="413" selection-end="478" vertical-scroll-proportion="0.34717607" vertical-offset="0" max-vertical-offset="1140" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/admin/orders_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="667" selection-end="667" vertical-scroll-proportion="0.36672327" vertical-offset="164" max-vertical-offset="8550" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/goods/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="17" selection-start="2564" selection-end="2564" vertical-scroll-proportion="0.39037433" vertical-offset="940" max-vertical-offset="1520" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/store/orders/detail.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="44" selection-start="557" selection-end="557" vertical-scroll-proportion="0.57575756" vertical-offset="0" max-vertical-offset="4047" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/shared/_admin_menu.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="602" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/shared/_top_menu.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="143" column="63" selection-start="7083" selection-end="7111" vertical-scroll-proportion="0.0" vertical-offset="2280" max-vertical-offset="4465" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/orders/detail.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="172" column="25" selection-start="4033" selection-end="4033" vertical-scroll-proportion="0.0" vertical-offset="2969" max-vertical-offset="9500" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/orders/_order_tr.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="35" selection-start="2721" selection-end="2721" vertical-scroll-proportion="0.0" vertical-offset="693" max-vertical-offset="1273" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/shared/_top_menu.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="53" selection-start="4306" selection-end="4306" vertical-scroll-proportion="0.0" vertical-offset="1083" max-vertical-offset="2166" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/goods/_index_goods.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="71" selection-start="710" selection-end="710" vertical-scroll-proportion="0.0" vertical-offset="266" max-vertical-offset="1938" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/goods/_goods.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/store/suppliers/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/patch/member_addrs_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1292" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/store/suppliers/_attr_line.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/ecstore/auth_ext.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="564" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/store/suppliers/_brand.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/ecstore/account.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4921">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/ecstore/role.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="564" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/store/orders/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="166" column="29" selection-start="5687" selection-end="5687" vertical-scroll-proportion="0.2979094" vertical-offset="2983" max-vertical-offset="5168">
+        <state line="166" column="29" selection-start="5687" selection-end="5687" vertical-scroll-proportion="0.32695985" vertical-offset="2983" max-vertical-offset="5168" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/ecstore/manager.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="798" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/ecstore/user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="19" selection-start="1543" selection-end="1543" vertical-scroll-proportion="-9.148149" vertical-offset="532" max-vertical-offset="7771">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/ecstore/hasrole.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="3" selection-start="299" selection-end="299" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="304">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/store/suppliers/_brand_attrs.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="608" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/ecstore/order.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="52" selection-start="320" selection-end="320" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6422">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/ecstore/member.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4598">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/patch/members/orders.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1026">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ecstore/desktop_role.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="3" selection-start="218" selection-end="218" vertical-scroll-proportion="0.25249168" vertical-offset="0" max-vertical-offset="602">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ecstore/desktop_hasrole.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="3" selection-start="276" selection-end="276" vertical-scroll-proportion="0.28405315" vertical-offset="0" max-vertical-offset="602">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ecstore/desktop_user.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.34717607" vertical-offset="0" max-vertical-offset="602">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/ecstore/order.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="331" column="0" selection-start="11484" selection-end="11484" vertical-scroll-proportion="0.7741935" vertical-offset="5833" max-vertical-offset="6422">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/admin/orders_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="667" selection-end="667" vertical-scroll-proportion="0.36672327" vertical-offset="164" max-vertical-offset="8550">
+        <state line="17" column="55" selection-start="360" selection-end="376" vertical-scroll-proportion="0.0" vertical-offset="323" max-vertical-offset="1026">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/store/orders/_sales.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="14" selection-start="492" selection-end="492" vertical-scroll-proportion="0.30481285" vertical-offset="0" max-vertical-offset="561">
+        <state line="7" column="91" selection-start="394" selection-end="394" vertical-scroll-proportion="0.0" vertical-offset="133" max-vertical-offset="418">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/shared/_top_menu.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/patch/members/show.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="62" selection-start="5154" selection-end="5204" vertical-scroll-proportion="-10.178572" vertical-offset="1710" max-vertical-offset="4465">
+        <state line="14" column="0" selection-start="360" selection-end="360" vertical-scroll-proportion="-9.392858" vertical-offset="3" max-vertical-offset="1995">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/goods/index.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/store/goods/_list_goods.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="17" selection-start="2564" selection-end="2564" vertical-scroll-proportion="0.39037433" vertical-offset="940" max-vertical-offset="1520">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2033" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/store/goods/_list_tags.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="564" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/store/goods/product/_new_spec.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="19" selection-start="2317" selection-end="2317" vertical-scroll-proportion="-3.642857" vertical-offset="658" max-vertical-offset="1159">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/orders/_order_tr.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/store/goods/_new_single.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1311">
+        <state line="89" column="0" selection-start="3320" selection-end="3564" vertical-scroll-proportion="-11.357142" vertical-offset="1373" max-vertical-offset="3439">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="81" selection-start="51" selection-end="128" vertical-scroll-proportion="0.075848304" vertical-offset="0" max-vertical-offset="608">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="318" column="18" selection-start="8392" selection-end="8392" vertical-scroll-proportion="-7.3333335" vertical-offset="5844" max-vertical-offset="9215">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/store/orders_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="0" selection-start="3037" selection-end="3037" vertical-scroll-proportion="0.033043478" vertical-offset="1691" max-vertical-offset="5035">
+        <state line="27" column="49" selection-start="904" selection-end="904" vertical-scroll-proportion="0.7106796" vertical-offset="147" max-vertical-offset="5662">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/admin/shared/_admin_menu.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/store/goods/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="602">
+        <state line="9" column="42" selection-start="234" selection-end="234" vertical-scroll-proportion="0.11380597" vertical-offset="110" max-vertical-offset="646">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/store/shared/_cat_position.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="564">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/store/goods/_tree_menu.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="38" selection-start="38" selection-end="38" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="589">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/patch/members/goods.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="682" selection-end="682" vertical-scroll-proportion="0.03632887" vertical-offset="494" max-vertical-offset="1330">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/patch/members/inventorys.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="17" selection-start="1263" selection-end="1263" vertical-scroll-proportion="0.58715594" vertical-offset="421" max-vertical-offset="1235">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/patch/members/inventorylog.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="10" selection-start="392" selection-end="392" vertical-scroll-proportion="0.5788531" vertical-offset="19" max-vertical-offset="1121">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/store/goods_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3458">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/store/suppliers/_mod.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="110" selection-start="157" selection-end="157" vertical-scroll-proportion="-2.7142856" vertical-offset="0" max-vertical-offset="551">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/patch/members_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="62" selection-start="1016" selection-end="1016" vertical-scroll-proportion="0.31911263" vertical-offset="592" max-vertical-offset="1178">
           <folding />
         </state>
       </provider>

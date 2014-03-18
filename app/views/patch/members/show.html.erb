@@ -7,7 +7,18 @@
 			<b><%=@user.login_name%></b> ，欢迎您！
 			<span class="lv">
 				会员等级：<%=@user.member_lv.name%>
-			</span>
+			</span>&nbsp;
+          <% @user.hasrole.each  do |hasrole|%>
+              <% if hasrole.role_id==17%>
+                <span class="lv">| 导购员</span>
+              <% end%>
+              <% if hasrole.role_id==18%>
+                  <span class="lv">| 供应商</span>
+              <% end%>
+          <%end%>
+          <% if @user.member_lv.id==10%>
+              <span class="lv">| 渠道商</span>
+          <% end%>
 		</p>
 		<p class="validation">
 			<span class="email">

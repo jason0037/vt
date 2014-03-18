@@ -87,7 +87,9 @@
     <div class="actions clearfix">
       <%if @good.marketable == "true"%>
             <div id="cart_msg"></div>
-            <%=link_to "加入购物车","javascript:void(0);",:class=>"add_to_cart #{'sold-out' if good.store.to_i == 0 } #{'login' unless signed_in?} #{'buy-cols' if good.has_cols? }",:id=>"add_to_cart"%>
+            <%=link_to "加入购物车","javascript:void(0);",
+                       :class=>"add_to_cart #{'sold-out' if good.store.to_i == 0 } #{'login' unless signed_in?} #{'buy-cols' if good.has_cols? }",
+                       :id=>"add_to_cart"%>
       <%else%>
             <%=image_tag  "/assets/store/not_marketing.png", :class=>"not-marketing"%>
       <%end%>

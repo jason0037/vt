@@ -97,6 +97,7 @@
 			<li>付款状态 : <%=@order.pay_status_text%></li>
 			<li>发货状态 : <%=@order.ship_status_text%></li>
 			<li>客户备注 : <%=@order.memo%></li>
+            <li>导购员: <%=@order.desktop_user_id%></li>
 		</ul>
 
 	</div>
@@ -165,7 +166,7 @@
 						<%if order_item.item_type=="gift"%>
 						<span class="hui">赠品</span>
 						<%end%>
-					<div>
+					</div>
 					<div class="spec-info"><%=order_item.product.spec_info%></div>
 				</td>
 				

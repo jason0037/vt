@@ -39,7 +39,7 @@ class Patch::MembersController < ApplicationController
   end
 
   def inventorylog
-    @inventorylog = @user.inventory_log.paginate(:page=>params[:page],:per_page=>10)
+    @inventorylog = @user.inventory_log.order("createtime desc").paginate(:page=>params[:page],:per_page=>10)
     add_breadcrumb("出入库记录")
   end
 

@@ -54,10 +54,8 @@
 	<td><%=order.status_text%></td>
 	<td><%=order.pay_status_text%></td>
 	<td><%=order.ship_status_text%></td>
-	<td><%=number_to_currency order.final_amount.to_i,:unit=>"&yen;",:precision=>0%></td>
-  <%if current_admin.has_right_of("members","index")%>
-    <td><%=number_to_currency order.final_amount.to_i*0.1,:unit=>"&yen;",:precision=>0%></td>
-  <%end%>
+	<td><%=number_to_currency order.final_amount,:unit=>"&yen;",:precision=>2%></td>
+    <td><%=number_to_currency order.final_amount*0.1,:unit=>"&yen;",:precision=>2 if order.desktop_user_id %></td>
 	<td><%=order.ship_name%></td>
 	<td><%=order.ship_addr%></td>
 	<td><%=order.ship_mobile%></td>

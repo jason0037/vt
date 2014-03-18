@@ -11,7 +11,7 @@ class Ecstore::Order < Ecstore::Base
       has_many :deliveries, :foreign_key=>"order_id"
 
       belongs_to :user,:foreign_key=>"member_id"
-      belongs_to :user,:foreign_key=>"desktop_user_id"
+      belongs_to :manager,:foreign_key=>"desktop_user_id"
 
       self.accessible_all_columns
 
