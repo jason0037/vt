@@ -54,22 +54,20 @@ class Patch::MembersController < ApplicationController
     workbook.styles do |s|
       head_cell = s.add_style  :b=>true, :sz => 10, :alignment => { :horizontal => :center,
                                                                     :vertical => :center}
-      goods_cell = s.add_style :b=>true,:bg_color=>"FFFACD", :sz => 10, :alignment => {:vertical => :top}
-      product_cell =  s.add_style  :sz => 9
+      product_cell =  s.add_style  :sz => 9, :alignment => {:vertical => :top}
 
-      workbook.add_worksheet(:name => "Product") do |sheet|
+      workbook.add_worksheet(:name => 'Product') do |sheet|
 
-        sheet.add_row ["出/入库","产品编号","条形码","图片","商品名称","价格" ,"出入库数量","库存", "出入库时间"],
-                      :style=>head_cell
+        sheet.add_row ['出/入库','产品编号','条形码','图片','商品名称','价格' ,'出入库数量','库存', '出入库时间'] ,:style=>head_cell
 
         row_count=0
 
         inventorylog.each do |log|
 
-          in_or_out =log.in_or_out=="true" ? "入库" : "出库"
+          in_or_out =log.in_or_out==true ? '入库' : '出库'
           createtime =Time.at(log.createtime).to_s
 #log.quantity.to_s,log.product_id.quantity.to_s,
-          sheet.add_row [in_or_out,log.bn,log.barcode.to_s,nil,log.name,log.price,createtime],:style=>goods_cell,:height=>50
+          sheet.add_row [in_or_out,log.bn,log.barcode.to_s,'',log.name,log.price,createtime] , :style=>product_cell,:height=>50
 
           row_count +=1
 
@@ -89,14 +87,7 @@ class Patch::MembersController < ApplicationController
       end
     end
 
-    filename = "inventory_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx"
-    wholepath = "#{Rails.root}/tmp/#{filename}"
-    package.serialize(wholepath)
-    send_file(wholepath,filename: filename, type: "application/xlsx")
-
-    if File.exist?(wholepath)
-      File.delete(wholepath)
-    end
+    send_data package.to_stream.read,:filename=>"inventory_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx"
   end
 
 	def advance

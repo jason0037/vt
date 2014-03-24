@@ -100,14 +100,8 @@ module Admin
           end
         end
 
-        filename = "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx"
-        wholepath = "#{Rails.root}/tmp/#{filename}"
-        package.serialize(wholepath)
-        send_file(wholepath,filename: filename, type: "application/xlsx")
+        send_data package.to_stream.read,:filename=>"goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx"
 
-        if File.exist?(wholepath)
-            File.delete(wholepath)
-        end
         #content = Ecstore::Good.export_cvs(fields,goods) #导出cvs
         # MS Office 需要转码
         # send_data(content, :type => 'text/csv',:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv")
