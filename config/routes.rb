@@ -396,6 +396,7 @@ Modengke::Application.routes.draw do
             get 'goods'
             get 'inventorys'
             get 'inventorylog'
+            post 'export_inventory'
           end
       end
 

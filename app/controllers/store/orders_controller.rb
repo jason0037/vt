@@ -3,6 +3,7 @@ class Store::OrdersController < ApplicationController
 
 	layout 'order'
 
+
   def out_inventory
     return_url =  request.env["HTTP_REFERER"]
     return_url =  member_goods_url if return_url.blank?

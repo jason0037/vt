@@ -37,6 +37,7 @@
 			<th>订单号</th>
 			<th>查看</th>
           <%if current_admin.has_right_of("orders","delivery")%>
+              <%@colnums=13%>
 			<th class="dropdown">
 				<%=link_to "#",:class=>"dropdown-toggle",:data=>{:toggle=>"dropdown"} do%>
 					订单操作 <b class="caret"></b>
@@ -52,7 +53,9 @@
 				</ul>
 			</th>
 			<th>打印</th>
-              <%end%>
+          <%else%>
+              <%@colnums=11%>
+          <%end%>
 			<th>标签</th>
 			<th>会员</th>
 			<th>下单时间</th>
@@ -61,16 +64,17 @@
 			<th>付款状态</th>
 			<th>发货状态</th>
 			<th>订单金额</th>
-          <%if current_admin.has_right_of("members","index")%>
-              <th>佣金</th>
-              <%end%>
+             <th>佣金</th>
 			<th>收货人</th>
 			<th>收货地址</th>
 			<th>收货人手机</th>
 		</tr>
 	</thead>
 	<tbody>
+        <%@total=0%>
 		<%=render :partial=>"order_tr",:collection=>@orders,:as=>:order%>
+        <td colspan="<%=@colnums%>"></td>
+        <td><%=number_to_currency @total,:unit=>"&yen;",:precision=>2%></td>
 	</tbody>
 </table>
 <div class="pagination">

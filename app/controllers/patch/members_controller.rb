@@ -1,4 +1,6 @@
 #encoding:utf-8
+require 'axlsx'
+
 class Patch::MembersController < ApplicationController
 	
 	before_filter :authorize_user!
@@ -41,6 +43,60 @@ class Patch::MembersController < ApplicationController
   def inventorylog
     @inventorylog = @user.inventory_log.order("createtime desc").paginate(:page=>params[:page],:per_page=>10)
     add_breadcrumb("出入库记录")
+  end
+
+  def export_inventory
+    #以后会加入时间区段限制条件
+    conditions = { :member_id=>current_account }
+    inventorylog = Ecstore::InventoryLog.where(conditions)
+    package = Axlsx::Package.new
+    workbook = package.workbook
+    workbook.styles do |s|
+      head_cell = s.add_style  :b=>true, :sz => 10, :alignment => { :horizontal => :center,
+                                                                    :vertical => :center}
+      goods_cell = s.add_style :b=>true,:bg_color=>"FFFACD", :sz => 10, :alignment => {:vertical => :top}
+      product_cell =  s.add_style  :sz => 9
+
+      workbook.add_worksheet(:name => "Product") do |sheet|
+
+        sheet.add_row ["出/入库","产品编号","条形码","图片","商品名称","价格" ,"出入库数量","库存", "出入库时间"],
+                      :style=>head_cell
+
+        row_count=0
+
+        inventorylog.each do |log|
+
+          in_or_out =log.in_or_out=="true" ? "入库" : "出库"
+          createtime =Time.at(log.createtime).to_s
+#log.quantity.to_s,log.product_id.quantity.to_s,
+          sheet.add_row [in_or_out,log.bn,log.barcode.to_s,nil,log.name,log.price,createtime],:style=>goods_cell,:height=>50
+
+          row_count +=1
+
+          filename="/home/trade/pics#{log.good.medium_pic}"
+          if not FileTest::exist?(filename)
+            filename = "#{Rails.root}/app/assets/images/gray_bg.png"
+          end
+          img = File.expand_path(filename)
+          sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
+            image.width=50
+            image.height=80
+            image.start_at 3,  row_count
+          end
+
+          sheet.column_widths nil, nil,nil,10
+        end
+      end
+    end
+
+    filename = "inventory_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx"
+    wholepath = "#{Rails.root}/tmp/#{filename}"
+    package.serialize(wholepath)
+    send_file(wholepath,filename: filename, type: "application/xlsx")
+
+    if File.exist?(wholepath)
+      File.delete(wholepath)
+    end
   end
 
 	def advance

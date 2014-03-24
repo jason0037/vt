@@ -6,9 +6,15 @@
     <a href="/member/inventorys">已入库商品</a>
   </li>
   <li class='active'>
+
     <a href="/member/inventorylog">出入库记录</a>
   </li>
 </ul>
+<span>
+  <%=form_for :member,:url=>export_inventory_member_path,:html => {:multipart => true} ,:method=>:post do |f|%>
+      <%= f.submit '导出库存记录', :class => "btn btn-primary" %>
+  <%end%>
+ </span>
 <table class="table table-striped" id="order_list">
   <tr>
     <th>商品号</th>

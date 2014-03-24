@@ -407,7 +407,13 @@ module Admin
             if i>3
                 pp "spec info ......"
                 pp row[20]
-                bn = row[4].strip
+                if row[4].nil?
+                  render :text=>"Line: #{i}"
+                  return
+                else
+                  bn = row[4].strip
+                end
+
                 #if !row[20].blank? #规格为空的为商品
                 if !row[0].blank? #品类为空的为商品
                     pp "staring...."

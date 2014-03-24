@@ -38,7 +38,7 @@
 			</div>
 		</div>
 	</p>
-  <%=form_for :good,:url=>export_admin_goods_path,:method=>:post do |f|%>
+  <%=form_for :member,:url=>export_admin_goods_path,:method=>:post do |f|%>
       <%= f.hidden_field :select_all,:class=>"sel_operation", :value => 0 %>
       <input type="hidden" name="all_goods_ids" value="<%=@goods_ids%>" />
 	<div id="selection">已选择了<b id="count">0</b>条记录!
