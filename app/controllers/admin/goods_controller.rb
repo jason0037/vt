@@ -11,7 +11,14 @@ module Admin
         fields =  params[:fields]
 
        #需要在此判断params[:batch][:goods_ids]是否为空
-        goods_ids =  params[:batch][:goods_ids] || []
+
+        if(params[:batch].nil?)
+          flash[:alert] = '请选择需要导出的商品'
+          goods_ids =[0]
+        else
+          goods_ids =  params[:batch][:goods_ids] || []
+        end
+
 
 
         if params[:good][:select_all].to_i > 0
