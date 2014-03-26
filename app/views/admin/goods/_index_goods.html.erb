@@ -2,6 +2,7 @@
 <thead>
 	<tr>
 		<th><input type="checkbox" id="select_page_all"></th>
+      <th class="order" data-field="supplier" data-sorter="asc">供应商</th>
 		<th class="order" data-field="brand_id" data-sorter="asc">品牌</th>
 		<th class="td-teg" style="display:none">标签</th>
 		<th class="order" data-field="bn" data-sorter="asc">商品编号</th>
@@ -26,7 +27,7 @@
 		<th class="order" data-field="uptime" data-sorter="asc"  style="display:none">上架时间</th>
 		<th class="order" data-field="cat_id" data-sorter="asc">分类</th>
 		<th class="order" data-field="type_id" data-sorter="asc">类型</th>
-		<th>操作</th>
+		<th style="width:120px">操作</th>
 	</tr>
 </thead>
 
@@ -35,7 +36,7 @@
 	<%@goods.each do |good|%>
 		<tr>
 			<td><%=check_box_tag "batch[goods_ids][]", good.goods_id, false, :id=>"good_#{good.goods_id}",:class=>"good"%></td>
-			
+          <td><%=good.supplier.name if good.supplier%></td>
 			<td><%=good.brand.brand_name if good.brand%></td>
 
 			<td class="td-teg"  style="display:none">
@@ -50,7 +51,7 @@
 			<td><%=link_to good.name,good_path(good.bn),:target=>"_blank"%></td>
 			<td align="center">
 				<%=link_to "#", :class=>"hover-thumb", :data=>{ :thumb => good.list_default_pic||"",:title=>"#{good.name}(#{good.bn})" } do%>
-					<i class="icon-camera"></i>
+					<%=image_tag good.list_default_pic, :size => "35x50"%>
 				<%end%>
 			</td>
           <%if current_admin.has_right_of("goods","edit")%>

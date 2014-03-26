@@ -20,12 +20,13 @@ class Ecstore::Good < Ecstore::Base
   attr_accessor :up_or_down
   attr_accessible :up_or_down
 
-  has_many :image_attachs,
+ belongs_to :supplier, :foreign_key=>"supplier"
+ has_many :order_items,:foreign_key=>"goods_id"
+ has_many :image_attachs,
   		       :foreign_key=>"target_id",
   		       :conditions=>{:target_type=>"goods"}
 
-  has_many :images,
-  			:through=>:image_attachs
+  has_many :images,	:through=>:image_attachs
 
   belongs_to :cat,:class_name=>"Category",:foreign_key=>"cat_id"
 

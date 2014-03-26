@@ -16,27 +16,25 @@ class Admin::OrdersController < Admin::BaseController
 
 		if !params[:ship_status].nil?
 			@orders_nw = @orders_nw.where(:ship_status=>params[:ship_status])
-		end
-		@order_ids = @orders_nw.pluck(:order_id)
+    end
 
-    if (current_admin.login_name=="sale_0001")
-      @orders = @orders_nw.where(:desktop_user_id=>current_admin.account_id).paginate(:page=>params[:page],:per_page=>30)
-    elsif (current_admin.login_name=="sale_0002")
-      @orders = @orders_nw.where(:desktop_user_id=>current_admin.account_id).paginate(:page=>params[:page],:per_page=>30)
-      elsif (current_admin.login_name=="vendor_0001") #味来岛
-      @orders = @orders_nw.includes(:user).joins(:order_items).where('sdb_b2c_order_items.goods_id in (3469,3465)').paginate(:page=>params[:page],:per_page=>30)
-      elsif (current_admin.login_name=="vendor_0002") #数贸
-      @orders = @orders_nw.includes(:user).joins(:order_items).where('sdb_b2c_order_items.goods_id<3469').paginate(:page=>params[:page],:per_page=>30)
-      elsif (current_admin.login_name=="vendor_ybpx") #
-      @orders = @orders_nw.includes(:user).joins(:order_items).where('sdb_b2c_order_items.goods_id=3468').paginate(:page=>params[:page],:per_page=>30)
-      elsif (current_admin.login_name=="vendor_xss") #
-      @orders = @orders_nw.includes(:user).joins(:order_items).where('sdb_b2c_order_items.goods_id in (3466,3467)').paginate(:page=>params[:page],:per_page=>30)
+		@order_ids = @orders_nw.pluck(:order_id)
+    role=current_admin.login_name.split( "_")[0]
+    if (role=="sale")
+      @orders = @orders_nw.where(:desktop_user_id=>current_admin.account_id)
+
+    elsif (role=="vendor")
+      vendor={'vendor_0001'=>66, 'vendor_0002'=>65,'vendor_ybpx'=>72,'vendor_xss'=>73,'vendor_xgy'=>63,'vendor_xj'=>64}
+     # @orders = @orders_nw.joins(:order_items).where('sdb_b2c_order_items.goods_id in (3466,3467)')
+        @orders = @orders_nw.joins(:order_items)
+        .where("sdb_b2c_order_items.goods_id in (select goods_id from sdb_b2c_goods where supplier=#{vendor[current_admin.login_name]})")
 
     elsif (current_admin.login_name=="admin")
-      @orders = @orders_nw.includes(:user).paginate(:page=>params[:page],:per_page=>30)
+      @orders = @orders_nw
   else
-  	  @orders = @orders_nw.includes(:user).where(:member_id=>"0").paginate(:page=>params[:page],:per_page=>30)
-    end
+  	  @orders = @orders_nw.where(:member_id=>"0")
+  end
+    @orders = @orders.includes(:user).paginate(:page=>params[:page],:per_page=>30)
 		respond_to do |format|
 			format.js
 			format.html

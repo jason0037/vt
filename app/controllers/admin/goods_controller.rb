@@ -42,20 +42,20 @@ module Admin
 
           workbook.add_worksheet(:name => "Product") do |sheet|
 
-          sheet.add_row ["类型","商品编号","规格货号","分类","品牌","图片","商品名称","上架", "规格","库存" ,fields[0],fields[1],fields[2],fields[3],fields[4],fields[5]],
+          sheet.add_row ['供应商',"类型","商品编号","规格货号","分类","品牌","图片","商品名称","上架", "规格","库存" ,fields[0],fields[1],fields[2],fields[3],fields[4],fields[5]],
                         :style=>head_cell
 
             row_count=0
 
             goods.each do |good|
-
+              supplier=good.supplier&&good.supplier.name
               goodsType=good.good_type&&good.good_type.name
               goodsBn=good.bn.to_s
               goodsCat=good.cat&&good.cat.full_path_name
               goodsBrand=good.brand&&good.brand.brand_name
               goodsMt =good.marketable=="true" ? "Y" : "N"
               goodsSpec =good.specs.order("sdb_b2c_specification.spec_id asc").pluck(:spec_name).join("|")
-              sheet.add_row [goodsType,goodsBn.strip,nil,goodsCat.strip,goodsBrand,nil,good.name.strip,goodsMt,goodsSpec],:style=>goods_cell,:height=>30
+              sheet.add_row [supplier,goodsType,goodsBn.strip,nil,goodsCat.strip,goodsBrand,nil,good.name.strip,goodsMt,goodsSpec],:style=>goods_cell,:height=>30
 
               row_count +=1
 
@@ -67,7 +67,7 @@ module Admin
               sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
                 image.width=50
                 image.height=80
-                image.start_at 5,  row_count
+                image.start_at 6,  row_count
               end
 
               good.products.each do |product|
@@ -239,15 +239,10 @@ module Admin
             end
 
             @order = "goods_id desc" if @order.blank?
-
-            if (current_admin.login_name=="vendor_0001")
-              @goods = Ecstore::Good.where(:supplier =>"66").order(@order)
-            elsif (current_admin.login_name=="vendor_0002")
-              @goods = Ecstore::Good.where(:supplier =>"65").order(@order)
-            elsif (current_admin.login_name=="vendor_ybpx")
-              @goods = Ecstore::Good.where(:supplier =>"72").order(@order)
-            elsif (current_admin.login_name=="vendor_xss")
-              @goods = Ecstore::Good.where(:supplier =>"73").order(@order)
+            vendor={'vendor_0001'=>66, 'vendor_0002'=>65,'vendor_ybpx'=>72,'vendor_xss'=>73,'vendor_xgy'=>63,'vendor_xj'=>64}
+            role=current_admin.login_name.split( "_")[0]
+            if (role=="vendor")
+              @goods = Ecstore::Good.where(:supplier =>vendor[current_admin.login_name]).order(@order)
             else
               @goods = Ecstore::Good.order(@order)
             end

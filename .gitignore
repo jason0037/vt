@@ -2,6 +2,7 @@ tmp/**/*
 log/**/*
 /log/delelopment.log
 /Gemfile.lock
+/Gemfile
 sprockets*
 /log/development.log
 /tmp/cache/assets/CEC/BA0/sprockets%2Ffc4635fc39ae233886784a640c907b5d
