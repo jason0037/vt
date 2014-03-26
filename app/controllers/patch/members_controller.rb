@@ -64,7 +64,7 @@ class Patch::MembersController < ApplicationController
 
         inventorylog.each do |log|
 
-          in_or_out =log.in_or_out==true ? '入库' : '出库'
+          in_or_out =log.in_or_out== "\1"  ? '入库' : '出库'
           createtime =Time.at(log.createtime).to_s
 #log.quantity.to_s,log.product_id.quantity.to_s,
           sheet.add_row [in_or_out,log.bn,log.barcode.to_s,nil,log.name,log.price,log.quantity,createtime] ,
