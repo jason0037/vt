@@ -5,6 +5,7 @@ require 'modec_pay/bcom'
 require 'modec_pay/icbc'
 require 'modec_pay/offline'
 require 'modec_pay/deposit'
+require 'modec_pay/ips'
 
 module ModecPay
 
@@ -36,7 +37,8 @@ module ModecPay
 
 		def adapters
 			{
-				 'alipay' => ModecPay::Alipay,
+          'ips' => ModecPay::Ips,
+          'alipay' => ModecPay::Alipay,
 				 '99bill' => ModecPay::Bill99,
 				 'bcom' => ModecPay::Bcom,
 				 'icbc' => ModecPay::Icbc,

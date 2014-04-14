@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="551a286c-2c66-41e3-9022-bb03cf26743e" name="Default" comment="" />
+    <list default="true" id="551a286c-2c66-41e3-9022-bb03cf26743e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/modec_pay/ext/bcom/B2CMerchant_test.xml" afterPath="$PROJECT_DIR$/lib/modec_pay/ext/bcom/B2CMerchant_test.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/active_api.rb" afterPath="$PROJECT_DIR$/lib/active_api.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/modec_pay/alipay.rb" afterPath="$PROJECT_DIR$/lib/modec_pay/alipay.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/active_api/base.rb" afterPath="$PROJECT_DIR$/lib/active_api/base.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/bcom.rake" afterPath="$PROJECT_DIR$/lib/tasks/bcom.rake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/modec_pay/bcom.rb" afterPath="$PROJECT_DIR$/lib/modec_pay/bcom.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/modec_pay/bill99.rb" afterPath="$PROJECT_DIR$/lib/modec_pay/bill99.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/config.rake" afterPath="$PROJECT_DIR$/lib/tasks/config.rake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/active_api/configuration.rb" afterPath="$PROJECT_DIR$/lib/active_api/configuration.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/active_api/connection.rb" afterPath="$PROJECT_DIR$/lib/active_api/connection.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/modec_pay/deposit.rb" afterPath="$PROJECT_DIR$/lib/modec_pay/deposit.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/utils/deserialize.rb" afterPath="$PROJECT_DIR$/lib/utils/deserialize.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/footer.rake" afterPath="$PROJECT_DIR$/lib/tasks/footer.rake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/active_api/http.rb" afterPath="$PROJECT_DIR$/lib/active_api/http.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/modec_pay/icbc.rb" afterPath="$PROJECT_DIR$/lib/modec_pay/icbc.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/modec_pay/ext/icbc/icbc_sign.java" afterPath="$PROJECT_DIR$/lib/modec_pay/ext/icbc/icbc_sign.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/modec_pay/ext/icbc/icbc_verify.java" afterPath="$PROJECT_DIR$/lib/modec_pay/ext/icbc/icbc_verify.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/modec_pay.rb" afterPath="$PROJECT_DIR$/lib/modec_pay.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/modec_pay/offline.rb" afterPath="$PROJECT_DIR$/lib/modec_pay/offline.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/modec_pay/payment.rb" afterPath="$PROJECT_DIR$/lib/modec_pay/payment.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/active_api/provider.rb" afterPath="$PROJECT_DIR$/lib/active_api/provider.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/resources.rake" afterPath="$PROJECT_DIR$/lib/tasks/resources.rake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/resources.yml" afterPath="$PROJECT_DIR$/lib/tasks/resources.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/seo.rake" afterPath="$PROJECT_DIR$/lib/tasks/seo.rake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/utils/serializable.rb" afterPath="$PROJECT_DIR$/lib/utils/serializable.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/utils/serialize.rb" afterPath="$PROJECT_DIR$/lib/utils/serialize.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/sign.rb" afterPath="$PROJECT_DIR$/lib/tasks/sign.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/sitemap.rake" afterPath="$PROJECT_DIR$/lib/tasks/sitemap.rake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/sms.rb" afterPath="$PROJECT_DIR$/lib/sms.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/test.rb" afterPath="$PROJECT_DIR$/lib/test.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/modec_pay/test.rb" afterPath="$PROJECT_DIR$/lib/modec_pay/test.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/tasks/test_icbc.rb" afterPath="$PROJECT_DIR$/lib/tasks/test_icbc.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/test_util.rb" afterPath="$PROJECT_DIR$/lib/test_util.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/utils.rb" afterPath="$PROJECT_DIR$/lib/utils.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="vt.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,19 +59,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="goods_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/admin/goods_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="241" column="11" selection-start="8469" selection-end="8469" vertical-scroll-proportion="0.0" vertical-offset="4430" max-vertical-offset="10716">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="inventorylog.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/patch/members/inventorylog.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="65" selection-start="1463" selection-end="1463" vertical-scroll-proportion="-11.535714" vertical-offset="513" max-vertical-offset="1235">
+            <state line="44" column="65" selection-start="1463" selection-end="1463" vertical-scroll-proportion="0.0" vertical-offset="513" max-vertical-offset="1235">
               <folding />
             </state>
           </provider>
@@ -50,15 +77,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="orders_controller.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/admin/orders_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="4" selection-start="674" selection-end="718" vertical-scroll-proportion="0.0" vertical-offset="189" max-vertical-offset="8512">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="_new_single.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/store/goods/_new_single.html.erb">
           <provider selected="true" editor-type-id="text-editor">
@@ -68,28 +86,56 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.erb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/store/goods/show.html.erb">
+      <file leaf-file-name="modec_pay.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/modec_pay.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="532">
-              <folding>
-                <marker date="1392004841594" expanded="true" signature="80:151" placeholder="..." />
-                <marker date="1392004841594" expanded="true" signature="177:248" placeholder="..." />
-                <marker date="1392004841594" expanded="true" signature="293:398" placeholder="..." />
-                <marker date="1392004841594" expanded="true" signature="475:585" placeholder="..." />
-                <marker date="1392004841594" expanded="true" signature="506:576" placeholder="{...}" />
-              </folding>
+            <state line="31" column="0" selection-start="783" selection-end="783" vertical-scroll-proportion="0.0" vertical-offset="488" max-vertical-offset="1083">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_new_detail.html.erb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/store/goods/_new_detail.html.erb">
+      <file leaf-file-name="ips.rb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/modec_pay/ips.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="34" selection-start="145" selection-end="145" vertical-scroll-proportion="0.13868614" vertical-offset="0" max-vertical-offset="548">
-              <folding>
-                <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2717">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/modec_pay/test.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="payment.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/modec_pay/payment.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="90" column="0" selection-start="2071" selection-end="2071" vertical-scroll-proportion="0.0" vertical-offset="1400" max-vertical-offset="1976">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bill99.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/modec_pay/bill99.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="150" column="0" selection-start="4182" selection-end="4182" vertical-scroll-proportion="0.0" vertical-offset="2502" max-vertical-offset="3078">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utils.rb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/utils.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="513">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -97,7 +143,7 @@
       <file leaf-file-name="_more.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/store/goods/product/_more.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="0" selection-start="758" selection-end="758" vertical-scroll-proportion="-15.5" vertical-offset="136" max-vertical-offset="684">
+            <state line="30" column="0" selection-start="758" selection-end="758" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="684">
               <folding>
                 <marker date="1392004841507" expanded="true" signature="47:88" placeholder="..." />
                 <marker date="1392004841507" expanded="true" signature="135:163" placeholder="..." />
@@ -124,7 +170,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/controllers/store/cats_controller.rb" />
         <option value="$PROJECT_DIR$/app/helpers/store/orders_helper.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20140310170622_create_table_inventory.rb" />
         <option value="$PROJECT_DIR$/app/views/patch/members/orders.html.erb" />
@@ -175,12 +220,13 @@
         <option value="$PROJECT_DIR$/app/controllers/patch/members_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/patch/members/inventorylog.html.erb" />
         <option value="$PROJECT_DIR$/app/views/store/goods/_new_detail.html.erb" />
+        <option value="$PROJECT_DIR$/lib/modec_pay.rb" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="61" />
-    <option name="y" value="-8" />
+    <option name="x" value="54" />
+    <option name="y" value="-2" />
     <option name="width" value="1313" />
     <option name="height" value="780" />
   </component>
@@ -225,6 +271,52 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="vt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modec_pay" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vt" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -399,15 +491,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="61" y="-8" width="1313" height="780" extended-state="0" />
-    <editor active="false" />
+    <frame x="54" y="-2" width="1313" height="780" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25418326" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25816733" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -442,36 +534,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/home/_slider.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="608" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/_products.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2299" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/_new_hots.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1881" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/_keywords.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="558" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/_events.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1254" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/_brands.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1558" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/store/shared/_new_header.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1159" />
@@ -539,9 +601,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="0" selection-start="2217" selection-end="2217" vertical-scroll-proportion="0.37691003" vertical-offset="1127" max-vertical-offset="1919">
-          <folding />
-        </state>
+        <state line="71" column="0" selection-start="2217" selection-end="2217" vertical-scroll-proportion="0.37691003" vertical-offset="1127" max-vertical-offset="1919" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/store/goods/index.html.erb">
@@ -614,9 +674,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/admin/suppliers/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="722">
-          <folding>
-            <marker date="1392004836174" expanded="true" signature="-1:-1" placeholder="do ... end" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -627,16 +685,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/ecstore/order_item.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="55" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="608">
-          <folding />
-        </state>
+        <state line="7" column="55" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="608" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/ecstore/order.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6422">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6422" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/ecstore/good.rb">
@@ -647,22 +701,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/admin/goods/_index_goods.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="4" selection-start="2045" selection-end="2045" vertical-scroll-proportion="0.0" vertical-offset="626" max-vertical-offset="1957">
-          <folding>
-            <marker date="1395749892131" expanded="true" signature="-1:-1" placeholder="if ... end" />
-            <marker date="1395749892131" expanded="true" signature="-1:-1" placeholder="if ... end" />
-            <marker date="1395749892131" expanded="true" signature="-1:-1" placeholder="if ... end" />
-            <marker date="1395749892131" expanded="true" signature="-1:-1" placeholder="if ... end" />
-            <marker date="1395749892131" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1395749892131" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1395749892131" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1395749892131" expanded="true" signature="-1:-1" placeholder="if ... end" />
-            <marker date="1395749892131" expanded="true" signature="-1:-1" placeholder="if ... end" />
-            <marker date="1395749892131" expanded="true" signature="-1:-1" placeholder="if ... end" />
-            <marker date="1395749892131" expanded="true" signature="-1:-1" placeholder="if ... end" />
-            <marker date="1395749892131" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1395749892131" expanded="true" signature="-1:-1" placeholder="do ... end" />
-            <marker date="1395749892131" expanded="true" signature="-1:-1" placeholder="do ... end" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -689,14 +728,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/patch/members/inventorylog.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="65" selection-start="1463" selection-end="1463" vertical-scroll-proportion="-11.535714" vertical-offset="513" max-vertical-offset="1235">
+        <state line="44" column="65" selection-start="1463" selection-end="1463" vertical-scroll-proportion="0.0" vertical-offset="513" max-vertical-offset="1235">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/store/goods/product/_more.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="758" selection-end="758" vertical-scroll-proportion="-15.5" vertical-offset="136" max-vertical-offset="684">
+        <state line="30" column="0" selection-start="758" selection-end="758" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="684">
           <folding>
             <marker date="1392004841507" expanded="true" signature="47:88" placeholder="..." />
             <marker date="1392004841507" expanded="true" signature="135:163" placeholder="..." />
@@ -711,28 +750,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/store/goods/product/_custom.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="563">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="563" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/store/goods/product/suits.js.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="554">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="554" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/store/goods/product/_spec.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1064">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1064" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/store/goods/product/_new_spec.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="6" selection-start="2930" selection-end="2930" vertical-scroll-proportion="0.7869159" vertical-offset="624" max-vertical-offset="1159">
+        <state line="55" column="6" selection-start="2930" selection-end="2930" vertical-scroll-proportion="0.7869159" vertical-offset="624" max-vertical-offset="1159" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/store/goods/_new_detail.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="34" selection-start="145" selection-end="145" vertical-scroll-proportion="0.13818182" vertical-offset="0" max-vertical-offset="550">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/store/goods/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="532">
           <folding />
         </state>
       </provider>
@@ -744,25 +789,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/store/goods/show.html.erb">
+    <entry file="file://$PROJECT_DIR$/lib/modec_pay/test.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="532">
-          <folding>
-            <marker date="1392004841594" expanded="true" signature="80:151" placeholder="..." />
-            <marker date="1392004841594" expanded="true" signature="177:248" placeholder="..." />
-            <marker date="1392004841594" expanded="true" signature="293:398" placeholder="..." />
-            <marker date="1392004841594" expanded="true" signature="475:585" placeholder="..." />
-            <marker date="1392004841594" expanded="true" signature="506:576" placeholder="{...}" />
-          </folding>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="779">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/store/goods/_new_detail.html.erb">
+    <entry file="file://$PROJECT_DIR$/lib/modec_pay/payment.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="34" selection-start="145" selection-end="145" vertical-scroll-proportion="0.13868614" vertical-offset="0" max-vertical-offset="548">
-          <folding>
-            <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state line="90" column="0" selection-start="2071" selection-end="2071" vertical-scroll-proportion="0.0" vertical-offset="1400" max-vertical-offset="1976">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/modec_pay/bill99.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="150" column="0" selection-start="4182" selection-end="4182" vertical-scroll-proportion="0.0" vertical-offset="2502" max-vertical-offset="3078">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/utils.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="576">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/modec_pay.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="783" selection-end="783" vertical-scroll-proportion="0.0" vertical-offset="488" max-vertical-offset="1083">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/modec_pay/ips.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2717">
+          <folding />
         </state>
       </provider>
     </entry>
