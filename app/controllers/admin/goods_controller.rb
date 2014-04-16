@@ -10,7 +10,6 @@ module Admin
       def export
         fields =  params[:fields]
 
-       #需要在此判断params[:batch][:goods_ids]是否为空
 
         if(params[:batch].nil?)
           flash[:alert] = '请选择需要导出的商品'
@@ -18,7 +17,6 @@ module Admin
         else
           goods_ids =  params[:batch][:goods_ids] || []
         end
-
 
 
         if params[:good][:select_all].to_i > 0
@@ -37,7 +35,7 @@ module Admin
         workbook.styles do |s|
           head_cell = s.add_style  :b=>true, :sz => 10, :alignment => { :horizontal => :center,
                                                                         :vertical => :center}
-          goods_cell = s.add_style :b=>true,:bg_color=>"FFFACD", :sz => 10, :alignment => {:vertical => :top}
+          goods_cell = s.add_style :b=>true,:bg_color=>"FFFACD", :sz => 10, :alignment => {:vertical => :center}
           product_cell =  s.add_style  :sz => 9
 
           workbook.add_worksheet(:name => "Product") do |sheet|
@@ -55,7 +53,7 @@ module Admin
               goodsBrand=good.brand&&good.brand.brand_name
               goodsMt =good.marketable=="true" ? "Y" : "N"
               goodsSpec =good.specs.order("sdb_b2c_specification.spec_id asc").pluck(:spec_name).join("|")
-              sheet.add_row [supplier,goodsType,goodsBn.strip,nil,goodsCat.strip,goodsBrand,nil,good.name.strip,goodsMt,goodsSpec],:style=>goods_cell,:height=>30
+              sheet.add_row [supplier,goodsType,goodsBn.strip,nil,goodsCat.strip,goodsBrand,nil,good.name.strip,goodsMt,goodsSpec],:style=>goods_cell,:height=> 40
 
               row_count +=1
 
@@ -66,7 +64,7 @@ module Admin
               img = File.expand_path(filename)
               sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
                 image.width=50
-                image.height=80
+                image.height=75
                 image.start_at 6,  row_count
               end
 
@@ -99,7 +97,7 @@ module Admin
                     v.push(product.mktprice)
                   end
                 end
-                sheet.add_row [nil,nil,productBn,nil,nil,nil,product.name.strip, productMt,spec_values,product.store,v[0],v[1],v[2],v[3],v[4],v[5]],:style=>product_cell
+                sheet.add_row [nil,nil,productBn,nil,nil,nil,nil,product.name.strip, productMt,spec_values,product.store,v[0],v[1],v[2],v[3],v[4],v[5]],:style=>product_cell
               end
 
               sheet.column_widths nil, nil,nil,nil,nil,10
@@ -391,10 +389,13 @@ module Admin
         pp "starting import ..."
         sheet = book.worksheet(0)
         spec_id = ""
+
         supplier =sheet[0,1]
         supplierT = Ecstore::Supplier.unscoped.find_by_name(supplier)
         if !supplierT.blank?
           supplier = supplierT.id
+        else
+          supplier=0
         end
         good_type = Ecstore::GoodType.find_by_name(sheet[1,1])
         @good = Ecstore::Good.new

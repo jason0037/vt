@@ -7,14 +7,18 @@ module ModecPay
 		
 		def initialize
 			super
-
+=begin
 			#测试环境begin
       self.mer_id = '000015'
       self.private_key ='GDgLwwdK270Qj1w4xho8lyTpRQZV9Jm5x4NwWOTThUa4fMhEBK9jOXFrKRT6xhlJuU2FEa89ov0ryyjfJuuPkcGzO5CeVx5ZIrkkt1aBlZV36ySvHOMcNv8rncRiy3DQ'
       self.action = 'https://pay.ips.net.cn/ipayment.aspx'
       #测试环境end
-
-			# self.action = 'https://pay.ips.com.cn/ipayment.aspx' # real
+=end
+      #生产环境begin
+      self.mer_id = '026824'
+      self.private_key ='67500813039244903894807512175740448373826983882523618896908763738870562996891363055213255137515215490195061109453460851561433548'
+			self.action = 'https://pay.ips.com.cn/ipayment.aspx'
+      #生产环境begin
 
 			self.method = 'post'
 			self.charset ='gbk'
@@ -72,7 +76,7 @@ module ModecPay
             "ipsbillno"=>params["ipsbillno"],
             "retencodetype"=>params["retencodetype"]
         }
-        private_key ='GDgLwwdK270Qj1w4xho8lyTpRQZV9Jm5x4NwWOTThUa4fMhEBK9jOXFrKRT6xhlJuU2FEa89ov0ryyjfJuuPkcGzO5CeVx5ZIrkkt1aBlZV36ySvHOMcNv8rncRiy3DQ'
+        private_key ='67500813039244903894807512175740448373826983882523618896908763738870562996891363055213255137515215490195061109453460851561433548'
 
         unsign = unsign_hash.select{ |key,val| val.present? }.collect do |key,val|
           "#{key}#{val}"
