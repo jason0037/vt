@@ -397,6 +397,7 @@ module Admin
         else
           supplier=0
         end
+
         good_type = Ecstore::GoodType.find_by_name(sheet[1,1])
         @good = Ecstore::Good.new
         sheet.each_with_index do |row,i|
@@ -411,7 +412,6 @@ module Admin
                   bn = row[4].strip
                 end
 
-                #if !row[20].blank? #规格为空的为商品
                 if !row[0].blank? #品类为空的为商品
                     pp "staring...."
                     @new_good = Ecstore::Good.find_by_bn(bn)
@@ -422,7 +422,7 @@ module Admin
                         @good.bn = bn
                     end
                     @good.type_id = good_type.type_id
-
+                    @good.supplier = supplier
                     cat_arr = row[0].split("->")
                     cat_deep = cat_arr.length - 1
                     good_cat = Ecstore::GoodCat.find_by_cat_name(cat_arr[cat_deep])
@@ -436,24 +436,23 @@ module Admin
                     end
                     @good.name = row[6]
                     @good.unit = row[8]
-                    @good.price = row[17]
-                    @good.mktprice = row[18]
-                    @good.bulk = row[15]
-                    @good.cost = row[13]
-                    @good.wholesale = row[14]
-                    @good.promotion=row[16]
-                    @good.supplier = supplier
                     @good.store = row[10]
                     country_name =row[11]
                     if !country_name.blank?
-                        result = Ecstore::Country.find_by_country_name(country_name)
-                        if result.blank?
-                            country = Ecstore::Country.new
-                            country.country_name = country_name
-                            country.save
-                        end
+                      result = Ecstore::Country.find_by_country_name(country_name)
+                      if result.blank?
+                        country = Ecstore::Country.new
+                        country.country_name = country_name
+                        country.save
+                      end
                     end
                     @good.place = row[11]
+                    @good.cost = row[13]
+                    @good.wholesale = row[14]
+                    @good.bulk = row[15]
+                    @good.promotion=row[16]
+                    @good.price = row[17]
+                    @good.mktprice = row[18]
                     @good.desc = row[19]
                     @good.place_info = row[20]
                     @good.spec_info = row[21]

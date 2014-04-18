@@ -13,14 +13,18 @@ class Ecstore::Good < Ecstore::Base
   scope :selling, where(:marketable=>'true')
 
   # attr_accessible :desc, :material, :mesure, :softness, :thickness, :elasticity, :fitness, :try_on,:price,:mktprice,:store,:name,
-  #                          :cat_id,:brand_id
+  #                          :cat_id,:brand_id,:supplier
 
   accessible_all_columns
-
   attr_accessor :up_or_down
-  attr_accessible :up_or_down
+  attr_accessor :supplier
+
 
  belongs_to :supplier, :foreign_key=>"supplier"
+ belongs_to :cat,:class_name=>"Category",:foreign_key=>"cat_id"
+ belongs_to :brand, :foreign_key=>"brand_id"
+ belongs_to :default_image, :foreign_key=>"image_default_id",:class_name=>"Image"
+
  has_many :order_items,:foreign_key=>"goods_id"
  has_many :image_attachs,
   		       :foreign_key=>"target_id",
@@ -28,11 +32,6 @@ class Ecstore::Good < Ecstore::Base
 
   has_many :images,	:through=>:image_attachs
 
-  belongs_to :cat,:class_name=>"Category",:foreign_key=>"cat_id"
-
-
-  belongs_to :brand, :foreign_key=>"brand_id"
-  belongs_to :default_image, :foreign_key=>"image_default_id",:class_name=>"Image"
 
   attr_accessible :products_attributes
   has_many :products, :foreign_key=>"goods_id",:class_name=>"Ecstore::Product",:dependent=>:destroy
@@ -262,7 +261,7 @@ class Ecstore::Good < Ecstore::Base
 
   def is_suit?
       cat = Ecstore::Category.where(:parent_id=>0,:cat_name=>SUIT_NAME).first
-      
+
       return false unless cat
       self.cat_id == cat.cat_id
   end
@@ -329,7 +328,7 @@ class Ecstore::Good < Ecstore::Base
     spec.push @sizes_s
     return spec.serialize
   end
-  #  Params 
+  #  Params
   #  *return_type == 'record                        'SpecValue array
   #  *return_type == 'other                       'e_id array
   def color_specs(return_type='record')
@@ -337,7 +336,7 @@ class Ecstore::Good < Ecstore::Base
      return []  if self.spec_desc.blank?
      return [] if self.spec_desc[spec_color_id].blank?
 
-    
+
      self.spec_desc[spec_color_id].collect do |private_spec_value_id,spec|
         if return_type == 'record'
           Ecstore::SpecValue.find(spec["spec_value_id"])
@@ -370,7 +369,7 @@ class Ecstore::Good < Ecstore::Base
     # return []  if color.blank?
     # pattern  = "#{Rails.root}/public/pic/product/#{self.bn}/#{style}/#{color}/*.#{format}"
 
-    # Dir.glob(pattern).collect do  |file| 
+    # Dir.glob(pattern).collect do  |file|
     #       "/pic/product/#{self.bn}/#{style}/#{color}/#{File.basename(file)}"
     # end.sort{|x,y| y<=>x}
   end
@@ -381,7 +380,7 @@ class Ecstore::Good < Ecstore::Base
 
   def list_pictures(format=:jpg)
     pattern  = "#{Rails.root}/public/pic/product/#{self.bn}/list/*.#{format}"
-    Dir.glob(pattern).collect do  |file| 
+    Dir.glob(pattern).collect do  |file|
             "/pic/product/#{self.bn}/list/#{File.basename(file)}"
     end.sort{|x,y| x<=>y}
   end
@@ -412,7 +411,7 @@ class Ecstore::Good < Ecstore::Base
 
   def home_pictures(format='jpg')
     pattern  = "#{Rails.root}/public/pic/product/#{self.bn}/list/*.#{format}"
-    Dir.glob(pattern).collect do  |file| 
+    Dir.glob(pattern).collect do  |file|
             "/pic/product/#{self.bn}/list/#{File.basename(file)}"
     end.sort{ |x,y| x<=>y }
   end
@@ -428,7 +427,7 @@ class Ecstore::Good < Ecstore::Base
   def suit_cover
       "/pic/product/#{self.bn}/suit_cover.gif"
   end
-  
+
   def home_top_thumbnail
     "/pic/product/#{self.bn}/top.jpg"
   end
@@ -441,7 +440,7 @@ class Ecstore::Good < Ecstore::Base
   def pictures_for_mobile(color,size_prefix,format='jpg')
     public_path = "#{Rails.root}/public"
     pattern  = "#{public_path}/pic/product/#{self.bn}/mobile/#{color}/#{size_prefix}_[0-9].#{format}"
-    Dir.glob(pattern).collect do  |file| 
+    Dir.glob(pattern).collect do  |file|
             file[public_path]=""
             file
     end.sort{ |x,y| y<=>x }
@@ -520,7 +519,7 @@ class Ecstore::Good < Ecstore::Base
 
 
   def store2
-     products.collect{ |p| p.p_store}.inject(:+) 
+     products.collect{ |p| p.p_store}.inject(:+)
   end
-  
+
 end
