@@ -2,7 +2,7 @@
 	<div class="name">
 		最新商品
 	</div>
-		<%goods = Ecstore::Good.where(:supplier=>@supplier.id,:marketable=>'true',:sell=>true).order("goods_id desc").limit(12)%>
+		<%goods = Ecstore::Good.where(:supplier_id=>@supplier.id,:marketable=>'true',:sell=>true).order("goods_id desc").limit(12)%>
 	<ul class="goods clearfix">
 			<%goods.each do |good|%>
 				<li>

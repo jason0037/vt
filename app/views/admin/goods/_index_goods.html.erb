@@ -36,7 +36,7 @@
 	<%@goods.each do |good|%>
 		<tr>
 			<td><%=check_box_tag "batch[goods_ids][]", good.goods_id, false, :id=>"good_#{good.goods_id}",:class=>"good"%></td>
-          <td><%=good.supplier.name if good.supplier%></td>
+            <td><%=good.supplier.name if good.supplier%></td>
 			<td><%=good.brand.brand_name if good.brand%></td>
 
 			<td class="td-teg"  style="display:none">

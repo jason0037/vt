@@ -46,7 +46,7 @@ module Admin
             row_count=0
 
             goods.each do |good|
-              supplier=good.supplier&&good.supplier.name
+              supplier=good.supplier_id&&good.supplier.name
               goodsType=good.good_type&&good.good_type.name
               goodsBn=good.bn.to_s
               goodsCat=good.cat&&good.cat.full_path_name
@@ -229,7 +229,6 @@ module Admin
 
             marketable = params[:marketable].to_s
 
-
             if params[:order].present?
                 @field, @sorter = params[:order].split("-")
                 @order = "#{@field} #{@sorter}"
@@ -240,11 +239,11 @@ module Admin
             vendor={'vendor_0001'=>66, 'vendor_0002'=>65,'vendor_ybpx'=>72,'vendor_xss'=>73,'vendor_xgy'=>63,'vendor_xj'=>64}
             role=current_admin.login_name.split( "_")[0]
             if (role=="vendor")
-              @goods = Ecstore::Good.where(:supplier =>vendor[current_admin.login_name]).order(@order)
+              @goods = Ecstore::Good.where(:supplier_id =>vendor[current_admin.login_name]).order(@order)
             else
               @goods = Ecstore::Good.order(@order)
             end
-			@goods = @goods.includes(:cat,:brand,:good_type,:tegs)
+		#	@goods = @goods.includes(:cat,:brand,:good_type,:tegs,:supplier)
 
             if marketable.present?
                 @goods =  @goods.where(:marketable=>marketable)
@@ -382,7 +381,6 @@ module Admin
             end
       end
 
-
       def import(options={:encoding=>"GB18030:UTF-8"})
         file = params[:good][:file].tempfile
         book = Spreadsheet.open(file)
@@ -422,7 +420,7 @@ module Admin
                         @good.bn = bn
                     end
                     @good.type_id = good_type.type_id
-                    @good.supplier = supplier
+                    @good.supplier_id = supplier
                     cat_arr = row[0].split("->")
                     cat_deep = cat_arr.length - 1
                     good_cat = Ecstore::GoodCat.find_by_cat_name(cat_arr[cat_deep])
@@ -536,7 +534,6 @@ module Admin
         @good.save
         redirect_to admin_goods_path
       end
-
 
       def create_collocation
             @good =  Ecstore::Good.find_by_goods_id(params[:collocation][:goods_id])
