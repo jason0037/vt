@@ -1,6 +1,8 @@
 #encoding:utf-8
 Modengke::Application.routes.draw do
   
+  mount WeixinRailsMiddleware::Engine, at: "/"
+
   root :to=>"home#index",:constraints=>{ :subdomain=>/^(www)?$/ }
   get 'blank'=>"home#blank"
   get 'home'=>"home#index"

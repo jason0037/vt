@@ -51,6 +51,9 @@ gem 'therubyracer'
 
 gem 'axlsx'
 
+gem 'weixin_rails_middleware'
+
+gem 'weixin_authorize'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
