@@ -26,9 +26,9 @@
     </div>
 
     <div class="control-group">
-      <%= f.label :sbn, "供应商编号", :class => "control-label" %>
+      <%= f.label :sbn, "供应商", :class => "control-label" %>
       <div class="controls">
-        <%= f.text_field :sbn%>
+        <%= @good.supplier.name%>
       </div>
     </div>
 
@@ -110,21 +110,21 @@
     <div class="control-group">
       <%= f.label :desc, "商品描述", :class => "control-label" %>
       <div class="controls">
-        <%= f.cktext_area :desc, :toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800 %>
+        <%= f.cktext_area :desc, :toolbar => 'Easy',:language=>'zh-cn',:height => 100,:width=>800 %>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :place_info, "产地", :class => "control-label" %>
       <div class="controls">
-        <%= f.cktext_area :place_info, :toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800  %>
+        <%= f.text_field :place_info,:class=>"span10" %>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :spec_info, "规格说明", :class => "control-label" %>
       <div class="controls">
-        <%= f.cktext_area :spec_info, :toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800  %>
+        <%= f.text_field :spec_info,:class=>"span10" %>
       </div>
     </div>
 
@@ -134,35 +134,35 @@
         <%= f.cktext_area :intro, :toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800  %>
       </div>
     </div>
-
+<!--
     <div class="control-group">
-      <%= f.label :softness, "柔软度", :class => "control-label" %>
+      <%#= f.label :softness, "柔软度", :class => "control-label" %>
       <div class="controls">
-         <%=f.select :softness,softness_options,{:include_blank=>"请选择"}%>
+         <%#=f.select :softness,softness_options,{:include_blank=>"请选择"}%>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :thickness, "厚薄度", :class => "control-label" %>
+      <%#= f.label :thickness, "厚薄度", :class => "control-label" %>
       <div class="controls">
-        <%=f.select :thickness,thickness_options,{:include_blank=>"请选择"}%>
+        <%#=f.select :thickness,thickness_options,{:include_blank=>"请选择"}%>
       </div>
     </div>
 
     <div class="control-group">
       <%= f.label :elasticity, "弹力度", :class => "control-label" %>
       <div class="controls">
-         <%=f.select :elasticity,elasticity_options,{:include_blank=>"请选择"}%>
+         <%#=f.select :elasticity,elasticity_options,{:include_blank=>"请选择"}%>
       </div>
     </div>
 
     <div class="control-group">
-      <%= f.label :fitness, "修身度", :class => "control-label" %>
+      <%#= f.label :fitness, "修身度", :class => "control-label" %>
       <div class="controls">
-      	   <%=f.select :fitness,fitness_options,{:include_blank=>"请选择"}%>
+      	   <%#=f.select :fitness,fitness_options,{:include_blank=>"请选择"}%>
       </div>
     </div>
-
+//-->
 
     <%=render :partial=>"admin/shared/metable", :locals=>{ :form => f, :resource=> @good }%>
 

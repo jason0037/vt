@@ -15,7 +15,7 @@ class Ecstore::Good < Ecstore::Base
   attr_accessible :desc, :material, :mesure, :softness, :thickness, :elasticity, :fitness, :try_on,:price,:mktprice,:store,:name,
                             :cat_id,:brand_id,:supplier_id
 
- # accessible_all_columns
+  accessible_all_columns
   attr_accessor :up_or_down, :supplier_id
 
  belongs_to :supplier, :foreign_key=>"supplier"
