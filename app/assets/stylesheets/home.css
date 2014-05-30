@@ -496,15 +496,15 @@ ul#suits li.suit img{
 	color:#777;
 }
 
-#new_hots{
+#new_hots{magin:auto;
 	/*margin-top: 20px;*/
-	
 }
 
 #new_hots .col{
 	width: 310px;
 	float: left;
 }
+
 #new_hots .col2,
 #new_hots .col3{
 	margin-left: 10px;

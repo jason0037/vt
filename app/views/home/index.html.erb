@@ -1,6 +1,8 @@
 <%=render "shared/metable", :resource => @home%>
 <%=content_for :head do %>
   <%=stylesheet_link_tag "home"%>
+    <%=stylesheet_link_tag "homebase"%>
+    <%=stylesheet_link_tag "homepage"%>
 <%end%>
 
 <%=content_for :notice do %>
@@ -15,11 +17,11 @@
 
 <%=render "keywords" if @home.keywords%>
 
-<%render "suit_products"%>
+<% #render "suit_products"%>
 
 
-<div class="other">
-	<%render "new_hots"%>
+<div class="other clearfix">
+	<%#render "new_hots"%>
 	<%=@home.body.html_safe if @home.body.present?%>
 </div>	
 
