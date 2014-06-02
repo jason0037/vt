@@ -1,4 +1,5 @@
 /*!
+/*!
   jQuery Wookmark plugin 0.5
   @name jquery.wookmark.js
   @author Christoph Ono (chri@sto.ph or @gbks)

@@ -5,11 +5,10 @@
 //=require jquery_placeholder_min
 
 $(document).ready(function(){
+
    /* LOGIN ELEMENT */
   $('input[placeholder]').placeholder();
 
-
-  
 
   $('#modal_login .modal_login_nav li').bind('click', function() {
     lc.data('jcarousel').scroll(jQuery.jcarousel.intval($(this).text()), false);

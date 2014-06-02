@@ -1,7 +1,9 @@
 #encoding:utf-8
 class HomeController < ApplicationController
+  before_filter :find_user
 	# layout 'magazine'
 	layout 'standard'
+
 	def index
 		# @title = "摩登客—全球设计品牌精品第e站,都市时尚女性个性首选"
 		@home = Ecstore::Home.last

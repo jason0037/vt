@@ -2,14 +2,18 @@
 module ModecPay
 	class Alipay < Payment
 
-		@@mer_id = '2088701875473608'
-		@@private_key  = 'x5cynpqbifj5uauqj1nx8cd79o3no4vy'
+		#@@mer_id = '2088701875473608'
+		#@@private_key  = 'x5cynpqbifj5uauqj1nx8cd79o3no4vy'
+
+    @@mer_id = '2088411414403176'
+    @@private_key  = 'hzh3bf969beqkqdbohdxocxlwpgr8278'
 
 		def initialize
 			super
 
-			self.mer_id = '2088701875473608'
-			self.private_key = 'x5cynpqbifj5uauqj1nx8cd79o3no4vy'
+
+      self.mer_id =  @@mer_id
+      self.private_key = @@private_key
 
 			self.action = 'https://mapi.alipay.com/gateway.do' 
 			# self.action = 'https://www.alipay.com/cooperate/gateway.do'
@@ -25,7 +29,7 @@ module ModecPay
 			self.fields['partner'] = self.mer_id
 			self.fields['_input_charset'] = 'utf-8'
 			self.fields['payment_type'] = '1'
-			self.fields['seller_id'] = '2088701875473608'
+			self.fields['seller_id'] = @@mer_id
 
 		end
 		

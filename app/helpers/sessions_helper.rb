@@ -55,16 +55,17 @@ module SessionsHelper
 	end
 
 	def login_path
-		subdomain = "test2"
+		subdomain = "trade-v"
   		subdomain = "www" if Rails.env == "production"
   		return_url = request.url
   		return_url = request.env["HTTP_REFERER"] if request.xhr?
 
   		
 
-            cookies[:unlogin_url] = {:value=>return_url,:domain=>".trade-v.com"}
+    cookies[:unlogin_url] = {:value=>return_url,:domain=>".trade-v.com"}
 
-            "http://#{subdomain}.#{request.domain}/passport-login.html"
+    #"http://#{subdomain}.#{request.domain}/passport-login.html"
+    "http://www.trade-v.com/"
 	end
 
 	def goto_login_path

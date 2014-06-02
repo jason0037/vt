@@ -1,5 +1,5 @@
 <%= render "shared/metable", :resource=>@good%>
-
+<%if signed_in?%>
 <div id="products" class="show">
 	<%= render :partial=>"new_single",:locals=>{ :good=>@good } %>
 </div>
@@ -21,3 +21,4 @@
     document.getElementById("preloader").style.display = 'none';
   }
 </script>
+<%end%>
