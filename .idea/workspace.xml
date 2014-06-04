@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="551a286c-2c66-41e3-9022-bb03cf26743e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ecstore/good_spec.rb" afterPath="$PROJECT_DIR$/app/models/ecstore/good_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/goods/spec.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/goods/spec.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/goods/_index_goods.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/goods/_index_goods.html.erb" />
     </list>
     <ignored path="vt.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,14 +91,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="spec.html.erb" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="spec.html.erb" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/admin/goods/spec.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.72423804" vertical-offset="394" max-vertical-offset="1330">
+            <state vertical-scroll-proportion="-9.415094" vertical-offset="394" max-vertical-offset="1330">
               <caret line="97" column="45" selection-start-line="97" selection-start-column="45" selection-end-line="97" selection-end-column="45" />
               <folding>
                 <element signature="tag#div#0;tag#div#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.erb" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/admin/goods/index.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="15.679245" vertical-offset="831" max-vertical-offset="1520">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_index_goods.html.erb" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/admin/goods/_index_goods.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7271408" vertical-offset="1190" max-vertical-offset="1995">
+              <caret line="89" column="19" selection-start-line="89" selection-start-column="19" selection-end-line="89" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -170,7 +189,6 @@
         <option value="$PROJECT_DIR$/app/views/store/goods/product/_new_spec.html.erb" />
         <option value="$PROJECT_DIR$/app/models/ecstore/supplier.rb" />
         <option value="$PROJECT_DIR$/app/views/store/suppliers/_mod.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/admin/goods/_index_goods.html.erb" />
         <option value="$PROJECT_DIR$/config/initializers/weixin_rails_middleware.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/views/admin/goods/edit.html.erb" />
@@ -194,6 +212,7 @@
         <option value="$PROJECT_DIR$/app/controllers/admin/goods_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/ecstore/good_spec.rb" />
         <option value="$PROJECT_DIR$/app/views/admin/goods/spec.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/admin/goods/_index_goods.html.erb" />
       </list>
     </option>
   </component>
@@ -296,7 +315,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -318,37 +337,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="orders" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="vt" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cart" />
+              <option name="myItemId" value="goods" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -599,20 +592,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/ddaccordion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.586207" vertical-offset="0" max-vertical-offset="5092">
-          <caret line="8" column="133" selection-start-line="8" selection-start-column="131" selection-end-line="8" selection-end-column="133" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/email_suggest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0" vertical-offset="29" max-vertical-offset="3192">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/events.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="742">
@@ -990,11 +969,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/admin/goods/spec.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72423804" vertical-offset="394" max-vertical-offset="1330">
+        <state vertical-scroll-proportion="-9.415094" vertical-offset="394" max-vertical-offset="1330">
           <caret line="97" column="45" selection-start-line="97" selection-start-column="45" selection-end-line="97" selection-end-column="45" />
           <folding>
             <element signature="tag#div#0;tag#div#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/goods/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="15.679245" vertical-offset="831" max-vertical-offset="1520">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/goods/_index_goods.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7271408" vertical-offset="1190" max-vertical-offset="1995">
+          <caret line="89" column="19" selection-start-line="89" selection-start-column="19" selection-end-line="89" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>

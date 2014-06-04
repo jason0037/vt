@@ -77,6 +77,7 @@
               <%if current_admin.has_right_of("goods","edit")%>
 				<%=link_to "编辑",edit_admin_good_path(good)%>
 				<%=link_to "规格",spec_admin_good_path(good)%>
+       <!--
 				<%= link_to toggle_future_admin_good_path(good) do%>
 			        <%=good.future == 'false' ? "设置期货" : "期货关闭"%>
 			    <%end%>
@@ -86,6 +87,7 @@
 				<%= link_to toggle_sell_admin_good_path(good) do%>
 			        <%=good.sell == 'false' ? "设置现货" : "现货关闭"%>
 			    <%end%>
+			    -->
 			<%end%>
 			</td>
 		</tr>
