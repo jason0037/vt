@@ -13,26 +13,22 @@ class Ecstore::Good < Ecstore::Base
   scope :selling, where(:marketable=>'true')
 
   attr_accessible :desc, :material, :mesure, :softness, :thickness, :elasticity, :fitness, :try_on,:price,:mktprice,:store,:name,
-                            :cat_id,:brand_id,:supplier_id
+                            :cat_id,:brand_id,:supplier_id,:products_attributes
 
   accessible_all_columns
-  attr_accessor :up_or_down, :supplier_id
+  attr_accessor :up_or_down
 
- belongs_to :supplier, :foreign_key=>"supplier"
- belongs_to :supplier, :foreign_key=>"supplier_id"
  belongs_to :cat,:class_name=>"Category",:foreign_key=>"cat_id"
  belongs_to :brand, :foreign_key=>"brand_id"
+ belongs_to :supplier, :foreign_key=>"supplier_id"
+
  belongs_to :default_image, :foreign_key=>"image_default_id",:class_name=>"Image"
 
  has_many :order_items,:foreign_key=>"goods_id"
- has_many :image_attachs,
-  		       :foreign_key=>"target_id",
-  		       :conditions=>{:target_type=>"goods"}
+ has_many :image_attachs,  :foreign_key=>"target_id", :conditions=>{:target_type=>"goods"}
 
   has_many :images,	:through=>:image_attachs
 
-
-  attr_accessible :products_attributes
   has_many :products, :foreign_key=>"goods_id",:class_name=>"Ecstore::Product",:dependent=>:destroy
   accepts_nested_attributes_for :products
 

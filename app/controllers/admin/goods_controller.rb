@@ -389,7 +389,8 @@ module Admin
         spec_id = ""
 
         supplier =sheet[0,1]
-        supplierT = Ecstore::Supplier.unscoped.find_by_name(supplier)
+        #supplierT = Ecstore::Supplier.unscoped.find_by_name(supplier)
+        supplierT = Ecstore::Supplier.where(:name=>supplier).first
         if !supplierT.blank?
           supplier = supplierT.id
         else
