@@ -75,16 +75,15 @@
 			<th>库存</th>
             <th>进货价</th>
             <th>渠道价</th>
-			<th>会员价</th>
             <th>批发价</th>
+             <th>会员价</th>
 			<th>定金</th>
 			<th>市场价</th>
-			<!-- <th>重量</th>
-			<th>货位</th> -->
+			<th>重量</th>
+			<!--<th>货位</th> -->
 		</tr>
 		</thead>
 		<tbody>
-
 			<%@products.each do |product|%>
 				<%=f.fields_for :products, product do |p|%>
 				<tr>
@@ -92,18 +91,18 @@
 						<%=p.check_box :marketable,{:checked=>product.marketable=='true'},'true','false'%>
 						<%=p.hidden_field :product_id,:value=>product.product_id%>
 					</td>
-					<td><%=product.spec_info%></td>
-                    <td><%=p.text_field :bn,:value=>product.barcode,:class=>"span2",:data=>{:login_name=>'231'}%></td>
+                  <td><%=product.spec_values.first.spec_value%></td>
+                    <td><%=p.text_field :barcode,:value=>product.barcode,:class=>"span2"%></td>
 					<td><%=p.text_field :bn,:value=>product.bn,:class=>"span2",:data=>{:login_name=>'231'}%></td>
 					<td><%=p.number_field :store,:value=>product.store,:class=>"input-mini"%></td>
-                  <td><%=p.number_field :price,:value=>product.cost,:class=>"input-mini"%></td>
-                  <td><%=p.number_field :price,:value=>product.bulk,:class=>"input-mini"%></td>
-                  <td><%=p.number_field :price,:value=>product.wholesale,:class=>"input-mini"%></td>
+                  <td><%=p.number_field :cost,:value=>product.cost,:class=>"input-mini"%></td>
+                  <td><%=p.number_field :bulk,:value=>product.bulk,:class=>"input-mini"%></td>
+                  <td><%=p.number_field :wholesale,:value=>product.wholesale,:class=>"input-mini"%></td>
 					<td><%=p.number_field :price,:value=>product.price,:class=>"input-mini"%></td>
 					<td>--</td>
 					<td><%=p.number_field :mktprice,:value=>product.mktprice,:class=>"input-mini"%></td>
-					<!-- <td><%=product.weight%></td>
-					<td><%=product.store_place%></td> -->
+					<td><%=p.number_field :weight,:value=>product.weight,:class=>"input-mini"%></td>
+                  <!-- <td><%=product.store_place%></td> -->
 				</tr>
 				<%end%>
 			<%end%>
