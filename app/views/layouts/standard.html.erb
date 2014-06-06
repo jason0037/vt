@@ -17,14 +17,19 @@
 </head>
 
 <body>
+
   <%=yield :notice%>
   <%= render "shared/header" %>
+  <%if controller_name!='home'%>
   <%= render "shared/top_menu" %>
   <%= yield :cover %>
+
   <div id= "main" class="<%=controller_name%> <%=action_name%> clearfix">
+  <%end%>
     <%= yield%>
+  <%if controller_name!='home'%>
   </div>
-  
+  <%end%>
   <%=render "shared/common_footer"%>
   
   <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>

@@ -534,12 +534,12 @@ img{border:none;}
 #keyspan a { margin-left: 5px; margin-right: 5px; float: left; color:#a0a0a0; }
 #keyspan a:hover{color:#525252; text-decoration:none;}
 
-.menu_nav{width:100%;height:37px;background-color:#be000e;text-align:center; margin-bottom:5px;}
+.menu_nav{width:100%;height:37px;background-color:#FF8000;text-align:center; margin-bottom:5px;}
 .menu_nav_line {width:100%;height:2px;background-color:#be000e;text-align:center; margin-bottom:5px;}
 .nav{width:1190px;margin:0 auto;height:37px;}
 .nav li{float:left; line-height:39px;height:39px;padding:0px 23px;}
 .nav li a{color:#fffefc;font-size:14px;font-weight:bold;text-decoration:none;}
-.nav li a:hover{color:#ffd653;}
+.nav li a:hover{color:#FF0000;}
 .nav .firstli{width:175px;padding:0px;display:block;position:relative;z-index:1000;}
 .nav .allcat{display:block;}
 .nav .on{background-color:#5a493f;}

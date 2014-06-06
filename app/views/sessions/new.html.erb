@@ -153,14 +153,14 @@ $(document).ready(function(){
              $('#modal_login .register_box').css({ left: '640px'});
              $('#modal_login .login_box').css({ left: '40px'});
 	});
-        
+
 	$(window.parent.document).on("click",".login",function(e){
 
             $("#return_url").val(window.parent.location.href);
 
-            
+
             if($(this).attr("id")=="reg"){
-             
+
                 // $('#modal_login .register_box').css({ left: '40px'},'linear');
                 // $('#modal_login .login_box').css({ left: '-600px'},'linear');
                 //$('#modal_login .login_box').animate({ left: '-600px'}, 400,'linear');
@@ -173,7 +173,7 @@ $(document).ready(function(){
 
               showLogin();
 
-             
+
             return false;
       });
 });

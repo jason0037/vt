@@ -1,11 +1,42 @@
 #encoding:utf-8
 class Store::GoodsController < ApplicationController
-  layout 'standard'
+ # layout 'standard'
 
   skip_before_filter :authorize_user!,:only=>[:price]
   before_filter :find_user, :except=>[:price]
   skip_before_filter :find_path_seo, :find_cart!, :only=>[:newest]
   before_filter :find_tags, :only=>[:index,:newest]
+  layout 'login'
+
+  def show
+
+    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
+
+    return render "not_find_good",:layout=>"new_store" unless @good
+
+    tag_name = params[:tag]
+    @tag = Ecstore::TagName.find_by_tag_name(tag_name)
+
+    @cat = @good.cat
+
+    @recommend_goods = []
+    if @cat.goods.size >= 4
+      @recommend_goods =  @cat.goods.where("goods_id <> ?", @good.goods_id).order("goods_id desc").limit(4)
+    else
+      @recommend_goods += @cat.goods.where("goods_id <> ?", @good.goods_id).limit(4).to_a
+      @recommend_goods += @cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-@recommend_goods.size] if @cat.parent_cat && @recommend_goods.size < 4
+      @recommend_goods.compact!
+      if @cat.parent_cat.parent_cat && @recommend_goods.size < 4
+        count = @recommend_goods.size
+        @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
+      end
+    end
+
+    respond_to do |format|
+      format.html { render :layout=>"new_store" }
+      format.mobile { render :layout=>nil }
+    end
+  end
 
   def index
       tag_name  = params[:tag]
@@ -79,35 +110,7 @@ class Store::GoodsController < ApplicationController
     render :layout=>'standard'
   end
 
-  def show
 
-      @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
-      
-      return render "not_find_good",:layout=>"new_store" unless @good
-      
-      tag_name = params[:tag]
-      @tag = Ecstore::TagName.find_by_tag_name(tag_name)
-      
-      @cat = @good.cat
-
-       @recommend_goods = []
-      if @cat.goods.size >= 4
-          @recommend_goods =  @cat.goods.where("goods_id <> ?", @good.goods_id).order("goods_id desc").limit(4)
-      else
-          @recommend_goods += @cat.goods.where("goods_id <> ?", @good.goods_id).limit(4).to_a
-          @recommend_goods += @cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-@recommend_goods.size] if @cat.parent_cat && @recommend_goods.size < 4
-          @recommend_goods.compact!
-          if @cat.parent_cat.parent_cat && @recommend_goods.size < 4
-             count = @recommend_goods.size
-             @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
-          end
-      end
-
-      respond_to do |format|
-        format.html { render :layout=>"new_store" }
-        format.mobile { render :layout=>nil }
-      end
-  end
 
   def fav
       @good = Ecstore::Good.find(params[:id])
