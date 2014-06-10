@@ -1,5 +1,5 @@
 <%#= render "shared/metable", :resource=>@good%>
-<%if signed_in?%>
+<%if signed_in? || params[:from]=="weixin"%>
 <div id="products" class="show">
 	<%= render :partial=>"new_single",:locals=>{ :good=>@good } %>
 </div>

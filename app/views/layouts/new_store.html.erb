@@ -17,18 +17,19 @@
 </head>
 <body>
   <div id="preloader"></div>
-  <% # render "store/shared/new_header" %>
-  <% # render "store/shared/new_topmenu" %>
+  <%if @wechat_user.blank?%>
+      <% # render "store/shared/new_header" %>
+      <% # render "store/shared/new_topmenu" %>
 
-  <%= render "shared/header" %>
-  <%= render "shared/top_menu" %>
+      <%= render "shared/header" %>
+      <%= render "shared/top_menu" %>
 
-
-  <%= render "store/shared/position" if @cat%>
-  <% # render "store/shared/mini_items" %>
+      <%= render "store/shared/position" if @cat%>
+      <% # render "store/shared/mini_items" %>
+  <%end%>
 
   <%= yield %>
-
+  <%if @wechat_user.blank?%>
   <% if %w(index newest).include?(action_name) && controller_name == "goods" %>
     <% # render "store/shared/new_more_arrivals" %>
   <% end %>
@@ -41,8 +42,8 @@
   <%=render "shared/iframe_cart" if signed_in?%>
 
   <%=render "shared/iframe_login" unless signed_in?%>
-  
-  
+
+  <%end%>
   <%= javascript_include_tag "google-analytics" if Rails.env == "production" %>
 </body>
 </html>

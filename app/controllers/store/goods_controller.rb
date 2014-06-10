@@ -1,14 +1,14 @@
 #encoding:utf-8
 class Store::GoodsController < ApplicationController
- # layout 'standard'
+ layout 'standard'
 
   skip_before_filter :authorize_user!,:only=>[:price]
   before_filter :find_user, :except=>[:price]
   skip_before_filter :find_path_seo, :find_cart!, :only=>[:newest]
   before_filter :find_tags, :only=>[:index,:newest]
-  layout 'login'
 
   def show
+    @wechat_user=params[:wechatuser]
 
     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
 
