@@ -14,6 +14,9 @@ module Admin
     end
 
     def index
+      appid='wxec23a03bf5422635'
+      appsecret='b57aa686db378f60fe5e3b80b3bb412c'
+      $openid='gh_a0e5b9a22803'
       $client ||= WeixinAuthorize::Client.new(appid,appsecret)
      # $client ||= WeixinAuthorize::Client.new(ENV["APPID"], ENV["APPSECRET"])
      # return render :text=>$client.is_valid?
@@ -44,18 +47,23 @@ module Admin
            "sub_button":[
            {
                "type":"view",
-               "name":"总统奶酪",
-               "url":"http://www.trade-v.com/gallery/556?gtype=1&from=weixin"
+               "name":"乳制品",
+               "url":"http://www.trade-v.com/mgallery?name=%E5%A5%B6%E9%85%AA"
             },
             {
                "type":"view",
-               "name":"总统黄油",
-               "url":"http://www.trade-v.com/gallery/557?gtype=1&from=weixin"
+               "name":"酒类",
+               "url":"http://www.trade-v.com/mgallery?name=%E9%85%92%E7%B1%BB"
             },
             {
                "type":"view",
-               "name":"精选茶叶",
-               "url":"http://www.trade-v.com/gallery/557?gtype=1&from=weixin"
+               "name":"零食",
+               "url":"http://www.trade-v.com/mgallery?name=%E9%9B%B6%E9%A3%9F"
+            },
+            {
+               "type":"view",
+               "name":"肉类",
+               "url":"http://www.trade-v.com/mgallery?name=%E8%82%89%E7%B1%BB"
             }]
        }]
  }'

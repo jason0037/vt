@@ -17,6 +17,8 @@ class Ecstore::User < Ecstore::Base
 
   has_many :member_coupons, :foreign_key=>"member_id"
 
+  has_many :reccommend_logs, :foreign_key=>"member_id"
+
   has_many :member_attr_values,:class_name=>"MemberAttrValue",:foreign_key=>"pk"#,:before_add=>:check_member_attr_value_update
   
   has_many :member_advances, :foreign_key=>"member_id"

@@ -30,7 +30,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="[总统 PRESIDENT]超高温灭菌稀奶油 200毫升仅售¥22.4元"
         desc ="法国进口的总统谈奶油，是从牛奶中提炼出来的纯天然食品，一般乳脂含量为16.5%，营养价值高，入口即化"
         pic_url="http://www.trade-v.com/images/a074/a0742048_m.jpg"
-        link_url="http://www.trade-v.com/products/a0742048?from=weixin&wechatuser=#{user}"
+        link_url="http://www.trade-v.com/mproducts?id=a0742048&from=weixin&wechatuser=#{user}"
 
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
@@ -38,7 +38,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="[总统 PRESIDENT]安文达切丝奶酪70克 仅售¥20.5元"
         desc ="每公斤奶酪都是有10公斤的牛奶浓缩而成，含有丰富的蛋白质、钙、脂肪、钠和维生素等营养成分。70克*24/箱 产地:法国"
         pic_url="http://www.trade-v.com/images/a074/a0741022_m.jpg"
-        link_url="http://www.trade-v.com/products/a0741022?from=weixin&wechatuser=#{user}"
+        link_url="http://www.trade-v.com/mproducts?id=a0741022&from=weixin&wechatuser=#{user}"
 
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
@@ -46,12 +46,12 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="[紫薇]牛奶/起司棒饼干仅售 35.10元"
         desc ="[紫薇]牛奶/起司棒饼干 500克 产地:台湾"
         pic_url="http://www.trade-v.com/images/a076/a0761003_m.jpg"
-        link_url="http://www.trade-v.com/products/a0751003?from=weixin&user=#{user}"
+        link_url="http://www.trade-v.com/mproducts?id=a0751003&from=weixin&user=#{user}"
 
         title1="[叶客]小叶苦丁茶仅售 50.00元"
         desc1 ="保质期：365   包装种类: 罐装   产地: 中国大陆  是否含糖: 无糖   配料表：小叶苦丁"
         pic_url1="http://www.trade-v.com/images/a075/a0751003_m.jpg"
-        link_url1="http://www.trade-v.com/products/a0751003?from=weixin&wechatuser=#{user}"
+        link_url1="http://www.trade-v.com/mproducts?id=a0751003&from=weixin&wechatuser=#{user}"
 
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
         reply_news_message(articles)
@@ -128,12 +128,12 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       # 扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送
       return reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
     end
-    reply_text_message("关注公众账号")
+    reply_text_message("感谢您关注贸威")
   end
 
   # 取消关注
   def handle_unsubscribe_event
-    Rails.logger.info("取消关注")
+    Rails.logger.info("非常遗憾，再见！")
   end
 
   # 扫描带参数二维码事件: 2. 用户已关注时的事件推送
@@ -150,7 +150,17 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
   # 点击菜单拉取消息时的事件推送
   def handle_click_event
-    reply_text_message("你点击了: #{@keyword}")
+
+    case @keyword
+      when 'ON_SALE'
+        @keyword='奶酪'
+        response_news_message({})
+      when 'NEW'
+        @keyword='黄油'
+        response_news_message({})
+      else
+        reply_text_message("你点击了: #{@keyword}")
+    end
   end
 
   # 点击菜单跳转链接时的事件推送

@@ -32,6 +32,7 @@ class Ecstore::Good < Ecstore::Base
   has_many :products, :foreign_key=>"goods_id",:class_name=>"Ecstore::Product",:dependent=>:destroy
   accepts_nested_attributes_for :products
 
+  has_many :recommend_logs, :foreign_key=>"goods_id"
   has_many :good_specs, :foreign_key=>"goods_id"
   has_many :spec_values, :through=>:good_specs
   has_many :specs, :through=>:good_specs, :uniq=>true

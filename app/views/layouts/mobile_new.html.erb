@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+  <title>贸威手机版</title>
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <%=stylesheet_link_tag "mobile/layout.min"%>
+  <%=stylesheet_link_tag "mobile/common.min"%>
+  <%= javascript_include_tag "mobile/jquery-2.1.0.min" %>
+  <script>
+      var ui = 'touch';
+  </script>
+</head>
+<body>
+<header id="header" class="header clearfix">
+  <div class="head_logo fl"><a href="/m" class="logo" mars_sead="nav_home_btn"></a></div>
+  <div class="head_right fr">
+    <a href="cart.html" mars_sead="home_head_cart_btn" onclick="setBackAct(&#39;topHeaderCart&#39;)">
+      <span class="h_cart"></span>
+    </a>
+  </div>
+  <div class="head_right fr">
+    <a href="user.html" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot">
+      <span class="h_logn">                </span>
+    </a>
+  </div>
+  <div class="head_right fr"><a href="brand-search.html"><span class="h_search"></span></a></div>
+</header>
+<div id="nav" class="clearfix">
+  <ul class="clearfix">
+    <li class="num05"><a href="/m" class="nav_current"><span>首页</span></a></li>
+    <li class="num05"><a href="/mgallery?name=酒类"><span>酒类</span></a></li>
+    <li class="num05"><a href="/mgallery?name=肉类"><span>肉类</span></a></li>
+    <li class="num05"><a href="/mgallery?name=奶酪"><span>奶酪</span></a></li>
+    <li class="num05"><a href="/mgallery?name=零食"><span>零食</span></a></li>
+  </ul>
+</div>
+
+<%= yield %>
+
+
+
+<div class="space15"></div>
+<div class="userdiv nobor in_links" style="display:none">
+  <ul class="orderList clearfix">
+    <li><a href="#" mars_sead="tuan_btn"><span class="in_tuan"></span><p>团购</p></a></li>
+    <li><a href="brand-date.html"><span class="in_soon"></span><p>即将上线</p></a></li>
+    <li><a href="vipservice.html" mars_sead="custommer_seevice_btn"><span class="in_sev"></span><p>客服</p></a></li>
+  </ul>
+</div>
+<!-- <div class="s_links"><a href="tel:4006789888" mars_sead="home_foot_call"><em class="s_tel"></em>咨询电话<span></span><p class="telnum">400-6789-888</p></a></div> -->
+<div class="s_links" style="display:none"><a href="service-insurance.html"><em class="s_qua"></em>贸威正品保证<span></span></a></div>
+<script src="/assets/mobile/swipe.min.js" type="text/javascript"></script>
+
+<!--<script src="js/Judgehome.js?v=4.4.0612.2351.111" type="text/javascript"></script>-->
+<div class="footer clearfix">
+  <div class="footnav clearfix">
+
+    <a href="/mlogin?return_url=<%=request.url %>" mars_sead="footer-login_btn">登录</a>
+    <a href="/mregister?return_url=<%=request.url %>">注册</a>
+
+    <a href="?t=1#" class="backtop" mars_sead="home_foot_top_btn"></a>
+  </div>
+  <p class="copright">Copyright © 2013-2014 trade-v.com 版权所有 上海普慧信息科技有限公司 All rights reserved. 沪ICP备13045311号-1 </p>
+</div>
+<div class="space10"></div>
+
+
+<div class="shoppingbags" style="display:none;">
+  <a href="cart.html?rbc=service">
+    <span class="flow_carticon"></span>
+    <span class="flow_cart_num"></span>
+    <span class="flow_cart_time"></span>
+  </a>
+</div>
+
+<div class="c-bottom"></div>
+
+<script type="text/javascript">
+    function wechatShare(data) {
+        // If no data is defined, just fallback to wechat's default behaviour.
+        if (!data) {
+            return;
+        }
+        var title = data.title || document.title;
+        var desc = data.desc || "分享";
+        var url = data.url || document.location.href;
+
+        function getDefaultImage() {
+            var images = document.getElementsByTagName("img");
+            if (images && images.length > 0) {
+                for (var i = 0; i < images.length; i++) {
+                    var image = images[i];
+                    if (image.width > 140 && image.height > 130 && $(image).is(":visible")) {
+                        return image.src;
+                    }
+                }
+            }
+            return null;
+        }
+        function shareFriend() {
+            // Delay image loading to the time when DOM is ready.
+            var img = data.img || getDefaultImage();
+            WeixinJSBridge.invoke("sendAppMessage", {
+                "img_url": img,
+                "link": url,
+                "desc": desc,
+                "title": title
+            }, function(res) {
+            });
+        }
+        function shareTimeline() {
+            var img = data.img || getDefaultImage();
+            WeixinJSBridge.invoke("shareTimeline", {
+                "img_url": img,
+                "link": url,
+                "desc": desc,
+                "title": title
+            }, function(res) {
+            });
+        }
+        function shareWeibo() {
+            var img = data.img || getDefaultImage();
+            WeixinJSBridge.invoke("shareWeibo", {
+                "img_url": img,
+                "content": title,
+                "url": url,
+                "desc": desc,
+                "title": title
+            }, function(res) {
+            });
+        }
+
+        document.addEventListener("WeixinJSBridgeReady", function onBridgeReady() {
+            WeixinJSBridge.on("menu:share:appmessage", function(argv) {
+                shareFriend();
+            });
+            WeixinJSBridge.on("menu:share:timeline", function(argv) {
+                shareTimeline();
+            });
+            WeixinJSBridge.on("menu:share:weibo", function(argv) {
+                shareWeibo();
+            });
+        }, false);
+    }
+    var data = {"img":null,"url":"","title":"\u552f\u54c1\u4f1a\u624b\u673a\u8d2d\u7269\u6b63\u54c1\u5546\u57ce\uff1a\u4e00\u5bb6\u4e13\u95e8\u505a\u7279\u5356\u7684\u7f51\u7ad9\u624b\u673a\u7248","desc":null};
+    wechatShare(data);
+</script>
+<%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>
+<%= javascript_include_tag "mobile/jquery.vs.mobile-1.0.0.min" %>
+<%= javascript_include_tag "mobile/jquery.vs.mars_wap" %>
+<script src="/assets/mobile/sm.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    var _smq = _smq || [];
+    _smq.push(['_setAccount', '63e2363', new Date()]);
+    _smq.push(['_setDirectoryIndex', '/m/']);
+    _smq.push(['_setHeatmapEnabled', 'no']);
+    _smq.push(['pageview']);
+</script>
+<script type="text/javascript">
+    $(function(){
+        var $clickBox = $('#channel_img')
+        $clickBox.off('click.push.count','a.itemList').on('click.push.count','a.itemList', function(){
+            var t = $(this),
+                    dom = {
+                        index: $clickBox.find('a.itemList').index(t) + 1,
+                    };
+            (dom.index > 0 && dom.index < 31) && _smq.push(['pageview','/brandlist', dom.index.toString()]);
+        })
+    })
+</script>
+
+</body></html>

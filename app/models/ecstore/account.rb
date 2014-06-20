@@ -144,7 +144,7 @@ class Ecstore::Account < Ecstore::Base
 
 	def self.simple_authenticate(login_name)
 		arr_name = login_name.split("_")
-		if arr_name.size > 1 && %w(sina douban).include?(arr_name.first)
+		if arr_name.size > 1 && %w(weixin sina douban).include?(arr_name.first)
 			account = self.where("login_name like '#{login_name}_%'").first
 		else
 			account = self.find_by_login_name(login_name)
@@ -191,8 +191,10 @@ class Ecstore::Account < Ecstore::Base
 				ship = client.get('friendships/show.json',{:source_id=>client.config.uid,
 													:target_id=>self.auth_ext.uid})
 				ship.source.followed_by
-			when 'douban'
-				true
+      when 'douban'
+        true
+      when 'weixin'
+        true
 			else
 				false
 		end

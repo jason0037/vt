@@ -1,5 +1,18 @@
 require 'active_api'
 if Rails.env == 'development'
+  ActiveApi.register :weixin do
+    config.site = "https://open.weixin.qq.com/"
+    config.api_site = "https://open.weixin.qq.com/"
+    config.client_id = "wxec23a03bf5422635"
+    config.client_secret =  "b57aa686db378f60fe5e3b80b3bb412c"
+    config.redirect_uri = "http://www.trade-v.com/auth/weixin/callback"
+    config.ssl = { :ca_path=>"/usr/lib/ssl/certs" }
+    config.authorize_uri = 'https://open.weixin.qq.com/connect/oauth2/authorize'
+    config.access_token_uri = 'https://api.weixin.qq.com/sns/oauth2/access_token'
+    config.path_prefix = '2/'
+    config.uid = 'gh_a0e5b9a22803'
+    #https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect
+  end
 	ActiveApi.register :weibo do
 		config.site = "https://api.weibo.com/"
 		config.api_site = "https://api.weibo.com/"
@@ -12,7 +25,6 @@ if Rails.env == 'development'
 		config.path_prefix = '2/'
 		config.uid = '2398180552' #"1822088872" 
 	end
-
 	ActiveApi.register :douban do
 		config.site = "https://api.douban.com/"
 		config.api_site = "https://api.douban.com/"
@@ -27,6 +39,19 @@ if Rails.env == 'development'
 	end
 end
 if Rails.env == 'production'
+  ActiveApi.register :weixin do
+    config.site = "https://open.weixin.qq.com/"
+    config.api_site = "https://open.weixin.qq.com/"
+    config.client_id = "wxec23a03bf5422635"
+    config.client_secret =  "b57aa686db378f60fe5e3b80b3bb412c"
+    config.redirect_uri = "http://www.trade-v.com/auth/weixin/callback"
+    config.ssl = { :ca_path=>"/usr/lib/ssl/certs" }
+    config.authorize_uri = 'https://open.weixin.qq.com/connect/oauth2/authorize'
+    config.access_token_uri = 'https://open.weixin.qq.com/connect/oauth2/access_token'
+    config.path_prefix = '2/'
+    config.uid = 'gh_a0e5b9a22803'
+    #https://open.weixin.qq.com/connect/oauth2/authorize?appid=APPID&redirect_uri=REDIRECT_URI&response_type=code&scope=SCOPE&state=STATE#wechat_redirect
+  end
 	ActiveApi.register :weibo do
 		config.site = "https://api.weibo.com/"
 		config.api_site = "https://api.weibo.com/"
@@ -39,7 +64,6 @@ if Rails.env == 'production'
 		config.path_prefix = '2/'
 		config.uid = '2398180552'
 	end
-
 	ActiveApi.register :douban do
 		config.site = "https://api.douban.com/"
 		config.api_site = "https://api.douban.com/"

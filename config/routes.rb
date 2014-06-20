@@ -12,6 +12,9 @@ Modengke::Application.routes.draw do
 
   namespace :auth do
       resources :accounts
+      resources :weixin do
+        get 'callback',:on=>:collection
+      end
       resources :weibo do
         get 'callback',:on=>:collection
       end
@@ -30,7 +33,10 @@ Modengke::Application.routes.draw do
   end
 
   get 'login'=>"sessions#new"
+  get 'mlogin'=>"sessions#new_mobile"
+  get 'mregister'=>"sessions#register_mobile"
   post 'login'=>"sessions#create"
+  post 'mlogin'=>"sessions#create"
   get 'logout'=>"sessions#destroy"
   get 'topmenu'=>"home#topmenu"
   
@@ -277,10 +283,11 @@ Modengke::Application.routes.draw do
         
       # end
   end
-
+  get 'm' =>"mobile#show", :as=>"mobile" ,:controller=>"mobile"
     scope :module => "store" do
       
       get 'search' => "search#index", :as=> :search
+      get 'mproducts' =>"goods#mobile", :as=>"goods" ,:controller=>"goods"
 
       resources :products, :as=>"goods", :controller=>"goods" do
           # get 'newin',:on=>:collection
@@ -291,6 +298,7 @@ Modengke::Application.routes.draw do
           get 'more',:on=>:collection
           get 'suits', :on=>:collection
           get 'more_suits', :on=>:collection
+
       end
 
       resources :suppliers
@@ -310,6 +318,8 @@ Modengke::Application.routes.draw do
       resources :country, :as=>"countries", :controller=>"countries"
       resources :gallery, :as=>"cats", :controller=>"cats"
 
+
+      get 'mgallery' =>"cats#show_mobile", :as=>"cats",:controller=>"cats"
       resources :goods,  :as=>"orders", :controller=>"orders" do
         member do
           get :goods

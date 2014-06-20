@@ -1,0 +1,47 @@
+<%=render "shared/metable", :resource => nil %>
+
+
+<header id="header" class="header clearfix">
+
+  <div class="head_left fl"><a href="<%= %>"><span class="h_back"></span></a></div>
+  <span class="headtit">用户登录</span>
+  <div class="head_right fr"><a href="" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
+</header>
+
+
+<header id="header" class="header clearfix">
+
+  <div class="head_left fl"><a href="product-198535-26038564.html"><span class="h_back"></span></a></div>
+  <span class="headtit">注册</span>
+  <div class="head_right fr"><a href="/m/" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
+</header>
+
+<%=form_for :user,:url=>users_path,:remote=>true,:html=>{:id=>"register_form"} do |f|%>
+  <div class="connerdiv">
+    <dl class="connerbox">
+      <dd><span class="form_hd">账号：</span><span class="form_td">
+        <%=f.text_field :login_name,:class=>"text_input",:placeholder=>"用户名"%>
+      </span></dd>
+      <dd><span class="form_hd">密码：</span><span class="form_td">
+        <%=f.password_field :login_password,:class=>"text_input",:placeholder=>"密码"%>
+      </span></dd>
+      <dd><span class="form_hd">确认密码：</span><span class="form_td ml80">
+        <%=f.password_field :login_password_confirmation,:class=>"text_input",:placeholder=>"确认密码"%>
+        <div class="help-block" rel="user_login_password_confirmation"></div>
+      </span></dd>
+      <dd><span class="form_hd">邮箱：</span><span class="form_td ml80">
+        <%=f.text_field :email,:class=>"text_input",:placeholder=>"邮箱"%>
+      </span></dd>
+      <dd><span class="form_hd">手机号码：</span><span class="form_td ml80">
+        <%=f.text_field :mobile,:class=>"text_input",:placeholder=>"手机号码"%>
+      </span></dd>
+    </dl>
+    <div class="space15"></div>
+    <input type="hidden" name="data" value="">
+    <input type="hidden" name="act" value="register">
+    <input type="hidden" name="step" value="act_register">
+    <%=f.submit "注 册",:class=>"btn_red largerbtn longbtn"%>
+    <div class="space15"></div>
+    <a href="/mlogin" class="forgetkey">已有账号，去登录&gt;&gt;</a>
+  </div>
+<%end%>

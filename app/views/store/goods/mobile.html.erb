@@ -1,0 +1,267 @@
+<header id="header" class="header clearfix">
+
+  <div class="head_left fl"><a href="/m/alcohol.html"><span class="h_back"></span></a></div>
+  <span class="headtit"><%=@good.name %></span>
+  <div class="head_right fr"><a href="/m/index.html" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
+</header>
+<div class="space10"></div>
+
+<div id="wapModalsbox">
+  <div id="goods_detail" class="aposition">
+    <div id="goods_images" class="carousel" style="overflow: hidden; visibility: visible;">
+      <ul data-cartimg="img" style="list-style: none; margin: 0px; width: 516px; transition: 0ms; -webkit-transition: 0ms; -webkit-transform: translate3d(0px, 0px, 0px);">
+            <li style="width: 258px; display: table-cell; vertical-align: top;"><span>
+              <img src="<%=@good.big_pic%>"
+                   data-original="<%=@good.big_pic%>"
+                   data-onerror="<%=@good.big_pic%>"
+                   alt="" class="smallImg active" mars_sead="product_big_pic">
+            </span></li>
+      </ul>
+    </div>
+    <div class="slideControl clearfix"> <!--<a href="#" id="prev" onClick='Touch_ImgReview.prev();return false;'></a>-->
+      <div id="pro_pagination">
+
+        <em class="on">1</em>
+
+        <em>2</em>
+
+      </div>
+      <!--<a href="#" id="next" onClick='Touch_ImgReview.next();return false;'></a>-->
+    </div>
+    <div class="goods_info">
+      <form name="cartForm" action="index.php?m=flow&act=addtocart" method="post">
+        <input type="hidden" name="channel_id" value="1">
+        <input type="hidden" name="product_id" value="26038564">
+        <input type="hidden" name="cat_id" value="10501009">
+        <input type="hidden" name="warehouse" value="VIP_SH">
+        <input type="hidden" name="product_name" value="奔富酒园洛神山庄干红葡萄酒">
+        <input type="hidden" name="small_image" value="http://sp.vip.com/upload/merchandise/186778/YSLD-027131749424-5.jpg">
+        <input type="hidden" name="vipshop_price" value="429">
+        <input type="hidden" name="market_price" value="540">
+        <input type="hidden" name="agio" value="<%=format('%.1f', @good.price*10/@good.mktprice)%>折">
+        <input type="hidden" name="back_url" value="">
+        <h1><%=@good.name %></h1>
+
+        <p class="new_pricediv clearfix">
+          <span class="g_d_price">¥<%=@good.default_product.price %></span>
+          <span class="prf05">(<%=format('%.1f', @good.price*10/@good.mktprice)%>折)</span>
+          <span class="fontstyle">¥<%=@good.mktprice %></span>
+          <span class="fr new_re_time bglight" data-saleproduct="true" data-saletime="83552"><span class="clockicon fl"></span>
+          <span class="J-time"><span>00</span><span>天</span><span>23</span><span>时</span><span>11</span><span>分</span><span>40</span><span>.</span><span>7</span><span>秒</span></span></span>
+        </p>
+        <p class="space5"></p>
+        <p class="clear"></p>
+        <div class="good_salesize clearfix" style="display: none;">
+          <p class="clearfix">
+            <span class="tit fl">口味：</span>
+          </p>
+          <ul class="good_sizechioce clearfix" data-mersale="true">
+            <li data-size="68671252" class="choose select" data-maxamount="2" data-minamount="1">赤霞珠</li>
+            <li data-size="68671252" class="choose select" data-maxamount="2" data-minamount="1">色拉子</li>
+          </ul>
+          <input type="hidden" name="size" value="68671252">
+          <input type="hidden" name="num" value="1">
+        </div>
+
+
+        <!--<p class="nonsupport"><span></span>特殊商品非质量问题不支持退货</p>-->
+        <ul class="introduce clearfix" style="display:none;">
+          <li><span class="promise_zp"></span>
+            <p>100%正品保证</p>
+          </li>
+
+          <!--<li><span class="golden_sevices"></span><p>金牌客服</p></li>-->
+        </ul>
+        <div class="p_detail_hd">
+          <div class="dashline3"></div>
+          <div class="Origin"><span></span>所售商品均为正品并获得品牌商授权,<br></div>
+          <div class="space20"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<a href="javascript:;" class="btn_more" data-getdetail="more" data-merchandise="normal" style="display: none;"><span class="moreimg"></span>查看商品详情</a>
+<div class="product_detail">
+  <div class="tab_content pro_detail_info"><ul><li><b class="bt_lt_par_t">商品名称：</b> <%=@good.name %></li>
+    <li><b class="bt_lt_par_t">品        牌：</b> <%= @good.brand.brand_name if @good.brand%></li>
+    <li><b class="bt_lt_par_t">分        类：</b> <%=@good.cat.cat_name if @good.cat_id%></li>
+    <li><b class="bt_lt_par_t">规        格：</b> <%=@good.spec_info%></li>
+    <li><b class="bt_lt_par_t">产        地：</b> <%=@good.place_info%></li>
+    <li><b class="bt_lt_par_t">有  效  期：</b> <%= @good.store%></p></li>
+    <li><b class="bt_lt_par_t">商 品 简 介：</b> <%=raw @good.desc%> </li></ul>
+    <br><p class="detail"><%=raw @good.intro.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.intro%></p></div>
+  <div class="loading hide" style="display: none;"><img src="/assets/mobile/loading-big.gif" alt="loading"><span>加载中...</span></div>
+</div>
+<div class="space15"></div>
+<script type="text/javascript">
+    function saveProValue(){
+        return {product_id: '26038564',brand_id: '198535'}
+    };
+</script>
+<!--<a href="product-198535-26038564-detail.html" class="btn_more"><span class="moreimg"></span>查看更多详情</a>-->
+<!-- <p class="coupontips">有一张满<span class="fontred">300</span>减<span class="fontred">100</span>优惠券可用</p> -->
+
+<div class="bottomdiv clearfix">
+  <div class="inner clearfix">
+    <a class="fl cart_time" href="cart.html?rbc=service">
+      <em class="num_cart hide"></em>
+      <span class="carticon fl"></span>
+      <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
+    </a>
+    <div class="fr btn_sure" data-shopcarthide="true" mars_sead="product_add_cart_btn" data_mars="prd_id:26038564" data-animate="true" data-addjump="1" data-addcart="true">加入购物车</div>
+  </div>
+</div>
+
+<div class="modal hide" id="Photo-modal" data-moadl="photobox">
+  <div class="modal-body">
+    <a href="javascript:void(0)" class="closeBtn" data-dismiss="closeModal"><span>×</span></a>
+    <div class="modal-message">
+      <div id="Photo-slide">
+        <ul>
+          <li><img src="/assets/mobile/loading_goods.gif"
+                   data-original="<%=@good.big_pic%>"
+                   data-onerror="<%=@good.big_pic%>"
+                   alt="" class="Touch_mer_biglImg"></li>
+
+        </ul>
+        <nav>
+          <ul id="Photo-pagination">
+
+            <em id="sel1" class="on" mars_sead="product_big_pic">1</em>
+
+            <em id="sel2" mars_sead="product_big_pic">2</em>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag "mobile/swipe.min" %>
+<div class="space20"></div>
+
+<script type="text/javascript">
+    var filterSize='0';
+
+    function saveProValue(){
+        return {product_id: '26038564',brand_id: '198535'}
+    };
+    function updateStock(itemId, is_old) {
+        if (!itemId) {
+            return;
+        }
+
+        var stockUrl = "http://stock.vipshop.com/detail/?merchandiseId=" + itemId;
+        if (is_old) {
+            stockUrl = stockUrl + "&id_old=" + is_old;
+        }
+
+        $.ajax({
+            url: stockUrl,
+            dataType: "jsonp",
+            jsonpCallback: "handleStock"
+        });
+    }
+    function handleStock(data) {
+        if (!data || !data.items || data.items.length == 0) {
+            return;
+        }
+
+        // update size list
+        var sizes = data.items;
+        var $sizeList = $("ul.good_sizechioce");
+        $sizeList.empty();
+        var html = "";
+        for (var i = 0; i < sizes.length; i++) {
+            var size = sizes[i];
+
+            // stock available
+            if (isSizeStockAvailable(size)) {
+                html = html + getSizeAvailableText(size);
+            }
+            // stock not available
+            else {
+                html = html + getSizeNotAvailableText(size);
+            }
+        }
+        $sizeList.html(html);
+        // update size selection
+        $(".good_salesize input[name='size']").val("");
+        var $chooses = $("ul.good_sizechioce .choose");
+        if ($chooses.length == 1) {
+            $chooses.addClass("select");
+            $(".good_salesize input[name='size']").val($chooses.attr("data-size"));
+        }
+        else
+        {
+            $chooses.each(
+                    function(){
+                        var $c=$(this);
+                        if($c.text()==filterSize)
+                        {
+                            $c.addClass("select");
+                            $(".good_salesize input[name='size']").val($c.attr("data-size"));
+                            return false;
+                        }
+                    }
+            );
+        }
+        // update UI
+        if (isItemStockAvailable(sizes)) {
+            $("div.good_salesize").css("display", "block");
+            $("#goods_images .seldout").remove();
+            $(".bottomdiv .fr").removeClass("btn_unav").addClass("btn_sure").attr("data-animate", "true").attr("data-addjump", "1").attr("data-addcart", "true");
+        }
+        else {
+            $("div.good_salesize").css("display", "none");
+            if ($("#goods_images .seldout").length == 0) {
+                $("#goods_images").append("<div class=\"seldout clearfix\"> <span></span> </div>");
+            }
+            $(".bottomdiv .fr").removeClass("btn_sure").addClass("btn_unav").removeAttr("data-animate").removeAttr("data-addjump").removeAttr("data-addcart")
+        }
+    }
+    function getSizeAvailableText(size) {
+        var array = new Array();
+        array.push("<li data-size=\"");
+        array.push(size.id);
+        array.push("\" class=\"choose\" data-maxamount=\"");
+        array.push(size.max);
+        array.push("\" data-minamount=\"");
+        array.push(size.min);
+        array.push("\">");
+        array.push(size.name);
+        array.push("</li>");
+        return array.join("");
+    }
+    function getSizeNotAvailableText(size) {
+        return "<li data-size=\"\" class=\"none\">" + size.name + "</li>";
+    }
+    function isSizeStockAvailable(size) {
+        return size.stock > 0;
+    }
+    function isItemStockAvailable(sizes) {
+        var result = false;
+        for (var i = 0; i < sizes.length; i++) {
+            if (sizes[i].stock > 0) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+    $(function() {
+        // TODO pass in the right argument (is_old)
+        updateStock("26038564", "0");
+        // Leverage browser's back button for backward navigation.
+        $(".head_left a").on("click", function() {
+            history.back();
+            return false;
+        });
+    });
+</script>
+
+<%= javascript_include_tag "mobile/all" %>
+<%= javascript_include_tag "mobile/mars_wap" %>
+<div class="space30"></div>
+<div class="space30"></div><div class="space30"></div>
+<%= javascript_include_tag "mobile/page.item.index.min" %>

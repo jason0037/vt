@@ -20,22 +20,29 @@ module ActiveApi
 				response_type =  opts.delete(:response_type)
 				params = {
 					:response_type => response_type || 'code',
-					:client_id => config.client_id,
-					:redirect_uri=>config.redirect_uri
+		#			:client_id => config.client_id,
+          :appid => config.client_id,
+					:redirect_uri=>config.redirect_uri,
+          :scope => 'snsapi_userinfo',
+          :state=> 'STATE#wechat_redirect'
 				}.merge!(opts)
 				"#{config.authorize_uri}?#{params.to_query}"
 			end
 
 			def request_token(code)
 				params = {
-					:client_id => config.client_id,
-					:client_secret => config.client_secret,
-					:redirect_uri => config.redirect_uri,
-					:grant_type=>'authorization_code',
-					:code=>code
+		#			:client_id => config.client_id,
+          :appid=> config.client_id,
+					#:client_secret => config.client_secret,
+          :secret=>config.client_secret,
+					#:redirect_uri => config.redirect_uri,
+          :code=>code,
+					:grant_type=>'authorization_code'
 				}
+        #https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
 				request_time = Time.now.to_i
 				res = Faraday.new(config.access_token_uri,:ssl=>config.ssl, :params => params).post
+        #return  res.body
 				body = Hashie::Mash.new JSON.parse(res.body)
 				body.merge! :expires_at=>(body.expires_in + request_time)
 				body

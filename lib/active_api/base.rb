@@ -8,7 +8,8 @@ module ActiveApi
 		def authorize_url(*args)
 			opts = args.extract_options!
 			response_type =  opts.delete(:response_type)
-			params = {
+
+  	params = {
 				:response_type => response_type || 'code',
 				:client_id => config.client_id,
 				:redirect_uri=>config.redirect_uri
