@@ -17,6 +17,7 @@ $(document).ready(function(){
   // });
 
   $(".custom-save").live("click",function(){
+
     var data = { custom_values:[] },spec_item_id,value;
 
     var url = $(this).data("url"),method = $(this).data("method");

@@ -29,17 +29,9 @@
       <!--<a href="#" id="next" onClick='Touch_ImgReview.next();return false;'></a>-->
     </div>
     <div class="goods_info">
-      <form name="cartForm" action="index.php?m=flow&act=addtocart" method="post">
-        <input type="hidden" name="channel_id" value="1">
-        <input type="hidden" name="product_id" value="26038564">
-        <input type="hidden" name="cat_id" value="10501009">
-        <input type="hidden" name="warehouse" value="VIP_SH">
-        <input type="hidden" name="product_name" value="奔富酒园洛神山庄干红葡萄酒">
-        <input type="hidden" name="small_image" value="http://sp.vip.com/upload/merchandise/186778/YSLD-027131749424-5.jpg">
-        <input type="hidden" name="vipshop_price" value="429">
-        <input type="hidden" name="market_price" value="540">
-        <input type="hidden" name="agio" value="<%=format('%.1f', @good.price*10/@good.mktprice)%>折">
-        <input type="hidden" name="back_url" value="">
+        <%=form_for :product,:url=>"/cart/add?platform=mobile",:remote=>true do |f|%>
+            <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
+            <%=f.hidden_field :type_id,:value=>@good.type_id%>
         <h1><%=@good.name %></h1>
 
         <p class="new_pricediv clearfix">
@@ -51,16 +43,20 @@
         </p>
         <p class="space5"></p>
         <p class="clear"></p>
-        <div class="good_salesize clearfix" style="display: none;">
-          <p class="clearfix">
-            <span class="tit fl">口味：</span>
-          </p>
-          <ul class="good_sizechioce clearfix" data-mersale="true">
-            <li data-size="68671252" class="choose select" data-maxamount="2" data-minamount="1">赤霞珠</li>
-            <li data-size="68671252" class="choose select" data-maxamount="2" data-minamount="1">色拉子</li>
-          </ul>
-          <input type="hidden" name="size" value="68671252">
-          <input type="hidden" name="num" value="1">
+        <div class="good_salesize clearfix">
+          <%if @good.specs.present?%>
+              <%@good.specs.order("spec_id asc").each do |spec|%>
+                    <p class="clearfix">
+                      <span class="tit fl"><%=spec.spec_name%> :</span>
+                    </p>
+                    <%=hidden_field_tag "product[specs][]"%>
+                  <ul class="good_sizechioce clearfix" data-mersale="true">
+                      <%@good.spec_values.where(:spec_id=>spec.spec_id).uniq.order("p_order asc").each do |spec_value|%>
+                        <li data-size="<%=spec_value.spec_value_id%>" class="choose" data-maxamount="2" data-minamount="1"><%=spec_value.spec_value%></li>
+                      <%end%>
+                  </ul>
+              <%end%>
+          <%end%>
         </div>
 
 
@@ -77,7 +73,7 @@
           <div class="Origin"><span></span>所售商品均为正品并获得品牌商授权,<br></div>
           <div class="space20"></div>
         </div>
-      </form>
+      <%end%>
     </div>
   </div>
 </div>
@@ -109,7 +105,8 @@
       <span class="carticon fl"></span>
       <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
     </a>
-    <div class="fr btn_sure" data-shopcarthide="true" mars_sead="product_add_cart_btn" data_mars="prd_id:26038564" data-animate="true" data-addjump="1" data-addcart="true">加入购物车</div>
+    <%=link_to "加入购物车","javascript:void(0);",:class=>"add_to_cart fr btn_sure #{'login' unless signed_in?}" ,:id=>"add_to_cart" %>
+
   </div>
 </div>
 
@@ -141,6 +138,169 @@
 <div class="space20"></div>
 
 <script type="text/javascript">
+
+    $(document).ready(function(){
+        $('.choose').on("click",function() {
+            $(this).addClass("select");
+            $("#product_specs_").val($(this).attr("data-size"));
+            //  $(".good_salesize input[name='size']").val("");
+
+        });
+
+        $('#add_to_cart').on("click",function(){
+
+            if($(this).hasClass("sold-out")){
+                alert("该商品已经售完!");
+                return false;
+            }
+
+            // var spec_type_size =  $("#specs_container").attr("spec-type-size")*1;
+            //  if($("#specs_container input:hidden[value!='']").length != spec_type_size){
+            //    $("#cart_msg").text("请您选择您要购买的商品信息 ! ");
+            //    return false;
+            //  }
+
+            if($(this).hasClass("login")) return false;
+           // $(".size_helper, .semi_custom").popover('hide');
+            //$(this).closest("form").submit();
+
+         var formobj=  document.forms[0];
+            formobj.submit();
+            return false;
+        });
+        $(".custom-save").live("click",function(){
+            var data = { custom_values:[] },spec_item_id,value;
+
+            var url = $(this).data("url"),method = $(this).data("method");
+
+            $(this).closest("div.popover-content").find("ul.good_spec_items li").each(function(){
+                spec_item_id = $(this).find("[name='product[customs][][spec_item_id]']").val();
+                value = $(this).find("[name='product[customs][][value]']").val();
+                data.custom_values.push({spec_item_id:spec_item_id,value:value});
+            });
+            var self = this;
+            $.ajax(url,{
+                type:method,
+                data:data,
+                success:function(res){
+                    $(self).closest("td").find(".semi_custom").popover('hide');
+                }
+            });
+        });
+
+        var deadline = parseInt($("#clock").attr("deadline"),10);
+        $('div#clock').countdown(deadline, function(event) {
+            $this = $(this);
+            switch(event.type) {
+                case "seconds":
+                case "minutes":
+                case "hours":
+                case "days":
+                    $this.find('span#'+event.type).html(event.value);
+                    break;
+                case "finished":
+                    $this.fadeTo('slow', .5);
+                    break;
+            }
+        });
+
+
+        $("#product").on("click",'.cs_helper',function(){
+            var chat = $("#live800iconlink").attr("onclick");
+            if(!!!chat) return;
+            var link = chat.match(/'([^']+)'/)[1];
+            window.open(link);
+        });
+
+        $(".products_nav .prev_item").bind("click",function(){
+            var curItem = $("#products .products_nav li a.selected").parent("li");
+            var prevItem = curItem.prev();
+            if(prevItem.hasClass("first")) return;
+            prevItem.find("a").trigger("click");
+        });
+
+        $(".products_nav .next_item").bind("click",function(){
+            var curItem = $("#products .products_nav li a.selected").parent("li");
+            var next_item = curItem.next();
+            if(next_item.hasClass("last")) return;
+            next_item.find("a").trigger("click");
+        });
+
+        $("#products .products_nav li a.product_link").bind('click',function(){
+
+            $("#products .products_nav li a").removeClass("selected");
+            $(this).addClass("selected");
+
+            $("#products .single-loader").show();
+            return true;
+        });
+
+        $("#specs_container").on("click",".spec-value",function(){
+            $("#cart_msg").empty();
+
+            if($(this).hasClass("image") && $("#specs_container .spec-value[data-images]").length > 1){
+                var images = $(this).data("images").split(/\s+/);
+                var jcarouselList = $(this).closest(".product_container").find("ul.jcarousel-list li.jcarousel-item");
+                if(jcarouselList.length>0){
+                    for(var i = 0; i < images.length; i++){
+                        $(jcarouselList[i]).find("img").attr("src",images[i]+"?t="+(new Date).getTime());
+                        $(jcarouselList[i]).find("a").attr("href",images[i]);
+                    }
+                }
+                var verticalList = $(this).closest(".product_container").find("ul.vertical li");
+                if(verticalList.length>0){
+                    for(var i = 0; i < images.length; i++){
+                        $(verticalList[i]).find("img").attr("src",images[i]+"?t="+(new Date).getTime());
+                    }
+                }
+                $(".zoomWindow").each(function(){
+                    cls = $(this).attr("id").split("_")[0];
+                    console.log(cls);
+                    bigImg = $("."+cls).attr("href");
+                    $(this).find("img").attr("src",bigImg);
+                });
+            }
+
+            $(this).closest('.spec-item').find(":hidden").val($(this).data("value"));
+            $(this).closest('.spec-values').find(".spec-value").removeClass("selected");
+            $(this).addClass("selected");
+            var spec_values = []
+            var $specs = $("#specs_container");
+            $specs.find("input[name='product[specs][]']").each(function(){
+                var tmp = $(this).val();
+                if(tmp.length>0){
+                    spec_values.push(tmp);
+                }
+            });
+
+            var url = $specs.attr("property-url");
+            var spec_type_size = $specs.attr("spec-type-size")*1;
+            if(spec_values.length ==  spec_type_size){
+                $.get(url,{spec_values: spec_values}, function(res){
+                    $("#product_store").text(res.store);
+                    $("#product_price").text(res.price);
+
+                    $("#store").empty();
+                    if(res.store>0){
+                        $("#add_to_cart").removeClass("sold-out");
+                        for(var i=1;i <= res.store; i++){
+                            $("#store").append('<option value="'+i+'">'+i+'</option>');
+                        }
+                    }else{
+                        // no store
+                        $("#store").append('<option value="'+0+'">'+0+'</option>');
+                        $("#add_to_cart").addClass("sold-out");
+                    }
+                });
+            }
+            return false;
+        });
+
+
+    });
+
+
+
     var filterSize='0';
 
     function saveProValue(){
@@ -258,6 +418,7 @@
             return false;
         });
     });
+
 </script>
 
 <%= javascript_include_tag "mobile/all" %>

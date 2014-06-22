@@ -243,7 +243,6 @@ $(document).ready(function(){
   });
 
   $('.add_to_cart').live("click",function(){
-     
 
      if($(this).hasClass("sold-out")){
         alert("该商品已经售完!");

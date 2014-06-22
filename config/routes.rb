@@ -312,6 +312,7 @@ Modengke::Application.routes.draw do
       # post 'cart/add'=>"cart#add",:as=>:add_to_cart
       resources :cart do
           post 'add',:on=>:collection
+          get 'mobile', :on=>:collection
       end
       resources :brands,:only=>[:index,:show]
       resources :users

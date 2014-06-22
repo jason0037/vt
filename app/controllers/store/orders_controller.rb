@@ -226,7 +226,10 @@ class Store::OrdersController < ApplicationController
 			@order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
 			@goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
 			@coupons = @user.usable_coupons
-		end
+    end
+    if params[:platform]=='mobile'
+      render :layout=>"mobile_new"
+    end
 	end
 
 

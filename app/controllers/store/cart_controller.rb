@@ -5,7 +5,11 @@ class Store::CartController < ApplicationController
 
 	def index
 		render :layout=>"cart"
-	end
+  end
+  def mobile
+    render :layout=>"mobile_new"
+  end
+
 	
 	def add
 		
@@ -14,7 +18,11 @@ class Store::CartController < ApplicationController
 		customs = params[:product].delete(:customs)
 		quantity = params[:product].delete(:quantity).to_i
 		goods_id = params[:product][:goods_id]
+    if quantity.blank? || quantity ==0
+      quantity=1
+    end
 
+#return render :text=> "specs:#{specs},customs:#{customs},quantity:#{quantity},goods_id:#{goods_id}"
 		# product_id = specs.collect do |spec_value_id|
 		# 	Ecstore::GoodSpec.where(params[:product].merge(:spec_value_id=>spec_value_id)).pluck(:product_id)
 		# end.inject(:&).first
@@ -23,11 +31,15 @@ class Store::CartController < ApplicationController
 		# @product  =  @good.products.select do |p|
 		# 	p.spec_desc["spec_value_id"].values.map{ |x| x.to_s }.sort == specs.sort
 		# end.first
+    if specs='spce[""]'
+      @product = @good.products.first
+    else
+      @product  =  @good.products.select do |p|
+        p.good_specs.pluck(:spec_value_id).map{ |x| x.to_s }.sort == specs.sort
+      end.first
 
-		@product  =  @good.products.select do |p|
-	        p.good_specs.pluck(:spec_value_id).map{ |x| x.to_s }.sort == specs.sort
-	    end.first
-
+    end
+#return render :text=>@products.product_id
 		if signed_in?
 			member_id = @user.member_id
 			member_ident = Digest::MD5.hexdigest(@user.member_id.to_s)
@@ -65,8 +77,12 @@ class Store::CartController < ApplicationController
 
 		#calculate cart_total and cart_total_quantity
 		find_cart!
+    if params[:platform]=='mobile'
+      redirect_to "/cart/mobile"
+    else
+      render "add"
+    end
 
-		render "add"
 
 	#rescue 
 		#render :text=>"add failed"
