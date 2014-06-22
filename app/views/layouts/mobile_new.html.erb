@@ -61,8 +61,8 @@
         <a href="user.html"><%=@user.account.login_name%></a>
         <a href="/logout?platform=mobile">退出登录</a>
 <%else%>
-    <a href="/mlogin?return_url=<%=request.url %>" mars_sead="footer-login_btn">登录</a>
-    <a href="/mregister?return_url=<%=request.url %>">注册</a>
+    <a href="/mlogin?return_url=<%=request.url.sub('http://trade','').force_encoding('UTF-8') %>" mars_sead="footer-login_btn">登录</a>
+    <a href="/mregister?return_url=<%=request.url.sub('http://trade','').force_encoding('UTF-8') %>">注册</a>
 <%end%>
     <a href="?t=1#" class="backtop" mars_sead="home_foot_top_btn"></a>
   </div>
