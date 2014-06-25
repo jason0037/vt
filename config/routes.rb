@@ -333,9 +333,11 @@ Modengke::Application.routes.draw do
           post :pay
           get :detail
           get :goods
+
         end
         collection do
           get 'check_coupon'
+          get  'new_mobile'
         end
       end
 

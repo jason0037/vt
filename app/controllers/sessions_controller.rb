@@ -26,12 +26,14 @@ class SessionsController < ApplicationController
              # @line_items.update_all(:member_id=>@account.account_id,
              #                                       :member_ident=>Digest::MD5.hexdigest(@account.account_id.to_s))
       if params[:return_url]
+        #return redirect_to(params[:return_url]) if signed_in?
         return redirect_to("/m") if signed_in?
       end
   		render "create"
   	else
              
   		render "error"
+      #  render js: '$("#login_msg").text("帐号或密码错误!").addClass("error").fadeOut(300).fadeIn(300);'
   	end
   end
 

@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
             end
             @cart_total_quantity = @line_items.inject(0){ |t,l| t+=l.quantity }.to_i || 0
             if cookies[:MLV] == "10"
-              @cart_total = @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.bulk*x.quantity) }.inject(:+) || 0
+              @cart_total =@line_items.select{|x| x.product.present? }.collect{ |x| (x.product.bulk*x.quantity) }.inject(:+) || 0
             else
               @cart_total = @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.price*x.quantity) }.inject(:+) || 0
             end

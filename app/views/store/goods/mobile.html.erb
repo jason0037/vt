@@ -160,7 +160,12 @@
             //    return false;
             //  }
 
-            if($(this).hasClass("login")) return false;
+            if($(this).hasClass("login")) {
+                location.href="/mlogin?return_url=<%=request.url.sub('http://trade','').force_encoding('UTF-8') %>";
+              //  window.location.href="mlogin?return_url="+window.location.href;
+                return false;
+
+            }//
            // $(".size_helper, .semi_custom").popover('hide');
             //$(this).closest("form").submit();
 

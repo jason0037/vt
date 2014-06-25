@@ -75,7 +75,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     @ly    = @weixin_message.Location_Y
     @scale = @weixin_message.Scale
     @label = @weixin_message.Label
-    reply_text_message("Your Location: #{@lx}, #{@ly}, #{@scale}, #{@label}")
+   # reply_text_message("Your Location: #{@lx}, #{@ly}, #{@scale}, #{@label}")
   end
 
   # <PicUrl><![CDATA[this is a url]]></PicUrl>
@@ -145,7 +145,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     @lat = @weixin_message.Latitude
     @lgt = @weixin_message.Longitude
     @precision = @weixin_message.Precision
-    reply_text_message("Your Location: #{@lat}, #{@lgt}, #{@precision}")
+   # reply_text_message("Your Location: #{@lat}, #{@lgt}, #{@precision}")
   end
 
   # 点击菜单拉取消息时的事件推送
@@ -159,13 +159,13 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         @keyword='黄油'
         response_news_message({})
       else
-        reply_text_message("你点击了: #{@keyword}")
+       # reply_text_message("你点击了: #{@keyword}")
     end
   end
 
   # 点击菜单跳转链接时的事件推送
   def handle_view_event
-    Rails.logger.info("你点击了: #{@keyword}")
+ #   Rails.logger.info("你点击了: #{@keyword}")
   end
 
   # 帮助文档: https://github.com/lanrion/weixin_authorize/issues/22

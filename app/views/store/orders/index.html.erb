@@ -19,7 +19,7 @@
 					link_title = "赠品:#{link_title}" if order_item.item_type == 'gift'
 				%>
 				<%=link_to good_path_ext(order_item.good),:title=>link_title,:target=>"_blank",:class=>"thumb-link" do %>
-					<%=image_tag order_item.product.list_pictures[1],:class=>"thumb" if order_item.item_type == 'product'%>
+					<%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product'%>
 					<%=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
 				<%end%>
 
@@ -27,7 +27,7 @@
 		</td>
 		
 		<td><%=order.created_at%></td>
-		<td><%=order.final_amount%></td>
+		<td>￥<%=order.final_amount%></td>
 		<td><%=order.status_text%></td>
 		<td>
 			<div><%=link_to "查看",detail_order_path(order),:target=>"_blank"%></div>

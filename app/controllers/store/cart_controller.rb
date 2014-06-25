@@ -22,7 +22,7 @@ class Store::CartController < ApplicationController
       quantity=1
     end
 
-#return render :text=> "specs:#{specs},customs:#{customs},quantity:#{quantity},goods_id:#{goods_id}"
+#return render :text=> "specs:#{specs[0].length},customs:#{customs},quantity:#{quantity},goods_id:#{goods_id}"
 		# product_id = specs.collect do |spec_value_id|
 		# 	Ecstore::GoodSpec.where(params[:product].merge(:spec_value_id=>spec_value_id)).pluck(:product_id)
 		# end.inject(:&).first
@@ -31,7 +31,7 @@ class Store::CartController < ApplicationController
 		# @product  =  @good.products.select do |p|
 		# 	p.spec_desc["spec_value_id"].values.map{ |x| x.to_s }.sort == specs.sort
 		# end.first
-    if specs='spce[""]'
+    if specs[0].empty?
       @product = @good.products.first
     else
       @product  =  @good.products.select do |p|
@@ -83,7 +83,6 @@ class Store::CartController < ApplicationController
       render "add"
     end
 
-
 	#rescue 
 		#render :text=>"add failed"
 	end
@@ -100,8 +99,13 @@ class Store::CartController < ApplicationController
 		_type, goods_id, product_id = params[:id].split('_')
 		@line_items.where(:obj_ident=>params[:id]).delete_all
 		@user.custom_specs.where(:product_id=>product_id).delete_all if signed_in?
+
 		find_cart!
-		render "destroy"
+  #  if params[:platform]=='mobile'
+  #    return  render :text=>"删除成功"# redirect_to "/cart/mobile"
+  #  else
+  		render "destroy"
+  #  end
 	end
 
 	

@@ -85,10 +85,16 @@ class Store::OrdersController < ApplicationController
 
 	def index
 		@orders =  @user.orders.order("createtime desc")
+    if params["platform"]=="mobile"
+      render :layout=>"mobile_new"
+    end
 	end
 
 	def show
 		@order = Ecstore::Order.find_by_order_id(params[:id])
+    if params["platform"]=="mobile"
+      render :layout=>"mobile_new"
+    end
 	end
 
 	def create
@@ -206,7 +212,7 @@ class Store::OrdersController < ApplicationController
 				order_log.log_text = "订单创建成功！"
 			end.save
 
-			redirect_to order_path(@order)
+			redirect_to "#{order_path(@order)}?platform=mobile"
 			
 		else
 			@addrs =  @user.member_addrs
@@ -227,10 +233,20 @@ class Store::OrdersController < ApplicationController
 			@goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
 			@coupons = @user.usable_coupons
     end
-    if params[:platform]=='mobile'
-      render :layout=>"mobile_new"
+  end
+
+  def new_mobile
+    # @order = Ecstore::Order.new
+    @addrs =  @user.member_addrs
+    @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
+
+    if @pmtable
+      @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
+      @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
+      @coupons = @user.usable_coupons
     end
-	end
+      render :layout=>"mobile_new"
+  end
 
 
 
