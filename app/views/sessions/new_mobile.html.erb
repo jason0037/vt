@@ -26,14 +26,13 @@
       <a href="javascript:void(0)" onclick="document.getElementById(&#39;captcha&#39;).src=&#39;captcha.html?&#39;+Math.random()"><label>&nbsp;看不清？换一张</label></a>
     </dl>
     <dl><input name="remember_me" type="checkbox" value="1" checked="true" class="fl">记住登录状态</dl>
-    <input type="hidden" name="data" value="">
-    <input type="hidden" name="act" value="login">
-    <input type="hidden" name="step" value="act_login">
+    <div id="login_msg" style="color:red;font-size:12pt;"></div>
     <input type="hidden" name="back_act" value="product-198535-26038564.html">
     <div class="space15"></div>
     <%=f.submit "登 录",:class=>"btn_red"%>
     <div class="space15"></div>
-    <a href="/mregister" class="forgetkey">立即注册&gt;&gt;</a><a href="/users/forgot_password" class="fr forgetkey" target="new">忘记密码?</a>
+    <a href="/mregister?platform=mobile" class="forgetkey">立即注册&gt;&gt;</a><a href="/users/forgot_password?platform=mobile" class="fr forgetkey" target="new">忘记密码?</a>
   </div>
 <%end%>
+<%= javascript_include_tag "login" %>
 

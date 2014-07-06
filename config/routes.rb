@@ -326,6 +326,7 @@ Modengke::Application.routes.draw do
           get :goods
         end
       end
+      get 'share' =>"orders#share"
       resources :orders, :except=>[:index] do 
         member do
           get 'to_inventory'

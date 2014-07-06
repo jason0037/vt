@@ -77,52 +77,10 @@
         <%end%>
         <li class="otherpay" mars_sead="checkout_payment_paypal_radio">
           <span class="radio-box"></span>
-          <%=f.radio_button :payment, "ips", :class=>"hide",  :checked=>true%>
-          <span class="payicon zfbapp"></span><p>环迅人民币支付</p>
+          <%=f.radio_button :payment, "alipaywap", :class=>"hide" , :checked=>true %>
+          <span class="payicon zfbapp"></span><p>支付宝手机版</p>
         </li>
-        <li class="otherpay" mars_sead="checkout_payment_paypal_radio">
-          <span class="radio-box"></span>
-          <%=f.radio_button :payment, "alipay", :class=>"hide"%>
-          <span class="payicon zfbapp"></span><p>支付宝</p>
-        </li>
-
-        <li class="bankpay" mars_sead="checkout_payment_card_radio" style="display:none"><span class="radio-box"></span><input name="pay_type" value="-2" data-bankid="" data-type="" data-cashier="1" type="radio" class="hide"><span class="payicon bankcard"></span><p>银行卡(<em>请选择支付卡种</em>)</p><span class="down_arrow"></span>
-          <div class="dropdiv hide">
-            <ul class="title clearfix" data-catetype="cart">
-              <li><span class="cur bor">信用卡</span></li>
-              <li><span>储蓄卡</span></li>
-            </ul>
-            <div class="dropBank" data-carttype="bank" data-twipay="false">
-              <ul>
-                <li>招商银行信用卡<span data-bankid="CREDITCARD_CMB" data-type="87"></span></li>
-                <li>中国建设银行信用卡<span data-bankid="CREDITCARD_CCB" data-type="86"></span></li>
-                <li>中国工商银行信用卡<span data-bankid="CREDITCARD_ICBC" data-type="89"></span></li>
-                <li>广发银行信用卡<span data-bankid="CREDITCARD_GDB" data-type="89"></span></li>
-                <li>中国银行信用卡<span data-bankid="CREDITCARD_BOC" data-type="89"></span></li>
-                <li>兴业银行信用卡<span data-bankid="CREDITCARD_CIB" data-type="89"></span></li>
-                <li>中国民生银行信用卡<span data-bankid="CREDITCARD_CMBC" data-type="89"></span></li>
-                <li>中国农业银行信用卡<span data-bankid="CREDITCARD_ABC" data-type="89"></span></li>
-                <li>中信银行信用卡<span data-bankid="CREDITCARD_CITIC" data-type="89"></span></li>
-                <li>华夏银行信用卡<span data-bankid="CREDITCARD_HXBANK" data-type="89"></span></li>
-                <li>中国光大银行信用卡<span data-bankid="3108" data-type="92"></span></li>
-              </ul>
-
-              <ul class="hide">
-                <li>中国工商银行储蓄卡<span data-bankid="DEBITCARD_ICBC" data-type="89"></span></li>
-                <li>中国建设银行储蓄卡<span data-bankid="DEBITCARD_CCB" data-type="86"></span></li>
-                <li>招商银行储蓄卡<span data-bankid="DEBITCARD_CMB" data-type="87"></span></li>
-                <li>中国银行储蓄卡<span data-bankid="DEBITCARD_BOC" data-type="89"></span></li>
-                <li>中信银行储蓄卡<span data-bankid="DEBITCARD_CITIC" data-type="89"></span></li>
-                <li>中国民生银行储蓄卡<span data-bankid="DEBITCARD_CMBC" data-type="89"></span></li>
-                <li>深圳平安银行<span data-bankid="DEBITCARD_SPABANK" data-type="89"></span></li>
-                <li>广发银行<span data-bankid="DEBITCARD_GDB" data-type="89"></span></li>
-                <li>兴业银行<span data-bankid="DEBITCARD_CIB" data-type="89"></span></li>
-              </ul>
-            </div>
-          </div>
-        </li>
-
-      </ul>
+       </ul>
     </div>
   </div>
 

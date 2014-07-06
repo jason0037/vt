@@ -212,9 +212,17 @@
             </li>
 
             <%end%>
-          <li class="active">
-            <a href="#">账务</a>
-          </li>
+            <li class="<%='active' if controller_name=='mshop'%>">
+              <a href="#">微店管理</a>
+              <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
+                <li>
+                  <%=link_to "用户",admin_promotions_path(:type=>"order") if current_admin.has_right_of("promotions","index")%>
+                  <%=link_to "分组",admin_promotions_path(:type=>"order") if current_admin.has_right_of("promotions","index")%>
+                  <%=link_to "菜单",admin_promotions_path(:type=>"order") if current_admin.has_right_of("promotions","index")%>
+                  <%=link_to "群发",admin_promotions_path(:type=>"order") if current_admin.has_right_of("promotions","index")%>
+                </li>
+              </ul>
+            </li>
 
           </ul>
         </div><!--/.nav-collapse -->

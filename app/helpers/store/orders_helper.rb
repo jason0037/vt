@@ -25,7 +25,8 @@ module Store::OrdersHelper
 			"deposit"=>{ :name=>"预存款", :extra=>"" },
 			"offline"=>{ :name=>"货到付款", :extra=>link_to("点击查询货到付款配送区域","http://www.zjs.com.cn/WS_Business/WS_Bussiness_CityArea.aspx?id=6",:target=>"_blank").html_safe }, 
 			"99bill"=>{ :name=>"其他银行网上支付",:extra=>"" },
-			"alipay"=>{ :name=>"支付宝",:extra=>"" }
+			"alipay"=>{ :name=>"支付宝",:extra=>"" },
+      "alipaywap"=>{ :name=>"支付宝手机版",:extra=>"" }
 		}
 	end
 end

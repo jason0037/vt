@@ -18,7 +18,8 @@ class Ecstore::Payment < Ecstore::Base
 		:deposit => { :pay_name=>'预存款', :bank=> '预存款', :pay_type=>"deposit" },
 		:offline => { :pay_name=>'线下支付', :bank=> '货到付款', :pay_type=>"offline" },
 		:'99bill' => { :pay_name=>'快钱支付', :bank=> '其他银行网上支付', :pay_type=>"online" },
-		:alipay => { :pay_name=>'支付宝', :bank=> '支付宝', :pay_type=>"online" }
+		:alipay => { :pay_name=>'支付宝', :bank=> '支付宝', :pay_type=>"online" },
+    :alipaywap => { :pay_name=>'支付宝手机版', :bank=> '支付宝手机版', :pay_type=>"online" }
 	}
 
 	#  status => enum('succ','failed','cancel','error','invalid','progress','timeout','ready')

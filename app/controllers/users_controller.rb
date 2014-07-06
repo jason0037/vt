@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   end
 
   def create
-
   	now  = Time.now
 	  @account = Ecstore::Account.new(params[:user]) do |ac|
   		ac.account_type ="member"
@@ -23,8 +22,9 @@ class UsersController < ApplicationController
 
 	  if @account.save
       sign_in(@account)
+      @return_url=params[:return_url]
       render "create"
-	  else        
+    else
       render "error"
     end
   end

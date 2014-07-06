@@ -1,48 +1,51 @@
 #encoding:utf-8
 module ModecPay
-	class Alipay < Payment
+	class Alipaywap < Payment
 
 		#@@mer_id = '2088701875473608'
 		#@@private_key  = 'x5cynpqbifj5uauqj1nx8cd79o3no4vy'
 
     @@mer_id = '2088411414403176'
     @@private_key  = 'hzh3bf969beqkqdbohdxocxlwpgr8278'
+    @@seller_account_name='maowei@iotps.com'
 
 		def initialize
 			super
 
-
-      self.mer_id =  @@mer_id
       self.private_key = @@private_key
 
-      self.action = 'https://mapi.alipay.com/gateway.do'
-			# self.action = 'https://www.alipay.com/cooperate/gateway.do'
 			self.method = 'get'
 			self.charset ='utf-8'
-
+      self.action ='http://wappaygw.alipay.com/service/rest.htm'
 
 			self.sorter = Proc.new { |key,val| key }
 			self.filter = Proc.new { |key,val| key.present? }
+     # self.sorter = ['service','req_data','partner','req_id','sec_id', 'format','v']
 
-			self.fields['sign_type'] ='MD5'
-			self.fields['service'] =  'create_direct_pay_by_user'
-			self.fields['partner'] = self.mer_id
-			self.fields['_input_charset'] = 'utf-8'
-			self.fields['payment_type'] = '1'
-			self.fields['seller_id'] = @@mer_id
+      self.fields['service'] =  'alipay.wap.trade.create.direct'
+      self.fields['format']='xml'
+      self.fields['v']='2.0'
+      self.fields['partner'] = @@mer_id
 
-		end
+			self.fields['sec_id'] ='MD5' #'0001' #=>RSA
+
+    end
+
+    def subject=(val)
+      @subject = val
+    end
 		
 		def return_url=(val)
-			self.fields['return_url'] = val
+			@call_back_url = val
 		end
 
 		def notify_url=(val)
-			self.fields['notify_url'] = val
+			@notify_url = val #可空
 		end
 
 		def pay_id=(val)
-			self.fields['out_trade_no'] = val
+			@out_trade_no = val
+      self.fields['req_id']= val
 		end
 
 		def pay_time=(val)
@@ -50,13 +53,31 @@ module ModecPay
 		end
 
 		def pay_amount=(val)
-			self.fields['total_fee'] = val
-		end
+			@total_fee = val
+    end
 
-		def subject=(val)
-			self.fields['subject'] = val
-		end
+    def member_id=(val)
+      @member_id = val #买家在商户系统的唯一标识。可空
+    end
 
+    def merchant_url=(val)
+      @merchant_url = val #操作中断返回地址,可空
+    end
+
+    def pay_expire=(val)
+      @pay_expire = val #交易自动关闭时间，单位为 分钟。 默认值 21600（即 15 天），可空
+    end
+
+
+=begin
+ self.fields['req_data']="<direct_trade_create_req><subject>#{@subject}</subject><out_trade_no>
+#{@out_trade_no}</out_trade_no><total_fee>#{@total_fee}</total_fee><seller_account_name>
+#{@@seller_account_name}</seller_account_name><call_back_url>
+#{@call_back_url}</call_back_url><notify_url>#{@notify_url}</notify_url><out_user>
+#{@member_id}</out_user><merchant_url>#{@merchant_url}</merchant_url><pay_expire>
+#{@pay_expire}</pay_expire></direct_trade_create_req>"
+
+=end
 
 		class <<  self
 			def verify_sign(params)
@@ -66,7 +87,7 @@ module ModecPay
 
 				unsign = _sorted_hash.collect do |key,val|
 					"#{key}=#{val}"
-				end.join("&") + @@private_key
+				end.join("&") + self.private_key
 
 				Digest::MD5.hexdigest(unsign) == sign
 			end
@@ -74,7 +95,7 @@ module ModecPay
 			def verify_notify(params,options)
 				if verify_sign(params)
 					
-					ModecPay.logger.info "[alipay][#{Time.now}] payment=#{params['out_trade_no']} verify notify successfully."
+					ModecPay.logger.info "[alipaywap][#{Time.now}] payment=#{params['out_trade_no']} verify notify successfully."
 
 					case params['trade_status']
 						when 'TRADE_FINISHED','TRADE_SUCCESS'
@@ -99,7 +120,7 @@ module ModecPay
 			def verify_return(params,options)
 				is_success = params['is_success']
 				if verify_sign(params)
-					ModecPay.logger.info "[alipay][#{Time.now}] verify return successfully."
+					ModecPay.logger.info "[alipaywap][#{Time.now}] verify return successfully."
 					case params['trade_status']
 						when 'TRADE_FINISHED','TRADE_SUCCESS'
 							t_payed = Time.now

@@ -33,15 +33,20 @@ module Admin
         menu = '{
      "button":[
      {
-          "type":"click",
           "name":"限时特价",
-          "key":"ON_SALE"
-      },
-      {
-           "type":"click",
-           "name":"新品推荐",
-           "key":"NEW"
-      },
+          "sub_button":[
+          {
+                "type":"click",
+                "name":"限时特价",
+                "key":"ON_SALE"
+            },
+            {
+                 "type":"click",
+                 "name":"新品推荐",
+                 "key":"NEW"
+            }
+
+      ]},
       {
            "name":"商品分类",
            "sub_button":[
@@ -64,6 +69,21 @@ module Admin
                "type":"view",
                "name":"肉类",
                "url":"http://www.trade-v.com/mgallery?name=%E8%82%89%E7%B1%BB"
+            }]
+         },
+         {
+           "name":"我的订单",
+           "sub_button":[
+           {
+               "type":"view",
+               "name":"我的订单",
+               "url":"http://www.trade-v.com/goods?platform=mobile"
+            },
+
+            {
+               "type":"click",
+               "name":"我的佣金",
+               "key":"SHARE"
             }]
        }]
  }'

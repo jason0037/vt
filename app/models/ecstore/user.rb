@@ -14,6 +14,7 @@ class Ecstore::User < Ecstore::Base
 
   has_many :custom_specs,:class_name=>"CustomValue",:foreign_key=>"member_id"
   
+  has_many :suppliers, :foreign_key=>"member_id"
 
   has_many :member_coupons, :foreign_key=>"member_id"
 

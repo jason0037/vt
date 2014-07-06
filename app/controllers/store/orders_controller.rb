@@ -248,6 +248,25 @@ class Store::OrdersController < ApplicationController
       render :layout=>"mobile_new"
   end
 
+  def share
+    wechat_user = params[:FromUserName]
+    @share=0
+    @sharelast = 0
+    if wechat_user
+      @order_all = Ecstore::Order.where(:wechat_recommend=>wechat_user).select("SUM(final_amount)*0.01 as share").group(:wechat_recommend).first
+      #return render :text=>@order.final_amount
+      if @order_all
+        @share = @order_all.share.round(2)
+        @order_last =Ecstore::Order.where(:wechat_recommend=>wechat_user).order("createtime desc").first
+        if @order_last
+          @sharelast = @order_last.final_amount*0.01.round(2)
+        end
+      end
+    end
+
+    render :layout=>"mobile_new"
+
+  end
 
 
 	def pay

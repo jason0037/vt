@@ -42,6 +42,18 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
+      when 'share'
+        share = 0
+        @order = Ecstore::Order.where(:wechat_recommend=>@weixin_message.FromUserName).select("SUM(final_amount)*0.01 as share").group(:wechat_recommend).first
+        if @order
+          share =@order.share.round(2)
+        end
+        title="您的总佣金收益是: #{share}元"
+        desc ="查看佣金详情请点击"
+        pic_url=""
+        link_url="http://www.trade-v.com/share?FromUserName=#{user}"
+        articles = [generate_article(title, desc, pic_url, link_url)]
+        reply_news_message(articles)
       else
         title="[紫薇]牛奶/起司棒饼干仅售 35.10元"
         desc ="[紫薇]牛奶/起司棒饼干 500克 产地:台湾"
@@ -61,8 +73,18 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
   def response_text_message(options={})
     #reply_text_message("Your Message: #{@keyword}")
+    case @keyword
+      when 'share'
+      share = 0
+        @order = Ecstore::Order.where(:wechat_recommend=>@weixin_message.FromUserName).select("SUM(final_amount)*0.01 as share").group(:wechat_recommend).first
+        if @order
+          share =@order.share.round(2)
+        end
+        message="您好！,您可以领取的佣金是：￥#{share}元"
+      else
+        message="您好！贸威欢迎您！跨境贸威，一键直达！#{@weixin_message.FromUserName}"
+    end
 
-    message="您好！贸威欢迎您！跨境贸威，一键直达！#{@weixin_message.FromUserName}"
     reply_text_message(message)
   end
 
@@ -157,6 +179,9 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         response_news_message({})
       when 'NEW'
         @keyword='黄油'
+        response_news_message({})
+      when 'SHARE'
+        @keyword='share'
         response_news_message({})
       else
        # reply_text_message("你点击了: #{@keyword}")

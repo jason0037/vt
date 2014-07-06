@@ -1,1 +1,7 @@
-window.parent.location = "<%=after_user_sign_in_path%>";
+var return_url="<%=@return_url%>"
+if (return_url.length==0){
+    window.parent.location = "<%=after_user_sign_in_path%>";
+}
+else{
+   window.location=return_url;
+}
