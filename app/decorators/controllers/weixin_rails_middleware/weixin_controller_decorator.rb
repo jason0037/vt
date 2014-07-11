@@ -142,6 +142,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     send("handle_#{event_type.downcase}_event")
   end
 
+
   private
 
   # 关注公众账号

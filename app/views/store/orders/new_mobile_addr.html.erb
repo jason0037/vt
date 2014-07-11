@@ -1,13 +1,16 @@
 <header id="header" class="header clearfix">
 
   <div class="head_left fl"><a href="http://m.vip.com/cart.html?rbc=service"><span class="h_back"></span></a></div>
-  <span class="headtit">结算</span>
+  <span class="headtit">收货地址</span>
   <div class="head_right fr"><a href="http://m.vip.com/index.html" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
 </header>
 <%if @line_items.size > 0%>
 <div class="space10"></div>
 <div data-formorder="checkoutForm">
   <div class="userdiv">
+
+        <%=form_for :order,:url=>"#{orders_path}?platform=mobile",:html=>{ :class=>"form-horizontal",:id=>"order_form" } do |f|%>
+            <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
     <div class="checktit font14"><span class="receive_info"></span>收货信息</div>
     <div class="checkcon clearfix">
               <%if @addrs.size>0%>
@@ -31,11 +34,7 @@
                     <span>使用新地址+</span>
                   </p>
               <%end%>
-      <%=render :partial=>"patch/member_addrs/form",:locals=>{ :display=>( @addrs.size == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
-
     </div>
-    <%=form_for :order,:url=>"#{orders_path}?platform=mobile",:html=>{ :class=>"form-horizontal",:id=>"order_form" } do |f|%>
-        <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
     <div data-cartforms="time" data-collapse="true" data-style="arrow">
       <p class="timetit">
         <span class="text">送货时间不限</span>
@@ -226,4 +225,3 @@
 <%else%>
 	<p>您还没有选择商品。</p>
 <%end%>
-<%=javascript_include_tag "store/orders"%>

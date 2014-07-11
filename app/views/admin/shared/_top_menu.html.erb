@@ -30,7 +30,7 @@
 
             <%if current_admin.has_right_of("events","index")%>
             <li class="<%='active' if controller_name=='events'%>">
-              <%=link_to "摩登活动",admin_events_path%>
+              <%=link_to "精彩活动",admin_events_path%>
             </li>
             <%end%>
 
@@ -216,10 +216,10 @@
               <a href="#">微店管理</a>
               <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
                 <li>
-                  <%=link_to "用户",admin_promotions_path(:type=>"order") if current_admin.has_right_of("promotions","index")%>
-                  <%=link_to "分组",admin_promotions_path(:type=>"order") if current_admin.has_right_of("promotions","index")%>
-                  <%=link_to "菜单",admin_promotions_path(:type=>"order") if current_admin.has_right_of("promotions","index")%>
-                  <%=link_to "群发",admin_promotions_path(:type=>"order") if current_admin.has_right_of("promotions","index")%>
+                  <%=link_to "关注用户",'/admin/wechat/followers' if current_admin.has_right_of("promotions","index")%>
+                  <%=link_to "用户分组",'/admin/wechat/groups' if current_admin.has_right_of("promotions","index")%>
+                  <%=link_to "微信菜单",'/admin/wechat/menu' if current_admin.has_right_of("promotions","index")%>
+                  <%=link_to "微信群发", '/admin/wechat/batch_sending' if current_admin.has_right_of("promotions","index")%>
                 </li>
               </ul>
             </li>

@@ -84,9 +84,14 @@ class Store::OrdersController < ApplicationController
   end
 
 	def index
-		@orders =  @user.orders.order("createtime desc")
-    if params["platform"]=="mobile"
-      render :layout=>"mobile_new"
+    if  @user
+      @orders =  @user.orders.order("createtime desc")
+      if params["platform"]=="mobile"
+        render :layout=>"mobile_new"
+      end
+    else
+      return_url={:return_url => "/goods?platform=mobile"}.to_query
+      redirect_to "/mlogin?#{return_url}"
     end
 	end
 
@@ -236,7 +241,6 @@ class Store::OrdersController < ApplicationController
   end
 
   def new_mobile
-    # @order = Ecstore::Order.new
     @addrs =  @user.member_addrs
     @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
 

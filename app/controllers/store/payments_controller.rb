@@ -56,7 +56,9 @@ class Store::PaymentsController < ApplicationController
 			redirect_to order_url(@order)
 		end
 	end
-
+def debug
+  render :text=>"show"
+end
 
 	def show
 		@payment = Ecstore::Payment.find_by_payment_id(params[:id])
@@ -75,8 +77,12 @@ class Store::PaymentsController < ApplicationController
 				pay.pay_time = Time.now
 				pay.subject = "贸威订单(#{order_id})"
 				pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
-			end
-			render :inline=>@modec_pay.html_form
+      end
+      if adapter=='alipaywap'
+        render :text=>@modec_pay.get_token
+      else
+			  render :inline=>@modec_pay.html_form
+      end
 
 			Ecstore::PaymentLog.new do |log|
 				log.payment_id = @payment.payment_id

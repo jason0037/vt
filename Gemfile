@@ -51,9 +51,13 @@ gem 'therubyracer'
 
 gem 'axlsx'
 
-gem 'weixin_rails_middleware', git: "git://github.com/lanrion/weixin_rails_middleware.git", branch: "master"
+#gem 'weixin_rails_middleware', git: "git://github.com/lanrion/weixin_rails_middleware.git", branch: "master"
+gem 'weixin_rails_middleware'
 
 gem 'weixin_authorize'
+
+gem 'rest-client'
+gem 'httpclient'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -1,4 +1,5 @@
 #encoding:utf-8
+require 'httpclient'
 Modengke::Application.routes.draw do
   
   mount WeixinRailsMiddleware::Engine, at: "/"
@@ -108,7 +109,13 @@ Modengke::Application.routes.draw do
       # subdomain = "www" if Rails.env == "production"
       # constraints :subdomain => subdomain do
         get 'logout'=>'sessions#destroy'
-        resources :wechat
+        resources :wechat do
+          get :menu,:on=>:collection
+          get :followers, :on=>:collection
+          get :followers_import, :on=>:collection
+          get :groups, :on=>:collection
+          get :batch_sending, :on=>:collection
+        end
         resources :resources
         resources :permissions do
 
@@ -346,6 +353,7 @@ Modengke::Application.routes.draw do
         
         collection do
           get 'callback'
+          get 'debug'
         end
 
         member do
