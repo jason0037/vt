@@ -1,0 +1,25 @@
+<h4>关注者分组</h4>
+</div>
+<%= link_to '新增分组','/admin/wechat/group_create', :class => "pull-right btn btn-primary" %>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>id</th>
+    <th>分组名</th>
+    <th>人数</th>
+    <th>操作</th>
+  </tr>
+
+  <% @groups.each do |group| %>
+      <tr>
+        <td><%=group['id']%></td>
+        <td><%=group['name']%></td>
+        <td><%=group['count']%></td>
+        <td>
+          <%#= link_to '编辑', edit_admin_supplier_path（follower) %>
+          |
+          <%#= link_to '删除', admin_supplier_path(follower), method: :delete, data: { confirm: '确定删除?' } %>
+        </td>
+      </tr>
+  <% end %>
+</table>

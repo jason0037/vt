@@ -1,0 +1,144 @@
+<%= stylesheet_link_tag    "vshop/create1ea897.css" %>
+<%= stylesheet_link_tag    "vshop/processor897.css" %>
+<br/><br/><br/><br/>
+<DIV class="inner wrp">
+  <DIV class="page_nav"><A class="jsUrlLink" href="javascript:void(0);" target="self"
+                           data-url="manage/list">管理中心</A>     <SPAN class="gap">/</SPAN>     申请微店
+  </DIV>
+  <DIV class="container_box cell_layout">
+    <DIV class="processor" id="process">
+      <img src="/assets/vshop/apply_step1.png" />
+    </DIV>
+    <DIV class="step_panel">
+      <DIV class="app_create_box app" id="step1">
+        <%=form_for :vshop,:url=>"/vshop/apply", :remote=>true do |f|%>
+          <DIV class="frm_control_group"><LABEL class="frm_label" for="">企业名称</LABEL>
+
+            <DIV class="frm_controls"><SPAN class="frm_input_box"><INPUT name="name" class="frm_input" type="text" maxlength="40"></SPAN>
+
+              <P class="frm_tips">需在2到40个字符之间，审核通过后不允许修改</P></DIV></DIV>
+          <DIV class="frm_control_group"><LABEL class="frm_label" for="">微店名称<EM class="tips"></EM></LABEL>
+
+            <DIV class="frm_controls"><SPAN class="frm_input_box"><INPUT name="ename" class="frm_input" type="text" maxlength="50"></SPAN>
+
+              <P class="frm_tips">需在2到5个字符之间，审核通过后不允许修改</P></DIV></DIV>
+          <DIV class="frm_control_group textarea"><LABEL class="frm_label"  for="">微店简介</LABEL>
+            <DIV class="frm_controls"><SPAN
+            class="frm_textarea_box"><TEXTAREA name="desc" class="frm_textarea" maxlength="80"></TEXTAREA>
+                </SPAN>
+              <P class="frm_tips">最多80字</P></DIV></DIV>
+          <DIV class="frm_control_group"><LABEL class="frm_label" for="">上传资料</LABEL>
+            <DIV class="frm_controls">
+              <DIV class="upload_wrp" style="display:none">
+                <DIV class="upload_box has_demo">
+                  <P class="upload_tips">                            请上传填写完整并盖章的协议
+                    <BR>大小不超过1MB。                        </P>
+                  <SPAN class="upload_area"><A
+                class="btn btn_upload" id="file1" href="javascript:;">选择文件</A>
+      </SPAN>
+                 </DIV></DIV>
+              <DIV class="upload_wrp ">
+                <DIV class="upload_box has_demo">
+                  <SPAN class="upload_area"> <%= file_field_tag :file %></SPAN>
+
+                  </DIV></DIV>
+              <P class="frm_tips"> 请上传企业营业执照,大小不超过1MB。</P>
+            </DIV></DIV>
+          <DIV class="tool_bar border with_form"><A class="btn btn_primary" id="nextBt"
+                                                    href="javascript:void(0);">下一步</A>         </DIV></FORM></DIV>
+      <DIV class="app_create_box platform" id="step2" style="display: none;">
+        <FORM class="form" id="mpForm" style="display: none;">
+          <DIV class="page_msg mini">
+            <DIV class="inner"><SPAN class="msg_icon_wrp"><I
+            class="icon18_msg warn"></I></SPAN>
+              <DIV class="msg_content">
+                <P>你需要通过微信公众帐号（必须是已被微信认证的），请填写相关微信公众帐号。</P></DIV></DIV></DIV>
+          <DIV class="frm_control_group"><LABEL class="frm_label" for="">帐号</LABEL>
+
+            <DIV class="frm_controls"><SPAN
+            class="frm_input_box"><INPUT name="account" class="frm_input" type="text" placeholder="支持QQ/邮箱/微信号" value=""></SPAN>
+            </DIV></DIV>
+          <DIV class="frm_control_group"><LABEL class="frm_label" for="">密码</LABEL>
+
+            <DIV class="frm_controls"><SPAN
+            class="frm_input_box"><INPUT name="password" class="frm_input" type="password" maxlength="36"></SPAN>
+            </DIV></DIV>
+          <DIV class="frm_control_group">
+            <DIV class="verifycode_wrp jsVerify"></DIV></DIV>
+          <DIV class="tool_bar border with_form"><A class="btn btn_primary" id="mpSubmit"
+                                                    href="javascript:void(0);">确认并提交审核</A>                     </DIV></FORM>
+        <FORM class="form" id="form2">
+          <DIV class="frm_control_group"><LABEL class="frm_label" for="">应用官网</LABEL>
+
+            <DIV class="frm_controls"><SPAN
+            class="frm_input_box"><INPUT name="app_url" class="frm_input" type="text"></SPAN>
+            </DIV></DIV>
+          <DIV class="frm_control_group"><LABEL class="frm_label" for="">应用平台</LABEL>
+
+            <DIV class="frm_controls shrink">
+              <P
+              class="frm_inner_tips">请至少选择一个平台。若应用还未提交到应用市场，请先勾选需要的平台，将下载地址等暂时置空，待审核通过、开发完毕，提交到各平台应用市场后，再修改应用的下载地址为正确的地址。</P>
+              <DIV class="frm_inner_controls">
+                <DIV class="frm_inner_controls_hd"><INPUT name="platform" class="frm_checkbox"
+                                                          id="ios" type="checkbox" data-label="iOS 应用">                     </DIV>
+                <DIV class="frm_inner_controls_bd" style="display: none;">
+                  <DIV class="frm_control_group"><LABEL class="frm_label" for="">AppStore下载地址<EM
+                  class="tips">(选填)</EM></LABEL>
+                    <DIV class="frm_controls"><SPAN
+                    class="frm_input_box"><INPUT class="frm_input" id="iosUrl" type="text"></SPAN>
+
+                      <P class="frm_tips">Apple
+                        AppStore中的下载地址，如应用还未上线，可置空，待应用上线后再行修改</P></DIV></DIV></DIV></DIV>
+              <DIV class="frm_inner_controls">
+                <DIV class="frm_inner_controls_hd"><INPUT name="platform" class="frm_checkbox"
+                                                          id="android" type="checkbox" data-label="Android 应用">                     </DIV>
+                <DIV class="frm_inner_controls_bd" style="display: none;">
+                  <DIV class="frm_control_group"><LABEL class="frm_label" for="">应用下载地址<EM class="tips">(选填)</EM></LABEL>
+
+                    <DIV class="frm_controls"><SPAN
+                    class="frm_input_box"><INPUT class="frm_input" id="androidUrl" type="text"></SPAN>
+
+                      <P
+                      class="frm_tips">Android应用商店中的下载页面的地址，不允许直接使用apk包的下载地址，如应用还未上线，可置空，待应用上线后再行修改</P></DIV></DIV>
+                  <DIV class="frm_control_group"><LABEL class="frm_label" for="">应用签名</LABEL>
+
+                    <DIV class="frm_controls"><SPAN
+                    class="frm_input_box"><INPUT class="frm_input" id="androidSign" type="text"></SPAN>
+
+                      <P
+                      class="frm_tips">用于对当前应用进行二次身份校验，开发者可以使用签名生成工具直接从安装当前应用的手机中获取。应用签名由开发者签名该应用的keystore文件决定。
+                      </P></DIV></DIV>
+                  <DIV class="frm_control_group"><LABEL class="frm_label" for="">应用包名</LABEL>
+
+                    <DIV class="frm_controls"><SPAN
+                    class="frm_input_box"><INPUT class="frm_input" id="androidPkg" type="text"></SPAN>
+
+                      <P
+                      class="frm_tips">应用在一台设备上的唯一标识，在manifest文件里面声明，该包名应和正式发布应用的包名一致。例如，微信的包名为com.tencent.mm
+                      </P></DIV></DIV></DIV></DIV>
+              <DIV class="frm_inner_controls last">
+                <DIV class="frm_inner_controls_hd"><INPUT name="platform" class="frm_checkbox"
+                                                          id="wp" type="checkbox" data-label="WP8 应用">                     </DIV>
+                <DIV class="frm_inner_controls_bd" style="display: none;">
+                  <DIV class="frm_control_group"><LABEL class="frm_label" for="">应用下载地址<EM class="tips">(选填)</EM></LABEL>
+
+                    <DIV class="frm_controls"><SPAN
+                    class="frm_input_box"><INPUT class="frm_input" id="wpUrl" type="text"></SPAN>
+
+                      <P
+                      class="frm_tips">MarketPlace或其他应用商店中的下载页面URL，不允许使用apk包下载URL</P></DIV></DIV></DIV></DIV></DIV></DIV>
+          <DIV class="tool_bar border with_form"><A class="btn btn_default" id="preBt"
+                                                    href="javascript:void(0);">上一步</A>             <A class="btn btn_primary jsSendBt"
+                                                                                                      id="submitBt" href="javascript:void(0);">提交审核</A>         </DIV></FORM></DIV>
+      <DIV class="app_create_box result" id="step3" style="display: none;">
+        <DIV class="page_msg simple default">
+          <DIV class="inner group"><SPAN class="msg_icon_wrp"><I
+          class="icon_msg success"></I>             </SPAN>
+            <DIV class="msg_content">
+              <H4>您的应用已成功提交审核，预计在7天内完成审核</H4>
+              <P>                    审核通过后，你才可以获得AppID和AppSecret，来进行开发
+              </P>
+              <P class="spacing"><A class="btn btn_primary jsUrlLink" href="javascript:void(0);"
+                                    target="self" data-url="manage/list">查看管理中心</A>
+              </P></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV>
+<%end%>

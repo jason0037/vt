@@ -47,6 +47,14 @@ module Admin
     def menu
       $openid='gh_a0e5b9a22803'
       $client ||= WeixinAuthorize::Client.new(@@appid,@@appsecret)
+      if ($client.is_valid?)
+        @menu = $client.menu.result['menu']['button']
+      end
+    end
+
+    def menu_edit
+      $openid='gh_a0e5b9a22803'
+      $client ||= WeixinAuthorize::Client.new(@@appid,@@appsecret)
 
       if ($client.is_valid?)
 
@@ -116,9 +124,19 @@ module Admin
     def groups
       $client ||= WeixinAuthorize::Client.new(@@appid,@@appsecret)
       if ($client.is_valid?)
-        group = $client.create_group("test22")
-        groups = $client.groups.result
-        render :text=>groups
+        @groups = $client.groups.result['groups']
+      else
+        render :text=>'获取分组信息失败'
+      end
+    end
+
+    def groups_create
+
+      $client ||= WeixinAuthorize::Client.new(@@appid,@@appsecret)
+      if ($client.is_valid?)
+         $client.create_group("test22")
+         @groups = $client.groups.result
+
       end
     end
 

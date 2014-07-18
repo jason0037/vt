@@ -1,0 +1,29 @@
+<%=content_for :head do%>
+   <%= stylesheet_link_tag "forgot_password"%>
+	<%= javascript_include_tag "forgot_password"%>
+<%end%>
+
+<div class="forgot-password-holder">
+	
+	<p>
+		<label class="radio">
+			<%=radio_button_tag nil, nil,true%>通过手机号码找回 : 
+		</label>
+	</p>
+
+	<%=form_for :user,:url=>send_reset_password_instruction_users_path,:html=>{ :class=>"form-inline" } do |f|%>
+		<%=f.hidden_field :member_id,:value=>@user.member_id%>
+		<%=f.hidden_field :by,:value=>@by%>
+		<p>
+			<span>手机号 : <%=@user.mask_mobile%></span>
+		</p>
+
+		<p>
+			<span>用户名 : <%=@user.login_name%></span>
+		</p>
+
+		<p>
+			<%=f.submit "下一步",:name=>nil,:class=>"btn btn-success"%>
+		</p>
+	<%end%>
+</div>

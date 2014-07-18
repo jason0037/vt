@@ -33,6 +33,16 @@ Modengke::Application.routes.draw do
     post 'change_password',:on=>:collection
   end
 
+  resources :vshop do
+    get 'login', :on=>:collection
+    get 'register', :on=>:collection
+    get 'forgot_password', :on=>:collection
+    get 'apply', :on=>:collection
+    get 'reset_password',:on=>:collection
+    post 'search', :on=>:collection
+    post 'change_password',:on=>:collection
+  end
+
   get 'login'=>"sessions#new"
   get 'mlogin'=>"sessions#new_mobile"
   get 'mregister'=>"sessions#register_mobile"
@@ -323,6 +333,7 @@ Modengke::Application.routes.draw do
       end
       resources :brands,:only=>[:index,:show]
       resources :users
+      resources :vshop
       resources :country, :as=>"countries", :controller=>"countries"
       resources :gallery, :as=>"cats", :controller=>"cats"
 

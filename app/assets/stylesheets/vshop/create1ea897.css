@@ -1,0 +1,63 @@
+.app_create_box .frm_label {
+	width: 5em;
+}
+.app_create_box .frm_input_box {
+	width: 488px;
+}
+.app_create_box .frm_msg {
+	width: 510px;
+}
+.app_create_box .frm_tips {
+	width: 510px;
+}
+.platform.app_create_box .frm_inner_controls {
+	padding-top: 10px; padding-bottom: 10px; border-bottom-color: rgb(219, 219, 219); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.platform.app_create_box .last.frm_inner_controls {
+	border-bottom-width: 0px;
+}
+.platform.app_create_box .frm_inner_controls_bd {
+	margin-top: 14px; margin-left: 22px;
+}
+.platform.app_create_box .frm_inner_controls_bd .frm_label {
+	width: 9em;
+}
+.platform.app_create_box .frm_inner_controls_bd .frm_input_box {
+	width: 325px;
+}
+.platform.app_create_box .frm_inner_controls_bd .frm_msg {
+	width: 345px;
+}
+.platform.app_create_box .frm_inner_controls_bd .frm_tips {
+	width: 345px;
+}
+.platform.app_create_box .shrink.frm_controls {
+	width: 510px;
+}
+.app_create_box .page_msg {
+	margin-bottom: 30px;
+}
+.result.app_create_box {
+	padding-top: 45px;
+}
+.step_panel {
+	padding: 45px 50px;
+}
+.upload_wrp {
+	margin-bottom: 40px;
+}
+.last_child.upload_wrp {
+	margin-bottom: 0px;
+}
+.form .tool_bar {
+	padding-left: 70px;
+}
+.modify_app.form {
+	padding: 45px 50px;
+}
+.upload_box .size108 img {
+	width: 108px; height: 108px;
+}
+.upload_box .size28 img {
+	width: 28px; height: 28px;
+}

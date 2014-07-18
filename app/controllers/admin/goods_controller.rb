@@ -355,8 +355,29 @@ module Admin
             render :json=>{:code=>'f',:message=>'deleted failed'}.to_json
       end
 
+      def new
+        @good  =  Ecstore::Good.new
+        @action_url =  admin_goods_path
+        @method = :post
+      end
+
+      def show
+
+      end
+
+      def create
+        @good  =  Ecstore::Good.new(params[:good])
+        if @good.save
+          redirect_to admin_goods_url
+        else
+          render :new
+        end
+
+      end
+
       def update
             @good  =  Ecstore::Good.find(params[:id])
+            @action_url = admin_good_path(@good)
             @good.update_attributes(params[:good])
             redirect_to admin_goods_url
       end

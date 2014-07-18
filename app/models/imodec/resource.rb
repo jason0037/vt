@@ -28,10 +28,10 @@ class Imodec::Resource < ActiveRecord::Base
   	end
 
   	def system_resources
-             ctrls = %w(configs)
+             ctrls = %w(configs wechat)
   		where(:name=>ctrls).order("FIELD(name,#{ctrls.map{|e| "'#{e}'" }.join(',') })")
-  	end
-  	
+    end
+
   end
 
 end

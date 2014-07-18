@@ -1,0 +1,27 @@
+<%=form_for :user,:url=>users_path do |f|%>
+<div>
+	<%=f.text_field :login_name,:value=>@account.login_name,:placeholder=>"用户名"%>
+	<div class="error"><%=@account.errors.messages[:login_name].join(",") if @account.errors.messages[:login_name]%></div>
+</div>
+<div>
+	<%=f.password_field :login_password,:placeholder=>"密码"%>
+	<div class="error"><%=@account.errors.messages[:login_password].join(",") if @account.errors.messages[:login_password]%></div>
+</div>
+<div>
+	<%=f.password_field :login_password_confirmation,:placeholder=>"确认密码"%>
+	<div class="error"><%=@account.errors.messages[:login_password_confirmation].join(",") if @account.errors.messages[:login_password_confirmation]%></div>
+</div>
+<div>
+	<%=f.text_field :email,:value=>@account.email,:placeholder=>"邮箱"%>
+	<div class="error"><%=@account.errors.messages[:email].join(",") if @account.errors.messages[:email]%></div>
+</div>
+<div>
+	<%=f.text_field :mobile,:value=>@account.mobile,:placeholder=>"移动电话"%>
+	<div class="error"><%=@account.errors.messages[:mobile].join(",") if @account.errors.messages[:mobile]%></div>
+</div>
+
+<div>
+	<%=f.submit "注册"%>
+</div>
+	
+<%end%>

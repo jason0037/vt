@@ -1,0 +1,6 @@
+$("#register_form .help-block").empty();
+if(<%=@account.errors.messages.size>0%>){
+	<%@account.errors.messages.each do |k,v|%>
+		$("#register_form .help-block[rel=user_<%=k%>]").text('<%=v.join("，")%>');
+	<%end%>
+}

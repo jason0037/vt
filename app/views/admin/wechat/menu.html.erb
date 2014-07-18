@@ -1,0 +1,41 @@
+<h4>微信菜单</h4>
+</div>
+<%= link_to '修改菜单','/admin/wechat/menu_edit', :class => "pull-right btn btn-primary" %>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>菜单</th>
+    <th>子菜单</th>
+    <th>操作</th>
+  </tr>
+
+  <% @menu.each do |menu| %>
+      <tr>
+        <td><%=menu['name']%></td>
+        <td>
+          <table>
+            <tr><th>类型</th><th>名称</th><th>链接/关键字</th></tr>
+
+          <%menu['sub_button'].each do |subbutton| %>
+           <tr>
+               <td><%=subbutton['type']%></td>
+               <td><%=subbutton['name']%></td>
+               <td>
+                 <%if subbutton['type']=='click'%>
+                    <%=subbutton['key']%>
+                 <%else%>
+                    <%=subbutton['url']%>
+                 <%end%>
+               </td>
+           </tr>
+          <%end%>
+          </table>
+        </td>
+        <td>
+          <%#= link_to '编辑', edit_admin_supplier_path（follower) %>
+          |
+          <%#= link_to '删除', admin_supplier_path(follower), method: :delete, data: { confirm: '确定删除?' } %>
+        </td>
+      </tr>
+  <% end %>
+</table>

@@ -1,0 +1,75 @@
+.verifycode img {
+	height: 37px; vertical-align: middle;
+}
+.verifycode a {
+	margin-left: 3px;
+}
+.verifycode .frm_input_box {
+	width: 98px; display: inline-block;
+}
+.verifycode .frm_control_group {
+	padding: 0.5em 0px;
+}
+.frm_controls .verifycode {
+	padding: 0px;
+}
+.verify_msg {
+	font-size: 0px;
+}
+.verify_msg i {
+	font-size: 14px; font-style: normal; font-weight: 400; margin-right: 5px;
+}
+.fail.verify_msg {
+	color: rgb(177, 21, 22);
+}
+.verify_msg_content {
+	font-size: 14px;
+}
+.processor {
+	padding: 30px 70px 15px; background-color: rgb(86, 86, 86);
+}
+.processor ol {
+	position: relative;
+}
+.processor ol::after {
+	height: 0px; clear: both; display: block; content: "\200B";
+}
+.processor li {
+	float: left;
+}
+.processor li.no_extra {
+	width: auto; overflow: visible; vertical-align: top; float: none; display: table-cell;
+}
+.processor li.no_extra::after {
+	height: 0px !important; line-height: 0; clear: both; display: block; visibility: hidden; content: " . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ";
+}
+.processor li.last {
+	left: 100%; top: 0px; position: absolute;
+}
+.processor li.last .step_line {
+	width: 0px;
+}
+.processor li.prev .icon_step {
+	background: url("/open/zh_CN/htmledition/res/css/widget/processor_z1ea897.png") no-repeat 0px 0px;
+}
+.processor li.complete .icon_step {
+	background: url("/open/zh_CN/htmledition/res/css/widget/processor_z1ea897.png") no-repeat 0px 0px;
+}
+.processor li.current .icon_step {
+	background: url("/open/zh_CN/htmledition/res/css/widget/processor_z1ea897.png") no-repeat 0px 0px;
+}
+.processor li.prev .step_line {
+	background-color: rgb(100, 189, 46);
+}
+.processor .step_line {
+	height: 6px; margin-bottom: -23px; background-color: rgb(158, 159, 159);
+}
+.processor .step_inner {
+	width: 100px; text-align: center; color: rgb(255, 255, 255); margin-left: -50px;
+}
+.processor .icon_step {
+	background: url("/open/zh_CN/htmledition/res/css/widget/processor_z1ea897.png") no-repeat 0px -50px; width: 40px; height: 40px; text-align: center; line-height: 40px; font-size: 18px; font-style: normal; vertical-align: middle; display: inline-block;
+}
+.processor h4 {
+	padding-top: 5px; font-size: 14px; font-style: normal; font-weight: 400;
+}

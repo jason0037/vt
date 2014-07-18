@@ -1,16 +1,11 @@
-<%=form_for :good,:url=>import_admin_goods_path,:html => {:multipart => true} ,:method=>:post do |f|%>
-	<div class="btn-group">
-	    <%= file_field :good, :file, :id=>'csvfile',:accept => "application/msexcel" %>
-	    <%= f.submit '导入商品', :class => "btn btn-primary" %>
-	</div>
-<%end%>
+
 <%=render "goods_filters"%>
 <div>
 	<p>
 		<div id="batch_inputs" class="hide"></div>
-
 		<div id="batch_actions">
-			<%=link_to "删除","#",:class=>"btn batch",:data=>{:act=>:destroy},:confirm=>"确定删除吗?"%>
+            <%=link_to "添加",'/admin/goods/new',:class=>"btn btn-primary"%>
+		    <%=link_to "删除","#",:class=>"btn batch",:data=>{:act=>:destroy},:confirm=>"确定删除吗?"%>
 			<%#=link_to "导出","#",:class=>"btn batch",:data=>{:act=>:export}%>
 			<div class="btn-group">
 			  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -24,7 +19,6 @@
 			    <!-- <li><a href="#">link</a></li> -->
 			  </ul>
 			</div>
-
 			<div class="btn-group">
 			  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 			    标签
@@ -36,7 +30,14 @@
 			    <li><a href="/admin/tags?tag_type=goods" target="_blank">标签设置</a></li>
 			  </ul>
 			</div>
+            <div class="btn-group">
+             <%=form_for :good,:url=>import_admin_goods_path,:html => {:multipart => true} ,:method=>:post do |f|%>
+                <%= file_field :good, :file, :id=>'csvfile',:accept => "application/msexcel",:class=>"batch" %>
+                <%= f.submit 'EXCEL批量导入商品', :class => "btn btn-primary" %>
+             <%end%>
+            </div>
 		</div>
+
 	</p>
   <%=form_for :member,:url=>export_admin_goods_path,:method=>:post do |f|%>
       <%= f.hidden_field :select_all,:class=>"sel_operation", :value => 0 %>

@@ -1,0 +1,80 @@
+<%= stylesheet_link_tag    "vshop/page_regist1ea897.css" %>
+<%= stylesheet_link_tag    "vshop/processor897.css" %>
+<style>
+    .help-block {color:red;}
+</style>
+
+<br/><br/><br/><br/>
+<DIV class="inner wrp">
+  <DIV class="container_box cell_layout">
+    <DIV class="processor" id="step">
+     <img src="/assets/vshop/apply_step1.png" />
+    </DIV>
+    <DIV class="step_panel">
+      <DIV class="regist_box base_info" id="step1">
+        <%=form_for :user,:class=>'form',:url=>"#{users_path}?return_url=/m",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
+          <DIV class="frm_control_group"><LABEL class="frm_label" for="">账号</LABEL>
+
+            <DIV class="frm_controls">
+              <SPAN class="frm_input_box">
+              <%=f.text_field :login_name,:class=>"frm_input",:placeholder=>"用户名"%>
+             </SPAN>
+              <div class="help-block" rel="user_login_name"></div>
+              <P  class="frm_tips"></P></DIV></DIV>
+          <DIV class="frm_control_group"><LABEL class="frm_label" for="">密码</LABEL>
+
+            <DIV class="frm_controls"><SPAN
+            class="frm_input_box">
+              <%=f.password_field :login_password,:class=>"frm_input",:placeholder=>"密码"%>
+              <INPUT name="passwd" class="frm_input" type="password">
+            </SPAN>
+
+              <P class="frm_tips">字母、数字或者英文符号，最短6位，区分大小写</P></DIV></DIV>
+          <DIV class="frm_control_group"><LABEL class="frm_label" for="">再次输入密码</LABEL>
+
+            <DIV class="frm_controls"><SPAN class="frm_input_box">
+              <%=f.password_field :login_password_confirmation,:class=>"frm_input",:placeholder=>"确认密码"%>
+              </SPAN>
+            </DIV>
+          </DIV>
+            <DIV class="frm_control_group"><LABEL class="frm_label" for="">邮箱</LABEL>
+
+              <DIV class="frm_controls"><SPAN class="frm_input_box">
+             <%=f.text_field :email,:class=>"frm_input",:placeholder=>"邮箱"%>
+              </SPAN>
+              </DIV>
+            </DIV>
+            <DIV class="frm_control_group"><LABEL class="frm_label" for="">手机号码</LABEL>
+              <DIV class="frm_controls"><SPAN class="frm_input_box">
+             <%=f.text_field :mobile,:class=>"frm_input",:placeholder=>"手机号码"%>
+              </SPAN>
+              </DIV>
+            </DIV>
+          <div>
+            <input type="checkbox" checked="checked" value="agree" name="user[license]" id="license" class="x-input required" autocomplete="off">
+            <label for="license" class="checkbox_label" id="i_agree">&nbsp;我已阅读并同意：</label><a href="/pages/zhucexieyi" target="_top"  id="reg_term">会员注册协议</a>
+            <span id="and">和</span><br/><a href="/pages/ysbh" id="privacy" target="_top">隐私保护政策</a>
+          <DIV class="tool_bar border with_form">
+            <%=f.submit "注 册",:class=>"btn btn_primary"%></DIV>
+            <%end%>
+      </DIV>
+      <DIV class="regist_box mail_active" id="step2" style="display: none;">
+        <DIV class="page_msg simple default">
+          <DIV class="inner">
+            <DIV class="msg_icon_wrp"><I class="icon_msg mail"></I>                </DIV>
+            <DIV class="msg_content">
+              <H4>                        感谢注册，确认邮件已发送至你的注册邮箱 :                        <SPAN
+              id="emailTxt"></SPAN>                    </H4>
+              <P>请进入邮箱查看邮件，并激活微信开放平台帐号。</P>
+              <P class="spacing"><A class="btn btn_primary" id="goEmail" href="javascript:void(0);">登录邮箱</A>
+              </P>
+              <P>没有收到邮件？</P>
+              <UL>
+                <LI>1. 请检查邮箱地址是否正确，你可以返回                        <A id="rewrite" href="javascript:;">重新填写</A>
+                </LI>
+                <LI>2. 检查你的邮件垃圾箱</LI>
+                <LI>3. 若仍未收到确认，请尝试                        <A id="reSend"
+                                                             href="javascript:;">重新发送</A>
+                </LI></UL></DIV></DIV></DIV></DIV></DIV></DIV></DIV>
+</DIV>
+<%= javascript_include_tag "login" %>

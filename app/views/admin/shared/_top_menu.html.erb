@@ -216,6 +216,7 @@
               <a href="#">微店管理</a>
               <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
                 <li>
+                  <%=link_to "微店信息",'/admin/weshop/edit' if current_admin.has_right_of("promotions","index")%>
                   <%=link_to "关注用户",'/admin/wechat/followers' if current_admin.has_right_of("promotions","index")%>
                   <%=link_to "用户分组",'/admin/wechat/groups' if current_admin.has_right_of("promotions","index")%>
                   <%=link_to "微信菜单",'/admin/wechat/menu' if current_admin.has_right_of("promotions","index")%>

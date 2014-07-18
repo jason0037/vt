@@ -1,0 +1,15 @@
+.regist_box {
+	padding: 45px 50px;
+}
+.base_info.regist_box .frm_label {
+	width: 6em;
+}
+.base_info.regist_box .tool_bar {
+	padding-left: 98px;
+}
+.dev_info.regist_box .frm_label {
+	width: 5em;
+}
+.dev_info.regist_box .tool_bar {
+	padding-left: 84px;
+}
