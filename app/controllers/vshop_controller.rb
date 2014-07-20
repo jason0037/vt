@@ -15,6 +15,18 @@ class VshopController < ApplicationController
 
   end
 
+  def apply
+    if params[:id]
+      @supplier  =  Ecstore::Supplier.find(params[:id])
+      @action_url =  "/admin/suppliers/#{params[:id]}?return_url=/vshop/apply"
+      @method = :put
+    end
+  end
+
+  def goods
+    @goods = Estore::Good.all.order()
+  end
+
   def create_session
     @return_url = params[:return_url]
     @platform = params[:platform]

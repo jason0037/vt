@@ -48,11 +48,33 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         if @order
           share =@order.share.round(2)
         end
+ #       sharetitle="您的总佣金收益是: #{share}元，感谢您对我们对我们关注和转发分享。佣金是因为您关注了我们，并转发给其他朋友，朋友或者朋友的朋友下单购买了我们的商品，我们因此向您支付的感谢费。 如何领佣金？您只要点击“我要领佣金”，按照步骤操作即可进入系统认领佣金。我们会在每个自然月底将当月佣金转账到您的支付宝账户。"
+#        if share==0
+ #         title="#{sharetitle} <a href='http://www.trade-v.com/pages/yongjin?platform=vshop'>如何挣佣金</a>？您只要举手之劳，关注我们，然后转发到朋友圈，就有机会获取佣金。赶快转发分享商品吧！"
+ #       else
+ #         title="恭喜您，#{sharetitle}"
+ #       end
         title="您的总佣金收益是: #{share}元"
         desc ="查看佣金详情请点击"
-        pic_url=""
+        pic_url='http://www.trade-v.com/assets/vshop/commission_banner.jpg'
         link_url="http://www.trade-v.com/share?FromUserName=#{user}"
-        articles = [generate_article(title, desc, pic_url, link_url)]
+
+        title1='佣金是因为您关注了我们，并转发给其他朋友，朋友或者朋友的朋友下单购买了我们的商品，我们因此向您支付的感谢费。'
+        desc1=''
+        pic_url1='http://www.trade-v.com/assets/vshop/commission_what.png'
+        link_url1=''#"http://www.trade-v.com/pages/yongjin?platform=vshop"
+
+        title2='您只要举手之劳，关注我们，然后转发到朋友圈，就有机会获取佣金。赶快转发分享商品吧！'
+        desc2=''
+        pic_url2='http://www.trade-v.com/assets/vshop/commission_earn.png'
+        link_url2=''#"http://www.trade-v.com/pages/yongjin?platform=vshop"
+
+        title3='您只要点击“我要领佣金”，按照步骤操作即可进入系统认领佣金。我们会在每个自然月底将当月佣金转账到您的支付宝账户。'
+        desc3=''
+        pic_url3='http://www.trade-v.com/assets/vshop/commission_get.png'
+        link_url3=''#"http://www.trade-v.com/pages/yongjin?platform=vshop"
+
+        articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2),generate_article(title3, desc3, pic_url3, link_url3)]
         reply_news_message(articles)
       else
         title="[紫薇]牛奶/起司棒饼干仅售 35.10元"

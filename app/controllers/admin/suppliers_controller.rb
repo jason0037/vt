@@ -23,9 +23,15 @@ class Admin::SuppliersController < ApplicationController
 	end
 
 	def create
+    params[:supplier].merge!(:member_id=>@user_id)
 		@supplier = Ecstore::Supplier.new(params[:supplier])
 		if @supplier.save
+      return_url= params[:return_url]
+      if (return_url.blank?)
 			redirect_to admin_suppliers_url
+      else
+        redirect_to "#{return_url}?step=2&id=#{@supplier.id}"
+      end
 		else
 			render :new
 		end
@@ -36,7 +42,13 @@ class Admin::SuppliersController < ApplicationController
 		@supplier = Ecstore::Supplier.find(params[:id])
 		
 		if @supplier.update_attributes(params[:supplier])
-			redirect_to admin_suppliers_url
+      return_url= params[:return_url]
+      if return_url
+        redirect_to "#{return_url}?step=3"
+      else
+        redirect_to admin_suppliers_url
+      end
+
 		else
 			@action_url = admin_supplier_path(@supplier)
 			@method = :put

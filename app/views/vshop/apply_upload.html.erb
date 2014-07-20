@@ -8,11 +8,11 @@
 <DIV class="inner wrp">
   <DIV class="container_box cell_layout">
     <DIV class="processor" id="step">
-     <img src="/assets/vshop/register_step1.png" />
+     <img src="/assets/vshop/apply_step1.png" />
     </DIV>
     <DIV class="step_panel">
       <DIV class="regist_box base_info" id="step1">
-        <%=form_for :user,:class=>'form',:url=>"#{users_path}?return_url=/vshop/apply",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
+        <%=form_for :user,:class=>'form',:url=>"#{users_path}?return_url=/vshop/upload",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
           <DIV class="frm_control_group"><LABEL class="frm_label" for="">账号</LABEL>
 
             <DIV class="frm_controls">

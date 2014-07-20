@@ -114,6 +114,7 @@ Modengke::Application.routes.draw do
   end
 
   get 'admin'=>'admin/sessions#new'
+
   namespace :admin do
       # subdomain = nil
       # subdomain = "www" if Rails.env == "production"

@@ -41,7 +41,10 @@ class SessionsController < ApplicationController
       # refer_url = "/" unless refer_url
       if params[:platform]=="mobile"
         redirect_to "/m"
+      elsif
+        redirect_to "/vshop"
       else
+
         redirect_to "/"
       end
 
