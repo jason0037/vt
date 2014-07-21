@@ -1,0 +1,125 @@
+<%=form_for :s,:url=>search_admin_orders_path,:method=>:get,:html=>{:class=>"form-search"} do |f|%>
+    <%=f.text_field :q, :value=>params[:s]&&params[:s][:q],:placeholder=>"订单号/收货人"%>
+    <input type="submit" value="搜索" class="btn btn-success">
+    <%=link_to "清除",admin_orders_path,:class=>"btn"%>
+<%end%>
+<table class="table table-bordered table-striped table-hover" id="orders" order_ids="<%=@order_ids.join(",")%>" count="<%=@order_ids.count%>" data-url="<%=request.fullpath%>">
+  <thead>
+  <tr>
+    <th>
+      <%= check_box_tag nil, nil ,false,:id=>"select_page"%>
+    </th>
+
+    <th>订单号</th>
+    <th>查看</th>
+        <%@colnums=13%>
+        <th class="dropdown">
+          <%=link_to "#",:class=>"dropdown-toggle",:data=>{:toggle=>"dropdown"} do%>
+              订单操作 <b class="caret"></b>
+          <%end%>
+          <ul class="dropdown-menu">
+            <li>
+              <%=link_to "全部",admin_orders_path%>
+              <%=link_to "已支付待发货",admin_orders_path(:pay_status=>1,:ship_status=>0)%>
+              <%=link_to "已发货",admin_orders_path(:pay_status=>1,:ship_status=>1)%>
+              <%=link_to "已完成",admin_orders_path(:status=>"finish")%>
+              <%=link_to "已作废",admin_orders_path(:status=>"dead")%>
+            </li>
+          </ul>
+        </th>
+        <th>打印</th>
+    <th>标签</th>
+    <th>会员</th>
+    <th>下单时间</th>
+    <th>支付方式</th>
+    <th>订单状态</th>
+    <th>付款状态</th>
+    <th>发货状态</th>
+    <th>订单金额</th>
+    <th>佣金</th>
+    <th>收货人</th>
+    <th>收货地址</th>
+    <th>收货人手机</th>
+    <th>推荐用户</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%@total=0%>
+  <%@orders.each do |order|%>
+  <tr class="<%=order.status%>" id="order_<%=order.order_id%>">
+    <td>
+      <%= check_box_tag nil, order.order_id, false,:id=>"check_#{order.order_id}",:class=>"order"%>
+    </td>
+    <td><%=order.order_id%></td>
+
+    <td><%=link_to "详细",detail_admin_order_path(order),:target=>"_blank"%></td>
+    <%if current_admin.has_right_of("orders","delivery")%>
+        <td class="dropdown">
+          <%if order.status == "active"%>
+              <%=link_to "#",:class=>"dropdown-toggle",:data=>{:toggle=>"dropdown"} do%>
+                  订单操作 <b class="caret"></b>
+              <%end%>
+              <ul class="dropdown-menu">
+                <!-- <li><%=link_to "编辑",edit_admin_order_path(order),:target=>"_blank" if order.status == 'active'%></li> -->
+
+                <li>
+                  <%=link_to "支付",pay_admin_order_path(order,:page=>params[:page]) if order.pay_status == '0'%>
+
+                  <%link_to "支付",pay_admin_order_path(order,:page=>params[:page]),:data=>{:target=>"#ajax_modal",:remote=>pay_admin_order_path(order) },:class=>"remote-modal" if order.pay_status == '0'%>
+                </li>
+
+                <li><%=link_to "退款", refund_admin_order_path(order,:page=>params[:page]) unless %w(0 5).include?(order.pay_status)%></li>
+
+                <li><%=link_to "发货",delivery_admin_order_path(order,:page=>params[:page]) if ['0','2'].include?(order.ship_status)%></li>
+
+                <li>
+                  <%=link_to "退货",reship_admin_order_path(order,:page=>params[:page]) if !['0','4'].include?(order.ship_status)%>
+                </li>
+
+                <li><%=link_to "完成",admin_order_path(order,:order=>{:status=>'finish'}),:method=>:put,:remote=>true,:confirm=>"完成操作会将该订单归档并且不允许再做任何操作，确认要执行吗?" if order.status == 'active'%></li>
+                <li><%=link_to "作废",admin_order_path(order,:order=>{:status=>'dead'}),:method=>:put,:remote=>true,:confirm=>"作废后该订单将不能做任何操作，确认要执行吗?" if order.status == 'active'%></li>
+                <li>
+                  <%=link_to "订单备注",comment_admin_order_path(order,:page=>params[:page])%>
+                </li>
+              </ul>
+          <%end%>
+        </td>
+        <td>
+          <%=link_to "购", print_order_admin_order_path(order),:target=>"_blank"%>
+          <%=link_to "配", print_preparer_admin_order_path(order),:target=>"_blank"%>
+        </td>
+    <%end%>
+    <td>
+      <%order.tegs.each do |teg|%>
+			<span class="teg" style="background-color:<%=teg.tag_bgcolor%>;color:<%=teg.tag_fgcolor%>">
+				<%=teg.tag_name%>
+			</span>
+      <%end%>
+    </td>
+    <td><%=order.user.login_name if order.user%></td>
+    <td><%=order.created_at%></td>
+    <td><%=order.payment_name%></td>
+    <td><%=order.status_text%></td>
+    <td><%=order.pay_status_text%></td>
+    <td><%=order.ship_status_text%></td>
+    <td><%=number_to_currency order.final_amount,:unit=>"&yen;",:precision=>2%></td>
+    <td><%=number_to_currency order.final_amount*0.01,:unit=>"&yen;",:precision=>2 if order.desktop_user_id || order.wechat_recommend%></td>
+    <td><%=order.ship_name%></td>
+    <td><%=order.ship_addr%></td>
+    <td><%=order.ship_mobile%></td>
+    <td><%=order.wechat_recommend%></td>
+  </tr>
+  <%@total +=order.final_amount*0.1%>
+
+  <%end%>
+  <td colspan="<%=@colnums%>"></td>
+  <td><%=number_to_currency @total,:unit=>"&yen;",:precision=>2%></td>
+  </tbody>
+</table>
+<div class="pagination">
+  <%=will_paginate @orders,:container=>false%>
+</div>
+
+<%=render "admin/shared/modal_tegs", :tegs=> Ecstore::Teg.order_tegs %>
+
+<%= javascript_include_tag "admin/indicate_order" %>

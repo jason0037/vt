@@ -36,11 +36,14 @@ Modengke::Application.routes.draw do
   resources :vshop do
     get 'login', :on=>:collection
     get 'register', :on=>:collection
-    get 'forgot_password', :on=>:collection
+    get 'article', :on=>:collection
     get 'apply', :on=>:collection
-    get 'reset_password',:on=>:collection
     post 'search', :on=>:collection
     post 'change_password',:on=>:collection
+    get 'goods',:on=>:collection
+    get 'orders',:on=>:collection
+    get 'members',:on=>:collection
+    get 'weixin',:on=>:collection
   end
 
   get 'login'=>"sessions#new"
@@ -122,10 +125,12 @@ Modengke::Application.routes.draw do
         get 'logout'=>'sessions#destroy'
         resources :wechat do
           get :menu,:on=>:collection
+          get :menu_edit,:on=>:collection
           get :followers, :on=>:collection
           get :followers_import, :on=>:collection
           get :groups, :on=>:collection
           get :batch_sending, :on=>:collection
+          get :weixin,:on=>:collection
         end
         resources :resources
         resources :permissions do
@@ -358,6 +363,7 @@ Modengke::Application.routes.draw do
         collection do
           get 'check_coupon'
           get  'new_mobile'
+          get 'new_mobile_addr'
         end
       end
 

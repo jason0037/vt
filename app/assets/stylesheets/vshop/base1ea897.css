@@ -355,9 +355,7 @@ body {
 .logo a {
 	width: 250px; height: 40px; overflow: hidden; text-decoration: none; display: block;
 }
-.logo a::before {
-*	display: inline-block; content: url(/open/zh_CN/htmledition/res/img/bg/bg_logo1d30e9.png);
-}
+
 .logo {
 	margin-top: 10px; float: left;
 }

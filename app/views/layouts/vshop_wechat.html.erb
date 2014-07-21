@@ -48,7 +48,36 @@
 </SCRIPT>
 
 <div class="body">
-  <%= yield %>
+  <link rel="stylesheet" href="https://res.wx.qq.com/open/zh_CN/htmledition/res/css/page/manage/list1ea897.css">
+  <link rel="stylesheet" href="https://res.wx.qq.com/open/zh_CN/htmledition/res/css/widget/tab1ea897.css">
+  <link rel="stylesheet" href="https://res.wx.qq.com/open/zh_CN/htmledition/res/css/widget/pop_tips1ea897.css">
+  <br/><br/><br/>
+  <div class="inner wrp">
+
+    <div class="page_nav"> 管理中心</div>
+    <div class="tool_area" style="display:none;">
+    <span class="frm_input_box search prepend">
+        <a id="msgSearchBtn" href="javascript:void(0);" class="icon16_common search_gray frm_input_append">搜索</a>
+        <input id="msgSearchInput" type="text" placeholder="输入名称或编号查找" value="" class="frm_input" />
+    </span>
+    </div>
+
+    <div class="container_box cell_layout">
+      <div id="data_box" class="data_box">
+        <div class="tab">
+          <ul id="appTabUl" class="tab_navs">
+            <li apptype="biz" class="tab_nav"><a href="/vshop/weixin">基本信息</a></li>
+            <li apptype="mobile" class="tab_nav first"><a href="/admin/wechat/followers?platform=vshop">关注用户</a></li>
+            <li apptype="web" class="tab_nav"><a href="javascript:void(0);">菜单管理</a></li>
+
+          </ul>
+        </div>
+        <%= yield %>
+      </div>
+    </div>
+
+  </div>
+
  </div>
 <div class="foot">
   <div class="inner wrp">

@@ -137,9 +137,10 @@ module ModecPay
         querystring = self.fields.select(&_filter).collect do |key,val|
           "#{key}=#{val}"
         end.join("&")
+
         #return querystring
-      #  RestClient.get(URI.encode("#{self.action}?#{querystring}"))
-        redirect_to URI.encode("#{self.action}?#{querystring}")
+        RestClient.get(URI.encode("#{self.action}?#{querystring}"))
+      #  redirect_to URI.encode("#{self.action}?#{querystring}")
 
       else
         return error_message

@@ -10,6 +10,9 @@ module Admin
     #$client ||= WeixinAuthorize::Client.new(ENV["APPID"], ENV["APPSECRET"])
     def followers
       @followers =  Ecstore::WechatFollower.paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
+      if params[:platform]=='vshop'
+        render :layout=>'vshop_wechat'
+      end
     end
 
     def followers_import
@@ -112,9 +115,15 @@ module Admin
                "type":"click",
                "name":"我的佣金",
                "key":"SHARE"
+            },
+           {
+               "type":"view",
+               "name":"网站授权",
+               "url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
             }]
        }]
  }'
+#"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
         response = $client.create_menu(menu)
         #response = $client.menu
         render :text=> response.cn_msg#.result#response.en_msg#user_info# @followers #JSON.parse(@user_info)

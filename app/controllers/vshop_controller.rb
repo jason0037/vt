@@ -23,39 +23,87 @@ class VshopController < ApplicationController
     end
   end
 
+  def orders
+
+    if @user
+      if params[:status].nil?
+        @orders_nw = Ecstore::Order.order("order_id desc")
+      elsif
+      @orders_nw = Ecstore::Order.where(:status=>params[:status]).order("order_id desc")
+      end
+
+      if !params[:pay_status].nil?
+        @orders_nw = @orders_nw.where(:pay_status=>params[:pay_status])
+      end
+
+      if !params[:ship_status].nil?
+        @orders_nw = @orders_nw.where(:ship_status=>params[:ship_status])
+      end
+
+      @order_ids = @orders_nw.pluck(:order_id)
+
+      if ( @user.id!= 2495)  #贸威
+
+        @orders = @orders_nw
+       else
+              @orders =@orders_nw.where(:supplier_id=> @user.id)
+      #  @orders = @orders_nw.where(:member_id=>"0")
+      end
+      @orders = @orders.includes(:user).paginate(:page=>params[:page],:per_page=>30)
+      respond_to do |format|
+        format.js
+        format.html
+      end
+
+    else
+      redirect_to '/vshop/login'
+    end
+  end
+
+  def members
+    if @user
+      if @user.id== 2495 #贸威
+        @total_member = Ecstore::Member.count()
+        @members = Ecstore::Member.paginate(:page => params[:page], :per_page => 20).order("member_id DESC")
+        @column_data = YAML.load(File.open(Rails.root.to_s+"/config/columns/member.yml"))
+        respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @members }
+        end
+      else
+        redirect_to '/vshop/apply'
+      end
+    else
+      redirect_to '/vshop/login'
+    end
+  end
+
+  def weixin
+    if @user
+      render 'weixin', :layout=>'vshop_wechat'
+    else
+      redirect_to '/vshop/login'
+    end
+  end
+
   def goods
-    @goods = Estore::Good.all.order()
-  end
+    if @user
+      @goods = Ecstore::Good.includes(:cat).includes(:brand)
 
-  def create_session
-    @return_url = params[:return_url]
-    @platform = params[:platform]
-    @account = Ecstore::Account.user_authenticate(params[:session][:username],params[:session][:password])
+      if @user.id!= 2495 #贸威
+        @goods =@goods.where(:supplier_id=> @user.id)
+      end
 
-    if @account
-      sign_in(@account,params[:remember_me])
-      #update cart
-      # @line_items.update_all(:member_id=>@account.account_id,
-      #                                       :member_ident=>Digest::MD5.hexdigest(@account.account_id.to_s))
+      @goods = @goods .paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC')
 
-      render "create"
+      @count = @goods.count
     else
-
-      render "error"
-      #  render js: '$("#login_msg").text("帐号或密码错误!").addClass("error").fadeOut(300).fadeIn(300);'
+      redirect_to '/vshop/login'
     end
   end
 
-  def destroy_session
-    sign_out
-    # refer_url = request.env["HTTP_REFERER"]
-    # refer_url = "/" unless refer_url
-    if params[:platform]=="mobile"
-      redirect_to "/m"
-    else
-      redirect_to "/"
-    end
-
+  def article
+    @article = Ecstore::Page.includes(:meta_seo).find(params[:id])
   end
 
   def create
@@ -100,53 +148,5 @@ class VshopController < ApplicationController
       end
   end
 
-  def forgot_password
-    @title = "找回密码"
-    render :layout=>"simple"
-  end
-
-  def send_reset_password_instruction
-    @title = "找回密码"
-    member_id = params[:user][:member_id]
-    @by = params[:user][:by]
-    @user = Ecstore::User.where(:member_id=>member_id).first
-    @user.send_reset_password_instruction(@by)
-
-    respond_to do |format|
-      format.js { render :nothing=>true }
-      format.html
-    end
-
-  end
-
-  def reset_password
-    @title = "重设密码"
-    by = params[:by] || "email"
-    
-    @user = Ecstore::User.where(:member_id=>params[:u],:reset_password_token=>params[:token]).first
-
-    respond_to do |format|
-      if @user && !@user.reset_password_token_expired?
-        format.js { render :js=>"window.location.href='#{reset_password_users_url(params)}'" }
-        format.html
-      else
-        format.js { render "sms_code_error" }
-        format.html { redirect_to forgot_password_users_url, :notice=>"重设密码的链接错误" }
-      end
-    end
-
-  end
-
-  def change_password
-    @title = "修改密码成功"
-    @account = Ecstore::Account.where(:account_id=>params[:account][:account_id]).first
-    if @account.change_password(params[:account][:login_password],
-                                                           params[:account][:login_password_confirmation])
-      @account.user.clear_reset_password_token
-    else
-      @user = @account.user
-      render :reset_password
-    end
-  end
 
 end

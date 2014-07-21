@@ -1,4 +1,5 @@
-
+<br/><br/><br/><br/><br/>
+<table class="table table-bordered table-striped" id="goods" data-url="<%=request.fullpath.html_safe%>" count="<%=@count%>" goods_ids="<%=@goods_ids%>" >
 <thead>
 <tr>
   <th><input type="checkbox" id="select_page_all"></th>
@@ -7,8 +8,7 @@
   <th class="order" data-field="bn" data-sorter="asc">商品编号</th>
   <th class="order" data-field="name" data-sorter="asc">商品名称</th>
   <th width="50px" align="center">缩略图</th>
-      <th class="order" data-field="cost" data-sorter="asc">进货价</th>
-  <th class="order" data-field="wholesale" data-sorter="asc">批发价</th>
+      <th class="order" data-field="cost" data-sorter="asc">成本价</th>
   <th class="order" data-field="price" data-sorter="asc">会员价</th>
   <th class="order" data-field="mktprice" data-sorter="asc">市场价</th>
       <th class="order" data-field="price" data-sorter="asc">佣金</th>
@@ -26,16 +26,10 @@
     <%@goods.each do |good|%>
         <tr>
           <td><%=check_box_tag "batch[goods_ids][]", good.goods_id, false, :id=>"good_#{good.goods_id}",:class=>"good"%></td>
-          <td><%=good.supplier.name if good.supplier%></td>
+          <td style="display:none"><%=good.supplier.name if good.supplier%></td>
           <td><%=good.brand.brand_name if good.brand%></td>
 
-          <td class="td-teg"  style="display:none">
-            <%good.tegs.each do |teg|%>
-					<span class="teg" style="background-color:<%=teg.tag_bgcolor%>;color:<%=teg.tag_fgcolor%>">
-						<%=teg.tag_name%>
-					</span>
-            <%end%>
-          </td>
+
 
           <td><%=good.bn%></td>
           <td><%=link_to good.name,good_path(good.bn),:target=>"_blank"%></td>
@@ -44,19 +38,10 @@
                 <%=image_tag good.list_default_pic, :size => "35x50"%>
             <%end%>
           </td>
-          <%if current_admin.has_right_of("goods","edit")%>
               <td>&yen;<%=format("%.2f",good.cost)%></td>
-          <%end%>
-          <%if current_admin.has_right_of("orders","delivery")%>
-              <td>&yen;<%=format("%.2f",good.bulk)%></td>
-              <td>&yen;<%=format("%.2f",good.promotion)%></td>
-          <%end%>
-          <td>&yen;<%=format("%.2f",good.wholesale)%></td>
           <td>&yen;<%=format("%.2f",good.price)%></td>
           <td>&yen;<%=format("%.2f",good.mktprice)%></td>
-          <%if current_admin.has_right_of("members","index")%>
               <td>&yen;<%=format("%.2f",good.price*0.1)%></td>
-          <%end%>
 
           <td><%=good.store.to_i%></td>
           <td><%=good.marketable == 'true' ? '是' : '否'%></td>
@@ -64,21 +49,8 @@
           <td><%=good.cat.cat_name if good.cat%></td>
           <td><%=good.good_type.name if good.good_type%></td>
           <td>
-            <%if current_admin.has_right_of("goods","edit")%>
                 <%=link_to "编辑",edit_admin_good_path(good)%>
                 <%=link_to "规格",spec_admin_good_path(good)%>
-                <!--
-				<%= link_to toggle_future_admin_good_path(good) do%>
-			        <%=good.future == 'false' ? "设置期货" : "期货关闭"%>
-			    <%end%>
-			    <%= link_to toggle_agent_admin_good_path(good) do%>
-			        <%=good.agent == 'false' ? "设置代购" : "代购关闭"%>
-			    <%end%>
-				<%= link_to toggle_sell_admin_good_path(good) do%>
-			        <%=good.sell == 'false' ? "设置现货" : "现货关闭"%>
-			    <%end%>
-			    -->
-            <%end%>
           </td>
         </tr>
     <%end%>
@@ -88,3 +60,7 @@
     </tr>
 <%end%>
 </tbody>
+</table>
+<div class="pagination">
+  <%= will_paginate @goods, :container => false,:params=>{ :page=>params[:page] } %>
+</div>

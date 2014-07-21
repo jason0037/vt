@@ -32,7 +32,8 @@
     <div class="space15"></div>
     <%=f.submit "登 录",:class=>"btn_red"%>
     <div class="space15"></div>
-    <a href="/mregister?platform=mobile" class="forgetkey">立即注册&gt;&gt;</a><a href="/users/forgot_password?platform=mobile" class="fr forgetkey" target="new">忘记密码?</a>
+    <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+    <a href="/mregister?platform=mobile&<%=return_url%>" class="forgetkey">立即注册&gt;&gt;</a><a href="/users/forgot_password?platform=mobile" class="fr forgetkey" target="new">忘记密码?</a>
   </div>
 <%end%>
 <%= javascript_include_tag "login" %>

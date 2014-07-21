@@ -1,0 +1,23 @@
+<div class="inner wrp ">
+  <div class="container_box cell_layout">
+    <div class="container_hd">
+      <h2></h2>
+      <div class="extra_info">&nbsp;</div>
+    </div>
+    <div class="container_bd">
+      <div class="col_main">
+        <div class="article_box ">
+          <div class="inner">
+            <%=render "shared/metable", :resource => @article %>
+            <h3><%=@article.title%></h3>
+
+            <%=@article.body.html_safe%>
+          </div>
+        </div>
+        <div class="tool_bar border tc">
+          <a href="/vshop" class="btn btn_default">返回首页</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

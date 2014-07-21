@@ -4,7 +4,7 @@
 			收货地址 
 			<span class="required">*</span>
 		</h5>
-		<div class="addr-list">
+      <div class="checkcon clearfix">
 		<%if @addrs.size>0%>
 			<%@addrs.each_with_index do |addr,index|%>
 				<%if @def_addr == addr%>

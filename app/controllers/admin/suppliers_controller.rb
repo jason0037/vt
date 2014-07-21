@@ -23,7 +23,7 @@ class Admin::SuppliersController < ApplicationController
 	end
 
 	def create
-    params[:supplier].merge!(:member_id=>@user_id)
+    params[:supplier].merge!(:member_id=>@user.id)
 		@supplier = Ecstore::Supplier.new(params[:supplier])
 		if @supplier.save
       return_url= params[:return_url]

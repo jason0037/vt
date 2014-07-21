@@ -5,6 +5,7 @@ class HomeController < ApplicationController
 	layout 'standard'
 
 	def index
+    redirect_to '/m'
 		# @title = "摩登客—全球设计品牌精品第e站,都市时尚女性个性首选"
 		@home = Ecstore::Home.last
 		if signed_in?

@@ -1,0 +1,69 @@
+<br/><br/><br/><br/>
+<%=form_for :member,:url=>export_admin_members_path,:method=>:post do |f|%>
+    <%= f.hidden_field :select_all,:class=>"sel_operation", :value => 0 %>
+        <div class="page-header"  style="display:none">
+          <div class="btn-group">
+            <%= f.submit '导出会员', :class => "btn btn-primary" %>
+          </div>
+          <ul class="clearfix unstyled">
+            <% @column_data.each do |column| %>
+                <li class="checkbox-verticle">
+                  <%if column.last.last == "true" %>
+                      <%= check_box_tag "fields[]",column.first,true,:class =>'sel_reload'%>
+                  <%else%>
+                      <%= check_box_tag "fields[]",column.first,false,:class =>'sel_reload'%>
+                  <%end%>
+                  &nbsp;&nbsp;<%=column.last.first%>
+                </li>
+            <%end%>
+          </ul>
+        </div>
+    <div class='sel_banner'>
+      您当前选定了<a class='sel_nums'>0</a>条记录！  <a href='' class='cancel_all'>取消选定</a> <a href='' class='sel_all'>选定全部</a>
+      <p class="total_member hidden"><%=@total_member%></p>
+    </div>
+    <table class="table table-bordered table-hover">
+      <tr>
+        <td>全选
+          <%= check_box_tag "ids_all","",false,:class =>'operate_all_id'%>
+        </td>
+        <% @column_data.each do |column| %>
+            <%if column.last.last == "true" %>
+                <th><%=column.last.first%></th>
+            <%end%>
+        <%end%>
+        <%if (current_admin.login_name=="admin")%>
+            <th colspan="3">操作</th>
+        <%else%>
+            <th colspan="3" style="display:none">操作</th>
+        <%end%>
+      </tr>
+
+      <% @members.each do |member| %>
+          <tr>
+            <td>
+              <%= check_box_tag "ids[]",member.member_id,false,:class =>'operate_ids'%>
+            </td>
+            <% @column_data.each do |column| %>
+                <%if column.last.last == "true" %>
+                    <td><%= getColumnValue(column.last[1],member) %></td>
+                <%end%>
+            <% end %>
+            <%if (current_admin.login_name=="admin")%>
+                <td><%=link_to "查看",info_admin_member_path(member)%></td>
+                <td><%=link_to "编辑",edit_admin_member_path(member)%></td>
+                <td>删除</td>
+            <%else%>
+                <td style="display:none"><%=link_to "查看",info_admin_member_path(member)%></td>
+                <td style="display:none"><%=link_to "编辑",edit_admin_member_path(member)%></td>
+                <td style="display:none">删除</td>
+            <%end%>
+          </tr>
+      <% end %>
+    </table>
+
+    <div class="pagination">
+      <%= will_paginate @members, :container => false %>
+    </div>
+<%end%>
+

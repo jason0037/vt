@@ -14,13 +14,13 @@ h2 {
 	width: 116px; height: 116px; vertical-align: middle; display: inline-block;
 }
 .app_dev .gray.icon_site_desc {
-	background: url("/open/zh_CN/htmledition/res/css/page/index/page_index_z1ea897.png") no-repeat 0px 0px;
+	background: url("/assets/vshop/page_index_z1ea897.png") no-repeat 0px 0px;
 }
 .web_dev .gray.icon_site_desc {
-	background: url("/open/zh_CN/htmledition/res/css/page/index/page_index_z1ea897.png") no-repeat 0px -126px;
+	background: url("/assets/vshop/page_index_z1ea897.png") no-repeat 0px -126px;
 }
 .wx_dev .gray.icon_site_desc {
-	background: url("/open/zh_CN/htmledition/res/css/page/index/page_index_z1ea897.png") no-repeat 0px -252px;
+	background: url("/assets/vshop/page_index_z1ea897.png") no-repeat 0px -252px;
 }
 .site_desc_item dl {
 	font-size: 14px; position: relative;
@@ -119,11 +119,11 @@ h2 {
 	width: 135px; height: 135px; vertical-align: middle; display: inline-block;
 }
 .secure.icon_pay_desc {
-	background: url("/open/zh_CN/htmledition/res/css/page/index/page_index_z1ea897.png") no-repeat 0px -378px;
+	background: url("/assets/vshop/page_index_z1ea897.png") no-repeat 0px -378px;
 }
 .fast.icon_pay_desc {
-	background: url("/open/zh_CN/htmledition/res/css/page/index/page_index_z1ea897.png") no-repeat 0px -518px;
+	background: url("/assets/vshop/page_index_z1ea897.png") no-repeat 0px -518px;
 }
 .scan.icon_pay_desc {
-	background: url("/open/zh_CN/htmledition/res/css/page/index/page_index_z1ea897.png") no-repeat 0px -658px;
+	background: url("/assets/vshop/page_index_z1ea897.png") no-repeat 0px -658px;
 }

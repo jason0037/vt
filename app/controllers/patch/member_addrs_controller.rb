@@ -30,11 +30,19 @@ class Patch::MemberAddrsController < ApplicationController
 
 	def create
 		@addr = Ecstore::MemberAddr.new params[:addr].merge!(:member_id=>@user.member_id)
+    return_url=params[:return_url]
 		if @addr.save
-			respond_to do |format|
-				format.js
-				format.html { redirect_to member_addrs_url }
+      redirect_to '/orders/new_mobile'
+=begin
+      if return_url
+        redirect_to return_url
+      else
+        respond_to do |format|
+          format.js
+          format.html { redirect_to member_addrs_url }
+        end
 			end
+=end
 		else
 			render "error.js" #, status: :unprocessable_entity
 		end

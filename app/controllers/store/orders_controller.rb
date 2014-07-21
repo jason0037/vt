@@ -240,16 +240,26 @@ class Store::OrdersController < ApplicationController
     end
   end
 
-  def new_mobile
+  def new_mobile_addr
     @addrs =  @user.member_addrs
     @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
+    render :layout=>"mobile_new"
+  end
 
-    if @pmtable
-      @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
-      @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
-      @coupons = @user.usable_coupons
+  def new_mobile
+    @addrs =  @user.member_addrs
+    if @addrs.size==0
+      redirect_to '/orders/new_mobile_addr?return_url=/orders/new_mobile'
+    else
+        @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
+
+        if @pmtable
+          @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
+          @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
+          @coupons = @user.usable_coupons
+        end
+          render :layout=>"mobile_new"
     end
-      render :layout=>"mobile_new"
   end
 
   def share

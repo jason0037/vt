@@ -48,12 +48,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         if @order
           share =@order.share.round(2)
         end
- #       sharetitle="您的总佣金收益是: #{share}元，感谢您对我们对我们关注和转发分享。佣金是因为您关注了我们，并转发给其他朋友，朋友或者朋友的朋友下单购买了我们的商品，我们因此向您支付的感谢费。 如何领佣金？您只要点击“我要领佣金”，按照步骤操作即可进入系统认领佣金。我们会在每个自然月底将当月佣金转账到您的支付宝账户。"
-#        if share==0
- #         title="#{sharetitle} <a href='http://www.trade-v.com/pages/yongjin?platform=vshop'>如何挣佣金</a>？您只要举手之劳，关注我们，然后转发到朋友圈，就有机会获取佣金。赶快转发分享商品吧！"
- #       else
- #         title="恭喜您，#{sharetitle}"
- #       end
+
         title="您的总佣金收益是: #{share}元"
         desc ="查看佣金详情请点击"
         pic_url='http://www.trade-v.com/assets/vshop/commission_banner.jpg'
@@ -138,6 +133,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     @desc  = @weixin_message.Description
     @url   = @weixin_message.Url
     reply_text_message("回复链接信息")
+
   end
 
   # <MediaId><![CDATA[media_id]]></MediaId>
@@ -213,7 +209,9 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
   # 点击菜单跳转链接时的事件推送
   def handle_view_event
- #   Rails.logger.info("你点击了: #{@keyword}")
+    Rails.logger.info("你点击了: #{@keyword}")
+    reply_text_message("你点击了: #{@keyword}")
+    session[:wechat_user]= @weixin_message.FromUserName
   end
 
   # 帮助文档: https://github.com/lanrion/weixin_authorize/issues/22
