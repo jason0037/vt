@@ -8,7 +8,6 @@
               <SPAN class="frm_input_box">
               <%= f.text_field :name ,:class=>'frm_input',:maxlenth=>'40'%>
               </SPAN>
-                <P class="frm_tips">需在2到40个字符之间，审核通过后不允许修改</P>
               </DIV>
             </DIV>
             <DIV class="frm_control_group">
@@ -40,14 +39,6 @@
               <DIV class="frm_controls">
               <SPAN class="frm_input_box">
               <%= f.text_field :owner_id ,:class=>'frm_input',:maxlenth=>'40'%>
-              </SPAN>
-              </DIV>
-            </DIV>
-            <DIV class="frm_control_group">
-              <%= f.label :file, '营业执照', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-               <%= file_field_tag :file %>
               </SPAN>
               </DIV>
             </DIV>
@@ -123,17 +114,6 @@
                <%= f.text_field :desc ,:class=>'frm_input',:maxlenth=>'80'%>
               </SPAN>
                 <P class="frm_tips">最多80字</P></DIV>
-            </DIV>
-            <DIV class="frm_control_group">
-              <%= f.label :file, '上传协议', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-               <%= file_field_tag :file %>
-              </SPAN>
-              </DIV>
-              <p><a href="/m1/O2O.doc">下载协议模板</a></p>
-              <P class="frm_tips"> 填写完整并且加盖企业公章的协议,大小不超过1MB。</P>
-
             </DIV>
             <DIV class="tool_bar border with_form">
               <%=f.submit '下一步', :class=>"btn btn_primary",:id=>"nextBt" %>

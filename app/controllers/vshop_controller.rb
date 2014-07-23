@@ -42,7 +42,7 @@ class VshopController < ApplicationController
 
       @order_ids = @orders_nw.pluck(:order_id)
 
-      if ( @user.id!= 2495)  #贸威
+      if ( @user.id== 2495)  #贸威
 
         @orders = @orders_nw
        else

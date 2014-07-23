@@ -15,6 +15,13 @@
           <%= f.text_field :name,:class=>"span4"%>
       </div>
     </div>
+    <div class="control-group">
+      <%= f.label :share, "分享佣金", :class => "control-label" %>
+      <div class="controls">
+        <!-- <span class="plain"><%=@good.name%></span> -->
+        <%= f.text_field :share,:class=>"span4"%>例如：0.01=>售价的1%
+      </div>
+    </div>
 
     <div class="control-group">
       <%= f.label :bn, "商品编号", :class => "control-label" %>

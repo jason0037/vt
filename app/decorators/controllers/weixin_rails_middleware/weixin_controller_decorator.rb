@@ -26,6 +26,24 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     user = @weixin_message.FromUserName
     #user = @weixin_message.ToUserName
     case @keyword
+      when '授权'
+        title2="微信直通"
+        desc2 =""
+        pic_url2="http://www.trade-v.com/assets/vshop/Oauth_s.png"
+        link_url2="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+
+        title="二维码"
+        desc =""
+        pic_url="http://www.trade-v.com/assets/vshop/qrcode.gif"
+        link_url="http://www.trade-v.com/pages/qcode"
+
+        title1="关于我们"
+        desc1 =""
+        pic_url1="http://www.trade-v.com/assets/trade-vLogo.jpg"
+        link_url1="http://www.trade-v.com/pages/abouttradev"
+
+        articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2)]
+        reply_news_message(articles)
       when '黄油'
         title="[总统 PRESIDENT]超高温灭菌稀奶油 200毫升仅售¥22.4元"
         desc ="法国进口的总统谈奶油，是从牛奶中提炼出来的纯天然食品，一般乳脂含量为16.5%，营养价值高，入口即化"
@@ -201,6 +219,9 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         response_news_message({})
       when 'SHARE'
         @keyword='share'
+        response_news_message({})
+      when 'Oauth'
+        @keyword='授权'
         response_news_message({})
       else
        # reply_text_message("你点击了: #{@keyword}")

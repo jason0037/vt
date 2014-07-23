@@ -9,8 +9,8 @@ class Admin::BaseController < ActionController::Base
 
 	
 
-	before_filter :authorize_admin!
-	before_filter :require_permission!,:except=>[:select_goods,:select_gifts,:select_coupons,:search]
+#	before_filter :authorize_admin!
+#	before_filter :require_permission!,:except=>[:select_goods,:select_gifts,:select_coupons,:search]
 
 	def authorize_admin!
 		redirect_to new_admin_session_path unless current_admin

@@ -12,7 +12,7 @@
     </DIV>
     <DIV class="step_panel">
       <DIV class="app_create_box app">
-        <%=form_for :supplier,:url=>"/admin/suppliers?return_url=/vshop/apply",:method=>'post', :remote=>true do |f|%>
+        <%=form_for :supplier, :html => {:multipart => true } ,:url=>"/admin/suppliers?return_url=/vshop/apply",:method=>'post', :remote=>true do |f|%>
           <DIV class="frm_control_group">
               <%= f.label :name, '企业全称', :class => "frm_label" %>
               <DIV class="frm_controls">
@@ -55,10 +55,10 @@
               </DIV>
             </DIV>
             <DIV class="frm_control_group">
-              <%= f.label :file, '营业执照', :class => "frm_label" %>
+              <%= f.label :license_file, '营业执照', :class => "frm_label" %>
               <DIV class="frm_controls">
               <SPAN class="frm_input_box">
-               <%= file_field_tag :file %>
+               <%= file_field_tag :license_file %>
               </SPAN>
               </DIV>
             </DIV>
@@ -150,10 +150,10 @@
                   <P class="frm_tips">最多80字</P></DIV>
               </DIV>
             <DIV class="frm_control_group">
-              <%= f.label :file, '上传协议', :class => "frm_label" %>
+              <%= f.label :agreement_file, '上传协议', :class => "frm_label" %>
               <DIV class="frm_controls">
               <SPAN class="frm_input_box">
-               <%= file_field_tag :file %>
+               <%= file_field_tag :agreement_file %>
               </SPAN>
               </DIV>
               <p><a href="/m1/O2O.doc">下载协议模板</a></p>

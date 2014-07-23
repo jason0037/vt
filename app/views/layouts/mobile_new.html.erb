@@ -62,7 +62,7 @@
     <a href="?t=1#" class="backtop" mars_sead="home_foot_top_btn"></a>
   </div>
   <p class="copyright">Copyright © 2013-2014 trade-v.com 版权所有 上海普慧信息科技有限公司 All rights reserved. 沪ICP备13045311号-1 </p>
-  <p>from=<%=session[:wechat_user]%>|recommend=<%=session[:wechat_recommend]%></p>
+  <p>from=<%=session[:wechat_user]%>|recommend=<%=session[:recommend_user]%></p>
 </div>
 <div class="space10"></div>
 
@@ -135,7 +135,11 @@
             });
         }, false);
     }
-    var data = {"img":null,"url":"","title":"<%#=@wechat_share_title%>","desc":null};
+    <%if @user%>
+    <%useraccount=@user.account.login_name%>
+    <%end%>
+    var current_url =document.location.href+"&from=weixin&wechatuser=<%=useraccount%>"
+    var data = {"img":null,"url":current_url,"title":"关注我们，转发朋友，赚佣金啰！<%#=@wechat_share_title%>","desc":null};
     wechatShare(data);
 </script>
 <%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>

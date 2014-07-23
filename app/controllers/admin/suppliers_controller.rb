@@ -23,6 +23,18 @@ class Admin::SuppliersController < ApplicationController
 	end
 
 	def create
+    uploaded_io = params[:license_file]
+    if !uploaded_io.blank?
+      extension = uploaded_io.original_filename.split('.')
+      filename = "#{Time.now.strftime('%Y%m%d%H%M%S')}.#{extension[-1]}"
+      filepath = "#{PIC_PATH}/vshop_docs/#{filename}"
+      File.open(filepath, 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
+      params[:supplier].merge!(:lisence=>"/vshop_docs/#{filename}")
+    end
+
+
     params[:supplier].merge!(:member_id=>@user.id)
 		@supplier = Ecstore::Supplier.new(params[:supplier])
 		if @supplier.save

@@ -1,3 +1,13 @@
+<br/><br/><br/><br/>
+<link href="/assets/admin/base.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="/assets/admin/orders.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+<script src="/assets/bootstrap.js?body=1" type="text/javascript"></script>
+<script src="/assets/admin/base.js?body=1" type="text/javascript"></script>
+<script src="/assets/area_seletor.js?body=1" type="text/javascript"></script>
+<script src="/assets/bootstrap-modal.js?body=1" type="text/javascript"></script>
+<script src="/assets/admin/orders.js?body=1" type="text/javascript"></script>
 <%=form_for :s,:url=>search_admin_orders_path,:method=>:get,:html=>{:class=>"form-search"} do |f|%>
     <%=f.text_field :q, :value=>params[:s]&&params[:s][:q],:placeholder=>"订单号/收货人"%>
     <input type="submit" value="搜索" class="btn btn-success">
@@ -31,7 +41,6 @@
     <th>标签</th>
     <th>会员</th>
     <th>下单时间</th>
-    <th>支付方式</th>
     <th>订单状态</th>
     <th>付款状态</th>
     <th>发货状态</th>
@@ -53,7 +62,6 @@
     <td><%=order.order_id%></td>
 
     <td><%=link_to "详细",detail_admin_order_path(order),:target=>"_blank"%></td>
-    <%if current_admin.has_right_of("orders","delivery")%>
         <td class="dropdown">
           <%if order.status == "active"%>
               <%=link_to "#",:class=>"dropdown-toggle",:data=>{:toggle=>"dropdown"} do%>
@@ -82,7 +90,6 @@
                   <%=link_to "订单备注",comment_admin_order_path(order,:page=>params[:page])%>
                 </li>
               </ul>
-          <%end%>
         </td>
         <td>
           <%=link_to "购", print_order_admin_order_path(order),:target=>"_blank"%>
@@ -96,9 +103,8 @@
 			</span>
       <%end%>
     </td>
-    <td><%=order.user.login_name if order.user%></td>
+    <td><%=order.user.member_id if order.user%></td>
     <td><%=order.created_at%></td>
-    <td><%=order.payment_name%></td>
     <td><%=order.status_text%></td>
     <td><%=order.pay_status_text%></td>
     <td><%=order.ship_status_text%></td>

@@ -386,15 +386,18 @@ body {
 .foot .inner {
 	color: rgb(158, 159, 159); padding-top: 12px; padding-bottom: 30px;
 }
+
 .foot .inner::after {
 	height: 0px; clear: both; display: block; content: "\200B";
 }
 .copyright {
-	line-height: 14px; float: left;
+	line-height: 14px; text-align:center; color: rgb(158, 159, 159);text-align:center
 }
 .ft.links {
-	text-align: right;
+	text-align: center;
 }
+.foot_img{width:80px}
+
 .ft.links .links_item {
 	font-size: 14px;
 }
