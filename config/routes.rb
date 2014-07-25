@@ -307,6 +307,7 @@ Modengke::Application.routes.draw do
       # end
   end
   get 'm' =>"mobile#show", :as=>"mobile" ,:controller=>"mobile"
+  get 'm/user' =>"mobile#user"
     scope :module => "store" do
       
       get 'search' => "search#index", :as=> :search

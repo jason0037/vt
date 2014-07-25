@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
   end
 
   def new_mobile
+    session[:return_url]=params[:return_url]
     render :layout=>"mobile_new"
     # return redirect_to(after_user_sign_in_path) if signed_in?
   end

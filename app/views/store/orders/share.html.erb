@@ -22,13 +22,13 @@
 <div class="userdiv" data-cartforms="invoice">
   <div class="invoice clearfix">
     <h3>最新佣金:
-      <span class="new"><%=@sharelast%></span><span class="down_arrow"></span>
+      <span class="new">¥<%=format("%.2f",@sharelast)%></span><span class="down_arrow"></span>
     </h3>
   </div>
   <div class="invoice clearfix hide">
     <h3>最新佣金:</h3>
     <div class="dashline2"></div>
-    <input name="invoice" type="text" placeholder="" value="<%=@sharelast%>" class="text_input w100">
+    <input name="invoice" type="text" placeholder="" value="¥<%=format("%.2f",@sharelast)%>" class="text_input w100">
   </div>
 </div>
 

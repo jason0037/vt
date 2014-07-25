@@ -24,6 +24,8 @@ class Auth::WeixinController < ApplicationController
 	def callback
     #return render :text=>params[:code]
 		return redirect_to(site_path) if params[:error].present?
+    return_url=session[:return_url]
+    session[:return_url]=''
 
 		token = Weixin.request_token(params[:code])
 
@@ -77,7 +79,11 @@ class Auth::WeixinController < ApplicationController
 	  		end
 		else
 			sign_in(auth_ext.account)
-			redirect_to after_user_sign_in_path
+	    if return_url
+          redirect_to return_url
+      else
+        	redirect_to after_user_sign_in_path
+      end
 		end
 	#rescue
 	#	redirect_to(site_path)

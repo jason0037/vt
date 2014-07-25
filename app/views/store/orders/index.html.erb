@@ -5,7 +5,7 @@
 		
 		<th>下单时间</th>
 		<th>订单金额</th>
-		<th>订单状态</th>
+		<th style="display:none">订单状态</th>
 		<th>操作</th>
 	</tr>
 	
@@ -28,7 +28,7 @@
 		
 		<td><%=order.created_at%></td>
 		<td>￥<%=order.final_amount%></td>
-		<td><%=order.status_text%></td>
+		<td style="display:none"><%=order.status_text%></td>
 		<td>
 			<div><%=link_to "查看",detail_order_path(order),:target=>"_blank"%></div>
 			<div><%=link_to "去付款",order_path(order),:target=>"_blank" if order.status == 'active' && order.pay_status=='0'%></div>
