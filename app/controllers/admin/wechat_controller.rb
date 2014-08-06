@@ -9,6 +9,14 @@ module Admin
     # 创建一个实例
     #$client ||= WeixinAuthorize::Client.new(ENV["APPID"], ENV["APPSECRET"])
     def followers
+      # @order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
+     #sql ='SELECT openid,user_info,(select sum(commission) from mdk.sdb_b2c_orders where recommend_user= mdk.sdb_wechat_followers.openid group by recommend_user)  as commission FROM mdk.sdb_wechat_followers'
+      @followers =  Ecstore::WechatFollower.all
+      @followers.each do |follower|
+        sql ="update mdk.sdb_wechat_followers set commission= (select sum(commission) from mdk.sdb_b2c_orders where recommend_user= '#{follower.openid}' group by recommend_user) where openid='#{follower.openid}'"
+        ActiveRecord::Base.connection.execute(sql)
+      end
+      #@order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
       @followers =  Ecstore::WechatFollower.paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
       if params[:platform]=='vshop'
         render :layout=>'vshop_wechat'

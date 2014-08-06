@@ -2,8 +2,6 @@
 require 'csv'
 class Ecstore::Order < Ecstore::Base
 
-      
-
 	self.table_name = "sdb_b2c_orders"
 	    has_many :order_items, :foreign_key=>"order_id"
       has_many :order_pmts, :foreign_key=>"order_id"
@@ -12,6 +10,8 @@ class Ecstore::Order < Ecstore::Base
 
       belongs_to :user,:foreign_key=>"member_id"
       belongs_to :manager,:foreign_key=>"desktop_user_id"
+
+      belongs_to :wechat_follower, :foreign_key=>"recommend_user"
 
       self.accessible_all_columns
 

@@ -6,3 +6,6 @@ ENV['JAVA_HOME'] = "/usr/bin/java"
 
 # Initialize the rails application
 Modengke::Application.initialize!
+
+PIC_PATH= "/home/trade/pics/images"
+
