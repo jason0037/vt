@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  accound_id: 1
+  suppliers_id: 1
+  dining_use: MyString
+  dining_time: 2014-08-13 09:49:27
+  dining_count: 1
+  dining_content: MyString
+  phone: 1
+
+two:
+  accound_id: 1
+  suppliers_id: 1
+  dining_use: MyString
+  dining_time: 2014-08-13 09:49:27
+  dining_count: 1
+  dining_content: MyString
+  phone: 1

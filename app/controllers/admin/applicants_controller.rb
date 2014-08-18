@@ -5,5 +5,7 @@ class Admin::ApplicantsController < Admin::BaseController
 
 	def destroy
 
-	end
+  end
+
+
 end

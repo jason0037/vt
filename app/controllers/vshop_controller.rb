@@ -94,7 +94,7 @@ class VshopController < ApplicationController
         @goods =@goods.where(:supplier_id=> @user.id)
       end
 
-      @goods = @goods .paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC')
+      @goods = @goods .paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC')   #分页
 
       @count = @goods.count
     else

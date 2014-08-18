@@ -1,0 +1,59 @@
+<style>
+
+    input.textcenter {
+        text-align: center;
+        position: relative;
+        margin: 0 auto;
+        width: 40px;
+        border: solid 1px #ccc;
+    }
+</style>
+<div class="space10"></div>
+
+<h2 class="order_sendby clearfix">
+  <span >订单查看</span>
+</h2>
+<%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
+    <div class="cartdiv" id="line_<%=line_item.obj_ident%>">
+      <div class="cartlist clearfix">
+
+        <div class="space10"></div>
+        <div class="cartlistinner clearfix">
+          <a href="<%=good_path(line_item.good.bn)%>" class="cart_orderlist_i">
+            <img src="<%=line_item.good.medium_pic%>"
+                 data-original="<%=line_item.good.medium_pic%>"
+                 data-onerror="<%=line_item.good.medium_pic%>"
+                 width="80" height="101" data-brandlazy="true" style="display: inline;">
+          </a>
+          <div class="cart_orderlist_info"> <a href="\tproducts?id=<%=line_item.good.bn%>">
+            <p class="cart_g_name"><%=line_item.product.name%></p>
+
+            <p class="fontgrey"><%=line_item.good.spec_info%></p>
+            <p class="space5"></p>
+          </a>
+
+
+
+            <div class="space5"></div>
+
+          </div>
+          <a class="cart_orderlist_p" href="\tproducts?id=<%=line_item.good.bn%>" target="_blank"  style="display:block">
+            <span class="c_price">¥<%= format('%.2f',line_item.good.price)%></span>
+            <span class="fontstyle">¥<%= format('%.2f',line_item.good.mktprice)%></span>
+          </a>
+
+        </div>
+      </div>
+      <div class="orderaction clearfix">
+
+        <div class="fl"></div>
+
+
+
+        <div class="clear"></div>
+
+      </div>
+    </div>
+<%end%>
+
+</div>

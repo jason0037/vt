@@ -1,7 +1,38 @@
 #encoding:utf-8
 require 'httpclient'
 Modengke::Application.routes.draw do
-  
+
+  resources :tairyo do                   # #大渔饭店
+  get   'index'  ,:on=>:collection
+  get   'bus'  ,:on=>:collection
+  get   'car'  ,:on=>:collection
+  get   'walk'  ,:on=>:collection
+  get   'group'  ,:on=>:collection
+  get   'tuangouxiang'  ,:on=>:collection
+  get   'tese'  ,:on=>:collection
+  get   'user'  ,:on=>:collection
+  end
+
+    # 大渔用户注册登陆
+   get 'tlogin'=>"sessions#new_tairyo"
+   get 'tregister'=>"sessions#register_tairyo"
+   get 'tlogout'=>"sessions#destroy_tairyo"
+   post 'users/tairyo' =>"users#tairyo_user" ,:controller=>"users"
+   post 'tlogin'=>"sessions#create_tairyo"
+  #    #优惠卷
+   get 'coupon'=>"coupon#index" ,:controller=>"coupons"
+       get  'coupon/lingqu'=>"coupon#lingqu",:controller=>"coupons"
+
+  #        #评论+优惠卷
+  get 'comment_t'=>"comments#tairyo_comment",:controller=>"comments"
+     post 'comment'=>"comments#tairyo",:controller=>"comments"
+
+       get 'mycoupon'=>"coupon#mycoupon",  :controller=>"coupons"
+  #    #特色
+  #订单s
+
+
+
   mount WeixinRailsMiddleware::Engine, at: "/"
 
   root :to=>"home#index",:constraints=>{ :subdomain=>/^(www)?$/ }
@@ -158,6 +189,7 @@ Modengke::Application.routes.draw do
           put :update_brand,:on=>:member
         end
         resources :goods do
+          get "tairyo_show",  :on=>:collection
           post "export", :on=>:collection
           post "import", :on=>:collection
           post "remove_spec_item",:on=>:member
@@ -178,7 +210,7 @@ Modengke::Application.routes.draw do
           get :toggle_sell,:on=>:member
         end
         resources :spec_items
-        
+
         resources :images do
           post "mark", :on=>:collection
           post "rollback",:on=>:collection
@@ -262,12 +294,12 @@ Modengke::Application.routes.draw do
         resources :user_coupons
         
         resources :orders do
-          collection do 
+          collection do
             get 'search'
             post :export
             put 'batch'
           end
-          
+
            member do
              get 'detail'
              get 'pay'
@@ -308,11 +340,15 @@ Modengke::Application.routes.draw do
   end
   get 'm' =>"mobile#show", :as=>"mobile" ,:controller=>"mobile"
   get 'm/user' =>"mobile#user"
+
     scope :module => "store" do
-      
+      resources :orders,:only=>[:tairyo_order]
+      get 'tairyo_order'=>"orders#tairyo_order"
+
       get 'search' => "search#index", :as=> :search
       get 'mproducts' =>"goods#mobile", :as=>"goods" ,:controller=>"goods"
 
+      get 'tproducts' =>"goods#tairyo_tuan", :as=>"goods" ,:controller=>"goods"
       resources :products, :as=>"goods", :controller=>"goods" do
           # get 'newin',:on=>:collection
           get 'newest',:on=>:collection
@@ -332,11 +368,14 @@ Modengke::Application.routes.draw do
       end
 
       resources :vgoods, :controller=>"virtual_goods",:only=>[:index,:show]
-
-      # post 'cart/add'=>"cart#add",:as=>:add_to_cart
+       post 'cart/tairyo_add'=>"cart#tairyo_add",:as=>:add_to_cart   #团购商品添加购物车
+       post 'cart/add'=>"cart#add",:as=>:add_to_cart
       resources :cart do
           post 'add',:on=>:collection
           get 'mobile', :on=>:collection
+          get 'tairyo_cart',:on=>:collection
+          post 'tairyo', :on=>:collection      #大渔订餐 不是团购
+           get 'jinbalang',:on=>:collection
       end
       resources :brands,:only=>[:index,:show]
       resources :users
@@ -344,13 +383,14 @@ Modengke::Application.routes.draw do
       resources :country, :as=>"countries", :controller=>"countries"
       resources :gallery, :as=>"cats", :controller=>"cats"
 
-
+      get 'vgroup'=>"cats#show_group",:as=>"cats",:controller=>"cats"  #金芭浪饭店团购
       get 'mgallery' =>"cats#show_mobile", :as=>"cats",:controller=>"cats"
       resources :goods,  :as=>"orders", :controller=>"orders" do
         member do
           get :goods
         end
       end
+      get 'tairyo_share' =>"orders#tairyo_share"
       get 'share' =>"orders#share"
       resources :orders, :except=>[:index] do 
         member do
@@ -364,6 +404,7 @@ Modengke::Application.routes.draw do
         collection do
           get 'check_coupon'
           get  'new_mobile'
+          get  'new_tairyo'
           get 'new_mobile_addr'
         end
       end

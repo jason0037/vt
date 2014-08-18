@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   layout 'login'
 
   def new
-  	# return redirect_to(after_user_sign_in_path) if signed_in?
+
   end
 
   def new_mobile
@@ -12,11 +12,36 @@ class SessionsController < ApplicationController
     # return redirect_to(after_user_sign_in_path) if signed_in?
   end
 
+  def new_tairyo
+    session[:return_url]=params[:return_url]
+    render :layout=>"tairyo_new"
+    # 大渔饭店
+  end
+  def register_tairyo
+    render :layout=>"tairyo_new"
+    # 大渔饭店
+  end
+
   def register_mobile
     render :layout=>"mobile_new"
     # return redirect_to(after_user_sign_in_path) if signed_in?
   end
+  def create_tairyo
+    @return_url = params[:return_url]
+    @platform = params[:platform]
+    @account = Ecstore::Account.tairyo_authenticate(params[:session][:username],params[:session][:password])
 
+    if @account
+      sign_in(@account,params[:remember_me])
+
+
+      render "create_tairyo"
+
+
+    else
+      render "error"
+     end
+  end
   def create
   	@return_url = params[:return_url]
     @platform = params[:platform]
@@ -48,6 +73,20 @@ class SessionsController < ApplicationController
 
         redirect_to "/"
       end
+
+  end
+  def destroy_tairyo
+    sign_out
+    # refer_url = request.env["HTTP_REFERER"]
+    # refer_url = "/" unless refer_url
+    if params[:platform]=="mobile"
+      redirect_to "/tairyo"
+    elsif
+    redirect_to "/vshop"
+    else
+
+      redirect_to "/"
+    end
 
   end
 

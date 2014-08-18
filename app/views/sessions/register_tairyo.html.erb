@@ -1,0 +1,56 @@
+<%=render "shared/metable", :resource => nil %>
+<style>
+  .help-block {color:red;}
+</style>
+
+<header id="header" class="header clearfix">
+
+  <div class="head_left fl"><a href="#"><span class="h_back"></span></a></div>
+  <span class="headtit">注册</span>
+  <div class="head_right fr"><a href="/m/" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
+</header>
+
+<%=form_for :user,:url=>"#{users_path}/tairyo?return_url=/tairyo",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
+  <div class="connerdiv">
+    <dl class="connerbox">
+      <dd><span class="form_hd">账号：</span><span class="form_td">
+        <%=f.text_field :login_name,:class=>"text_input",:placeholder=>"用户名"%>
+      </span>
+        <div class="help-block" rel="user_login_name"></div>
+      </dd>
+      <dd><span class="form_hd">密码：</span><span class="form_td">
+        <%=f.password_field :login_password,:class=>"text_input",:placeholder=>"密码"%>
+      </span>
+        <div class="help-block" rel="user_login_password"></div>
+      </dd>
+      <dd><span class="form_hd">确认密码：</span><span class="form_td ml80">
+        <%=f.password_field :login_password_confirmation,:class=>"text_input",:placeholder=>"确认密码"%>
+      </span>
+        <div class="help-block" rel="user_login_password_confirmation"></div>
+      </dd>
+      <dd><span class="form_hd">邮箱：</span><span class="form_td ml80">
+        <%=f.text_field :email,:class=>"text_input",:placeholder=>"邮箱"%>
+      </span>
+        <div class="help-block" rel="user_email"></div>
+      </dd>
+      <dd><span class="form_hd">手机号码：</span><span class="form_td ml80">
+        <%=f.text_field :mobile,:class=>"text_input",:placeholder=>"手机号码"%>
+      </span>
+        <div class="help-block" rel="user_mobile"></div>
+      </dd>
+      <dd>
+        <input type="checkbox" checked="checked" value="agree" name="user[license]" id="license" class="x-input required" autocomplete="off">
+        <label for="license" class="checkbox_label" id="i_agree">&nbsp;我已阅读并同意：</label><a href="/pages/zhucexieyi?platform=mobile" target="_top"  id="reg_term">会员注册协议</a>
+        <span id="and">和</span><br/><a href="/pages/ysbh?platform=mobile" id="privacy" target="_top">隐私保护政策</a>
+        <div class="help-block" rel="user_license"></div>
+      </dd>
+    </dl>
+    <div class="space15"></div>
+    <div id="login_msg" style="color:red;font-size:12pt;"></div>
+    <%=f.submit "注 册",:class=>"btn_red largerbtn longbtn"%>
+    <div class="space15"></div>
+    <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+    <a href="/tlogin?platform=mobile&<%=return_url%>" class="forgetkey">已有账号，去登录&gt;&gt;</a>
+  </div>
+<%end%>
+<%= javascript_include_tag "login" %>

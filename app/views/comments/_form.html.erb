@@ -1,8 +1,8 @@
 <%=form_for :comment,:url=>comments_path do |f|%>
-	<%=hidden_field_tag :return_url, return_url if return_url.present?%>
-	<%=f.hidden_field :member_id,:value=>@user.member_id if @user%>
-	<%=f.hidden_field :commentable_id,:value=>commentable_id%>
-	<%=f.hidden_field :commentable_type,:value=>commentable_type%>
-	<div><%=f.text_area :content%></div>
-	<div><%=f.submit "提交",:class=>"btn btn-inverse #{'login' unless signed_in?}"%></div>
+    <%=hidden_field_tag :return_url, return_url if return_url.present?%>
+    <%=f.hidden_field :member_id,:value=>@user.member_id if @user%>
+    <%=f.hidden_field :commentable_id,:value=>commentable_id%>
+    <%=f.hidden_field :commentable_type,:value=>commentable_type%>
+    <div><%=f.text_area :content%></div>
+    <div><%=f.submit "提交",:class=>"btn btn-inverse #{'login' unless signed_in?}"%></div>
 <%end%>

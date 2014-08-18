@@ -1,0 +1,258 @@
+
+
+
+  <script type="text/javascript">
+      $(document).ready(function(){
+
+          $(".introduces").click(function(){
+              $(this).addClass("show");
+              $(".comment").removeClass("show");
+              $(".introduces_two").addClass("hidenall");
+              if ($(".introduces_one").hasClass("hidenall")) {
+                  $(".introduces_one").removeClass("hidenall");
+
+              }
+          });
+          $(".comment").click(function(){
+              $(this).addClass("show");
+              $(".introduces").removeClass("show");
+              $(".introduces_one").addClass("hidenall");
+              if ($(".introduces_two").hasClass("hidenall")) {
+                  $(".introduces_two").removeClass("hidenall");
+
+              }
+          });
+      })
+
+  </script>
+  <script>
+      var ui = 'touch';
+  </script>
+  <style type="text/css">
+      #headerimg{
+          text-align: center;
+      }
+    #headerimg img{
+          width:420px;
+          margin: -8px;
+          height: 200px;
+
+   }
+
+  .neck  {
+          background-color: white;
+          height: 30px;
+
+      }
+ .neck .introduces,.neck .comment{
+       float: left;
+          margin: 5px;
+          padding: 5px;
+          margin-top: 2px;
+          margin-left: 30%;
+          cursor: pointer;
+
+      }
+ .instroduces_index{
+          background-color: white;
+          height: 100px;
+          border:1px solid #ddd
+  }
+      .body_content h2{
+          margin-bottom: 30px;
+          margin-left: 46px;
+      }
+
+
+
+ .body_img img ,#tuan img {
+          width: 100px;
+          height: 100px;
+          margin-left: 0px;
+      }
+      .hidenall{
+          display: none;
+      }
+
+      .instroduces_index .body_img
+           {
+               float: left;
+
+           }
+   #contentse{
+       line-height: 20px;
+   }
+      .salebg3{
+          color: black;
+      }
+      .discouts{
+          margin-top: 30px
+      }
+
+      #contentse span{
+
+         margin-bottom: 50px;
+      }
+
+      #tes{
+          margin-left:89%
+      }
+      .show{
+          background-color: #33f2ff;
+          color: #fffefc;
+      }
+  </style>
+</head>
+
+  <header id="header" class="header clearfix">
+
+    <span class="headtit">金芭浪餐厅</span>
+    <%if @user%>
+        <div class="head_right fr">
+          <a href="/cart/tairyo_cart" mars_sead="home_head_cart_btn" onclick="setBackAct(&#39;topHeaderCart&#39;)"/>
+            <span class="h_cart"></span>
+          </a>
+        </div>
+        <div class="head_right fr">
+          <a href="/tairyo/user" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot">
+            <span class="h_logn">                </span>
+          </a>
+        </div>
+    <%end%>
+  </header>
+<div id="headerimg" class="goods_con area_con_grey">
+  <img style="float:none" title="图片" src="/assets/tairyo/thumb.jpg">
+</div>
+
+<div class="neck ">
+  <div class="introduces">
+    介绍
+
+  </div>
+  <div class="comment">
+    点评(444)
+  </div>
+</div>
+
+<div class="introduces_one">
+
+
+  <div class="area_con_grey">
+    <b class="bt_lt_par_t"></b><h3>餐厅介绍:</h3>
+      <span style="">大渔铁板烧是一家主要做日本料理，同时兼做日式铁板烧、日式自助的餐厅。 
+　　铁板烧是相对平民的日式铁板烧，价格合理；自助，品种丰富，原料新鲜，只要不怕撑破肚皮，可以尽情饕餮。厨师很愿意和客人沟通，经常询问对食物是否有特殊要求；运铲的技艺也相当精湛，尤其烹饪牛排时，火焰腾空的一刹那，让人忍不住鼓掌。环境挺好，设备先进，近距离烧烤也不用担心油烟。
+   </span>
+</div>
+
+  <div class="area_con_grey">
+    <b class="bt_lt_par_t"></b><h3>团购介绍:</h3>
+    <a href="/tproducts?id=a0771011">
+      <div class=" instroduces_index">
+        <div class="body_img"><img src="./assets/tairyo/tuan.jpg"/> </div>
+        <div id="contentse">
+
+          <span>仅售198元，价值430元双人套餐，根据您的口味调味，厨师为您现场烹饪，视觉与味觉的双重享受！</span>
+
+        </div>
+        <p class="fl discouts"><span class="salebg2">￥77</span> <span class="salebg3">原价￥300</span>
+
+        </p>
+
+
+
+      </div>
+    </a>
+  </div>
+
+  <div class="area_con_grey">
+    <b class="bt_lt_par_t"></b><h3>餐厅特色:</h3>
+      <span style="">铁板之所以这样受欢迎，最根本的原因还是它非常符合人们健康饮食的需要。食材新鲜，讲究吃到食材的原味，而且料理中少油少盐，只有中餐用量的三分之一，鲜味完全来自食材本身。调味品少而精，黄油等是用来提香提鲜，没有自己的味道，丝毫不会破坏食物的原味。而且铁板可以很快达到并准确保持在300度以上的高温，食材可以迅速地成熟，最大程度地保留食材的营养，口感也是无法比拟地有汁有味。
+      <a id="tes" href="/tairyo/tese">更多 ></a>
+        </span>
+
+  </div>
+  <div class="area_con_grey">
+    <b class="bt_lt_par_t"></b><h3>优惠劵:</h3>
+    <a href="/coupon" >关于优惠劵详情请点击</a>
+
+  </div>
+  <div class="area_con_grey">
+    <b class="bt_lt_par_t"></b><h3>地理交通:</h3>
+      <span style="">地址：黄桦路318号</span>
+        <br/>
+    <p> <a href="./tairyo/car">乘车路线查询</a>    </p>
+     <p>  <a href="./tairyo/bus">公交路线查询</a>    </p>
+        <p>  <a href="./tairyo/walk">步行路线查询</a> </p>
+  </div>
+  <div class="footer clearfix">
+    <div class="footnav clearfix">
+
+    </div>
+  </div>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+
+
+  <div class="bottomdiv clearfix">
+    <div class="inner clearfix">
+
+      <a href="/tairyo_order" class="add_to_cart fr btn_sure " id="add_to_cart">饿了吗？需要订餐</a>
+
+    </div>
+  </div>
+</div></div>
+
+<div class="introduces_two hidenall">
+  <div>
+
+
+    <%if @comment_a %>
+    <% @comment_a.each do |review| %>
+        <div class="area_con_grey">
+          <b class="bt_lt_par_t"></b><h3>ddd：</h3>
+      <span style="">  <%= review.content  %>
+        </span>
+        <br/>
+      <h6><%= review.created_at  %></h6>
+        </div>
+
+    <% end %>
+    <% end %>
+    <div class="area_con_grey">
+      <b class="bt_lt_par_t"></b><h3>ddd：</h3>
+      <span style="">铁板之所以这样受欢迎，最根本的原因还是它非常符合人们健康饮食的需要。食材新鲜，讲究吃到食材的原味，而且料理中少油少盐，只有中餐用量的三分之一，鲜味完全来自食材本身。调味品少而精，黄油等是用来提香提鲜，没有自己的味道，丝毫不会破坏食物的原味。而且铁板可以很快达到并准确保持在300度以上的高温，食材可以迅速地成熟，最大程度地保留食材的营养，口感也是无法比拟地有汁有味。
+    </span>
+        <br/>
+      <h6>2014.6.6 12:30:27</h6>
+    </div>
+
+      <div class="area_con_grey">
+        <b class="bt_lt_par_t"></b><h3>xx：</h3>
+      <span style="">有黑虎虾、鳕鱼、挪威三文鱼、日本金枪鱼、日本寿司、日式薄饼、牛排、生食雪龙黑牛、各种日式烤鱼、内蒙羊排王、生蚝、青口贝、扇贝王、吉列虾、天妇罗虾、水果、甜品等近百个品种，酒水有日本清酒、葡萄酒、各式啤酒、饮料及鲜榨果汁。各种口味不错。
+        </a>
+        </span>
+        <br/>
+      <h6>2014.6.4 12:30:27</h6>
+      </div>
+      <div class="area_con_grey">
+        <b class="bt_lt_par_t"></b><h3>yy：</h3>
+      <span style="">大渔铁板烧杭州银泰店盛装开业啦!各种鱼生海鲜、扒类、蔬菜、饮料酒水，样样让人垂涎欲滴 ...美食的天堂，吃货的福音！欢迎新老顾客前来惠顾！大渔期待您的到来！ 地址：杭州市拱墅区丰潭路380号银泰城3F037铺。
+        </a>
+        </span>
+        <br/>
+      <h6>2014.6.2 12:30:27</h6>
+      </div>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <div class="bottomdiv clearfix">
+        <div class="inner clearfix">
+
+          <a href="comment_t" class="add_to_cart fr btn_sure " id="add_to_cart">我要点评</a>
+
+        </div>
+      </div>
+</div></div>

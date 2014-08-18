@@ -1,0 +1,75 @@
+
+<style type="text/css">
+    .aaa{
+        margin: 0;
+        float: left;
+        font-size: 15px
+    }
+.form_td input{
+    text-align: center;
+}
+   textarea {
+       clear: both;
+       width: 100%;
+       height: 100px;
+
+
+   }
+</style>
+
+    <%=form_for :@order_dining ,:url=>"cart/tairyo" do |f|  %>
+
+
+
+    <dl class="connerbox">
+    <dd><span class="form_hd">*联系人：</span>
+      <span class="form_td"><%=f.text_field :dining_use,  :value=>@user.login_name if @user  %></span></dd>
+    <dd><span class="form_hd">*手机：</span>
+      <span class="form_td"> <%=f.text_field :phone,  :value=>@user.mobile if @user  %></span></dd>
+       <%=f.hidden_field :account_id,:value=>@account[0].account_id %>
+      <%=f.hidden_field :suppliers_id,:value=>@suppliers[0].id %>
+    <dd><span class="form_hd">*日期：</span>
+         <span class="form_td">
+            <select class="text_select" id="" name="addr[]">
+              <option value="2014-07-24">2014-07-24 </option>
+              <option value="2014-07-25">2014-07-24</option>
+              <option value="2014-07-26">2014-07-26</option>
+              <option value="2014-07-27">2014-07-27</option>
+              <option value="2014-07-28">2014-07-28</option>
+              <option value="2014-07-29">2014-07-29</option>
+              <option value="2014-07-30">2014-07-30</option>
+              <option value="2014-07-31">2014-07-31</option>
+              <option value="2014-08-01">2014-08-01</option>
+              <option value="2014-08-02">2014-08-02</option>
+            </select>
+    </span>
+      <span class="i_up_arrow"></span></dd>
+
+    <dd><span class="form_hd">*时间：</span>
+         <span class="form_td">
+
+           <%= f.select :dining_time, options_for_select([['10点', 10],['11点', 11],['12 点', 12],['13点', 13],['14点', 14],['15点', 15],['16点', 16],['17点', 17],['18点', 18],['19点', 19],['20点', 20]] ) %>
+
+  </span>
+      <span class="i_up_arrow"></span></dd>
+
+
+    <dd><span class="form_hd">*人数：</span>
+         <span class="form_td">
+           <%=f.select :dining_count, options_for_select([['1', 1],['2', 2],['3', 3],['4', 4],['5', 5]] ) %>
+ </span>
+      <span class="i_up_arrow"></span></dd>
+  </dl>
+
+  <dl class="connerbox"><dd><span>其他要求，如您有特殊要求，请在这里注明：</span>
+    <%=f.text_area :dining_content  %>
+    <span class="help-inline error"></span>
+  </dd></dl>
+  <div class="ui-btn-area">
+    <input class="btn_red" name="commit" type="submit" value="确认下单" />
+  </div>
+
+
+<%end%>
+
+

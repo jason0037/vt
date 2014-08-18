@@ -31,6 +31,9 @@
         <p class="fontgrey"><%=line_item.good.spec_info%></p>
         <p class="space5"></p>
       </a>
+
+
+
         <div class="space5"></div>
         <div class="goods_Cnum clearfix" id="goods_Cnum">
           <div class="good_data_num J_pro_num_btn_cart" data-product="68671252" style="border:none;height:33px;">
@@ -46,7 +49,7 @@
           </div>
         </div>
       </div>
-      <a class="cart_orderlist_p" href="\mproducts?id=<%=line_item.good.bn%>" target="_blank" ;="" style="display:block">
+      <a class="cart_orderlist_p" href="\mproducts?id=<%=line_item.good.bn%>" target="_blank"  style="display:block">
       <span class="c_price">¥<%= format('%.2f',line_item.good.price)%></span>
       <span class="fontstyle">¥<%= format('%.2f',line_item.good.mktprice)%></span>
       </a>

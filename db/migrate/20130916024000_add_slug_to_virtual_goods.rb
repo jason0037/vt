@@ -1,6 +1,6 @@
 class AddSlugToVirtualGoods < ActiveRecord::Migration
   def change
-    add_column :sdb_imodec_virtual_goods, :slug, :string
+   # add_column :sdb_imodec_virtual_goods, :slug, :string
   end
 
   def connection

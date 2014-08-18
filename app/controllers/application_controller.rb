@@ -91,5 +91,12 @@ class ApplicationController < ActionController::Base
       @meta_seo  = metas.first
 
     end
-
+  def check_token
+    if session[:authenticity_token] == params[:authenticity_token]
+      session[:authenticity_token] = nil
+      session.update
+      return true
+    end
+    false
+  end
 end

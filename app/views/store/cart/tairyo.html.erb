@@ -1,0 +1,79 @@
+<header id="header" class="header clearfix">
+
+  <span class="headtit">订餐</span>
+</header>
+ <style type="text/css">
+   .cart_table{
+       width: 100%;
+   }
+   .ui-btn-area{
+       margin-top: 20px;
+   }
+
+ </style>
+<table border="1px " class="cart_table">
+
+  <tr>
+    <th style="text-align: left; padding-left: 16px;">联系人</th>
+    <th>联系电话</th>
+    <th>就餐人数</th>
+
+
+  </tr>
+  <tr>
+    <th style="text-align: left; padding-left: 16px;"><%= @oa.dining_use%></th>
+    <th><%= @oa.phone%></th>
+    <th><%= @oa.dining_count%></th>
+ </tr>
+
+</table>
+<%=form_for :order,:url=>"#{orders_path}",:html=>{ :class=>"form-horizontal",:id=>"order_form" } do |f|%>
+    <%=hidden_field_tag "member_addr",value="521"%>
+
+
+    </div>
+        <br/>
+    <br/>
+    <div class="userdiv" id="order_payway" data-cartforms="payway">
+      <div class="checktit clearfix"><span class="pay_way"></span>支付方式</div>
+      <div class="in_pay">
+        <ul>
+          <%if @user.advance>0 && @user.advance < @cart_total%>
+              <li class="otherpay" mars_sead="checkout_payment_paypal_radio">
+                <span class="radio-box"></span>
+                <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>
+                <span class="payicon zfbapp"></span><p>预存款先支付</p>
+              </li>
+          <%end%>
+          <li class="otherpay" mars_sead="checkout_payment_paypal_radio">
+            <span class="radio-box"></span>
+            <%=f.radio_button :payment, "alipaywap", :class=>"hide" , :checked=>true %>
+            <span class="payicon zfbapp"></span><p>支付宝手机版</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="bottomdiv clearfix">
+      <div class="cover_load_img w38" id="CoverloadImg"></div>
+      <div class="inner clearfix">
+        <div class="fl">
+          <p class="cart_total">总金额：<span class="c_t_price">¥<%=@cart_total%></span></p>
+          <span style="display:none">为您节省：¥390</span>
+        </div>
+        <%=f.submit "安 全 结 算",:class=>"fr btn_sure"%>
+        <div mars_sead="checkout_submit_btn" class="fr btn_sure" data-orderfrom="true" data-countorder="true" data-ordertime="988" style="display:none">
+          提交
+          <div class="fr cart_time_smb">
+            <span class="clockicon fl"></span>
+            <span class="num_cunt"><span class=":">14</span><span>:</span><span>53</span><span></span></span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+   <% end %>

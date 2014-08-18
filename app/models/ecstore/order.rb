@@ -5,7 +5,8 @@ class Ecstore::Order < Ecstore::Base
       
 
 	self.table_name = "sdb_b2c_orders"
-	    has_many :order_items, :foreign_key=>"order_id"
+      has_many :order_dining , :foreign_key=>"order_id"
+	    has_many  :order_items, :foreign_key=>"order_id"
       has_many :order_pmts, :foreign_key=>"order_id"
       has_many :order_logs,:foreign_key=>"rel_id"
       has_many :deliveries, :foreign_key=>"order_id"
@@ -65,12 +66,16 @@ class Ecstore::Order < Ecstore::Base
 
        def calculate_order_amount
           # =====order amount ====
+
           items_amount = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+)
 
           # =====pmts  amount====
           pmts_amount = self.order_pmts.collect { |order_pmt| order_pmt.pmt_amount }.inject(:+).to_i
+          if  items_amount&&pmts_amount
+             self.final_amount = self.total_amount =  items_amount - pmts_amount
+          else
+            end
 
-          self.final_amount = self.total_amount =  items_amount - pmts_amount
        end
 
        before_save :calculate_itemnum

@@ -1,0 +1,129 @@
+
+
+<style type="text/css">
+    .aaa{
+        margin: 0;
+        float: left;
+        font-size: 15px
+    }
+    .clearfixs{
+        background-color: #fef2ee;
+        clear: both;
+    }
+    .over_left{
+        float: left;
+    }
+    .over_rigth{
+        float: right;
+    }
+</style>
+<script>
+    var ui = 'touch';
+</script>
+
+</head>
+
+
+
+
+
+<header id="header" class="header clearfix">
+
+  <a class=" aaa" href="javascript:history.go(-1);">上一页</a>
+  <span class="headtit">团购详情</span>
+  <div class="head_right fr"><a href="/tairyo" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
+</header>
+
+<div class="space10"></div>
+<div class="shop_tit clearfix">
+  <h1>精选团购</h1>
+  |<span style="display:none">每天10点　新品特卖</span></div>
+<div id="channel_img">
+  <div class="shop_list">
+    <div class="pic">
+      <a href="./mproducts?id=" class="itemList">
+        <img src="/assets/tairyo/tuan.jpg" data-onerror="" data-brandid="198168" data-original="/images/mobile/_alcohol.png" class="pro" style="display: block;">
+      </a>
+      <div class="re_time time_brand" style="display:none"><span></span>5天</div>
+      <div class="suppliers_send sup_brand" > 双人套餐</div>
+      <div class="mark" style="display:none"><img src=".image/tuan.jpg" width="88"></div>
+    </div>
+    <div class="shop_info clearfix">
+      <p class="fl discouts"><span class="salebg2">￥77</span> <span class="salebg3">原价￥300</span></p>
+
+      <div class="fr discout" ><span class="salebg2">6.6</span>折</div>
+
+    </div>
+    <div class="shop_info clearfixs">
+      <div class="over_left" >评论 11</div>
+      <div class="over_rigth" >已售768份</div> </div>
+  </div>
+
+  <!--<div class="gridItem">-->
+
+  <% @goods.each do |good|%>
+      <dl class="rs-item pg1" data-mid="<%=good.bn%>">
+      <a href="/tproducts?id=<%=good.bn%>" class="clearfix ablock">
+      <dt class="pic"> <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">  </dt>
+      <dd class="b_goods_name"><%=good.name%></dd>
+      <dd class="pricebox clearfix"><span class="grallyprice fl">¥<%=good.price%></span>
+      <span class="fontstyle fl pl05">¥<%=format('%.1f',good.mktprice)%></span>
+      <span class="fr"><%=format('%.1f', good.price*10/good.mktprice)%>折</span></dd>
+      </a>
+      </dl>
+
+      </div>
+
+      <div class="shop_info clearfixs">
+      <div class="over_left" >评论 11%></div>
+      <div class="over_rigth" >已售768份</div> </div>
+      </div>
+      <% end%>
+
+
+
+  <div class="shop_list">
+    <div class="pic">
+      <a href="./tuangouxiang" class="itemList">
+        <img src="/assets/tairyo/tuan.jpg" data-onerror="" data-brandid="198168" data-original="/images/mobile/_alcohol.png" class="pro" style="display: block;">
+      </a>
+      <div class="re_time time_brand" style="display:none"><span></span>5天</div>
+      <div class="suppliers_send sup_brand" > 双人套餐</div>
+      <div class="mark" style="display:none"><img src=".image/tuan.jpg" width="88"></div>
+    </div>
+    <div class="shop_info clearfix">
+      <p class="fl discouts"><span class="salebg2">￥77</span> <span class="salebg3">原价￥300</span></p>
+
+      <div class="fr discout" ><span class="salebg2">6.6</span>折</div>
+
+    </div>
+    <div class="shop_info clearfixs">
+      <div class="over_left" >评论 11</div>
+      <div class="over_rigth" >已售768份</div> </div>
+  </div>
+
+  <div class="shop_list">
+    <div class="pic">
+      <a href="./tuangouxiang" class="itemList">
+        <img src="/assets/tairyo/tuan.jpg" data-onerror="" data-brandid="198168" data-original="/images/mobile/_alcohol.png" class="pro" style="display: block;">
+      </a>
+      <div class="re_time time_brand" style="display:none"><span></span>5天</div>
+      <div class="suppliers_send sup_brand" > 双人套餐</div>
+      <div class="mark" style="display:none"><img src=".image/tuan.jpg" width="88"></div>
+    </div>
+    <div class="shop_info clearfix">
+      <p class="fl discouts"><span class="salebg2">￥77</span> <span class="salebg3">原价￥300</span></p>
+
+      <div class="fr discout" ><span class="salebg2">6.6</span>折</div>
+
+    </div>
+    <div class="shop_info clearfixs">
+      <div class="over_left" >评论 11</div>
+      <div class="over_rigth" >已售768份</div> </div>
+  </div>
+
+
+  <a href="javascript:;" class="btn_more" data-channel="0" data-getbrand="more" mars_sead="brandlist_more_btn">查看更多团购</a>
+
+
+  </html>

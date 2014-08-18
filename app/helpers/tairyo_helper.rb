@@ -1,0 +1,2 @@
+module TairyoHelper
+end

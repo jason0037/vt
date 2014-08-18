@@ -1,8 +1,10 @@
 class AddPathAndParamsToImodecSeo < ActiveRecord::Migration
 
   def up
-    add_column :sdb_imodec_seo, :path, :string
-    add_column :sdb_imodec_seo, :params, :string
+   # add_column :sdb_imodec_seo, :path, :string
+
+    #add_column :sdb_imodec_seo, :params, :string
+
   end
 
   def down

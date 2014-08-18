@@ -1,0 +1,10 @@
+//alert('platform:<%=params[:platform]%>;return_url:<%=@return_url%>');
+window.location.href ='/m';
+
+if ('<%=@platform%>'=='mobile'){
+    window.location.href='<%=@return_url%>';
+}
+else{
+    window.parent.location.replace('<%=@return_url%>');
+}
+

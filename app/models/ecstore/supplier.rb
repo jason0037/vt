@@ -4,4 +4,5 @@ class Ecstore::Supplier < Ecstore::Base
 
   has_many :goods, :foreign_key=>"supplier_id"
   belongs_to :user, :foreign_key=>"member_id"
-end
+  has_many :orderdining ,:foreign_key=>"supplier_id"
+  end

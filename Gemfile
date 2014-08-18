@@ -37,13 +37,13 @@ gem  'sitemap_generator'
 gem 'jquery-rails',  '~> 2.1.4'
 gem 'jquery-ui-rails',  '~> 2.0.2'
 
-gem 'rmagick'
+gem 'rmagick','~> 2.13.1'
 
 gem 'ya2yaml'
 
 gem 'whenever', :require=>false
 
-gem 'rjb'
+# gem 'rjb'
 
 gem 'execjs'
 

@@ -105,12 +105,12 @@ class Store::OrdersController < ApplicationController
 	def create
 		addr = Ecstore::MemberAddr.find_by_addr_id(params[:member_addr])
 
-		["name","area","addr","zip","tel","mobile"].each do |key,val|
-			params[:order].merge!("ship_#{key}"=>addr.attributes[key])
-		end
+		# ["name","area","addr","zip","tel","mobile"].each do |key,val|      #做大渔页面 需要修改
+		# 	params[:order].merge!("ship_#{key}"=>addr.attributes[key])
+		# end
 		params[:order].merge!(:ip=>request.remote_ip)
 		params[:order].merge!(:member_id=>@user.member_id)
-    params[:order].merge!(:wechat_recommend=>session[:recommend_user])
+   # params[:order].merge!(:wechat_recommend=>session[:recommend_user])
     session[:recommend_user]=''
 		@order = Ecstore::Order.new params[:order]
 
@@ -262,6 +262,19 @@ class Store::OrdersController < ApplicationController
     end
   end
 
+
+  def new_tairyo
+
+
+
+      if @pmtable
+        @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
+        @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
+        @coupons = @user.usable_coupons
+      end
+      render :layout=>"tairyo_new"
+
+  end
   def share
     wechat_user = params[:FromUserName]
     @share=0
@@ -282,6 +295,24 @@ class Store::OrdersController < ApplicationController
 
   end
 
+  def tairyo_share
+    wechat_user = params[:FromUserName]
+    @share=0
+    @sharelast = 0
+    if wechat_user
+      @order_all = Ecstore::Order.where(:wechat_recommend=>wechat_user).select("SUM(final_amount)*0.01 as share").group(:wechat_recommend).first
+      #return render :text=>@order.final_amount
+      if @order_all
+        @share = @order_all.share.round(2)
+        @order_last =Ecstore::Order.where(:wechat_recommend=>wechat_user).order("createtime desc").first
+        if @order_last
+          @sharelast = @order_last.final_amount*0.01.round(2)
+        end
+      end
+    end
+
+    render :layout=>"tairyo_new"
+  end
 
 	def pay
 		@order  = Ecstore::Order.find_by_order_id(params[:id])
@@ -340,7 +371,21 @@ class Store::OrdersController < ApplicationController
 			@useable[coupon.current_code]
 		end.collect { |coupon| coupon.pmt_amount(@line_items) }.inject(:+)
 
-	end
+  end
 
+  def tairyo_order
+    if @user
+     #   @addrs =  @user.member_addrs
+     #
+     # @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
+      login_name=@user.login_name
+      sql="select * from sdb_pam_account where login_name=?",login_name  ;
+      @account = Ecstore::Account.find_by_sql(sql)
+      @suppliers=Ecstore::Supplier.find_by_sql("select * from sdb_imodec_suppliers where name='金芭浪'")
+     render :layout => "tairyo_new"
+    else
+      redirect_to '/tlogin?return_url=/tairyo_order'
+    end
+  end
 
 end

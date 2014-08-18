@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  login_name: MyString
+  common: MyString
+  content: MyString
+  count: 
+
+two:
+  login_name: MyString
+  common: MyString
+  content: MyString
+  count: 

@@ -81,4 +81,8 @@ module ApplicationHelper
         (content_for :description).present? ? (content_for :description) : 'trade-V 跨境贸易直通车.'
       end
 
+  def token_fieldes
+    hidden_field_tag(:token_fieldes, (@token_fieldes ||= (session[:authenticity_token] =
+        Digest::SHA1.hexdigest((Time.now.to_i + rand(0xffffff)).to_s)[0..39])))
+  end
 end

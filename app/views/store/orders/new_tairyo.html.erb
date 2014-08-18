@@ -1,0 +1,178 @@
+<header id="header" class="header clearfix">
+
+  <div class="head_left fl"><a href="#"><span class="h_back"></span></a></div>
+  <span class="headtit">结算</span>
+  <div class="head_right fr"><a href="#" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
+</header>
+<%if @line_items.size > 0%>
+    <div class="space10"></div>
+    <div data-formorder="checkoutForm">
+
+        <%=form_for :order,:url=>"#{orders_path}?platform=tairyo",:html=>{ :class=>"form-horizontal",:id=>"order_form" } do |f|%>
+            <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
+
+
+
+            </div>
+            <div class="userdiv" id="order_payway" data-cartforms="payway">
+              <div class="checktit clearfix"><span class="pay_way"></span>支付方式</div>
+              <div class="in_pay">
+                <ul>
+                  <%if @user.advance>0 && @user.advance < @cart_total%>
+                      <li class="otherpay" mars_sead="checkout_payment_paypal_radio">
+                        <span class="radio-box"></span>
+                        <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>
+                        <span class="payicon zfbapp"></span><p>预存款先支付</p>
+                      </li>
+                  <%end%>
+                  <li class="otherpay" mars_sead="checkout_payment_paypal_radio">
+                    <span class="radio-box"></span>
+                    <%=f.radio_button :payment, "alipaywap", :class=>"hide" , :checked=>true %>
+                    <span class="payicon zfbapp"></span><p>支付宝手机版</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="userdiv">
+              <div class="checktit clearfix"><span class="pay_sum"></span>订单金额</div>
+              <div class="checkcon clearfix" id="order-m-list">
+
+                <div class="sumtotal clearfix">
+                  <p>商品金额：<span class="fr money sum" id="order_amount" data-amount = "<%=@cart_total%>">¥<%=@cart_total%></span></p>
+                  <p style="display:none">发货运费：<span class="fr">¥0</span></p>
+                  <p>待支付总额：<span class="fr">¥<%=@cart_total%></span></p>
+                </div>
+                <input type="hidden" name="payable" value="">
+              </div>
+            </div>
+            <input type="hidden" name="favourable_id" value="">
+
+            <div class="userdiv" data-cartforms="invoice">
+              <div class="invoice clearfix">
+                <h3>发票抬头:
+                  <span class="companyname">点击填写发票</span><span class="down_arrow"></span>
+                </h3>
+              </div>
+              <div class="invoice clearfix hide">
+                <h3>发票抬头:</h3>
+                <div class="dashline2"></div>
+                <input name="invoice" type="text" placeholder="请输入发票抬头" value="" class="text_input w100">
+              </div>
+            </div>
+
+
+            <div class="bottomdiv clearfix">
+              <div class="cover_load_img w38" id="CoverloadImg"></div>
+              <div class="inner clearfix">
+                <div class="fl">
+                  <p class="cart_total">总金额：<span class="c_t_price">¥<%=@cart_total%></span></p>
+                  <span style="display:none">为您节省：¥390</span>
+                </div>
+                <%=f.submit "安 全 结 算",:class=>"fr btn_sure"%>
+                <div mars_sead="checkout_submit_btn" class="fr btn_sure" data-orderfrom="true" data-countorder="true" data-ordertime="988" style="display:none">
+                  提交
+                  <div class="fr cart_time_smb">
+                    <span class="clockicon fl"></span>
+                    <span class="num_cunt"><span class=":">14</span><span>:</span><span>53</span><span></span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="space10"></div>
+            <script type="text/javascript">
+                $(function() {
+                    $("#reddot").on("click", function() {
+                        Cookie.Set("WAP[redDot]", 'fd73928d4dea11aa0cbba3c2cb6b9afe', 7, "trade-v.com", "/")
+                    });
+                });
+            </script>
+            <div class="space30"></div><div class="space30"></div>
+            <style type="text/css">
+                .footer{
+                    display:none;
+                }
+            </style>
+            <%#=javascript_include_tag "store/orders"%>
+            <div style="display:none">
+              <%if @pmtable%>
+                  <div class="section promotions">
+                    <h5>优惠: </h5>
+                    <%=render "promotions"%>
+                    <%=render "coupons"%>
+                  </div>
+              <%end%>
+
+              <div class="section checkout clearfix">
+                <h5>结算信息</h5>
+                <div class="left">
+                  <div class="memo">
+                    <div class="control-group">
+                      <%=f.label :memo, "订单备注：",:class=>"control-label"%>
+                      <div class="controls">
+                        <%=f.text_area :memo,:rows=>4%>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="right">
+                  <div class="tax" id="order_tax">
+                    <div class="item">
+                      <span class="text">需要发票：</span>
+                      <span class="money">(税金:0%)<%=f.check_box :is_tax, {}, 'true','false'%></span>
+                    </div>
+
+                    <div class="item hide tax-input">
+                      <span class="text">发票抬头：</span>
+                      <span class="money"><%=f.text_field :tax_company,:class=>"tax-owner"%></span>
+                    </div>
+                  </div>
+                  <div class="cost" id="order_cost">
+                    <div class="item">
+                      <span class="text">商品总额：</span>
+                      <span class="rmb-symbol">￥</span>
+
+                    </div>
+
+                    <%if @order_promotions.present? || @goods_promotions.present? %>
+                        <div class="item">
+                          <span class="text">优惠：</span>
+                          <span class="rmb-symbol">￥</span>
+                          <span class="money" data-amount="0" id="pmt_amount"></span>
+                        </div>
+                    <%end%>
+
+
+                    <div class="item hide">
+                      <span class="text">优惠券：</span>
+                      <span class="rmb-symbol">￥</span>
+					<span class="money" data-amount="0" id="coupon_amount">
+						 -0
+					</span>
+                    </div>
+
+                    <div class="item">
+                      <span class="text">订单总金额：</span>
+                      <span class="rmb-symbol">￥</span>
+                      <span class="money" id="final_amount"></span>
+                    </div>
+
+                  </div>
+                  <div class="total" id="order_bill">
+                    <div class="item">
+                      <span class="text">支付金额：</span>
+                      <span class="rmb-symbol">￥</span>
+                      <span class="money final" id="pay_amount"></span>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+        <%end%>
+<%else%>
+    <p>您还没有选择商品。</p>
+<%end%>
+<%=javascript_include_tag "store/tairyo_orders"%>

@@ -1,0 +1,12 @@
+
+// console.log(document.frames("iframeCart"));
+// document.frames("iframeCart").location.reload();
+// iframeCart.location.reload();
+$("#iframe_cart").attr("src",$("#iframe_cart").attr("src"));
+
+var _pDoc =  window.parent.document;
+$(_pDoc).find("body").append('<div id="simple_modal_over" class="__mask" style="opacity: 0.3;filter:alpha(opacity=30);position: fixed;display:block;z-index: 99998;top: 0;left: 0;width: 100%;height: 100%;background-color: #000000;background-position: center center;background-repeat: no-repeat;background: -webkit-gradient(radial, center center, 0, center center, 460, from(#ffffff), to(#291a49));background: -webkit-radial-gradient(circle, #ffffff, #291a49);background: -moz-radial-gradient(circle, #ffffff, #291a49);background: -ms-radial-gradient(circle, #ffffff, #291a49);"></div>');
+$(_pDoc).find("#iframe_cart").animate({ marginTop: '-260px' },'normal');
+
+$("#cart_link .cart-number").text('(<%=@cart_total_quantity%>)');
+$("#menu_cart .number").text('(<%=@cart_total_quantity%>)');

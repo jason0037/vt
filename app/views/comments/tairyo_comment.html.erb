@@ -1,0 +1,153 @@
+<style type="text/css">
+    span{
+        color: #49380d;
+        font-size: 5px;
+    }
+    #counts{
+        color: red
+    }
+    #textarea{
+        width: 100%;
+        height: 30%
+    }
+    a{
+        color: black;
+        font-size: 10px;
+
+    }
+    img{
+        width: 14%;
+        cursor: pointer;
+
+
+    }
+    #comment_content{
+        width: 100%;
+        height: 70px;
+        clear: both;
+    }
+    .hidens{
+        display: none;
+    }
+    .shows{
+        display: block;
+    }
+
+    #buttons{
+        background: red;
+        float: right;
+        width: 30%;
+        height: 30px
+    }
+    .aaa{
+        margin: 0;
+        float: left;
+        font-size: 15px
+    }
+    .zan {
+        float: right;
+    }
+</style>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $("#message_img").val($(".youhuijuan img").attr("src"));
+
+        $("#click").bind("click",function(e){
+
+
+            if ($(this).attr("src")=="/assets/tairyo/no.png") {
+                var counts=$("#counts").html();
+                $("#counts").html(parseInt(counts)-1);
+
+                $(this).attr("src","/assets/tairyo/yes.png");
+                $("#tures").html(" 赞一个 ");
+                $("#message_count").val(0);
+                $("#img").val($(this.attr("src")));
+
+            }else{
+                anp(e);
+                var counts=$("#counts").html();
+                $("#counts").html(parseInt(counts)+1);
+                $(this).attr("src","/assets/tairyo/no.png");
+                $("#tures").html("取消赞 ");
+                $("#message_count").val(1);
+
+            }
+
+
+        })
+        // 点赞js +1动画
+        function anp(e){
+
+            var $i=$("<b>").text("+"+1);
+            var x=e.pageX,y=e.pageY;
+            $i.css({top:y-20,left:x,position:"absolute",color:"#E94F06"});
+            $(".zan").append($i);
+            $i.animate({top:y-50,opacity:0,"font-size":"1.4em"},700,function(){
+                $i.remove();
+            });
+            e.stopPropagation();
+        }
+
+    });
+
+    function submits(){
+
+    }
+
+</script>
+
+
+<script>
+    var ui = 'touch';
+
+</script>
+
+
+    <header id="header" class="header clearfix">
+
+      <a class=" aaa" href="javascript:history.go(-1);">上一页</a>
+      <!-- <a  href="index.html">返回首页</a> -->
+      <span class="headtit">评论</span>
+      <div class="head_right fr"><a href="#" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
+    </header>
+
+    <div  class="youhuijuan" >
+      <ul  >
+        <li >
+          <img src="/assets/tairyo/sanwenyu.jpg">
+          <div class="field">
+
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="zan">
+
+      <div class="tupian">
+        <span id="tures">赞一个</span>
+
+        <img id="click"src="/assets/tairyo/yes.png"></img>
+        <span id="counts"> 0</span>赞
+
+      </div>
+      <%=form_for :comment,:url=>"./comment" do |f|%>
+
+          <%=f.hidden_field :member_id,:value=>@user.member_id if @user%>
+
+          <div class="textarea">评论<%=f.text_area :content%></div>
+          <div>
+            <%=f.submit "提交",:class=>"btn btn_sure #{'login' unless signed_in?}"%></div>
+      <%end%>
+    </div>
+    <br/>
+    <br/>
+    <div >
+
+    </div>
+
+
+
+    </div>
+
