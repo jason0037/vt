@@ -20,9 +20,9 @@
   <% @followers.each do |follower| %>
       <tr>
         <td><%=follower.openid%></td>
+        <td><%=follower.commission%></td>
         <td>0</td>
-        <td>0</td>
-        <td>0</td>
+        <td><%=follower.commission%></td>
  <%if follower.user_info%>
      <%@person =eval(follower.user_info)%>
         <td><%=image_tag @person["headimgurl"], :size => "108x108"%></td>
@@ -30,7 +30,7 @@
         <td><%=@person["nickname"]%></td>
         <td><%=@person["sex"]%></td>
         <td><%="#{@person["country"]}/#{@person["province"]}/#{@person["city"]}"%></td>
-        <td><%=@person["subscribe_time"]%></td>
+        <td><%=Time.at(@person["subscribe_time"])%></td>
  <%end%>
 
         <td>

@@ -110,8 +110,18 @@ class Store::OrdersController < ApplicationController
 		# end
 		params[:order].merge!(:ip=>request.remote_ip)
 		params[:order].merge!(:member_id=>@user.member_id)
+<<<<<<< HEAD
    # params[:order].merge!(:wechat_recommend=>session[:recommend_user])
     session[:recommend_user]=''
+=======
+    wechat_recommend=session[:recommend_user]
+    if wechat_recommend
+      params[:order].merge!(:recommend_user=>recommend_user)
+      params[:order].merge!(:commission=>params[:order][:final_amount]*0.01)
+      session[:recommend_user]=''
+    end
+
+>>>>>>> 67af45bed285260e7a358b0dabe257375767a5a4
 		@order = Ecstore::Order.new params[:order]
 
 		@line_items.each do |line_item|
@@ -280,11 +290,12 @@ class Store::OrdersController < ApplicationController
     @share=0
     @sharelast = 0
     if wechat_user
-      @order_all = Ecstore::Order.where(:wechat_recommend=>wechat_user).select("SUM(final_amount)*0.01 as share").group(:wechat_recommend).first
+      @order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
+
       #return render :text=>@order.final_amount
       if @order_all
         @share = @order_all.share.round(2)
-        @order_last =Ecstore::Order.where(:wechat_recommend=>wechat_user).order("createtime desc").first
+        @order_last =Ecstore::Order.where(:recommend_user=>wechat_user).order("createtime desc").first
         if @order_last
           @sharelast = @order_last.final_amount*0.01.round(2)
         end

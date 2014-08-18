@@ -4,5 +4,6 @@ class Ecstore::WechatFollower < Ecstore::Base
 	self.accessible_all_columns
 
   belongs_to :user,:foreign_key=>"member_id"
+  has_many :orders, :foreign_key=>"recommend_user"
 
 end

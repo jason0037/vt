@@ -14,6 +14,8 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         render xml: send("response_news_message",{})
       when '黄油'
         render xml: send("response_news_message",{})
+      when '大渔'
+        render xml: send("response_news_message",{})
       else
         render xml: send("response_#{@weixin_message.MsgType}_message", {})
     end
@@ -52,6 +54,13 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
+      when '大渔'
+        title="[大渔]海鲜铁板烧"
+        desc =""
+        pic_url="http://www.trade-v.com/assets/vshop/dayu.jpg"
+        link_url="http://www.trade-v.com/dayu/index"
+        articles = [generate_article(title, desc, pic_url, link_url)]
+        reply_news_message(articles)
       when '奶酪'
         title="[总统 PRESIDENT]安文达切丝奶酪70克 仅售¥20.5元"
         desc ="每公斤奶酪都是有10公斤的牛奶浓缩而成，含有丰富的蛋白质、钙、脂肪、钠和维生素等营养成分。70克*24/箱 产地:法国"
@@ -62,7 +71,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         reply_news_message(articles)
       when 'share'
         share = 0
-        @order = Ecstore::Order.where(:wechat_recommend=>@weixin_message.FromUserName).select("SUM(final_amount)*0.01 as share").group(:wechat_recommend).first
+        @order = Ecstore::Order.where(:recommend_user=>@weixin_message.FromUserName).select("sum(commission) as share").group(:recommend_user).first
         if @order
           share =@order.share.round(2)
         end
@@ -71,7 +80,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         desc ="查看佣金详情请点击"
         pic_url='http://www.trade-v.com/assets/vshop/commission_banner.jpg'
         link_url="http://www.trade-v.com/share?FromUserName=#{user}"
-
+=begin
         title1='佣金是因为您关注了我们，并转发给其他朋友，朋友或者朋友的朋友下单购买了我们的商品，我们因此向您支付的感谢费。'
         desc1=''
         pic_url1='http://www.trade-v.com/assets/vshop/commission_what.png'
@@ -88,6 +97,8 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         link_url3=''#"http://www.trade-v.com/pages/yongjin?platform=vshop"
 
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2),generate_article(title3, desc3, pic_url3, link_url3)]
+=end
+        articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
       else
         title="[紫薇]牛奶/起司棒饼干仅售 35.10元"
@@ -132,7 +143,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     @ly    = @weixin_message.Location_Y
     @scale = @weixin_message.Scale
     @label = @weixin_message.Label
-   # reply_text_message("Your Location: #{@lx}, #{@ly}, #{@scale}, #{@label}")
+    reply_text_message("您现在的位置是: #{@lx}, #{@ly}, #{@scale}, #{@label}")
   end
 
   # <PicUrl><![CDATA[this is a url]]></PicUrl>

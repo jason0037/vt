@@ -31,7 +31,7 @@ class Admin::SuppliersController < ApplicationController
       File.open(filepath, 'wb') do |file|
         file.write(uploaded_io.read)
       end
-      params[:supplier].merge!(:lisence=>"/vshop_docs/#{filename}")
+     # params[:supplier].merge!(:license=>"/images/vshop_docs/#{filename}")
     end
 
 
