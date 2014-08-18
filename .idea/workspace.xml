@@ -4,59 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/app/controllers/admin/goods_controller.rb" line="417" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="551a286c-2c66-41e3-9022-bb03cf26743e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/database.yml.bak" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/ecstore.yml_bak" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20140310170622_create_table_inventory.rb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.generators" afterPath="$PROJECT_DIR$/.idea/.generators" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20130729083052_create_imodec_seo.rb" afterPath="$PROJECT_DIR$/db/migrate/20130729083052_create_imodec_seo.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20130731014845_add_path_and_params_to_imodec_seo.rb" afterPath="$PROJECT_DIR$/db/migrate/20130731014845_add_path_and_params_to_imodec_seo.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20130821030030_add_layout_to_static_pages.rb" afterPath="$PROJECT_DIR$/db/migrate/20130821030030_add_layout_to_static_pages.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20130902094413_create_table_address.rb" afterPath="$PROJECT_DIR$/db/migrate/20130902094413_create_table_address.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20130903025551_create_offline_coupons.rb" afterPath="$PROJECT_DIR$/db/migrate/20130903025551_create_offline_coupons.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20130909063735_create_table_coupon_downloads.rb" afterPath="$PROJECT_DIR$/db/migrate/20130909063735_create_table_coupon_downloads.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20130910061813_add_detail_desc_to_brands.rb" afterPath="$PROJECT_DIR$/db/migrate/20130910061813_add_detail_desc_to_brands.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20130911084315_create_table_virtual_goods.rb" afterPath="$PROJECT_DIR$/db/migrate/20130911084315_create_table_virtual_goods.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20130916024000_add_slug_to_virtual_goods.rb" afterPath="$PROJECT_DIR$/db/migrate/20130916024000_add_slug_to_virtual_goods.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20130918061922_create_table_payment_log.rb" afterPath="$PROJECT_DIR$/db/migrate/20130918061922_create_table_payment_log.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20131128061922_create_table_suppliers.rb" afterPath="$PROJECT_DIR$/db/migrate/20131128061922_create_table_suppliers.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations/Development__vt.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Development__vt.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations/Production__vt.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Production__vt.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/store/shared/_btm_items.html.erb" afterPath="$PROJECT_DIR$/app/views/store/shared/_btm_items.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/comments/_comment.html.erb" afterPath="$PROJECT_DIR$/app/views/comments/_comment.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/store/orders/_coupons.html.erb" afterPath="$PROJECT_DIR$/app/views/store/orders/_coupons.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/admin/goods/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/admin/goods/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/comments/_form.html.erb" afterPath="$PROJECT_DIR$/app/views/comments/_form.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/store/goods/_good.html.erb" afterPath="$PROJECT_DIR$/app/views/store/goods/_good.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/store/goods/_product.html.erb" afterPath="$PROJECT_DIR$/app/views/store/goods/_product.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ecstore/account.rb" afterPath="$PROJECT_DIR$/app/models/ecstore/account.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/admin/applicants_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/admin/applicants_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/store/cart_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/store/cart_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/store/cats_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/store/cats_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/comments_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/comments_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/ecstore.yml.bak" afterPath="$PROJECT_DIR$/config/ecstore.yml.bak" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/store/goods_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/store/goods_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/mobile/layout.min.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/mobile/layout.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/store/cart/mobile.html.erb" afterPath="$PROJECT_DIR$/app/views/store/cart/mobile.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/store/orders/new_mobile.html.erb" afterPath="$PROJECT_DIR$/app/views/store/orders/new_mobile.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ecstore/order.rb" afterPath="$PROJECT_DIR$/app/models/ecstore/order.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/store/orders.js.coffee" afterPath="$PROJECT_DIR$/app/assets/javascripts/store/orders.js.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/store/orders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/store/orders_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/sessions_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/sessions_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/mobile/show.html.erb" afterPath="$PROJECT_DIR$/app/views/mobile/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations/spec__vt.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/spec__vt.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ecstore/supplier.rb" afterPath="$PROJECT_DIR$/app/models/ecstore/supplier.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/runConfigurations/test__vt.xml" afterPath="$PROJECT_DIR$/.idea/runConfigurations/test__vt.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/vshop_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/vshop_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vt.iml" afterPath="$PROJECT_DIR$/.idea/vt.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="551a286c-2c66-41e3-9022-bb03cf26743e" name="Default" comment="" />
     <ignored path="vt.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -124,8 +72,8 @@
       <file leaf-file-name="users_controller.rb" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36655405" vertical-offset="1358" max-vertical-offset="1950">
-              <caret line="105" column="21" selection-start-line="105" selection-start-column="21" selection-end-line="105" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.113175675" vertical-offset="1358" max-vertical-offset="1950">
+              <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -1063,8 +1011,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36655405" vertical-offset="1358" max-vertical-offset="1950">
-          <caret line="105" column="21" selection-start-line="105" selection-start-column="21" selection-end-line="105" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.113175675" vertical-offset="1358" max-vertical-offset="1950">
+          <caret line="95" column="16" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
           <folding />
         </state>
       </provider>
