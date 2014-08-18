@@ -79,7 +79,7 @@ class SessionsController < ApplicationController
     sign_out
     # refer_url = request.env["HTTP_REFERER"]
     # refer_url = "/" unless refer_url
-    if params[:platform]=="mobile"
+    if params[:platform]=="tairyo"
       redirect_to "/tairyo"
     elsif
     redirect_to "/vshop"

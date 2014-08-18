@@ -110,10 +110,9 @@ class Store::OrdersController < ApplicationController
 		# end
 		params[:order].merge!(:ip=>request.remote_ip)
 		params[:order].merge!(:member_id=>@user.member_id)
-<<<<<<< HEAD
    # params[:order].merge!(:wechat_recommend=>session[:recommend_user])
     session[:recommend_user]=''
-=======
+
     wechat_recommend=session[:recommend_user]
     if wechat_recommend
       params[:order].merge!(:recommend_user=>recommend_user)
@@ -121,7 +120,6 @@ class Store::OrdersController < ApplicationController
       session[:recommend_user]=''
     end
 
->>>>>>> 67af45bed285260e7a358b0dabe257375767a5a4
 		@order = Ecstore::Order.new params[:order]
 
 		@line_items.each do |line_item|
