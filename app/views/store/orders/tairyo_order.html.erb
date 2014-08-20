@@ -22,9 +22,8 @@
 
 
     <dl class="connerbox">
-    <dd><span class="form_hd">*联系人：</span>
-      <span class="form_td"><%=f.text_field :dining_use,  :value=>@user.login_name if @user  %></span></dd>
-    <dd><span class="form_hd">*手机：</span>
+
+
       <span class="form_td"> <%=f.text_field :phone,  :value=>@user.mobile if @user  %></span></dd>
        <%=f.hidden_field :account_id,:value=>@account[0].account_id %>
       <%=f.hidden_field :suppliers_id,:value=>@suppliers[0].id %>
