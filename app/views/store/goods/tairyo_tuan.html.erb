@@ -169,7 +169,7 @@
             //  }
 
             if($(this).hasClass("login")) {
-                location.href="/tlogin?return_url=nil";
+                location.href="/tlogin?return_url=+window.location.href";
                 //  window.location.href="mlogin?return_url="+window.location.href;
                 return false;
 
