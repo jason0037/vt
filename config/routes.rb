@@ -188,6 +188,7 @@ Modengke::Application.routes.draw do
           get :delete
           put :update_brand,:on=>:member
         end
+
         resources :goods do
           get "tairyo_show",  :on=>:collection
           post "export", :on=>:collection
