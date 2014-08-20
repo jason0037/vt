@@ -1,7 +1,7 @@
 #encoding:utf-8
 class Store::CartController < ApplicationController
 	# before_filter :find_user
-  before_filter :check_token,  :only => ["tairyo"], :redirect_to => "/tairyo_order"
+
 
   def index
 		render :layout=>"cart"
