@@ -634,7 +634,7 @@ textarea#msg {
 .shop_list .pic,.shop_list .pic a,.shop_list .pic a img {
     display:block;
     width:100%;
-    height:145px
+
 }
 .detail img{width:100%}
 .shop_info {
@@ -1250,7 +1250,7 @@ span.sz_seleted {
 .gridItem dl dt.pic,.gridItem dl dt.pic img {
     display:block;
     width:100%;
-    height:183px
+
 }
 .gridItem dl dd {
     padding:0 5px
@@ -5940,13 +5940,13 @@ a.orange:link, a.orange:visited, .orange {
     width: 390px;
 
 }
-.fanhui{
+.fanhui {
 
-    font-size:17px;
-    line-height:35px;
+    font-size: 17px;
+    line-height: 35px;
 
-    color:#fff;
+    color: #fff;
     text-align: right;
-	
+}
 
 	
