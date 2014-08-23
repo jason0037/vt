@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140813014927) do
+ActiveRecord::Schema.define(:version => 20140822071857) do
 
   create_table "accounts_resources", :id => false, :force => true do |t|
     t.integer "account_id"

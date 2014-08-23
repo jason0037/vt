@@ -1,0 +1,134 @@
+
+<%= stylesheet_link_tag    "bootstrap.css" %>
+<style type="text/css">
+
+    .form_hide{
+        display: none;
+    }
+    .form_show{
+        display: block;
+    }
+        #serach{
+           margin-left:40%;
+        }
+     .am-cf #serach, .am-cf.btn{
+         float: left;
+        }
+        .btn{
+            float: right;
+        }
+</style>
+
+
+  <header id="am-topbar am-topbar-inverse">
+
+    <div class="am-panel am-panel-primary">
+      <div class="am-panel-hd">万家物流</div>
+
+    </div>
+
+  </header>
+       <h4>为了准确的信息请先查询</h4>
+
+
+<div id="start">
+  <form method="post" id="form_serach_first" class="am-form">
+    <label for="email">始发地选择:</label>
+    <input type="text" name="departure" id="departure" value="">
+
+    <label for="password">终点站选择:</label>
+    <input type="text" name="arrival" id="arrival" value="">
+
+
+
+    <div class="am-cf">
+      <input type="button" id="serach" data-url="serach" name="" value="查 询" class=" btn btn-large btn-primary submitlvmsg color-default am-fl">
+      <input type="button" id="button_no" value="不需要查询" class=" btn btn-large btn-warning submitlvmsg  am-fl">
+
+    </div>
+  </form>
+
+  <hr>
+  <form id ="form_serach_two" method="post" class="am-form form_hide">
+    <p style="text-align: center">请发布您的小黑板</p>
+    始发地：<input type="text" name="departure"id="departures"  value="">
+    终点站：<input type="text" name="arrival" id="arrivals" value="">
+    单价：<input type="text" name="unit_price" id="unit_price" value="">
+    合计：<input type="text" name="total" id="total" value="">
+    本次运输单价：<input type="text" name="" value="">
+    本次运输合计：<input type="text" name="" value="">
+    <div style="padding: 0 20px;margin: 0 0 20px;">
+      <p>
+       如果您有特殊要求请在下面填写        </p>
+
+      <p>
+        <textarea id="content" style="display:block;width: 95%;" placeholder="请输入您的小黑版。" rows="4"
+                  name="content" class="content" data-msg="我有一些问题想咨询，请尽快联系我。" ></textarea>
+
+
+      <p style="text-align:center">
+        <button id="submitlvmsg" class="btn btn-large btn-primary submitlvmsg color-green">
+          提交          </button>
+      </p>
+    </div>
+
+
+</form>
+  <form id ="form_serach_three" method="post" class="am-form form_hide">
+    <p style="text-align: center">请发布您的小黑板</p>
+    始发地：<input type="text" name="departure"id="departures"  value="">
+    终点站：<input type="text" name="arrival" id="arrivals" value="">
+    单价：<input type="text" name="unit_price" id="unit_price" value="">
+    合计：<input type="text" name="total" id="total" value="">
+    本次运输单价：<input type="text" name="" value="">
+    本次运输合计：<input type="text" name="" value="">
+    <div style="padding: 0 20px;margin: 0 0 20px;">
+      <p>
+        如果您有特殊要求请在下面填写        </p>
+
+      <p>
+        <textarea id="content" style="display:block;width: 95%;" placeholder="请输入您的小黑版。" rows="4"
+                  name="content" class="content" data-msg="我有一些问题想咨询，请尽快联系我。" ></textarea>
+
+
+      <p style="text-align:center">
+        <button id="submitlvmsg" class="btn btn-large btn-primary submitlvmsg color-green">
+          提交          </button>
+      </p>
+    </div>
+
+
+  </form>
+
+   </div>
+
+
+
+
+
+<%= javascript_include_tag "jquery", "jquery_ujs" %>
+<script type="application/javascript">
+    $(document).ready(function(){
+        $("#serach").bind("click",function(){
+            var departure=    $("#departure").val();
+            var arrival=    $("#arrival").val();
+             if (departure&&arrival)
+             {
+            var url = $(this).data('url');
+            $.ajax(url,{
+                type: "post",
+                data:{ departure:departure ,arrival:arrival},
+                success:function(res){
+
+                }
+            }) }
+            else
+             alert("请输入值，");
+        }) ;
+
+        $("#button_no").bind("click",function(){
+            $("#form_serach_first").addClass("form_hide")
+        })
+    })
+</script>
+

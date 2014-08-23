@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <title>MancoLogistics</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <%= stylesheet_link_tag    "manco.css" %>
+  <%= stylesheet_link_tag    "manco/amui.all.min.css" %>
+  <%= stylesheet_link_tag    "manco/amui.all.css" %>
+  <%= javascript_include_tag "manco/amui.js" %>
+  <%= javascript_include_tag "manco/amui.widget.helper.js" %>
+  <%= javascript_include_tag "manco/amui.min.js" %>
+  <%= javascript_include_tag "manco/zepto.min.js" %>
+
+  <%= javascript_include_tag "manco/amui.widget.helper.min" %>
+
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+<%= yield %>
+
+
+<div class="footer clearfix">
+  <div class="footnav clearfix">
+    <%if @user%>
+        <a href="#"><%=@user.account.login_name%></a>
+        <a href="/wlogout?platform=manco">退出登录</a>
+    <%else%>
+
+        <a href="/wlogin?platform=tairyo&return_url=/manco" mars_sead="footer-login_btn">登录</a>
+        <a href="/wregister?platform=manco&return_url=/manco">注册</a>
+    <%end%>
+    <a href="?t=1#" class="backtop" mars_sead="home_foot_top_btn"></a>
+  </div>
+
+       </div>
+<br/>
+<br/>
+</body>

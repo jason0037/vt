@@ -1,0 +1,47 @@
+<%=render "shared/metable", :resource => nil %>
+
+
+<header id="header" class="header clearfix">
+
+  <div class="head_left fl"><a href="<%= %>"><span class="h_back"></span></a></div>
+  <span class="headtit">用户登录</span>
+  <div class="head_right fr"><a href="manco" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
+</header>
+
+
+<%=form_for :session,:url=>"/wlogin", :remote=>true do |f|%>
+    <%=hidden_field_tag :return_url,params[:return_url]%>
+    <%=hidden_field_tag :platform,'manco'%>
+    <div class="connerdiv">
+      <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect">
+        <img src="/assets/vshop/Oauth_button.png" style="border: 1px solid grey;width:150px;">
+      </a>
+    </div>
+    <br/>
+    <div class="connerdiv">
+      <dl class="connerbox">
+        <dd><span class="form_hd">账号：</span>
+        <span class="form_td"><%=f.text_field :username,:placeholder=>"已认证手机号/用户名/邮箱",:class=>"text_input"%>
+        </span></dd>
+        <dd><span class="form_hd">密码：</span>
+        <span class="form_td"><%=f.password_field :password, :placeholder=>"密码",:class=>"text_input"%>
+        </span></dd>
+      </dl>
+      <dl id="li_captcha" style="display:none;">
+        <input type="text" name="captcha" size="5" maxlength="4" class="testcode">
+        <img src="files/captcha.html" id="captcha" alt="captcha" style="vertical-align: middle;cursor: pointer;" onclick="this.src=&#39;captcha.html?&#39;+Math.random()">
+        <a href="javascript:void(0)" onclick="document.getElementById(&#39;captcha&#39;).src=&#39;captcha.html?&#39;+Math.random()"><label>&nbsp;看不清？换一张</label></a>
+      </dl>
+      <dl><input name="remember_me" type="checkbox" value="1" checked="true" class="fl">记住登录状态</dl>
+      <div id="login_msg" style="color:red;font-size:12pt;"></div>
+      <input type="hidden" name="back_act" value="product-198535-26038564.html">
+      <div class="space15"></div>
+      <%=f.submit "登 录",:class=>"btn_red"%>
+
+      <div class="space15"></div>
+      <% return_url={:return_url => request.url.sub('http://localhost','').force_encoding('UTF-8')}.to_query%>
+      <a href="/wregister?platform=manco&<%=return_url%>" class="forgetkey">立即注册&gt;&gt;</a><a href="/users/forgot_password?platform=manco" class="fr forgetkey" target="new">忘记密码?</a>
+    </div>
+<%end%>
+<%= javascript_include_tag "login" %>
+

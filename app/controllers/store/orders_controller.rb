@@ -397,4 +397,9 @@ class Store::OrdersController < ApplicationController
     end
   end
 
+  def express_manco
+
+    render :layout => "manco_template"
+  end
+
 end

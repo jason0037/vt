@@ -1,0 +1,146 @@
+// Place all the styles related to the manco controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* button color style */
+.color-default {
+  background-color: #36afa5;
+  background-image: -webkit-linear-gradient(top, #36afa5, #3f887f);
+  background-image: linear-gradient(top, #36afa5, #3f887f);
+}
+
+.color-gray,.color-gray:hover {
+  background-color: #bdbdbd;
+  background-image: -webkit-linear-gradient(top, #bdbdbd, #8a8a8a);
+  background-image: linear-gradient(top, #bdbdbd, #8a8a8a);
+}
+
+.color-blue,.color-blue:hover {
+  background-color: #5082DB;
+  background-image: -webkit-linear-gradient(top, #5082DB, #206A9C);
+  background-image: linear-gradient(top, #5082DB, #206A9C);
+}
+
+.color-green,.color-green:hover {
+  background-color: #17BD36;
+  background-image: -webkit-linear-gradient(top, #17BD36, #2D7D4D);
+  background-image: linear-gradient(top, #17BD36, #2D7D4D);
+}
+
+.color-red,.color-red:hover {
+  background-color: #E51818;
+  background-image: -webkit-linear-gradient(top, #E51818, #991111);
+  background-image: linear-gradient(top, #E51818, #991111);
+}
+
+.color-purple,.color-purple:hover {
+  background-color: #E260A0;
+  background-image: -webkit-linear-gradient(top, #E260A0, #93177B);
+  background-image: linear-gradient(top, #E260A0, #93177B);
+}
+
+.color-orange,.color-orange:hover {
+  background-color: #EB9317;
+  background-image: -webkit-linear-gradient(top, #EB9317, #A56506);
+  background-image: linear-gradient(top, #EB9317, #A56506);
+}
+.color-orange:hover,.color-purple:hover,.color-red:hover,.color-green:hover,.color-blue:hover,.color-gray:hover {
+  opacity:0.8;
+}
+
+
+
+.head-fixed {
+  padding-top: 50px;
+}
+.am-panel-hd{
+  text-align: center;
+
+}
+.head {
+  margin-bottom: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+
+}
+.get {
+  background: #1E5B94;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+.get-title {
+  font-size: 200%;
+  border: 2px solid #fff;
+  padding: 20px;
+  display: inline-block;
+}
+.get-btn {
+  background: #fff;
+}
+.detail {
+  background: #fff;
+}
+
+.detail-h2 {
+  text-align: center;
+  font-size: 150%;
+  margin: 40px 0;
+}
+
+.detail-h3 {
+  color: #1f8dd6;
+}
+
+.detail-p {
+  color: #7f8c8d;
+}
+
+.detail-mb {
+  margin-bottom: 30px;
+}
+
+.hope {
+  background: #33f2ff;
+  padding: 50px 0;
+}
+
+.hope-img {
+  text-align: center;
+}
+
+.hope-hr {
+  border-color: #1b66b7;
+}
+
+.hope-title {
+  font-size: 140%;
+}
+
+.about {
+  background: #fff;
+  padding: 40px 0;
+  color: #7f8c8d;
+}
+
+.about-color {
+  color: #34495e;
+}
+
+.about-title {
+  font-size: 180%;
+  padding: 30px 0 50px 0;
+  text-align: center;
+}
+
+.footer p {
+  color: #7f8c8d;
+  margin: 0;
+  padding: 15px 0;
+  text-align: center;
+  background: #2d3e50;
+}

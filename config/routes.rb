@@ -2,6 +2,32 @@
 require 'httpclient'
 Modengke::Application.routes.draw do
 
+
+
+           ####万家物流
+   resources :manco do
+    #万家主页面
+    get   'index'  ,:on=>:collection
+    get  'main' ,:on=>:collection
+    get  'history' ,:on=>:collection
+     #万家快递页面
+    get "black_index"  ,:on=>:collection
+    get "express"  ,:on=>:collection
+    post "serach"  ,:on=>:collection
+    get "blackbord",:on=>:collection
+    get "follow",:on=>:collection
+    get 'user',:on=>:collection
+  end
+
+   get 'wlogin'=>"sessions#new_manco"
+   get 'wregister'=>"sessions#register_manco"
+   get 'wlogout'=>"sessions#destroy_manco"
+   post 'users/manco' =>"users#manco_user" ,:controller=>"users"
+   post 'wlogin'=>"sessions#create_manco"
+
+
+
+
   resources :tairyo do                   # #大渔饭店
   get   'index'  ,:on=>:collection
   get   'bus'  ,:on=>:collection
