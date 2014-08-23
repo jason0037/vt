@@ -8,14 +8,14 @@ Modengke::Application.routes.draw do
    resources :manco do
     #万家主页面
     get   'index'  ,:on=>:collection
-    get  'main' ,:on=>:collection
-    get  'history' ,:on=>:collection
+    get  'main' ,:on=>:collection    ###万家介绍
+    get  'history' ,:on=>:collection  ####万家历史
      #万家快递页面
-    get "black_index"  ,:on=>:collection
+    get "black_index"  ,:on=>:collection   ##小黑版首页
     get "express"  ,:on=>:collection
     post "serach"  ,:on=>:collection
     get "blackbord",:on=>:collection
-    get "follow",:on=>:collection
+    get "follow",:on=>:collection    ###快递跟踪
     get 'user',:on=>:collection
   end
 
