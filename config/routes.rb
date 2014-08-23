@@ -11,6 +11,7 @@ Modengke::Application.routes.draw do
     get  'main' ,:on=>:collection    ###万家介绍
     get  'history' ,:on=>:collection  ####万家历史
      #万家快递页面
+
     get "black_index"  ,:on=>:collection   ##小黑版首页
     get "express"  ,:on=>:collection
     post "serach"  ,:on=>:collection
