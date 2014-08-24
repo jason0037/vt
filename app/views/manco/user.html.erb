@@ -6,48 +6,53 @@
   </div>
 
 </header>
-   <%=form_for :@order_dining ,:html=>{:class=> " am-form" } , :url=>"nil" do |f|  %>
+   <%=form_for :order ,:html=>{:class=> " am-form" } , :url=>"#{orders_path}?platform=manco" do |f|  %>
 
 
       <label for="email">联系人:</label>
-    <%=f.text_field :user,  :value=>@user.login_name if @user  %>
+     <%=text_field_tag "user" ,value= @user.login_name if @user %>
+
          <br/>
       <label for="email">邮箱:</label>
-    <%=f.text_field :phone,  :value=>@member[0].email if @member  %>
+    <%=text_field_tag "phone",  value=@member[0].email if @member  %>
     <br/>
       <label for="password">详细发货地址:</label>
-      <input type="text" name=""  value="">
+    <%=f.text_field :ship_area %>     <!--  借用订单表中发货范围 !-->
     <br/>
       <label for="password">手机号码:</label>
-    <%=f.text_field :phone,  :value=>@member[0].mobile if @member  %>
+    <%=text_field_tag :phone ,value= @member[0].mobile if @member  %>
 
     <br/>
 
     <div class="am-panel am-panel-primary">
         <div class="am-panel-hd">收货人地址</div>
         <label for="email">收货联系人:</label>
-        <input type="text" name="" id="user" value="">
+      <%=f.text_field :ship_name %>
 
         <label for="email">收货人联系号码:</label>
-        <input type="email" name="" id="email" value="">
+      <%=f.text_field :ship_mobile %>
 
-        <label for="password">详细收货地址:</label>
-        <input type="password" name="" id="password" value="">
 
-        <label for="password">收货人手机号码:</label>
-        <input type="password" name="" id="password" value="">
+      <label for="password">详细收货地址:</label>
+      <%=f.text_field :ship_addr   %>
+
 
       </div>
       <div class="am-panel am-panel-primary">
         <div class="am-panel-hd">货物信息</div>
-        <label for="email">货物名称:</label>
-        <input type="text" name="" id="user" value="">
-        <label for="email">包装总件数:</label>
-        <input type="text" name="" id="user" value="">
-        <label for="email">注意事项/备注：:</label>
-        <textarea></textarea>
-        </div>
+        <span class="radio-box"></span>
+        <%=f.radio_button :payment, "alipaywap", :class=>"hide" , :checked=>true %>
 
+        <label for="email">货物重量:</label>
+        <%=f.text_field :weight   %>
+        <label for="email">注意事项/备注：:</label>
+        <%=f.text_area :tostr  %>
+        </div>
+    <%=f.submit "安 全 结 算",:class=>"fr btn_sure"%>
        <% end%>
   </div>
 </div>
+<script type="application/javascript">
+  $(document)
+
+</script>
