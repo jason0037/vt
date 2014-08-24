@@ -58,7 +58,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="[大渔]海鲜铁板烧"
         desc =""
         pic_url="http://www.trade-v.com/assets/vshop/dayu.jpg"
-        link_url="http://www.trade-v.com/dayu/index"
+        link_url="http://www.trade-v.com/tairyo"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
       when '奶酪'
