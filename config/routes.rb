@@ -420,6 +420,7 @@ Modengke::Application.routes.draw do
       end
       get 'tairyo_share' =>"orders#tairyo_share"
       get 'share' =>"orders#share"
+      get 'order/black_manco' =>"orders#black_manco"
       resources :orders, :except=>[:index] do 
         member do
           get 'to_inventory'

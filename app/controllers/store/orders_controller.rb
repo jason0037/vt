@@ -113,14 +113,14 @@ class Store::OrdersController < ApplicationController
 		# end
 		params[:order].merge!(:ip=>request.remote_ip)
 		params[:order].merge!(:member_id=>@user.member_id)
-   # params[:order].merge!(:wechat_recommend=>session[:recommend_user])
+    # params[:order].merge!(:wechat_recommend=>session[:recommend_user])
     session[:recommend_user]=''
 
     wechat_recommend=session[:recommend_user]
     if wechat_recommend
-      params[:order].merge!(:recommend_user=>recommend_user)
-      params[:order].merge!(:commission=>params[:order][:final_amount]*0.01)
-      session[:recommend_user]=''
+       # params[:order].merge!(:recommend_user=>recommend_user)
+       # params[:order].merge!(:commission=>params[:order][:final_amount]*0.01)
+       # session[:recommend_user]=''
     end
 
 		@order = Ecstore::Order.new params[:order]
@@ -400,6 +400,11 @@ class Store::OrdersController < ApplicationController
     end
   end
 
+  def black_manco
+    @username=params[:username]
+     render :layout => "manco_template"
+
+  end
   def express_manco
 
     render :layout => "manco_template"

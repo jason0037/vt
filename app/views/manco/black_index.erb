@@ -69,7 +69,7 @@
   <div class="col-md-8">
     <article class="blog-main">
 
-      <h4 class="am-article-meta blog-meta">by <a href="#">user1</a> 发布于 2014/06/17  <a href="#">上海</a></h4>
+      <h4 class="am-article-meta blog-meta">by <a id="black_user" href="#">user1</a> 发布于 2014/06/17  <a href="#">上海</a></h4>
       <div class="am-g blog-content">
         <div class="col-lg-7">
          <p>本次运输起点站：安吉   </p>
@@ -79,7 +79,7 @@
       </div>
         </div>
     </article>
-    <button class="am-btn am-btn-success am-btn-cart" >
+    <button class="am-btn am-btn-success am-btn-cart  express-cart" >
       <i class="am-icon-shopping-cart"></i>
       需要运输货物
     </button>
@@ -147,4 +147,15 @@
 
 </div>
 
+  <script type="application/javascript">
+    $(document).ready(function(){
+        $(".express-cart").bind("click",function(){
+            var b= $("#black_user").html()   ;
+              window.location.href="/order/black_manco?username="+b;
+        })
 
+
+    })
+
+
+  </script>
