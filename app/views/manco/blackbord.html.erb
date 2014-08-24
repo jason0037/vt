@@ -63,7 +63,7 @@
 
       <p>
         <textarea id="content" style="display:block;width: 95%;" placeholder="请输入您的小黑版。" rows="4"
-                  name="content" class="content" data-msg="我有一些问题想咨询，请尽快联系我。" ></textarea>
+                  name="content" class="content"  ></textarea>
 
 
       <p style="text-align:center">
@@ -88,17 +88,18 @@
 
       <p>
         <textarea id="content" style="display:block;width: 95%;" placeholder="请输入您的小黑版。" rows="4"
-                  name="content" class="content" data-msg="我有一些问题想咨询，请尽快联系我。" ></textarea>
+                  name="content" class="content"  ></textarea>
 
 
       <p style="text-align:center">
-        <button id="submitlvmsg" class="btn btn-large btn-primary submitlvmsg color-green">
+        <button id="submitlvmsg" class="btn btn-large btn-primary submitlvmsg ">
           提交          </button>
       </p>
     </div>
 
 
   </form>
+
 
    </div>
 
@@ -128,6 +129,7 @@
 
         $("#button_no").bind("click",function(){
             $("#form_serach_first").addClass("form_hide")
+            $("#form_serach_three").removeClass("form_hide")
         })
     })
 </script>

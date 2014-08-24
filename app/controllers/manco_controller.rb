@@ -34,6 +34,6 @@ class MancoController < ApplicationController
    end
 
   def follow
-    render :layout => "manco_template"
+
   end
 end

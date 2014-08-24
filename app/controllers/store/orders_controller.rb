@@ -99,6 +99,9 @@ class Store::OrdersController < ApplicationController
 		@order = Ecstore::Order.find_by_order_id(params[:id])
     if params["platform"]=="mobile"
       render :layout=>"mobile_new"
+    else
+      params["platform"]=="tairyo"
+      render :layout=>"tairyo_new"
     end
 	end
 
