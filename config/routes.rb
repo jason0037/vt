@@ -176,6 +176,8 @@ Modengke::Application.routes.draw do
 
   get 'admin'=>'admin/sessions#new'
 
+   #get 'admin/goods'=>'admin/store/goods'
+
   namespace :admin do
       # subdomain = nil
       # subdomain = "www" if Rails.env == "production"
@@ -236,6 +238,7 @@ Modengke::Application.routes.draw do
           get :toggle_future,:on=>:member
           get :toggle_agent,:on=>:member
           get :toggle_sell,:on=>:member
+
         end
         resources :spec_items
 
