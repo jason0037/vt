@@ -109,11 +109,11 @@
     <td><%=order.pay_status_text%></td>
     <td><%=order.ship_status_text%></td>
     <td><%=number_to_currency order.final_amount,:unit=>"&yen;",:precision=>2%></td>
-    <td><%=number_to_currency order.final_amount*0.01,:unit=>"&yen;",:precision=>2 if order.desktop_user_id || order.wechat_recommend%></td>
+    <td><%=number_to_currency order.final_amount*0.01,:unit=>"&yen;",:precision=>2 if order.desktop_user_id || order.recommend_user%></td>
     <td><%=order.ship_name%></td>
     <td><%=order.ship_addr%></td>
     <td><%=order.ship_mobile%></td>
-    <td><%=order.wechat_recommend%></td>
+    <td><%=order.recommend_user%></td>
   </tr>
   <%@total +=order.final_amount*0.1%>
 
