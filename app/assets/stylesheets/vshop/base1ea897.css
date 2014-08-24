@@ -218,7 +218,7 @@ a:hover {
 	float: right;
 }
 .cell_layout.container_box {
-	
+	margin-left:30px;
 }
 .cell_layout.container_box .col_side {
 	vertical-align: top; display: table-cell; -ms-word-break: break-all; -ms-word-wrap: break-word;
@@ -695,6 +695,14 @@ button.btn {
 .frm_tab_nav:hover {
 	box-shadow: none; -moz-box-shadow: none; -webkit-box-shadow: none;
 }
+.tab {
+    margin-left: 30px;
+
+}
+.tab li{
+    float: left;
+    padding: 20px;
+}
 .selected.frm_tab_nav {
 	background: 0px rgb(136, 136, 136); border-color: rgb(158, 159, 159); color: rgb(255, 255, 255); box-shadow: inset 0px 3px 8px #555; -moz-box-shadow: inset 0 3px 8px #555; -webkit-box-shadow: inset 0 3px 8px #555;
 }
@@ -769,6 +777,7 @@ button.btn {
 }
 .frm_control_group {
 	padding-bottom: 25px;
+    clear: both;
 }
 .frm_control_group::after {
 	height: 0px; clear: both; display: block; content: "\200B";
