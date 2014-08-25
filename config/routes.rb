@@ -26,11 +26,7 @@ Modengke::Application.routes.draw do
    post 'users/manco' =>"users#manco_user" ,:controller=>"users"
    post 'wlogin'=>"sessions#create_manco"
 
-   scope :module => "store" do
-   resources :orders do
-     get 'ordersnew_manco' ,:on=>:collection
-   end
-     end
+
 
 
   resources :tairyo do                   # #大渔饭店
@@ -69,7 +65,7 @@ Modengke::Application.routes.draw do
   root :to=>"home#index",:constraints=>{ :subdomain=>/^(www)?$/ }
   get 'blank'=>"home#blank"
   get 'home'=>"home#index"
-  
+
 
   resources :pages, :only=>[:show]
 
@@ -87,7 +83,7 @@ Modengke::Application.routes.draw do
   end
 
   resources :sessions
-  resources :users do 
+  resources :users do
     get 'forgot_password', :on=>:collection
     #post 'send_reset_password_instruction', :on=>:collectiongem 'weixin_rails_middleware', git: "git://github.com/lanrion/weixin_rails_middleware.git", branch: "master"gem 'weixin_rails_middleware', git: "git://github.com/lanrion/weixin_rails_middleware.git", branch: "master"
     get 'reset_password',:on=>:collection
@@ -115,13 +111,13 @@ Modengke::Application.routes.draw do
   post 'mlogin'=>"sessions#create"
   get 'logout'=>"sessions#destroy"
   get 'topmenu'=>"home#topmenu"
-  
+
   scope :module=> "events" do
     resources :user_survey, :controller=>"survey" do
       post "add_mobile", :on=>:collection
     end
   end
-  
+
   namespace :events do
     resources :applicants
   end
@@ -133,13 +129,13 @@ Modengke::Application.routes.draw do
     #constraints :subdomain => "blog" do
       root :to => "articles#index"
       resources :articles
-      
+
     #end
   end
 
   scope :module => "magazine" do
     # match 'subscription_success' => "topics#index"
-    resources :topics do 
+    resources :topics do
       resources :pages
     end
     match '/more_topics' => 'topics#more'
@@ -170,7 +166,7 @@ Modengke::Application.routes.draw do
             post 'confirm_user'
             get 'user'
           end
-          
+
           get 'send_sms_code'
 
       end
@@ -256,7 +252,7 @@ Modengke::Application.routes.draw do
           post 'published_at',:on=>:member
         end
         resources :pages
-        
+
         resources :members do
           post "export",:on=>:collection
           post "column_reload",:on=>:collection
@@ -279,7 +275,7 @@ Modengke::Application.routes.draw do
           put "cancel_order",:on=>:member
         end
 
-        resources :users do 
+        resources :users do
           get 'search',:on=>:collection
           post 'newuser',:on=>:collection
           put 'send_sms_code',:on=>:member
@@ -296,21 +292,21 @@ Modengke::Application.routes.draw do
 
         resources :labels
 
-        resources :emails do 
+        resources :emails do
           get 'send_all',:on=>:collection
         end
 
         resources :categories
 
         resources :applicants
-        
+
         resources :events do
             get 'applicants',:on=>:member
         end
 
         resources :homes
 
-        resources :brand_pages do 
+        resources :brand_pages do
           get 'toggle', :on=>:member
           put 'order', :on=>:member
           put 'reco', :on=>:member
@@ -324,7 +320,7 @@ Modengke::Application.routes.draw do
         end
 
         resources :user_coupons
-        
+
         resources :orders do
           collection do
             get 'search'
@@ -367,7 +363,7 @@ Modengke::Application.routes.draw do
         end
 
         resources :payment_logs
-        
+
       # end
   end
   get 'm' =>"mobile#show", :as=>"mobile" ,:controller=>"mobile"
@@ -395,7 +391,7 @@ Modengke::Application.routes.draw do
 
       resources :suppliers
 
-      resources :coupons, :controller=>"offline_coupons" do 
+      resources :coupons, :controller=>"offline_coupons" do
          post 'download',:on=>:member
       end
 
@@ -425,7 +421,7 @@ Modengke::Application.routes.draw do
       get 'tairyo_share' =>"orders#tairyo_share"
       get 'share' =>"orders#share"
       get 'order/black_manco' =>"orders#black_manco"
-      resources :orders, :except=>[:index] do 
+      resources :orders, :except=>[:index] do
         member do
           get 'to_inventory'
           get 'out_inventory'
@@ -440,11 +436,12 @@ Modengke::Application.routes.draw do
           get  'new_tairyo'
           get 'new_manco'
           get 'new_mobile_addr'
+          get 'ordersnew_manco'
         end
       end
 
       resources :payments do
-        
+
         collection do
           get 'callback'
           get 'debug'
@@ -481,7 +478,7 @@ Modengke::Application.routes.draw do
     end
 
 
-    scope :module => "patch" do 
+    scope :module => "patch" do
       resource :profile do
          member do
             get 'password'

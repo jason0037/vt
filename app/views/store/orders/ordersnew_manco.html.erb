@@ -2,19 +2,8 @@
     <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
     <div data-cartforms="time" data-collapse="true" data-style="arrow">
       <p class="timetit">
-        <span class="text">送货时间</span>
-        <span class="down_arrow"></span>
-      </p>
-      <div class="in_pay clearfix hide">
-        <%=f.select :ship_day,ship_day_options%>&nbsp;&nbsp;&nbsp;
-        <%=f.text_field :ship_special,:class=>"input-small hide datetime"%>
-        <%=f.select :ship_time2,ship_time_options%>
-        <ul style="display:none">
-          <li mars_sead="checkout_receive_anytime_btn"><span class="radio-box radio-selted"></span><input name="transport_day" value="1" type="radio" class="hide" checked="checked"><p>送货时间不限</p></li>
-          <li mars_sead="checkout_receive_weekend_btn"><span class="radio-box "></span><input name="transport_day" value="2" type="radio" class="hide"><p>只双休日/节假日送货(工作日不用送)</p></li>
-          <li mars_sead="checkout_receive_workday_btn"><span class="radio-box "></span><input name="transport_day" value="3" type="radio" class="hide"><p>只工作日(双休日/节假日不用送)</p></li>
-        </ul>
-      </div>
+        <span class="text">货物重量</span>
+         <%= f.text_field :weigth%>
 
     </div>
     <div data-cartforms="time" data-collapse="true">
@@ -112,7 +101,7 @@
             display:none;
         }
     </style>
-    <%#=javascript_include_tag "store/orders"%>
+    <%=javascript_include_tag "store/orders"%>
     <div style="display:none">
       <%if @pmtable%>
           <div class="section promotions">

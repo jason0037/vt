@@ -98,16 +98,13 @@ class Store::OrdersController < ApplicationController
 	def show
 
 		@order = Ecstore::Order.find_by_order_id(params[:id])
-    if @order ==nil
-      return render :text=>'订单不存在'
-    else
     if params["platform"]=="mobile"
       render :layout=>"mobile_new"
     else
       params["platform"]=="tairyo"
       render :layout=>"tairyo_new"
     end
-  end
+
 	end
 
 	def create
