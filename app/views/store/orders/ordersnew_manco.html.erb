@@ -3,13 +3,15 @@
     <div data-cartforms="time" data-collapse="true" data-style="arrow">
       <p class="timetit">
         <span class="text">货物重量</span>
-         <%= f.text_field :weigth%>
+         <%= f.text_field :weigth ,:id=>"weigth"%>  kg
 
     </div>
     <div data-cartforms="time" data-collapse="true">
-      <p class="timetit">
-        <span class="text">送货方式</span>
-      </p>
+   <span id="statr_e"> <%= @addrss.addr_line[0,2]%></span>
+      </br>
+
+          <%=f.hidden_field :form_addr , @value=>(@addrs.addr_line)%>
+     <span id="end_e">  <%= @def_addr.addr_line[0,2]%> </span>
       <div class="checkcon clearfix">
         <label class="radio active">
           <%=f.radio_button :shipping_id, 0%><span class="addr-line">自提</span>
@@ -169,7 +171,7 @@
           <div class="total" id="order_bill">
             <div class="item">
               <span class="text">支付金额：</span>
-              <span class="rmb-symbol">￥</span>
+              <span id ="money_total_ex"class="rmb-symbol">￥</span>
               <span class="money final" id="pay_amount"></span>
             </div>
 
@@ -181,3 +183,23 @@
 <%end%>
 
 <%=javascript_include_tag "store/tairyo_order"%>
+<script type="application/javascript">
+  $(document).ready(function(){
+      $("#weigth").bind("blur",function(){
+         var wei=$(this).val();
+
+          var departure =$("#statr_e").html()
+
+          var arrival=  $("#end_e").html();
+
+             $.ajax("/order/serach_order",{
+              type: "post",
+              data:{ departure:departure ,arrival:arrival},
+              success:function(res){
+
+              }
+          })
+      })
+  })
+
+</script>

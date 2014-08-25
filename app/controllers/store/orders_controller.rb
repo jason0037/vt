@@ -430,10 +430,32 @@ class Store::OrdersController < ApplicationController
     render :layout => "manco_template"
   end
 
-  def ordersnew_manco
 
-    render :layout => "manco_new"
+  def multi_value=(value)
+    value1, value2, value3 = value.split(',')
   end
 
+  def ordersnew_manco
+     @value = multi_value
+     @addrs =  @user.member_addrs
+    if @addrs.size==nil
+      redirect_to '/orders/new_mobile_addr?return_url=/orders/new_mobile'
+    else
+      @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
+      @addrss = @addrs.where(:addr_type=>1).last  ###发货的信息
+      if @pmtable
+        @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
+        @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
+        @coupons = @user.usable_coupons
+      end
+    end
+    render :layout=>"manco_new"
+
+  end
+ def serach_order
+   departure= params[:departure]
+   arrival= params[:arrival]
+   @un= Ecstore::Express.serachall(departure,arrival)
+ end
 
 end
