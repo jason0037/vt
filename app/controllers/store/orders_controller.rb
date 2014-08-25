@@ -96,13 +96,18 @@ class Store::OrdersController < ApplicationController
 	end
 
 	def show
+
 		@order = Ecstore::Order.find_by_order_id(params[:id])
+    if @order ==nil
+      return render :text=>'订单不存在'
+    else
     if params["platform"]=="mobile"
       render :layout=>"mobile_new"
     else
       params["platform"]=="tairyo"
       render :layout=>"tairyo_new"
     end
+  end
 	end
 
 	def create
@@ -273,12 +278,30 @@ class Store::OrdersController < ApplicationController
     end
   end
 
+  def new_manco
 
-  def new_tairyo
-
-
+  @addrs =  @user.member_addrs
+  if @addrs.size==nil
+    redirect_to '/orders/new_mobile_addr?return_url=/orders/new_mobile'
+  else
+    @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
 
       if @pmtable
+         @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
+         @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
+         @coupons = @user.usable_coupons
+         end
+      end
+      render :layout=>"manco_new"
+
+
+    end
+
+
+
+
+  def new_tairyo
+  if @pmtable
         @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
         @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
         @coupons = @user.usable_coupons
@@ -409,5 +432,11 @@ class Store::OrdersController < ApplicationController
 
     render :layout => "manco_template"
   end
+
+  def ordersnew_manco
+
+    render :layout => "manco_new"
+  end
+
 
 end

@@ -26,7 +26,11 @@ Modengke::Application.routes.draw do
    post 'users/manco' =>"users#manco_user" ,:controller=>"users"
    post 'wlogin'=>"sessions#create_manco"
 
-
+   scope :module => "store" do
+   resources :orders do
+     get 'ordersnew_manco' ,:on=>:collection
+   end
+     end
 
 
   resources :tairyo do                   # #大渔饭店
@@ -434,6 +438,7 @@ Modengke::Application.routes.draw do
           get 'check_coupon'
           get  'new_mobile'
           get  'new_tairyo'
+          get 'new_manco'
           get 'new_mobile_addr'
         end
       end
@@ -510,11 +515,15 @@ Modengke::Application.routes.draw do
             get 'inventorys'
             get 'inventorylog'
             post 'export_inventory'
+
           end
       end
 
-      resources :member_addrs
+      resources :member_addrs do
 
+          get '_form_manco_second' ,:on=>:collection
+          post 'addship' ,:on=>:collection
+        end
       resources :aftersales do
          get 'instruction', :on=>:collection
       end

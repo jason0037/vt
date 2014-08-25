@@ -1,0 +1,57 @@
+<%=javascript_include_tag "area_seletor"%>
+<%=javascript_include_tag "patch/member_addrs"%>
+<header id="header" class="header clearfix">
+
+  <div class="head_left fl"><a href="/cart/mobile"><span class="h_back"></span></a></div>
+  <span class="headtit">选择送货地址</span>
+  <div class="head_right fr"><a href="/m" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
+</header>
+<div class="connerdiv">
+
+  <div style="display:none">
+    <%if @addrs.size>0%>
+        <%@addrs.each_with_index do |addr,index|%>
+            <%if @def_addr == addr%>
+                <label class="radio active">
+                  <%=radio_button_tag "member_addr", addr.addr_id,:checked=>true%>
+                  <span class="addr-line"><%=addr.addr_line%></span>
+                  <%=link_to "修改",edit_member_addr_path(addr),:remote=>true,:class=>"update-link"%>
+                </label>
+            <%else%>
+                <label class="radio">
+                  <%=radio_button_tag "member_addr", addr.addr_id%>
+                  <span class="addr-line"><%=addr.addr_line%></span>
+                  <%=link_to "修改",edit_member_addr_path(addr), :remote=>true, :class=>"update-link"%>
+                </label>
+            <%end%>
+        <%end%>
+
+        <label class="radio">
+          <%=radio_button_tag "member_addr", "new"%>
+          <span>使用新地址+</span>
+        </label>
+    <%end%>
+
+  </div>
+
+  <%=render :partial=>"patch/member_addrs/form_manco_first",:locals=>{ :display=>( @addrs.size == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
+</div>
+<script>
+    /*  $("#addr_form").removeClass("hide")
+
+     $(".addr-list").on "change","input[type='radio']", ->
+     $(".addr-list .active").removeClass("active").find("form").remove()
+     $(this).parent(".radio").addClass("active")
+
+
+     if $(this).val() == 'new'
+     $("#addr_form").removeClass("hide")
+     $("#member_addr").val ''
+     else
+     $("#addr_form").addClass("hide")
+     $("#member_addr").val $(this).val()
+
+     $(document).on "focus", ".new-addr input[type='text'], .new-addr select", ->
+     $(this).nextAll(".help-inline").empty();
+     */
+</script>

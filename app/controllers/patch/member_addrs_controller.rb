@@ -31,21 +31,21 @@ class Patch::MemberAddrsController < ApplicationController
 	def create
 		@addr = Ecstore::MemberAddr.new params[:addr].merge!(:member_id=>@user.member_id)
     return_url=params[:return_url]
-		if @addr.save
+
+    if return_url  && @addr.save
+       redirect_to return_url
+    else
+       @addr.save
       redirect_to '/orders/new_mobile'
-=begin
-      if return_url
-        redirect_to return_url
-      else
-        respond_to do |format|
-          format.js
-          format.html { redirect_to member_addrs_url }
-        end
+
+      # else
+      #   respond_to do |format|
+      #     format.js
+      #     format.html { redirect_to member_addrs_url }
+      #   end
 			end
-=end
-		else
-			render "error.js" #, status: :unprocessable_entity
-		end
+
+
 	end
 
 	def update
@@ -67,4 +67,16 @@ class Patch::MemberAddrsController < ApplicationController
 	end
 
 
+  def _form_manco_second
+
+    @addr = Ecstore::MemberAddr.new
+    render :layout => "manco_new"
+  end
+   def addship
+     @addr = Ecstore::MemberAddr.new params[:addr].merge!(:member_id=>@user.member_id)
+     if @addr.save
+      redirect_to '/orders/ordersnew_manco'
+     end
+     else "/member_addrs/_form_manco_second"
+ end
 end
