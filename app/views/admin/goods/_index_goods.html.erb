@@ -48,7 +48,7 @@
 			</td>
 
 			<td><%=good.bn%></td>
-			<td><%=link_to good.name,good_path(good.bn),:target=>"_blank"%></td>
+			<td><%=good.name%><%#=link_to good.name,good_path(good.bn),:target=>"_blank"%></td>
 			<td align="center">
 				<%=link_to "#", :class=>"hover-thumb", :data=>{ :thumb => good.list_default_pic||"",:title=>"#{good.name}(#{good.bn})" } do%>
 					<%=image_tag good.list_default_pic, :size => "35x50"%>
@@ -58,12 +58,12 @@
               <td>&yen;<%=format("%.2f",good.cost)%></td>
           <%end%>
           <%if current_admin.has_right_of("orders","delivery")%>
-              <td>&yen;<%=format("%.2f",good.bulk)%></td>
-              <td>&yen;<%=format("%.2f",good.promotion)%></td>
+              <td>&yen;<%=format("%.2f",good.bulk) if good.bulk%></td>
+              <td>&yen;<%=format("%.2f",good.promotion) if good.promotion%></td>
           <%end%>
-            <td>&yen;<%=format("%.2f",good.wholesale)%></td>
-			<td>&yen;<%=format("%.2f",good.price)%></td>
-            <td>&yen;<%=format("%.2f",good.mktprice)%></td>
+            <td>&yen;<%=format("%.2f",good.wholesale) if good.wholesale%></td>
+			<td>&yen;<%=format("%.2f",good.price) if good.price%></td>
+            <td>&yen;<%=format("%.2f",good.mktprice) if good.mktprice%></td>
           <%if current_admin.has_right_of("members","index")%>
             <td>&yen;<%=format("%.2f",good.price*0.1)%></td>
           <%end%>
