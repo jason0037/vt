@@ -69,20 +69,21 @@
   <div class="col-md-8">
     <article class="blog-main">
 
-      <h4 class="am-article-meta blog-meta">by <a id="black_user" href="#">user1</a> 发布于 2014/06/17  <a href="#">上海</a></h4>
+      <h4 class="am-article-meta blog-meta">by <a id="black_user" href="#"><%=@good.bn%></a> 发布于 2014/06/17  </h4>
       <div class="am-g blog-content">
         <div class="col-lg-7">
-         <p>本次运输起点站：安吉   </p>
-          <p>本次运输终点站：常熟   </p>
-          <p>安吉到常熟1公斤原价：40   </p>
-          <p>安吉到常熟优惠价：20   </p>
+         <p>本次运输为<%=@good.name%>  </p>
+
+          <p><%=@good.name%>1公斤原价：<%=@good.mktprice%>   </p>
+          <p><%=@good.name%>优惠价：<%=@good.price%>   </p>
+          <p><%=@good.name%>目前可以运输重量为：<%=@good.store%>   </p>
       </div>
         </div>
     </article>
-    <button class="am-btn am-btn-success am-btn-cart  express-cart" >
+    <a href="/mancoproduct?id=<%=@good.bn%>" class="am-btn am-btn-success am-btn-cart  express-cart" >
       <i class="am-icon-shopping-cart"></i>
       需要运输货物
-    </button>
+    </a>
 
     <hr class="am-article-divider blog-hr">
 

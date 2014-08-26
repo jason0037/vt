@@ -1,0 +1,7 @@
+$("#manco_name").val('<%=@goodsname.name%>')
+$("#manco_weight").val('<%=@weight%>KG')
+var total=<%=@weight%> *<%=@goodsname.price%>
+
+$("#manco_price").val(total)
+$("#form_second").removeClass("form_hide")
+$("#form_first").addClass("form_hide")

@@ -3,7 +3,7 @@
 <header id="header" class="header clearfix">
 
   <div class="head_left fl"><a href="#"><span class="h_back"></span></a></div>
-  <span class="headtit">选择收货地址</span>
+  <span class="headtit">选择收货地址<%=@wemanco_price%></span>
   <div class="head_right fr"><a href="/manco" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
 </header>
 
@@ -46,7 +46,7 @@
     <dl class="connerbox" style="display:none"><dd><span> <%=f.label :def_addr, "设置为默认地址：",:class=>"text_input"%></span>
       <span class="form_td"> <%#=f.check_box :def_addr, {}, 1, 0 %><input name="addr[def_addr]" type="hidden" value="1" checked="true" /></span>
     </dd></dl>
-    <input name="addr[addr_type]" type="hidden" value="1" >
+
 
     <input name="addr[addr_type]" type="hidden" value="0" >
     <div class="ui-btn-area">

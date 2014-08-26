@@ -91,7 +91,7 @@
 						<%=p.check_box :marketable,{:checked=>product.marketable=='true'},'true','false'%>
 						<%=p.hidden_field :product_id,:value=>product.product_id%>
 					</td>
-                  <td><%=product.spec_values.first.spec_value%></td>
+                  <!--<td><#%=product.spec_values.first.spec_value%></td>-->
                     <td><%=p.text_field :barcode,:value=>product.barcode,:class=>"span2"%></td>
 					<td><%=p.text_field :bn,:value=>product.bn,:class=>"span2",:data=>{:login_name=>'231'}%></td>
 					<td><%=p.number_field :store,:value=>product.store,:class=>"input-mini"%></td>

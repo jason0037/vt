@@ -1,12 +1,74 @@
 #encoding:utf-8
 class Store::GoodsController < ApplicationController
- layout 'standard'
+  layout 'standard'
 
   skip_before_filter :authorize_user!,:only=>[:price]
   before_filter :find_user, :except=>[:price]
   skip_before_filter :find_path_seo, :find_cart!, :only=>[:newest]
   before_filter :find_tags, :only=>[:index,:newest]
 
+  def find_manco_good
+
+     departure=params[:departure]
+     arrival=params[:arrival]
+     @weight=params[:weight]
+     good_e=departure+"-"+arrival
+     @goodsname=Ecstore::Good.find_by_name(good_e)
+
+
+  end
+     ###万家小黑板
+  def mancoproduct
+    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
+
+    return render "not_find_good",:layout=>"tairyo_new" unless @good
+
+    @recommend_user = session[:recommend_user]
+
+    if params[:wechatuser]
+      @recommend_user=params[:wechatuser]
+    end
+    if @recommend_user
+      member_id =-1
+      if signed_in?
+        member_id = @user.member_id
+      end
+      now  = Time.now.to_i
+      Ecstore::RecommendLog.new do |rl|
+        rl.wechat_id = @recommend_user
+        rl.goods_id = @good.goods_id
+        rl.member_id = member_id
+        rl.terminal_info = request.env['HTTP_USER_AGENT']
+        #   rl.remote_ip = request.remote_ip
+        rl.access_time = now
+      end.save
+      session[:recommend_user]=@recommend_user
+      session[:recommend_time] =now
+    end
+
+    tag_name = params[:tag]
+    @tag = Ecstore::TagName.find_by_tag_name(tag_name)
+
+    @cat = @good.cat
+
+    @recommend_goods = []
+    if @cat.goods.size >= 4
+      @recommend_goods =  @cat.goods.where("goods_id <> ?", @good.goods_id).order("goods_id desc").limit(4)
+    else
+      @recommend_goods += @cat.goods.where("goods_id <> ?", @good.goods_id).limit(4).to_a
+      @recommend_goods += @cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-@recommend_goods.size] if @cat.parent_cat && @recommend_goods.size < 4
+      @recommend_goods.compact!
+      if @cat.parent_cat.parent_cat && @recommend_goods.size < 4
+        count = @recommend_goods.size
+        @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
+      end
+
+      render :layout => "manco_new"
+    end
+
+
+
+  end
  def mobile
 
    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
@@ -288,5 +350,7 @@ class Store::GoodsController < ApplicationController
     def find_tags
         @tags =  Ecstore::Teg.includes(:tag_ext).where('tag_name rlike ?','z[0-9]{4}').order("tag_id desc").limit(20)
     end
+
+
 
 end

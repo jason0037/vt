@@ -101,10 +101,12 @@ class Store::OrdersController < ApplicationController
     if params["platform"]=="mobile"
       render :layout=>"mobile_new"
     else
-      params["platform"]=="tairyo"
-      render :layout=>"tairyo_new"
-    end
 
+     if params["platform"]=="manco"
+        render :layout => "manco_new"
+
+    end
+  end
 	end
 
 	def create
@@ -260,6 +262,7 @@ class Store::OrdersController < ApplicationController
   end
 
   def new_mobile
+
     @addrs =  @user.member_addrs
     if @addrs.size==0
       redirect_to '/orders/new_mobile_addr?return_url=/orders/new_mobile'
@@ -276,8 +279,11 @@ class Store::OrdersController < ApplicationController
   end
 
   def new_manco
-
-  @addrs =  @user.member_addrs
+    manco_weight =params[:weight]
+    manco_price=params[:manco_price]
+    session[:manco_price] = manco_price
+    session[:manco_weight] = manco_weight
+    @addrs =  @user.member_addrs
   if @addrs.size==nil
     redirect_to '/orders/new_mobile_addr?return_url=/orders/new_mobile'
   else
@@ -431,15 +437,13 @@ class Store::OrdersController < ApplicationController
   end
 
 
-  def multi_value=(value)
-    value1, value2, value3 = value.split(',')
-  end
+
 
   def ordersnew_manco
-     @value = multi_value
+
      @addrs =  @user.member_addrs
     if @addrs.size==nil
-      redirect_to '/orders/new_mobile_addr?return_url=/orders/new_mobile'
+      redirect_to '/orders/new_manco'
     else
       @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
       @addrss = @addrs.where(:addr_type=>1).last  ###发货的信息

@@ -1,136 +1,96 @@
+<%= form_for :good,:html => {:class => "form-horizontal"} do |f| %>
+    <fieldset>
 
-<%= stylesheet_link_tag    "bootstrap.css" %>
-<style type="text/css">
+    <div class="control-group">
 
-    .form_hide{
-        display: none;
-    }
-    .form_show{
-        display: block;
-    }
-        #serach{
-           margin-left:40%;
-        }
-     .am-cf #serach, .am-cf.btn{
-         float: left;
-        }
-        .btn{
-            float: right;
-        }
-</style>
+      <div class="controls">
+        <%=f.hidden_field :cat_id, :value=>"576" %> <!-- 万家小黑板-->
+        <%=f.hidden_field :bulk, :value=>"10" %>  <!-- 单价对应unit_price-->
+        <%=f.hidden_field :supplier_id, :value=>"98" %> <!-- 供应商id-->
+        <%=f.hidden_field :place ,:value=>"中国"%>   <!-- 产地-->
+        <%=f.hidden_field :brand_id ,:value=>"万家物流小黑板"%>  <!-- 万家物流小黑板   品牌ID-->
+      <%=f.hidden_field :place_info,:value=>"中国"%>    <!-- 产地信息-->
+        <%= f.hidden_field :spec_info,:class=>"span10" %> <!-- 规格说明-->
 
+      </div>
+    </div>
 
-  <header id="am-topbar am-topbar-inverse">
+    <div class="control-group">
+      <%= f.label :name, "商品名称", :class => "control-label" %>
+      <div class="controls">
 
-    <div class="am-panel am-panel-primary">
-      <div class="am-panel-hd">万家物流</div>
+        <%= f.text_field :name,:placeholder=>"例如 安吉-安吉",:class=>"span4"%>
+      </div>
+    </div>
 
     </div>
 
-  </header>
-       <h4>为了准确的信息请先查询</h4>
+    <div class="control-group">
+      <%= f.label :wholesale, "批发价", :class => "control-label" %>
+      <div class="controls">
 
-
-<div id="start">
-  <form method="post" id="form_serach_first" class="am-form">
-    <label for="email">始发地选择:</label>
-    <input type="text" name="departure" id="departure" value="">
-
-    <label for="password">终点站选择:</label>
-    <input type="text" name="arrival" id="arrival" value="">
-
-
-
-    <div class="am-cf">
-      <input type="button" id="serach" data-url="serach" name="" value="查 询" class=" btn btn-large btn-primary submitlvmsg color-default am-fl">
-      <input type="button" id="button_no" value="不需要查询" class=" btn btn-large btn-warning submitlvmsg  am-fl">
-
+        <%= f.text_field :wholesale,:class=>"span4"%>
+      </div>
     </div>
-  </form>
+    <div class="control-group">
+      <%= f.label :promotion, "促销价", :class => "control-label" %>
+      <div class="controls">
 
-  <hr>
-  <form id ="form_serach_two" method="post" class="am-form form_hide">
-    <p style="text-align: center">请发布您的小黑板</p>
-    始发地：<input type="text" name="departure"id="departures"  value="">
-    终点站：<input type="text" name="arrival" id="arrivals" value="">
-    单价：<input type="text" name="unit_price" id="unit_price" value="">
-    合计：<input type="text" name="total" id="total" value="">
-    本次运输单价：<input type="text" name="" value="">
-    本次运输合计：<input type="text" name="" value="">
-    <div style="padding: 0 20px;margin: 0 0 20px;">
-      <p>
-       如果您有特殊要求请在下面填写        </p>
-
-      <p>
-        <textarea id="content" style="display:block;width: 95%;" placeholder="请输入您的小黑版。" rows="4"
-                  name="content" class="content"  ></textarea>
-
-
-      <p style="text-align:center">
-        <button id="submitlvmsg" class="btn btn-large btn-primary submitlvmsg color-green">
-          提交          </button>
-      </p>
+        <%= f.text_field :promotion,:class=>"span4"%>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :bn, "商品编号", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :bn,:value=>"a0981001",:class=>"span4"%>
+      </div>
     </div>
 
-
-</form>
-  <form id ="form_serach_three" method="post" class="am-form form_hide">
-    <p style="text-align: center">请发布您的小黑板</p>
-    始发地：<input type="text" name="departure"id="departures"  value="">
-    终点站：<input type="text" name="arrival" id="arrivals" value="">
-    单价：<input type="text" name="unit_price" id="unit_price" value="">
-    合计：<input type="text" name="total" id="total" value="">
-    本次运输单价：<input type="text" name="" value="">
-    本次运输合计：<input type="text" name="" value="">
-    <div style="padding: 0 20px;margin: 0 0 20px;">
-      <p>
-        如果您有特殊要求请在下面填写        </p>
-
-      <p>
-        <textarea id="content" style="display:block;width: 95%;" placeholder="请输入您的小黑版。" rows="4"
-                  name="content" class="content"  ></textarea>
-
-
-      <p style="text-align:center">
-        <button id="submitlvmsg" class="btn btn-large btn-primary submitlvmsg ">
-          提交          </button>
-      </p>
+    <div class="control-group">
+      <%= f.label :price, "价格", :class => "control-label" %>
+      <div class="controls">
+        <%= f.number_field :price%>
+      </div>
     </div>
 
+    <div class="control-group">
+      <%= f.label :mktprice, "市场价", :class => "control-label" %>   <!-- 例如：原来安吉到安吉的价钱 -->
+      <div class="controls">
+        <%= f.number_field :mktprice%>
+      </div>
+    </div>
 
-  </form>
+    <div class="control-group">
+      <%= f.label :store, "最大运输量", :class => "control-label" %>
+      <div class="controls">
+        <%= f.number_field :store,:placeholder=>"请输入最大运输量"%>
+      </div>
+    </div>
 
-
-   </div>
-
-
-
-
-
-<%= javascript_include_tag "jquery", "jquery_ujs" %>
-<script type="application/javascript">
-    $(document).ready(function(){
-        $("#serach").bind("click",function(){
-            var departure=    $("#departure").val();
-            var arrival=    $("#arrival").val();
-             if (departure&&arrival)
-             {
-            var url = $(this).data('url');
-            $.ajax(url,{
-                type: "post",
-                data:{ departure:departure ,arrival:arrival},
-                success:function(res){
-
-                }
-            }) }
-            else
-             alert("请输入值，");
-        }) ;
-
-        $("#button_no").bind("click",function(){
-            $("#form_serach_first").addClass("form_hide")
-            $("#form_serach_three").removeClass("form_hide")
-        })
-    })
-</script>
-
+    <div class="control-group">
+      <%= f.label :marketable, "立即发布", :class => "control-label" %>
+      <div class="controls">
+        <label class="radio inline"><%= f.radio_button :marketable,'true'%>是</label>
+        <label class="radio inline"><%= f.radio_button :marketable,'false'%>否</label>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :desc, "详细信息描述", :class => "control-label" %>
+      <div class="controls">
+        <%= f.cktext_area :desc, :toolbar => 'Easy',:language=>'zh-cn',:height => 100,:width=>800 %>
+      </div>
+    </div>
+ <div class="control-group">
+      <%= f.label :intro, "商品详情", :class => "control-label" %>
+      <div class="controls">
+        <%= f.cktext_area :intro, :toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800  %>
+      </div>
+    </div>
+   <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>
+        <%= link_to '返回', admin_goods_path,:class=>"btn" %>
+      </div>
+    </div>
+    </fieldset>
+<% end %>

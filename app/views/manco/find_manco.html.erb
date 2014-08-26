@@ -1,0 +1,94 @@
+
+<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/1.0.0-beta1/css/amui.all.min.css"/>
+<style>
+
+    .header h1 {
+        font-size: 200%;
+        color: #333;
+        margin-top: 30px;
+    }
+    .header p {
+        font-size: 14px;
+    }
+    .am-fl{
+        margin-left: 30%;
+        width: 30%;
+    }
+    .form_hide{
+        display: none;
+    }
+    .form_show{
+        display: block;
+    }
+</style>
+
+
+<header id="am-topbar am-topbar-inverse">
+
+  <div class="am-panel am-panel-primary">
+    <div class="am-panel-hd">万家物流</div>
+
+  </div>
+
+</header>
+
+
+<div class="am-g">
+  <div class="col-lg-6 col-md-8 col-sm-centered">
+    <span></span>
+
+    <form method="post" id="form_first" class="am-form">
+      <label for="email">请选择始发地:</label>
+      <input type="text" name="departure" id="departure" value="">
+
+      <label for="password">请选择终点站:</label>
+      <input type="text" name="arrival" id="arrival" value="">
+      <label for="password">请选择货物重量:</label>
+      <input type="text" name="weight" id="weight" value="">
+      <div class="am-cf">
+        <input type="button" id="serach" data-url="/manco/find_manco_good" name="" value="下一步" class="am-btn am-btn-primary am-btn-sm am-fl">
+
+      </div>
+
+    </form>
+
+    <form method="post" action="/orders/new_manco" id="form_second" class="am-form form_hide">
+      <label for="email">始发地:</label>
+      <input type="text" name="manco_name" id="manco_name" value="">
+      <label for="password">货物重量:</label>
+      <input type="text" name="weight" id="manco_weight" value="">
+      <label for="password">运价:</label>
+      <input type="text" name="manco_price" id="manco_price" value="">
+      <div class="am-cf">
+        <input type="submit" id="submit"  data-url="" name="" value="下一步" class="am-btn am-btn-primary am-btn-sm am-fl">
+
+      </div>
+
+    </form>
+
+  </div>
+</div>
+<%= javascript_include_tag "jquery", "jquery_ujs" %>
+<script type="application/javascript">
+
+    $("#serach").bind("click",function(){
+        var departure=    $("#departure").val();
+        var arrival=    $("#arrival").val();
+        var weight=$("#weight").val();
+
+          var url = $(this).data('url');
+            $.ajax(url,{
+                type: "post",
+                data:{ departure:departure ,arrival:arrival,weight:weight},
+                success:function(res){
+
+                }
+            }) })
+
+
+
+
+
+</script>
+
+

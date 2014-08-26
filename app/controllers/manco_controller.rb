@@ -25,6 +25,7 @@ class MancoController < ApplicationController
 
   def black_index
 
+    @good=Ecstore::Good.find_by_cat_id(576)
   end
 
   def serach
@@ -34,6 +35,20 @@ class MancoController < ApplicationController
    end
 
   def follow
+
+  end
+  def new
+    @good  =  Ecstore::Good.new
+
+    @method = :post
+  end
+  def blackbord
+    @good  =  Ecstore::Good.new(params[:good])
+    if @good.save
+      redirect_to "/manco/black_index"
+    else
+      render :new
+    end
 
   end
 end

@@ -11,11 +11,12 @@ Modengke::Application.routes.draw do
     get  'main' ,:on=>:collection    ###万家介绍
     get  'history' ,:on=>:collection  ####万家历史
     #万家快递页面
-
+     get 'find_manco',:on=>:collection
     get "black_index"  ,:on=>:collection   ##小黑版首页
     get "express"  ,:on=>:collection
     post "serach"  ,:on=>:collection
     get "blackbord",:on=>:collection
+    post "blackbord" ,:on=>:collection
     get "follow",:on=>:collection    ###快递跟踪
     get 'user',:on=>:collection
   end
@@ -24,6 +25,7 @@ Modengke::Application.routes.draw do
   get 'wregister'=>"sessions#register_manco"
   get 'wlogout'=>"sessions#destroy_manco"
   post 'users/manco' =>"users#manco_user" ,:controller=>"users"
+
   post 'wlogin'=>"sessions#create_manco"
 
 
@@ -217,6 +219,8 @@ Modengke::Application.routes.draw do
     end
 
     resources :goods do
+
+
       get "tairyo_show",  :on=>:collection
       post "export", :on=>:collection
       post "import", :on=>:collection
@@ -375,8 +379,10 @@ Modengke::Application.routes.draw do
 
     get 'search' => "search#index", :as=> :search
     get 'mproducts' =>"goods#mobile", :as=>"goods" ,:controller=>"goods"
-
+     get 'mancoproduct' =>"goods#mancoproduct",  :as=>"goods" ,:controller=>"goods"
     get 'tproducts' =>"goods#tairyo_tuan", :as=>"goods" ,:controller=>"goods"
+    post'manco/serach_goods_manco'=>"goods#serach_goods_manco",:controller=>"goods"
+    post 'manco/find_manco_good'=>"goods#find_manco_good",:controller=>"goods"    #通过AJAX查询出来价钱
     resources :products, :as=>"goods", :controller=>"goods" do
       # get 'newin',:on=>:collection
       get 'newest',:on=>:collection
@@ -398,12 +404,14 @@ Modengke::Application.routes.draw do
     resources :vgoods, :controller=>"virtual_goods",:only=>[:index,:show]
     post 'cart/tairyo_add'=>"cart#tairyo_add",:as=>:add_to_cart   #团购商品添加购物车
     post 'cart/add'=>"cart#add",:as=>:add_to_cart
+    post 'cart/manco_add'=>"cart#manco_add" ,:as=>:add_to_cart
     resources :cart do
       post 'add',:on=>:collection
       get 'mobile', :on=>:collection
       get 'tairyo_cart',:on=>:collection
       post 'tairyo', :on=>:collection      #大渔订餐 不是团购
       get 'jinbalang',:on=>:collection
+      get 'manco_black_buy',:on=>:collection
     end
     resources :brands,:only=>[:index,:show]
     resources :users
@@ -435,6 +443,7 @@ Modengke::Application.routes.draw do
         get  'new_mobile'
         get  'new_tairyo'
         get 'new_manco'
+        post 'new_manco'
         get 'new_mobile_addr'
         get 'ordersnew_manco'
       end
