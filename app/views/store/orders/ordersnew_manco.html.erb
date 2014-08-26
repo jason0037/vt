@@ -6,9 +6,12 @@
 </header>
 <%=form_for :order,:url=>"#{orders_path}?platform=manco",:html=>{ :class=>"form-horizontal",:id=>"order_form" } do |f|%>
     <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
+
     <%=f.hidden_field :from_addr,:value=>"#{@addrss.name},#{@addrss.mobile},#{@addrss.addr}"%>
 
+
     <div data-cartforms="time" data-collapse="true">
+
       <div class="userdiv">
         <div class="checktit clearfix"><span class="pay_way"></span>寄货人信息</div>
         <div class="in_pay">
@@ -30,6 +33,7 @@
        <p >收货人联系电话：  <%=f.text_field :ship_mobile, :value=>@def_addr.mobile%> </p> <br/>
         <p >收货人姓名 ：  <%=f.text_field :ship_name, :value=>@def_addr.name%> </p>
           <br/>
+
       </div>
     </div>
     </div>
@@ -191,9 +195,3 @@
 <%end%>
 
 <%=javascript_include_tag "store/tairyo_order"%>
-<script type="application/javascript">
-  $(document).ready(function(){
-
-  })
-
-</script>

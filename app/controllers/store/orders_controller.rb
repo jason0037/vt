@@ -439,6 +439,7 @@ class Store::OrdersController < ApplicationController
 
 
 
+
   def ordersnew_manco
 
      @addrs =  @user.member_addrs
@@ -454,6 +455,7 @@ class Store::OrdersController < ApplicationController
       end
     end
     render :layout=>"manco_new"
+
 
   end
  def serach_order
