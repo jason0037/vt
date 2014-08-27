@@ -285,7 +285,7 @@ class Store::OrdersController < ApplicationController
     session[:manco_weight] = manco_weight
     @addrs =  @user.member_addrs
   if @addrs.size==nil
-    redirect_to '/orders/new_mobile_addr?return_url=/orders/new_mobile'
+    redirect_to '/orders/new_manco'
   else
     @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
 

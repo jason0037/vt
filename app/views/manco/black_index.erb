@@ -68,31 +68,19 @@
 <div class="am-g am-g-fixed blog-g-fixed">
   <div class="col-md-8">
     <article class="blog-main">
+      <%=render "black_index"%>
 
-      <h4 class="am-article-meta blog-meta">by <a id="black_user" href="#"><%=@good.bn%></a> 发布于 2014/06/17  </h4>
-      <div class="am-g blog-content">
-        <div class="col-lg-7">
-         <p>本次运输为<%=@good.name%>  </p>
-
-          <p><%=@good.name%>1公斤原价：<%=@good.mktprice%>   </p>
-          <p><%=@good.name%>优惠价：<%=@good.price%>   </p>
-          <p><%=@good.name%>目前可以运输重量为：<%=@good.store%>   </p>
-      </div>
-        </div>
     </article>
-    <a href="/mancoproduct?id=<%=@good.bn%>" class="am-btn am-btn-success am-btn-cart  express-cart" >
-      <i class="am-icon-shopping-cart"></i>
-      需要运输货物
-    </a>
 
-    <hr class="am-article-divider blog-hr">
+    <div >
 
+    </div>
     <ul class="am-pagination blog-pagination">
-      <li class="am-pagination-prev"><a href="">&laquo; 上一页</a></li>
-      <li class="am-pagination-next"><a href="">下一页 &raquo;</a></li>
-    </ul>
-  </div>
+      <%=will_paginate @good,:class =>'blog-pagination' ,:previous_label => '<<上一页', :next_label => '下一页>>',:container=>false,:params=>{:page=>params[:page]}%>
 
+    </ul>
+
+   </div>
   <div class="col-md-4 blog-sidebar">
     <div class="am-panel-group">
       <section class="am-panel am-panel-success">

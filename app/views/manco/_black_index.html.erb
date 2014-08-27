@@ -1,0 +1,15 @@
+
+<%@good.each do |go|%>
+    <h4 class="am-article-meta blog-meta">by <a id="black_user" href="#"><%=go.bn%></a> 发布于 2014/06/17  </h4>
+    <div class="am-g blog-content">
+      <div class="col-lg-7">
+        <p>本次运输为<%=go.name%>  </p>
+
+        <p><%=go.name%>1公斤原价：<%=go.mktprice%>   </p>
+
+        <a href="/mancoproduct?id=<%=go.bn%>" class="am-btn am-btn-success am-btn-cart  express-cart" >
+          <i class="am-icon-shopping-cart"></i>
+          需要运输货物
+        </a>
+      </div>
+    </div>  <%end%>

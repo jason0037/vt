@@ -25,7 +25,10 @@ class MancoController < ApplicationController
 
   def black_index
 
-    @good=Ecstore::Good.find_by_cat_id(576)
+    # @good=Ecstore::Good.find_all_by_cat_id(576)
+      @good=Ecstore::Good.paginate :page=>params[:page],
+                                   :per_page => 1,
+                                   :conditions => ["cat_id=576"]
   end
 
   def serach
@@ -42,13 +45,23 @@ class MancoController < ApplicationController
 
     @method = :post
   end
-  def blackbord
-    @good  =  Ecstore::Good.new(params[:good])
-    if @good.save
-      redirect_to "/manco/black_index"
-    else
-      render :new
-    end
+  def black_board
 
   end
+  def blackbord_add
+
+
+        @good  =  Ecstore::Good.new(params[:good])
+       if @good.save
+          redirect_to "/manco/blackbord"
+       else
+        render :new
+      end
+
+
+    end
+
+
+
+
 end

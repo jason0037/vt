@@ -16,7 +16,7 @@ Modengke::Application.routes.draw do
     get "express"  ,:on=>:collection
     post "serach"  ,:on=>:collection
     get "blackbord",:on=>:collection
-    post "blackbord" ,:on=>:collection
+    post "blackbord_add" ,:on=>:collection
     get "follow",:on=>:collection    ###快递跟踪
     get 'user',:on=>:collection
   end
@@ -58,7 +58,7 @@ Modengke::Application.routes.draw do
 
   get 'mycoupon'=>"coupon#mycoupon",  :controller=>"coupons"
   #    #特色
-  #订单s
+
 
 
 
