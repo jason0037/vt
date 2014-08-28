@@ -1,0 +1,7 @@
+$("#manco_name_three").val('<%=@manco_name_two %>');
+var total=<%=@manco_unit_price%>*<%=@weight%> ;
+
+$("#manco_weight").val('<%=@weight%>');
+$("#manco_price").val(total);
+$("#form_second").addClass("form_hide");
+$("#form_three") .removeClass("form_hide");

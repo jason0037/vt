@@ -14,12 +14,14 @@
             pmt_amount = pmt_total + coupon_total;
             $("#pmt_amount").text(-pmt_amount).attr("data-amount", pmt_amount);
             order_amount = parseFloat($("#order_amount").data("amount")) || 0;
+
             coupon_amount = parseFloat($("#coupon_amount").data("amount")) || 0;
             part_amount = 0.0;
             if ($("#advance").attr("checked") === "checked") {
                 part_amount = parseFloat($("#advance").data("amount"));
             }
             pay_amount = order_amount - coupon_amount - pmt_amount;
+
             $("#final_amount").text(pay_amount);
             bcom_discount = 1.0;
             if ($("#bcom_payment").attr("checked") === "checked") {
@@ -28,7 +30,9 @@
                 $("#bcom_discount").text(-bcom_discount_amount);
             }
             pay_amount = pay_amount * bcom_discount - part_amount;
+            alert("pay_amount"+pay_amount);
             return $("#pay_amount").text(pay_amount);
+
         };
         window.compute_payment2 = function() {
             var bcom_discount, order_total, part_pay, pmts_total, products_total;
@@ -45,7 +49,9 @@
             if ($("#bcom_payment").attr("checked") === "checked") {
                 bcom_discount = order_total - Math.round(order_total * 0.95);
             }
+
             return $("#final_pay").text(order_total - bcom_discount - part_pay);
+
         };
         compute_payment();
         $("#order_is_tax").bind("change", function() {

@@ -1,11 +1,20 @@
+<style type="text/css">
+.s_links,.footnav,.copyright{
+      display: none;
+  }
+
+</style>
+
 <header id="header" class="header clearfix">
 
   <div class="head_left fl"><a href="javascript:history.go(-1)"><span class="h_back"></span></a></div>
   <span class="headtit">万家物流小黑板</span>
   <div class="head_right fr"><a href="/manco" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
 </header>
-<div class="space10"></div>
-
+<div id="demo-view" data-backend-compiled=""><figure data-am-widget="figure" class="am am-figure am-figure-default am-no-layout am-figure-zoomable">
+  <img src="http://i.static.amazeui.org/assets/i/cpts/figure/WindMillLights_1366x768.jpg" alt="加州风力发电场的圣诞灯饰">
+  <figcaption class="am-figure-capition-btm"><h2><%=@good.name %></h2></figcaption></figure></div>
+<hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
 <div id="wapModalsbox">
   <div id="goods_detail" class="aposition">
 
@@ -16,51 +25,32 @@
           <%=f.hidden_field :type_id,:value=>@good.type_id%>
           <%=hidden_field_tag :platform,'manco'%>
 
-          <h1><%=@good.name %></h1>
-
-          <p class="new_pricediv clearfix">
-            <span class="g_d_price">¥<%=@good.default_product.price %></span>
-            <span class="prf05">(<%=format('%.1f', @good.price*10/@good.mktprice)%>折)</span>
-            <span class="fontstyle">¥<%=@good.mktprice %></span>
-          <span class="fr new_re_time bglight" data-saleproduct="true" data-saletime="83552"><span class="clockicon fl"></span>
-          <span class="J-time"><span>00</span><span>天</span><span>23</span><span>时</span><span>11</span><span>分</span><span>40</span><span>.</span><span>7</span><span>秒</span></span></span>
-          </p>
-          <p class="space5"></p>
-          <p class="clear"></p>
-          <div class="good_salesize clearfix">
-            <%if @good.specs.present?%>
-                <%@good.specs.order("spec_id asc").each do |spec|%>
-                    <p class="clearfix">
-                      <span class="tit fl"><%=spec.spec_name%> :</span>
-                    </p>
-                    <%=hidden_field_tag "product[specs][]"%>
-                    <ul class="good_sizechioce clearfix" data-mersale="true">
-                      <%@good.spec_values.where(:spec_id=>spec.spec_id).uniq.order("p_order asc").each do |spec_value|%>
-                          <li data-size="<%=spec_value.spec_value_id%>" class="choose" data-maxamount="2" data-minamount="1"><%=spec_value.spec_value%></li>
-                      <%end%>
-                    </ul>
-                <%end%>
-            <%end%>
-          </div>
-
-
-
-
       <%end%>
     </div>
   </div>
 </div>
-<a href="javascript:;" class="btn_more" data-getdetail="more" data-merchandise="normal" style="display: none;"><span class="moreimg"></span>查看商品详情</a>
-<div class="product_detail">
-  <div class="tab_content pro_detail_info"><ul><li><b class="bt_lt_par_t">物流信息：</b> <%=@good.name %></li>
 
-    <li><b class="bt_lt_par_t">快递    公司：</b> <%=@good.place_info%></li>
-    <li><b class="bt_lt_par_t">目前还剩 ：</b> <%= @good.store%></p></li>
-    <li><b class="bt_lt_par_t">信息 简 介：</b> <%=raw @good.desc%> </li></ul>
+<div class="">
+  <div class=""><ul><li><b class="">物流信息：</b> <%=@good.name %></li>
+    <br/>
+    <li><b class="">快递    公司：</b> <%=@good.place_info%></li>
+    <br/>
+    <li><b class="">目前还剩 ：</b> <%= @good.store%> 顿</li>
+    <br/>
+    <li><b class="">本次运输简介：</b> <%=raw @good.desc%> </li></ul>
     <br><p class="detail"><%=raw @good.intro.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.intro%></p></div>
-  <div class="loading hide" style="display: none;"><img src="/assets/mobile/loading-big.gif" alt="loading"><span>加载中...</span></div>
+   <span class="fr new_re_time bglight" data-saleproduct="true" data-saletime="83552">
+
+  <span class="clockicon fl"></span><span class="J-time"><span>00</span><span>天</span><span>23</span><span>时</span><span>11</span><span>分</span><span>40</span><span>.</span><span>7</span><span>秒</span></span>
+</span>
 </div>
-<div class="space15"></div>
+<div id="demo-view" data-backend-compiled="">
+  <article data-am-widget="paragraph" class="am-paragraph am-paragraph-default am-no-layout" data-am-paragraph="{ tableScrollable: true, imgLightbox: true }">
+    <img src="http://s.cn.bing.net/az/hprichbg/rb/QingdaoJiaozhou_ZH-CN10690497202_1366x768.jpg">
+    <p class="paragraph-default-p">南极洲又称<a href="http://zh.wikipedia.org/w/index.php?title=%E7%AC%AC%E4%B8%83%E5%A4%A7%E9%99%86&amp;redirect=no">第七大陆</a>，是地球上最后一个被发现、唯一没有土著人居住的大陆。</p><p>南极大陆为通常所说的南大洋（太平洋、印度洋和大西洋的南部水域）所包围，它与南美洲最近的距离为965公里，距新西兰2000公里、距澳大利亚2500公里、距南非3800公里、距中国北京的距离约有12000公里。南极大陆的总面积为1390万平方公里，相当于中国和印巴次大陆面积的总和，居世界各洲第五位。</p>
+    <img src="http://home.hebei.com.cn/xwzx/jypd1/tp3/200911/W020091105523721711433.jpg"><p>整个南极大陆被一个巨大的冰盖所覆盖，平均海拔为2350米。南极洲是由冈瓦纳大陆分离解体而成，是世界上最高的大陆。南极横断山脉将南极大陆分成东西两部分。这两部分在地理和地质上差别很大。</p>
+    <img src="http://a1.att.hudong.com/24/53/300000928390129593530805445.jpg"><p>东南极洲是一块很古老的大陆，据科学家推算,已有几亿年的历史。它的中心位于难接近点，从任何海边到难接近点的距离都很远。东南极洲平均海拔高度2500米，最大高度4800 米。在东南极洲有南极大陆最大的活火山，即位于罗斯岛上的埃里伯斯火山，海拔高度3795米，有四个喷火口</p>
+  </article></div>
 <script type="text/javascript">
     function saveProValue(){
         return {product_id: '26038564',brand_id: '198535'}
@@ -71,38 +61,16 @@
   <div class="inner clearfix">
     <a class="fl cart_time" href="">
       <em class="num_cart hide"></em>
-      <span class="carticon fl"></span>
+
       <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
     </a>
-    <%=link_to "加入购物车","javascript:void(0);",:class=>"add_to_cart fr btn_sure #{'login' unless signed_in?}" ,:id=>"add_to_cart" %>
+
+    <%=link_to "下一步","javascript:void(0);",:class=>"add_to_cart fr btn_sure #{'login' unless signed_in?}" ,:id=>"add_to_cart" %>
 
   </div>
 </div>
 
-<div class="modal hide" id="Photo-modal" data-moadl="photobox">
-  <div class="modal-body">
-    <a href="javascript:void(0)" class="closeBtn" data-dismiss="closeModal"><span>×</span></a>
-    <div class="modal-message">
-      <div id="Photo-slide">
-        <ul>
-          <li><img src="/assets/mobile/loading_goods.gif"
-                   data-original="<%=@good.big_pic%>"
-                   data-onerror="<%=@good.big_pic%>"
-                   alt="" class="Touch_mer_biglImg"></li>
 
-        </ul>
-        <nav>
-          <ul id="Photo-pagination">
-
-            <em id="sel1" class="on" mars_sead="product_big_pic">1</em>
-
-            <em id="sel2" mars_sead="product_big_pic">2</em>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
-</div>
 <%= javascript_include_tag "mobile/swipe.min" %>
 <div class="space20"></div>
 
@@ -397,6 +365,12 @@
 
 <%= javascript_include_tag "mobile/all" %>
 <%= javascript_include_tag "mobile/mars_wap" %>
-<div class="space30"></div>
-<div class="space30"></div><div class="space30"></div>
 <%= javascript_include_tag "mobile/page.item.index.min" %>
+<%= stylesheet_link_tag    "manco/amui.all.min.css" %>
+<%= stylesheet_link_tag    "manco/amui.all.css" %>
+
+<%= javascript_include_tag "manco/amui.widget.helper.js" %>
+
+<%= javascript_include_tag "manco/zepto.min.js" %>
+<%= javascript_include_tag "manco/amui.js" %>
+<%= javascript_include_tag "manco/amui.min.js" %>

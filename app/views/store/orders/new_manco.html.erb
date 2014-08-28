@@ -3,7 +3,7 @@
 <header id="header" class="header clearfix">
 
   <div class="head_left fl"><a href="/cart/mobile"><span class="h_back"></span></a></div>
-  <span class="headtit">选择送货地址</span>
+  <span class="headtit">寄货人地址</span>
   <div class="head_right fr"><a href="/m" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
 </header>
 <div class="connerdiv">
@@ -11,7 +11,7 @@
   <div style="display:none">
     <%if @addrs.size>0%>
         <%@addrs.each_with_index do |addr,index|%>
-            <%if @def_addr == addr%>
+            <%if @addrss == addr%>
                 <label class="radio active">
                   <%=radio_button_tag "member_addr", addr.addr_id,:checked=>true%>
                   <span class="addr-line"><%=addr.addr_line%></span>
@@ -34,7 +34,7 @@
 
   </div>
 
-  <%=render :partial=>"patch/member_addrs/form_manco_first",:locals=>{ :display=>( @addrs.size == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
+  <%=render :partial=>"patch/member_addrs/form_manco_first",:locals=>{ :display=>( @addrss== 0 ), :@addr=>Ecstore::MemberAddr.new }%>
 </div>
 <script>
     /*  $("#addr_form").removeClass("hide")

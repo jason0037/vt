@@ -1,5 +1,58 @@
-<%= form_for :good, :url=>"/manco/blackbord_add",:method=>"POST",:html => {:class => "form-horizontal"} do |f| %>
-    <fieldset>
+<style type="text/css">
+  body{
+      background-color: #f0f1ff;
+  }
+   .am-form input[type="text"], .am-form input[type="number"]{
+      margin-bottom: 20px;
+      width: 80%;
+      margin-left: 45px;
+      border: #15afef solid 1px;
+
+  }
+   .am-label{
+       background-color: #15afef;
+       width: 100%;
+       color: #ffffff;
+   }
+   .am-form textarea{
+       width: 80%;
+       height: 100px;
+       margin-left: 45px;
+       border: #15afef solid 1px;
+   }
+   .am-form input[type="radio"]{
+        padding: 20px;
+   }
+     .radio_inline{
+        float: left;
+         text-align: center;
+         margin-right: 30px;
+         margin-left: 100px;
+     }
+        .control-group_lable{
+            text-align: center;
+        }
+        .black_btn{
+            float: right;
+            margin-right: 20px;
+        }
+       input[type="submit"]{
+          margin-left: 30%;
+           width: 200px;
+       }
+</style>
+
+
+<div class="am-panel am-panel-primary">
+  <div class="am-panel-hd">发布信息</div>
+  <div class="am-panel-bd">
+   请注意：发布信息必须属实，并严格遵守万家协议
+  </div>
+</div>
+
+
+<%= form_for :good, :url=>"/manco/blackbord_add",:method=>"POST",:html => {:class => "am-form"} do |f| %>
+
 
     <div class="control-group">
 
@@ -15,82 +68,70 @@
       </div>
     </div>
 
-    <div class="control-group">
-      <%= f.label :name, "商品名称", :class => "control-label" %>
-      <div class="controls">
 
-        <%= f.text_field :name,:placeholder=>"例如 安吉-安吉",:class=>"span4"%>
-      </div>
-    </div>
 
-    </div>
+        <%= f.text_field :name,:placeholder=>"商品名称，例如 安吉-安吉",:class=>"span4"%>
 
-    <div class="control-group">
-      <%= f.label :wholesale, "批发价", :class => "control-label" %>
-      <div class="controls">
+        <%= f.label :wholesale, "批发价", :class => "control-label" %>
 
         <%= f.text_field :wholesale,:class=>"span4"%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :promotion, "促销价", :class => "control-label" %>
-      <div class="controls">
+
+        <%= f.label :promotion, "促销价", :class => "control-label" %>
 
         <%= f.text_field :promotion,:class=>"span4"%>
-      </div>
-    </div>
-    <div class="control-group">
+
+
       <%= f.label :bn, "商品编号", :class => "control-label" %>
-      <div class="controls">
+
         <%= f.text_field :bn,:value=>"a0981001",:class=>"span4"%>
-      </div>
-    </div>
 
-    <div class="control-group">
-      <%= f.label :price, "价格", :class => "control-label" %>
-      <div class="controls">
+
+      <%= f.label :price, "价格" %>
+
         <%= f.number_field :price%>
-      </div>
-    </div>
 
-    <div class="control-group">
-      <%= f.label :mktprice, "市场价", :class => "control-label" %>   <!-- 例如：原来安吉到安吉的价钱 -->
-      <div class="controls">
+
+
+
+      <%= f.label :mktprice, "市场价"  %>   <!-- 例如：原来安吉到安吉的价钱 -->
+
         <%= f.number_field :mktprice%>
-      </div>
-    </div>
 
     <div class="control-group">
-      <%= f.label :store, "最大运输量", :class => "control-label" %>
+      <%= f.label :store, "最大运输量" %>
       <div class="controls">
         <%= f.number_field :store,:placeholder=>"请输入最大运输量"%>
       </div>
     </div>
 
+
     <div class="control-group">
-      <%= f.label :marketable, "立即发布", :class => "control-label" %>
+      <%= f.label :desc, "详细信息描述" %>
       <div class="controls">
-        <label class="radio inline"><%= f.radio_button :marketable,'true'%>是</label>
-        <label class="radio inline"><%= f.radio_button :marketable,'false'%>否</label>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :desc, "详细信息描述", :class => "control-label" %>
-      <div class="controls">
-        <%= f.cktext_area :desc, :toolbar => 'Easy',:language=>'zh-cn',:height => 100,:width=>800 %>
+        <%= f.cktext_area :desc, :toolbar => 'Easy',:language=>'zh-cn' %>
       </div>
     </div>
  <div class="control-group">
       <%= f.label :intro, "商品详情", :class => "control-label" %>
       <div class="controls">
-        <%= f.cktext_area :intro, :toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800  %>
+        <%= f.cktext_area :intro, :toolbar => 'Easy',:language=>'zh-cn'  %>
       </div>
     </div>
+    <br/>
+    <div class="control-group_lable" >
+      <%= f.label :marketable, "选择是否让小黑板立即发布",:class=>"am-label  " %>
+      <div class="controls">
+        <label class="radio_inline"><%= f.radio_button :marketable,'true'%>是</label>
+        <label class="radio _inline"><%= f.radio_button :marketable,'false'%>否</label>
+      </div>
+    </div>
+    <br/>
    <div class="control-group">
       <div class="controls">
-        <%= f.submit '确定', :class => "btn btn-primary" %>
-        <%= link_to '返回', admin_goods_path,:class=>"btn" %>
+        <%= f.submit '确定', :class => "am-btn am-btn-primary" %>
+        <%= link_to '返回', admin_goods_path,:class=>"black_btn" %>
       </div>
     </div>
-    </fieldset>
+         <br/>
+
 <% end %>

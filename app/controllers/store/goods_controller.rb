@@ -7,14 +7,22 @@ class Store::GoodsController < ApplicationController
   skip_before_filter :find_path_seo, :find_cart!, :only=>[:newest]
   before_filter :find_tags, :only=>[:index,:newest]
 
-  def find_manco_good
+  def find_manco_good_first
 
      departure=params[:departure]
      arrival=params[:arrival]
-     @weight=params[:weight]
+
      good_e=departure+"-"+arrival
      @goodsname=Ecstore::Good.find_by_name(good_e)
 
+
+  end
+
+
+  def find_manco_good_second
+    @manco_name_two= params[:manco_name_two]     ##商品名称
+    @manco_unit_price =params[:manco_unit_price]
+    @weight=params[:weight]
 
   end
      ###万家小黑板

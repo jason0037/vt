@@ -77,7 +77,7 @@
       <div class="checkcon clearfix" id="order-m-list">
 
         <div class="sumtotal clearfix">
-          <p>商品金额：<span class="fr money sum" id="order_amount" data-amount = "<%=@cart_total!=nil ? @cart_total: session[:manco_price] %>">¥:  <%=@cart_total!=nil ? @cart_total: session[:manco_price]%> </span></p>
+          <p>商品金额：<span class="fr money sum" id="order_amount" data-amount = "<%=@cart_total!=0 ? @cart_total: session[:manco_price]%>">¥:<%=@cart_total!=0 ? @cart_total: session[:manco_price]%> </span></p>
 
           <p>待支付总额：<span class="fr">¥ : <%=@cart_total!=0 ? @cart_total :session[:manco_price]    %></span></p>
         </div>

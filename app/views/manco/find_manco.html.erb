@@ -1,7 +1,15 @@
 
 <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/1.0.0-beta1/css/amui.all.min.css"/>
 <style>
+     body{
+         background-color: #fcfffa;
+     }
 
+    .head-info {
+        margin: 1rem auto;
+        width: 300px;
+        text-align: center;
+      }
     .header h1 {
         font-size: 200%;
         color: #333;
@@ -20,6 +28,14 @@
     .form_show{
         display: block;
     }
+ .am-form input[type="text"]{
+   margin-bottom: 20px;
+     width: 80%;
+     margin-left: 45px;
+     border: #15afef solid 1px;
+
+ }
+
 </style>
 
 
@@ -31,59 +47,90 @@
   </div>
 
 </header>
+<div class="head-info" >
+  <img src="/assets/manco/logo.jpg" alt="..." class="am-img-circle">
+  <p>400-821-6789</p>
+</div>
 
-
-<div class="am-g">
-  <div class="col-lg-6 col-md-8 col-sm-centered">
-    <span></span>
-
-    <form method="post" id="form_first" class="am-form">
-      <label for="email">请选择始发地:</label>
-      <input type="text" name="departure" id="departure" value="">
-
-      <label for="password">请选择终点站:</label>
-      <input type="text" name="arrival" id="arrival" value="">
-      <label for="password">请选择货物重量:</label>
-      <input type="text" name="weight" id="weight" value="">
-      <div class="am-cf">
-        <input type="button" id="serach" data-url="/manco/find_manco_good" name="" value="下一步" class="am-btn am-btn-primary am-btn-sm am-fl">
+    <form method="post" id="form_first" class="am-form am-form-group ">
+      <span class="am-badge am-badge-primary" >第1步:</span>
+      <input type="text" name="departure" class="am-form-field" placeholder="请输入始发地:" id="departure" value="">
+    <input type="text" name="arrival"placeholder="请输入终点站" class="am-form-field" id="arrival" value="">
+     <div class="am-cf">
+        <input type="button" id="serach" data-url="/manco/find_manco_good_first" name="" value="下一步" class="am-btn am-btn-primary am-btn-sm am-fl">
 
       </div>
 
     </form>
 
-    <form method="post" action="/orders/new_manco" id="form_second" class="am-form form_hide">
-      <label for="email">始发地:</label>
-      <input type="text" name="manco_name" id="manco_name" value="">
-      <label for="password">货物重量:</label>
-      <input type="text" name="weight" id="manco_weight" value="">
-      <label for="password">运价:</label>
-      <input type="text" name="manco_price" id="manco_price" value="">
-      <div class="am-cf">
-        <input type="submit" id="submit"  data-url="" name="" value="下一步" class="am-btn am-btn-primary am-btn-sm am-fl">
+<form method="post"  id="form_second" class="am-form am-form-group form_hide">
+  <span class="am-badge am-badge-primary" >第2步: 填写重量 </span>
+  <br/>
+  <label for="text">始发地:</label>
+  <input type="text" name="manco_name_two" disabled id="manco_name_two" value="">
 
-      </div>
-
-    </form>
+  <input type="text" name="weight" id="weight" placeholder="请填写需要运输的货物的重量" value="">
+  <label for="text">单价:</label>
+  <input type="text" disabled name="manco_unit_price" id="manco_unit_price" value="">
+  <label for="text">1公斤总价价:</label>
+  <input type="text" disabled name="manco_total_price" id="manco_total_price" value="">
+    <div class="am-cf">
+    <input type="button" id="submit"  data-url="/manco/find_manco_good_second" name="" value="下一步" class="am-btn am-btn-primary am-btn-sm am-fl">
 
   </div>
+
+</form>
+
+    <form method="post" action="/orders/new_manco" id="form_three" class="am-form am-form-group form_hide">
+      <input name="authenticity_token" type="hidden" value="ywJRiMIraExaDneGVvUlcU2Rax1RqJKZfQn88j36D+s=" />
+      <p class="am-badge am-badge-primary" >第3步: 确认信息</p>
+      <br/>
+      <label for="email">始发地:</label>
+      <input name="manco_name_three" type="text"  id="manco_name_three" value="" />
+
+      <label for="password">货物重量: </label>
+      <input  name="manco_weight" type="text"   id="manco_weight" value=""/>
+      <label for="password">运价:</label>
+      <input type="text" name="manco_price" id="manco_price" value=""/>
+      <div class="am-cf">
+        <input type="submit"     value="下一步" class="am-btn am-btn-primary am-btn-sm am-fl">
+          </div>
+   </form>
+
 </div>
+
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
 <script type="application/javascript">
 
     $("#serach").bind("click",function(){
         var departure=    $("#departure").val();
         var arrival=    $("#arrival").val();
-        var weight=$("#weight").val();
+
 
           var url = $(this).data('url');
             $.ajax(url,{
                 type: "post",
-                data:{ departure:departure ,arrival:arrival,weight:weight},
+                data:{ departure:departure ,arrival:arrival},
+                success:function(res){
+
+                }
+            })
+
+        $("#submit").bind("click",function(){
+            var manco_name_two=    $("#manco_name_two").val();
+             var manco_unit_price =$("#manco_unit_price").val();
+            var weight=$("#weight").val();
+
+            var url = $(this).data('url');
+            $.ajax(url,{
+                type: "post",
+                data:{ manco_name_two:manco_name_two,manco_unit_price:manco_unit_price ,weight:weight},
                 success:function(res){
 
                 }
             }) })
+
+    })
 
 
 

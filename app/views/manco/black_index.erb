@@ -5,11 +5,8 @@
             max-width: 1200px;
         }
     }
-    .am-btn-cart{
-        float: right;
-        line-height: 30px;
+    ul a
 
-    }
     @media only screen and (min-width: 641px) {
         .blog-sidebar {
             font-size: 1.4rem;
@@ -42,6 +39,9 @@
         padding: 10px 0;
         text-align: center;
     }
+        .inner{
+           float: right;
+        }
 </style>
 </head>
 <body>
@@ -50,7 +50,7 @@
     万家小黑版
   </h1>
 
-  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-primary am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
 
   <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
 
@@ -59,12 +59,42 @@
       <div class="am-form-group">
         <input type="text" class="am-form-field am-input-sm" placeholder="搜索小黑板">
       </div>
-      <button type="submit" class="am-btn am-btn-default am-btn-sm">搜索</button>
+      <button type="submit" class="am-btn am-btn-primary am-btn-sm">搜索</button>
     </form>
 
   </div>
 </header>
+<div class="col-md-4 blog-sidebar">
+  <div class="am-panel-group">
 
+    <section class="am-panel am-panel-primary">
+      <div class="am-panel-hd">小黑板目录</div>
+      <ul class="am-list blog-list">
+        <li >
+          <a href="######" class="am-list-item-hd">上海到南京</a>
+          <span class="am-list-date">2013-03-18</span>
+        </li>
+        <li >
+          <a href="######" class="am-list-item-hd">北京到西藏</a>
+          <span class="am-list-date">2013-05-18</span>
+        </li>
+        <li >
+          <a href="######" class="am-list-item-hd">武汉到南京</a>
+          <span class="am-list-date">2013-09-18</span>
+        </li>
+        <li >
+          <a href="######" class="am-list-item-hd">上海到杭州</a>
+          <span class="am-list-date">2013-09-18</span>
+        </li>
+
+      </ul>
+    </section>
+
+
+  </div>
+</div>
+<br/>
+<br/>
 <div class="am-g am-g-fixed blog-g-fixed">
   <div class="col-md-8">
     <article class="blog-main">
@@ -81,70 +111,16 @@
     </ul>
 
    </div>
-  <div class="col-md-4 blog-sidebar">
-    <div class="am-panel-group">
-      <section class="am-panel am-panel-success">
-        <div class="am-panel-hd">我的小黑板</div>
-        <div class="am-panel-bd">
-          <p>点击发布属于您的小黑板</p>
-          <a class="am-btn am-btn-success am-btn-primary" href="/manco/blackbord">发布小黑板 →</a>
-        </div>
-      </section>
-      <section class="am-panel am-panel-success">
-        <div class="am-panel-hd">小黑板目录</div>
-        <ul class="am-list blog-list">
-          <li >
-            <a href="######" class="am-list-item-hd">上海到南京</a>
-            <span class="am-list-date">2013-03-18</span>
-          </li>
-          <li >
-            <a href="######" class="am-list-item-hd">北京到西藏</a>
-            <span class="am-list-date">2013-05-18</span>
-          </li>
-          <li >
-            <a href="######" class="am-list-item-hd">武汉到南京</a>
-            <span class="am-list-date">2013-09-18</span>
-          </li>
-          <li >
-            <a href="######" class="am-list-item-hd">上海到杭州</a>
-            <span class="am-list-date">2013-09-18</span>
-          </li>
 
-
-
-
-        </ul>
-      </section>
-
-      <section class="am-panel am-panel-success">
-        <div class="am-panel-hd">快递成员</div>
-        <div class="am-panel-bd">
-          <ul class="sm-block-grid-4 blog-team">
-            <li><img class="am-thumbnail" src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt=""/></li>
-            <li><img class="am-thumbnail" src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt=""/></li>
-            <li><img class="am-thumbnail" src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt=""/></li>
-            <li><img class="am-thumbnail" src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt=""/></li>
-            <li><img class="am-thumbnail" src="http://img4.duitang.com/uploads/blog/201406/15/20140615230159_kjTmC.thumb.224_0.jpeg" alt=""/></li>
-            <li><img class="am-thumbnail" src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt=""/></li>
-            <li><img class="am-thumbnail" src="http://img4.duitang.com/uploads/blog/201406/15/20140615230220_F5LiM.thumb.224_0.jpeg" alt=""/></li>
-            <li><img class="am-thumbnail" src="http://img4.duitang.com/uploads/blog/201406/15/20140615230159_kjTmC.thumb.224_0.jpeg" alt=""/></li>
-          </ul>
-        </div>
-      </section>
-    </div>
-  </div>
 
 </div>
 
-  <script type="application/javascript">
-    $(document).ready(function(){
-        $(".express-cart").bind("click",function(){
-            var b= $("#black_user").html()   ;
-              window.location.href="/order/black_manco?username="+b;
-        })
+<div class="bottomdiv clearfix">
+  <div class="inner clearfix">
 
 
-    })
+    <a class="am-btn  am-btn-primary" href="/manco/blackbord">发布小黑板 →</a>
 
-
-  </script>
+  </div>
+</div>
+     <br/>

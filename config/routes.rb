@@ -382,7 +382,8 @@ Modengke::Application.routes.draw do
      get 'mancoproduct' =>"goods#mancoproduct",  :as=>"goods" ,:controller=>"goods"
     get 'tproducts' =>"goods#tairyo_tuan", :as=>"goods" ,:controller=>"goods"
     post'manco/serach_goods_manco'=>"goods#serach_goods_manco",:controller=>"goods"
-    post 'manco/find_manco_good'=>"goods#find_manco_good",:controller=>"goods"    #通过AJAX查询出来价钱
+    post 'manco/find_manco_good_first'=>"goods#find_manco_good_first",:controller=>"goods"    #通过AJAX查询出来价钱
+    post 'manco/find_manco_good_second'=>"goods#find_manco_good_second",:controller=>"goods"    #通过AJAX查询出来价钱
     resources :products, :as=>"goods", :controller=>"goods" do
       # get 'newin',:on=>:collection
       get 'newest',:on=>:collection

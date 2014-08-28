@@ -49,9 +49,7 @@ class MancoController < ApplicationController
 
   end
   def blackbord_add
-
-
-        @good  =  Ecstore::Good.new(params[:good])
+    @good  =  Ecstore::Good.new(params[:good])
        if @good.save
           redirect_to "/manco/blackbord"
        else

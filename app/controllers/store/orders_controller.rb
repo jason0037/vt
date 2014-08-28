@@ -101,17 +101,16 @@ class Store::OrdersController < ApplicationController
     if params["platform"]=="mobile"
       render :layout=>"mobile_new"
     else
-
-     if params["platform"]=="manco"
-        render :layout => "manco_new"
+      params["platform"]=="manco"
+        render :layout =>"manco_new"
 
     end
-  end
+
 	end
 
 	def create
 		addr = Ecstore::MemberAddr.find_by_addr_id(params[:member_addr])
-
+     platform=params["platform"];
 		# ["name","area","addr","zip","tel","mobile"].each do |key,val|      #做大渔页面 需要修改
 		# 	params[:order].merge!("ship_#{key}"=>addr.attributes[key])
 		# end
@@ -232,7 +231,7 @@ class Store::OrdersController < ApplicationController
 				order_log.log_text = "订单创建成功！"
 			end.save
 
-			redirect_to "#{order_path(@order)}?platform=mobile"
+			redirect_to "#{order_path(@order)}?platform=?#{platform}"
 			
 		else
 			@addrs =  @user.member_addrs
@@ -279,22 +278,19 @@ class Store::OrdersController < ApplicationController
   end
 
   def new_manco
-    manco_weight =params[:weight]
+    manco_weight =params[:manco_weight]
     manco_price=params[:manco_price]
     session[:manco_price] = manco_price
     session[:manco_weight] = manco_weight
     @addrs =  @user.member_addrs
-  if @addrs.size==nil
-    redirect_to '/orders/new_manco'
-  else
     @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
-
+    @addrss = @addrs.where(:addr_type=>1).last
       if @pmtable
          @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
          @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
          @coupons = @user.usable_coupons
          end
-      end
+
       render :layout=>"manco_new"
 
 

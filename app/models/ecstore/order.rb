@@ -205,7 +205,7 @@ class Ecstore::Order < Ecstore::Base
        end
 
        def final_pay
-          products_total - pmts_total - part_pay.to_i - bcom_discount
+        products_total - pmts_total - part_pay.to_i - bcom_discount
        end
 
        def bcom_discount

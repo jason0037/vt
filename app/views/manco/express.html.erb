@@ -20,6 +20,13 @@
           .form_show{
               display: block;
           }
+      .am-form input[type="text"]{
+          margin-bottom: 20px;
+          width: 80%;
+          margin-left: 45px;
+          border: #15afef solid 1px;
+
+      }
   </style>
 
 
@@ -37,16 +44,15 @@
   <div class="col-lg-6 col-md-8 col-sm-centered">
        <span>注意：查询完后可以根据查询结果下单哦～</span>
 
-    <form method="post" class="am-form">
-      <label for="email">始发地选择:</label>
-      <input type="text" name="departure" id="departure" value="">
-      <br>
-      <label for="password">终点站选择:</label>
-      <input type="text" name="arrival" id="arrival" value="">
+    <form method="post" id="form_first" class="am-form">
+      <span class="am-badge am-badge-primary" >第1步:</span>
 
-      <br>
+      <input type="text"  placeholder="始发地选择" name="departure" id="departure" value="">
 
-      <br />
+
+      <input type="text" placeholder="终点站选择:" name="arrival" id="arrival" value="">
+
+
       <div class="am-cf">
         <input type="button" data-url="/manco/serach" name="" value="查 询" class="am-btn am-btn-primary am-btn-sm am-fl">
 
@@ -55,7 +61,8 @@
 
     <hr>
 
-    <form id ="show_form" method="post" class="am-form form_hide">
+    <form  method="post" id="form_second" class="am-form form_hide">
+      <span class="am-badge am-badge-primary" >第2步:</span>
 
       始发地：<input type="text" name="departure"id="departures" disabled value="">
       终点站：<input type="text" name="arrival" id="arrivals" disabled value="">

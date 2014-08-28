@@ -1,59 +1,67 @@
 <style>
-
-    input.textcenter {
+body{
+    background: #fcfffa;
+}
+.s_links,.footnav,.copyright{
+       display: none;
+   }
+  .cartdiv{
+      line-height: 40px;
+  }
+input.textcenter {
         text-align: center;
         position: relative;
         margin: 0 auto;
         width: 40px;
         border: solid 1px #ccc;
     }
+     .delete{
+         float: right;
+     }
 </style>
-<div class="space10"></div>
+<header id="header" class="header clearfix">
 
-<h2 class="order_sendby clearfix">
-  <span style="display:none">	供应商发货,</span>
-</h2>
+  <div class="head_left fl"><a href="javascript:history.go(-1)"><span class="h_back"></span></a></div>
+  <span class="headtit">万家购物车</span>
+  <div class="head_right fr"><a href="/manco" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
+</header>
+<br/>
 <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
     <div class="cartdiv" id="line_<%=line_item.obj_ident%>">
       <div class="cartlist clearfix">
 
-        <div class="space10"></div>
-        <div class="cartlistinner clearfix">
 
-          <div class="cart_orderlist_info"> <a href="\mancoproducts?id=<%=line_item.good.bn%>">
-            <p class="cart_g_name">物流信息：<%=line_item.product.name%></p>
-            <br/>
-           <p class="fontgrey"> 还剩：<%=line_item.good.store%>顿</p>
-            <br/>
-            <p class="fontgrey"><%=line_item.good.spec_info%></p>
+        <div class=" clearfix">
 
-            <p class="space5"></p>
-          </a>
+          <div class="">
+            <em>请输入你的货物重量 </em>
+              <em>
 
-
-
-            <div class="space5"></div>
-
+           <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity  J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
+            </em>
+            <em>kg </em>
+          <div class="goods_Cnum clearfix" id="goods_Cnum">
+              <div class="good_data_num J_pro_num_btn_cart" data-product="68671252" style="border:none;height:33px;">
+            </div>
+            </div>
           </div>
-          <a class="cart_orderlist_p" href="\mancoproducts?id=<%=line_item.good.bn%>" target="_blank"  style="display:block">
-            <span class="c_price">¥<%= format('%.2f',line_item.good.price)%></span>
-            <span class="fontstyle">¥<%= format('%.2f',line_item.good.mktprice)%></span>
-          </a>
+
+            小黑板价:<span class="c_price">¥<%= format('%.2f',line_item.good.price)%></span>
+          万家原价 : <span class="fontstyle">¥<%= format('%.2f',line_item.good.mktprice)%></span>  <br/>
+          货物还剩 : <span id="manco_store"><%= format('%.2f',line_item.good.store)%></span>
 		<span class="delete">
 
            <a href="<%="#{cart_path(line_item.obj_ident)}?platform=manco"%>" class="delete" data-method="delete" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
-             <img src="/assets/mobile/scan_layer-33.png" width="22" height="22">
+             不需要？  <img src="/assets/mobile/scan_layer-33.png" width="22" height="22">
            </a>
 		</span>
         </div>
       </div>
       <div class="orderaction clearfix">
 
-        <div class="fl"></div>
+        <p class="fr">总金额:&nbsp; &nbsp;<span class="c_price line-total"> ¥<%=(line_item.product.price*line_item.quantity)%> </span></p>
 
 
-
-        <div class="clear"></div>
 
       </div>
     </div>
@@ -61,6 +69,7 @@
 <div class="bottomdiv clearfix">
   <div class="inner clearfix">
     <div class="fl">
+
       <p class="cart_total">总金额：<span class="c_t_price">¥<%= format('%.2f',@cart_total)%> </span></p>
     </div>
     <a href="/orders/new_manco" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
@@ -70,3 +79,36 @@
     </a>
   </div>
 </div>
+<%= javascript_include_tag "jquery", "jquery_ujs" %>
+<script>
+
+    $(document).ready(function(){
+
+        $(" .quantity").on("change",function(){
+            var quantity = parseInt($(this).val());
+             var store=parseInt($("#manco_store").html());
+
+              if(quantity>store) alert("已经达到最大运货量"),
+                      $(".quantity").val(store) ;
+
+            event.preventDefault() ;
+               var newquantity =$(this).val();
+            var url = $(this).data('url');
+            $.ajax(url,{
+                type: "PUT",
+                data:{ quantity:newquantity },
+                success:function(res){
+                }
+            });
+        });
+
+    });
+
+        window.onload=function(){
+            var quantity = parseInt($(".quantity").val());
+            var store=parseInt($("#manco_store").html());
+            $(".quantity").val(store) ;
+
+
+        }
+</script>

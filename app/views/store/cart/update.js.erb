@@ -3,4 +3,4 @@ $(".c_t_price").html('<%=raw "￥#{ format('%.2f',@cart_total)}"%>');
 $("#line_<%=params[:id]%> .line-total").html('<%=raw "￥#{ format('%.2f',@line_item.line_total)}"%>');
 $("#line_<%=params[:id]%> .line-point").text('<%= format('%.2f',@line_item.line_total)%>');
 $("#cart_link .cart-number").text('(<%=@cart_total_quantity%>)');
-$("#menu_cart .number").text('(<%=@cart_total_quantity%>)');
+$("#menu_cart .number").html('(<%=@cart_total_quantity%>)');
