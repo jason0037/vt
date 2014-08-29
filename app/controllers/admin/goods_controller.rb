@@ -306,6 +306,8 @@ module Admin
             @good =  Ecstore::Good.find(params[:id])
             @products = @good.products
             @spec_items = Ecstore::SpecItem.all
+            @action_url = admin_good_path(@good)
+            @method = :put
       end
 
       def toggle_future

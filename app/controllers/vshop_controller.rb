@@ -148,5 +148,10 @@ class VshopController < ApplicationController
       end
   end
 
+  #get /vhsop/id 显示微店铺首页
+  def show
+
+  end
+
 
 end
