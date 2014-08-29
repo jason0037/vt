@@ -150,9 +150,10 @@ class VshopController < ApplicationController
 
   #get /vhsop/id 显示微店铺首页
   def show
-    @supplier=params[:id]
-    @homepage = Ecstore::Home.where(:supplier_id=>@supplier).last
-    render :layout=>"#{@homepage.supplier.url}"
+    @supplier_id=params[:id]
+    @homepage = Ecstore::Home.where(:supplier_id=>@supplier_id).last
+    @supplier = Ecstore::Supplier.find(@supplier_id)
+    render :layout=>"#{@supplier.url}"
   end
 
   def category
