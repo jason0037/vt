@@ -152,9 +152,13 @@ class VshopController < ApplicationController
   def show
     @supplier=params[:id]
     @homepage = Ecstore::Home.where(:supplier_id=>@supplier).last
-
     render :layout=>"#{@homepage.supplier.url}"
   end
 
+  def category
+    @supplier=params[:id]
+    @cat = params[:cat]
+    @goods =  Ecstore::Good.where(:spplier_id=>@supplier,:cat=>@cat)
+  end
 
 end
