@@ -156,9 +156,11 @@ class VshopController < ApplicationController
   end
 
   def category
-    @supplier=params[:id]
+    @supplier_id=params[:id]
     @cat = params[:cat]
-    @goods =  Ecstore::Good.where(:spplier_id=>@supplier,:cat=>@cat)
+    @goods =  Ecstore::Good.where(:supplier_id=>@supplier_id,:cat_id=>@cat)
+    @supplier = Ecstore::Supplier.find(@supplier_id)
+    render :layout=>"#{@supplier.url}"
   end
 
 end
