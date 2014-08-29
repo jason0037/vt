@@ -16,7 +16,7 @@
 </head>
 <body>
 <header id="header" class="header clearfix">
-  <div class="head_logo fl"><a href="/m" class="logo" mars_sead="nav_home_btn"><img src="/images/a0<%=@supplier.id%>/logo.png"></a></div>
+  <div class="head_logo fl"><a href="/m" class="logo" mars_sead="nav_home_btn"><img src="/images/a0<%=@supplier.id%>/logo.png"><%=@supplier.name%></a></div>
   <%if @user%>
       <div class="head_right fr">
         <a href="/cart/mobile" mars_sead="home_head_cart_btn" onclick="setBackAct(&#39;topHeaderCart&#39;)">
