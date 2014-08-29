@@ -16,7 +16,7 @@
 </head>
 <body>
 <header id="header" class="header clearfix">
-  <div class="head_logo fl"><a href="/m" class="logo" mars_sead="nav_home_btn"><img src="/images/a0<%=@supplier.id%>/logo.png"></a><%=@supplier.name%></div>
+  <div class="head_logo fl"><a href="/vshop/<%=@supplier.id%>"  mars_sead="nav_home_btn"><img src="/images/a0<%=@supplier.id%>/logo.png"> &nbsp;&nbsp;<%=@supplier.name%></a></div>
   <%if @user%>
       <div class="head_right fr">
         <a href="/cart/mobile" mars_sead="home_head_cart_btn" onclick="setBackAct(&#39;topHeaderCart&#39;)">
@@ -33,10 +33,10 @@
 </header>
 <div id="nav" class="clearfix">
   <ul class="clearfix">
-    <li class="num05"><a href="/vshop/<%=@supplier.id%>" class="nav_current"><span>首页</span></a></li>
-    <li class="num05"><a href="/vshop/<%=@supplier.id%>/category?cate=516"><span>牙膏</span></a></li>
-    <li class="num05"><a href="/vshop/<%=@supplier.id%>/category?cat=515"><span>牙刷</span></a></li>
     <li class="num05"><a href="/vshop/<%=@supplier.id%>/category?cat=572"><span>手工皂</span></a></li>
+    <li class="num05"><a href="/vshop/<%=@supplier.id%>/category?cat=573"><span>餐具</span></a></li>
+    <li class="num05"><a href="/vshop/<%=@supplier.id%>/category?cat=516"><span>牙膏</span></a></li>
+    <li class="num05"><a href="/vshop/<%=@supplier.id%>/category?cat=515"><span>牙刷</span></a></li>
   </ul>
 </div>
 
