@@ -9,7 +9,7 @@
   <thead>
   <tr>
     <th>创建时间</th>
-    <th>备注</th>
+    <th>店铺名</th>
     <th></th>
   </tr>
   </thead>
@@ -17,7 +17,7 @@
     <% @homes.each do |home| %>
       <tr>
         <td><%= home.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-        <td><%= home.note%></td>
+        <td><%= home.supplier.name if home.supplier%></td>
         <td>
           <%= link_to '查看', root_path,:target=>"_blank" %>
           <%= link_to '编辑', edit_admin_home_path(home) %>

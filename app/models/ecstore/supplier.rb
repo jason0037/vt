@@ -7,5 +7,5 @@ class Ecstore::Supplier < Ecstore::Base
   has_many :goods, :foreign_key=>"supplier_id"
   belongs_to :user, :foreign_key=>"member_id"
   has_many :orderdining ,:foreign_key=>"supplier_id"
-  has_many :homes ,:foregin_key=>"supplier_id"
+  has_many :homes ,:foreign_key=>"supplier_id"
   end

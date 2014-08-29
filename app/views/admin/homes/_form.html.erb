@@ -1,15 +1,14 @@
 <%=form_for :home,:url=>@action_url,:method=>@method,:html=>{:class=>"form-horizontal"} do |f|%>
-
+    供应商:
+    <%=f.select :supplier_id, Ecstore::Supplier.all.collect {|supplier| [supplier.name, supplier.id] },{:include_blank=>"请选择"},{:class=>"span3"} %>
+    <br/>
     <fieldset id="bags">
-
       <legend>其他</legend>
       <div class="control-group">
         <%= f.cktext_area :body, :toolbar => 'Easy',:language=>'zh-cn',:height => 300 %>
       </div>
     </fieldset>
-    供应商:<%=text_field_tag :supplier_id %>
-    <%=f.select :supplier_id, Ecstore::Supplier.all.collect {|supplier| [supplier.name, supplier.id] },{:include_blank=>"请选择"},{:class=>"span3"} %>
-    <br/>
+
     说明：<%=text_field_tag :note %><br/>
     <%=f.submit "提 交",:class=>"btn btn-large btn-primary"%>
 

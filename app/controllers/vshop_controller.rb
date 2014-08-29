@@ -150,7 +150,8 @@ class VshopController < ApplicationController
 
   #get /vhsop/id 显示微店铺首页
   def show
-
+    @supplier=params[:id]
+      @homepage = Ecstore::Home.where(:supplier_id=>@supplier).last
   end
 
 
