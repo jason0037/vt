@@ -64,7 +64,7 @@ Modengke::Application.routes.draw do
 
   mount WeixinRailsMiddleware::Engine, at: "/"
 
-  resources :public_account
+  resources :public_accounts
 
   root :to=>"home#index",:constraints=>{ :subdomain=>/^(www)?$/ }
   get 'blank'=>"home#blank"
