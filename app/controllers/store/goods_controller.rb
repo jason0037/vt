@@ -18,15 +18,20 @@ class Store::GoodsController < ApplicationController
 
   end
 
-
-  def find_manco_good_second
-    @manco_name_two= params[:manco_name_two]     ##商品名称
+  def manco_express
+    goods_id= params[:goods_id]     ##商品名称
     @manco_unit_price =params[:manco_unit_price]
-    @weight=params[:weight]
+    manco_weight=params[:manco_weight]
+
+    @good=Ecstore::Good.find_by_goods_id(goods_id)
 
   end
+
+
+
      ###万家小黑板
   def mancoproduct
+
     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
 
     return render "not_find_good",:layout=>"tairyo_new" unless @good
@@ -71,9 +76,12 @@ class Store::GoodsController < ApplicationController
         @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
       end
 
-      render :layout => "manco_new"
-    end
 
+
+
+
+      end
+    render :layout => "manco_new"
 
 
   end

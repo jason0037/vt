@@ -5,9 +5,9 @@
   <div class="head_right fr" style="display:none"><a href="#"><span class="h_search"></span></a></div>
 </header>
 <%=form_for :order,:url=>"#{orders_path}?platform=manco",:html=>{ :class=>"form-horizontal",:id=>"order_form" } do |f|%>
-    <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
+    <%=hidden_field_tag "member_addr",@departure_addr&&@departure_addr.addr_id%>
 
-    <%=f.hidden_field :from_addr,:value=>"#{@addrss.name},#{@addrss.mobile},#{@addrss.addr}"%>
+    <%=f.hidden_field :from_addr,:value=>"#{@departure_addr.name},#{@departure_addr.mobile},#{@departure_addr.addr}"%>
 
 
     <div data-cartforms="time" data-collapse="true">
@@ -15,9 +15,9 @@
       <div class="userdiv">
         <div class="checktit clearfix"><span class="pay_way"></span>寄货人信息</div>
         <div class="in_pay">
-          <p > 寄货人地址：  <%=text_field_tag "地址", value=@addrss.addr%> </p>  <br/>
-          <p >寄货人联系电话：  <%=text_field_tag "电话", value=@addrss.mobile%> </p> <br/>
-          <p >寄货人姓名 ：  <%=text_field_tag "姓名", value=@addrss.name%> </p>
+          <p > 寄货人地址：  <%=text_field_tag "地址", value=@departure_addr.addr%> </p>  <br/>
+          <p >寄货人联系电话：  <%=text_field_tag "电话", value=@departure_addr.mobile%> </p> <br/>
+          <p >寄货人姓名 ：  <%=text_field_tag "姓名", value=@departure_addr.name%> </p>
           <br/>
         </div>
       </div>
@@ -29,9 +29,9 @@
       <div class="userdiv">
         <div class="checktit clearfix"><span class="pay_way"></span>收货人信息</div>
         <div class="in_pay">
-     <p > 收货人地址：  <%=f.text_field :ship_addr, :value=>@def_addr.addr%> </p>  <br/>
-       <p >收货人联系电话：  <%=f.text_field :ship_mobile, :value=>@def_addr.mobile%> </p> <br/>
-        <p >收货人姓名 ：  <%=f.text_field :ship_name, :value=>@def_addr.name%> </p>
+     <p > 收货人地址：  <%=f.text_field :ship_addr, :value=>@arrival_addr.addr%> </p>  <br/>
+       <p >收货人联系电话：  <%=f.text_field :ship_mobile, :value=>@arrival_addr.mobile%> </p> <br/>
+        <p >收货人姓名 ：  <%=f.text_field :ship_name, :value=>@arrival_addr.name%> </p>
           <br/>
 
       </div>
@@ -63,7 +63,7 @@
         <div class="checktit clearfix"><span class="pay_way"></span>货物信息</div>
         <div class="in_pay">
           <span class="text">货物重量</span>
-          <%=f.text_field :weight,:value=>session[:manco_weight]%>kg;
+          <%=f.text_field :weight %>kg;
           <br/>
           <%=f.label :memo, "备注：",:class=>"control-label"%>
           <div class="controls">
@@ -77,9 +77,9 @@
       <div class="checkcon clearfix" id="order-m-list">
 
         <div class="sumtotal clearfix">
-          <p>商品金额：<span class="fr money sum" id="order_amount" data-amount = "<%=@cart_total!=0 ? @cart_total: session[:manco_price]%>">¥:<%=@cart_total!=0 ? @cart_total: session[:manco_price]%> </span></p>
+          <p>商品金额：<span class="fr money sum" id="order_amount" data-amount = "<% @cart_total%>">¥:<%=@cart_total%> </span></p>
 
-          <p>待支付总额：<span class="fr">¥ : <%=@cart_total!=0 ? @cart_total :session[:manco_price]    %></span></p>
+          <p>待支付总额：<span class="fr">¥ : <%=@cart_total    %></span></p>
         </div>
 
       </div>
@@ -99,7 +99,7 @@
       <div class="cover_load_img w38" id="CoverloadImg"></div>
       <div class="inner clearfix">
         <div class="fl">
-          <p class="cart_total">总金额：<span class="c_t_price">¥<%= @cart_total !=0 ?@cart_total :session[:manco_price]%></span></p>
+          <p class="cart_total">总金额：<span class="c_t_price">¥<%= @cart_total%></span></p>
 
         </div>
         <%=f.submit "安 全 结 算",:class=>"fr btn_sure"%>

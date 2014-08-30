@@ -4,7 +4,9 @@
      body{
          background-color: #fcfffa;
      }
-
+     .out{
+         float: right;
+     }
     .head-info {
         margin: 1rem auto;
         width: 300px;
@@ -22,8 +24,12 @@
         margin-left: 30%;
         width: 30%;
     }
-    .form_hide{
+    .form_hide, #mancoweight,.button-hide{
         display: none;
+
+    }
+    .am-form-group{
+        text-align: center;
     }
     .form_show{
         display: block;
@@ -63,39 +69,24 @@
 
     </form>
 
-<form method="post"  id="form_second" class="am-form am-form-group form_hide">
-  <span class="am-badge am-badge-primary" >第2步: 填写重量 </span>
-  <br/>
-  <label for="text">始发地:</label>
-  <input type="text" name="manco_name_two" disabled id="manco_name_two" value="">
+<%=form_for :product,:url=>"/cart/mancoexpress_add",:method=>"post",:html=>{:class=>"am-form am-form-group form_hide",:id=>"form_second",} do |f|%>
+    <%=hidden_field_tag :goods_id, :id=>"goods_id"%>
+    <%=f.hidden_field :type_id,:id=>"type_id"%>
+    <%=hidden_field_tag :platform,'mancoexpress'%>
+    <%=hidden_field_tag :manco_unit_price, :id=>"manco_unit_price"%>
+    <%=f.hidden_field :manco_name_two, :id=>"manco_name_two"%>
+    <a href="#" class="am-badge am-badge-primary button-am" >友情提示 如果需要送货请点击并填写重量 </a>   <br/>  <br/><br/>
+    <label for="text">物流行程:</label>
+   <span style="text-align: center " id="manco_name_show"></span> <br/>
+    <label for="text">价钱为:</label>
+    <span style="text-align: center" id="manco_price_show"></span>
+    <br/> <a class="out" href="/manco">返回</a>
+    <%=text_field_tag :mancoweight  %>
+    <%= f.submit :class=>"am-btn am-btn-primary am-btn-sm am-fl button-hide" ,:value=>"提交"%>
 
-  <input type="text" name="weight" id="weight" placeholder="请填写需要运输的货物的重量" value="">
-  <label for="text">单价:</label>
-  <input type="text" disabled name="manco_unit_price" id="manco_unit_price" value="">
-  <label for="text">1公斤总价价:</label>
-  <input type="text" disabled name="manco_total_price" id="manco_total_price" value="">
-    <div class="am-cf">
-    <input type="button" id="submit"  data-url="/manco/find_manco_good_second" name="" value="下一步" class="am-btn am-btn-primary am-btn-sm am-fl">
 
-  </div>
+    <%end%>
 
-</form>
-
-    <form method="post" action="/orders/new_manco" id="form_three" class="am-form am-form-group form_hide">
-      <input name="authenticity_token" type="hidden" value="ywJRiMIraExaDneGVvUlcU2Rax1RqJKZfQn88j36D+s=" />
-      <p class="am-badge am-badge-primary" >第3步: 确认信息</p>
-      <br/>
-      <label for="email">始发地:</label>
-      <input name="manco_name_three" type="text"  id="manco_name_three" value="" />
-
-      <label for="password">货物重量: </label>
-      <input  name="manco_weight" type="text"   id="manco_weight" value=""/>
-      <label for="password">运价:</label>
-      <input type="text" name="manco_price" id="manco_price" value=""/>
-      <div class="am-cf">
-        <input type="submit"     value="下一步" class="am-btn am-btn-primary am-btn-sm am-fl">
-          </div>
-   </form>
 
 </div>
 
@@ -116,24 +107,19 @@
                 }
             })
 
-        $("#submit").bind("click",function(){
-            var manco_name_two=    $("#manco_name_two").val();
-             var manco_unit_price =$("#manco_unit_price").val();
-            var weight=$("#weight").val();
+        $(".button-am").bind("click",function() {
+                  if($("#mancoweight").css('display','none')) {
+                      $("#mancoweight").css('display','block') ,
+                              $(".button-hide").css('display','block')
 
-            var url = $(this).data('url');
-            $.ajax(url,{
-                type: "post",
-                data:{ manco_name_two:manco_name_two,manco_unit_price:manco_unit_price ,weight:weight},
-                success:function(res){
-
-                }
-            }) })
-
-    })
+                  }  else{
+                      $("#mancoweight").addClass('display','none')  ,
+                      $(".button-hide").css('display','none')
+                      }
 
 
-
+        }   )
+        })
 
 
 </script>

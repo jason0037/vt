@@ -1,0 +1,42 @@
+  <style type="text/css">
+      .am-g{
+          text-align: center;
+          margin-left: 15px;
+      }
+
+  </style>
+<a href="/orders/new_manco_addr" title="新增地址"> </a>
+
+
+
+
+
+
+
+  <%= form_for :order, :url=>"ordersnew_manco",:method=>"POST",:html => {:class => "am-form"} do |f| %>
+
+    <%=hidden_field_tag "member_departure_id" , @member_departure_id %>
+    <table class="am-table am-table-striped am-table-hover">
+      <tr>
+        <td>&nbsp;</td>
+        <td >姓名</td>
+        <td >手机</td>
+        <td >联系电话</td>
+      </tr>
+
+
+          <%@addrss.each do |def_addr|%>
+              <tr>
+                <td> <%=radio_button_tag "member_arrival_id",def_addr.addr_id%></td>
+                <td ><%=def_addr.name%></td>
+                <td ><%=def_addr.mobile%></td>
+                <td ><%=def_addr.addr%></td>
+              </tr>
+
+          <% end %>
+
+
+
+    </table>
+    <input type="submit" class="am-btn am-btn-primary form-sure" value="确认" >
+<%end%>

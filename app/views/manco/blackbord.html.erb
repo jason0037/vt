@@ -57,11 +57,12 @@
     <div class="control-group">
 
       <div class="controls">
+        <%=f.hidden_field :type_id, :value=>"17" %> <!-- 万家小黑板-->
         <%=f.hidden_field :cat_id, :value=>"576" %> <!-- 万家小黑板-->
         <%=f.hidden_field :bulk, :value=>"10" %>  <!-- 单价对应unit_price-->
         <%=f.hidden_field :supplier_id, :value=>"98" %> <!-- 供应商id-->
         <%=f.hidden_field :place ,:value=>"中国"%>   <!-- 产地-->
-        <%=f.hidden_field :brand_id ,:value=>"万家物流小黑板"%>  <!-- 万家物流小黑板   品牌ID-->
+        <%=f.hidden_field :brand_id ,:value=>"141"%>  <!-- 万家物流小黑板   品牌ID-->
       <%=f.hidden_field :place_info,:value=>"中国"%>    <!-- 产地信息-->
         <%= f.hidden_field :spec_info,:class=>"span10" %> <!-- 规格说明-->
 
