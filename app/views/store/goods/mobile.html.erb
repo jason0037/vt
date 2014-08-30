@@ -41,7 +41,7 @@
           <span class="prf05">(<%=format('%.1f', @good.price*10/@good.mktprice)%>折)</span>
           <span class="fontstyle">¥<%=@good.mktprice %></span>
           <span class="fr new_re_time bglight" data-saleproduct="true" data-saletime="83552"><span class="clockicon fl"></span>
-          <span class="J-time"><span>00</span><span>天</span><span>23</span><span>时</span><span>11</span><span>分</span><span>40</span><span>.</span><span>7</span><span>秒</span></span></span>
+          <span class="J-time" style="display:none"><span>00</span><span>天</span><span>23</span><span>时</span><span>11</span><span>分</span><span>40</span><span>.</span><span>7</span><span>秒</span></span></span>
         </p>
         <p class="space5"></p>
         <p class="clear"></p>
@@ -86,7 +86,6 @@
     <li><b class="bt_lt_par_t">分        类：</b> <%=@good.cat.cat_name if @good.cat_id%></li>
     <li><b class="bt_lt_par_t">规        格：</b> <%=@good.spec_info%></li>
     <li><b class="bt_lt_par_t">产        地：</b> <%=@good.place_info%></li>
-    <li><b class="bt_lt_par_t">有  效  期：</b> <%= @good.store%></p></li>
     <li><b class="bt_lt_par_t">商 品 简 介：</b> <%=raw @good.desc%> </li></ul>
     <br><p class="detail"><%=raw @good.intro.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.intro%></p></div>
   <div class="loading hide" style="display: none;"><img src="/assets/mobile/loading-big.gif" alt="loading"><span>加载中...</span></div>

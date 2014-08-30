@@ -7,7 +7,7 @@ class HomeController < ApplicationController
 	def index
     redirect_to '/m'
 		# @title = "摩登客—全球设计品牌精品第e站,都市时尚女性个性首选"
-		@home = Ecstore::Home.last
+		@home = Ecstore::Home.where(:supplier_id=>nil).last
 		if signed_in?
 		   redirect_to params[:return_url] if params[:return_url].present?
 		end

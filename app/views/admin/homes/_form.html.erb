@@ -1,4 +1,17 @@
 <%=form_for :home,:url=>@action_url,:method=>@method,:html=>{:class=>"form-horizontal"} do |f|%>
+    供应商:
+    <%=f.select :supplier_id, Ecstore::Supplier.all.collect {|supplier| [supplier.name, supplier.id] },{:include_blank=>"请选择"},{:class=>"span3"} %>
+    <br/>
+    <fieldset id="bags">
+      <legend>其他</legend>
+      <div class="control-group">
+        <%= f.cktext_area :body, :toolbar => 'Easy',:language=>'zh-cn',:height => 300 %>
+      </div>
+    </fieldset>
+
+    说明：<%=text_field_tag :note %><br/>
+    <%=f.submit "提 交",:class=>"btn btn-large btn-primary"%>
+
 <fieldset id="sliders">
   <legend>幻灯片</legend>
 
@@ -185,20 +198,10 @@
 </fieldset>
 
 
-<fieldset id="bags">
-    
-    <legend>其他</legend>
-    <div class="control-group">
-          <%= f.cktext_area :body, :toolbar => 'Easy',:language=>'zh-cn',:height => 300 %>
-        </div>
-</fieldset>
-
-
-
 <%=render :partial=>"admin/shared/metable",:locals=>{ :form=>f, :resource=>@home }%>
 
 <p style="color:#bbb;">提示：调整关键字顺序提交才能生效</p>
-<%=f.submit "提 交",:class=>"btn btn-large btn-primary"%>
+
 
 
 <%end%>

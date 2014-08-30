@@ -4,7 +4,7 @@
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <title>贸威手机版</title>
+  <title><%=@supplier.name%>微商城</title>
   <meta content="" name="keywords">
   <meta content="" name="description">
   <%=stylesheet_link_tag "mobile/layout.min"%>
@@ -16,7 +16,7 @@
 </head>
 <body>
 <header id="header" class="header clearfix">
-  <div class="head_logo fl"><a href="/m" class="logo" mars_sead="nav_home_btn"></a></div>
+  <div class="head_logo fl"><a href="/vshop/<%=@supplier.id%>"  mars_sead="nav_home_btn"><img src="/images/a0<%=@supplier.id%>/logo.png"> &nbsp;&nbsp;<%=@supplier.name%></a></div>
   <%if @user%>
       <div class="head_right fr">
         <a href="/cart/mobile" mars_sead="home_head_cart_btn" onclick="setBackAct(&#39;topHeaderCart&#39;)">
@@ -33,11 +33,10 @@
 </header>
 <div id="nav" class="clearfix">
   <ul class="clearfix">
-    <li class="num05"><a href="/m" class="nav_current"><span>首页</span></a></li>
-    <li class="num05"><a href="/mgallery?name=婴童"><span>婴童</span></a></li>
-    <li class="num05"><a href="/mgallery?name=酒类"><span>酒类</span></a></li>
-    <li class="num05"><a href="/mgallery?name=奶酪"><span>奶酪</span></a></li>
-    <li class="num05"><a href="/mgallery?name=零食"><span>零食</span></a></li>
+    <li class="num05"><a href="/vshop/<%=@supplier.id%>/category?cat=572"><span>手工皂</span></a></li>
+    <li class="num05"><a href="/vshop/<%=@supplier.id%>/category?cat=573"><span>餐具</span></a></li>
+    <li class="num05"><a href="/vshop/<%=@supplier.id%>/category?cat=516"><span>牙膏</span></a></li>
+    <li class="num05"><a href="/vshop/<%=@supplier.id%>/category?cat=515"><span>牙刷</span></a></li>
   </ul>
 </div>
 
@@ -47,7 +46,7 @@
 
 <div class="space15"></div>
 
-<div class="s_links"><a href="tel:021-22306630" mars_sead="home_foot_call"><em class="s_tel"></em>咨询电话<span></span><p class="telnum">021-22306630</p></a></div>
+<div class="s_links"><a href="tel:021-22306630" mars_sead="home_foot_call"><em class="s_tel"></em>咨询电话<span></span><p class="telnum"><%=@supplier.tel%></p></a></div>
 
 <script src="/assets/mobile/swipe.min.js" type="text/javascript"></script>
 

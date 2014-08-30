@@ -17,17 +17,32 @@ module Admin
         ActiveRecord::Base.connection.execute(sql)
       end
       #@order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
-      @followers =  Ecstore::WechatFollower.paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
+      @followers =  Ecstore::WechatFollower.paginate(:page => params[:page], :per_page => 20).order("commission DESC")
       if params[:platform]=='vshop'
         render :layout=>'vshop_wechat'
       end
+    end
+
+    def followers_renew
+      $client ||= WeixinAuthorize::Client.new(@@appid,@@appsecret)
+      follower = params[:follower]
+
+        @followers =  Ecstore::WechatFollower.find_by_openid(follower)
+        now  = Time.now
+
+        @followers.user_info = $client.user(openid).result.to_s
+        @followers.save
     end
 
     def followers_import
       $client ||= WeixinAuthorize::Client.new(@@appid,@@appsecret)
       if ($client.is_valid?)
       #获取关注者列表
-       @followers = $client.followers.result#["data"]["openid"]
+       @followers = $client.followers.result
+       s=''
+
+       s = s+@followers.to_s+'/n'
+       #["data"]["openid"]
       # @followers='["oVxC9uJKUrr8enKnzqdsbqcxNvXg", "oVxC9uGAGG5uV7NMQtEVmU5CHfJc", "oVxC9uDPnMmmc_ueMcu8w6ZASHoA", "oVxC9uBr12HbdFrW1V0zA3uEWG8c", "oVxC9uBh4jWni0MOK5EJHQwk2s1I", "oVxC9uPIQg2mf1x_-r0z-L-V8wug", "oVxC9uIDfT9iq_9iIWu54doVz3Vg", "oVxC9uNpGypfrQjWfnDM-XYq5Ubk", "oVxC9uOvUT_sHHDC5unBRdG-TxEg", "oVxC9uD0IhJL8EB-AGZFPBYPsF8k", "oVxC9uNa8Qil65iR4lYWtb9f6GEU", "oVxC9uHB9AOKp6-nWzCsJwcFu3Zc", "oVxC9uMny98wUvsdytUD3TF2zKIs", "oVxC9uK9CSjzd0nVmnfkqlAGj3kQ", "oVxC9uNp3UH8LiXYx0oRNCJpiu-8", "oVxC9uADvVLGWkwk4enHpYKDa88k", "oVxC9uOzYGWyfB0b81hmwbXs8wPI", "oVxC9uChJqM0nf-PREaLjk5Xf2MU", "oVxC9uGiazMZjmHdQ9KzrOQwoUW4", "oVxC9uCqeu1WPh2YDkM_PZXCp8Wc", "oVxC9uLZUk3q2qmqaaVY7woZW9ic", "oVxC9uJPkOo-SERYmHThvUeCoBBI", "oVxC9uBneu5YaQ_vd8BSvNFT7ojw", "oVxC9uAzwD1_VxugaWaUD8sSYjL0", "oVxC9uDGhK7ZEBqRdkjg8KCrNwak"]'
       #  sql ="insert mdk.sdb_wechat_followers (openid) values #{@followers.gsub('[','(').gsub(']',')').gsub(',','),(')}"
       #  ActiveRecord::Base.connection.execute(sql)
@@ -48,7 +63,7 @@ module Admin
           follower.save
         end
 =end
-        render :text=> @followers
+        render :text=>s
 
 
      end
@@ -106,8 +121,8 @@ module Admin
             },
             {
                "type":"view",
-               "name":"肉类",
-               "url":"http://www.trade-v.com/mgallery?name=%E8%82%89%E7%B1%BB"
+               "name":"婴童",
+               "url":"http://www.trade-v.com/mgallery?name=%E5%A9%B4%E7%AB%A5"
             }]
          },
          {

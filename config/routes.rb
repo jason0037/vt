@@ -95,16 +95,23 @@ Modengke::Application.routes.draw do
   end
 
   resources :vshop do
-    get 'login', :on=>:collection
-    get 'register', :on=>:collection
-    get 'article', :on=>:collection
-    get 'apply', :on=>:collection
-    post 'search', :on=>:collection
-    post 'change_password',:on=>:collection
-    get 'goods',:on=>:collection
-    get 'orders',:on=>:collection
-    get 'members',:on=>:collection
-    get 'weixin',:on=>:collection
+    collection do
+      get 'login'
+      get 'register'
+      get 'article'
+      get 'apply'
+      post 'search'
+      post 'change_password'
+      get 'goods'
+      get 'orders'
+      get 'members'
+      get 'weixin'
+    end
+    member do
+      get :category
+    end
+
+
   end
 
   get 'login'=>"sessions#new"
@@ -220,8 +227,6 @@ Modengke::Application.routes.draw do
     end
 
     resources :goods do
-
-
       get "tairyo_show",  :on=>:collection
       post "export", :on=>:collection
       post "import", :on=>:collection

@@ -148,5 +148,20 @@ class VshopController < ApplicationController
       end
   end
 
+  #get /vhsop/id 显示微店铺首页
+  def show
+    @supplier_id=params[:id]
+    @homepage = Ecstore::Home.where(:supplier_id=>@supplier_id).last
+    @supplier = Ecstore::Supplier.find(@supplier_id)
+    render :layout=>"#{@supplier.url}"
+  end
+
+  def category
+    @supplier_id=params[:id]
+    @cat = params[:cat]
+    @goods =  Ecstore::Good.where(:supplier_id=>@supplier_id,:cat_id=>@cat)
+    @supplier = Ecstore::Supplier.find(@supplier_id)
+    render :layout=>"#{@supplier.url}"
+  end
 
 end
