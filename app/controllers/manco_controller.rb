@@ -8,6 +8,14 @@ class MancoController < ApplicationController
 
   end
 
+  def find_manco
+     if @user
+
+     else
+       redirect_to "/wlogin?return_url=manco/find_manco"
+     end
+  end
+
   def user
     if @user
 
@@ -37,29 +45,76 @@ class MancoController < ApplicationController
     @un= Ecstore::Express.serachall(departure,arrival)
    end
 
-  def follow
+  def f
 
   end
   def new
     @good  =  Ecstore::Good.new
 
     @method = :post
+    redirect_to '/manco/blackbord'
   end
   def black_board
 
   end
   def blackbord_add
     @good  =  Ecstore::Good.new(params[:good])
-       if @good.save
-          redirect_to "/manco/blackbord"
-       else
-        render :new
+
+
+    if @good.save
+      specname=@good.name.gsub(/-/,',')
+      spec_id =params[:spec_id]
+      spec_id = Ecstore::Spec.where(:spec_name=>specname)
+       bn =@good.bn
+          @new_product = Ecstore::Product.find_by_bn(bn)
+          if !@new_product.nil? && @new_product.persisted?
+            @product = @new_product
+          else
+            @product = Ecstore::Product.new
+            @product.bn = bn
+          end
+
+          @product.goods_id = @good.goods_id
+          @product.name = @good.name
+          # @product.store_time =
+          @product.store = @good.store
+          @product.cost= @good.cost
+          @product.wholesale = @good.wholesale
+          @product.bulk = @good.bulk
+          @product.promotion=@good.promotion
+          @product.price = @good.price
+          @product.mktprice =@good.mktprice
+
+          @product.save!
+
+           Ecstore::GoodSpec.where(:product_id=>@product.product_id).delete_all
+           spec_value_id= Ecstore::SpecValue.find_by_sql(["select spec_value_id from sdb_b2c_spec_values where spec_value=?and spec_id=?",specname,12])
+           if spec_value_id.nil?
+                    Ecstore::SpecValue.new do |sv|
+                      sv.spec_id=12
+                      sv.spec_value =specname
+                    end.save
+           else
+
+
+             sp_val_id = Ecstore::SpecValue.where(:spec_value=>specname,:spec_id=>12).first.spec_value_id
+                   Ecstore::GoodSpec.new do |gs|
+                    gs.type_id =  @good.type_id
+                   gs.spec_id = 12
+                   gs.spec_value_id = sp_val_id
+                   gs.goods_id = @good.goods_id
+                   gs.product_id = @product.product_id
+                 end.save
+          end
+
+    else
+     render "new"
+
+     end
       end
-
-
     end
 
 
 
 
-end
+

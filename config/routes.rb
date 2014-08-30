@@ -7,6 +7,7 @@ Modengke::Application.routes.draw do
   ####万家物流
   resources :manco do
     #万家主页面
+    get 'manco_comment'  ,:on=>:collection
     get   'index'  ,:on=>:collection
     get  'main' ,:on=>:collection    ###万家介绍
     get  'history' ,:on=>:collection  ####万家历史
@@ -390,7 +391,7 @@ Modengke::Application.routes.draw do
     get 'tproducts' =>"goods#tairyo_tuan", :as=>"goods" ,:controller=>"goods"
     post'manco/serach_goods_manco'=>"goods#serach_goods_manco",:controller=>"goods"
     post 'manco/find_manco_good_first'=>"goods#find_manco_good_first",:controller=>"goods"    #通过AJAX查询出来价钱
-    post 'manco/find_manco_good_second'=>"goods#find_manco_good_second",:controller=>"goods"    #通过AJAX查询出来价钱
+    post 'goods/manco_express'=>"goods#manco_express",:controller=>"goods"    #通过AJAX查询出来价钱
     resources :products, :as=>"goods", :controller=>"goods" do
       # get 'newin',:on=>:collection
       get 'newest',:on=>:collection
@@ -413,7 +414,12 @@ Modengke::Application.routes.draw do
     post 'cart/tairyo_add'=>"cart#tairyo_add",:as=>:add_to_cart   #团购商品添加购物车
     post 'cart/add'=>"cart#add",:as=>:add_to_cart
     post 'cart/manco_add'=>"cart#manco_add" ,:as=>:add_to_cart
+
+
+    post 'cart/mancoexpress_add'=>"cart#mancoexpress_add",:as=>:add_to_cart
+
     resources :cart do
+      get 'manco_express'  ,:on=>:collection
       post 'add',:on=>:collection
       get 'mobile', :on=>:collection
       get 'tairyo_cart',:on=>:collection
@@ -453,7 +459,11 @@ Modengke::Application.routes.draw do
         get 'new_manco'
         post 'new_manco'
         get 'new_mobile_addr'
+        get 'new_manco_addr'
+        post 'ordersnew_manco'
         get 'ordersnew_manco'
+        get 'departure'
+        post 'arrival'
       end
     end
 

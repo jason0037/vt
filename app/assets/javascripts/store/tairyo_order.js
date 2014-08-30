@@ -30,7 +30,7 @@
                 $("#bcom_discount").text(-bcom_discount_amount);
             }
             pay_amount = pay_amount * bcom_discount - part_amount;
-            alert("pay_amount"+pay_amount);
+
             return $("#pay_amount").text(pay_amount);
 
         };

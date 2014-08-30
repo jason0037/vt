@@ -1,58 +1,80 @@
-<header id="am-topbar am-topbar-invers  e">
+<style type="text/css">
+    body{
+        background-color: #f0f1ff;
+    }
+    .am-form input[type="text"], .am-form input[type="number"]{
+        margin-bottom: 20px;
+        width: 80%;
+        margin-left: 45px;
+        border: #15afef solid 1px;
 
-  <div class="am-panel am-panel-primary">
-    <div class="am-panel-hd">订单信息</div>
+    }
+    .am-label{
+        background-color: #15afef;
+        width: 100%;
+        color: #ffffff;
+    }
+    .am-form textarea{
+        width: 80%;
+        height: 100px;
+        margin-left: 45px;
+        border: #15afef solid 1px;
+    }
+    .am-form input[type="radio"]{
+        padding: 20px;
+    }
+    .radio_inline{
+        float: left;
+        text-align: center;
+        margin-right: 30px;
+        margin-left: 100px;
+    }
+    .control-group_lable{
+        text-align: center;
+    }
+    .black_btn{
+        float: right;
+        margin-right: 20px;
+    }
+    input[type="submit"]{
+        margin-left: 30%;
+        width: 200px;
+    }
+</style>
 
+
+<div class="am-panel am-panel-primary">
+  <div class="am-panel-hd">司机信息管理</div>
+  <div class="am-panel-bd">
+    请注意：如果需要发布小黑板，必须注册
   </div>
-
-</header>
-<%=form_for :order ,:html=>{:class=> " am-form" } , :url=>"#{orders_path}?platform=manco" do |f|  %>
-
-
-    <label for="email">联系人:</label>
-    <%=text_field_tag "user" ,value= @user.login_name if @user %>
-
-    <br/>
-    <label for="email">邮箱:</label>
-    <%=text_field_tag "phone",  value=@member[0].email if @member  %>
-    <br/>
-    <label for="password">详细发货地址:</label>
-    <%=f.text_field :ship_area %>     <!--  借用订单表中发货范围 !-->
-    <br/>
-    <label for="password">手机号码:</label>
-    <%=text_field_tag :phone ,value= @member[0].mobile if @member  %>
-
-    <br/>
-
-    <div class="am-panel am-panel-primary">
-      <div class="am-panel-hd">收货人地址</div>
-      <label for="email">收货联系人:</label>
-      <%=f.text_field :ship_name %>
-
-      <label for="email">收货人联系号码:</label>
-      <%=f.text_field :ship_mobile %>
-
-
-      <label for="password">详细收货地址:</label>
-      <%=f.text_field :ship_addr   %>
-
-
-    </div>
-    <div class="am-panel am-panel-primary">
-      <div class="am-panel-hd">货物信息</div>
-      <span class="radio-box"></span>
-      <%=f.radio_button :payment, "alipaywap", :class=>"hide" , :checked=>true %>
-
-      <label for="email">货物重量:</label>
-      <%=f.text_field :weight   %>
-      <label for="email">注意事项/备注：:</label>
-      <%=f.text_area :tostr  %>
-    </div>
-    <%=f.submit "安 全 结 算",:class=>"fr btn_sure"%>
-<% end%>
 </div>
+
+
+<%= form_for :user, :url=>"",:method=>"POST",:html => {:class => "am-form"} do |f| %>
+
+
+    <div class="control-group">
+
+
+
+
+
+    <%= f.text_field :name,:placeholder=>"司机姓名",:class=>"span4"%>
+
+      <%= f.text_field :mobile,:placeholder=>"司机联系方式",:class=>"span4"%>
+
+
+
+
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "am-btn am-btn-primary" %>
+        <%= link_to '返回', admin_goods_path,:class=>"black_btn" %>
+      </div>
+    </div>
+    <br/>
+
+<% end %>
 </div>
-<script type="application/javascript">
-
-
-</script>

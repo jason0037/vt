@@ -1,0 +1,119 @@
+<style>
+    body{
+        background: #fcfffa;
+    }
+    .s_links,.footnav,.copyright{
+        display: none;
+    }
+
+    .cartdiv{
+        line-height: 40px;
+        background-color: #f0f1ff;
+    }
+    #quantity{
+        width: 10%;
+    }
+    input.textcenter {
+        text-align: center;
+        position: relative;
+        margin: 0 auto;
+        width: 40px;
+        border: solid 1px #ccc;
+    }
+    .delete{
+        float: right;
+    }
+</style>
+<header id="header" class="header clearfix">
+
+  <div class="head_left fl"><a href="javascript:history.go(-1)"><span class="h_back"></span></a></div>
+  <span class="headtit">万家购物车</span>
+  <div class="head_right fr"><a href="/manco" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
+</header>
+<br/>
+<%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
+    <div class="cartdiv" id="line_<%=line_item.obj_ident%>">
+      <div class="cartlist clearfix">
+
+
+        <div class=" clearfix">
+
+          <div class="">
+            <em>如果需要修改货物重量，请点击 </em>
+            <em>
+
+              <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity  J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
+            </em>
+            <em>kg </em>
+            <div class="goods_Cnum clearfix" id="goods_Cnum">
+              <div class="good_data_num J_pro_num_btn_cart" data-product="68671252" style="border:none;height:33px;">
+              </div>
+            </div>
+          </div>
+
+          运价:<span class="c_price">¥<%= format('%.2f',line_item.good.price)%></span>
+          市场价 : <span class="fontstyle">¥<%= format('%.2f',line_item.good.mktprice)%></span>  <br/>
+
+		<span class="delete">
+
+           <a href="<%="#{cart_path(line_item.obj_ident)}?platform=manco"%>" class="delete" data-method="delete" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
+             不需要？  <img src="/assets/mobile/scan_layer-33.png" width="22" height="22">
+           </a>
+		</span>
+        </div>
+      </div>
+      <div class="orderaction clearfix">
+
+        <p class="fr">总金额:&nbsp; &nbsp;<span class="c_price line-total"> ¥<%=(line_item.product.price*line_item.quantity)%> </span></p>
+
+
+
+      </div>
+    </div>
+<%end%>
+<div class="bottomdiv clearfix">
+  <div class="inner clearfix">
+    <div class="fl">
+
+      <p class="cart_total">总金额：<span class="c_t_price">¥<%= format('%.2f',@cart_total)%> </span></p>
+    </div>
+    <a href="/orders/departure" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
+      结算
+      <span class="fr cart_time_smb"><span class="clockicon fl"></span>
+        <span class="num_cunt"><span class=":">19</span><span>:</span><span>42</span><span></span></span></span>
+    </a>
+  </div>
+</div>
+
+<div id="demo-view" data-backend-compiled="">
+  <div data-am-widget="list_news" class="am-list-news am-list-news-default am-no-layout">
+
+    <ul class="am-list">
+      <div class="am-list-thumb am-col col-sm-12"></div><div class="am-col am-list-main">
+   <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-top"><div class="am-list-thumb am-col col-sm-12">
+     <a href="http://www.douban.com/online/11645411/"><img src="http://img3.douban.com/lpic/o638852.jpg" alt="“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！"></a></div>
+      <div class="am-col am-list-main"><h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11645411/">“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！</a></h3>
+      <div class="am-list-item-text"></div></div></li></div>
+    </ul></div></div></div>
+
+<%= javascript_include_tag "jquery", "jquery_ujs" %>
+<script>
+
+    $(document).ready(function(){
+
+        $(" .quantity").on("change",function(){
+            var quantity = $(this).val();
+            if(!/\d+/.test(quantity)) return false;
+            var url = $(this).data('url');
+            $.ajax(url,{
+                type: "PUT",
+                data:{ quantity:quantity },
+                success:function(res){
+                }
+            });
+        });
+    });
+
+
+</script>
+<%= stylesheet_link_tag    "manco/amui.all.min.css" %>

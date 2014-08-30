@@ -1,4 +1,4 @@
-<%=form_for :addr, :url=>@method == :put ? @action_url : "/member_addrs?return_url=/member_addrs/_form_manco_second",:remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
+<%=form_for :addr, :url=>@method == :put ? @action_url : "/member_addrs?return_url=/member_addrs/_form_manco_second",:remote=>true,:method=>"post",:html=>{ :class=> " form-horizontal" } do |f|%>
 <dl class="connerbox">
     <dd><span class="form_hd">*姓名：</span>
         <span class="form_td"><%=f.text_field :name, :maxlength=>"50", :class=>"text_input"%></span></dd>
@@ -43,11 +43,29 @@
 <div class="ui-btn-area">
 
     <%if @method == :put%>
-    <%=f.submit "修 改",:class=>"btn_red" %>
+    <%=f.button "修 改",:class=>"btn_red" %>
     <%else%>
-    <%=f.submit "下一步",:class=>"btn_red" %>
+    <!--<#%=f.button "下一步",:class=>"btn_red" %>-->
+      <input type="button" id="sub" class="btn_red" value="下一步">
     <%end%>
 </div>
 <%end%>
 </div>
 
+   <script type="application/javascript">
+          $(document).ready(function(){
+              $("#sub").bind("click",function(){
+               if( $("#addr_name").val()=="" &&$("#addr_mobile").val()=="") {
+                   alert("请输入值")
+                   return false;
+
+               }
+                  else{
+                   $(".form-horizontal").submit()
+
+               }
+
+              })
+          })
+
+           </script>

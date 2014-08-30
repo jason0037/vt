@@ -260,6 +260,11 @@ class Store::OrdersController < ApplicationController
     render :layout=>"mobile_new"
   end
 
+  def new_manco_addr    ###新曾起点地址
+
+      render :layout => "manco_new"
+  end
+
   def new_mobile
 
     @addrs =  @user.member_addrs
@@ -276,20 +281,30 @@ class Store::OrdersController < ApplicationController
           render :layout=>"mobile_new"
     end
   end
+ def departure    ##起点信息
+
+     manco_weight =params[:manco_weight]
+     @addrs =  @user.member_addrs
+     @def_addrs = @addrs.where(:addr_type=>1) || @addrs.first
+
+
+
+    render :layout => "manco_template"
+   end
+
+   def arrival  ###终点信息
+
+     @member_departure_id=  params[:member_departure_id]
+     @addrs =  @user.member_addrs
+     @addrss = @addrs.where(:addr_type=>0)
+     render :layout => "manco_template"
+   end
 
   def new_manco
-    manco_weight =params[:manco_weight]
-    manco_price=params[:manco_price]
-    session[:manco_price] = manco_price
-    session[:manco_weight] = manco_weight
-    @addrs =  @user.member_addrs
-    @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
-    @addrss = @addrs.where(:addr_type=>1).last
-      if @pmtable
-         @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
-         @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
-         @coupons = @user.usable_coupons
-         end
+    member_departure_id=  params[:member_departure_id]
+    member_arrival_id=  params[:member_arrival_id]
+
+    @departure_addr=Ecstore::MemberAddr.find_by_addr_id(params[:member_departure_id])
 
       render :layout=>"manco_new"
 
@@ -437,19 +452,17 @@ class Store::OrdersController < ApplicationController
 
 
   def ordersnew_manco
-
-     @addrs =  @user.member_addrs
-    if @addrs.size==nil
-      redirect_to '/orders/new_manco'
+    if (params[:member_departure_id]&&params[:member_arrival_id])
+         member_departure_id=params[:member_departure_id]
+         member_arrival_id=params[:member_arrival_id]
     else
-      @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
-      @addrss = @addrs.where(:addr_type=>1).last  ###发货的信息
-      if @pmtable
-        @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
-        @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
-        @coupons = @user.usable_coupons
-      end
-    end
+        member_departure_id=session[:depar]
+        member_arrival_id=session[:arri]
+     end
+    @departure_addr=Ecstore::MemberAddr.find_by_addr_id(member_departure_id)
+    @arrival_addr=Ecstore::MemberAddr.find_by_addr_id(member_arrival_id)
+
+
     render :layout=>"manco_new"
 
 

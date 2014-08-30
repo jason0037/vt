@@ -1,0 +1,4 @@
+<%=javascript_include_tag "area_seletor"%>
+<%=javascript_include_tag "patch/member_addrs"%>
+
+<%=render :partial=>"patch/member_addrs/form_manco_first",:locals=>{ :display=>( @addrss== 0 ), :@addr=>Ecstore::MemberAddr.new }%>
