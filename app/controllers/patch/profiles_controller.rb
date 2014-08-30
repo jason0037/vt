@@ -22,6 +22,18 @@ class Patch::ProfilesController < ApplicationController
       add_breadcrumb("编辑个人信息")
   end
 
+  def mancouser        ###管理万家物流司机注册
+         account=@user.member_id
+      @member=   Ecstore::User.find_by_member_id(account)
+           bank_info=params[:bank_info].to_s
+           @member.bank_info=bank_info
+           @member.update_attributes(params[:member])
+
+render :layout => "manco_template"
+
+  end
+
+
   def update
       params[:ecstore_user].merge!(params[:date]) if params[:date]
       @tab = params[:tab]

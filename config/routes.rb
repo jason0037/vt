@@ -510,6 +510,8 @@ Modengke::Application.routes.draw do
       member do
         get 'password'
         put 'modify_password'
+        get 'mancouser'
+        put 'mancouser'
       end
     end
     resources :cards do

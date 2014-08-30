@@ -45,9 +45,7 @@ class MancoController < ApplicationController
     @un= Ecstore::Express.serachall(departure,arrival)
    end
 
-  def f
 
-  end
   def new
     @good  =  Ecstore::Good.new
 
@@ -57,7 +55,23 @@ class MancoController < ApplicationController
   def black_board
 
   end
-  def blackbord_add
+
+
+  def blackbord
+    if @user
+       account=@user.member_id
+       @member=   Ecstore::User.find_by_member_id(account)
+      if @member.bank_info.nil?
+        redirect_to '/profile/mancouser'
+      end
+  else
+    redirect_to '/wlogin?return_url=/manco/blackbord'
+  end
+
+
+end
+
+  def blackbord_add        ###发布小黑板商品
     @good  =  Ecstore::Good.new(params[:good])
 
 
