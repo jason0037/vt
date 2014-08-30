@@ -52,6 +52,7 @@ class MancoController < ApplicationController
     @good  =  Ecstore::Good.new
 
     @method = :post
+    redirect_to '/manco/blackbord'
   end
   def black_board
 
@@ -62,9 +63,9 @@ class MancoController < ApplicationController
 
     if @good.save
       specname=@good.name.gsub(/-/,',')
-      spec_id = " "
-      spec_id = Ecstore::Spec.where(:spec_name=>specname).first.spec_id
-         bn =@good.bn
+      spec_id =params[:spec_id]
+      spec_id = Ecstore::Spec.where(:spec_name=>specname)
+       bn =@good.bn
           @new_product = Ecstore::Product.find_by_bn(bn)
           if !@new_product.nil? && @new_product.persisted?
             @product = @new_product
@@ -85,25 +86,35 @@ class MancoController < ApplicationController
           @product.mktprice =@good.mktprice
 
           @product.save!
-          Ecstore::GoodSpec.where(:product_id=>@product.product_id).delete_all
-          sp_val_id = Ecstore::SpecValue.where(:spec_value=>specname,:spec_id=>spec_id).first.spec_value_id
-          Ecstore::GoodSpec.new do |gs|
-            gs.type_id =  @good.type_id
-            gs.spec_id = spec_id
-            gs.spec_value_id = sp_val_id
-            gs.goods_id = @good.goods_id
-            gs.product_id = @product.product_id
-          end.save
+
+           Ecstore::GoodSpec.where(:product_id=>@product.product_id).delete_all
+           spec_value_id= Ecstore::SpecValue.find_by_sql(["select spec_value_id from sdb_b2c_spec_values where spec_value=?and spec_id=?",specname,12])
+           if spec_value_id.nil?
+                    Ecstore::SpecValue.new do |sv|
+                      sv.spec_id=12
+                      sv.spec_value =specname
+                    end.save
+           else
+
+
+             sp_val_id = Ecstore::SpecValue.where(:spec_value=>specname,:spec_id=>12).first.spec_value_id
+                   Ecstore::GoodSpec.new do |gs|
+                    gs.type_id =  @good.type_id
+                   gs.spec_id = 12
+                   gs.spec_value_id = sp_val_id
+                   gs.goods_id = @good.goods_id
+                   gs.product_id = @product.product_id
+                 end.save
+          end
 
     else
-          render "new"
-        end
+     render "new"
+
+     end
       end
+    end
 
 
 
 
 
-
-
-end
