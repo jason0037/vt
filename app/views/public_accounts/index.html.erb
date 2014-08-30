@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>供应商</th>
       <th>Weixin Server Url</th>
       <th>Weixin Token</th>
     </tr>
@@ -12,7 +12,7 @@
   <tbody>
     <% @public_accounts.each do |public_account| %>
       <tr>
-        <td><%= public_account.supplier_id %></td>
+        <td><%=public_account.supplier_id %></td>
         <td><%=public_account.weixin_secret_key%><%#= weixin_engine.weixin_server_url(public_account.weixin_secret_key) %></td>
 
         <td><%= public_account.weixin_token %></td>

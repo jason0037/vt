@@ -1,5 +1,6 @@
 class PublicAccountsController < ApplicationController
   #before_action :set_public_account, only: [:show, :edit, :update, :destroy]
+  layout "blank"
 
   # GET /public_accounts
   # GET /public_accounts.json
