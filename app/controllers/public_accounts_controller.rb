@@ -4,7 +4,7 @@ class PublicAccountsController < ApplicationController
   # GET /public_accounts
   # GET /public_accounts.json
   def index
-    @public_accounts = Ecstore::PublicAccounts.all
+    @public_accounts = Ecstore::PublicAccount.all
   end
 
   # GET /public_accounts/1
@@ -14,7 +14,7 @@ class PublicAccountsController < ApplicationController
 
   # GET /public_accounts/new
   def new
-    @public_account = Ecstore::PublicAccounts.new
+    @public_account = Ecstore::PublicAccount.new
   end
 
   # GET /public_accounts/1/edit
@@ -64,7 +64,7 @@ class PublicAccountsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_public_account
-      @public_account = Ecstore::PublicAccounts.find(params[:id])
+      @public_account = Ecstore::PublicAccount.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
