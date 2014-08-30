@@ -16,7 +16,7 @@
         <td><%=public_account.weixin_secret_key%><%#= weixin_engine.weixin_server_url(public_account.weixin_secret_key) %></td>
 
         <td><%= public_account.weixin_token %></td>
-        <td><%= link_to 'Show', public_account %></td>
+        <td><%= link_to 'Show', public_account_path(public_account) %></td>
         <td><%= link_to 'Edit', edit_public_account_path(public_account) %></td>
         <td><%= link_to 'Destroy', public_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
