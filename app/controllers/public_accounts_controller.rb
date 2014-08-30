@@ -7,7 +7,7 @@ class PublicAccountsController < ApplicationController
   def index
     @public_accounts = Ecstore::PublicAccount.all
   end
-
+=begin
   # GET /public_accounts/1
   # GET /public_accounts/1.json
   def show
@@ -72,4 +72,5 @@ class PublicAccountsController < ApplicationController
     def public_account_params
       params[:public_account].permit(:name, :password)
     end
+=end
 end
