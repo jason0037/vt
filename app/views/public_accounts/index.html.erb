@@ -12,7 +12,7 @@
   <tbody>
     <% @public_accounts.each do |public_account| %>
       <tr>
-        <td><%= public_account.name %></td>
+        <td><%= public_account.supplier_id %></td>
         <td><%= weixin_engine.weixin_server_url(public_account.weixin_secret_key) %></td>
 
         <td><%= public_account.weixin_token %></td>
