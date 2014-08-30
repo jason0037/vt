@@ -1,5 +1,5 @@
 #encoding:utf-8
-include WeixinRailsMiddleware::AutoGenerateWeixinTokenSecretKey
+#include WeixinRailsMiddleware::AutoGenerateWeixinTokenSecretKey
 class Ecstore::PublicAccount < Ecstore::Base
   self.table_name = 'public_accounts'
   self.accessible_all_columns
