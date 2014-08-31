@@ -447,16 +447,31 @@ class Store::OrdersController < ApplicationController
     render :layout => "manco_template"
   end
 
+  def destroyaddr
+    @addr = Ecstore::MemberAddr.find(params[:addr_idsss])            ### 删除地址
+    @addr.destroy
+    redirect_to "/orders/arrival"
+  end
 
 
 
 
   def ordersnew_manco
-    if (params[:member_departure_id]&&params[:member_arrival_id])
+    if (params[:member_departure_id])
          member_departure_id=params[:member_departure_id]
-         member_arrival_id=params[:member_arrival_id]
+
     else
-        member_departure_id=session[:depar]
+       if session[:depar].nil?
+        member_departure_id=session[:depars]
+       else
+         member_departure_id=session[:depar]
+       end
+
+    end
+    if(params[:member_arrival_id])
+      member_arrival_id=params[:member_arrival_id]
+
+      else
         member_arrival_id=session[:arri]
      end
     @departure_addr=Ecstore::MemberAddr.find_by_addr_id(member_departure_id)

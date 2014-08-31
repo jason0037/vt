@@ -443,6 +443,7 @@ Modengke::Application.routes.draw do
     get 'tairyo_share' =>"orders#tairyo_share"
     get 'share' =>"orders#share"
     get 'order/black_manco' =>"orders#black_manco"
+
     resources :orders, :except=>[:index] do
       member do
         get 'to_inventory'
@@ -452,7 +453,9 @@ Modengke::Application.routes.draw do
         get :goods
 
       end
+
       collection do
+        post 'destroyaddr'
         get 'check_coupon'
         get  'new_mobile'
         get  'new_tairyo'
@@ -464,6 +467,8 @@ Modengke::Application.routes.draw do
         get 'ordersnew_manco'
         get 'departure'
         post 'arrival'
+        get 'arrival'
+
       end
     end
 

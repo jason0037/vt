@@ -12,6 +12,13 @@
   </div>
 
 </header>
+<a href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>" title="">ss </a>
+
+
+
+
+
+
 
   <%= form_for :order, :url=>"ordersnew_manco",:method=>"POST",:html => {:class => "am-form"} do |f| %>
 
@@ -22,15 +29,17 @@
         <td >姓名</td>
         <td >手机</td>
         <td >联系电话</td>
+        <td>删除</td>
       </tr>
 
 
           <%@addrss.each do |def_addr|%>
               <tr>
-                <td> <%=radio_button_tag "member_arrival_id",def_addr.addr_id%></td>
+                <td> <%=radio_button_tag "member_arrival_id",def_addr.addr_id ,:checked=>true%></td>
                 <td ><%=def_addr.name%></td>
                 <td ><%=def_addr.mobile%></td>
                 <td ><%=def_addr.addr%></td>
+                <td><input type="button"   data-url="/orders/destroyaddr" value="删除" class="am-btn am-btn-primary delete "></td>
               </tr>
 
           <% end %>
@@ -40,3 +49,25 @@
     </table>
     <input type="submit" class="am-btn am-btn-primary form-sure" value="确认" >
 <%end%>
+
+<%= javascript_include_tag "jquery", "jquery_ujs" %>
+<script type="application/javascript">
+  $(document).ready(function(){
+      $(".delete").bind("click",function(){
+       var addr_idsss=   $(this).parent("td").siblings("td").eq(0).children("input[type='radio']").val();
+          var thisTr =  $(this);
+        $.ajax( {
+               url: "/orders/destroyaddr",
+              type: "post",
+              data:{addr_idsss:addr_idsss },
+              success:function(res){
+                  thisTr.parents("td").parents("tr").remove();
+              }
+      });
+
+      })
+
+
+  })
+
+</script>

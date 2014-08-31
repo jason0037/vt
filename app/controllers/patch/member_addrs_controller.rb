@@ -71,7 +71,7 @@ class Patch::MemberAddrsController < ApplicationController
 
 
   def _form_manco_second
-
+    session[:depars]=params[:member_departure_id]  ##有寄货地址 没收货地址的
     @addr = Ecstore::MemberAddr.new
 
 
@@ -79,12 +79,16 @@ class Patch::MemberAddrsController < ApplicationController
     render :layout => "manco_new"
   end
   def addship
+
+
     @addr = Ecstore::MemberAddr.new params[:addr].merge!(:member_id=>@user.member_id)
     if @addr.save
       @arrid=@addr.addr_id
+
       session[:arri]=@arrid
       redirect_to '/orders/ordersnew_manco'
     end
   else "/member_addrs/_form_manco_second"
   end
-end
+    end
+
