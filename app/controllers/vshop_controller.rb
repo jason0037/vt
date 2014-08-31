@@ -92,7 +92,8 @@ class VshopController < ApplicationController
       @goods = Ecstore::Good.includes(:cat).includes(:brand)
 
       if @user.id!= 2495 #贸威
-        @goods =@goods.where(:supplier_id=> @user.id)
+        @supplier =Ecstore::Supplier.find_by_member_id(@user.id)
+        @goods = @good.where(:supplier_id=>@supplier.id)
       end
 
       @goods = @goods .paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC')   #分页
@@ -166,6 +167,14 @@ class VshopController < ApplicationController
   end
 
   def brand
+    @supplier_id=params[:id]
+    @supplier = Ecstore::Supplier.find(@supplier_id)
+
+    @brand= Ecstore::Brand.find(142)
+    render :layout=>"#{@supplier.url}"
+  end
+
+  def event
     @supplier_id=params[:id]
     @supplier = Ecstore::Supplier.find(@supplier_id)
 
