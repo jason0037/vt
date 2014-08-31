@@ -3,6 +3,7 @@ class VshopController < ApplicationController
 
   layout "vshop"
 
+
   def new
   	@account = Ecstore::Account.new
   end
@@ -161,6 +162,14 @@ class VshopController < ApplicationController
     @cat = params[:cat]
     @goods =  Ecstore::Good.where(:supplier_id=>@supplier_id,:cat_id=>@cat)
     @supplier = Ecstore::Supplier.find(@supplier_id)
+    render :layout=>"#{@supplier.url}"
+  end
+
+  def brand
+    @supplier_id=params[:id]
+    @supplier = Ecstore::Supplier.find(@supplier_id)
+
+    @brand= Ecstore::Brand.find(142)
     render :layout=>"#{@supplier.url}"
   end
 
