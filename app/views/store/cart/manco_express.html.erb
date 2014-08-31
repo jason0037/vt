@@ -11,7 +11,7 @@
         background-color: #f0f1ff;
     }
     #quantity{
-        width: 10%;
+        width: 100px;
     }
     input.textcenter {
         text-align: center;
@@ -39,7 +39,7 @@
         <div class=" clearfix">
 
           <div class="">
-            <em>如果需要修改货物重量，请点击 </em>
+            <em>如需修改货物重量,请点击 </em>
             <em>
 
               <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity  J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
