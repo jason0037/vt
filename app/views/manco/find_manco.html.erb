@@ -28,6 +28,10 @@
         display: none;
 
     }
+    #mancoweight{
+
+    }
+
     .am-form-group{
         text-align: center;
     }
@@ -77,10 +81,12 @@
     <%=f.hidden_field :manco_name_two, :id=>"manco_name_two"%>
     <a href="#" class="am-badge am-badge-primary button-am" >友情提示 如果需要送货请点击并填写重量 </a>   <br/>  <br/><br/>
     <label for="text">物流行程:</label>
-   <span style="text-align: center " id="manco_name_show"></span> <br/>
+   <span style="text-align: center ;color: red" id="manco_name_show"></span> <br/> <br/>
     <label for="text">价钱为:</label>
-    <span style="text-align: center" id="manco_price_show"></span>
-    <br/> <a class="out" href="/manco">返回</a>
+    <span style="text-align: center;color: red" id="manco_price_show"></span>
+    <br/>   <br/>
+
+    <a class="out" href="/manco">返回</a>
     <%=text_field_tag :mancoweight  %>
     <%= f.submit :class=>"am-btn am-btn-primary am-btn-sm am-fl button-hide" ,:value=>"提交"%>
 

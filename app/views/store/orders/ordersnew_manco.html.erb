@@ -60,14 +60,12 @@
     </div>
     <div data-cartforms="time" data-collapse="true">
       <div class="userdiv">
-        <div class="checktit clearfix"><span class="pay_way"></span>货物信息</div>
+        <div class="checktit clearfix"><span class="pay_way"></span>货物备注</div>
         <div class="in_pay">
-          <span class="text">货物重量</span>
-          <%=f.text_field :weight %>kg;
-          <br/>
+
           <%=f.label :memo, "备注：",:class=>"control-label"%>
           <div class="controls">
-            <%=f.text_area :memo,:rows=>8%>
+            <%=f.text_area :memo, :rows=>8%>
           </div>
         </div>
       </div>

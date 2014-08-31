@@ -1,3 +1,21 @@
+<style type="text/css">
+
+  .btn_red{
+      background: blue;
+      border: blue;
+  }
+  .footer , .s_links{
+            display: none;
+        }
+
+</style>
+<header id="header" class="header clearfix">
+
+  <div class="head_left fl"><a href="javascript:history.go(-1)"><span class="h_back"></span></a></div>
+  <span class="headtit">选择<em style="color: red">寄货</em> 地址</span>
+  <div class="head_right fr"><a href="/manco" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
+</header>
+
 <%=form_for :addr, :url=>@method == :put ? @action_url : "/member_addrs?return_url=/member_addrs/_form_manco_second",:remote=>true,:method=>"post",:html=>{ :class=> " form-horizontal" } do |f|%>
 <dl class="connerbox">
     <dd><span class="form_hd">*姓名：</span>

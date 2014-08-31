@@ -1,9 +1,21 @@
 <%=javascript_include_tag "area_seletor"%>
 <%=javascript_include_tag "patch/member_addrs"%>
+<style type="text/css">
+
+    .btn_red{
+        background: blue;
+        border: blue;
+    }
+    .footer , .s_links{
+        display: none;
+    }
+
+</style>
+
 <header id="header" class="header clearfix">
 
-  <div class="head_left fl"><a href="#"><span class="h_back"></span></a></div>
-  <span class="headtit">选择收货地址<%=@wemanco_price%></span>
+  <div class="head_left fl"><a href="javascript:history.go(-1)"><span class="h_back"></span></a></div>
+  <span class="headtit">选择<em style="color: red">收货</em>人地址</span>
   <div class="head_right fr"><a href="/manco" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
 </header>
 
@@ -41,7 +53,7 @@
       <dd><span class="form_hd">邮编：</span><span class="form_td"><%=f.text_field :zip,:class=>"text_input",:maxlength=>"6"%></span></dd>
     </dl>
 
-    <dl class="connerbox"><dd><span>详情地址：</span><%=f.text_area :addr,:class=>"span5", :id=>"addr",:class=>"textarea_input textarea_address"%>
+    <dl class="connerbox"><dd><span>详情地址()</span><%=f.text_area :addr,:class=>"span5", :id=>"addr",:class=>"textarea_input textarea_address"%>
       <span class="help-inline error"></span>
     </dd></dl>
     <dl class="connerbox" style="display:none"><dd><span> <%=f.label :def_addr, "设置为默认地址：",:class=>"text_input"%></span>

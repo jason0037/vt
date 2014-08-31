@@ -1,17 +1,17 @@
-  <style type="text/css">
-      .am-g{
-          text-align: center;
-          margin-left: 15px;
-      }
+<style type="text/css">
+    .form-sure{
+        float: right;
+    }
 
-  </style>
-<a href="/orders/new_manco_addr" title="新增地址"> </a>
+</style>
+<header id="am-topbar am-topbar-inverse">
 
+  <div class="am-panel am-panel-primary">
+    <div class="am-panel-hd">收货人地址</div>
 
+  </div>
 
-
-
-
+</header>
 
   <%= form_for :order, :url=>"ordersnew_manco",:method=>"POST",:html => {:class => "am-form"} do |f| %>
 
