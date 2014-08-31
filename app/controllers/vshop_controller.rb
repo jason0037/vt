@@ -93,7 +93,7 @@ class VshopController < ApplicationController
 
       if @user.id!= 2495 #贸威
         @supplier =Ecstore::Supplier.find_by_member_id(@user.id)
-        @goods = @good.where(:supplier_id=>@supplier.id)
+        @goods = @goods.where(:supplier_id=>@supplier.id)
       end
 
       @goods = @goods .paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC')   #分页
