@@ -70,10 +70,13 @@
     <section class="am-panel am-panel-primary">
       <div class="am-panel-hd">小黑板目录</div>
       <ul class="am-list blog-list">
+        <%@good.each do |go|%>
+
         <li >
-          <a href="######" class="am-list-item-hd">上海到南京</a>
+          <a href="/mancoproduct?id=<%=go.bn%>" class="am-list-item-hd"><%=go.name%></a>
           <span class="am-list-date">2013-03-18</span>
         </li>
+            <%end%>
         <li >
           <a href="######" class="am-list-item-hd">北京到西藏</a>
           <span class="am-list-date">2013-05-18</span>
