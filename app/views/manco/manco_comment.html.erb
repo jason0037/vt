@@ -1,0 +1,20 @@
+<section data-am-widget="sohucs" class="am-sohucs am-sohucs-default" data-am-sohucs-appid="cyr8nM16m"
+         data-am-sohucs-conf="prod_225178b1567029966f5f52fed7fc1179">
+  <div id="SOHUCS"></div>
+</section>
+<!--高速版，加载速度快，使用前需测试页面的兼容性-->
+
+<script>
+    (function(){
+        var appid = 'cyrlDmkiB',
+                conf = 'prod_0752f6454e4f942fbf7662c61dd5e455';
+        var doc = document,
+                s = doc.createElement('script'),
+                h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+        s.type = 'text/javascript';
+        s.charset = 'utf-8';
+        s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+        h.insertBefore(s,h.firstChild);
+        window.SCS_NO_IFRAME = true;
+    })()
+</script>
