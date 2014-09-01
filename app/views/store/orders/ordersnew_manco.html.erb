@@ -15,9 +15,9 @@
       <div class="userdiv">
         <div class="checktit clearfix"><span class="pay_way"></span>寄货人信息</div>
         <div class="in_pay">
-          <p > 寄货人地址：  <%=text_field_tag "地址", value=@departure_addr.addr%> </p>  <br/>
-          <p >寄货人联系电话：  <%=text_field_tag "电话", value=@departure_addr.mobile%> </p> <br/>
-          <p >寄货人姓名 ：  <%=text_field_tag "姓名", value=@departure_addr.name%> </p>
+          <p > 始发地地址：  <%=text_field_tag "地址", value=@departure_addr.addr%> </p>  <br/>
+          <p >联系电话：  <%=text_field_tag "电话", value=@departure_addr.mobile%> </p> <br/>
+          <p >联系人姓名 ：  <%=text_field_tag "姓名", value=@departure_addr.name%> </p>
           <br/>
         </div>
       </div>
@@ -29,9 +29,9 @@
       <div class="userdiv">
         <div class="checktit clearfix"><span class="pay_way"></span>收货人信息</div>
         <div class="in_pay">
-     <p > 收货人地址：  <%=f.text_field :ship_addr, :value=>@arrival_addr.addr%> </p>  <br/>
-       <p >收货人联系电话：  <%=f.text_field :ship_mobile, :value=>@arrival_addr.mobile%> </p> <br/>
-        <p >收货人姓名 ：  <%=f.text_field :ship_name, :value=>@arrival_addr.name%> </p>
+     <p > 目的地地址：  <%=f.text_field :ship_addr, :value=>@arrival_addr.addr%> </p>  <br/>
+       <p >联系电话：  <%=f.text_field :ship_mobile, :value=>@arrival_addr.mobile%> </p> <br/>
+        <p >联系人姓名 ：  <%=f.text_field :ship_name, :value=>@arrival_addr.name%> </p>
           <br/>
 
       </div>
