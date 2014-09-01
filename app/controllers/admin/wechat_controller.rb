@@ -12,6 +12,7 @@ module Admin
       # @order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
      #sql ='SELECT openid,user_info,(select sum(commission) from mdk.sdb_b2c_orders where recommend_user= mdk.sdb_wechat_followers.openid group by recommend_user)  as commission FROM mdk.sdb_wechat_followers'
       @followers =  Ecstore::WechatFollower.all
+      @manager = Ecstore::Manager.find(@user.id)
       if !@manager.super?
         @supplier = Ecstore::Supplier.where(:member_id=>@user.id)
         @followers = @followers.where(:supplier_id=>@supplier.id)
