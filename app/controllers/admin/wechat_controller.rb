@@ -12,12 +12,16 @@ module Admin
       # @order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
      #sql ='SELECT openid,user_info,(select sum(commission) from mdk.sdb_b2c_orders where recommend_user= mdk.sdb_wechat_followers.openid group by recommend_user)  as commission FROM mdk.sdb_wechat_followers'
       @followers =  Ecstore::WechatFollower.all
+      if !@manager.super?
+        @supplier = Ecstore::Supplier.where(:member_id=>@user.id)
+        @followers = @followers.where(:supplier_id=>@supplier.id)
+      end
       @followers.each do |follower|
         sql ="update mdk.sdb_wechat_followers set commission= (select sum(commission) from mdk.sdb_b2c_orders where recommend_user= '#{follower.openid}' group by recommend_user) where openid='#{follower.openid}'"
         ActiveRecord::Base.connection.execute(sql)
       end
       #@order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
-      @followers =  Ecstore::WechatFollower.paginate(:page => params[:page], :per_page => 20).order("commission DESC")
+      @followers =  @followers.paginate(:page => params[:page], :per_page => 20).order("commission DESC")
       if params[:platform]=='vshop'
         render :layout=>'vshop_wechat'
       end
