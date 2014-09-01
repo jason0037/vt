@@ -36,7 +36,7 @@ module Admin
     end
 
     def follower_renew
-      follower = params[:follower]
+      follower = params[:openid]
       @follower =  Ecstore::WechatFollower.find_by_openid(follower).first
 
       supplier = Ecstore::Supplier.find(@follower.supplier_id)
