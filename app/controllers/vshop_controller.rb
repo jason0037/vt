@@ -73,6 +73,7 @@ class VshopController < ApplicationController
         end
       else
         redirect_to '/vshop/apply'
+        render :text=>''
       end
     else
       redirect_to '/vshop/login'

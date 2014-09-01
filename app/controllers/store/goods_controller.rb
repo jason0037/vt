@@ -86,7 +86,6 @@ class Store::GoodsController < ApplicationController
 
   end
  def mobile
-
    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
 
    return render "not_find_good",:layout=>"new_store" unless @good
