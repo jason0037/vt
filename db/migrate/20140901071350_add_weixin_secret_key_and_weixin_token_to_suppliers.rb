@@ -14,4 +14,8 @@ class AddWeixinSecretKeyAndWeixinTokenToSuppliers < ActiveRecord::Migration
     # model already existed. Please edit below which fields you would like to remove in this migration.
     raise ActiveRecord::IrreversibleMigration
   end
+
+   def connection
+     @connection = Ecstore::Base.connection
+   end
 end
