@@ -61,7 +61,6 @@ Modengke::Application.routes.draw do
   #    #特色
 
 
-
   mount WeixinRailsMiddleware::Engine, at: "/"
 
 
@@ -201,6 +200,7 @@ Modengke::Application.routes.draw do
       get :menu_edit,:on=>:collection
       get :followers, :on=>:collection
       get :followers_import, :on=>:collection
+      get :follower_renew,:on=> :collection
       get :groups, :on=>:collection
       get :batch_sending, :on=>:collection
       get :weixin,:on=>:collection
