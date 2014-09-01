@@ -23,7 +23,7 @@
         <td><%=follower.commission%></td>
         <td>0</td>
         <td><%=follower.commission%></td>
-        <%if follower.user_info && follower.user_info.index('}')>0%>
+        <%if follower.user_info && follower.user_info.index('}')%>
             <%@person =eval(follower.user_info)%>
             <td><%=image_tag @person["headimgurl"], :size => "108x108"%></td>
 
