@@ -37,15 +37,20 @@ module Admin
 
     def follower_renew
       openid = params[:openid]
-      @follower =  Ecstore::WechatFollower.find_by_openid(openid).first
+      @follower =  Ecstore::WechatFollower.where(:openid=>openid).first
 
       supplier = Ecstore::Supplier.find(@follower.supplier_id)
       appid = supplier.weixin_appid
       appsecret =  supplier.weixin_appsecret
       $client ||= WeixinAuthorize::Client.new(appid,appsecret)
-
-      @follower.user_info = $client.user(openid).result.to_s
+      user_info =$client.user(openid).result.to_s
+      if user_info.size>50
+      @follower.user_info = user_info
       @follower.save
+      else
+        @follower.destroy
+      end
+      redirect_to '/admin/wechat/followers'
     end
 
     def followers_import
