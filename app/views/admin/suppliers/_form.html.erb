@@ -1,127 +1,153 @@
 <%= form_for :supplier,:url =>@action_url, :method=>@method, :html => {:class => "form-horizontal"} do |f| %>
   <fieldset>
-    <div class="control-group">
-      <%= f.label :name, "名称", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :name%>
+    <div style="float:left;width:450px">
+      <div>基本信息</div>
+      <div class="control-group">
+        <%= f.label :name, "名称", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :name%>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :logo, "logo", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :logo%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :status, "状态", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :status%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :url, "访问地址", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :url%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :member_id, "用户", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :member_id%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :address, "公司地址", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :address%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :tel, "电话", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :tel%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :owner, "法人代表", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :owner%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :owner_id, "法人代表身份证", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :owner_id%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :vmanager, "微店店长", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :vmanager%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :vmanager_dpt_postion, "部门职位", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :vmanager_dpt_position%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :vmanager_id, "店长身份证号", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :vmanager_id%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :vmanager_mobile, "店长手机", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :vmanager_mobile%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :vmanager_email, "店长email", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :vmanager_email%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :license, "营业执照", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :license%>
+        </div>
       </div>
     </div>
-    
-    <div class="control-group">
-      <%= f.label :logo, "logo", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :logo%>
+    <div style="float:left;width:450px">
+      <div>微信信息</div>
+      <div class="control-group">
+        <%= f.label :weixin_token, "服务号token", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_token%>
+        </div>
       </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :status, "状态", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :status%>
+      <div class="control-group">
+        <%= f.label :weixin_secret_key, "微信密钥", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_secret_key%>
+        </div>
       </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :url, "访问地址", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :url%>
+      <div class="control-group">
+        <%= f.label :weixin_name, "微信公众名", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_name%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :weixin_account, "微信账号", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_account%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :weixin_password, "微信密码", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_password%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :weixin_appid, "appid", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_appid%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :weixin_appsecret, "appsecret", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_appsecret%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :weixin_openid, "openid", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_openid%>
+        </div>
       </div>
     </div>
 
-    <div class="control-group">
-      <%= f.label :weixin_token, "服务号token", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :weixin_token%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :weixin_secret_key, "微信密钥", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :weixin_secret_key%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :member_id, "用户", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :member_id%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :address, "公司地址", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :address%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :tel, "电话", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :tel%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :owner, "法人代表", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :owner%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :owner_id, "法人代表身份证", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :owner_id%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :weixin_name, "微信公众名", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :weixin_name%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :weixin_account, "微信账号", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :weixin_account%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :weixin_password, "微信密码", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :weixin_password%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :vmanager, "微店店长", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :vmanager%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :vmanager_dpt_postion, "部门职位", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :vmanager_dpt_position%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :vmanager_id, "店长身份证号", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :vmanager_id%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :vmanager_mobile, "店长手机", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :vmanager_mobile%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :vmanager_email, "店长email", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :vmanager_email%>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :license, "营业执照", :class => "control-label" %>
-      <div class="controls">
-        <%= f.text_field :license%>
-      </div>
-    </div>
+
+
 
 
     <div class="control-group">

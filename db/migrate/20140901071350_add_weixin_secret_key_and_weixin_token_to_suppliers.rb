@@ -4,6 +4,9 @@ class AddWeixinSecretKeyAndWeixinTokenToSuppliers < ActiveRecord::Migration
      change_table :sdb_imodec_suppliers do |t|
        t.string :weixin_secret_key
        t.string :weixin_token
+       t.string :weixin_appid
+       t.string :weixin_appsecret
+       t.string :weixin_openid
      end
      add_index :sdb_imodec_suppliers, :weixin_secret_key
      add_index :sdb_imodec_suppliers, :weixin_token

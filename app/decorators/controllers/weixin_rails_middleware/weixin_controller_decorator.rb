@@ -128,7 +128,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         end
         message="您好！,您可以领取的佣金是：￥#{share}元"
       else
-        message="您好！贸威欢迎您！跨境贸威，一键直达！#{@weixin_message.FromUserName},#{@weixin_public_account.name}"
+        message="您好！#{@weixin_public_account.name}欢迎您！"
     end
 
     reply_text_message(message)
@@ -198,12 +198,12 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       # 扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送
       return reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
     end
-    reply_text_message("感谢您关注贸威")
+    reply_text_message("感谢您关注#{@weixin_public_account.name}")
   end
 
   # 取消关注
   def handle_unsubscribe_event
-    Rails.logger.info("非常遗憾，再见！")
+    Rails.logger.info("#{@weixin_message.FromUserName} 取消关注")
   end
 
   # 扫描带参数二维码事件: 2. 用户已关注时的事件推送
