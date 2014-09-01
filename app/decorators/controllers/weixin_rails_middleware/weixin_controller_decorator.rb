@@ -128,7 +128,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         end
         message="您好！,您可以领取的佣金是：￥#{share}元"
       else
-        message="您好！贸威欢迎您！跨境贸威，一键直达！#{@weixin_message.FromUserName},#{@weixin_public_account}"
+        message="您好！贸威欢迎您！跨境贸威，一键直达！#{@weixin_message.FromUserName},#{@weixin_public_account.name}"
     end
 
     reply_text_message(message)
