@@ -25,7 +25,7 @@
         <td><%=follower.commission%></td>
 
         <td>
-          <%=link_to '更新',"/admin/wechat/follower_renew?id=#{follower.openid}"%>
+          <%=link_to '更新',"/admin/wechat/follower_renew?openid=#{follower.openid}"%>
           <%#= link_to '编辑', follower_renew_admin_wechat_path(follower) %>
           |
           <%#= link_to '删除', admin_supplier_path(follower), method: :delete, data: { confirm: '确定删除?' } %>
