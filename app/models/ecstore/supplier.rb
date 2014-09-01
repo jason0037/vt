@@ -1,4 +1,5 @@
 class Ecstore::Supplier < Ecstore::Base
+  #include WeixinRailsMiddleware::AutoGenerateWeixinTokenSecretKey
 	self.table_name = "sdb_imodec_suppliers"
 	self.accessible_all_columns
   attr_accessor :license
