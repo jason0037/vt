@@ -11,63 +11,71 @@ module Admin
     def followers
       # @order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
      #sql ='SELECT openid,user_info,(select sum(commission) from mdk.sdb_b2c_orders where recommend_user= mdk.sdb_wechat_followers.openid group by recommend_user)  as commission FROM mdk.sdb_wechat_followers'
-      @followers =  Ecstore::WechatFollower.all
-      if current_admin.member_id !=1
-        @supplier = Ecstore::Supplier.where(:member_id=>@user.id)
-        @followers = @followers.where(:supplier_id=>@supplier.id)
+      message = '您还没有关注者'
+      @followers =  Ecstore::WechatFollower.paginate(:page => params[:page], :per_page => 20).order("commission DESC")
+
+      if current_admin == nil
+        @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
+
+        if @supplier
+          @followers = @followers.where(:supplier_id=>@supplier.id)
+        else
+          return render :text=>message
+        end
       end
+      #更新佣金
       @followers.each do |follower|
         sql ="update mdk.sdb_wechat_followers set commission= (select sum(commission) from mdk.sdb_b2c_orders where recommend_user= '#{follower.openid}' group by recommend_user) where openid='#{follower.openid}'"
         ActiveRecord::Base.connection.execute(sql)
       end
       #@order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
-      @followers =  @followers.paginate(:page => params[:page], :per_page => 20).order("commission DESC")
+
       if params[:platform]=='vshop'
         render :layout=>'vshop_wechat'
       end
     end
 
-    def followers_renew
-      $client ||= WeixinAuthorize::Client.new(@@appid,@@appsecret)
+    def follower_renew
       follower = params[:follower]
+      @follower =  Ecstore::WechatFollower.find_by_openid(follower).first
 
-        @followers =  Ecstore::WechatFollower.find_by_openid(follower)
-        now  = Time.now
+      supplier = Ecstore::Supplier.find(@follower.supplier_id)
+      appid = supplier.weixin_appid
+      appsecret =  supplier.weixin_appsecret
+      $client ||= WeixinAuthorize::Client.new(appid,appsecret)
 
-        @followers.user_info = $client.user(openid).result.to_s
-        @followers.save
+      @follower.user_info = $client.user(openid).result.to_s
+      @follower.save
     end
 
     def followers_import
-      $client ||= WeixinAuthorize::Client.new(@@appid,@@appsecret)
+      @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
+      appid = @supplier.weixin_appid
+      appsecret =  @supplier.weixin_appsecret
+
+      $client ||= WeixinAuthorize::Client.new(appid,appsecret)
       if ($client.is_valid?)
       #获取关注者列表
        @followers = $client.followers.result
+       @openids = @followers["data"]["openid"]
+       @openids.each do |openid|
+         @follower = Ecstore::WechatFollower.find_by_openid(openid)
+         if ! @follower
+           Ecstore::WechatFollower.new do |f|
+             f.openid = openid
+             f.supplier_id = @supplier.id
+             f.user_info = $client.user(openid).result.to_s
+           end.save
+         end
+       end
+        redirect_to '/admin/wechat/followers?platform=vshop'
+=begin
        s=''
 
-       s = s+@followers.to_s+'/n'
-       #["data"]["openid"]
-      # @followers='["oVxC9uJKUrr8enKnzqdsbqcxNvXg", "oVxC9uGAGG5uV7NMQtEVmU5CHfJc", "oVxC9uDPnMmmc_ueMcu8w6ZASHoA", "oVxC9uBr12HbdFrW1V0zA3uEWG8c", "oVxC9uBh4jWni0MOK5EJHQwk2s1I", "oVxC9uPIQg2mf1x_-r0z-L-V8wug", "oVxC9uIDfT9iq_9iIWu54doVz3Vg", "oVxC9uNpGypfrQjWfnDM-XYq5Ubk", "oVxC9uOvUT_sHHDC5unBRdG-TxEg", "oVxC9uD0IhJL8EB-AGZFPBYPsF8k", "oVxC9uNa8Qil65iR4lYWtb9f6GEU", "oVxC9uHB9AOKp6-nWzCsJwcFu3Zc", "oVxC9uMny98wUvsdytUD3TF2zKIs", "oVxC9uK9CSjzd0nVmnfkqlAGj3kQ", "oVxC9uNp3UH8LiXYx0oRNCJpiu-8", "oVxC9uADvVLGWkwk4enHpYKDa88k", "oVxC9uOzYGWyfB0b81hmwbXs8wPI", "oVxC9uChJqM0nf-PREaLjk5Xf2MU", "oVxC9uGiazMZjmHdQ9KzrOQwoUW4", "oVxC9uCqeu1WPh2YDkM_PZXCp8Wc", "oVxC9uLZUk3q2qmqaaVY7woZW9ic", "oVxC9uJPkOo-SERYmHThvUeCoBBI", "oVxC9uBneu5YaQ_vd8BSvNFT7ojw", "oVxC9uAzwD1_VxugaWaUD8sSYjL0", "oVxC9uDGhK7ZEBqRdkjg8KCrNwak"]'
-      #  sql ="insert mdk.sdb_wechat_followers (openid) values #{@followers.gsub('[','(').gsub(']',')').gsub(',','),(')}"
-      #  ActiveRecord::Base.connection.execute(sql)
-=begin
-        Ecstore::WechatFollower.new do |wf|
-          rl.wechat_id = @wechat_user
-          rl.access_time = now
-        end.save
+       s = s+@followers.to_s
+       return render :text=>s
+{"total"=>8, "count"=>8, "data"=>{"openid"=>["oHwtut91xXfJLl-MfsRTKAfOgIgc", "oHwtut-sSG77G0ljiCsvTinUfy6c", "oHwtut5miGKpAvZrWgVjBoMH653c", "oHwtut4DCngIR1RsYriOvD2jjBn0", "oHwtut8zMrwoo2Nv2gi-zuHw3bDs", "oHwtut2KpAxjkvgey_a8TOxgcYaM", "oHwtut402wk_IvtnQzKFm6VSQJ5M", "oHwtut0HBG7SuncOZeOrx8K5mn8w"]}, "next_openid"=>"oHwtut0HBG7SuncOZeOrx8K5mn8w"}
 =end
-        #获取用户基本信息
-=begin
-        @followers =  Ecstore::WechatFollower.limit(5).offset(23)
-        now  = Time.now
-
-        @followers.each do |follower|
-          openid=follower.openid
-          follower.user_info = $client.user(openid).result.to_s
-          follower.save
-        end
-=end
-        render :text=>s
 
 
      end

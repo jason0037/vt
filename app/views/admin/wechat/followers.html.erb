@@ -23,15 +23,7 @@
         <td><%=follower.commission%></td>
         <td>0</td>
         <td><%=follower.commission%></td>
- <%if follower.user_info%>
-     <%@person =eval(follower.user_info)%>
-        <td><%=image_tag @person["headimgurl"], :size => "108x108"%></td>
-
-        <td><%=@person["nickname"]%></td>
-        <td><%=@person["sex"]%></td>
-        <td><%="#{@person["country"]}/#{@person["province"]}/#{@person["city"]}"%></td>
-        <td><%=Time.at(@person["subscribe_time"])%></td>
- <%end%>
+ 
 
         <td>
           <%#= link_to '编辑', edit_admin_supplier_path（follower) %>
