@@ -30,7 +30,7 @@
             <td><%=@person["nickname"]%></td>
             <td><%=@person["sex"]%></td>
             <td><%="#{@person["country"]}/#{@person["province"]}/#{@person["city"]}"%></td>
-            <td><%=Time.at(@person["subscribe_time"])%></td>
+            <td><%=Time.at(@person["subscribe_time"]).strftime("%Y-%m-%d %H:%M:%S")%></td>
         <%end%>
         <td>
           <%=link_to '更新',"/admin/wechat/follower_renew?openid=#{follower.openid}"%>
