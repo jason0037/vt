@@ -1,16 +1,17 @@
 #encoding : UTF-8
 module Admin
   class WechatController < Admin::BaseController
-
-    @@supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
-
-    if @@supplier
-      @@openid=@supplier.weixin_openid
-      @@appid = @supplier.weixin_appid
-      @@appsecret =  @supplier.weixin_appsecret
+=begin
+    if cookies["MEMBER"]
+      @@supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
+    else
+      @@supplier = Ecstore::Supplier.find(params[:spplier])
     end
-    # 创建一个实例
-    #$client ||= WeixinAuthorize::Client.new(ENV["APPID"], ENV["APPSECRET"])
+
+    @@openid = @@supplier.weixin_openid
+    @@appid = @@supplier.weixin_appid
+    @@appsecret =  @@supplier.weixin_appsecret
+=end
     def followers
       # @order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
      #sql ='SELECT openid,user_info,(select sum(commission) from mdk.sdb_b2c_orders where recommend_user= mdk.sdb_wechat_followers.openid group by recommend_user)  as commission FROM mdk.sdb_wechat_followers'
@@ -102,17 +103,105 @@ module Admin
       end
       #$openid='gh_a0e5b9a22803'
       $client ||= WeixinAuthorize::Client.new($appid,$appsecret)
-      if ($client.is_valid?)
-        @menu = $client.menu.result['menu']['button']
-      end
+    #  if ($client.is_valid?)
+     #   @menu = $client.menu.result['menu']['button']
+    #  end
       return render :text=>$client.menu.result
     end
 
     def menu_edit
-      $openid='gh_a0e5b9a22803'
+
+      #manco
+      $openid='gh_b45eda6a7263'
+      @@appid='wx6b00b26294111729'
+      @@appsecret='ae953aa0def51bdb7d587f1c2eb66acb'
+
+=begin
+      #norsh
+      $openid='gh_0033bc7ec157'
+      @@appid='wxe531449efd44b06b'
+      @@appsecret='6a7cc9336dca96266631512ccb7d2f5a'
+=end
       $client ||= WeixinAuthorize::Client.new(@@appid,@@appsecret)
 
       if ($client.is_valid?)
+
+        menu_manco = '{
+     "button":[
+     {
+          "name":"万家介绍",
+          "sub_button":[
+          {
+                "type":"view",
+                "name":"万家简介",
+                "url":"http://www.trade-v.com/pages/manco_brand"
+            },
+            {
+                 "type":"view",
+                 "name":"服务项目",
+                 "url":"http://www.trade-v.com/pages/manco_service"
+            },
+            {
+                 "type":"view",
+                 "name":"案例介绍",
+                 "url":"http://www.trade-v.com/pages/manco_cases"
+            }
+      ]},
+      {
+           "name":"万家服务",
+           "sub_button":[
+           {
+               "type":"view",
+               "name":"运价查询",
+               "url":"http://www.trade-v.com/manco/express"
+            },
+            {
+               "type":"view",
+               "name":"我要送货",
+               "url":"http://www.trade-v.com/manco/find_manco"
+            },
+            {
+               "type":"view",
+               "name":"小黑板",
+               "url":"http://www.trade-v.com/manco/black_index"
+            },
+            {
+               "type":"view",
+               "name":"优惠券",
+               "url":"http://www.trade-v.com/manco"
+            },
+            {
+               "type":"view",
+               "name":"运输跟踪",
+               "url":"http://www.trade-v.com/manco/follow"
+            }
+         ]},
+         {
+           "name":"关注我们",
+           "sub_button":[
+           {
+               "type":"view",
+               "name":"服务网络",
+               "url":"http://www.trade-v.com/manco"
+            },
+
+            {
+               "type":"click",
+               "name":"我的佣金",
+               "key":"SHARE"
+            },
+            {
+               "type":"view",
+               "name":"服务点评",
+               "url":"http://www.trade-v.com/manco/main"
+            },
+           {
+               "type":"click",
+               "name":"联系我们",
+               "key" : "Oauth"
+            }]
+       }]
+ }'
 
         menu_norsh = '{
      "button":[
@@ -122,37 +211,47 @@ module Admin
           {
                 "type":"view",
                 "name":"品牌故事",
-                "url":"http://www.trade-v.com/vshop/97/"
+                "url":"http://www.trade-v.com/pages/norsh_brand"
             },
             {
-                 "type":"click",
-                 "name":"新品推荐",
-                 "key":"NEW"
+                 "type":"view",
+                 "name":"渠道招商",
+                 "url":"http://www.trade-v.com/pages/norsh_partner"
+            },
+            {
+                 "type":"view",
+                 "name":"市场推广",
+                 "url":"http://www.trade-v.com/pages/norsh_event"
+            },
+            {
+                 "type":"view",
+                 "name":"店长推荐",
+                 "url":"http://www.trade-v.com/vshop/97"
             }
 
       ]},
       {
-           "name":"商品分类",
+           "name":"商品",
            "sub_button":[
            {
                "type":"view",
-               "name":"乳制品",
-               "url":"http://www.trade-v.com/mgallery?name=%E5%A5%B6%E9%85%AA"
+               "name":"宝宝乳牙刷",
+               "url":"http://www.trade-v.com/vshop/97/category?cat=515"
             },
             {
                "type":"view",
-               "name":"酒类",
-               "url":"http://www.trade-v.com/mgallery?name=%E9%85%92%E7%B1%BB"
+               "name":"婴童牙膏",
+               "url":"http://www.trade-v.com/mproducts?id=a0971002"
             },
             {
                "type":"view",
-               "name":"零食",
-               "url":"http://www.trade-v.com/mgallery?name=%E9%9B%B6%E9%A3%9F"
+               "name":"宝宝小软勺",
+               "url":"http://www.trade-v.com/mproducts?id=a0971007"
             },
             {
                "type":"view",
-               "name":"婴童",
-               "url":"http://www.trade-v.com/mgallery?name=%E5%A9%B4%E7%AB%A5"
+               "name":"婴儿手工皂",
+               "url":"http://www.trade-v.com/vshop/97/category?cat=572"
             }]
          },
          {
@@ -238,7 +337,7 @@ module Admin
             }]
        }]
  }'
-        menu=menu_tradev
+        menu=menu_manco
         #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
 #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
         response = $client.create_menu(menu)

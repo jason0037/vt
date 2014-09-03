@@ -9,6 +9,7 @@ class PagesController < ApplicationController
     elsif params[:platfom]='mobile'
       render :layout=>'mobile_new'
     else
+
       render :layout=> @page.layout.present? ? @page.layout : nil
     end
 
