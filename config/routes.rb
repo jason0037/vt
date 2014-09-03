@@ -108,8 +108,6 @@ Modengke::Application.routes.draw do
     end
     member do
       get :category
-      get :event
-      get :brand
       get :commodity
       get :order
       get :payment

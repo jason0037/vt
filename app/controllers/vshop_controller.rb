@@ -167,20 +167,4 @@ class VshopController < ApplicationController
     render :layout=>"#{@supplier.url}"
   end
 
-  def brand
-    @supplier_id=params[:id]
-    @supplier = Ecstore::Supplier.find(@supplier_id)
-
-    @brand= Ecstore::Brand.find(142)
-    render :layout=>"#{@supplier.url}"
-  end
-
-  def event
-    @supplier_id=params[:id]
-    @supplier = Ecstore::Supplier.find(@supplier_id)
-
-    @brand= Ecstore::Brand.find(142)
-    render :layout=>"#{@supplier.url}"
-  end
-
 end

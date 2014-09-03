@@ -130,8 +130,12 @@ class Store::GoodsController < ApplicationController
        @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
      end
    end
-
-   render :layout=>"mobile_new"
+   if params[:id]
+     @supplier  =  Ecstore::Supplier.find(params[:id])
+     render :layout=>@supplier.url
+   else
+     render :layout=>"mobile_new"
+   end
  end
 
   def tairyo_tuan
