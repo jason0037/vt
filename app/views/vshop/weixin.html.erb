@@ -3,22 +3,6 @@
       <DIV class="app_create_box app">
         <%=form_for :supplier,:url=>@action,:method=>'put', :remote=>true do |f|%>
             <DIV class="frm_control_group">
-              <%= f.label :name, '企业全称', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-              <%= f.text_field :name ,:class=>'frm_input',:maxlenth=>'40'%>
-              </SPAN>
-              </DIV>
-            </DIV>
-            <DIV class="frm_control_group">
-              <%= f.label :address, '办公地址', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-              <%= f.text_field :address ,:class=>'frm_input',:maxlenth=>'100'%>
-              </SPAN>
-              </DIV>
-            </DIV>
-            <DIV class="frm_control_group">
               <%= f.label :tel, '公司电话', :class => "frm_label" %>
               <DIV class="frm_controls">
               <SPAN class="frm_input_box">
@@ -27,83 +11,10 @@
               </DIV>
             </DIV>
             <DIV class="frm_control_group">
-              <%= f.label :owner, '企业法定代表人姓名', :class => "frm_label" %>
+              <%= f.label :logo, 'logo', :class => "frm_label" %>
               <DIV class="frm_controls">
               <SPAN class="frm_input_box">
-              <%= f.text_field :owner ,:class=>'frm_input',:maxlenth=>'40'%>
-              </SPAN>
-              </DIV>
-            </DIV>
-            <DIV class="frm_control_group">
-              <%= f.label :owner_id, '身份证号', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-              <%= f.text_field :owner_id ,:class=>'frm_input',:maxlenth=>'40'%>
-              </SPAN>
-              </DIV>
-            </DIV>
-            <DIV class="frm_control_group">
-              <%= f.label :weixin_name, '公众服务号名称', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-              <%= f.text_field :weixin_name ,:class=>'frm_input',:maxlenth=>'40'%>
-              </SPAN>
-              </DIV>
-              <P>你需要通过微信公众帐号（必须是已被微信认证的），请填写相关微信公众帐号。</P>
-            </DIV>
-            <DIV class="frm_control_group">
-              <%= f.label :weixin_account, '服务号登录账号', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-              <%= f.text_field :weixin_account ,:class=>'frm_input',:maxlenth=>'40'%>
-              </SPAN>
-              </DIV>
-            </DIV>
-            <DIV class="frm_control_group">
-              <%= f.label :weixin_password, '服务号登录密码', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-              <%= f.text_field :weixin_password ,:class=>'frm_input',:maxlenth=>'40'%>
-              </SPAN>
-              </DIV>
-            </DIV>
-            <DIV class="frm_control_group">
-              <%= f.label :vmanager, '微店运营者姓名', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-              <%= f.text_field :vmanager ,:class=>'frm_input',:maxlenth=>'40'%>
-              </SPAN>
-              </DIV>
-            </DIV>
-            <DIV class="frm_control_group">
-              <%= f.label :vmanager_dpt_position, '部门与职位', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-              <%= f.text_field :vmanager_dpt_position ,:class=>'frm_input',:maxlenth=>'40'%>
-              </SPAN>
-              </DIV>
-            </DIV>
-            <DIV class="frm_control_group">
-              <%= f.label :vmanager_id, '身份证号码', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-              <%= f.text_field :vmanager_id ,:class=>'frm_input',:maxlenth=>'40'%>
-              </SPAN>
-              </DIV>
-            </DIV>
-            <DIV class="frm_control_group">
-              <%= f.label :vmanager_mobile, '手机号码', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-              <%= f.text_field :vmanager_mobile ,:class=>'frm_input',:maxlenth=>'40'%>
-              </SPAN>
-              </DIV>
-            </DIV>
-            <DIV class="frm_control_group">
-              <%= f.label :vmanager_email, '电子邮箱', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-              <%= f.text_field :vmanager_email ,:class=>'frm_input',:maxlenth=>'40'%>
+              <%= f.text_field :logo ,:class=>'frm_input',:maxlenth=>'40'%>
               </SPAN>
               </DIV>
             </DIV>
@@ -116,7 +27,7 @@
                 <P class="frm_tips">最多80字</P></DIV>
             </DIV>
             <DIV class="tool_bar border with_form">
-              <%=f.submit '下一步', :class=>"btn btn_primary",:id=>"nextBt" %>
+              <%=f.submit '确定', :class=>"btn btn_primary",:id=>"nextBt" %>
             </DIV>
         <%end%>
       </DIV>
