@@ -24,6 +24,12 @@
           <%=f.select :layout, {"标准"=>"standard","无(完全自定义)"=>"" }%>
       </div>
     </div>
+    <div class="control-group">
+      <%= f.label :layout, "页面类型", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :category, {"首页"=>"homepage","品牌故事"=>"brand","活动信息"=>"event","招商信息"=>"partner" }%>
+      </div>
+    </div>
 
     <div class="control-group">
       <%= f.label :body, "页面内容", :class => "control-label" %>
