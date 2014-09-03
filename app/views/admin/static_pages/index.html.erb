@@ -17,7 +17,7 @@
 		<td><%=page.title%></td>
 		<td><%=link_to page.slug, page_path(page),:target=>"_blank"%></td>
         <td><%=page.category%></td>
-        <td><%=page.supplier.name%></td>
+        <td><%=page.supplier.name if page.supplier%></td>
 		<td><%=page.updated_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
 		<td>
 			<%=link_to "查看",page_path(page),:target=>"_blank"%>
