@@ -3,7 +3,6 @@ class VshopController < ApplicationController
 
   layout "vshop"
 
-
   def new
   	@account = Ecstore::Account.new
   end
@@ -25,7 +24,6 @@ class VshopController < ApplicationController
   end
 
   def orders
-
     if @user
       if params[:status].nil?
         @orders_nw = Ecstore::Order.order("order_id desc")
@@ -82,7 +80,8 @@ class VshopController < ApplicationController
 
   def weixin
     if @user
-      render 'weixin', :layout=>'vshop_wechat'
+      @supplier = Ecstore:Supplier.where(:member_id=>@user.account.id)
+      render 'weixin/', :layout=>'vshop_wechat'
     else
       redirect_to '/vshop/login'
     end
