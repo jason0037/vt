@@ -35,7 +35,7 @@ module Admin
       #@order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
 
       if params[:platform]=='vshop'
-        render :layout=>'vshop_wechat'
+        render :layout=>'vshop'
       end
     end
 
