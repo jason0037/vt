@@ -16,7 +16,7 @@
 </head>
 <body>
 <header id="header" class="header clearfix">
-  <div class="head_logo fl"><a href="/m" class="logo" mars_sead="nav_home_btn"></a></div>
+  <div class="head_logo fl"><a href="/m"  mars_sead="nav_home_btn"></a></div>
   <%if @user%>
       <div class="head_right fr">
         <a href="/cart/mobile" mars_sead="home_head_cart_btn" onclick="setBackAct(&#39;topHeaderCart&#39;)">
@@ -54,7 +54,7 @@
 <div class="footer clearfix">
   <div class="footnav clearfix">
 <%if @user%>
-        <a href="user.html"><%=@user.account.login_name%></a>
+        <a href="user.html"><%=@user.account.name%></a>
         <a href="/logout?platform=mobile">退出登录</a>
 <%else%>
         <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
