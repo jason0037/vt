@@ -25,6 +25,8 @@ WeixinRailsMiddleware::WeixinController.class_eval do
   private
 
   def response_news_message(options={})
+    id = @weixin_public_account.id
+    appid = @weixin_public_account.weixin_appid
     user = @weixin_message.FromUserName
     #user = @weixin_message.ToUserName
     case @keyword
@@ -32,16 +34,19 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title2="微信直通"
         desc2 =""
         pic_url2="http://www.trade-v.com/assets/vshop/Oauth_s.png"
-        link_url2="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+        link_url2="https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
 
         title="二维码"
         desc =""
-        pic_url="http://www.trade-v.com/assets/vshop/qrcode.gif"
-        link_url="http://www.trade-v.com/pages/qcode"
+        #pic_url="http://www.trade-v.com/assets/vshop/qrcode.gif"
+        pic_url="http://www.trade-v.com/images/a0#{id}/getqrcode.jpg"
+        #link_url="http://www.trade-v.com/pages/qcode"
 
         title1="关于我们"
         desc1 =""
-        pic_url1="http://www.trade-v.com/assets/trade-vLogo.jpg"
+        #pic_url1="http://www.trade-v.com/assets/trade-vLogo.jpg"
+        pic_url1="http://www.trade-v.com/images/a0#{id}/logo.jpg"
+        #link_url1="http://www.trade-v.com/pages/abouttradev"
         link_url1="http://www.trade-v.com/pages/abouttradev"
 
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2)]
