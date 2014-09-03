@@ -48,7 +48,7 @@ module Admin
       appsecret =  supplier.weixin_appsecret
       $client ||= WeixinAuthorize::Client.new(appid,appsecret)
       user_info =$client.user(openid).result.to_s
-      if user_info.size>50
+      if user_info.size>2
       @follower.user_info = user_info
       @follower.save
       else
