@@ -40,7 +40,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         desc =""
         #pic_url="http://www.trade-v.com/assets/vshop/qrcode.gif"
         pic_url="http://www.trade-v.com/images/a0#{id}/getqrcode.jpg"
-        #link_url="http://www.trade-v.com/pages/qcode"
+        link_url="http://www.trade-v.com/pages/qcode"
 
         title1="关于我们"
         desc1 =""
