@@ -1,7 +1,7 @@
 <DIV class="container_box cell_layout">
     <DIV class="step_panel">
       <DIV class="app_create_box app">
-        <%=form_for :supplier,:url=>"/admin/suppliers?return_url=/vshop/weixn",:method=>'put', :remote=>true do |f|%>
+        <%=form_for :supplier,:url=>"/admin/suppliers?return_url=/vshop/weixn",:method=>'post', :remote=>true do |f|%>
             <DIV class="frm_control_group">
               <%= f.label :name, '企业全称', :class => "frm_label" %>
               <DIV class="frm_controls">
