@@ -54,7 +54,7 @@
 <div class="footer clearfix">
   <div class="footnav clearfix">
 <%if @user%>
-        <a href="user.html"><%=@user.account.name%></a>
+        <a href="user.html"><%=@user.account.member_id%></a>
         <a href="/logout?platform=mobile">退出登录</a>
 <%else%>
         <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
