@@ -1,4 +1,4 @@
-class AddSpplierIdAndCategoryToStaticPages < ActiveRecord::Migration
+class AddSupplierIdAndCategoryToStaticPages < ActiveRecord::Migration
 
    def self.up
      change_table :sdb_imodec_static_pages do |t|
