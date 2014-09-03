@@ -10,14 +10,6 @@
               </SPAN>
               </DIV>
             </DIV>
-            <DIV class="frm_control_group">
-              <%= f.label :logo, 'logo', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-              <%= f.text_field :logo ,:class=>'frm_input',:maxlenth=>'40'%>
-              </SPAN>
-              </DIV>
-            </DIV>
             <DIV class="frm_control_group textarea">
               <%= f.label :desc, '微店简介', :class => "frm_label" %>
               <DIV class="frm_controls">
@@ -25,6 +17,30 @@
                <%= f.text_field :desc ,:class=>'frm_input',:maxlenth=>'80'%>
               </SPAN>
                 <P class="frm_tips">最多80字</P></DIV>
+            </DIV>
+            <DIV class="frm_control_group">
+              <%= f.label :qrcode, '微信二维码', :class => "frm_label" %>
+              <DIV class="frm_controls">
+              <SPAN class="frm_input_box">
+              <img  src="/images/a0<%=@supplier.id%>/homepage/getqrcode.jpg">
+              </SPAN>
+              </DIV>
+            </DIV>
+            <DIV class="frm_control_group">
+              <%= f.label :logo, 'logo', :class => "frm_label" %>
+              <DIV class="frm_controls">
+              <SPAN class="frm_input_box">
+              <img  src="/images/a0<%=@supplier.id%>/homepage/logo.jpg">
+              </SPAN>
+              </DIV>
+            </DIV>
+            <DIV class="frm_control_group">
+              <%= f.label :post, '店招', :class => "frm_label" %>
+              <DIV class="frm_controls">
+              <SPAN class="frm_input_box">
+              <img  src="/images/a0<%=@supplier.id%>/homepage/post.jpg">
+              </SPAN>
+              </DIV>
             </DIV>
             <DIV class="tool_bar border with_form">
               <%=f.submit '确定', :class=>"btn btn_primary",:id=>"nextBt" %>
