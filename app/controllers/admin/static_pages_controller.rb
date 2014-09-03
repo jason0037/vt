@@ -8,8 +8,6 @@ class Admin::StaticPagesController < Admin::BaseController
         @pages = @pages.where(:supplier_id=>@supplier.id).paginate(:per_page=>20,:page=>params[:page],:order=>"updated_at desc")
      end
 
-    end
-
   end
 
 	def new
