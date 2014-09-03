@@ -39,13 +39,13 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="二维码"
         desc =""
         #pic_url="http://www.trade-v.com/assets/vshop/qrcode.gif"
-        pic_url="http://www.trade-v.com/images/a0#{id}/getqrcode.jpg"
+        pic_url="http://www.trade-v.com/images/a0#{id}/homepage/getqrcode.jpg"
         link_url="http://www.trade-v.com/pages/qcode"
 
         title1="关于我们"
         desc1 =""
         #pic_url1="http://www.trade-v.com/assets/trade-vLogo.jpg"
-        pic_url1="http://www.trade-v.com/images/a0#{id}/logo.jpg"
+        pic_url1="http://www.trade-v.com/images/a0#{id}/homepage/logo.jpg"
         #link_url1="http://www.trade-v.com/pages/abouttradev"
         link_url1="http://www.trade-v.com/pages/abouttradev"
 
