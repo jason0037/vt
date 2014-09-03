@@ -1,13 +1,16 @@
 class Admin::StaticPagesController < Admin::BaseController
 
 	def index
-
 		@pages =  Ecstore::Page.paginate(:per_page=>20,:page=>params[:page],:order=>"updated_at desc")
-    if cookies["MEMBER"]
-      @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
-      @pages =@pages.where(:supplier_id=>@supplier.id)
+
+      if cookies["MEMBER"]
+        @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
+        @pages = @pages.where(:supplier_id=>@supplier.id).paginate(:per_page=>20,:page=>params[:page],:order=>"updated_at desc")
+     end
+
     end
-	end
+
+  end
 
 	def new
 		@page  = Ecstore::Page.new
