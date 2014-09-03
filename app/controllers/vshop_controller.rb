@@ -80,7 +80,7 @@ class VshopController < ApplicationController
 
   def weixin
     if @user
-      @supplier = Ecstore:Supplier.where(:member_id=>@user.account.id)
+      @supplier = Ecstore::Supplier.where(:member_id=>@user.account.id)
       render 'weixin/', :layout=>'vshop_wechat'
     else
       redirect_to '/vshop/login'
