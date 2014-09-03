@@ -2,10 +2,13 @@
 module Admin
   class WechatController < Admin::BaseController
 
-    @@appid='wxec23a03bf5422635'
-    @@appsecret='b57aa686db378f60fe5e3b80b3bb412c'
-    $openid='gh_a0e5b9a22803'
+    @@supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
 
+    if @@supplier
+      @@openid=@supplier.weixin_openid
+      @@appid = @supplier.weixin_appid
+      @@appsecret =  @supplier.weixin_appsecret
+    end
     # 创建一个实例
     #$client ||= WeixinAuthorize::Client.new(ENV["APPID"], ENV["APPSECRET"])
     def followers
@@ -88,11 +91,21 @@ module Admin
     end
 
     def menu
-      $openid='gh_a0e5b9a22803'
-      $client ||= WeixinAuthorize::Client.new(@@appid,@@appsecret)
+      @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
+
+      if @supplier
+        $openid=@supplier.weixin_openid
+        $appid = @supplier.weixin_appid
+        $appsecret =  @supplier.weixin_appsecret
+      else
+        return render :text=>'没有微店'
+      end
+      #$openid='gh_a0e5b9a22803'
+      $client ||= WeixinAuthorize::Client.new($appid,$appsecret)
       if ($client.is_valid?)
         @menu = $client.menu.result['menu']['button']
       end
+      return render :text=>$client.menu.result
     end
 
     def menu_edit
@@ -101,7 +114,69 @@ module Admin
 
       if ($client.is_valid?)
 
-        menu = '{
+        menu_norsh = '{
+     "button":[
+     {
+          "name":"品牌",
+          "sub_button":[
+          {
+                "type":"view",
+                "name":"品牌故事",
+                "url":"http://www.trade-v.com/vshop/97/"
+            },
+            {
+                 "type":"click",
+                 "name":"新品推荐",
+                 "key":"NEW"
+            }
+
+      ]},
+      {
+           "name":"商品分类",
+           "sub_button":[
+           {
+               "type":"view",
+               "name":"乳制品",
+               "url":"http://www.trade-v.com/mgallery?name=%E5%A5%B6%E9%85%AA"
+            },
+            {
+               "type":"view",
+               "name":"酒类",
+               "url":"http://www.trade-v.com/mgallery?name=%E9%85%92%E7%B1%BB"
+            },
+            {
+               "type":"view",
+               "name":"零食",
+               "url":"http://www.trade-v.com/mgallery?name=%E9%9B%B6%E9%A3%9F"
+            },
+            {
+               "type":"view",
+               "name":"婴童",
+               "url":"http://www.trade-v.com/mgallery?name=%E5%A9%B4%E7%AB%A5"
+            }]
+         },
+         {
+           "name":"我的订单",
+           "sub_button":[
+           {
+               "type":"view",
+               "name":"我的订单",
+               "url":"http://www.trade-v.com/goods?platform=mobile"
+            },
+
+            {
+               "type":"click",
+               "name":"我的佣金",
+               "key":"SHARE"
+            },
+           {
+               "type":"click",
+               "name":"联系我们",
+               "key" : "Oauth"
+            }]
+       }]
+ }'
+        menu_tradev = '{
      "button":[
      {
           "name":"限时特价",
@@ -163,6 +238,7 @@ module Admin
             }]
        }]
  }'
+        menu=menu_tradev
         #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
 #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
         response = $client.create_menu(menu)
