@@ -158,15 +158,16 @@ end
                     end.save
            else
 
+                sp_val_id = Ecstore::SpecValue.find_by_sql(["select spec_value_id from sdb_b2c_spec_values where spec_value=?and spec_id=?",specname,12])
+               Ecstore::GoodSpec.new do |gs|
+               gs.type_id =  @good.type_id
+               gs.spec_id = 12
+               gs.spec_value_id = sp_val_id
+               gs.goods_id = @good.goods_id
+               gs.product_id = @product.product_id
+             end.save
 
-             sp_val_id = Ecstore::SpecValue.where(:spec_value=>specname,:spec_id=>12).first.spec_value_id
-                   Ecstore::GoodSpec.new do |gs|
-                    gs.type_id =  @good.type_id
-                   gs.spec_id = 12
-                   gs.spec_value_id = sp_val_id
-                   gs.goods_id = @good.goods_id
-                   gs.product_id = @product.product_id
-                 end.save
+
           end
 
     else
