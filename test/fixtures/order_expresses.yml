@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  account: 
+  shipper_addr: MyString
+  consigenee_user: MyString
+  consignee_addr: MyString
+  order_id: 
+  total_amount: 1.5
+  express_total: 1.5
+  express_good: MyString
+  express_content: MyString
+
+two:
+  account: 
+  shipper_addr: MyString
+  consigenee_user: MyString
+  consignee_addr: MyString
+  order_id: 
+  total_amount: 1.5
+  express_total: 1.5
+  express_good: MyString
+  express_content: MyString
