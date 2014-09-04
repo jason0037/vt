@@ -24,6 +24,20 @@
           <%=f.select :layout, {"标准"=>"standard","无(完全自定义)"=>"" }%>
       </div>
     </div>
+    <div class="control-group">
+      <%= f.label :layout, "页面类型", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :category, {"首页"=>"homepage","品牌故事"=>"brand","活动信息"=>"event","招商信息"=>"partner" }%>
+      </div>
+    </div>
+
+    <div class="control-group" style="display:none">
+      <%= f.label :supplier_id, "供应商", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :supplier_id, Ecstore::Supplier.all.collect {|supplier| [supplier.name, supplier.id] },{:include_blank=>"请选择"},{:class=>"span3"} %>
+        <%#= @good.supplier.name%>
+      </div>
+    </div>
 
     <div class="control-group">
       <%= f.label :body, "页面内容", :class => "control-label" %>

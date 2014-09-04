@@ -19,12 +19,12 @@
   <div class="head_logo fl"><a href="/vshop/<%=@supplier.id%>"  mars_sead="nav_home_btn"><img src="/images/a0<%=@supplier.id%>/logo.png"> &nbsp;&nbsp;<%=@supplier.name%></a></div>
   <%if @user%>
       <div class="head_right fr">
-        <a href="/cart/mobile" mars_sead="home_head_cart_btn" onclick="setBackAct(&#39;topHeaderCart&#39;)">
+        <a href="/cart/mobile?id=<%=@supplier.id%>" mars_sead="home_head_cart_btn" onclick="setBackAct(&#39;topHeaderCart&#39;)">
           <span class="h_cart"></span>
         </a>
       </div>
       <div class="head_right fr">
-        <a href="/m/user" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot">
+        <a href="/m/user?id=<%=@supplier.id%>" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot">
           <span class="h_logn">                </span>
         </a>
       </div>
@@ -53,7 +53,7 @@
 <div class="footer clearfix">
   <div class="footnav clearfix">
 <%if @user%>
-        <a href="user.html"><%=@user.account.login_name%></a>
+        <a href="user.html"><%=@user.account.id%></a>
         <a href="/logout?platform=mobile">退出登录</a>
 <%else%>
         <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
@@ -63,7 +63,6 @@
     <a href="?t=1#" class="backtop" mars_sead="home_foot_top_btn"></a>
   </div>
   <p class="copyright">Copyright © 2013-2014 trade-v.com 版权所有 上海普慧信息科技有限公司 All rights reserved. 沪ICP备13045311号-1 </p>
-  <p style="display:none">from=<%=session[:wechat_user]%>|recommend=<%=session[:recommend_user]%></p>
 </div>
 <div class="space10"></div>
 

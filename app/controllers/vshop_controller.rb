@@ -24,7 +24,6 @@ class VshopController < ApplicationController
   end
 
   def orders
-
     if @user
       if params[:status].nil?
         @orders_nw = Ecstore::Order.order("order_id desc")
@@ -72,6 +71,7 @@ class VshopController < ApplicationController
         end
       else
         redirect_to '/vshop/apply'
+        render :text=>''
       end
     else
       redirect_to '/vshop/login'
@@ -80,7 +80,9 @@ class VshopController < ApplicationController
 
   def weixin
     if @user
-      render 'weixin', :layout=>'vshop_wechat'
+      @supplier = Ecstore::Supplier.where(:member_id=>@user.account.id).first
+      @action = "/admin/suppliers/#{@supplier.id}?return_url=/vshop/weixn"
+      render  :layout=>'vshop_wechat'
     else
       redirect_to '/vshop/login'
     end
@@ -91,7 +93,8 @@ class VshopController < ApplicationController
       @goods = Ecstore::Good.includes(:cat).includes(:brand)
 
       if @user.id!= 2495 #贸威
-        @goods =@goods.where(:supplier_id=> @user.id)
+        @supplier =Ecstore::Supplier.find_by_member_id(@user.id)
+        @goods = @goods.where(:supplier_id=>@supplier.id)
       end
 
       @goods = @goods .paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC')   #分页

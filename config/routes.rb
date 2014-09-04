@@ -67,11 +67,8 @@ Modengke::Application.routes.draw do
   #    #特色
 
 
-
-
   mount WeixinRailsMiddleware::Engine, at: "/"
 
-  resources :public_accounts
 
   root :to=>"home#index",:constraints=>{ :subdomain=>/^(www)?$/ }
   get 'blank'=>"home#blank"
@@ -117,6 +114,9 @@ Modengke::Application.routes.draw do
     end
     member do
       get :category
+      get :commodity
+      get :order
+      get :payment
     end
 
 
@@ -204,6 +204,7 @@ Modengke::Application.routes.draw do
       get :menu_edit,:on=>:collection
       get :followers, :on=>:collection
       get :followers_import, :on=>:collection
+      get :follower_renew,:on=> :collection
       get :groups, :on=>:collection
       get :batch_sending, :on=>:collection
       get :weixin,:on=>:collection

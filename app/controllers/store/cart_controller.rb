@@ -6,8 +6,14 @@ class Store::CartController < ApplicationController
   def index
 		render :layout=>"cart"
   end
+
   def mobile
-    render :layout=>"mobile_new"
+    if params[:id]
+      @supplier  =  Ecstore::Supplier.find(params[:id])
+      render :layout=>@supplier.url
+    else
+      render :layout=>"mobile_new"
+    end
   end
 
 	

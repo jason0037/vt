@@ -1,7 +1,7 @@
 <div>
   <h4>所有关注者</h4>
 </div>
-<%= link_to '刷新专注者列表','/admin/wechat/followers_import', :class => "pull-right btn btn-primary" %>
+<%= link_to '刷新关注者列表','/admin/wechat/followers_import', :class => "pull-right btn btn-primary" %>
 
 <table class="table table-bordered table-hover">
   <tr>
@@ -23,18 +23,18 @@
         <td><%=follower.commission%></td>
         <td>0</td>
         <td><%=follower.commission%></td>
- <%if follower.user_info%>
-     <%@person =eval(follower.user_info)%>
-        <td><%=image_tag @person["headimgurl"], :size => "108x108"%></td>
+        <%if follower.user_info && follower.user_info.index('}')%>
+            <%@person =eval(follower.user_info)%>
+            <td><%=image_tag @person["headimgurl"], :size => "108x108"%></td>
 
-        <td><%=@person["nickname"]%></td>
-        <td><%=@person["sex"]%></td>
-        <td><%="#{@person["country"]}/#{@person["province"]}/#{@person["city"]}"%></td>
-        <td><%=Time.at(@person["subscribe_time"])%></td>
- <%end%>
-
+            <td><%=@person["nickname"]%></td>
+            <td><%=@person["sex"]%></td>
+            <td><%="#{@person["country"]}/#{@person["province"]}/#{@person["city"]}"%></td>
+            <td><%=Time.at(@person["subscribe_time"]).strftime("%Y-%m-%d %H:%M:%S")%></td>
+        <%end%>
         <td>
-          <%#= link_to '编辑', edit_admin_supplier_path（follower) %>
+          <%=link_to '更新',"/admin/wechat/follower_renew?openid=#{follower.openid}"%>
+          <%#= link_to '编辑', follower_renew_admin_wechat_path(follower) %>
           |
           <%#= link_to '删除', admin_supplier_path(follower), method: :delete, data: { confirm: '确定删除?' } %>
         </td>

@@ -4,45 +4,22 @@
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <title>贸威手机版</title>
+  <title>万家物流</title>
   <meta content="" name="keywords">
   <meta content="" name="description">
   <%=stylesheet_link_tag "mobile/layout.min"%>
   <%=stylesheet_link_tag "mobile/common.min"%>
   <%= javascript_include_tag "mobile/jquery-2.1.0.min" %>
+  <%= csrf_meta_tag %>
+
   <script>
       var ui = 'touch';
   </script>
 </head>
 <body>
-<header id="header" class="header clearfix">
-  <div class="head_logo fl"><a href="/m"  mars_sead="nav_home_btn"></a></div>
-  <%if @user%>
-      <div class="head_right fr">
-        <a href="/cart/mobile" mars_sead="home_head_cart_btn" onclick="setBackAct(&#39;topHeaderCart&#39;)">
-          <span class="h_cart"></span>
-        </a>
-      </div>
-      <div class="head_right fr">
-        <a href="/m/user" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot">
-          <span class="h_logn">                </span>
-        </a>
-      </div>
-   <%end%>
-  <div class="head_right fr" style="display:none"><a href="brand-search.html"><span class="h_search"></span></a></div>
-</header>
-<div id="nav" class="clearfix">
-  <ul class="clearfix">
-    <li class="num05"><a href="/m" class="nav_current"><span>首页</span></a></li>
-    <li class="num05"><a href="/mgallery?name=婴童"><span>婴童</span></a></li>
-    <li class="num05"><a href="/mgallery?name=酒类"><span>酒类</span></a></li>
-    <li class="num05"><a href="/mgallery?name=奶酪"><span>奶酪</span></a></li>
-    <li class="num05"><a href="/mgallery?name=零食"><span>零食</span></a></li>
-  </ul>
-</div>
+
 
 <%= yield %>
-
 
 
 <div class="space15"></div>
@@ -53,14 +30,14 @@
 
 <div class="footer clearfix">
   <div class="footnav clearfix">
-<%if @user%>
-        <a href="user.html"><%=@user.account.id%></a>
-        <a href="/logout?platform=mobile">退出登录</a>
-<%else%>
-        <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
-    <a href="/mlogin?platform=mobile&<%=return_url %>" mars_sead="footer-login_btn">登录</a>
-    <a href="/mregister?platform=mobile&<%=return_url%>">注册</a>
-<%end%>
+    <%if @user%>
+        <a href="user.html">您好！</a>
+        <a href="/wlogout?platform=manco">退出登录</a>
+    <%else%>
+
+        <a href="/wlogin?platform=manco&return_url=/manco" mars_sead="footer-login_btn">登录</a>
+        <a href="/wregister?platform=manco&return_url=/manco">注册</a>
+    <%end%>
     <a href="?t=1#" class="backtop" mars_sead="home_foot_top_btn"></a>
   </div>
   <p class="copyright">Copyright © 2013-2014 trade-v.com 版权所有 上海普慧信息科技有限公司 All rights reserved. 沪ICP备13045311号-1 </p>

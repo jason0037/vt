@@ -25,6 +25,8 @@ WeixinRailsMiddleware::WeixinController.class_eval do
   private
 
   def response_news_message(options={})
+    id = @weixin_public_account.id
+    appid = @weixin_public_account.weixin_appid
     user = @weixin_message.FromUserName
     #user = @weixin_message.ToUserName
     case @keyword
@@ -32,16 +34,19 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title2="微信直通"
         desc2 =""
         pic_url2="http://www.trade-v.com/assets/vshop/Oauth_s.png"
-        link_url2="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+        link_url2="https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
 
         title="二维码"
         desc =""
-        pic_url="http://www.trade-v.com/assets/vshop/qrcode.gif"
+        #pic_url="http://www.trade-v.com/assets/vshop/qrcode.gif"
+        pic_url="http://www.trade-v.com/images/a0#{id}/homepage/getqrcode.jpg"
         link_url="http://www.trade-v.com/pages/qcode"
 
         title1="关于我们"
         desc1 =""
-        pic_url1="http://www.trade-v.com/assets/trade-vLogo.jpg"
+        #pic_url1="http://www.trade-v.com/assets/trade-vLogo.jpg"
+        pic_url1="http://www.trade-v.com/images/a0#{id}/homepage/logo.jpg"
+        #link_url1="http://www.trade-v.com/pages/abouttradev"
         link_url1="http://www.trade-v.com/pages/abouttradev"
 
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2)]
@@ -80,24 +85,13 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         desc ="查看佣金详情请点击"
         pic_url='http://www.trade-v.com/assets/vshop/commission_banner.jpg'
         link_url="http://www.trade-v.com/share?FromUserName=#{user}"
-=begin
-        title1='佣金是因为您关注了我们，并转发给其他朋友，朋友或者朋友的朋友下单购买了我们的商品，我们因此向您支付的感谢费。'
-        desc1=''
-        pic_url1='http://www.trade-v.com/assets/vshop/commission_what.png'
-        link_url1=''#"http://www.trade-v.com/pages/yongjin?platform=vshop"
-
-        title2='您只要举手之劳，关注我们，然后转发到朋友圈，就有机会获取佣金。赶快转发分享商品吧！'
-        desc2=''
-        pic_url2='http://www.trade-v.com/assets/vshop/commission_earn.png'
-        link_url2=''#"http://www.trade-v.com/pages/yongjin?platform=vshop"
-
-        title3='您只要点击“我要领佣金”，按照步骤操作即可进入系统认领佣金。我们会在每个自然月底将当月佣金转账到您的支付宝账户。'
-        desc3=''
-        pic_url3='http://www.trade-v.com/assets/vshop/commission_get.png'
-        link_url3=''#"http://www.trade-v.com/pages/yongjin?platform=vshop"
-
-        articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2),generate_article(title3, desc3, pic_url3, link_url3)]
-=end
+        articles = [generate_article(title, desc, pic_url, link_url)]
+        reply_news_message(articles)
+      when 'subscribe'
+        title="您好，#{@weixin_public_account.name}欢迎您"
+        desc ="#{@weixin_public_account.desc}"
+        pic_url="http://www.trade-v.com/images/a0#{id}/homepage/post.jpg"
+        link_url="http://www.trade-v.com/vshop/#{@weixin_public_account.id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
       else
@@ -128,7 +122,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         end
         message="您好！,您可以领取的佣金是：￥#{share}元"
       else
-        message="您好！贸威欢迎您！跨境贸威，一键直达！#{@weixin_message.FromUserName}"
+        message="您好！#{@weixin_public_account.name}欢迎您！"
     end
 
     reply_text_message(message)
@@ -198,12 +192,14 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       # 扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送
       return reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
     end
-    reply_text_message("感谢您关注贸威")
+    reply_text_message("感谢您关注#{@weixin_public_account.name}")
+    @keyword = "subscribe"
+    response_news_message()
   end
 
   # 取消关注
   def handle_unsubscribe_event
-    Rails.logger.info("非常遗憾，再见！")
+    Rails.logger.info("#{@weixin_message.FromUserName} 取消关注")
   end
 
   # 扫描带参数二维码事件: 2. 用户已关注时的事件推送
