@@ -67,9 +67,26 @@
       <%if @method == :put%>
           <%=f.submit "修 改",:class=>"btn_red" %>
       <%else%>
-          <%=f.submit "下一步",:class=>"btn_red" %>
+          <%=f.submit "下一步",:class=>"btn_red sub" %>
       <%end%>
     </div>
 <%end%>
 </div>
 
+<script type="application/javascript">
+    $(document).ready(function(){
+        $(".sub").bind("click",function(){
+            if( $("#addr_name").val()==""||$("#addr_mobile").val()==""||$("#addr").val()=="") {
+                alert("请输入准确的值")
+                return false;
+
+            }
+            else{
+                $(".form-horizontal").submit()
+
+            }
+
+        })
+    })
+
+</script>

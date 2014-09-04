@@ -73,7 +73,7 @@
    <script type="application/javascript">
           $(document).ready(function(){
               $("#sub").bind("click",function(){
-               if( $("#addr_name").val()=="" &&$("#addr_mobile").val()=="") {
+               if( $("#addr_name").val()=="" &&$("#addr_mobile").val()==""||$("#addr").val()=="") {
                    alert("请输入值")
                    return false;
 
