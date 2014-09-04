@@ -162,18 +162,18 @@ module Admin
             },
             {
                "type":"view",
-               "name":"小黑板",
+               "name":"货源小黑板",
+               "url":"http://www.trade-v.com/manco/black_good_index"
+            },
+            {
+               "type":"view",
+               "name":"车源小黑板",
                "url":"http://www.trade-v.com/manco/black_index"
             },
             {
                "type":"view",
                "name":"优惠券",
                "url":"http://www.trade-v.com/manco"
-            },
-            {
-               "type":"view",
-               "name":"运输跟踪",
-               "url":"http://www.trade-v.com/manco/follow"
             }
          ]},
          {
@@ -184,7 +184,11 @@ module Admin
                "name":"服务网络",
                "url":"http://www.trade-v.com/manco"
             },
-
+            {
+               "type":"view",
+               "name":"运输跟踪",
+               "url":"http://www.trade-v.com/manco/follow"
+            },
             {
                "type":"click",
                "name":"我的佣金",
