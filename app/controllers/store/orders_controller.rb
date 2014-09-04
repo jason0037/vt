@@ -497,10 +497,16 @@ class Store::OrdersController < ApplicationController
   end
 
   def mancoder_show
+    if @user
   member_id=params[:id]
-  @orders=Ecstore::Order.where(:member_id=>member_id).order("createtime desc")
-
+  @orders =Ecstore::Order.paginate :page=>params[:page],        ###分页语句
+                                :per_page => 10,
+                                :conditions => ["member_id=#{member_id}"]
     render :layout => "manco_template"
+
+  else
+    redirect_to '/wlogin?return_url=/manco/user'
   end
 
+    end
 end

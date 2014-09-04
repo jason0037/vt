@@ -178,6 +178,7 @@ end
     render "new"
 
     end
+    redirect_to '/manco/black_index'
   end
 
   def user
