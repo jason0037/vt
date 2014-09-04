@@ -59,7 +59,7 @@ class MancoController < ApplicationController
     redirect_to "/manco/black_good_index"
   end
   def black_index
-if @user
+  if @user
     # @good=Ecstore::Good.find_all_by_cat_id(571)
     account=@user.member_id
     @member=   Ecstore::User.find_by_member_id(account)
@@ -67,8 +67,9 @@ if @user
                                    :per_page => 5,              ###当前只显示一条
                                    :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
     @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
-else
+  else
   redirect_to '/wlogin?return_url=/manco/black_index'
+  end
   end
 
   def blackboardfind_e
