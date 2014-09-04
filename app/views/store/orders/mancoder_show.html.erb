@@ -1,0 +1,19 @@
+<table class="am-table am-table-bd">
+  <thead>
+  <tr>
+    <th>订单号</th>
+    <th>支付金额</th>
+    <th>创建时间</th>
+  </tr>
+  </thead>
+  <tbody>
+    <%=@orders.each do |ord|%>
+  <tr>
+    <td><%=ord.order_id%></td>
+    <td><%=ord.total_amount%></td>
+    <td><%=Time.at(ord.createtime).localtime.to_s(:db) %></td>
+  </tr>
+   <%end%>
+  </tbody>
+</table>
+</table>

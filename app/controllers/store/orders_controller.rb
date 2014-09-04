@@ -495,4 +495,12 @@ class Store::OrdersController < ApplicationController
     render :layout => "manco_template"
 
   end
+
+  def mancoder_show
+  member_id=params[:id]
+  @orders=Ecstore::Order.where(:member_id=>member_id).order("createtime desc")
+
+    render :layout => "manco_template"
+  end
+
 end

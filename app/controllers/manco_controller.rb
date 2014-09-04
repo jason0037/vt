@@ -38,11 +38,15 @@ class MancoController < ApplicationController
   end
 
  def black_good_index     ###货源信息小黑板
-   # @member=   Ecstore::User.find_by_member_id(account)
-   @good=Ecstore::BlackGood.paginate :page=>params[:page],        ###分页语句
+   if @user
+      @good=Ecstore::BlackGood.paginate :page=>params[:page],        ###分页语句
                                 :per_page =>5,              ###当前只显示一条
                                 :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
-  # @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
+      @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
+   else
+     redirect_to '/wlogin?return_url=/manco/black_good_index'
+   end
+
  end
 
   def blackgood_add

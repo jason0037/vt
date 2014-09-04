@@ -7,7 +7,7 @@
 </header>
 
 <div class="userinfo clearfix">
-  <div class="fl"><p class="username">账户：<%= @user.login_name%></p></div>
+  <div class="fl"><p class="username"></p></div>
   <div class="fr">
     <p class="setpsw"><sub></sub><a href="/profile/password">设置密码</a></p>
   </div>
@@ -27,7 +27,7 @@
     <em class="s_fav"></em>我的收藏<span></span><i class="s_onsale"></i>
   </a>
   <a href="/manco/show_carblack?id=<%=@user.member_id%>"><em class="s_back"></em>我的物流小黑板<span></span></a>
-  <a href="/cart/manco_black_buy"><em class="s_back"></em>我的订单<span></span></a>
+  <a href="/orders/mancoder_show?id=<%=@user.member_id%>"><em class="s_back"></em>我的订单<span></span></a>
   <a href="#"><em class="s_back"></em>我的佣金<span></span></a>
   <div class="s_links in_user_center">
 
