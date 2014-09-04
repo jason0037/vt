@@ -55,9 +55,9 @@
 
 
     <div class="control-grobank ">
-
+      <%=f.label "姓名"%>
       <%= text_field_tag "name",@member.name%>
-
+      <%=f.label "联系电话"%>
       <%=text_field_tag "mobile",@member.mobile%>
       <%=f.label "所属银行"%>
       <%= f.text_field :bank,:placeholder=>"可以是支付宝，财付通等",:class=>"span4"%>
