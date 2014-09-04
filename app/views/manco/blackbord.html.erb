@@ -9,6 +9,10 @@
       border: #15afef solid 1px;
 
   }
+   #good_mktprice{
+        color: #ff0e1a;
+       font-size: 15px;
+   }
    .am-label{
        background-color: #15afef;
        width: 100%;
@@ -58,53 +62,42 @@
 
       <div class="controls">
         <%=hidden_field_tag "spec_id",12%> <!-- 万家小黑板-->
-        <%=f.hidden_field :type_id, :value=>"17" %> <!-- 万家小黑板-->
-        <%=f.hidden_field :cat_id, :value=>"576" %> <!-- 万家小黑板-->
+        <%=f.hidden_field :type_id, :value=>"15" %> <!-- 万家小黑板-->
+        <%=f.hidden_field :cat_id, :value=>"571" %> <!-- 万家小黑板-->
         <%=f.hidden_field :bulk, :value=>"10" %>  <!-- 单价对应unit_price-->
         <%=f.hidden_field :supplier_id, :value=>"98" %> <!-- 供应商id-->
         <%=f.hidden_field :place ,:value=>"中国"%>   <!-- 产地-->
         <%=f.hidden_field :brand_id ,:value=>"141"%>  <!-- 万家物流小黑板   品牌ID-->
       <%=f.hidden_field :place_info,:value=>"中国"%>    <!-- 产地信息-->
         <%= f.hidden_field :spec_info,:class=>"span10" %> <!-- 规格说明-->
+        <%=f.hidden_field :wholesale%>    <!-- 批发价-->
+        <%=f.hidden_field :promotion%>    <!-- 促销价-->
+        <%=f.hidden_field :name%>    <!-- 商品名称-->
+        <%=f.hidden_field :member_id,:value=>@member.member_id %>
 
       </div>
     </div>
+      <label>起点站</label>
+           <%=text_field_tag "departure"%>
+    <label>终点站</label>
+    <%=text_field_tag "arrival"%>
+
+    <%= f.label :mktprice, "市场价"   %>   <!-- 例如：原来安吉到安吉的价钱 -->
+
+    <%= f.number_field :mktprice ,:readonly=>"readonly"%>
 
 
 
-        <%= f.text_field :name,:placeholder=>"商品名称，例如 安吉-安吉",:class=>"span4"%>
+    <%= f.label :price, "价格" %>
 
-        <%= f.label :wholesale, "批发价", :class => "control-label" %>
-
-        <%= f.text_field :wholesale,:class=>"span4"%>
-
-        <%= f.label :promotion, "促销价", :class => "control-label" %>
-
-        <%= f.text_field :promotion,:class=>"span4"%>
-
-
-      <%= f.label :bn, "商品编号", :class => "control-label" %>
-
-        <%= f.text_field :bn,:value=>"a0981001",:class=>"span4"%>
-
-
-      <%= f.label :price, "价格" %>
-
-        <%= f.number_field :price%>
-
-
-
-
-      <%= f.label :mktprice, "市场价"  %>   <!-- 例如：原来安吉到安吉的价钱 -->
-
-        <%= f.number_field :mktprice%>
-
+    <%= f.number_field :price%>
     <div class="control-group">
-      <%= f.label :store, "最大运输量" %>
+      <label class="control-label">到期时间</label>
       <div class="controls">
-        <%= f.number_field :store,:placeholder=>"请输入最大运输量"%>
+        <%=f.text_field :downtime,:class=>"span2 datetime"%>
       </div>
     </div>
+
 
 
     <div class="control-group">
@@ -113,13 +106,7 @@
         <%= f.cktext_area :desc, :toolbar => 'Easy',:language=>'zh-cn' %>
       </div>
     </div>
- <div class="control-group">
-      <%= f.label :intro, "商品详情", :class => "control-label" %>
-      <div class="controls">
-        <%= f.cktext_area :intro, :toolbar => 'Easy',:language=>'zh-cn'  %>
-      </div>
-    </div>
-    <br/>
+
     <div class="control-group_lable" >
       <%= f.label :marketable, "选择是否让小黑板立即发布",:class=>"am-label  " %>
       <div class="controls">
@@ -131,9 +118,65 @@
    <div class="control-group">
       <div class="controls">
         <%= f.submit '确定', :class => "am-btn am-btn-primary" %>
-        <%= link_to '返回', admin_goods_path,:class=>"black_btn" %>
+        <!--<#%= link_to '返回', admin_goods_path,:class=>"black_btn" %>-->
       </div>
     </div>
          <br/>
 
 <% end %>
+<%= javascript_include_tag "jquery", "jquery_ujs" %>
+   <script type="application/javascript">
+          $(document).ready(function(){
+            $("#departure").blur(function(){
+                 departure=$(this).val();
+                if (!departure){alert("请输入起点站");return false}
+            })
+              $("#arrival").blur(function(){
+                   var arrival=$(this).val();
+                  if (!arrival){alert("请输入终点站"); return false}
+
+                  $.ajax({
+                      url: "/manco/blackboardfind_e",
+                      type: "post",
+                      data: {departure:departure,arrival:arrival},
+                      success: function (res) {
+
+                      }
+                  })
+
+                  }) ;
+               $("#good_price").blur(function(){
+                   var goods_price=$(this).val();
+                   if (!goods_price){alert("请输入您的价格"); return false}
+                   else{
+                       $("#good_wholesale").val(goods_price);
+                       $("#good_promotion").val(goods_price);
+                   }
+               })
+
+
+
+
+
+          })
+           </script>
+
+
+<link href="/assets/jquery.ui.core.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="/assets/jquery.ui.theme.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="/assets/jquery.ui.datepicker.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="/assets/jquery.ui.slider.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.ui.core.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.ui.datepicker.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.ui.widget.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.ui.mouse.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.ui.slider.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery-ui-timepicker-addon.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery-ui-sliderAccess.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.ui.datepicker-zh-CN.js?body=1" type="text/javascript"></script>
+<script src="/assets/admin/promotions.js?body=1" type="text/javascript"></script>
+<script src="/assets/ckeditor/init.js?body=1" type="text/javascript"></script>

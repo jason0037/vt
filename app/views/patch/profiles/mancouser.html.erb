@@ -51,17 +51,19 @@
 </div>
 
 
-<%= form_for :bank_info, :url=>"",:method=>"put",:html => {:class => "am-form"} do |f| %>
+<%= form_for :bank_info, :url=>"mancouser_add",:method=>"put",:html => {:class => "am-form"} do |f| %>
 
 
     <div class="control-grobank ">
 
-      <%= f.text_field :bank,:placeholder=>"银行",:class=>"span4"%>
+      <%= text_field_tag "name",@member.name%>
 
-
-
+      <%=text_field_tag "mobile",@member.mobile%>
+      <%=f.label "所属银行"%>
+      <%= f.text_field :bank,:placeholder=>"可以是支付宝，财付通等",:class=>"span4"%>
+      <%=f.label "银行卡号码"%>
       <%= f.text_field :account,:placeholder=>"银行卡号码",:class=>"span4"%>
-
+      <%=f.label "银行卡开户地"%>
       <%= f.text_field :bank_branch,:placeholder=>"银行卡开户地",:class=>"span4"%>
 
 

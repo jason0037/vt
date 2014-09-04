@@ -34,7 +34,7 @@ input.textcenter {
         <div class=" clearfix">
 
           <div class="">
-            <em>货物重量 </em>
+            <em>请选择货物重量 </em>
               <em>
 
            <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity  J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
@@ -48,7 +48,7 @@ input.textcenter {
 
             小黑板价:<span class="c_price">¥<%= format('%.2f',line_item.good.price)%></span>
           万家原价 : <span class="fontstyle">¥<%= format('%.2f',line_item.good.mktprice)%></span>  <br/>
-          货物还剩 : <span id="manco_store"><%= format('%.2f',line_item.good.store)%></span>
+
 		<span class="delete">
 
            <a href="<%="#{cart_path(line_item.obj_ident)}?platform=manco"%>" class="delete" data-method="delete" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">

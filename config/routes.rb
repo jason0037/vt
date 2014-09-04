@@ -11,6 +11,8 @@ Modengke::Application.routes.draw do
     get   'index'  ,:on=>:collection
     get  'main' ,:on=>:collection    ###万家介绍
     get  'history' ,:on=>:collection  ####万家历史
+    post 'blackboardfind_e',:on=>:collection  ###小黑板中查询运价
+    get  'user'   ,:on=>:collection
     #万家快递页面
      get 'find_manco',:on=>:collection
     get "black_index"  ,:on=>:collection   ##小黑版首页
@@ -20,6 +22,10 @@ Modengke::Application.routes.draw do
     post "blackbord_add" ,:on=>:collection
     get "follow",:on=>:collection    ###快递跟踪
     get 'user',:on=>:collection
+    get 'good_source', :on=>:collection  ###货源信息
+    post 'blackgood_add',:on=>:collection
+    get 'black_good_index' ,:on=>:collection
+    get 'show_carblack',:on=>:collection
   end
 
   get 'wlogin'=>"sessions#new_manco"
@@ -387,6 +393,8 @@ Modengke::Application.routes.draw do
 
     get 'search' => "search#index", :as=> :search
     get 'mproducts' =>"goods#mobile", :as=>"goods" ,:controller=>"goods"
+
+    get 'show_goodblack' =>  "goods#show_goodblack",  :as=>"goods" ,:controller=>"goods"   ###货源信息
      get 'mancoproduct' =>"goods#mancoproduct",  :as=>"goods" ,:controller=>"goods"
     get 'tproducts' =>"goods#tairyo_tuan", :as=>"goods" ,:controller=>"goods"
     post'manco/serach_goods_manco'=>"goods#serach_goods_manco",:controller=>"goods"
@@ -455,6 +463,7 @@ Modengke::Application.routes.draw do
       end
 
       collection do
+        get 'goodblack'
         post 'destroyaddr'
         get 'check_coupon'
         get  'new_mobile'
@@ -516,7 +525,7 @@ Modengke::Application.routes.draw do
         get 'password'
         put 'modify_password'
         get 'mancouser'
-        put 'mancouser'
+        put 'mancouser_add'
       end
     end
     resources :cards do

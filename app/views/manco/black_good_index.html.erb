@@ -39,9 +39,9 @@
         padding: 10px 0;
         text-align: center;
     }
-        .inner{
-           float: right;
-        }
+    .inner{
+        float: right;
+    }
 </style>
 </head>
 <body>
@@ -64,29 +64,30 @@
 
   </div>
 </header>
-<div class="am-panel-group">
+<div class="col-md-4 blog-sidebar">
+  <div class="am-panel-group">
 
-  <section class="am-panel am-panel-primary">
-    <div class="am-panel-hd">车源小黑板目录</div>
-<table class="am-table">
-  <thead>
-  <tr>
-    <th>线路</th>
-
-    <th>发布时间</th>
-  </tr>
-  </thead>
-  <tbody>
-  <%=render "black_index"%>
-
-  </tbody>
-</table>
+    <section class="am-panel am-panel-primary">
+      <div class="am-panel-hd">货源小黑板目录</div>
+      <ul class="am-list blog-list">
+        <%=render "blackgood_add"%>
 
 
-  </section>
+      </ul>
+    </section>
 
-  <div class="am-g am-g-fixed blog-g-fixed">
+
+  </div>
+</div>
+<br/>
+<br/>
+<div class="am-g am-g-fixed blog-g-fixed">
   <div class="col-md-8">
+    <article class="blog-main">
+
+
+    </article>
+
 
     <ul class="am-pagination blog-pagination">
       <%=will_paginate @good,:class =>'blog-pagination' ,:previous_label => '<<上一页', :next_label => '下一页>>',:container=>false,:params=>{:page=>params[:page]}%>
@@ -98,35 +99,12 @@
 
 </div>
 
-<br/>
-<br/>
-
-  <!--高速版，加载速度快，使用前需测试页面的兼容性-->
-  <div id="SOHUCS"></div>
-  <script>
-      (function(){
-          var appid = 'cyrlDmkiB',
-                  conf = 'prod_0752f6454e4f942fbf7662c61dd5e455';
-          var doc = document,
-                  s = doc.createElement('script'),
-                  h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
-          s.type = 'text/javascript';
-          s.charset = 'utf-8';
-          s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
-          h.insertBefore(s,h.firstChild);
-          window.SCS_NO_IFRAME = true;
-      })()
-  </script>
-
-
-
-
-  <div class="bottomdiv clearfix">
+<div class="bottomdiv clearfix">
   <div class="inner clearfix">
 
 
-    <a class="am-btn  am-btn-primary" href="/manco/blackbord">发布小黑板 →</a>
+    <a class="am-btn  am-btn-primary" href="/manco/good_source">发布小黑板 →</a>
 
   </div>
 </div>
-</div>
+<br/>

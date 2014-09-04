@@ -488,4 +488,11 @@ class Store::OrdersController < ApplicationController
    @un= Ecstore::Express.serachall(departure,arrival)
  end
 
+
+  def goodblack
+    ship_id= params[:ship_id]
+    @memberes=Ecstore::User.where(:member_id=>ship_id)
+    render :layout => "manco_template"
+
+  end
 end

@@ -27,7 +27,9 @@
     .form_hide, #mancoweight,.button-hide,.kgi{
         display: none;
        }
-
+     .button-am{
+         font-size: 20px    ;
+     }
     .am-form-group{
         text-align: center;
     }
@@ -80,13 +82,13 @@
     <a href="#" class="am-badge am-badge-primary button-am" >友情提示:如果需要送货请点击并填写重量 </a>   <br/>  <br/><br/>
     <label for="text">物流行程:</label>
    <span style="text-align: center ;color: red" id="manco_name_show"></span> <br/> <br/>
-    <label for="text">运费价钱为:</label>
+    <label for="text">1kg运费价钱为:</label>
     <span style="text-align: center;color: red" id="manco_price_show"></span>
 
 
     <div class="kginput">
     <%=text_field_tag :mancoweight  %>    <p class="kgi">kg</p>
-    <%= f.submit :class=>"am-btn am-btn-primary am-btn-sm am-fl button-hide" ,:value=>"提交"%>
+    <%= f.submit :class=>"am-btn am-btn-primary am-btn-sm am-fl button-hide" ,:value=>"送货"%>
         </div>
 
     <%end%>

@@ -1,3 +1,4 @@
+#encoding:utf-8
 class MancoController < ApplicationController
 
   layout "manco_template"
@@ -28,22 +29,57 @@ class MancoController < ApplicationController
 
   end
 
-  def express
+
+  def good_source
+    @addr=Ecstore::MemberAddr.new
+    account=@user.member_id
+    @member= Ecstore::User.find_by_member_id(account)
+
   end
 
-  def black_index
+ def black_good_index     ###货源信息小黑板
+   # @member=   Ecstore::User.find_by_member_id(account)
+   @good=Ecstore::BlackGood.paginate :page=>params[:page],        ###分页语句
+                                :per_page =>5,              ###当前只显示一条
+                                :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
+  # @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
+ end
 
-    # @good=Ecstore::Good.find_all_by_cat_id(576)
-      @good=Ecstore::Good.paginate :page=>params[:page],
-                                   :per_page => 1,
-                                   :conditions => ["cat_id=576"]
-  end
-
-  def serach
+  def blackgood_add
     departure= params[:departure]
     arrival= params[:arrival]
-    @un= Ecstore::Express.serachall(departure,arrival)
-   end
+    goodsname=departure+"-"+arrival;
+    @blackgood=Ecstore::BlackGood.new(params[:black_good]) do |sv|
+       sv.name= goodsname
+      sv.uptime=Time.now
+       sv.downtime=Time.parse(params[:black_good][:downtime]).to_i
+
+    end.save
+
+    redirect_to "/manco/black_good_index"
+  end
+  def black_index
+
+    # @good=Ecstore::Good.find_all_by_cat_id(571)
+    account=@user.member_id
+    @member=   Ecstore::User.find_by_member_id(account)
+      @good=Ecstore::Good.paginate :page=>params[:page],        ###分页语句
+                                   :per_page => 5,              ###当前只显示一条
+                                   :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
+    @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
+  end
+
+  def blackboardfind_e
+    departure= params[:departure]
+    arrival= params[:arrival]
+    goodsname=departure+"-"+arrival;
+    @goods=Ecstore::Good.where(:name=>goodsname,:cat_id=>"570")   ####万家线路图对应的类别为570
+
+
+  end
+
+
+
 
 
   def new
@@ -61,7 +97,7 @@ class MancoController < ApplicationController
     if @user
        account=@user.member_id
        @member=   Ecstore::User.find_by_member_id(account)
-      if @member.bank_info.nil?
+      unless @member.name and @member.bank_info          ####判断逻辑不严谨
         redirect_to '/profile/mancouser'
       end
   else
@@ -71,8 +107,17 @@ class MancoController < ApplicationController
 
 end
 
-  def blackbord_add        ###发布小黑板商品
-    @good  =  Ecstore::Good.new(params[:good])
+  def blackbord_add
+    ###发布小黑板商品
+
+    @good = Ecstore::Good.new(params[:good]) do |ac|
+          ac.bn="a098"+Time.now.strftime('%Y%m%d%H%M%S')
+          ac.unit= "吨"
+          ac.uptime=Time.now
+          ac.downtime=Time.parse(params[:good][:downtime]).to_i
+
+    end
+    @good.save
 
 
     if @good.save
@@ -122,11 +167,26 @@ end
           end
 
     else
-     render "new"
+    render "new"
 
-     end
-      end
     end
+  end
+
+  def user
+    render :layout => "manco_new"
+  end
+
+  def show_carblack
+
+      id=params[:id]
+    @good =Ecstore::Good.paginate :page=>params[:page],        ###分页语句
+                                 :per_page => 5,              ###当前只显示一条
+                                 :conditions => ["member_id=#{id}"]
+
+    render :layout => "manco_template"
+  end
+
+  end                                 ###分页语句
 
 
 

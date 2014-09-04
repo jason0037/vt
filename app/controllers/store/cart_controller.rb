@@ -227,11 +227,13 @@ class Store::CartController < ApplicationController
      else
        render "manco_add"
      end
-
-     def manco_black_buy
-       render :layout => "manco_new"
-     end
    end
+
+   def manco_black_buy
+
+   render :layout => "manco_new"
+  end
+
   def tairyo_add
 
 

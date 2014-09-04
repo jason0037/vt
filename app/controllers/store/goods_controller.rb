@@ -18,6 +18,13 @@ class Store::GoodsController < ApplicationController
 
   end
 
+  def show_goodblack
+
+    @good=Ecstore::BlackGood.where(:id=>params[:id])
+   render :layout => "manco_template"
+  end
+
+
   def manco_express
     goods_id= params[:goods_id]     ##商品名称
     @manco_unit_price =params[:manco_unit_price]

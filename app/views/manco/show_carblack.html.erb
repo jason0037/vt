@@ -1,0 +1,102 @@
+
+<style>
+    @media only screen and (min-width: 1200px) {
+        .blog-g-fixed {
+            max-width: 1200px;
+        }
+    }
+    ul a
+
+    @media only screen and (min-width: 641px) {
+        .blog-sidebar {
+            font-size: 1.4rem;
+        }
+    }
+    .blog-main {
+        padding: 20px 0;
+    }
+    .blog-title {
+        margin: 10px 0 20px 0;
+    }
+    .blog-meta {
+        font-size: 14px;
+        margin: 10px 0 20px 0;
+        color: #222;
+    }
+    .blog-meta a {
+        color: #27ae60;
+    }
+    .blog-pagination a {
+        font-size: 1.4rem;
+    }
+    .blog-team li {
+        padding: 4px;
+    }
+    .blog-team img {
+        margin-bottom: 0;
+    }
+    .blog-footer {
+        padding: 10px 0;
+        text-align: center;
+    }
+    .inner{
+        float: right;
+    }
+</style>
+</head>
+<body>
+<header class="am-topbar">
+
+
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-primary am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+  <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+
+
+
+
+  </div>
+</header>
+<div class="am-panel-group">
+
+  <section class="am-panel am-panel-primary">
+    <div class="am-panel-hd">您发布的小黑板目录</div>
+    <table class="am-table">
+      <thead>
+      <tr>
+        <th>线路</th>
+
+        <th>发布时间</th>
+      </tr>
+      </thead>
+      <tbody>
+      <%=render "show_carblack"%>
+
+      </tbody>
+    </table>
+
+
+  </section>
+
+  <div class="am-g am-g-fixed blog-g-fixed">
+    <div class="col-md-8">
+
+      <ul class="am-pagination blog-pagination">
+        <%=will_paginate @good,:class =>'blog-pagination' ,:previous_label => '<<上一页', :next_label => '下一页>>',:container=>false,:params=>{:page=>params[:page]}%>
+
+      </ul>
+
+    </div>
+
+
+  </div>
+
+  <br/>
+  <br/>
+
+
+
+
+
+
+</div>

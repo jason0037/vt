@@ -13,11 +13,11 @@ class Ecstore::Good < Ecstore::Base
   scope :selling, where(:marketable=>'true')
 
   attr_accessible :desc, :material, :mesure, :softness, :thickness, :elasticity, :fitness, :try_on,:price,:mktprice,:store,:name,
-                            :cat_id,:brand_id,:supplier_id,:products_attributes
+                            :cat_id,:brand_id,:supplier_id,:products_attributes,:member_id
 
   accessible_all_columns
   attr_accessor :up_or_down
-
+  belongs_to :user,:foreign_key=>"member_id"
  belongs_to :cat,:class_name=>"Category",:foreign_key=>"cat_id"
  belongs_to :brand, :foreign_key=>"brand_id"
  belongs_to :supplier, :foreign_key=>"supplier_id"

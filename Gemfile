@@ -43,7 +43,7 @@ gem 'ya2yaml'
 
 gem 'whenever', :require=>false
 
-gem 'rjb'
+#gem 'rjb'
 
 gem 'execjs'
 

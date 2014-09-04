@@ -12,7 +12,7 @@
   <div class="head_right fr"><a href="/manco" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
 </header>
 <div id="demo-view" data-backend-compiled=""><figure data-am-widget="figure" class="am am-figure am-figure-default am-no-layout am-figure-zoomable">
-  <img src="http://i.static.amazeui.org/assets/i/cpts/figure/WindMillLights_1366x768.jpg" alt="加州风力发电场的圣诞灯饰">
+  <img src="/assets/manco/2.jpg" alt="加州风力发电场的圣诞灯饰">
   <figcaption class="am-figure-capition-btm"><h2><%=@good.name %></h2></figcaption></figure></div>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
 <div id="wapModalsbox">
@@ -34,8 +34,8 @@
   <div class=""><ul><li><b class="">物流信息：</b> <%=@good.name %></li>
     <br/>
 
+    <b class="">本次运输有效期为：</b>   <%=Time.at(@good.downtime).localtime.to_s(:db)%> </li>
 
-    <li><b class="">目前还剩 ：</b> <%= @good.store%> 顿</li>
     <br/>
     <li><b class="">本次运输简介：</b> <%=raw @good.desc%> </li></ul>
     <br><p class="detail"><%=raw @good.intro.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.intro%></p></div>
@@ -69,6 +69,22 @@
 
   </div>
 </div>
+<!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS"></div>
+<script>
+    (function(){
+        var appid = 'cyrlDmkiB',
+                conf = 'prod_0752f6454e4f942fbf7662c61dd5e455';
+        var doc = document,
+                s = doc.createElement('script'),
+                h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+        s.type = 'text/javascript';
+        s.charset = 'utf-8';
+        s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+        h.insertBefore(s,h.firstChild);
+        window.SCS_NO_IFRAME = true;
+    })()
+</script>
 
 
 <%= javascript_include_tag "mobile/swipe.min" %>

@@ -1,0 +1,166 @@
+<style type="text/css">
+    body{
+        background-color: #f0f1ff;
+    }
+    .am-form input[type="text"], .am-form input[type="number"]{
+        margin-bottom: 20px;
+        width: 80%;
+        margin-left: 45px;
+        border: #15afef solid 1px;
+
+    }
+    #good_mktprice{
+        color: #ff0e1a;
+        font-size: 15px;
+    }
+    .am-label{
+        background-color: #15afef;
+        width: 100%;
+        color: #ffffff;
+    }
+    .am-form textarea{
+        width: 80%;
+        height: 100px;
+        margin-left: 45px;
+        border: #15afef solid 1px;
+    }
+    .am-form input[type="radio"]{
+        padding: 20px;
+    }
+    .radio_inline{
+        float: left;
+        text-align: center;
+        margin-right: 30px;
+        margin-left: 100px;
+    }
+    .control-group_lable{
+        text-align: center;
+    }
+    .black_btn{
+        float: right;
+        margin-right: 20px;
+    }
+    input[type="submit"]{
+        margin-left: 30%;
+        width: 200px;
+    }
+</style>
+
+
+<div class="am-panel am-panel-primary">
+  <div class="am-panel-hd">发布信息</div>
+  <div class="am-panel-bd">
+    请注意：发布信息必须属实，并严格遵守万家协议
+  </div>
+</div>
+
+
+<%= form_for :black_good, :url=>"/manco/blackgood_add",:method=>"POST",:html => {:class => "am-form"} do |f| %>
+
+
+    <div class="control-group">
+
+      <div class="controls">
+
+        <%=f.hidden_field :type_id, :value=>"15" %> <!-- 万家小黑板-->
+        <%=f.hidden_field :cat_id, :value=>"571" %> <!-- 万家小黑板-->
+
+        <%=f.hidden_field :name%>    <!-- 商品名称-->
+        <%=f.hidden_field :ship_id,:value=>@member.member_id %>
+
+      </div>
+    </div>
+    <label>起点站</label>
+    <%=text_field_tag "departure"%>
+    <label>终点站</label>
+    <%=text_field_tag "arrival"%>
+
+    <%= f.label :weight, "货物重量" %>
+
+    <%= f.number_field :weight%>
+
+
+    <%= f.label :price, "价格" %>
+
+    <%= f.number_field :price%>
+    <div class="control-group">
+      <label class="control-label">到期时间</label>
+      <div class="controls">
+        <%=f.text_field :downtime,:class=>"ui_timepicker"%>
+      </div>
+    </div>
+
+
+
+    <div class="control-group">
+      <%= f.label :desc, "备注" %>
+      <div class="controls">
+        <%= f.cktext_area :desc, :toolbar => 'Easy',:language=>'zh-cn' %>
+      </div>
+    </div>
+
+
+    <br/>
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "am-btn am-btn-primary" %>
+        <!--<#%= link_to '返回', admin_goods_path,:class=>"black_btn" %>-->
+      </div>
+    </div>
+    <br/>
+
+<% end %>
+<%= javascript_include_tag "jquery", "jquery_ujs" %>
+<script type="application/javascript">
+    $(document).ready(function(){
+        $("#departure").blur(function(){
+            departure=$(this).val();
+            if (!departure){alert("请输入起点站");return false}
+        })
+        $("#arrival").blur(function(){
+            var arrival=$(this).val();
+            if (!arrival){alert("请输入终点站"); return false}
+
+            $.ajax({
+                url: "/manco/blackboardfind_e",
+                type: "post",
+                data: {departure:departure,arrival:arrival},
+                success: function (res) {
+
+                }
+            })
+
+        }) ;
+
+
+
+
+
+    })
+</script>
+<script src="/assets/area_seletor.js?body=1" type="text/javascript"></script>
+<script src="/assets/area_seletor.js?body=1" type="text/javascript"></script>
+<script src="/assets/patch/member_addrs.js?body=1" type="text/javascript"></script>
+
+<%= stylesheet_link_tag    "timeplug/jquery-ui-1.8.17.custom.css" %>
+<%= stylesheet_link_tag    "timeplug/jquery-ui-timepicker-addon.css" %>
+<%= javascript_include_tag "timeplug/jquery-1.7.1.min.js" %>
+<%= javascript_include_tag "timeplug/jquery-ui-1.8.17.custom.min.js" %>
+<%= javascript_include_tag "timeplug/jquery-ui-timepicker-addon.js" %>
+<%= javascript_include_tag "timeplug/jquery-ui-timepicker-zh-CN.js" %>
+
+<script type="application/javascript">
+
+    $(function () {
+        $(".ui_timepicker").datetimepicker({
+//showOn: "button",
+//buttonImage: "./assets/timeplug/images/icon_calendar.gif",
+//buttonImageOnly: true,
+            showSecond: true,
+            timeFormat: 'hh:mm:ss',
+            stepHour: 1,
+            stepMinute: 1,
+            stepSecond: 1
+        })
+    })
+</script>

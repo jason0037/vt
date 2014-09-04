@@ -11,14 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140830161351) do
+ActiveRecord::Schema.define(:version => 20140903052445) do
 
   create_table "accounts_resources", :id => false, :force => true do |t|
     t.integer "account_id"
     t.integer "resource_id"
   end
-
-  add_index "accounts_resources", ["account_id"], :name => "account_id"
 
   create_table "applicants", :force => true do |t|
     t.string   "name"
