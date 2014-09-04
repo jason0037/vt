@@ -110,18 +110,18 @@ module Admin
     end
 
     def menu_edit
-=begin
+
       #manco
       $openid='gh_b45eda6a7263'
       @@appid='wx6b00b26294111729'
       @@appsecret='ae953aa0def51bdb7d587f1c2eb66acb'
 
-=end
+=begin
       #norsh
       $openid='gh_0033bc7ec157'
       @@appid='wxe531449efd44b06b'
       @@appsecret='6a7cc9336dca96266631512ccb7d2f5a'
-
+=end
       $client ||= WeixinAuthorize::Client.new(@@appid,@@appsecret)
 
       if ($client.is_valid?)
@@ -153,7 +153,7 @@ module Admin
            {
                "type":"view",
                "name":"运价查询",
-               "url":"http://www.trade-v.com/manco/express"
+               "url":"http://www.trade-v.com/manco/find_manco"
             },
             {
                "type":"view",
@@ -193,7 +193,7 @@ module Admin
             {
                "type":"view",
                "name":"服务点评",
-               "url":"http://www.trade-v.com/manco/main"
+               "url":"http://www.trade-v.com/manco/manco_comment"
             },
            {
                "type":"click",
@@ -337,7 +337,7 @@ module Admin
             }]
        }]
  }'
-        menu=menu_norsh
+        menu=menu_manco
         #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
 #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
         response = $client.create_menu(menu)
