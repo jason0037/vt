@@ -1,33 +1,61 @@
 
-  <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/1.0.0-beta1/css/amui.all.min.css"/>
-  <style>
+<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/1.0.0-beta1/css/amui.all.min.css"/>
+<style>
+    body{
+        background-color: #fcfffa;
+    }
+    .out{
+        float: right;
+    }
+    .head-info {
+        margin: 1rem auto;
+        width: 300px;
+        text-align: center;
+    }
+    .header h1 {
+        font-size: 200%;
+        color: #333;
+        margin-top: 30px;
+    }
+    .header p {
+        font-size: 14px;
+    }
+    .am-fl{
+        margin-left: 30%;
+        width: 30%;
+    }
+    .form_hide, #mancoweight,.button-hide,.kgi{
+        display: none;
+    }
+    .button-am{
+        font-size: 20px    ;
+    }
+    .am-form-group{
+        text-align: center;
+    }
+    .form_show{
+        display: block;
+    }
 
-      .header h1 {
-          font-size: 200%;
-          color: #333;
-          margin-top: 30px;
-      }
-      .header p {
-          font-size: 14px;
-      }
-          .am-fl{
-              margin-left: 30%;
-              width: 30%;
-          }
-          .form_hide{
-             display: none;
-          }
-          .form_show{
-              display: block;
-          }
-      .am-form input[type="text"]{
-          margin-bottom: 20px;
-          width: 80%;
-          margin-left: 45px;
-          border: #15afef solid 1px;
+    .am-form input[type="text"] {
 
-      }
-  </style>
+        background-color: #fcfffa;
+
+    }
+    .floatfirst.floatright{
+        float: left;
+
+    }
+    .kginput #mancoweight input[type=text]{
+        width: 40%;
+    }
+    .kginput #mancoweight,.kginput .kgi{
+        float: left;
+    }
+
+
+
+</style>
 
 
 <header id="am-topbar am-topbar-inverse">
@@ -38,63 +66,122 @@
   </div>
 
 </header>
-
-
-<div class="am-g">
-  <div class="col-lg-6 col-md-8 col-sm-centered">
-       <!--<span>注意：查询完后可以根据查询结果下单哦～</span>-->
-
-    <form method="post" id="form_first" class="am-form">
-      <span class="am-badge am-badge-primary" >第1步:</span>
-
-      <input type="text"  placeholder="始发地选择" name="departure" id="departure" value="">
-
-
-      <input type="text" placeholder="终点站选择:" name="arrival" id="arrival" value="">
-
-
-      <div class="am-cf">
-        <input type="button" data-url="/manco/serach" name="" value="查 询" class="am-btn am-btn-primary am-btn-sm am-fl">
-
-      </div>
-    </form>
-
-    <hr>
-
-    <form  method="post" id="form_second" class="am-form form_hide">
-      <span class="am-badge am-badge-primary" >第2步:</span>
-
-      始发地：<input type="text" name="departure"id="departures" disabled value="">
-      终点站：<input type="text" name="arrival" id="arrivals" disabled value="">
-      单价：<input type="text" name="unit_price" id="unit_price" disabled value="">
-      合计：<input type="text" name="total" id="total" disabled value="">
-      <a class="am-btn am-btn-primary am-fl" href="#">
-        <i class="am-icon-shopping-cart "></i>
-        需要送货？
-      </a>
-    </form>
-
-  </div>
+<div class="head-info" >
+  <img src="/assets/manco/logo.jpg" alt="..." class="am-img-circle">
+  <p>400-821-6789</p>
 </div>
 
+<form method="post" id="form_first" class="am-form am-form-group ">
+  <span class="am-badge am-badge-primary" >请输入准确的信息:</span>
+  <div class="am-input-group am-input-group-lg">
+    <span class="am-input-group-label">始发地</span>
+    <input type="text" name="departure" class="am-form-field floatright" placeholder="请输入始发地:" id="departure" value="">
+  </div>
+  <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+  <div class="am-input-group am-input-group-lg">
+    <span class="am-input-group-label">终点站</span>
+
+    <input type="text" name="arrival"placeholder="请输入终点站" class="am-form-field floatright" id="arrival" value="">
+  </div>
+  <div class="am-cf">
+    <input type="button" id="serach" data-url="/manco/find_manco_good_first" name="" value="查询" class="am-btn am-btn-primary am-btn-sm am-fl">
+
+  </div>
+
+</form>
+
+<%=form_for :product,:url=>"/cart/mancoexpress_add",:method=>"post",:html=>{:class=>"am-form am-form-group form_hide",:id=>"form_second",} do |f|%>
+    <%=hidden_field_tag :goods_id, :id=>"goods_id"%>
+    <%=f.hidden_field :type_id,:id=>"type_id"%>
+    <%=hidden_field_tag :platform,'mancoexpress'%>
+    <%=hidden_field_tag :manco_unit_price, :id=>"manco_unit_price"%>
+    <%=f.hidden_field :manco_name_two, :id=>"manco_name_two"%>
+   <table class="am-table">
+    <thead>
+    <tr>
+      <th>始发站-终点站</th>
+      <th>运费单价为:</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td> <span style="text-align: center ;color: red" id="manco_name_show"></span></td>
+      <td><span style="text-align: center;color: red" id="manco_price_show"></span></td>
+
+    </tr>
+       </tbody>
+     </table>
 
 
 
 
+
+
+    <a href="#" class="am-badge am-badge-primary button-am" >我要送货 </a>   <br/>  <br/><br/>
+
+    <table class="am-table form_hide">
+
+      <tr>
+        <th>请填写重量</th>
+        <th><%=number_field_tag :mancoweight  %>
+        </th>
+        <th>公斤</th>
+
+      </tr>
+
+    </table>
+      <%= f.submit :class=>"am-btn am-btn-primary am-btn-sm am-fl button-hide" ,:value=>"送货"%>
+    </div>
+
+<%end%>
+
+
+</div>
+
+<a class="out" href="/manco">返回</a>
+<br/>
+<br/><br/>
+<br/>
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
- <script type="application/javascript">
-     $(document).ready(function(){
-     $(".am-fl").bind("click",function(){
-    var departure=    $("#departure").val();
-    var arrival=    $("#arrival").val();
-         var url = $(this).data('url');
-         $.ajax(url,{
-             type: "post",
-             data:{ departure:departure ,arrival:arrival},
-             success:function(res){
+<script type="application/javascript">
 
-             }
-         })
-     })
-     })
- </script>
+    $("#serach").bind("click",function(){
+        var departure=    $("#departure").val();
+        var arrival=    $("#arrival").val();
+
+
+        var url = $(this).data('url');
+        $.ajax(url,{
+            type: "post",
+            data:{ departure:departure ,arrival:arrival},
+            success:function(res){
+
+            }
+        })
+
+        $(".button-am").bind("click",function() {
+            if($("#mancoweight").css('display','none')) {
+                $("#mancoweight").css('display','block') ,
+                        $(".button-hide").css('display','block') ,
+                        $(".kgi").css('display','block'),
+                        $(".am-table").removeClass("form_hide"),
+                $(this).addClass("button-hide")
+
+
+            }  else{
+                $("#mancoweight").addClass('display','none')  ,
+                        $(".button-hide").css('display','none'),
+                        $(".kgi").css('display','none') ,
+                        $(".am-table").addClass("form_hide")
+                ,$(this).removeClass("button-hide")
+            }
+
+
+        }   )
+    })
+
+
+</script>
+
+

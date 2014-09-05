@@ -1,14 +1,5 @@
 <style type="text/css">
-  body{
-      background-color: #f0f1ff;
-  }
-   .am-form input[type="text"], .am-form input[type="number"]{
-      margin-bottom: 20px;
-      width: 80%;
-      margin-left: 45px;
-      border: #15afef solid 1px;
 
-  }
    #good_mktprice{
         color: #ff0e1a;
        font-size: 15px;
@@ -22,7 +13,7 @@
        width: 80%;
        height: 100px;
        margin-left: 45px;
-       border: #15afef solid 1px;
+
    }
    .am-form input[type="radio"]{
         padding: 20px;
@@ -44,6 +35,12 @@
           margin-left: 30%;
            width: 200px;
        }
+     .form_hide{
+         display: none;
+     }
+
+
+
 </style>
 
 
@@ -77,38 +74,53 @@
 
       </div>
     </div>
-      <label>起点站</label>
-           <%=text_field_tag "departure"%>
-    <label>终点站</label>
-    <%=text_field_tag "arrival"%>
 
-    <%= f.label :mktprice, "市场价"   %>   <!-- 例如：原来安吉到安吉的价钱 -->
-
-    <%= f.number_field :mktprice ,:readonly=>"readonly"%>
-
-
-
-    <%= f.label :price, "价格" %>
-
-    <%= f.number_field :price%>
-    <div class="control-group">
-      <label class="control-label">到期时间</label>
-      <div class="controls">
-        <%=f.text_field :downtime,:class=>"span2 datetime"%>
-      </div>
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">起点站</span>
+      <input type="text" class="am-form-field" name="departure" id="departure" placeholder="起点站">
     </div>
+    <br/>
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">终点站</span>
+      <input type="text" class="am-form-field" name="arrival" id="arrival" placeholder="终点站">
+    </div>
+     <br/>
+        <div style="text-align: center">
+       <input type="button"  class="am-btn am-btn-primary" id="button" value="获取参考价"  />
+        </div>
+      <div class="form_hide" id="mktprice">
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">参考价为</span>
+      <%= f.number_field :mktprice ,:readonly=>"readonly",:class=>"am-form-field"%>  <span class="am-input-group-label">元/公斤</span>
+    </div>
+      </div>
+    <br/>
 
+
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">价格</span>
+      <%= f.number_field :price ,:class=>"am-form-field"%>  <span class="am-input-group-label">元/公斤</span>
+      </div>
+    <br/>
+
+
+
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">有效时间</span>
+      <%=f.text_field :downtime,:class=>"span2 datetime"%>
+    </div>
+    <br/>
 
 
     <div class="control-group">
-      <%= f.label :desc, "详细信息描述" %>
+
       <div class="controls">
-        <%= f.cktext_area :desc, :toolbar => 'Easy',:language=>'zh-cn' %>
+        <%= f.cktext_area :desc,:placeholder=>"运输要求说明", :toolbar => 'Easy',:language=>'zh-cn' %>
       </div>
     </div>
 
     <div class="control-group_lable" >
-      <%= f.label :marketable, "选择是否让小黑板立即发布",:class=>"am-label  " %>
+      <%= f.label :marketable, "立即发布",:class=>"am-label  " %>
       <div class="controls">
         <label class="radio_inline"><%= f.radio_button :marketable,'true'%>是</label>
         <label class="radio _inline"><%= f.radio_button :marketable,'false'%>否</label>
@@ -127,14 +139,13 @@
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
    <script type="application/javascript">
           $(document).ready(function(){
-            $("#departure").blur(function(){
-                 departure=$(this).val();
-                if (!departure){alert("请输入起点站");return false}
-            })
-              $("#arrival").blur(function(){
-                   var arrival=$(this).val();
-                  if (!arrival){alert("请输入终点站"); return false}
 
+              $("#button").click(function(){
+                var  departure=$("#departure").val();
+                 var arrival=$("#arrival").val();
+                 if (!departure ||!arrival)  {alert("请先输入详细的地址在查询"); return false}
+                 $("#mktprice").removeClass("form_hide");
+                  $(this).addClass("form_hide") ;
                   $.ajax({
                       url: "/manco/blackboardfind_e",
                       type: "post",
@@ -143,8 +154,8 @@
 
                       }
                   })
+              })
 
-                  }) ;
                $("#good_price").blur(function(){
                    var goods_price=$(this).val();
                    if (!goods_price){alert("请输入您的价格"); return false}
