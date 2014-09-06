@@ -1,7 +1,14 @@
 #encoding:utf-8
 class VshopController < ApplicationController
 
-  layout "vshop"
+
+
+  if params[:id]
+    @supplier  =  Ecstore::Supplier.find(params[:id])
+    layout @supplier.layout
+  else
+    layout "vshop"
+  end
 
   def new
   	@account = Ecstore::Account.new

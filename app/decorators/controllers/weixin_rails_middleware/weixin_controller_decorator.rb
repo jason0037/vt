@@ -47,7 +47,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         #pic_url1="http://www.trade-v.com/assets/trade-vLogo.jpg"
         pic_url1="http://www.trade-v.com/images/a0#{id}/homepage/logo.jpg"
         #link_url1="http://www.trade-v.com/pages/abouttradev"
-        link_url1="http://www.trade-v.com/pages/abouttradev"
+        link_url1="http://www.trade-v.com/pages/#{@weixin_public_account.url}_aboutus"
 
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2)]
         reply_news_message(articles)

@@ -63,6 +63,7 @@ module Admin
       appsecret =  @supplier.weixin_appsecret
 
       $client ||= WeixinAuthorize::Client.new(appid,appsecret)
+     # return render :text=> $client.followers.result
       if ($client.is_valid?)
       #获取关注者列表
        @followers = $client.followers.result

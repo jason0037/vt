@@ -40,10 +40,10 @@
                 <%=image_tag good.list_default_pic, :size => "35x50"%>
             <%end%>
           </td>
-              <td>&yen;<%=format("%.2f",good.cost)%></td>
-          <td>&yen;<%=format("%.2f",good.price)%></td>
-          <td>&yen;<%=format("%.2f",good.mktprice)%></td>
-              <td>&yen;<%=format("%.2f",good.price*0.1)%></td>
+              <td>&yen;<%=format("%.2f",good.cost) if good.cost%></td>
+          <td>&yen;<%=format("%.2f",good.price) if good.price%></td>
+          <td>&yen;<%=format("%.2f",good.mktprice) if good.mktprice%></td>
+              <td>&yen;<%=format("%.2f",good.price*0.1) if good.price%></td>
 
           <td><%=good.store.to_i%></td>
           <td><%=good.marketable == 'true' ? '是' : '否'%></td>
