@@ -3,6 +3,18 @@ class VshopController < ApplicationController
 
   layout "vshop"
 
+  def new
+  	@account = Ecstore::Account.new
+  end
+
+  def login
+
+  end
+
+  def register
+
+  end
+
   def apply
     if params[:id]
       @supplier  =  Ecstore::Supplier.find(params[:id])
