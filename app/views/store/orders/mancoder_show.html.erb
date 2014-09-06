@@ -1,0 +1,94 @@
+
+
+<style>
+    @media only screen and (min-width: 1200px) {
+        .blog-g-fixed {
+            max-width: 1200px;
+        }
+    }
+    ul a
+
+    @media only screen and (min-width: 641px) {
+        .blog-sidebar {
+            font-size: 1.4rem;
+        }
+    }
+    .blog-main {
+        padding: 20px 0;
+    }
+    .blog-title {
+        margin: 10px 0 20px 0;
+    }
+    .blog-meta {
+        font-size: 14px;
+        margin: 10px 0 20px 0;
+        color: #222;
+    }
+    .blog-meta a {
+        color: #27ae60;
+    }
+    .blog-pagination a {
+        font-size: 1.4rem;
+    }
+    .blog-team li {
+        padding: 4px;
+    }
+    .blog-team img {
+        margin-bottom: 0;
+    }
+    .blog-footer {
+        padding: 10px 0;
+        text-align: center;
+    }
+    .inner{
+        float: right;
+    }
+</style>
+</head>
+
+</header>
+<div class="am-panel-group">
+
+  <section class="am-panel am-panel-primary">
+    <div class="am-panel-hd">您的订单</div>
+    <table class="am-table">
+      <thead>
+      <tr>
+        <th>订单号</th>
+        <th>订单商品</th>
+        <th>下单时间</th>
+        <th>订单金额</th>
+        <th>订单状态</th>
+      </tr>
+      </thead>
+      <tbody>
+      <%=render "mancoder_show"%>
+
+      </tbody>
+    </table>
+
+
+  </section>
+
+  <div class="am-g am-g-fixed blog-g-fixed">
+    <div class="col-md-8">
+
+      <ul class="am-pagination blog-pagination">
+        <%=will_paginate @mancoorder,:class =>'blog-pagination' ,:previous_label => '<<上一页', :next_label => '下一页>>',:container=>false,:params=>{:page=>params[:page]}%>
+
+      </ul>
+
+    </div>
+
+
+  </div>
+
+  <br/>
+  <br/>
+
+
+
+
+
+
+</div>

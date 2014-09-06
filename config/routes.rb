@@ -478,6 +478,7 @@ Modengke::Application.routes.draw do
         get 'departure'
         post 'arrival'
         get 'arrival'
+        get 'mancoder_show'   ###显示万家当前用户的所有订单
 
       end
     end

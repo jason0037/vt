@@ -27,8 +27,16 @@
     .form_hide, #mancoweight,.button-hide,.kgi{
         display: none;
        }
+    .button-hide{
+        width: 80%;
+        margin-left: 10%;
+
+    }
+
+
      .button-am{
-         font-size: 20px    ;
+         font-size: 20px  ;
+         margin-left: -50px;
      }
     .am-form-group{
         text-align: center;
@@ -36,16 +44,17 @@
     .form_show{
         display: block;
     }
- .am-form input[type="text"]{
-   margin-bottom: 20px;
-     width: 80%;
-     margin-left: 45px;
-     border: #15afef solid 1px;
 
- }
+     .am-form input[type="text"] {
+
+         background-color: #fcfffa;
+  }
      .kginput #mancoweight,.kginput .kgi{
          float: left;
      }
+
+
+
 </style>
 
 
@@ -64,10 +73,18 @@
 
     <form method="post" id="form_first" class="am-form am-form-group ">
       <span class="am-badge am-badge-primary" >请输入准确的信息:</span>
-      <input type="text" name="departure" class="am-form-field" placeholder="请输入始发地:" id="departure" value="">
-    <input type="text" name="arrival"placeholder="请输入终点站" class="am-form-field" id="arrival" value="">
+      <div class="am-input-group am-input-group-lg">
+        <span class="am-input-group-label">始发地</span>
+         <input type="text" name="departure" class="am-form-field floatright" placeholder="请输入始发地:" id="departure" value="">
+        </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+        <div class="am-input-group am-input-group-lg">
+          <span class="am-input-group-label">终点站</span>
+
+          <input type="text" name="arrival"placeholder="请输入终点站" class="am-form-field floatright" id="arrival" value="">
+    </div>
      <div class="am-cf">
-        <input type="button" id="serach" data-url="/manco/find_manco_good_first" name="" value="下一步" class="am-btn am-btn-primary am-btn-sm am-fl">
+        <input type="button" id="serach" data-url="/manco/find_manco_good_first" name="" value="点击询价" class="am-btn am-btn-primary am-btn-sm am-fl">
 
       </div>
 
@@ -79,18 +96,39 @@
     <%=hidden_field_tag :platform,'mancoexpress'%>
     <%=hidden_field_tag :manco_unit_price, :id=>"manco_unit_price"%>
     <%=f.hidden_field :manco_name_two, :id=>"manco_name_two"%>
-    <a href="#" class="am-badge am-badge-primary button-am" >友情提示:如果需要送货请点击并填写重量 </a>   <br/>  <br/><br/>
-    <label for="text">物流行程:</label>
-   <span style="text-align: center ;color: red" id="manco_name_show"></span> <br/> <br/>
-    <label for="text">1kg运费价钱为:</label>
-    <span style="text-align: center;color: red" id="manco_price_show"></span>
 
+    <table class="am-table .am-table-bd ">
+      <thead>
+      <tr>
+        <th>始发站-终点站</th>
+        <th>运费单价为:</th>
 
-    <div class="kginput">
-    <%=text_field_tag :mancoweight  %>    <p class="kgi">kg</p>
-    <%= f.submit :class=>"am-btn am-btn-primary am-btn-sm am-fl button-hide" ,:value=>"送货"%>
-        </div>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td> <span style="float:left; color: red" id="manco_name_show"></span></td>
+        <td><span style="float:left;color: red" id="manco_price_show"></span></td>
 
+      </tr>
+
+      </tbody>
+
+    </table>
+
+    <a href="#" class="am-badge am-badge-primary button-am" >我要送货 </a>   <br/>  <br/><br/>
+    <table class="am-table form_hide">
+
+      <tr>
+        <th>请填写重量</th>
+        <th><%=text_field_tag :mancoweight  %>
+        </th>
+        <th>公斤</th>
+
+      </tr>
+
+    </table>
+    <%= f.submit :class=>"am-btn am-btn-primary am-btn-sm am-fl button-hide" ,:value=>"我要送货"%>
     <%end%>
 
 
@@ -122,12 +160,15 @@
                       $("#mancoweight").css('display','block') ,
                               $(".button-hide").css('display','block') ,
                               $(".kgi").css('display','block')
-
+                   $(this).addClass("button-hide")
+                      $(".am-table").removeClass("form_hide")
 
                   }  else{
                       $("#mancoweight").addClass('display','none')  ,
                       $(".button-hide").css('display','none'),
-                              $(".kgi").css('display','none')
+                              $(".kgi").css('display','none')  ,
+                              $(this).removeClass("button-hide")
+                      $(".am-table").addClass("form_hide")
                       }
 
 

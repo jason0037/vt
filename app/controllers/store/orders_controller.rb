@@ -3,6 +3,19 @@ class Store::OrdersController < ApplicationController
 
 	layout 'order'
 
+  def mancoder_show
+    if @user
+      member_id=params[:id]
+      @mancoorder =Ecstore::Order.paginate :page=>params[:page],        ###分页语句
+                                           :per_page => 1,
+                                           :conditions => ["member_id=#{member_id}"]
+      render :layout => "manco_template"
+
+    else
+      redirect_to '/wlogin?return_url=/manco/user'
+    end
+
+  end
 
   def out_inventory
     return_url =  request.env["HTTP_REFERER"]
@@ -90,7 +103,7 @@ class Store::OrdersController < ApplicationController
         render :layout=>"mobile_new"
       end
     else
-      return_url={:return_url => "/goods?platform=mobile"}.to_query
+      return_url={:return_url => "/goods?platform= #{params["platform"]}"}.to_query
       redirect_to "/mlogin?#{return_url}"
     end
 	end
@@ -102,7 +115,7 @@ class Store::OrdersController < ApplicationController
       render :layout=>"mobile_new"
     else
       params["platform"]=="manco"
-        render :layout =>"manco_new"
+      render :layout =>"manco_new"
 
     end
 
@@ -495,4 +508,6 @@ class Store::OrdersController < ApplicationController
     render :layout => "manco_template"
 
   end
+
+
 end
