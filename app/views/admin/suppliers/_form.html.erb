@@ -46,56 +46,20 @@
         </div>
       </div>
       <div class="control-group">
-        <%= f.label :owner, "法人代表", :class => "control-label" %>
+        <%= f.label :layout, "样式", :class => "control-label" %>
         <div class="controls">
-          <%= f.text_field :owner%>
+          <%= f.text_field :layout%>
         </div>
       </div>
       <div class="control-group">
-        <%= f.label :owner_id, "法人代表身份证", :class => "control-label" %>
+        <%= f.label :menu, "菜单", :class => "control-label" %>
         <div class="controls">
-          <%= f.text_field :owner_id%>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :vmanager, "微店店长", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :vmanager%>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :vmanager_dpt_postion, "部门职位", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :vmanager_dpt_position%>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :vmanager_id, "店长身份证号", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :vmanager_id%>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :vmanager_mobile, "店长手机", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :vmanager_mobile%>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :vmanager_email, "店长email", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :vmanager_email%>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :license, "营业执照", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :license%>
+          <%= f.text_field :menu%>
         </div>
       </div>
     </div>
     <div style="float:left;width:450px">
-      <div>微信信息</div>
+      <div>公众号信息</div>
       <div class="control-group">
         <%= f.label :weixin_token, "服务号token", :class => "control-label" %>
         <div class="controls">
@@ -144,6 +108,58 @@
           <%= f.text_field :weixin_openid%>
         </div>
       </div>
+    </div>
+    <div style="float:left;width:450px">
+      <div>申请信息</div>
+      <div class="control-group">
+        <%= f.label :owner, "法人代表", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :owner%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :owner_id, "法人代表身份证", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :owner_id%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :vmanager, "微店店长", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :vmanager%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :vmanager_dpt_postion, "部门职位", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :vmanager_dpt_position%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :vmanager_id, "店长身份证号", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :vmanager_id%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :vmanager_mobile, "店长手机", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :vmanager_mobile%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :vmanager_email, "店长email", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :vmanager_email%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :license, "营业执照", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :license%>
+        </div>
+      </div>
+
     </div>
 
 <div style="clear:both">
