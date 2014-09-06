@@ -4,6 +4,7 @@ class AddMenuAndLayoutToSuppliers < ActiveRecord::Migration
      change_table :sdb_imodec_suppliers do |t|
        t.string :layout
        t.string :menu
+       t.string :company_name
      end
    end
 

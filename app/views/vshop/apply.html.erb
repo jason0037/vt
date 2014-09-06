@@ -14,10 +14,10 @@
       <DIV class="app_create_box app">
         <%=form_for :supplier, :html => {:multipart => true } ,:url=>"/admin/suppliers?return_url=/vshop/apply",:method=>'post', :remote=>true do |f|%>
           <DIV class="frm_control_group">
-              <%= f.label :name, '企业全称', :class => "frm_label" %>
+              <%= f.label :company_name, '企业全称', :class => "frm_label" %>
               <DIV class="frm_controls">
               <SPAN class="frm_input_box">
-              <%= f.text_field :name ,:class=>'frm_input',:maxlenth=>'40'%>
+              <%= f.text_field :company_name ,:class=>'frm_input',:maxlenth=>'40'%>
               </SPAN>
               <P class="frm_tips">需在2到40个字符之间，审核通过后不允许修改</P>
             </DIV>
@@ -141,6 +141,15 @@
               </SPAN>
                 </DIV>
               </DIV>
+            <DIV class="frm_control_group">
+              <%= f.label :name, '微店名称', :class => "frm_label" %>
+              <DIV class="frm_controls">
+              <SPAN class="frm_input_box">
+              <%= f.text_field :name ,:class=>'frm_input',:maxlenth=>'40'%>
+              </SPAN>
+              </DIV>
+              <P>尽量不要超过4个字</P>
+            </DIV>
               <DIV class="frm_control_group textarea">
                 <%= f.label :desc, '微店简介', :class => "frm_label" %>
                 <DIV class="frm_controls">

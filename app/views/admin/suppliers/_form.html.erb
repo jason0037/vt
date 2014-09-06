@@ -3,7 +3,7 @@
     <div style="float:left;width:450px">
       <div>基本信息</div>
       <div class="control-group">
-        <%= f.label :name, "名称", :class => "control-label" %>
+        <%= f.label :name, "微店名称", :class => "control-label" %>
         <div class="controls">
           <%= f.text_field :name%>
         </div>
@@ -37,6 +37,12 @@
         <%= f.label :address, "公司地址", :class => "control-label" %>
         <div class="controls">
           <%= f.text_field :address%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :desc, "微店简介", :class => "control-label" %>
+        <div class="controls">
+          <%=f.text_area :desc,:placeholder=>"供应商简介",:class=>"span5",:rows=>3%>
         </div>
       </div>
       <div class="control-group">
@@ -112,6 +118,12 @@
     <div style="float:left;width:450px">
       <div>申请信息</div>
       <div class="control-group">
+        <%= f.label :company_name, "公司名", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :company_name%>
+        </div>
+      </div>
+      <div class="control-group">
         <%= f.label :owner, "法人代表", :class => "control-label" %>
         <div class="controls">
           <%= f.text_field :owner%>
@@ -163,14 +175,6 @@
     </div>
 
 <div style="clear:both">
-
-    <div class="control-group">
-      <%= f.label :desc, "供应商简介", :class => "control-label" %>
-      <div class="controls">
-        <%=f.text_area :desc,:placeholder=>"供应商简介",:class=>"span5",:rows=>3%>
-      </div>
-    </div>
-
     <div class="control-group">
       <%= f.label :goods_area, "商品区域", :class => "control-label" %>
       <div class="controls">
