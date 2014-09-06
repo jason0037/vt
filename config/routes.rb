@@ -101,12 +101,9 @@ Modengke::Application.routes.draw do
 
   resources :vshop do
     collection do
-      get 'login'
-      get 'register'
       get 'article'
       get 'apply'
       post 'search'
-      post 'change_password'
       get 'goods'
       get 'orders'
       get 'members'

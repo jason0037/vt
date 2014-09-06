@@ -3,7 +3,6 @@ class Ecstore::Supplier < Ecstore::Base
 	self.table_name = "sdb_imodec_suppliers"
 	self.accessible_all_columns
   attr_accessor :license,:menu,:layout,:commpany_name
- # attr_accessible :mobile,:email,:name,:sex, :ar
 
   has_many :goods, :foreign_key=>"supplier_id"
   has_many :pages
