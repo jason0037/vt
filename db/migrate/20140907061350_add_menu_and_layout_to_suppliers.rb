@@ -1,9 +1,9 @@
-class AddManuAndLayoutToSuppliers < ActiveRecord::Migration
+class AddMenuAndLayoutToSuppliers < ActiveRecord::Migration
 
    def self.up
      change_table :sdb_imodec_suppliers do |t|
        t.string :layout
-       t.integer :menu
+       t.string :menu
      end
    end
 
