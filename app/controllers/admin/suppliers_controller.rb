@@ -51,6 +51,7 @@ class Admin::SuppliersController < ApplicationController
 	end
 
 	def update
+    #return render :text=>params[:supplier][:layout]
 		@supplier = Ecstore::Supplier.find(params[:id])
 		
 		if @supplier.update_attributes(params[:supplier])

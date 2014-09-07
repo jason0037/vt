@@ -5,7 +5,7 @@ class Ecstore::Supplier < Ecstore::Base
   attr_accessor :license,:menu,:layout,:commpany_name
 
   has_many :goods, :foreign_key=>"supplier_id"
-  has_many :pages
+  has_many :pages, :foreign_key=>"supplier_id"
   belongs_to :user, :foreign_key=>"member_id"
   has_many :orderdining ,:foreign_key=>"supplier_id"
   has_many :homes ,:foreign_key=>"supplier_id"
