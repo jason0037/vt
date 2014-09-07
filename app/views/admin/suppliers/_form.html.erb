@@ -22,6 +22,24 @@
         </div>
       </div>
       <div class="control-group">
+        <%= f.label :commission_platform, "平台佣金", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :commission_platform%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :commission_promotion, "推广佣金", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :commission_promotion%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :commission_confirm_days, "佣金确认天数", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :commission_confirm_days%>
+        </div>
+      </div>
+      <div class="control-group">
         <%= f.label :url, "访问地址", :class => "control-label" %>
         <div class="controls">
           <%= f.text_field :url%>
