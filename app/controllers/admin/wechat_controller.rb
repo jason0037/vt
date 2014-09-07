@@ -151,7 +151,7 @@ module Admin
                  "type":"view",
                  "name":"渠道招商",
                  "url":"http://www.trade-v.com/pages/manco_partner"
-            },
+            }
       ]},
       {
            "name":"万家服务",
