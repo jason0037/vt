@@ -11,8 +11,6 @@
   <tr>
     <th>openid</th>
     <th>全部佣金</th>
-    <th>已领佣金</th>
-    <th>待领佣金</th>
     <th>头像</th>
     <th>昵称</th>
     <th>性别</th>
@@ -24,8 +22,6 @@
   <% @followers.each do |follower| %>
       <tr>
         <td><%=follower.openid%></td>
-        <td><%=follower.commission%></td>
-        <td>0</td>
         <td><%=follower.commission%></td>
         <%if follower.user_info && follower.user_info.index('}')%>
             <%@person =eval(follower.user_info)%>
