@@ -15,14 +15,16 @@ module Admin
     def followers
       # @order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
      #sql ='SELECT openid,user_info,(select sum(commission) from mdk.sdb_b2c_orders where recommend_user= mdk.sdb_wechat_followers.openid group by recommend_user)  as commission FROM mdk.sdb_wechat_followers'
+      @supplier=nil
       message = '您还没有关注者'
       @followers =  Ecstore::WechatFollower.paginate(:page => params[:page], :per_page => 20).order("commission DESC")
-
+      layout = ''
       if current_admin == nil
         @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
 
         if @supplier
           @followers = @followers.where(:supplier_id=>@supplier.id)
+          layout = 'vshop'
         else
           return render :text=>message
         end
@@ -35,7 +37,7 @@ module Admin
       #@order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
 
       if params[:platform]=='vshop'
-        render :layout=>'vshop'
+        render :layout=>layout
       end
     end
 

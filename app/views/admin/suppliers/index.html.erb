@@ -18,7 +18,7 @@
 <% @suppliers.each do |supplier| %>
   <tr>
     <td><%=supplier.name%></td>
-    <td><%=supplier.logo%></td>
+    <td><img src="<%=supplier.logo%>"></td>
     <td><%=supplier.member_id%></td>
     <td><%=supplier.weixin_token%></td>
     <td><%=supplier.weixin_secret_key%></td>
