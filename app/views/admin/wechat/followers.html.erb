@@ -2,7 +2,7 @@
 <div>
   <h4>所有关注者</h4>
   <%if @supplier%>
-      <h4><%=link_to members_vshop_index_path '注册/互信用户'%></h4>
+      <h4><%=link_to '注册/互信用户',  members_vshop_index_path %></h4>
   <%end%>
 </div>
 <%= link_to '刷新关注者列表','/admin/wechat/followers_import', :class => "pull-right btn btn-primary" %>
