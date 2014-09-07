@@ -93,7 +93,8 @@ class Store::GoodsController < ApplicationController
 
 
   end
- def mobile
+
+ def mproduct
    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
 
    return render "not_find_good",:layout=>"new_store" unless @good
@@ -140,7 +141,7 @@ class Store::GoodsController < ApplicationController
    end
    if params[:supplier_id]
      @supplier  =  Ecstore::Supplier.find(params[:supplier_id])
-     render :layout=>@supplier.url
+     render :layout=>@supplier.layout
    else
      render :layout=>"mobile_new"
    end

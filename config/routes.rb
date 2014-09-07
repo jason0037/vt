@@ -393,10 +393,10 @@ Modengke::Application.routes.draw do
     get 'tairyo_order'=>"orders#tairyo_order"
 
     get 'search' => "search#index", :as=> :search
-    get 'mproducts' =>"goods#mobile", :as=>"goods" ,:controller=>"goods"
+    get 'mproducts' =>"goods#product", :as=>"goods" ,:controller=>"goods"
 
     get 'show_goodblack' =>  "goods#show_goodblack",  :as=>"goods" ,:controller=>"goods"   ###货源信息
-     get 'mancoproduct' =>"goods#mancoproduct",  :as=>"goods" ,:controller=>"goods"
+    get 'mancoproduct' =>"goods#mancoproduct",  :as=>"goods" ,:controller=>"goods"
     get 'tproducts' =>"goods#tairyo_tuan", :as=>"goods" ,:controller=>"goods"
     post'manco/serach_goods_manco'=>"goods#serach_goods_manco",:controller=>"goods"
     post 'manco/find_manco_good_first'=>"goods#find_manco_good_first",:controller=>"goods"    #通过AJAX查询出来价钱

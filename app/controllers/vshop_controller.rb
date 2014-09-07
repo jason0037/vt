@@ -23,6 +23,7 @@ class VshopController < ApplicationController
     end
   end
 
+  #get /vshop/orders
   def orders
     if @user
       if params[:status].nil?
@@ -59,6 +60,7 @@ class VshopController < ApplicationController
     end
   end
 
+  #get /vshop/members
   def members
     if @user
       if @user.id== 2495 #贸威
@@ -78,6 +80,7 @@ class VshopController < ApplicationController
     end
   end
 
+  #get /vshop/weixin
   def weixin
     if @user
       @supplier = Ecstore::Supplier.where(:member_id=>@user.account.id).first
@@ -88,6 +91,7 @@ class VshopController < ApplicationController
     end
   end
 
+  #get /vshop/goods
   def goods
     if @user
       @goods = Ecstore::Good.includes(:cat).includes(:brand)
@@ -127,7 +131,7 @@ class VshopController < ApplicationController
     else
       render "error"
     end
-  end
+end
 
   def search
       @title = "找回密码"
@@ -156,15 +160,16 @@ class VshopController < ApplicationController
     @supplier_id=params[:id]
     @homepage = Ecstore::Home.where(:supplier_id=>@supplier_id).last
     @supplier = Ecstore::Supplier.find(@supplier_id)
-    render :layout=>"#{@supplier.url}"
+    render :layout=>"#{@supplier.layout}"
   end
 
+  #get /vhsop/id/category?cat=
   def category
     @supplier_id=params[:id]
     @cat = params[:cat]
     @goods =  Ecstore::Good.where(:supplier_id=>@supplier_id,:cat_id=>@cat)
     @supplier = Ecstore::Supplier.find(@supplier_id)
-    render :layout=>"#{@supplier.url}"
+    render :layout=>"#{@supplier.layout}"
   end
 
 end
