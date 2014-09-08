@@ -8,11 +8,13 @@ class Store::CartController < ApplicationController
   end
 
   def mobile
-    if params[:id]
-      @supplier  =  Ecstore::Supplier.find(params[:id])
+    if  @user
+      supplier_id = @user.account.supplier_id
+      if supplier_id == nil
+        supplier_id=78
+      end
+      @supplier = Ecstore:Supplier.find(supplier_id)
       render :layout=>@supplier.layout
-    else
-      render :layout=>"mobile_new"
     end
   end
 
@@ -84,8 +86,12 @@ class Store::CartController < ApplicationController
 
 		#calculate cart_total and cart_total_quantity
 		find_cart!
-    if params[:id]
-      @supplier  =  Ecstore::Supplier.find(params[:id])
+      if  @user
+        supplier_id = @user.account.supplier_id
+        if supplier_id == nil
+          supplier_id=78
+        end
+        @supplier = Ecstore:Supplier.find(supplier_id)
       render :layout=>@supplier.layout
     elsif params[:platform]=='mobile'
       render :layout=>"mobile_new"
