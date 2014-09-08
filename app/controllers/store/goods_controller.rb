@@ -15,8 +15,6 @@ class Store::GoodsController < ApplicationController
      good_e=departure+"-"+arrival
      @goodsname=Ecstore::Good.where(:name=>good_e,:cat_id=>"570")   ####万家线路图对应的类别为570
 
-
-
   end
 
   def show_goodblack
@@ -24,7 +22,6 @@ class Store::GoodsController < ApplicationController
     @good=Ecstore::BlackGood.where(:id=>params[:id])
    render :layout => "manco_template"
   end
-
 
   def manco_express
     goods_id= params[:goods_id]     ##商品名称
@@ -138,7 +135,7 @@ class Store::GoodsController < ApplicationController
      end
    end
    if params[:supplier_id]
-     @supplier  =  Ecstore::Supplier.find(params[:supplier])
+     @supplier  =  Ecstore::Supplier.find(params[:supplier_id])
      render :layout=>@supplier.layout
    else
      render :layout=>"mobile_new"
