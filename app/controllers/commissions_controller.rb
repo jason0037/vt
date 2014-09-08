@@ -74,7 +74,7 @@ group by left(FROM_UNIXTIME(alttime),7),recommend_user,supplier_id"
   end
 
   def paid
-    @commission = cstore::Commission.find(params[:id])
+    @commission = Ecstore::Commission.find(params[:id])
     @commission.update_attributes(:status => '1')
   end
 
