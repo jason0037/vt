@@ -16,7 +16,7 @@
 </head>
 <body>
 <header id="header" class="header clearfix">
-  <div class="head_logo fl"><a href="/m"  mars_sead="nav_home_btn"></a></div>
+  <div class="head_logo fl"><a href="/vshop/<%=@supplier.id%>"  mars_sead="nav_home_btn"></a></div>
   <%if @user%>
       <div class="head_right fr">
         <a href="/cart/mobile" mars_sead="home_head_cart_btn" onclick="setBackAct(&#39;topHeaderCart&#39;)">
@@ -34,10 +34,10 @@
 <div id="nav" class="clearfix">
   <ul class="clearfix">
     <li class="num05"><a href="/m" class="nav_current"><span>首页</span></a></li>
-    <li class="num05"><a href="/mgallery?name=婴童&supplier_id=<%=@supplier.id%>"><span>婴童</span></a></li>
-    <li class="num05"><a href="/mgallery?name=酒类&supplier_id=<%=@supplier.id%>"><span>酒类</span></a></li>
-    <li class="num05"><a href="/mgallery?name=奶酪&supplier_id=<%=@supplier.id%>"><span>奶酪</span></a></li>
-    <li class="num05"><a href="/mgallery?name=零食&supplier_id=<%=@supplier.id%>"><span>零食</span></a></li>
+    <li class="num05"><a href="/mgallery?name=婴童&id=<%=@supplier.id%>"><span>婴童</span></a></li>
+    <li class="num05"><a href="/mgallery?name=酒类&id=<%=@supplier.id%>"><span>酒类</span></a></li>
+    <li class="num05"><a href="/mgallery?name=奶酪&id=<%=@supplier.id%>"><span>奶酪</span></a></li>
+    <li class="num05"><a href="/mgallery?name=零食&id=<%=@supplier.id%>"><span>零食</span></a></li>
   </ul>
 </div>
 
