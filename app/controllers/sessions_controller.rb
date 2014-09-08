@@ -10,8 +10,9 @@ class SessionsController < ApplicationController
     supplier_id =params[:id]
     @supplier = Ecstore::Supplier.find(supplier_id)
 
-    redirect_uri = "http://www.trade-v.com/auth/weixin/callback?id=#{@supplier.id}"
-    redirect_uri= URI::escape(redirect_uri)
+    #redirect_uri = "http://www.trade-v.com/auth/weixin/callback?id=#{@supplier.id}"
+    #redirect_uri= URI::escape(redirect_uri)
+    redirect_uri="http%3a%2f%2fwww.trade-v.com%2fauth%2fweixin%2fcallback%3fid%3d@supplier.id}"
 
     @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
     session[:return_url] = params[:return_url]

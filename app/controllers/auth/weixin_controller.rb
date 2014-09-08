@@ -51,7 +51,7 @@ class Auth::WeixinController < ApplicationController
 
 			now = Time.now
 
-      supplier_id = params[:supplier]
+      supplier_id = params[:id]
 			@account = Ecstore::Account.new  do |ac|
 				#account
 				ac.login_name = login_name
