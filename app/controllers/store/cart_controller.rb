@@ -86,15 +86,13 @@ class Store::CartController < ApplicationController
 
 		#calculate cart_total and cart_total_quantity
 		find_cart!
-      if  @user
+    if params[:platform]=='mobile'
         supplier_id = @user.account.supplier_id
         if supplier_id == nil
           supplier_id=78
         end
         @supplier = Ecstore::Supplier.find(supplier_id)
-      render :layout=>@supplier.layout
-    elsif params[:platform]=='mobile'
-      render :layout=>"mobile_new"
+      render "mobile", :layout=>@supplier.layout
     else
       render "add"
     end
