@@ -5,6 +5,11 @@ class CommissionsController < ApplicationController
 
   #计算佣金,默认为当月
   def caculate
+
+    sql = "insert mdk.sdb_b2c_commissions (supplier_id,commission,`year_month`,ctype,orders_amount,rate,orders_num)
+SELECT 78,sum(total_amount)*0.1,cast(FROM_UNIXTIME(alttime) as char(7)),1,sum(total_amount),0.1, count(*) FROM mdk.sdb_b2c_order_log as l
+left join  mdk.sdb_b2c_orders as o on l.rel_id=o.order_id
+where behavior='creates' group by left(FROM_UNIXTIME(alttime),7), supplier_id"
     yeah_month =params[:yearmonth]
    if yeah_month==nil
      yeah_month=Time.now.strftime('%Y-%m')
