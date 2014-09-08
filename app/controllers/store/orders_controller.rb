@@ -311,6 +311,7 @@ class Store::OrdersController < ApplicationController
           render :layout=>@supplier.layout
     end
   end
+
  def departure    ##起点信息
 
      manco_weight =params[:manco_weight]
@@ -338,7 +339,6 @@ class Store::OrdersController < ApplicationController
       render :layout=>"manco_new"
 
     end
-
 
   def new_tairyo
   if @pmtable
