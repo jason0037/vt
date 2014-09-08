@@ -18,7 +18,7 @@ class VshopController < ApplicationController
   def user
     supplier_id = params[:id]
     @supplier =Ecstore::Supplier.find(supplier_id)
-    
+    render :layout=>@supplier.layout
   end
 
   def apply
