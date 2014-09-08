@@ -10,7 +10,7 @@
   <div class="head_right fr"><a href="/m/" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
 </header>
 
-<%=form_for :user,:url=>"#{users_path}?return_url=/m",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
+<%=form_for :user,:url=>"#{users_path}?supplier_id=#{@supplier_id}&return_url=/vshop#{@supplier_id}",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
   <div class="connerdiv">
     <dl class="connerbox">
       <dd><span class="form_hd">账号：</span><span class="form_td">
