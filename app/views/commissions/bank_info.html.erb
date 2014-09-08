@@ -1,4 +1,4 @@
-<%=form_for @member,:url=>patch_profile_path,:method=>:put,:html=>{:id=>"basic_form",:supplier=>"#{@supplier_id}"} do |f|%>
+<%=form_for @member,:url=>profile_path,:method=>:put,:html=>{:id=>"basic_form",:supplier=>"#{@supplier_id}"} do |f|%>
     <%=hidden_field_tag :tab,"basic"%>
     <div class="field">
       <label>真实姓名:</label>

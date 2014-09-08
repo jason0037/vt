@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
   end
   def register_mobile
     @supplier_id =params[:id]
-    render :layout=>"mobile_new"
+    render :layout => @supplier.layout
     # return redirect_to(after_user_sign_in_path) if signed_in?
   end
   def create_tairyo
