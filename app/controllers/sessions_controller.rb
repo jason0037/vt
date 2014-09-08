@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
   skip_before_filter :authorize_user!
-  require 'open-uri'
   layout 'login'
 
   def new
@@ -12,7 +11,7 @@ class SessionsController < ApplicationController
     @supplier = Ecstore::Supplier.find(supplier_id)
 
     redirect_uri = "http://www.trade-v.com/auth/weixin/callback?id=#{@supplier.id}"
-    redirect_uri= URI::encode(redirect_uri)
+    redirect_uri= URI::escape(redirect_uri)
 
     @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
     session[:return_url] = params[:return_url]
