@@ -22,9 +22,9 @@
       <tr>
         <td><%=commission.member_id %></td>
         <td><%=commission.openid%></td>
-        <td><%=commission.user.name %></td>
-        <td><%=commission.user.email%></td>
-        <td><%=commission.user.mobile%></td>
+        <td><%=commission.account.member.name  if commission.member_id%></td>
+        <td><%=commission.account.member.email  if commission.member_id%></td>
+        <td><%=commission.account.member.mobile  if commission.member_id%></td>
         <td><%=commission.commission%></td>
         <td><%=commission.year_month %></td>
         <td><%=commission.orders_num%></td>
