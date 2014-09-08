@@ -117,12 +117,12 @@ end
 
   def blackbord_add
     ###发布小黑板商品
-
+    hour=params[:hour]
     @good = Ecstore::Good.new(params[:good]) do |ac|
           ac.bn="a098"+Time.now.strftime('%Y%m%d%H%M%S')
           ac.unit= "吨"
           ac.uptime=Time.now
-          ac.downtime=Time.parse(params[:good][:downtime]).to_i
+          ac.downtime=Time.parse(params[:good][:downtime]).to_i+(hour.to_i)*3600
 
     end
     @good.save

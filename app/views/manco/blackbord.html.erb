@@ -202,7 +202,7 @@
 
            $(".btn-submit").click(function(){
                if(!departure ||!arrival ||!$("#good_price").val()) {
-                   alert("还不能发布哦,信息不租"); return false}
+                   alert("还不能发布哦,信息量不足"); return false}
                else{
                  $(".am-form").submit();
                }
@@ -248,7 +248,7 @@
         var lis = "";
         var style = "";
         style +="<style type='text/css'>";
-        style +=".calender { width:170px; height:auto; font-size:12px; margin-right:14px;  border:1px solid #397EAE; padding:1px}";
+        style +=".calender { width:300px; height:200px; font-size:20px; margin-right:14px;background:#82B3FF;  border:4px solid #397EAE; padding:5px}";
         style +=".calender ul {list-style-type:none; margin:0; padding:0;}";
         style +=".calender .day { background-color:#EDF5FF; height:20px;}";
         style +=".calender .day li,.calender .date li{ float:left; width:14%; height:20px; line-height:20px; text-align:center}";
