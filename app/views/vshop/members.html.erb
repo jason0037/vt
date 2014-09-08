@@ -24,12 +24,11 @@
 
                 <td><%=link_to "查看",info_admin_member_path(member)%></td>
                 <td><%=link_to "编辑",edit_admin_member_path(member)%></td>
-                <td>删除</td>
           </tr>
       <% end %>
     </table>
 
     <div class="pagination">
-      <%= will_paginate @members, :container => false %>
+      <%= will_paginate @accounts, :container => false %>
     </div>
 

@@ -66,7 +66,7 @@ class VshopController < ApplicationController
       @supplier = Ecstore::Supplier.where(:member_id=>@user.id,:status=>1).first
       if @supplier
         @total_member = Ecstore::Account.where(:supplier_id=>@supplier.id).count()
-        @accounts = Ecstore::Account.where(:supplier_id=>@supplier.id).paginate(:page => params[:page], :per_page => 20).order("member_id DESC")
+        @accounts = Ecstore::Account.where(:supplier_id=>@supplier.id).paginate(:page => params[:page], :per_page => 20).order("account_id DESC")
         #@column_data = YAML.load(File.open(Rails.root.to_s+"/config/columns/member.yml"))
         respond_to do |format|
           format.html # index.html.erb
