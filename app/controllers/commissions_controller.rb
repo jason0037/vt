@@ -82,8 +82,9 @@ group by left(FROM_UNIXTIME(alttime),7),recommend_user,supplier_id"
   def bank_info
     layout = 'mobile_new'
     supplier_id =@user.account.supplier_id
+    @supplier = ''
     if supplier_id
-      @supplier = @supplier  =  Ecstore::Supplier.find(supplier_id)
+      @supplier =   Ecstore::Supplier.find(supplier_id)
       layout = @supplier.layout
     end
     render :layout=>layout
