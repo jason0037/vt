@@ -3,7 +3,7 @@ require 'httpclient'
 Modengke::Application.routes.draw do
 
 resources :commissions do
-
+  get 'platform',:on=>:collection
 end
 
   ####万家物流

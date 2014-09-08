@@ -1,0 +1,31 @@
+<br/><br/><br/><br/>
+<div class='sel_banner'>
+  <p class="total_member hidden"><%=@total_member%></p>
+</div>
+<table class="table table-bordered table-hover">
+  <tr>
+    <td>佣金</td>
+    <td>佣金时间</td>
+    <td>佣金类型</td>
+    <td>发放状态</td>
+    <td>供应商</td>
+    <th colspan="3">操作</th>
+  </tr>
+
+  <% @commissions.each do |commission| %>
+      <tr>
+        <td><%=commission.commission%></td>
+        <td><%=commission.year_month %></td>
+        <td><%=commission.status%></td>
+        <td><%=commission.supplier_id%></td>
+        <td><%=commission.ctype%></td>
+        <td><%#=link_to "查看",info_admin_member_path(commission)%></td>
+        <td><%#=link_to "编辑",edit_admin_member_path(commission)%></td>
+      </tr>
+  <% end %>
+</table>
+
+<div class="pagination">
+  <%= will_paginate @commissions, :container => false %>
+</div>
+
