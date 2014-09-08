@@ -23,7 +23,9 @@
         <td><%=commission.orders_num%></td>
         <td><%=commission.orders_amount%></td>
         <td><%=commission.rate%></td>
-
+        <%if commission.status==0 #未支付%>
+            <%= link_to '支付',paid_commission_path(commission), data: { confirm: '确定支付?' } %>
+        <%end%>
         <td><%#=link_to "查看",info_admin_member_path(commission)%></td>
         <td><%#=link_to "编辑",edit_admin_member_path(commission)%></td>
       </tr>
