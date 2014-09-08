@@ -52,11 +52,12 @@ class MancoController < ApplicationController
   def blackgood_add
     departure= params[:departure]
     arrival= params[:arrival]
+    hour=params[:hour]
     goodsname=departure+"-"+arrival;
     @blackgood=Ecstore::BlackGood.new(params[:black_good]) do |sv|
        sv.name= goodsname
       sv.uptime=Time.now
-       sv.downtime=Time.parse(params[:black_good][:downtime]).to_i
+       sv.downtime=Time.parse(params[:black_good][:downtime]).to_i+(hour.to_i)*3600
 
     end.save
 
