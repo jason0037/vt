@@ -16,7 +16,7 @@
 </head>
 <body>
 <header id="header" class="header clearfix">
-  <div class="head_logo fl"><a href="/m"  mars_sead="nav_home_btn"></a></div>
+  <div class="head_logo fl"><a href="/"  mars_sead="nav_home_btn"></a></div>
   <%if @user%>
       <div class="head_right fr">
         <a href="/cart/mobile" mars_sead="home_head_cart_btn" onclick="setBackAct(&#39;topHeaderCart&#39;)">
@@ -24,7 +24,7 @@
         </a>
       </div>
       <div class="head_right fr">
-        <a href="/m/user" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot">
+        <a href="/vshop/<%=@supplier.id%>/user" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot">
           <span class="h_logn">                </span>
         </a>
       </div>

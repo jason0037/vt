@@ -15,6 +15,12 @@ class VshopController < ApplicationController
 
   end
 
+  def user
+    supplier_id = params[:id]
+    @supplier =Ecstore::Supplier.find(supplier_id)
+    
+  end
+
   def apply
     if params[:id]
       @supplier  =  Ecstore::Supplier.find(params[:id])

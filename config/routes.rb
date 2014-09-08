@@ -126,6 +126,7 @@ end
       get :commodity
       get :order
       get :payment
+      get :user
     end
 
 
@@ -398,7 +399,6 @@ end
     # end
   end
   get 'm' =>"mobile#show", :as=>"mobile" ,:controller=>"mobile"
-  get 'm/user' =>"mobile#user"
 
   scope :module => "store" do
     resources :orders,:only=>[:tairyo_order]
