@@ -20,7 +20,7 @@ class Store::CatsController < ApplicationController
             sql = " bn in (#{goods_ids})"
             @all_goods = Ecstore::Good.where(sql)
             @goods = @all_goods
-          render :layout=>'mobile_new'
+          render :layout=>@supplier.layout
 
 end
                         #金芭浪团购
