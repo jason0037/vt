@@ -160,7 +160,6 @@ end
     @supplier_id=params[:id]
     @homepage = Ecstore::Home.where(:supplier_id=>@supplier_id).last
     @supplier = Ecstore::Supplier.find(@supplier_id)
-    return render :text=>@supplier.layout
     render :layout=>@supplier.layout
   end
 
