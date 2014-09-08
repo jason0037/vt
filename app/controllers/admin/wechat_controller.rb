@@ -12,119 +12,20 @@ module Admin
     @@appid = @@supplier.weixin_appid
     @@appsecret =  @@supplier.weixin_appsecret
 =end
-    def followers
-      # @order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
-     #sql ='SELECT openid,user_info,(select sum(commission) from mdk.sdb_b2c_orders where recommend_user= mdk.sdb_wechat_followers.openid group by recommend_user)  as commission FROM mdk.sdb_wechat_followers'
-      @supplier=nil
-      message = '您还没有关注者'
-      @followers =  Ecstore::WechatFollower.paginate(:page => params[:page], :per_page => 20).order("commission DESC")
-      layout = ''
-      if current_admin == nil
-        @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
-
-        if @supplier
-          @followers = @followers.where(:supplier_id=>@supplier.id)
-          layout = 'vshop'
-        else
-          return render :text=>message
-        end
-      end
-      #更新佣金
-      @followers.each do |follower|
-        sql ="update mdk.sdb_wechat_followers set commission= (select sum(commission) from mdk.sdb_b2c_orders where recommend_user= '#{follower.openid}' group by recommend_user) where openid='#{follower.openid}'"
-        ActiveRecord::Base.connection.execute(sql)
-      end
-      #@order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
-
-      if params[:platform]=='vshop'
-        render :layout=>layout
-      end
-    end
-
-    def follower_renew
-      openid = params[:openid]
-      @follower =  Ecstore::WechatFollower.where(:openid=>openid).first
-
-      supplier = Ecstore::Supplier.find(@follower.supplier_id)
-      appid = supplier.weixin_appid
-      appsecret =  supplier.weixin_appsecret
-      $client ||= WeixinAuthorize::Client.new(appid,appsecret)
-      user_info =$client.user(openid).result.to_s
-      if user_info.size>2
-      @follower.user_info = user_info
-      @follower.save
-      else
-        @follower.destroy
-      end
-      redirect_to '/admin/wechat/followers'
-    end
-
-    def followers_import
-      @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
-      appid = @supplier.weixin_appid
-      appsecret =  @supplier.weixin_appsecret
-
-      $client ||= WeixinAuthorize::Client.new(appid,appsecret)
-     # return render :text=> $client.followers.result
-      if ($client.is_valid?)
-      #获取关注者列表
-       @followers = $client.followers.result
-       @openids = @followers["data"]["openid"]
-       @openids.each do |openid|
-         @follower = Ecstore::WechatFollower.find_by_openid(openid)
-         if ! @follower
-           Ecstore::WechatFollower.new do |f|
-             f.openid = openid
-             f.supplier_id = @supplier.id
-             f.user_info = $client.user(openid).result.to_s
-           end.save
-         end
-       end
-        redirect_to '/admin/wechat/followers?platform=vshop'
-=begin
-       s=''
-
-       s = s+@followers.to_s
-       return render :text=>s
-{"total"=>8, "count"=>8, "data"=>{"openid"=>["oHwtut91xXfJLl-MfsRTKAfOgIgc", "oHwtut-sSG77G0ljiCsvTinUfy6c", "oHwtut5miGKpAvZrWgVjBoMH653c", "oHwtut4DCngIR1RsYriOvD2jjBn0", "oHwtut8zMrwoo2Nv2gi-zuHw3bDs", "oHwtut2KpAxjkvgey_a8TOxgcYaM", "oHwtut402wk_IvtnQzKFm6VSQJ5M", "oHwtut0HBG7SuncOZeOrx8K5mn8w"]}, "next_openid"=>"oHwtut0HBG7SuncOZeOrx8K5mn8w"}
-=end
-
-
-     end
-
-    end
-
-    def menu
-      @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
-
-      if @supplier
-        $openid=@supplier.weixin_openid
-        $appid = @supplier.weixin_appid
-        $appsecret =  @supplier.weixin_appsecret
-      else
-        return render :text=>'没有微店'
-      end
-      #$openid='gh_a0e5b9a22803'
-      $client ||= WeixinAuthorize::Client.new($appid,$appsecret)
-    #  if ($client.is_valid?)
-     #   @menu = $client.menu.result['menu']['button']
-    #  end
-      return render :text=>$client.menu.result
-    end
 
     def menu_edit
-=begin
+
       #manco
       $openid='gh_b45eda6a7263'
       @@appid='wx6b00b26294111729'
       @@appsecret='ae953aa0def51bdb7d587f1c2eb66acb'
-=end
 
+=begin
       #norsh
       $openid='gh_0033bc7ec157'
       @@appid='wxe531449efd44b06b'
       @@appsecret='6a7cc9336dca96266631512ccb7d2f5a'
-
+=end
       $client ||= WeixinAuthorize::Client.new(@@appid,@@appsecret)
 
       if ($client.is_valid?)
@@ -349,13 +250,113 @@ module Admin
             }]
        }]
  }'
-        menu=menu_norsh
+        menu = menu_manco
         #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
-#"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+        #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
         response = $client.create_menu(menu)
         #response = $client.menu
         render :text=> response.cn_msg#.result#response.en_msg#user_info# @followers #JSON.parse(@user_info)
       end
+    end
+
+    def followers
+      # @order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
+     #sql ='SELECT openid,user_info,(select sum(commission) from mdk.sdb_b2c_orders where recommend_user= mdk.sdb_wechat_followers.openid group by recommend_user)  as commission FROM mdk.sdb_wechat_followers'
+      @supplier=nil
+      message = '您还没有关注者'
+      @followers =  Ecstore::WechatFollower.paginate(:page => params[:page], :per_page => 20).order("commission DESC")
+      layout = ''
+      if current_admin == nil
+        @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
+
+        if @supplier
+          @followers = @followers.where(:supplier_id=>@supplier.id)
+          layout = 'vshop'
+        else
+          return render :text=>message
+        end
+      end
+      #更新佣金
+      @followers.each do |follower|
+        sql ="update mdk.sdb_wechat_followers set commission= (select sum(commission) from mdk.sdb_b2c_orders where recommend_user= '#{follower.openid}' group by recommend_user) where openid='#{follower.openid}'"
+        ActiveRecord::Base.connection.execute(sql)
+      end
+      #@order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
+
+      if params[:platform]=='vshop'
+        render :layout=>layout
+      end
+    end
+
+    def follower_renew
+      openid = params[:openid]
+      @follower =  Ecstore::WechatFollower.where(:openid=>openid).first
+
+      supplier = Ecstore::Supplier.find(@follower.supplier_id)
+      appid = supplier.weixin_appid
+      appsecret =  supplier.weixin_appsecret
+      $client ||= WeixinAuthorize::Client.new(appid,appsecret)
+      user_info =$client.user(openid).result.to_s
+      if user_info.size>2
+      @follower.user_info = user_info
+      @follower.save
+      else
+        @follower.destroy
+      end
+      redirect_to '/admin/wechat/followers'
+    end
+
+    def followers_import
+      @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
+      appid = @supplier.weixin_appid
+      appsecret =  @supplier.weixin_appsecret
+
+      $client ||= WeixinAuthorize::Client.new(appid,appsecret)
+     # return render :text=> $client.followers.result
+      if ($client.is_valid?)
+      #获取关注者列表
+       @followers = $client.followers.result
+       @openids = @followers["data"]["openid"]
+       @openids.each do |openid|
+         @follower = Ecstore::WechatFollower.find_by_openid(openid)
+         if ! @follower
+           Ecstore::WechatFollower.new do |f|
+             f.openid = openid
+             f.supplier_id = @supplier.id
+             f.user_info = $client.user(openid).result.to_s
+           end.save
+         end
+       end
+        redirect_to '/admin/wechat/followers?platform=vshop'
+=begin
+       s=''
+
+       s = s+@followers.to_s
+       return render :text=>s
+{"total"=>8, "count"=>8, "data"=>{"openid"=>["oHwtut91xXfJLl-MfsRTKAfOgIgc", "oHwtut-sSG77G0ljiCsvTinUfy6c", "oHwtut5miGKpAvZrWgVjBoMH653c", "oHwtut4DCngIR1RsYriOvD2jjBn0", "oHwtut8zMrwoo2Nv2gi-zuHw3bDs", "oHwtut2KpAxjkvgey_a8TOxgcYaM", "oHwtut402wk_IvtnQzKFm6VSQJ5M", "oHwtut0HBG7SuncOZeOrx8K5mn8w"]}, "next_openid"=>"oHwtut0HBG7SuncOZeOrx8K5mn8w"}
+=end
+
+
+     end
+
+    end
+
+    def menu
+      @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
+
+      if @supplier
+        $openid=@supplier.weixin_openid
+        $appid = @supplier.weixin_appid
+        $appsecret =  @supplier.weixin_appsecret
+      else
+        return render :text=>'没有微店'
+      end
+      #$openid='gh_a0e5b9a22803'
+      $client ||= WeixinAuthorize::Client.new($appid,$appsecret)
+    #  if ($client.is_valid?)
+     #   @menu = $client.menu.result['menu']['button']
+    #  end
+      return render :text=>$client.menu.result
     end
 
     def groups
