@@ -13,7 +13,7 @@
     <%=hidden_field_tag :return_url,params[:return_url]%>
     <%=hidden_field_tag :platform,'mobile'%>
   <div class="connerdiv">
-    <a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect">
+    <a href="<%=@auth_url%>">
       <img src="/assets/vshop/Oauth_button.png" style="border: 1px solid grey;width:150px;">
     </a>
   </div>

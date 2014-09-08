@@ -51,6 +51,8 @@ gem 'therubyracer'
 
 gem 'axlsx'
 
+gem 'open-uri'
+
 #gem 'weixin_rails_middleware', git: "git://github.com/lanrion/weixin_rails_middleware.git", branch: "master"
 gem 'weixin_rails_middleware'
 

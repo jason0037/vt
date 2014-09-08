@@ -50,6 +50,8 @@ class Auth::WeixinController < ApplicationController
 			login_name = "#{login_name}_#{rand(9999)}" if check_user
 
 			now = Time.now
+
+      supplier_id = params[:supplier]
 			@account = Ecstore::Account.new  do |ac|
 				#account
 				ac.login_name = login_name
@@ -58,6 +60,8 @@ class Auth::WeixinController < ApplicationController
 		  		ac.createtime = now.to_i
 		  		# auth_ext
 		  		ac.auth_ext = auth_ext
+
+        ac.supplier_id = supplier_id
 	  		end
 	  		Ecstore::Account.transaction do
   				if @account.save!(:validate => false)

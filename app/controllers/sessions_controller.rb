@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_filter :authorize_user!
+  require 'open-uri'
   layout 'login'
 
   def new
@@ -7,8 +8,15 @@ class SessionsController < ApplicationController
   end
 
   def new_mobile
-    session[:return_url]=params[:return_url]
-    render :layout=>"mobile_new"
+    supplier_id =params[:id]
+    @supplier = Ecstore::Supplier.find(supplier_id)
+
+    redirect_uri = "http://www.trade-v.com/auth/weixin/callback?id=#{@supplier.id}"
+    redirect_uri= URI::encode(redirect_uri)
+
+    @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+    session[:return_url] = params[:return_url]
+    render :layout => @supplier.layout
     # return redirect_to(after_user_sign_in_path) if signed_in?
   end
 
@@ -32,6 +40,7 @@ class SessionsController < ApplicationController
     # 大渔饭店
   end
   def register_mobile
+    @supplier_id =params[:id]
     render :layout=>"mobile_new"
     # return redirect_to(after_user_sign_in_path) if signed_in?
   end
@@ -70,6 +79,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    @supplier_id =params[:id]
   	@return_url = params[:return_url]
     @platform = params[:platform]
   	@account = Ecstore::Account.user_authenticate(params[:session][:username],params[:session][:password])

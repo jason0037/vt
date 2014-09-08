@@ -99,3 +99,7 @@
   - 性别
   - sex_name
   - "true"
+30-account_type-供应商:
+  - 供应商
+  - account_type
+  - "true"
