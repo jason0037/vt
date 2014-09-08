@@ -40,7 +40,7 @@ class SessionsController < ApplicationController
     # 大渔饭店
   end
   def register_mobile
-    @supplier_id =params[:id]
+    supplier_id =params[:id]
     @supplier = Ecstore::Supplier.find(supplier_id)
     render :layout => @supplier.layout
     # return redirect_to(after_user_sign_in_path) if signed_in?
