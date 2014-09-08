@@ -47,7 +47,7 @@ end
 
   def update
 
-      params[:ecstore_user].merge!(params[:bank_info].to_s) if params[:bank]
+      params[:ecstore_user].merge!(:bank_info=>params[:bank_info].to_s) if params[:bank_info]
 
       params[:ecstore_user].merge!(params[:date]) if params[:date]
       @tab = params[:tab]
