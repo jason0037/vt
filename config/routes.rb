@@ -2,8 +2,8 @@
 require 'httpclient'
 Modengke::Application.routes.draw do
 
-resources :commission do
-  
+resources :commissions do
+
 end
 
   ####万家物流
