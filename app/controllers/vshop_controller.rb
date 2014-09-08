@@ -63,7 +63,7 @@ class VshopController < ApplicationController
   #get /vshop/members
   def members
     if @user
-      @supplier = Ecstore::Supplier.where(:member_id=>@user.id,:status=>1)
+      @supplier = Ecstore::Supplier.where(:member_id=>@user.id,:status=>1).first
       if @supplier
         @total_member = Ecstore::Account.where(:supplier_id=>@supplier.id).count()
         @accounts = Ecstore::Account.where(:supplier_id=>@supplier.id).paginate(:page => params[:page], :per_page => 20).order("member_id DESC")

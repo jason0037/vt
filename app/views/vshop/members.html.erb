@@ -1,13 +1,9 @@
 <br/><br/><br/><br/>
     <div class='sel_banner'>
-      您当前选定了<a class='sel_nums'>0</a>条记录！  <a href='' class='cancel_all'>取消选定</a> <a href='' class='sel_all'>选定全部</a>
       <p class="total_member hidden"><%=@total_member%></p>
     </div>
     <table class="table table-bordered table-hover">
       <tr>
-        <td>全选
-          <%= check_box_tag "ids_all","",false,:class =>'operate_all_id'%>
-        </td>
         <td>会员ID</td>
         <td>用户名</td>
         <td>姓名</td>
@@ -19,9 +15,6 @@
 
       <% @accounts.each do |account| %>
           <tr>
-            <td>
-              <%= check_box_tag "ids[]",account.accout_id,false,:class =>'operate_ids'%>
-            </td>
             <td><%=account.account_id %></td>
             <td><%=account.login_name%></td>
             <td><%=account.member.name %></td>
