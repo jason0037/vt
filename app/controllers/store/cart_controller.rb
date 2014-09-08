@@ -10,7 +10,7 @@ class Store::CartController < ApplicationController
   def mobile
     if params[:id]
       @supplier  =  Ecstore::Supplier.find(params[:id])
-      render :layout=>@supplier.url
+      render :layout=>@supplier.layout
     else
       render :layout=>"mobile_new"
     end
@@ -84,8 +84,11 @@ class Store::CartController < ApplicationController
 
 		#calculate cart_total and cart_total_quantity
 		find_cart!
-    if params[:platform]=='mobile'
-      redirect_to "/cart/mobile"
+    if params[:id]
+      @supplier  =  Ecstore::Supplier.find(params[:id])
+      render :layout=>@supplier.layout
+    elsif params[:platform]=='mobile'
+      render :layout=>"mobile_new"
     else
       render "add"
     end
@@ -128,11 +131,11 @@ class Store::CartController < ApplicationController
     end
 
 
-   end
+  end
+
   def tairyo_cart
    render   layout: "tairyo_new"
   end
-
 
   def mancoexpress_add
 
@@ -185,11 +188,9 @@ class Store::CartController < ApplicationController
     end
     end
 
-
    def manco_express
       render :layout => "manco_new"
    end
-
 
    def manco_add        ###小黑板的购物
      specs = params[:product].delete(:specs)
@@ -291,12 +292,9 @@ class Store::CartController < ApplicationController
     end
   end
 
-
  def jinbalang
 
     render :layout => "tairyo_new"
   end
 
-
-
-   end
+end

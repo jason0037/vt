@@ -1,0 +1,42 @@
+<br/><br/><br/><br/>
+<div class='sel_banner'>
+  <a href="/commissions">推广佣金</a>&nbsp;&nbsp;&nbsp;
+  平台佣金&nbsp;&nbsp;&nbsp;
+  <p class="total_member hidden">共有记录<%=@total_member%>条</p>
+</div>
+<table class="table table-bordered table-hover">
+  <tr>
+    <td>佣金年月</td>
+    <td>佣金</td>
+    <td>支付状态</td>
+    <td>供应商</td>
+    <td>订单数量</td>
+    <td>订单总额</td>
+    <td>佣金比例</td>
+    <th colspan="3">操作</th>
+  </tr>
+
+  <% @commissions.each do |commission| %>
+      <tr>
+        <td><%=commission.year_month %></td>
+        <td><%=commission.commission%></td>
+        <td><%=commission.status%></td>
+        <td><%=commission.supplier.name%></td>
+        <td><%=commission.orders_num%></td>
+        <td><%=commission.orders_amount%></td>
+        <td><%=commission.rate%></td>
+        <td>
+          <%if commission.status==0 #未支付%>
+              <%= link_to '支付',paid_commission_path(commission), data: { confirm: '确定支付?' } %>
+          <%end%>
+        </td>
+        <td><%#=link_to "查看",info_admin_member_path(commission)%></td>
+        <td><%#=link_to "编辑",edit_admin_member_path(commission)%></td>
+      </tr>
+  <% end %>
+</table>
+
+<div class="pagination">
+  <%= will_paginate @commissions, :container => false %>
+</div>
+

@@ -22,7 +22,7 @@ class Auth::WeixinController < ApplicationController
 	end
 
 	def callback
-    #return render :text=>params[:code]
+    return render :text=>params[:id]
 		return redirect_to(site_path) if params[:error].present?
     return_url=session[:return_url]
     session[:return_url]=''
@@ -50,6 +50,8 @@ class Auth::WeixinController < ApplicationController
 			login_name = "#{login_name}_#{rand(9999)}" if check_user
 
 			now = Time.now
+
+      supplier_id = params[:id]
 			@account = Ecstore::Account.new  do |ac|
 				#account
 				ac.login_name = login_name
@@ -58,6 +60,8 @@ class Auth::WeixinController < ApplicationController
 		  		ac.createtime = now.to_i
 		  		# auth_ext
 		  		ac.auth_ext = auth_ext
+
+        ac.supplier_id = supplier_id
 	  		end
 	  		Ecstore::Account.transaction do
   				if @account.save!(:validate => false)

@@ -31,6 +31,7 @@ class Patch::ProfilesController < ApplicationController
 render :layout => "manco_template"
 
   end
+
 def mancouser_add
   account=@user.member_id
   @member=   Ecstore::User.find_by_member_id(account)
@@ -44,8 +45,10 @@ def mancouser_add
   redirect_to "/manco/blackbord"
 end
 
-
   def update
+
+      params[:ecstore_user].merge!(:bank_info=>params[:bank_info].to_s) if params[:bank_info]
+
       params[:ecstore_user].merge!(params[:date]) if params[:date]
       @tab = params[:tab]
       if params[:tab]=="interest"
@@ -55,7 +58,11 @@ end
       end
 
       if @user.update_attributes(params[:ecstore_user])
+        if params[:supplier]
+          redirect_to "/vshop/#{params[:supplier]}"
+        else
           redirect_to profile_path(:tab=>params[:tab]), :notice=>"保存成功."
+        end
       else
           render "/patch/profiles/edit"
       end

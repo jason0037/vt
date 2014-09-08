@@ -5,5 +5,6 @@ class Ecstore::WechatFollower < Ecstore::Base
 
   belongs_to :user,:foreign_key=>"member_id"
   has_many :orders, :foreign_key=>"recommend_user"
+  has_one :commission,:foreign_key=>"openid"
 
 end

@@ -30,15 +30,15 @@
 16-job-从事职业: 
   - 从事职业
   - user.job
-  - "true"
+  - "false"
 17-income-家庭月收入: 
   - 家庭月收入
   - user.income
-  - "true"
+  - "false"
 18-education-教育程度: 
   - 教育程度
   - user.edu
-  - "true"
+  - "false"
 19-gift-注册有礼: 
   - 注册有礼
   - user.gift
@@ -70,11 +70,11 @@
 26-interests-兴趣爱好: 
   - 兴趣爱好
   - user.interests
-  - "true"
+  - "false"
 27-voc-所属行业: 
   - 所属行业
   - user.voc
-  - "true"
+  - "false"
 28-email_validate-邮箱验证: 
   - 邮箱验证
   - email_validate_name
@@ -94,7 +94,7 @@
 7-point-积分: 
   - 积分
   - point
-  - "true"
+  - "false"
 9-sex-性别: 
   - 性别
   - sex_name

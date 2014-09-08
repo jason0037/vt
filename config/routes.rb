@@ -2,7 +2,16 @@
 require 'httpclient'
 Modengke::Application.routes.draw do
 
+resources :commissions do
+  collection do
+   get  'platform'
+   get 'bank_info'
+  end
 
+  member do
+    get 'paid'
+  end
+end
 
   ####万家物流
   resources :manco do
@@ -393,7 +402,7 @@ Modengke::Application.routes.draw do
     get 'tairyo_order'=>"orders#tairyo_order"
 
     get 'search' => "search#index", :as=> :search
-    get 'mproducts' =>"goods#product", :as=>"goods" ,:controller=>"goods"
+    get 'mproducts' =>"goods#mproduct", :as=>"goods" ,:controller=>"goods"
 
     get 'show_goodblack' =>  "goods#show_goodblack",  :as=>"goods" ,:controller=>"goods"   ###货源信息
     get 'mancoproduct' =>"goods#mancoproduct",  :as=>"goods" ,:controller=>"goods"

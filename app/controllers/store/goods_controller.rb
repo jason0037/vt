@@ -15,8 +15,6 @@ class Store::GoodsController < ApplicationController
      good_e=departure+"-"+arrival
      @goodsname=Ecstore::Good.where(:name=>good_e,:cat_id=>"570")   ####万家线路图对应的类别为570
 
-
-
   end
 
   def show_goodblack
@@ -24,7 +22,6 @@ class Store::GoodsController < ApplicationController
     @good=Ecstore::BlackGood.where(:id=>params[:id])
    render :layout => "manco_template"
   end
-
 
   def manco_express
     goods_id= params[:goods_id]     ##商品名称
@@ -34,8 +31,6 @@ class Store::GoodsController < ApplicationController
     @good=Ecstore::Good.find_by_goods_id(goods_id)
 
   end
-
-
 
      ###万家小黑板
   def mancoproduct
@@ -126,7 +121,6 @@ class Store::GoodsController < ApplicationController
    @tag = Ecstore::TagName.find_by_tag_name(tag_name)
 
    @cat = @good.cat
-
    @recommend_goods = []
    if @cat.goods.size >= 4
      @recommend_goods =  @cat.goods.where("goods_id <> ?", @good.goods_id).order("goods_id desc").limit(4)
@@ -139,8 +133,10 @@ class Store::GoodsController < ApplicationController
        @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
      end
    end
+
    if params[:supplier_id]
      @supplier  =  Ecstore::Supplier.find(params[:supplier_id])
+     #return  render :text=>@supplier.layout
      render :layout=>@supplier.layout
    else
      render :layout=>"mobile_new"

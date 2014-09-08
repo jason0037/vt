@@ -8,10 +8,14 @@ class Ecstore::Account < Ecstore::Base
 	
 
 	belongs_to :manager,:foreign_key=>"account_id"
+  belongs_to :supplier, :foreign_key=>"supplier_id"
 
 	has_one :user, :foreign_key=>"member_id"
 	has_one :member,:foreign_key=>"member_id"
 	has_one :auth_ext, :foreign_key=>"account_id"
+
+  has_many :commission,:foreign_key=>"member_id"
+
 
 	attr_accessible :auth_ext_id, :login_name, :login_password, :login_password_confirmation, :email, :mobile, :follow_imodec,:license,:current_password
 	attr_accessor :license,:current_password

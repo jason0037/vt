@@ -4,6 +4,7 @@ class Store::CatsController < ApplicationController
   	before_filter :require_top_cats
 
       def show_mobile
+        @supplier = Ecstore::Supplier.find(params[:id])
         name= params[:name]
 
             goods_ids =""
@@ -19,7 +20,7 @@ class Store::CatsController < ApplicationController
             sql = " bn in (#{goods_ids})"
             @all_goods = Ecstore::Good.where(sql)
             @goods = @all_goods
-          render :layout=>'mobile_new'
+          render :layout=>@supplier.layout
 
 end
                         #金芭浪团购

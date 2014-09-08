@@ -63,17 +63,17 @@ class VshopController < ApplicationController
   #get /vshop/members
   def members
     if @user
-      if @user.id== 2495 #贸威
-        @total_member = Ecstore::Member.count()
-        @members = Ecstore::Member.paginate(:page => params[:page], :per_page => 20).order("member_id DESC")
-        @column_data = YAML.load(File.open(Rails.root.to_s+"/config/columns/member.yml"))
+      @supplier = Ecstore::Supplier.where(:member_id=>@user.id,:status=>1).first
+      if @supplier
+        @total_member = Ecstore::Account.where(:supplier_id=>@supplier.id).count()
+        @accounts = Ecstore::Account.where(:supplier_id=>@supplier.id).paginate(:page => params[:page], :per_page => 20).order("account_id DESC")
+        #@column_data = YAML.load(File.open(Rails.root.to_s+"/config/columns/member.yml"))
         respond_to do |format|
           format.html # index.html.erb
           format.json { render json: @members }
         end
       else
         redirect_to '/vshop/apply'
-        render :text=>''
       end
     else
       redirect_to '/vshop/login'
@@ -160,7 +160,7 @@ end
     @supplier_id=params[:id]
     @homepage = Ecstore::Home.where(:supplier_id=>@supplier_id).last
     @supplier = Ecstore::Supplier.find(@supplier_id)
-    render :layout=>"#{@supplier.layout}"
+    render :layout=>@supplier.layout
   end
 
   #get /vhsop/id/category?cat=

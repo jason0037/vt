@@ -49,6 +49,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    supplier_id = params[:id]
   	now  = Time.now
 	  @account = Ecstore::Account.new(params[:user]) do |ac|
   		ac.account_type ="member"
@@ -57,6 +58,7 @@ class UsersController < ApplicationController
   		ac.user.cur = "CNY"
   		ac.user.reg_ip = request.remote_ip
   		ac.user.regtime = now.to_i
+      ac.supplier_id = supplier_id
   	end
 
 	  if @account.save

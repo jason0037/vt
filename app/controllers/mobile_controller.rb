@@ -4,6 +4,8 @@ class MobileController < ApplicationController
   layout 'mobile_new'
 
   def show
+    redirect_to '/vshop/78'
+
     @title = "贸威移动版"
     #@home = Ecstore::Home.last
     #if signed_in?
