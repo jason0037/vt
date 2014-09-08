@@ -113,6 +113,7 @@ class SessionsController < ApplicationController
       end
 
   end
+
   def destroy_tairyo
     sign_out
     # refer_url = request.env["HTTP_REFERER"]
@@ -127,6 +128,7 @@ class SessionsController < ApplicationController
     end
 
   end
+
   def destroy_manco
     sign_out
     # refer_url = request.env["HTTP_REFERER"]

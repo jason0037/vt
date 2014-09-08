@@ -99,6 +99,7 @@ class Store::OrdersController < ApplicationController
 	def index
     if  @user
       @orders =  @user.orders.order("createtime desc")
+
       if params["platform"]=="mobile"
         render :layout=>"mobile_new"
       end
@@ -127,8 +128,13 @@ class Store::OrdersController < ApplicationController
 		# ["name","area","addr","zip","tel","mobile"].each do |key,val|      #做大渔页面 需要修改
 		# 	params[:order].merge!("ship_#{key}"=>addr.attributes[key])
 		# end
+    supplier_id = @user.account.supplier_id
+    if supplier_id == nil
+      supplier_id =78
+    end
 		params[:order].merge!(:ip=>request.remote_ip)
 		params[:order].merge!(:member_id=>@user.member_id)
+    params[:order].merge!(:supplier_id=>supplier_id)
     # params[:order].merge!(:wechat_recommend=>session[:recommend_user])
     session[:recommend_user]=''
 
@@ -244,7 +250,7 @@ class Store::OrdersController < ApplicationController
 				order_log.log_text = "订单创建成功！"
 			end.save
 
-			redirect_to "#{order_path(@order)}?platform=?#{platform}"
+			redirect_to "#{order_path(@order)}?platform=?#{platform}&supplier_id=#{supplier_id}"
 			
 		else
 			@addrs =  @user.member_addrs
@@ -279,6 +285,11 @@ class Store::OrdersController < ApplicationController
   end
 
   def new_mobile
+    supplier_id= @user.account.supplier_id
+    if supplier_id==nil
+      supplier_id=78
+    end
+    @supplier = Ecstore::Supplier.find(supplier_id)
 
     @addrs =  @user.member_addrs
     if @addrs.size==0
@@ -291,7 +302,7 @@ class Store::OrdersController < ApplicationController
           @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
           @coupons = @user.usable_coupons
         end
-          render :layout=>"mobile_new"
+          render :layout=>@supplier.layout
     end
   end
  def departure    ##起点信息
@@ -299,7 +310,6 @@ class Store::OrdersController < ApplicationController
      manco_weight =params[:manco_weight]
      @addrs =  @user.member_addrs
      @def_addrs = @addrs.where(:addr_type=>1) || @addrs.first
-
 
 
     render :layout => "manco_template"
@@ -321,10 +331,7 @@ class Store::OrdersController < ApplicationController
 
       render :layout=>"manco_new"
 
-
     end
-
-
 
 
   def new_tairyo
@@ -336,8 +343,10 @@ class Store::OrdersController < ApplicationController
       render :layout=>"tairyo_new"
 
   end
+
   def share
     wechat_user = params[:FromUserName]
+    @supplier = Ecstore::Supplier.find(params[:supplier_id])
     @share=0
     @sharelast = 0
     if wechat_user
@@ -353,7 +362,7 @@ class Store::OrdersController < ApplicationController
       end
     end
 
-    render :layout=>"mobile_new"
+    render :layout=>@supplier.layout
 
   end
 
@@ -455,6 +464,7 @@ class Store::OrdersController < ApplicationController
      render :layout => "manco_template"
 
   end
+
   def express_manco
 
     render :layout => "manco_template"
@@ -465,9 +475,6 @@ class Store::OrdersController < ApplicationController
     @addr.destroy
     redirect_to "/orders/arrival"
   end
-
-
-
 
   def ordersnew_manco
     if (params[:member_departure_id])
@@ -495,12 +502,12 @@ class Store::OrdersController < ApplicationController
 
 
   end
+
  def serach_order
    departure= params[:departure]
    arrival= params[:arrival]
    @un= Ecstore::Express.serachall(departure,arrival)
  end
-
 
   def goodblack
     ship_id= params[:ship_id]
@@ -508,6 +515,5 @@ class Store::OrdersController < ApplicationController
     render :layout => "manco_template"
 
   end
-
 
 end

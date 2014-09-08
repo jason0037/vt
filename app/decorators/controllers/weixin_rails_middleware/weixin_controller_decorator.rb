@@ -42,7 +42,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         desc =""
         #pic_url="http://www.trade-v.com/assets/vshop/qrcode.gif"
         pic_url="http://www.trade-v.com/images/a0#{id}/homepage/getqrcode.jpg"
-        link_url="http://www.trade-v.com/pages/qcode"
+        link_url="http://www.trade-v.com/images/a0#{id}/homepage/getqrcode.jpg"
 
         title1="关于我们"
         desc1 =""
@@ -57,7 +57,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="[总统 PRESIDENT]超高温灭菌稀奶油 200毫升仅售¥22.4元"
         desc ="法国进口的总统谈奶油，是从牛奶中提炼出来的纯天然食品，一般乳脂含量为16.5%，营养价值高，入口即化"
         pic_url="http://www.trade-v.com/images/a074/a0742048_m.jpg"
-        link_url="http://www.trade-v.com/mproducts?id=a0742048&from=weixin&wechatuser=#{user}"
+        link_url="http://www.trade-v.com/mproducts?id=a0742048&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
 
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
@@ -72,7 +72,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="[总统 PRESIDENT]安文达切丝奶酪70克 仅售¥20.5元"
         desc ="每公斤奶酪都是有10公斤的牛奶浓缩而成，含有丰富的蛋白质、钙、脂肪、钠和维生素等营养成分。70克*24/箱 产地:法国"
         pic_url="http://www.trade-v.com/images/a074/a0741022_m.jpg"
-        link_url="http://www.trade-v.com/mproducts?id=a0741022&from=weixin&wechatuser=#{user}"
+        link_url="http://www.trade-v.com/mproducts?id=a0741022&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
 
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
@@ -86,26 +86,26 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="您的总佣金收益是: #{share}元"
         desc ="查看佣金详情请点击"
         pic_url='http://www.trade-v.com/assets/vshop/commission_banner.jpg'
-        link_url="http://www.trade-v.com/share?FromUserName=#{user}"
+        link_url="http://www.trade-v.com/share?FromUserName=#{user}&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
       when 'subscribe'
         title="您好，#{@weixin_public_account.name}欢迎您"
         desc ="#{@weixin_public_account.desc}"
         pic_url="http://www.trade-v.com/images/a0#{id}/homepage/post.jpg"
-        link_url="http://www.trade-v.com/vshop/#{@weixin_public_account.id}"
+        link_url="http://www.trade-v.com/vshop/#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
       else
         title="[紫薇]牛奶/起司棒饼干仅售 35.10元"
         desc ="[紫薇]牛奶/起司棒饼干 500克 产地:台湾"
         pic_url="http://www.trade-v.com/images/a076/a0761003_m.jpg"
-        link_url="http://www.trade-v.com/mproducts?id=a0751003&from=weixin&user=#{user}"
+        link_url="http://www.trade-v.com/mproducts?id=a0751003&from=weixin&user=#{user}&supplier_id=#{id}"
 
         title1="[叶客]小叶苦丁茶仅售 50.00元"
         desc1 ="保质期：365   包装种类: 罐装   产地: 中国大陆  是否含糖: 无糖   配料表：小叶苦丁"
         pic_url1="http://www.trade-v.com/images/a075/a0751003_m.jpg"
-        link_url1="http://www.trade-v.com/mproducts?id=a0751003&from=weixin&wechatuser=#{user}"
+        link_url1="http://www.trade-v.com/mproducts?id=a0751003&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
 
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
         reply_news_message(articles)

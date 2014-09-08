@@ -1,7 +1,6 @@
 #encoding:utf-8
 class Ecstore::Page < Ecstore::AbstractPage
 
-
 	extend FriendlyId
 	friendly_id :slug
 	
@@ -14,5 +13,8 @@ class Ecstore::Page < Ecstore::AbstractPage
   belongs_to  :supplier ,:foreign_key=>"supplier_id"
 
 	include Ecstore::Metable
+<<<<<<< HEAD
 
+=======
+>>>>>>> 364653fd7342e54eabd60d1bc430f05b068c9589
 end

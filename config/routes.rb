@@ -208,6 +208,9 @@ end
     # subdomain = "www" if Rails.env == "production"
     # constraints :subdomain => subdomain do
     get 'logout'=>'sessions#destroy'
+    resources :tracks do
+      get :pages,:on=>:collection
+    end
     resources :wechat do
       get :menu,:on=>:collection
       get :menu_edit,:on=>:collection
