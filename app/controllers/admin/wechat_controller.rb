@@ -247,11 +247,11 @@ module Admin
             }]
        }]
  }'
-        if id==78
+        if @supplier.id==78
           menu = menu_tradev
-        elsif id==97
+        elsif @supplier.id==97
           menu = menu_norsh
-        elsif id==98
+        elsif @supplier.id==98
           menu = menu_manco
         end
 

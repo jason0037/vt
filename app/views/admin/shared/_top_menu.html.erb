@@ -230,8 +230,8 @@
               <a href="#">行为跟踪</a>
               <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
                 <li>
-                  <%=link_to "微信推荐访问",'/admin/track' if current_admin.has_right_of("promotions","index")%>
-                  <%=link_to "站内追踪",'/admin/track/pages' if current_admin.has_right_of("promotions","index")%>
+                  <%=link_to "微信推荐访问",admin_tracks_path if current_admin.has_right_of("promotions","index")%>
+                  <%=link_to "站内追踪",'/admin/tracks/pages' if current_admin.has_right_of("promotions","index")%>
                 </li>
               </ul>
             </li>
