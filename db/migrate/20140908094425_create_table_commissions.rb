@@ -7,8 +7,7 @@ class CreateTableCommissions < ActiveRecord::Migration
       t.string :year_month #佣金所属年月
       t.integer :ctype #0: 推广佣金； 1：平台佣金
       t.integer :status,:default=>0 #0未发放， 1已发放，-1作废
-
-
+      t.string :openid
       t.timestamps
   	end
   end

@@ -44,6 +44,8 @@ class Ecstore::User < Ecstore::Base
   has_many :hasrole, :foreign_key=>"user_id"
   has_many :manager,:foreign_key=>"user_id"
 
+  has_one :commission,:foreign_key=>"member_id"
+
   
   def aftersale_orders
       self.orders.includes(:order_logs).joins(:order_logs).where("behavior = ?  and  result = ? and alttime >= ? and status = ? ","finish","SUCCESS",(Time.now - 7.days).to_i,"finish")

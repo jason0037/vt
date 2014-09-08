@@ -20,7 +20,7 @@
             <td><%=account.member.name %></td>
             <td><%=account.member.email%></td>
             <td><%=account.member.mobile%></td>
-            <td><%=Time.at(account.createtime) %></td>
+            <td><%=Time.at(account.createtime).strftime('%Y-%m-%d %H:%M') %></td>
 
                 <td><%=link_to "查看",info_admin_member_path(account)%></td>
                 <td><%=link_to "编辑",edit_admin_member_path(account)%></td>

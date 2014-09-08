@@ -12,8 +12,28 @@ class CommissionsController < ApplicationController
     @commission = Ecstore::Commission.new
   end
 
-  def login
+  def index
+    #更新佣金
+    #@followers.each do |follower|
+      sql ="update mdk.sdb_wechat_followers set commission= (select sum(commission) from mdk.sdb_b2c_orders where recommend_user= '#{follower.openid}' group by recommend_user) where openid='#{follower.openid}'"
+     # ActiveRecord::Base.connection.execute(sql)
+    #end
 
+    if @user
+      @supplier = Ecstore::Supplier.where(:member_id=>@user.id,:status=>1).first
+      if @supplier
+        @total_member = Ecstore::Commission.where(:supplier_id=>@supplier.id).count()
+        @commissions  = Ecstore::Commission.where(:supplier_id=>@supplier.id).paginate(:page => params[:page], :per_page => 20).order("account_id DESC")
+        respond_to do |format|
+          format.html # index.html.erb
+          format.json { render json: @members }
+        end
+      else
+        redirect_to '/vshop/apply'
+      end
+    else
+      redirect_to '/vshop/login'
+    end
   end
 
   def register

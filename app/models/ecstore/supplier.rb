@@ -11,4 +11,6 @@ class Ecstore::Supplier < Ecstore::Base
   has_many :orderdining ,:foreign_key=>"supplier_id"
   has_many :homes ,:foreign_key=>"supplier_id"
   has_many :accounts, :foreign_key=>"supplier_id"
-  end
+  has_many :commissions, :foreign_key=>"supplier_id"
+
+end
