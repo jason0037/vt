@@ -221,10 +221,20 @@
                   <%=link_to "用户分组",'/admin/wechat/groups' if current_admin.has_right_of("promotions","index")%>
                   <%=link_to "微信菜单",'/admin/wechat/menu' if current_admin.has_right_of("promotions","index")%>
                   <%=link_to "微信群发", '/admin/wechat/batch_sending' if current_admin.has_right_of("promotions","index")%>
+                  <%=link_to "平台佣金", '/commissions/platform' if current_admin.has_right_of("promotions","index")%>
+                  <%=link_to "推广佣金", '/commissions' if current_admin.has_right_of("promotions","index")%>
                 </li>
               </ul>
             </li>
-
+            <li class="<%='active' if controller_name=='mshop'%>">
+              <a href="#">行为跟踪</a>
+              <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
+                <li>
+                  <%=link_to "微信推荐访问",'/admin/track' if current_admin.has_right_of("promotions","index")%>
+                  <%=link_to "站内追踪",'/admin/track/pages' if current_admin.has_right_of("promotions","index")%>
+                </li>
+              </ul>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
 
