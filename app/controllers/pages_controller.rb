@@ -10,7 +10,7 @@ class PagesController < ApplicationController
     elsif params[:supplier_id]
       supplier_id = params[:supplier_id]
     end
-    
+
     if supplier_id
       @supplier = Ecstore::Supplier.find(supplier_id)
        return render :layout=>@supplier.layout

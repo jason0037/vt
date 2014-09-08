@@ -232,7 +232,7 @@ module Admin
            {
                "type":"view",
                "name":"我的订单",
-               "url":"http://www.trade-v.com/goods?platform=mobile"
+               "url":"http://www.trade-v.com/goods?platform=mobile&supplier_id=78"
             },
 
             {

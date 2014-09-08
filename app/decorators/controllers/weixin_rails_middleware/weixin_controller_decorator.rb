@@ -42,7 +42,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         desc =""
         #pic_url="http://www.trade-v.com/assets/vshop/qrcode.gif"
         pic_url="http://www.trade-v.com/images/a0#{id}/homepage/getqrcode.jpg"
-        link_url="http://www.trade-v.com/pages/qcode"
+        link_url="http://www.trade-v.com/images/a0#{id}/homepage/getqrcode.jpg"
 
         title1="关于我们"
         desc1 =""
@@ -86,7 +86,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="您的总佣金收益是: #{share}元"
         desc ="查看佣金详情请点击"
         pic_url='http://www.trade-v.com/assets/vshop/commission_banner.jpg'
-        link_url="http://www.trade-v.com/share?FromUserName=#{user}"
+        link_url="http://www.trade-v.com/share?FromUserName=#{user}&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
       when 'subscribe'
