@@ -80,9 +80,7 @@ group by left(FROM_UNIXTIME(alttime),7),recommend_user,supplier_id"
   end
 
   def bank_info
-    if @user
-      @member= Ecstore::Member.where(:member_id=>@user.id)
-    end
+
   end
 
   def apply
