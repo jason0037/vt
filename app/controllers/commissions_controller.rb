@@ -76,6 +76,7 @@ group by left(FROM_UNIXTIME(alttime),7),recommend_user,supplier_id"
   def paid
     @commission = Ecstore::Commission.find(params[:id])
     @commission.update_attributes(:status => '1')
+    redirect_to commissions_url
   end
 
   def apply
