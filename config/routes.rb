@@ -4,7 +4,10 @@ Modengke::Application.routes.draw do
 
 resources :commissions do
   get 'platform',:on=>:collection
-  get 'paid',:on=>:collection
+
+  member do
+    get 'paid'
+  end
 end
 
   ####万家物流
