@@ -23,7 +23,8 @@ class Auth::WeixinController < ApplicationController
 
 	def callback
 		return redirect_to(site_path) if params[:error].present?
-    return_url=session[:return_url]
+    supplier_id = session[:supplier_id]
+    return_url= session[:return_url]
     session[:return_url]=''
 
 		token = Weixin.request_token(params[:code])
@@ -50,7 +51,6 @@ class Auth::WeixinController < ApplicationController
 
 			now = Time.now
 
-      supplier_id = params[:supplier_id]
 			@account = Ecstore::Account.new  do |ac|
 				#account
 				ac.login_name = login_name
