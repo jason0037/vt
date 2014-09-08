@@ -13,7 +13,7 @@ class Store::CartController < ApplicationController
       if supplier_id == nil
         supplier_id=78
       end
-      @supplier = Ecstore:Supplier.find(supplier_id)
+      @supplier = Ecstore::Supplier.find(supplier_id)
       render :layout=>@supplier.layout
     end
   end
@@ -91,7 +91,7 @@ class Store::CartController < ApplicationController
         if supplier_id == nil
           supplier_id=78
         end
-        @supplier = Ecstore:Supplier.find(supplier_id)
+        @supplier = Ecstore::Supplier.find(supplier_id)
       render :layout=>@supplier.layout
     elsif params[:platform]=='mobile'
       render :layout=>"mobile_new"

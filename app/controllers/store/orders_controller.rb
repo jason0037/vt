@@ -103,7 +103,7 @@ class Store::OrdersController < ApplicationController
       if supplier_id == nil
         supplier_id=78
       end
-      @supplier = Ecstore:Supplier.find(supplier_id)
+      @supplier = Ecstore::Supplier.find(supplier_id)
       @orders =  @user.orders.order("createtime desc")
 
       if params["platform"]=="mobile"
