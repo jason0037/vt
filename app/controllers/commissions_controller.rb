@@ -6,10 +6,20 @@ class CommissionsController < ApplicationController
   #计算佣金,默认为当月
   def caculate
 
+    #behavior='creates' 在正式使用阶段要改为 'payments'
+    #平台佣金计算
     sql = "insert mdk.sdb_b2c_commissions (supplier_id,commission,`year_month`,ctype,orders_amount,rate,orders_num)
 SELECT 78,sum(total_amount)*0.1,cast(FROM_UNIXTIME(alttime) as char(7)),1,sum(total_amount),0.1, count(*) FROM mdk.sdb_b2c_order_log as l
 left join  mdk.sdb_b2c_orders as o on l.rel_id=o.order_id
 where behavior='creates' group by left(FROM_UNIXTIME(alttime),7), supplier_id"
+
+    #推广佣金计算
+    sql="insert mdk.sdb_b2c_commissions (supplier_id,openid,commission,`year_month`,ctype,orders_amount,rate,orders_num)
+SELECT 78, recommend_user,sum(total_amount)*0.01,cast(FROM_UNIXTIME(alttime) as char(7)),0,sum(total_amount),0.01, count(*) FROM mdk.sdb_b2c_order_log as l
+left join  mdk.sdb_b2c_orders as o on l.rel_id=o.order_id
+where behavior='creates' and length(recommend_user) is not null
+group by left(FROM_UNIXTIME(alttime),7),recommend_user,supplier_id"
+
     yeah_month =params[:yearmonth]
    if yeah_month==nil
      yeah_month=Time.now.strftime('%Y-%m')
