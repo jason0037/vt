@@ -33,11 +33,13 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       when '授权'
         session[:supplier_id] = id
         redirect_uri="http%3a%2f%2fwww.trade-v.com%2fauth%2fweixin%2fcallback"
+                      "http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback"
 
         title2="微信直通"
         desc2 =""
         pic_url2="http://www.trade-v.com/assets/vshop/Oauth_s.png"
-        link_url2= "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+        link_url2="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+        #link_url2= "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
 
         title="二维码"
         desc =""
