@@ -5,7 +5,7 @@ class MobileController < ApplicationController
 
   def show
     supplier_id=78
-    @supplier=Ecstore:Supplier.find(supplier_id)
+    @supplier=Ecstore::Supplier.find(supplier_id)
     @title = "贸威移动版"
     #@home = Ecstore::Home.last
     #if signed_in?
