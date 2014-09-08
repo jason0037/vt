@@ -22,7 +22,7 @@ class Auth::WeixinController < ApplicationController
 	end
 
 	def callback
-    #return render :text=>params[:code]
+    return render :text=>params[:id]
 		return redirect_to(site_path) if params[:error].present?
     return_url=session[:return_url]
     session[:return_url]=''
