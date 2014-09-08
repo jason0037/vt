@@ -24,19 +24,23 @@
          margin-right: 30px;
          margin-left: 100px;
      }
-        .control-group_lable{
+   .control-group_lable{
             text-align: center;
         }
-        .black_btn{
-            float: right;
-            margin-right: 20px;
-        }
-       input[type="submit"]{
+    .black_btn
+    {
+     float: right;
+       margin-right: 20px;
+      }
 
-           width: 100%;
+   .btn-submit{
+      width: 100%;
+       padding: 15px;
        }
-     .form_hide{
+
+  .form_hide{
          display: none;
+
      }
 
 
@@ -86,7 +90,7 @@
     </div>
      <br/>
         <div style="text-align: center">
-       <input type="button"  class="am-btn am-btn-primary" id="button" value="获取参考价"  />
+       <input type="button" style="width:100%" class="am-btn am-btn-primary" id="button" value="点击获取参考价"  />
         </div>
       <div class="form_hide" id="mktprice">
     <div class="am-input-group am-input-group-lg">
@@ -129,7 +133,8 @@
     <br/>
    <div class="control-group">
       <div class="controls">
-        <%= f.submit '确定', :class => "am-btn am-btn-primary" %>
+        <input type="button" class="am-btn am-btn-primary btn-submit" value="发布">
+
         <!--<#%= link_to '返回', admin_goods_path,:class=>"black_btn" %>-->
       </div>
     </div>
@@ -141,8 +146,8 @@
           $(document).ready(function(){
 
               $("#button").click(function(){
-                var  departure=$("#departure").val();
-                 var arrival=$("#arrival").val();
+                 departure=$("#departure").val();
+                  arrival=$("#arrival").val();
                  if (!departure ||!arrival)  {alert("请先输入详细的地址在查询"); return false}
                  $("#mktprice").removeClass("form_hide");
                   $(this).addClass("form_hide") ;
@@ -165,7 +170,15 @@
                    }
                })
 
+           $(".btn-submit").click(function(){
+               if(!departure ||!arrival ||!$("#good_price").val()) {
+                   alert("还不能发布哦,信息不租"); return false}
+               else{
+                 $(".am-form").submit();
+               }
+               }
 
+           )
 
 
 

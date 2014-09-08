@@ -35,6 +35,7 @@ class Ecstore::Cart < Ecstore::Base
 		product_id
 	end
 
+
 	def product
 		return  if self.obj_type == "coupon"
 		_obj_type, goods_id, product_id = self.obj_ident.split("_")

@@ -1,14 +1,6 @@
 <style type="text/css">
-    body{
-        background-color: #f0f1ff;
-    }
-    .am-form input[type="text"], .am-form input[type="number"]{
-        margin-bottom: 20px;
-        width: 80%;
-        margin-left: 45px;
-        border: #15afef solid 1px;
 
-    }
+
     #good_mktprice{
         color: #ff0e1a;
         font-size: 15px;
@@ -70,27 +62,34 @@
 
       </div>
     </div>
-    <label>起点站</label>
-    <%=text_field_tag "departure"%>
-    <label>终点站</label>
-    <%=text_field_tag "arrival"%>
 
-    <%= f.label :weight, "货物重量" %>
-
-    <%= f.number_field :weight%>
-
-
-    <%= f.label :price, "价格" %>
-
-    <%= f.number_field :price%>
-    <div class="control-group">
-      <label class="control-label">到期时间</label>
-      <div class="controls">
-        <%=f.text_field :downtime,:class=>"ui_timepicker"%>
-      </div>
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">起点站</span>
+      <input type="text" class="am-form-field" name="departure" id="departure" placeholder="起点站">
     </div>
+    <br/>
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">终点站</span>
+      <input type="text" class="am-form-field" name="arrival" id="arrival" placeholder="终点站">
+    </div>
+    <br/>
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">货物重量</span>
+<%= f.number_field :weight ,:class=>"am-form-field"%>  <span class="am-input-group-label">公斤</span>
+    </div>
+    <br/>
 
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">价格</span>
+      <%= f.number_field :price ,:class=>"am-form-field"%>  <span class="am-input-group-label">元/公斤</span>
+    </div>
+    <br/>
 
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">有效时间</span>
+      <%=f.text_field :downtime,:class=>"ui_timepicker"%>
+    </div>
+    <br/>
 
     <div class="control-group">
       <%= f.label :desc, "备注" %>
