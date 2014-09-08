@@ -35,8 +35,6 @@ class Store::GoodsController < ApplicationController
 
   end
 
-
-
      ###万家小黑板
   def mancoproduct
 
@@ -139,8 +137,8 @@ class Store::GoodsController < ApplicationController
        @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
      end
    end
-   if params[:supplier_id]
-     @supplier  =  Ecstore::Supplier.find(params[:supplier_id])
+   if params[:supplier]
+     @supplier  =  Ecstore::Supplier.find(params[:supplier])
      render :layout=>@supplier.layout
    else
      render :layout=>"mobile_new"
