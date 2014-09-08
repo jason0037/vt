@@ -22,8 +22,8 @@
             <td><%=account.member.mobile%></td>
             <td><%=Time.at(account.createtime) %></td>
 
-                <td><%=link_to "查看",info_admin_member_path(member)%></td>
-                <td><%=link_to "编辑",edit_admin_member_path(member)%></td>
+                <td><%=link_to "查看",info_admin_member_path(account)%></td>
+                <td><%=link_to "编辑",edit_admin_member_path(account)%></td>
           </tr>
       <% end %>
     </table>
