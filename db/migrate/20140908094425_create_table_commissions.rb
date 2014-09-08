@@ -8,6 +8,9 @@ class CreateTableCommissions < ActiveRecord::Migration
       t.integer :ctype #0: 推广佣金； 1：平台佣金
       t.integer :status,:default=>0 #0未发放， 1已发放，-1作废
       t.string :openid
+      t.integer :orders_num
+      t.float :orders_amount ,:precision=>20,:scale=>2
+      t.float :rate ,:precision=>5,:scale=>2
       t.timestamps
   	end
   end
