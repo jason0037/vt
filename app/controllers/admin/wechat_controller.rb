@@ -18,7 +18,7 @@ module Admin
       if id ==nil
         return render :text=>"参数错误"
       end
-      @supplier = Ecstore::Supplier.find(:id)
+      @supplier = Ecstore::Supplier.find(id)
 
       appid = @supplier.weixin_appid
       appsecret = @supplier.weixin_appsecret
