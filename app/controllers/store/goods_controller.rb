@@ -137,7 +137,7 @@ class Store::GoodsController < ApplicationController
        @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
      end
    end
-   if params[:supplier]
+   if params[:supplier_id]
      @supplier  =  Ecstore::Supplier.find(params[:supplier])
      render :layout=>@supplier.layout
    else

@@ -253,12 +253,12 @@ module Admin
             {
                "type":"view",
                "name":"婴童牙膏",
-               "url":"http://www.trade-v.com/mproducts?id=a0971002&supplier=97"
+               "url":"http://www.trade-v.com/mproducts?id=a0971002&supplier_id=97"
             },
             {
                "type":"view",
                "name":"宝宝小软勺",
-               "url":"http://www.trade-v.com/mproducts?id=a0971007&supplier=97"
+               "url":"http://www.trade-v.com/mproducts?id=a0971007&supplier_id=97"
             },
             {
                "type":"view",
