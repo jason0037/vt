@@ -24,6 +24,7 @@ class Store::CartController < ApplicationController
 		customs = params[:product].delete(:customs)
 		quantity = params[:product].delete(:quantity).to_i
 		goods_id = params[:product][:goods_id]
+
     if quantity.blank? || quantity ==0
       quantity=1
     end
@@ -168,7 +169,9 @@ class Store::CartController < ApplicationController
 
     if @cart.new_record?
       @cart.save
-
+    else
+      Ecstore::Cart.where(:obj_ident=>@cart.obj_ident,:member_ident=>member_ident).update_all(:quantity=>@cart.quantity+quantity)
+      @cart.quantity = (@cart.quantity+1)
     end
 
 
@@ -222,7 +225,9 @@ class Store::CartController < ApplicationController
 
      if @cart.new_record?
        @cart.save
-
+     else
+       Ecstore::Cart.where(:obj_ident=>@cart.obj_ident,:member_ident=>member_ident).update_all(:quantity=>@cart.quantity+quantity)
+       @cart.quantity = (@cart.quantity+1)
      end
 
 
