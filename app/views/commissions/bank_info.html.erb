@@ -1,0 +1,48 @@
+<%=form_for @member,:url=>patch_profile_path,:method=>:put,:html=>{:id=>"basic_form",:supplier=>"#{@supplier_id}"} do |f|%>
+    <%=hidden_field_tag :tab,"basic"%>
+    <div class="field">
+      <label>真实姓名:</label>
+      <%=f.text_field :name%>
+    </div>
+    <div class="field">
+      <label>性别:</label>
+		<span>
+			<%=f.radio_button :sex, 1%>
+          <label for="ecstore_user_sex_1" class="radio-label">男</label>
+          <%=f.radio_button :sex, 0%>
+          <label for="ecstore_user_sex_0" class="radio-label">女</label>
+		</span>
+    </div>
+    <div class="field">
+      <label>银行信息:</label>
+      <span>银行</span>
+      <input name="bank_info[bank]" value="">
+      <span>支行</span>
+      <input name="bank_info[branch]" value="">
+      <span>账号</span>
+      <input name="bank_info[account]" value="">
+      <span class="tip"> </span>
+    </div>
+
+    <div class="field">
+      <label><em class="required">*</em> 收信邮箱:</label>
+      <%=f.text_field :email%>
+      <%if @user.email_validate=='true'%>
+          <span class="help-block"></span>
+          <span class="tip">邮箱已认证</span>
+      <%end%>
+    </div>
+
+    <div class="field">
+      <label>手机:</label>
+      <%=f.text_field :mobile%>
+      <%if @user.sms_validate=='true'%>
+          <span class="tip">手机已认证</span>
+      <%end%>
+
+    </div>
+    <div class="actions">
+      <%=f.submit "保存",:class=>"btn" if action_name=='edit'%>
+      <%=link_to "修改","#",:class=>"btn edit"%>
+    </div>
+<%end%>

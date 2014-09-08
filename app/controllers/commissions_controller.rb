@@ -79,6 +79,12 @@ group by left(FROM_UNIXTIME(alttime),7),recommend_user,supplier_id"
     redirect_to commissions_url
   end
 
+  def bank_info
+    if @user
+      @member= Ecstore::Member.where(:member_id=>@user.id)
+    end
+  end
+
   def apply
     if params[:id]
       @supplier  =  Ecstore::Supplier.find(params[:id])
@@ -86,4 +92,5 @@ group by left(FROM_UNIXTIME(alttime),7),recommend_user,supplier_id"
       @method = :put
     end
   end
+
 end
