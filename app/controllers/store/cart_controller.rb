@@ -26,6 +26,7 @@ class Store::CartController < ApplicationController
 		customs = params[:product].delete(:customs)
 		quantity = params[:product].delete(:quantity).to_i
 		goods_id = params[:product][:goods_id]
+suppliers_id=params[:product][:suppliers_id]
 
     if quantity.blank? || quantity ==0
       quantity=1
@@ -142,7 +143,7 @@ class Store::CartController < ApplicationController
   end
 
   def mancoexpress_add
-
+    suppliers_id=params[:product][:suppliers_id]
     specs = params[:product].delete(:specs)
     customs = params[:product].delete(:customs)
     quantity = params[:product].delete(:quantity).to_i
@@ -197,6 +198,7 @@ class Store::CartController < ApplicationController
    end
 
    def manco_add        ###小黑板的购物
+     suppliers_id=params[:product][:suppliers_id]
      specs = params[:product].delete(:specs)
      customs = params[:product].delete(:customs)
      quantity = params[:product].delete(:quantity).to_i

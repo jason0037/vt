@@ -1,17 +1,9 @@
+
 <%=@mancoorder.each do |ord|%>
     <tr>
       <td><%=link_to ord.order_id, order_path(ord)%></td>
       <td>
-        <%ord.order_items.each_with_index do |order_item,index|%>
-            <%
-               link_title = order_item.name
-               link_title = "赠品:#{link_title}" if order_item.item_type == 'gift'
-            %>
-            <%=link_to good_path_ext(order_item.good),:title=>link_title,:target=>"_blank",:class=>"thumb-link" do %>
-                <%= order_item.product.name%>
 
-            <%end%>
-           <%end%>
       </td>
 
     <td><%=Time.at(ord.createtime).localtime.to_s(:db) %></td>
@@ -19,3 +11,5 @@
       <td><%=ord.status_text%></td>
     </tr>
 <%end%>
+
+

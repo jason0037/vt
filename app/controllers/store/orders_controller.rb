@@ -5,10 +5,15 @@ class Store::OrdersController < ApplicationController
 
   def mancoder_show
     if @user
-      member_id=params[:id]
+      # member_id=params[:id]
+      # @mancoorder =Ecstore::Order.paginate :page=>params[:page],        ###分页语句
+      #                                      :per_page => 1,
+      #                                      :conditions => ["member_id=#{member_id}"]
+      id=params[:id]
       @mancoorder =Ecstore::Order.paginate :page=>params[:page],        ###分页语句
-                                           :per_page => 1,
-                                           :conditions => ["member_id=#{member_id}"]
+                                    :per_page => 5,              ###当前只显示一条
+                                    :conditions => ["member_id=#{id}"]
+
       render :layout => "manco_template"
 
     else

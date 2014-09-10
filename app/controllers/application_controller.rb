@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
             else
               @cart_total = @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.price*x.quantity) }.inject(:+) || 0
             end
-           @pmtable = @line_items.select { |line_item| line_item.good.is_suit? }.size == 0
+           #@pmtable = @line_items.select { |line_item| line_item.good.is_suit? }.size == 0
 
     end
 

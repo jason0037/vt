@@ -176,8 +176,8 @@
           $(document).ready(function(){
 
               $("#button").click(function(){
-                 departure=$("#departure").val();
-                  arrival=$("#arrival").val();
+                var departure=$("#departure").val();
+                 var  arrival=$("#arrival").val();
                  if (!departure ||!arrival)  {alert("请先输入详细的地址在查询"); return false}
                  $("#mktprice").removeClass("form_hide");
                   $(this).addClass("form_hide") ;
@@ -192,15 +192,41 @@
               })
 
                $("#good_price").blur(function(){
+               var    departure=$("#departure").val();
+                var   arrival=$("#arrival").val();
+                   if (!departure ||!arrival)  {alert("请先输入详细的地址在查询"); return false}
+                   $.ajax({
+                       url: "/manco/blackboardfind_e",
+                       type: "post",
+
+                       data: {departure:departure,arrival:arrival},
+                       success: function (res) {
+
+                       }
+                   })
                    var goods_price=$(this).val();
-                   if (!goods_price){alert("请输入您的价格"); return false}
+                   if (!goods_price){alert("请输入您的价格");
+                       return false}
                    else{
                        $("#good_wholesale").val(goods_price);
                        $("#good_promotion").val(goods_price);
+
                    }
                })
 
            $(".btn-submit").click(function(){
+
+               if(!$("#good_name").val()){
+                       departure=$("#departure").val();
+                       arrival=$("#arrival").val();
+                       $.ajax({
+                           url: "/manco/blackboardfind_e",
+                           type: "post",
+                           data: {departure:departure,arrival:arrival},
+                           success: function (res) {
+
+                           }
+                       })}
                if(!departure ||!arrival ||!$("#good_price").val()) {
                    alert("还不能发布哦,信息量不足"); return false}
                else{

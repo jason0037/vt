@@ -56,7 +56,17 @@
 
 
 </style>
+<style type="text/css">
 
+    #suggest,#suggest2{width:100%}
+    .gray{color:gray;}
+    .ac_results {background:#fff;border:1px solid #7f9db9;z-index: 10000;display: none;}.ac_results ul{margin:0;padding:0;list-style:none;}
+    .ac_results li a{white-space: nowrap;text-decoration:none;display:block;color:#05a;padding:1px 3px;}
+    .ac_results li{border:1px solid #fff; line-height:18px}
+    .ac_over,.ac_results li a:hover {background:#c8e3fc;}
+    .ac_results li a span{float:right;}
+    .ac_result_tip{border-bottom:1px dashed #666;padding:3px;}
+</style>
 
 <header id="am-topbar am-topbar-inverse">
 
@@ -68,7 +78,7 @@
 </header>
 <div class="head-info" >
   <img src="/assets/manco/logo.jpg" alt="..." class="am-img-circle">
-  <p>400-821-6789</p>
+  <p>4001-156-561</p>
 </div>
 
     <form method="post" id="form_first" class="am-form am-form-group ">
@@ -76,13 +86,15 @@
       <div class="am-input-group am-input-group-lg">
         <span class="am-input-group-label">始发地</span>
          <input type="text" name="departure" class="am-form-field floatright" placeholder="请输入始发地:" id="departure" value="">
+         <div id='suggest' class="am-input-group-lg"></div>
         </div>
       <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
         <div class="am-input-group am-input-group-lg">
           <span class="am-input-group-label">终点站</span>
 
           <input type="text" name="arrival"placeholder="请输入终点站" class="am-form-field floatright" id="arrival" value="">
-    </div>
+          <div id='suggest2' class="ac_results"> </div>
+        </div>
      <div class="am-cf">
         <input type="button" id="serach" data-url="/manco/find_manco_good_first" name="" value="点击询价" class="am-btn am-btn-primary am-btn-sm am-fl">
 
@@ -96,7 +108,7 @@
     <%=hidden_field_tag :platform,'mancoexpress'%>
     <%=hidden_field_tag :manco_unit_price, :id=>"manco_unit_price"%>
     <%=f.hidden_field :manco_name_two, :id=>"manco_name_two"%>
-
+    <%=f.hidden_field :suppliers_id, :id=>"suppliers_id",:value=>"98"%>
     <table class="am-table .am-table-bd ">
       <thead>
       <tr>
@@ -178,4 +190,18 @@
 
 </script>
 
+<script>$(function(){
+    $("#departure").suggest(citys,{
+        hot_list:commoncitys,
+        attachObject:'#suggest'
+    });
+    $("#arrival").suggest(citys,{
+        hot_list:commoncitys,
+        attachObject:"#suggest2"
+    });
 
+});</script>
+
+
+<script type="text/javascript" src="/assets/manco/aircity.js"></script>
+<script type="text/javascript" src="/assets/manco/j.suggest.js"></script>

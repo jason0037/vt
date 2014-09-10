@@ -32,6 +32,7 @@
         <%=form_for :product,:url=>"/cart/add",:remote=>true do |f|%>
             <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
             <%=f.hidden_field :type_id,:value=>@good.type_id%>
+
           <%=hidden_field_tag :platform,'mobile'%>
           <%=hidden_field_tag :return_url,{:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
         <h1><%=@good.name %></h1>
