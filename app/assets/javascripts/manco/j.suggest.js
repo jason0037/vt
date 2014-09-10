@@ -114,7 +114,7 @@
 					for(h in options.hot_list){
 						html+='<li rel="'+options.hot_list[h][0]+'"><a href="#'+h+'"><span>'+options.hot_list[h][2]+'</span>'+options.hot_list[h][1]+'</a></li>';
 					}
-					html='<div class="am-form-field">请输入中文/拼音或者↑↓选择</div><ul>'+html+'</ul>';
+					html='<div class="am-form-field">请输入中文/拼音</div><ul>'+html+'</ul>';
 				}
 				else {
 					/*if (!items)
