@@ -13,7 +13,7 @@ module Admin
     @@appsecret =  @@supplier.weixin_appsecret
 =end
 
-    def menu_edit
+    def menu_edit_back
       id = params[:id]
       if id ==nil
         return render :text=>"参数错误"
@@ -258,6 +258,27 @@ module Admin
         #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
         #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
         response = $client.create_menu(menu)
+        #response = $client.menu
+        render :text=> response.cn_msg#.result#response.en_msg#user_info# @followers #JSON.parse(@user_info)
+      end
+    end
+
+    def menu_edit
+      id = params[:id]
+      if id ==nil
+        return render :text=>"参数错误"
+      end
+      @supplier = Ecstore::Supplier.find(id)
+
+      appid = @supplier.weixin_appid
+      appsecret = @supplier.weixin_appsecret
+
+      $client ||= WeixinAuthorize::Client.new(appid,appsecret)
+
+      if ($client.is_valid?)
+        #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+        #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+        response = $client.create_menu(@supplier.menu)
         #response = $client.menu
         render :text=> response.cn_msg#.result#response.en_msg#user_info# @followers #JSON.parse(@user_info)
       end
