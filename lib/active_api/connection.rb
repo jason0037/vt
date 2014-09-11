@@ -36,7 +36,7 @@ module ActiveApi
             :code=>code,
             :grant_type=>'authorization_code'
         }
-      return render :text=>params.to_s
+      return params.to_s
         #https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
         request_time = Time.now.to_i
         res = Faraday.new(config.access_token_uri,:ssl=>config.ssl, :params => params).post
