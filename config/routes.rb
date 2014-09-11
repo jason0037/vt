@@ -89,7 +89,7 @@ end
   namespace :auth do
     resources :accounts
     resources :weixin do
-      get 'callback',:on=>:collection
+      get 'callback',:on=>:member
     end
     resources :weibo do
       get 'callback',:on=>:collection
