@@ -30,11 +30,11 @@ class Auth::WeixinController < ApplicationController
 
     @supplier =Ecstore::Supplier.find(supplier_id)
     appid = @supplier.weixin_appid
-    secret = @supplier.weixin_secret_key
+    secret = @supplier.weixin_appsecret
 
 		#token = Weixin.request_token(params[:code])
     token = Weixin.request_token_multi(params[:code],appid,secret)
-   return  render :text=>token
+   #return  render :text=>token
 
 		auth_ext = Ecstore::AuthExt.where(:provider=>"weixin",
 									:uid=>token.openid).first_or_initialize(
