@@ -31,7 +31,6 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     #user = @weixin_message.ToUserName
     case @keyword
       when '授权'
-        session[:supplier_id] = id
        # redirect_uri="http%3a%2f%2fwww.trade-v.com%2fauth%2fweixin%2fcallback"
 
         title2="微信直通"

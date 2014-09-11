@@ -22,12 +22,11 @@ class Auth::WeixinController < ApplicationController
 	end
 
 	def callback
-    return render :text=>params[:id]
+
 		return redirect_to(site_path) if params[:error].present?
-    supplier_id = session[:supplier_id]
+    supplier_id = params[:id]
     return_url= session[:return_url]
     session[:return_url]=''
-    #return render :text=>supplier_id
 
     @supplier =Ecstore::Supplier.find(supplier_id)
     appid = @supplier.weixin_appid
