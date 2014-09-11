@@ -9,7 +9,10 @@ class Store::CartController < ApplicationController
 
   def mobile
     if  @user
-      supplier_id = @user.account.supplier_id
+      @account = Ecstore::Account.where(:account_id=>2547).first
+      return render :text=>@account.supplier_id
+      supplier_id =@account.supplier_id
+
       if supplier_id == nil
         supplier_id=78
       end
