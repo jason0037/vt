@@ -292,7 +292,7 @@ module Admin
         if @supplier == nil
           return render :text=>'您还没有关注者',:layout=>'vshop'
         else
-          @followers = Ecstore::WechatFollower..where(:supplier_id=>@supplier.id).paginate(:page => params[:page], :per_page => 20).order("commission DESC")
+          @followers = Ecstore::WechatFollower.where(:supplier_id=>@supplier.id).paginate(:page => params[:page], :per_page => 20).order("commission DESC")
         end
         layout = 'vshop'
       elsif current_admin
