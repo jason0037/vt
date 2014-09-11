@@ -8,10 +8,9 @@ class Store::CartController < ApplicationController
   end
 
   def mobile
-
     if  @user
       supplier_id=params[:id]
-      
+
       if supplier_id == nil
         supplier_id=78
       end
@@ -28,7 +27,7 @@ class Store::CartController < ApplicationController
 		customs = params[:product].delete(:customs)
 		quantity = params[:product].delete(:quantity).to_i
 		goods_id = params[:product][:goods_id]
-suppliers_id=params[:product][:suppliers_id]
+    suppliers_id=params[:suppliers_id]
 
     if quantity.blank? || quantity ==0
       quantity=1
@@ -90,11 +89,6 @@ suppliers_id=params[:product][:suppliers_id]
 		#calculate cart_total and cart_total_quantity
 		find_cart!
     if params[:platform]=='mobile'
-        supplier_id = @user.account.supplier_id
-        if supplier_id == nil
-          supplier_id=78
-        end
-        @supplier = Ecstore::Supplier.find(supplier_id)
       render "mobile", :layout=>@supplier.layout
     else
       render "add"
