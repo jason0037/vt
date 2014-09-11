@@ -37,8 +37,12 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title2="微信直通"
         desc2 =""
         pic_url2="http://www.trade-v.com/assets/vshop/Oauth_s.png"
-        link_url2="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
-        #link_url2= "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&5&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+        #tradev
+        #link_url2="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+       #金芭浪
+        #link_url2="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4b4da577489dbe4b&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+
+        link_url2= "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&5&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
 
         title="二维码"
         desc =""

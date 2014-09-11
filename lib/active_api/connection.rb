@@ -29,6 +29,24 @@ module ActiveApi
 				"#{config.authorize_uri}?#{params.to_query}"
 			end
 
+    def request_token_multi(code,appid,secret)
+
+      params = {
+            :appid=> appid,
+            :secret=> secret,
+            :code=>code,
+            :grant_type=>'authorization_code'
+        }
+        #https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
+        request_time = Time.now.to_i
+        res = Faraday.new(config.access_token_uri,:ssl=>config.ssl, :params => params).post
+        #return  res.body
+        body = Hashie::Mash.new JSON.parse(res.body)
+        body.merge! :expires_at=>(body.expires_in + request_time)
+        body
+      end
+    end
+
 			def request_token(code)
 				params = {
 		#			:client_id => config.client_id,
