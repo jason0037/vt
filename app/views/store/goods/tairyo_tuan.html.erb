@@ -93,7 +93,21 @@
 </div>
 <div class="goods_con area_con_grey">
   <h3 class="title"  >【用户评论】</h3>
-  *用户评论是用户对本团购的消费点评<br/>
+  <div id="SOHUCS"></div>
+  <script>
+      (function(){
+          var appid = 'cyrmTsAaN',
+                  conf = 'prod_5f1b7731ebb677190e934ff7f030c317';
+          var doc = document,
+                  s = doc.createElement('script'),
+                  h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+          s.type = 'text/javascript';
+          s.charset = 'utf-8';
+          s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+          h.insertBefore(s,h.firstChild);
+          window.SCS_NO_IFRAME = true;
+      })()
+  </script>
 </div>
 <br/>
 <div class="space15"></div>

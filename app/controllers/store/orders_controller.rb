@@ -5,14 +5,23 @@ class Store::OrdersController < ApplicationController
 
   def mancoder_show
     if @user
-      # member_id=params[:id]
-      # @mancoorder =Ecstore::Order.paginate :page=>params[:page],        ###分页语句
-      #                                      :per_page => 1,
-      #                                      :conditions => ["member_id=#{member_id}"]
-      id=params[:id]
-      @mancoorder =Ecstore::Order.paginate :page=>params[:page],        ###分页语句
-                                    :per_page => 5,              ###当前只显示一条
-                                    :conditions => ["member_id=#{id}"]
+
+      supplier_id = params[:supplier_id]
+      if  @user
+        supplier_id = @user.account.supplier_id
+        if supplier_id == nil
+          supplier_id=78
+        end
+        @supplier = Ecstore::Supplier.find(supplier_id)
+        @orders =  @user.orders.order("createtime desc")
+
+        if params["platform"]=="mobile"
+          render :layout=>@supplier.layout
+        end
+      else
+        return_url={:return_url => "/goods?platform= #{params["platform"]}&supplier_id=#{supplier_id}"}.to_query
+        redirect_to "/mlogin?#{return_url}"
+      end
 
       render :layout => "manco_template"
 

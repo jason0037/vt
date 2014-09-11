@@ -130,7 +130,7 @@
 
   </div>
   <div class="comment">
-    点评(444)
+    <a name="comment">点评 </a>
   </div>
 </div>
 
@@ -208,51 +208,70 @@
   <div>
 
 
-    <%if @comment_a %>
-    <% @comment_a.each do |review| %>
-        <div class="area_con_grey">
-          <b class="bt_lt_par_t"></b><h3>ddd：</h3>
-      <span style="">  <%= review.content  %>
-        </span>
-        <br/>
-      <h6><%= review.created_at  %></h6>
-        </div>
+    <!--<%#if @comment_a %>-->
+    <!--<%# @comment_a.each do |review| %>-->
+        <!--<div class="area_con_grey">-->
+          <!--<b class="bt_lt_par_t"></b><h3>ddd：</h3>-->
+    <!--<span style="">  <%#= review.content  %>
+        <!--</span>-->
+        <!--<br/>-->
+      <!--<h6><%#= review.created_at  %></h6>-->
+        <!--</div>-->
 
-    <% end %>
-    <% end %>
-    <div class="area_con_grey">
-      <b class="bt_lt_par_t"></b><h3>ddd：</h3>
-      <span style="">铁板之所以这样受欢迎，最根本的原因还是它非常符合人们健康饮食的需要。食材新鲜，讲究吃到食材的原味，而且料理中少油少盐，只有中餐用量的三分之一，鲜味完全来自食材本身。调味品少而精，黄油等是用来提香提鲜，没有自己的味道，丝毫不会破坏食物的原味。而且铁板可以很快达到并准确保持在300度以上的高温，食材可以迅速地成熟，最大程度地保留食材的营养，口感也是无法比拟地有汁有味。
-    </span>
-        <br/>
-      <h6>2014.6.6 12:30:27</h6>
+    <!--<%# end %>-->
+    <!--<%# end %>-->
+    <!--<div class="area_con_grey">-->
+      <!--<b class="bt_lt_par_t"></b><h3>ddd：</h3>-->
+      <!--<span style="">铁板之所以这样受欢迎，最根本的原因还是它非常符合人们健康饮食的需要。食材新鲜，讲究吃到食材的原味，而且料理中少油少盐，只有中餐用量的三分之一，鲜味完全来自食材本身。调味品少而精，黄油等是用来提香提鲜，没有自己的味道，丝毫不会破坏食物的原味。而且铁板可以很快达到并准确保持在300度以上的高温，食材可以迅速地成熟，最大程度地保留食材的营养，口感也是无法比拟地有汁有味。-->
+    <!--</span>-->
+        <!--<br/>-->
+      <!--<h6>2014.6.6 12:30:27</h6>-->
+    <!--</div>-->
+
+      <!--<div class="area_con_grey">-->
+        <!--<b class="bt_lt_par_t"></b><h3>xx：</h3>-->
+      <!--<span style="">有黑虎虾、鳕鱼、挪威三文鱼、日本金枪鱼、日本寿司、日式薄饼、牛排、生食雪龙黑牛、各种日式烤鱼、内蒙羊排王、生蚝、青口贝、扇贝王、吉列虾、天妇罗虾、水果、甜品等近百个品种，酒水有日本清酒、葡萄酒、各式啤酒、饮料及鲜榨果汁。各种口味不错。-->
+        <!--</a>-->
+        <!--</span>-->
+        <!--<br/>-->
+      <!--<h6>2014.6.4 12:30:27</h6>-->
+      <!--</div>-->
+      <!--<div class="area_con_grey">-->
+        <!--<b class="bt_lt_par_t"></b><h3>yy：</h3>-->
+      <!--<span style="">大渔铁板烧杭州银泰店盛装开业啦!各种鱼生海鲜、扒类、蔬菜、饮料酒水，样样让人垂涎欲滴 ...美食的天堂，吃货的福音！欢迎新老顾客前来惠顾！大渔期待您的到来！ 地址：杭州市拱墅区丰潭路380号银泰城3F037铺。-->
+        <!--</a>-->
+        <!--</span>-->
+        <!--<br/>-->
+      <!--<h6>2014.6.2 12:30:27</h6>-->
+      <!--</div>-->
+      <!--<br/>-->
+      <!--<br/>-->
+      <!--<br/>-->
+      <!--<br/>-->
+      <!--<div class="bottomdiv clearfix">-->
+        <!--<div class="inner clearfix">-->
+
+          <!--<a href="comment_t" class="add_to_cart fr btn_sure " id="add_to_cart">我要点评</a>-->
+
+        <!--</div>-->
+      <!--</div>-->
+    <!--高速版，加载速度快，使用前需测试页面的兼容性-->
+
+    <div id="SOHUCS"></div>
+    <script>
+        (function(){
+            var appid = 'cyrmTsAaN',
+                    conf = 'prod_5f1b7731ebb677190e934ff7f030c317';
+            var doc = document,
+                    s = doc.createElement('script'),
+                    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+            s.type = 'text/javascript';
+            s.charset = 'utf-8';
+            s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+            h.insertBefore(s,h.firstChild);
+            window.SCS_NO_IFRAME = true;
+        })()
+    </script>
+
+ </div>
     </div>
-
-      <div class="area_con_grey">
-        <b class="bt_lt_par_t"></b><h3>xx：</h3>
-      <span style="">有黑虎虾、鳕鱼、挪威三文鱼、日本金枪鱼、日本寿司、日式薄饼、牛排、生食雪龙黑牛、各种日式烤鱼、内蒙羊排王、生蚝、青口贝、扇贝王、吉列虾、天妇罗虾、水果、甜品等近百个品种，酒水有日本清酒、葡萄酒、各式啤酒、饮料及鲜榨果汁。各种口味不错。
-        </a>
-        </span>
-        <br/>
-      <h6>2014.6.4 12:30:27</h6>
-      </div>
-      <div class="area_con_grey">
-        <b class="bt_lt_par_t"></b><h3>yy：</h3>
-      <span style="">大渔铁板烧杭州银泰店盛装开业啦!各种鱼生海鲜、扒类、蔬菜、饮料酒水，样样让人垂涎欲滴 ...美食的天堂，吃货的福音！欢迎新老顾客前来惠顾！大渔期待您的到来！ 地址：杭州市拱墅区丰潭路380号银泰城3F037铺。
-        </a>
-        </span>
-        <br/>
-      <h6>2014.6.2 12:30:27</h6>
-      </div>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <div class="bottomdiv clearfix">
-        <div class="inner clearfix">
-
-          <a href="comment_t" class="add_to_cart fr btn_sure " id="add_to_cart">我要点评</a>
-
-        </div>
-      </div>
-</div></div>

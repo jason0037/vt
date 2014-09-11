@@ -124,15 +124,25 @@ suppliers_id=params[:product][:suppliers_id]
 	end
 
   def tairyo
+    if @user
 
 
-    @oa = Ecstore::OrderDining.new(params[:@order_dining])
-   #
-     if @oa.save
+    account_id=params[:@order_dining][:account_id]
+login_name=Ecstore::Account.find(account_id)
+    hour=params[:hour]
+    @oa = Ecstore::OrderDining.new(params[:@order_dining]) do |sv|
+       sv.dining_use=login_name.login_name
+      sv.dining_time=Time.parse(params[:@order_dining][:dining_time]).to_i+(hour.to_i)*3600
+         end
 
-      render   layout: "tairyo_new"
-     else
-     redirect_to  '/tairyo_order'
+       if @oa.save
+
+       render   layout: "tairyo_new"
+      else
+      redirect_to  '/tairyo_order'
+       end
+  else
+      redirect_to '/wlogin?return_url=/manco/user'
     end
 
 

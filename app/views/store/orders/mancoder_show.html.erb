@@ -62,7 +62,32 @@
       </tr>
       </thead>
       <tbody>
-      <%=render "mancoder_show"%>
+      <%@orders.each  do |order|%>
+          <tr>
+            <td><%=link_to order.order_id, order_path(order)%></td>
+            <td>
+              <%order.order_items.each_with_index do |order_item,index|%>
+                  <%
+                     link_title = order_item.name
+                     link_title = "赠品:#{link_title}" if order_item.item_type == 'gift'
+                  %>
+                  <%=link_to good_path_ext(order_item.good),:title=>link_title,:target=>"_blank",:class=>"thumb-link" do %>
+                      <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product'%>
+                      <%=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
+                  <%end%>
+
+              <%end%>
+            </td>
+
+            <td><%=order.created_at%></td>
+            <td>￥<%=order.final_amount%></td>
+            <td style="display:none"><%=order.status_text%></td>
+            <td>
+
+              <div><%=link_to "去付款",order_path(order),:target=>"_blank" if order.status == 'active' && order.pay_status=='0'%></div>
+            </td>
+          </tr>
+      <%end%>
 
       </tbody>
     </table>
@@ -70,25 +95,4 @@
 
   </section>
 
-  <div class="am-g am-g-fixed blog-g-fixed">
-    <div class="col-md-8">
-
-      <ul class="am-pagination blog-pagination">
-        <%=will_paginate @mancoorder,:class =>'blog-pagination' ,:previous_label => '<<上一页', :next_label => '下一页>>',:container=>false,:params=>{:page=>params[:page]}%>
-
-      </ul>
-
-    </div>
-
-
   </div>
-
-  <br/>
-  <br/>
-
-
-
-
-
-
-</div>

@@ -4,7 +4,7 @@ class CreateOrderDinings < ActiveRecord::Migration
       t.integer :account_id
       t.integer :suppliers_id
       t.string :dining_use
-      t.datetime :dining_time
+      t.integer :dining_time
       t.integer :dining_count
       t.string :dining_content
       t.integer :phone
