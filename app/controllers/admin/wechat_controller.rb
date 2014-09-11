@@ -261,6 +261,7 @@ module Admin
 
       appid = @supplier.weixin_appid
       appsecret = @supplier.weixin_appsecret
+      $openid=@supplier.weixin_openid
 
       $client ||= WeixinAuthorize::Client.new(appid,appsecret)
 
@@ -370,14 +371,15 @@ module Admin
         $openid=@supplier.weixin_openid
         $appid = @supplier.weixin_appid
         $appsecret =  @supplier.weixin_appsecret
+        $client ||= WeixinAuthorize::Client.new($appid,$appsecret)
+
+        return render :text=>$client.menu.result
       else
         return render :text=>'没有微店'
       end
 
-      $client ||= WeixinAuthorize::Client.new($appid,$appsecret)
 
-      return render :text=>$client.menu.result
-      
+
     end
 
     def groups
