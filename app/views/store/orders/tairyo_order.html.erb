@@ -50,7 +50,7 @@ input[type=text]{
     <dl class="connerbox">
 
 
-     联系电话: <span class="form_td"> <%=f.text_field :phone,  :value=>@user.mobile if @user  %></span></dd>
+    <dd> 电话: <%=f.text_field :phone,  :value=>@user.mobile if @user  %></dd>
        <%=f.hidden_field :account_id,:value=>@account[0].account_id %>
       <%=f.hidden_field :suppliers_id,:value=>@suppliers[0].id %>
 
