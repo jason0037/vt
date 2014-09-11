@@ -29,7 +29,7 @@ module ActiveApi
 				"#{config.authorize_uri}?#{params.to_query}"
 			end
 
-    def request_token_multi(code,appid,secret)
+  def request_token_multi(code,appid,secret)
 
       params = {
             :appid=> appid,
@@ -44,8 +44,7 @@ module ActiveApi
         body = Hashie::Mash.new JSON.parse(res.body)
         body.merge! :expires_at=>(body.expires_in + request_time)
         body
-      end
-    end
+  end
 
 			def request_token(code)
 				params = {
