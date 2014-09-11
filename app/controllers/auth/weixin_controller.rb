@@ -90,10 +90,15 @@ class Auth::WeixinController < ApplicationController
 		else
 			sign_in(auth_ext.account)
 	    if return_url
-          redirect_to return_url
+          redirect_to = return_url
       else
-        	redirect_to after_user_sign_in_path
+        if supplier_id
+          redirect_to = "/vshop/#{supplier_id}"
+        else
+          redirect_to = after_user_sign_in_path
+        end
       end
+      redirect_to
 		end
 	#rescue
 	#	redirect_to(site_path)
