@@ -1,17 +1,6 @@
 #encoding : UTF-8
 module Admin
   class WechatController < Admin::BaseController
-=begin
-    if cookies["MEMBER"]
-      @@supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first).first
-    else
-      @@supplier = Ecstore::Supplier.find(params[:spplier])
-    end
-
-    @@openid = @@supplier.weixin_openid
-    @@appid = @@supplier.weixin_appid
-    @@appsecret =  @@supplier.weixin_appsecret
-=end
 
     def menu_edit_back
       id = params[:id]
@@ -367,7 +356,15 @@ module Admin
     end
 
     def menu
-      @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first).first
+      if params[:id]
+        id = params[:id]
+        if id ==nil
+          return render :text=>"参数错误"
+        end
+         @supplier = Ecstore::Supplier.find(id)
+      else
+         @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first).first
+      end
 
       if @supplier
         $openid=@supplier.weixin_openid
@@ -376,12 +373,11 @@ module Admin
       else
         return render :text=>'没有微店'
       end
-      #$openid='gh_a0e5b9a22803'
+
       $client ||= WeixinAuthorize::Client.new($appid,$appsecret)
-    #  if ($client.is_valid?)
-     #   @menu = $client.menu.result['menu']['button']
-    #  end
+
       return render :text=>$client.menu.result
+      
     end
 
     def groups
