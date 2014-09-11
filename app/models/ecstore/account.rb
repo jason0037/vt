@@ -141,7 +141,7 @@ class Ecstore::Account < Ecstore::Base
     #username
     #account = self.where(:login_name=>name,:account_type=>"member").first
     #允许后台管理员登录前台
-    account = self.where(:login_name=>name,supplier_id=>supplier_id).first
+    account = self.where(:login_name=>name,:supplier_id=>supplier_id).first
 
     unless account
       #email
