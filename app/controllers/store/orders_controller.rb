@@ -125,7 +125,7 @@ class Store::OrdersController < ApplicationController
       end
     else
       return_url={:return_url => "/goods?platform= #{params["platform"]}&supplier_id=#{supplier_id}"}.to_query
-      redirect_to "/mlogin?#{return_url}"
+      redirect_to "/mlogin?#{return_url}&id=#{supplier_id}"
     end
 	end
 
