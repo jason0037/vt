@@ -81,6 +81,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    return render :text=>@supplier_id
     @supplier_id =params[:id]
   	@return_url = params[:return_url]
     @platform = params[:platform]
