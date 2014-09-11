@@ -3,7 +3,7 @@ module Admin
   class WechatController < Admin::BaseController
 =begin
     if cookies["MEMBER"]
-      @@supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
+      @@supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first).first
     else
       @@supplier = Ecstore::Supplier.find(params[:spplier])
     end
@@ -287,8 +287,8 @@ module Admin
     def followers
       # @order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
      #sql ='SELECT openid,user_info,(select sum(commission) from mdk.sdb_b2c_orders where recommend_user= mdk.sdb_wechat_followers.openid group by recommend_user)  as commission FROM mdk.sdb_wechat_followers'
-      if @user
-        @supplier = Ecstore::Supplier.where(:member_id=>@user.id)
+      if cookies["MEMBER"]
+        @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first).first
         if @supplier == nil
           return render :text=>'您还没有关注者',:layout=>'vshop'
         else
@@ -332,7 +332,7 @@ module Admin
     end
 
     def followers_import
-      @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
+      @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first).first
       appid = @supplier.weixin_appid
       appsecret =  @supplier.weixin_appsecret
 
@@ -367,7 +367,7 @@ module Admin
     end
 
     def menu
-      @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
+      @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first).first
 
       if @supplier
         $openid=@supplier.weixin_openid

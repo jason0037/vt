@@ -81,11 +81,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @supplier_id =params[:id]
+    supplier_id =params[:id]
+    return  render :text=>supplier_id
   	@return_url = params[:return_url]
     @platform = params[:platform]
-  	@account = Ecstore::Account.user_authenticate(params[:session][:username],params[:session][:password])
-      
+  	@account = Ecstore::Account.user_authenticate_mobile(params[:session][:username],params[:session][:password],supplier_id)
+
       if @account
   		sign_in(@account,params[:remember_me])
              #update cart
