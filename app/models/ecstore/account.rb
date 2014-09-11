@@ -18,7 +18,7 @@ class Ecstore::Account < Ecstore::Base
 
 
 	attr_accessible :auth_ext_id, :login_name, :login_password, :login_password_confirmation, :email, :mobile, :follow_imodec,:license,:current_password ,:supplier_id
-	attr_accessor :license,:current_password
+	attr_accessor :license,:current_password,:supplier_id
 
 
 	validates :login_name, :presence=>{:presence=>true,:message=>"请填写用户名"}
@@ -147,14 +147,14 @@ class Ecstore::Account < Ecstore::Base
       #email
       if /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i =~ name
         email = name
-        user = Ecstore::User.where(:email=>email,:email_validate=>'true').first
+        user = Ecstore::User.where(:email=>email,:email_validate=>'true',:supplier_id=>supplier_id).first
         account = user.account if user
 
       end
       #mobile
       if /^[1-9][0-9]{10}$/ =~ name
         mobile = name
-        users = Ecstore::User.where(:mobile=>mobile,:sms_validate=>'true')
+        users = Ecstore::User.where(:mobile=>mobile,:sms_validate=>'true',:supplier_id=>supplier_id)
         if users&&users.size == 1
           account = users.first.account if users.first
         end
