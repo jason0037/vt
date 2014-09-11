@@ -30,7 +30,6 @@ module ActiveApi
 			end
 
   def request_token_multi(code,appid,secret)
-
       params = {
             :appid=> appid,
             :secret=> secret,

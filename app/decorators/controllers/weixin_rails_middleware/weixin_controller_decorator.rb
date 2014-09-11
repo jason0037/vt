@@ -42,7 +42,8 @@ WeixinRailsMiddleware::WeixinController.class_eval do
        #金芭浪
         #link_url2="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4b4da577489dbe4b&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
 
-        link_url2= "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&5&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+        link_url2= "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&5&redirect_uri=http%3a%2f%2fwww.trade-v.com%2fauth%2fweixin%2fcallback%3fid%3d78&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+        #link_url2= "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&5&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
 
         title="二维码"
         desc =""
