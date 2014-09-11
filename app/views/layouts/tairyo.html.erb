@@ -10,6 +10,8 @@
   <%=stylesheet_link_tag "mobile/layout.min"%>
   <%=stylesheet_link_tag "mobile/common.min"%>
   <%= javascript_include_tag "mobile/jquery-2.1.0.min" %>
+  <%= csrf_meta_tag %>
+
   <script>
       var ui = 'touch';
   </script>
@@ -18,7 +20,6 @@
 
 
 <%= yield %>
-
 
 
 <div class="space15"></div>
