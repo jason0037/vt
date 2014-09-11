@@ -8,6 +8,10 @@
 .form_td input{
     text-align: center;
 }
+input[type=text]{
+
+    width: 80%;
+}
    textarea {
        clear: both;
        width: 100%;
@@ -52,12 +56,16 @@
 
       <span class="i_up_arrow"></span></dd>
 
+      <br/>
     <dd><span class="form_hd">*日期：</span>
          <span class="form_td">
          <%=f.text_field :dining_time,:class=>"ui_timepicker" %>
 
   </span>
       <span class="i_up_arrow"></span></dd>
+
+
+       <br/>
       <dd><span class="form_hd">*时间：</span>
          <span class="form_td">
 
@@ -93,7 +101,7 @@
   </span>
         <span class="i_up_arrow"></span></dd>
 
-
+        <br/>
       <dd><span class="form_hd">*人数：</span>
          <span class="form_td">
            <%=f.select :dining_count, options_for_select([['1', 1],['2', 2],['3', 3],['4', 4],['5', 5]] ) %>

@@ -18,16 +18,7 @@
             </span></li>
       </ul>
     </div>
-    <div class="slideControl clearfix"> <!--<a href="#" id="prev" onClick='Touch_ImgReview.prev();return false;'></a>-->
-      <div id="pro_pagination">
 
-        <em class="on">1</em>
-
-        <em>2</em>
-
-      </div>
-      <!--<a href="#" id="next" onClick='Touch_ImgReview.next();return false;'></a>-->
-    </div>
     <div class="goods_info">
       <%=form_for :product,:url=>"/cart/tairyo_add",:remote=>true do |f|%>
           <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
@@ -41,7 +32,7 @@
             <span class="prf05">(<%=format('%.1f', @good.price*10/@good.mktprice)%>折)</span>
             <span class="fontstyle">¥<%=@good.mktprice %></span>
           <span class="fr new_re_time bglight" data-saleproduct="true" data-saletime="83552"><span class="clockicon fl"></span>
-          <span class="J-time"><span>00</span><span>天</span><span>23</span><span>时</span><span>11</span><span>分</span><span>40</span><span>.</span><span>7</span><span>秒</span></span></span>
+          <span class="J-time"><span>10</span><span>天</span><span>23</span><span>时</span><span>11</span><span>分</span><span>40</span><span>.</span><span>7</span><span>秒</span></span></span>
           </p>
           <p class="space5"></p>
           <p class="clear"></p>
@@ -70,11 +61,7 @@
 
             <!--<li><span class="golden_sevices"></span><p>金牌客服</p></li>-->
           </ul>
-          <div class="p_detail_hd">
-            <div class="dashline3"></div>
-            <div class="Origin"><span></span>所售商品均为正品并获得品牌商授权,<br></div>
-            <div class="space20"></div>
-          </div>
+
       <%end%>
     </div>
   </div>
