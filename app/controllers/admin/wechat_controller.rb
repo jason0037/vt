@@ -287,20 +287,21 @@ module Admin
     def followers
       # @order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
      #sql ='SELECT openid,user_info,(select sum(commission) from mdk.sdb_b2c_orders where recommend_user= mdk.sdb_wechat_followers.openid group by recommend_user)  as commission FROM mdk.sdb_wechat_followers'
-      @supplier=nil
-      message = '您还没有关注者'
-      @followers =  Ecstore::WechatFollower.paginate(:page => params[:page], :per_page => 20).order("commission DESC")
-      layout = ''
-      if current_admin == nil
-        @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
-
-        if @supplier
-          @followers = @followers.where(:supplier_id=>@supplier.id)
-          layout = 'vshop'
+      if @user
+        @supplier = Ecstore::Supplier.where(:member_id=>@user.id)
+        if @supplier == nil
+          return render :text=>'您还没有关注者',:layout=>'vshop'
         else
-          return render :text=>message
+          @followers = Ecstore::WechatFollower..where(:supplier_id=>@supplier.id).paginate(:page => params[:page], :per_page => 20).order("commission DESC")
         end
+        layout = 'vshop'
+      elsif current_admin
+        @followers = Ecstore::WechatFollower.all.paginate(:page => params[:page], :per_page => 20).order("commission DESC")
+        layout = "admin"
+      else
+        redirect_to  '/vshop/login'
       end
+
       #更新佣金
       @followers.each do |follower|
         sql ="update mdk.sdb_wechat_followers set commission= (select sum(commission) from mdk.sdb_b2c_orders where recommend_user= '#{follower.openid}' group by recommend_user) where openid='#{follower.openid}'"
@@ -308,9 +309,8 @@ module Admin
       end
       #@order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
 
-      if params[:platform]=='vshop'
-        render :layout=>layout
-      end
+       render :layout=>layout
+
     end
 
     def follower_renew
