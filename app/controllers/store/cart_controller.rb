@@ -8,6 +8,7 @@ class Store::CartController < ApplicationController
   end
 
   def mobile
+    find_cart!
     if  @user
       supplier_id=params[:id]
 
@@ -93,8 +94,7 @@ class Store::CartController < ApplicationController
       supplier_id = 78
     end
     if params[:platform]=='mobile'
-      render :text =>supplier_id
-      #redirect_to "/cart/mobile?id=#{supplier_id}"
+      redirect_to "/cart/mobile?id=#{supplier_id}"
       #render "mobile", :layout=>@supplier.layout
     else
       render "add"
