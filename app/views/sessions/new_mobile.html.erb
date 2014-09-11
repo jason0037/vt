@@ -9,7 +9,7 @@
 </header>
 
 
-  <%=form_for :session,:url=>"/login", :remote=>true do |f|%>
+  <%=form_for :session,:url=>"/login?id=#{@supplier.id}", :remote=>true do |f|%>
     <%=hidden_field_tag :return_url,params[:return_url]%>
     <%=hidden_field_tag :platform,'mobile'%>
   <div class="connerdiv">
