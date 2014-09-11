@@ -24,7 +24,7 @@ class MancoController < ApplicationController
     account_id=Ecstore::Account.find_by_sql(["select account_id from sdb_pam_account where login_name=?",login_name])
     @member=Ecstore::Member.find_by_sql(["select * from sdb_b2c_members where member_id=?",account_id])
    else
-       redirect_to '/wlogin?return_url=/manco/user'
+       redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/user'
    end
 
   end
@@ -44,7 +44,7 @@ class MancoController < ApplicationController
                                 :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
       @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
    else
-     redirect_to '/wlogin?return_url=/manco/black_good_index'
+     redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/black_good_index'
    end
 
  end
@@ -73,7 +73,7 @@ class MancoController < ApplicationController
                                    :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
     @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
   else
-  redirect_to '/wlogin?return_url=/manco/black_index'
+  redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/black_index'
   end
   end
 
@@ -109,7 +109,7 @@ class MancoController < ApplicationController
         redirect_to '/profile/mancouser'
       end
   else
-    redirect_to '/wlogin?return_url=/manco/blackbord'
+    redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/blackbord'
   end
 
 

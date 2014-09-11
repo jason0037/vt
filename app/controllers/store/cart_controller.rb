@@ -142,7 +142,7 @@ login_name=Ecstore::Account.find(account_id)
       redirect_to  '/tairyo_order'
        end
   else
-      redirect_to '/wlogin?return_url=/manco/user'
+      redirect_to '/mlogin?id=99&platform=mobile&return_url=/tairyo_order'
     end
 
 

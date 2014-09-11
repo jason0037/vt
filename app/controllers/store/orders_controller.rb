@@ -26,7 +26,7 @@ class Store::OrdersController < ApplicationController
       render :layout => "manco_template"
 
     else
-      redirect_to '/wlogin?return_url=/manco/user'
+      redirect_to ' /mlogin?id=98&platform=mobile&return_url=/manco/user'
     end
 
   end
@@ -475,7 +475,7 @@ class Store::OrdersController < ApplicationController
       @suppliers=Ecstore::Supplier.find_by_sql("select * from sdb_imodec_suppliers where name='金芭浪'")
      render :layout => "tairyo_new"
     else
-      redirect_to '/tlogin?return_url=/tairyo_order'
+      redirect_to '/mlogin?id=99&platform=mobile&return_url=/tairyo_order'
     end
   end
 
