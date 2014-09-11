@@ -84,6 +84,7 @@ class SessionsController < ApplicationController
     @supplier_id = params[:id]
   	@return_url = params[:return_url]
     @platform = params[:platform]
+
     if @platform = 'mobile'
   	  @account = Ecstore::Account.user_authenticate_mobile(params[:session][:username],params[:session][:password],@supplier_id)
     elsif @platform = 'vshop'
