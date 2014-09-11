@@ -135,6 +135,33 @@ class Ecstore::Account < Ecstore::Base
     end
     nil
   end
+
+
+  def self.user_authenticate_mobile(name,password,supplier_id)
+    #username
+    #account = self.where(:login_name=>name,:account_type=>"member").first
+    #允许后台管理员登录前台
+    account = self.where(:login_name=>name,supplier_id=>supplier_id).first
+
+    unless account
+      #email
+      if /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i =~ name
+        email = name
+        user = Ecstore::User.where(:email=>email,:email_validate=>'true').first
+        account = user.account if user
+
+      end
+      #mobile
+      if /^[1-9][0-9]{10}$/ =~ name
+        mobile = name
+        users = Ecstore::User.where(:mobile=>mobile,:sms_validate=>'true')
+        if users&&users.size == 1
+          account = users.first.account if users.first
+        end
+      end
+    end
+  end
+
 	def self.user_authenticate(name,password)
 		#username
 		#account = self.where(:login_name=>name,:account_type=>"member").first
