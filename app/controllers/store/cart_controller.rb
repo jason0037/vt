@@ -26,10 +26,6 @@ class Store::CartController < ApplicationController
 		customs = params[:product].delete(:customs)
 		quantity = params[:product].delete(:quantity).to_i
 		goods_id = params[:product][:goods_id]
-    supplier_id=params[:supplier_id]
-    if supplier_id == nil
-      supplier_id = 78
-    end
 
     if quantity.blank? || quantity ==0
       quantity=1
@@ -91,8 +87,14 @@ class Store::CartController < ApplicationController
 		#calculate cart_total and cart_total_quantity
     #@supplier = Ecstore::Supplier.find(supplier_id)
 		find_cart!
+
+    supplier_id=params[:supplier_id]
+    if supplier_id == nil
+      supplier_id = 78
+    end
     if params[:platform]=='mobile'
-      redirect_to "/cart/mobile?id=#{supplier_id}"
+      render :text =>supplier_id
+      #redirect_to "/cart/mobile?id=#{supplier_id}"
       #render "mobile", :layout=>@supplier.layout
     else
       render "add"
