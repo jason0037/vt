@@ -35,6 +35,7 @@ class SessionsController < ApplicationController
     render :layout=>"tairyo_new"
     # 大渔饭店
   end
+
   def register_manco
     render :layout=>"manco_new"
     # 大渔饭店
@@ -104,7 +105,7 @@ class SessionsController < ApplicationController
       # refer_url = request.env["HTTP_REFERER"]
       # refer_url = "/" unless refer_url
       if params[:platform]=="mobile"
-        redirect_to "/m"
+        redirect_to "/vshop/#{param[:supplier_id]}"
       elsif
         redirect_to "/vshop"
       else
