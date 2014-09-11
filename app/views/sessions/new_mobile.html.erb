@@ -1,6 +1,5 @@
 <%=render "shared/metable", :resource => nil %>
 
-
 <header id="header" class="header clearfix">
 
   <div class="head_left fl"><a href="<%= %>"><span class="h_back"></span></a></div>
@@ -9,7 +8,8 @@
 </header>
 
 
-  <%=form_for :session,:url=>"/login?id=#{@supplier.id}", :remote=>true do |f|%>
+  <%=form_for :session,:url=>"/login", :remote=>true do |f|%>
+    <%=hidden_field_tag :id,params[:id]%>
     <%=hidden_field_tag :return_url,params[:return_url]%>
     <%=hidden_field_tag :platform,'mobile'%>
   <div class="connerdiv">
@@ -40,7 +40,8 @@
 
     <div class="space15"></div>
     <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
-    <a href="/mregister?id=<%=@supplier.id%>&platform=mobile&<%=return_url%>" class="forgetkey">立即注册&gt;&gt;</a><a href="/users/forgot_password?id=<%=@supplier.id%>&platform=mobile" class="fr forgetkey" target="new">忘记密码?</a>
+    <a href="/mregister?id=<%=@supplier.id%>&platform=mobile&<%=return_url%>" class="forgetkey">立即注册&gt;&gt;</a>
+    <a href="/users/forgot_password?id=<%=@supplier.id%>&platform=mobile" class="fr forgetkey" target="new">忘记密码?</a>
   </div>
 <%end%>
 <%= javascript_include_tag "login" %>
