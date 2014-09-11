@@ -18,7 +18,7 @@
       <div class="control-group">
         <%= f.label :status, "状态", :class => "control-label" %>
         <div class="controls">
-          <%= f.text_field :status%>
+          <%= f.number_field :status%>
         </div>
       </div>
       <div class="control-group">
@@ -60,7 +60,7 @@
       <div class="control-group">
         <%= f.label :desc, "微店简介", :class => "control-label" %>
         <div class="controls">
-          <%=f.text_area :desc,:placeholder=>"wz简介",:class=>"span5",:rows=>3%>
+          <%=f.text_area :desc,:placeholder=>"微店简介",:class=>"span3",:rows=>3%>
         </div>
       </div>
       <div class="control-group">
@@ -75,65 +75,6 @@
           <%= f.text_field :layout%>
         </div>
       </div>
-      <div class="control-group">
-        <%= f.label :menu, "菜单", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_area :menu,:class=>"span3",:rows=>10%>
-        </div>
-      </div>
-    </div>
-    <div style="float:left;width:450px">
-      <div>公众号信息</div>
-      <div class="control-group">
-        <%= f.label :weixin_token, "服务号token", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :weixin_token%>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :weixin_secret_key, "微信密钥", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :weixin_secret_key%>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :weixin_name, "微信公众名", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :weixin_name%>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :weixin_account, "微信账号", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :weixin_account%>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :weixin_password, "微信密码", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :weixin_password%>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :weixin_appid, "appid", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :weixin_appid%>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :weixin_appsecret, "appsecret", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :weixin_appsecret%>
-        </div>
-      </div>
-      <div class="control-group">
-        <%= f.label :weixin_openid, "openid", :class => "control-label" %>
-        <div class="controls">
-          <%= f.text_field :weixin_openid%>
-        </div>
-      </div>
-    </div>
-    <div style="float:left;width:450px">
       <div>申请信息</div>
       <div class="control-group">
         <%= f.label :company_name, "公司名", :class => "control-label" %>
@@ -189,7 +130,63 @@
           <%= f.text_field :license%>
         </div>
       </div>
-
+    </div>
+    <div style="float:left;width:450px">
+      <div>公众号信息</div>
+      <div class="control-group">
+        <%= f.label :weixin_token, "服务号token", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_token%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :weixin_secret_key, "微信密钥", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_secret_key%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :weixin_name, "微信公众名", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_name%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :weixin_account, "微信账号", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_account%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :weixin_password, "微信密码", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_password%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :weixin_appid, "appid", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_appid%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :weixin_appsecret, "appsecret", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_appsecret%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :weixin_openid, "openid", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :weixin_openid%>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :menu, "菜单", :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_area :menu,:class=>"span3",:rows=>40%>
+        </div>
+      </div>
     </div>
 
 <div style="clear:both">

@@ -13,7 +13,7 @@ module Admin
     @@appsecret =  @@supplier.weixin_appsecret
 =end
 
-    def menu_edit
+    def menu_edit_back
       id = params[:id]
       if id ==nil
         return render :text=>"参数错误"
@@ -263,23 +263,45 @@ module Admin
       end
     end
 
+    def menu_edit
+      id = params[:id]
+      if id ==nil
+        return render :text=>"参数错误"
+      end
+      @supplier = Ecstore::Supplier.find(id)
+
+      appid = @supplier.weixin_appid
+      appsecret = @supplier.weixin_appsecret
+
+      $client ||= WeixinAuthorize::Client.new(appid,appsecret)
+
+      if ($client.is_valid?)
+        #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+        #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+        response = $client.create_menu(@supplier.menu)
+        #response = $client.menu
+        render :text=> response.cn_msg#.result#response.en_msg#user_info# @followers #JSON.parse(@user_info)
+      end
+    end
+
     def followers
       # @order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
      #sql ='SELECT openid,user_info,(select sum(commission) from mdk.sdb_b2c_orders where recommend_user= mdk.sdb_wechat_followers.openid group by recommend_user)  as commission FROM mdk.sdb_wechat_followers'
-      @supplier=nil
-      message = '您还没有关注者'
-      @followers =  Ecstore::WechatFollower.paginate(:page => params[:page], :per_page => 20).order("commission DESC")
-      layout = ''
-      if current_admin == nil
-        @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
-
-        if @supplier
-          @followers = @followers.where(:supplier_id=>@supplier.id)
-          layout = 'vshop'
+      if @user
+        @supplier = Ecstore::Supplier.where(:member_id=>@user.id)
+        if @supplier == nil
+          return render :text=>'您还没有关注者',:layout=>'vshop'
         else
-          return render :text=>message
+          @followers = Ecstore::WechatFollower.where(:supplier_id=>@supplier.id).paginate(:page => params[:page], :per_page => 20).order("commission DESC")
         end
+        layout = 'vshop'
+      elsif current_admin
+        @followers = Ecstore::WechatFollower.all.paginate(:page => params[:page], :per_page => 20).order("commission DESC")
+        layout = "admin"
+      else
+        redirect_to  '/vshop/login'
       end
+
       #更新佣金
       @followers.each do |follower|
         sql ="update mdk.sdb_wechat_followers set commission= (select sum(commission) from mdk.sdb_b2c_orders where recommend_user= '#{follower.openid}' group by recommend_user) where openid='#{follower.openid}'"
@@ -287,9 +309,8 @@ module Admin
       end
       #@order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
 
-      if params[:platform]=='vshop'
-        render :layout=>layout
-      end
+       render :layout=>layout
+
     end
 
     def follower_renew

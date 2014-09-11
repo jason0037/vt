@@ -12,11 +12,10 @@ class SessionsController < ApplicationController
 
     #redirect_uri = "http://www.trade-v.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
     #redirect_uri= URI::escape(redirect_uri)
-    redirect_uri="http%3a%2f%2fwww.trade-v.com%2fauth%2fweixin%2fcallback"
+    redirect_uri="http%3a%2f%2fwww.trade-v.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
 
     @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
     session[:return_url] = params[:return_url]
-    session[:supplier_id] = params[:id]
     render :layout => @supplier.layout
     # return redirect_to(after_user_sign_in_path) if signed_in?
   end
@@ -36,6 +35,7 @@ class SessionsController < ApplicationController
     render :layout=>"tairyo_new"
     # 大渔饭店
   end
+
   def register_manco
     render :layout=>"manco_new"
     # 大渔饭店
@@ -105,7 +105,7 @@ class SessionsController < ApplicationController
       # refer_url = request.env["HTTP_REFERER"]
       # refer_url = "/" unless refer_url
       if params[:platform]=="mobile"
-        redirect_to "/m"
+        redirect_to "/vshop/#{params[:id]}"
       elsif
         redirect_to "/vshop"
       else

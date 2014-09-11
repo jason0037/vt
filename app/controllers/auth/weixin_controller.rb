@@ -22,12 +22,19 @@ class Auth::WeixinController < ApplicationController
 	end
 
 	def callback
+
 		return redirect_to(site_path) if params[:error].present?
-    supplier_id = session[:supplier_id]
+    supplier_id = params[:id]
     return_url= session[:return_url]
     session[:return_url]=''
 
-		token = Weixin.request_token(params[:code])
+    @supplier =Ecstore::Supplier.find(supplier_id)
+    appid = @supplier.weixin_appid
+    secret = @supplier.weixin_appsecret
+
+		#token = Weixin.request_token(params[:code])
+    token = Weixin.request_token_multi(params[:code],appid,secret)
+   #return  render :text=>token
 
 		auth_ext = Ecstore::AuthExt.where(:provider=>"weixin",
 									:uid=>token.openid).first_or_initialize(
@@ -83,10 +90,15 @@ class Auth::WeixinController < ApplicationController
 		else
 			sign_in(auth_ext.account)
 	    if return_url
-          redirect_to return_url
+          redirect = return_url
       else
-        	redirect_to after_user_sign_in_path
+        if supplier_id
+          redirect = "/vshop/#{supplier_id}"
+        else
+          redirect = after_user_sign_in_path
+        end
       end
+      redirect_to redirect
 		end
 	#rescue
 	#	redirect_to(site_path)

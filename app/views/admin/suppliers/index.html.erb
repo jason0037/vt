@@ -12,21 +12,25 @@
     <th>Secret</th>
     <th>电话</th>
     <th>url</th>
+    <th>状态</th>
     <th>操作</th>
   </tr>
 
 <% @suppliers.each do |supplier| %>
   <tr>
     <td><%=supplier.name%></td>
-    <td><img src="<%=supplier.logo%>"></td>
+    <td><img src="<%=supplier.logo%>" style="width:200px"></td>
     <td><%=supplier.member_id%></td>
     <td><%=supplier.weixin_token%></td>
     <td><%=supplier.weixin_secret_key%></td>
     <td><%=supplier.tel%></td>
     <td><%=supplier.url%></td>
+    <td><%=supplier.status%></td>
     <td>
         <%= link_to '编辑', edit_admin_supplier_path(supplier) %>
           |
+      <%= link_to '更新菜单', "/admin/wechat/menu_edit?id=#{supplier.id} "%>
+      |
         <%= link_to '删除', admin_supplier_path(supplier), method: :delete, data: { confirm: '确定删除?' } %>
     </td>
   </tr>
