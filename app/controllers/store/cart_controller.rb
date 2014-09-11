@@ -8,7 +8,7 @@ class Store::CartController < ApplicationController
   end
 
   def mobile
-    find_cart!
+
     if  @user
       supplier_id=params[:id]
 
