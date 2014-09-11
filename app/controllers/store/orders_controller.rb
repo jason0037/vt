@@ -294,9 +294,15 @@ class Store::OrdersController < ApplicationController
   end
 
   def new_mobile_addr
+    supplier_id= @user.account.supplier_id
+    if supplier_id==nil
+      supplier_id=78
+    end
+    @supplier = Ecstore::Supplier.find(supplier_id)
+
     @addrs =  @user.member_addrs
     @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
-    render :layout=>"mobile_new"
+    render :layout=>@supplier.layout
   end
 
   def new_manco_addr    ###新曾起点地址
@@ -313,7 +319,7 @@ class Store::OrdersController < ApplicationController
 
     @addrs =  @user.member_addrs
     if @addrs.size==0
-      redirect_to '/orders/new_mobile_addr?return_url=/orders/new_mobile'
+      redirect_to "/orders/new_mobile_addr?supplier_id=#{supplier_id}&return_url=/orders/new_mobile&supplier_id=#{supplier_id}"
     else
         @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
 
