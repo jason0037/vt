@@ -156,7 +156,14 @@ class Store::OrdersController < ApplicationController
 		params[:order].merge!(:member_id=>@user.member_id)
     params[:order].merge!(:supplier_id=>supplier_id)
 
-
+    #=====推广佣金计算=======
+    #return render :text=>session[:recommend_user]
+    recommend_user = session[:recommend_user]
+    if recommend_user
+      params[:order].merge!(:recommend_user=>recommend_user)
+      session[:recommend_user]=''
+    end
+    #====================
 		@order = Ecstore::Order.new params[:order]
 
 		@line_items.each do |line_item|
@@ -248,15 +255,7 @@ class Store::OrdersController < ApplicationController
 	            		end
 	            end
        end
-  #=====推广佣金计算=======
-    #return render :text=>session[:recommend_user]
-    recommend_user = session[:recommend_user]
-    if recommend_user
-      @order.recommend_user = recommend_user
-      @order.commission = @order.total_amount * 0.01
-      session[:recommend_user] = ''
-    end
-    #====================
+
 		if @order.save
 			@line_items.delete_all
 

@@ -78,6 +78,13 @@ class Ecstore::Order < Ecstore::Base
 
        end
 
+      before_save :calculate_commission
+      def calculate_commission
+        if self.recommend_user
+           self.commission = self.total_amount * 0.01
+        end
+      end
+
        before_save :calculate_itemnum
 
        def calculate_itemnum
