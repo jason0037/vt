@@ -159,12 +159,12 @@ class Store::OrdersController < ApplicationController
     recommend_user=session[:recommend_user]
     if recommend_user
         params[:order].merge!(:recommend_user=>recommend_user)
-        params[:order].merge!(:commission=>params[:order][:total_amount]*0.01)
+      #  params[:order].merge!(:commission=>params[:order][:total_amount]*0.01)
         session[:recommend_user]=''
     end
 
 		@order = Ecstore::Order.new params[:order]
-
+return render :text=>params[:order]
 		@line_items.each do |line_item|
 			product = line_item.product
 			good = line_item.good

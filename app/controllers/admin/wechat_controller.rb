@@ -263,7 +263,7 @@ module Admin
       @@appsecret = @supplier.weixin_appsecret
       $openid = @supplier.weixin_openid
 
-    #  return render :text =>appid+'/appsecret/'+appsecret+'/openid/'+$openid
+      return render :text =>@supplier.name + '/appid/'+ @@appid+'/appsecret/'+ @@appsecret+'/openid/'+$openid+'/menu/'+@supplier.menu
 
       $client ||= WeixinAuthorize::Client.new(@@appid,@@appsecret)
 
