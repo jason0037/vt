@@ -32,7 +32,6 @@
         <%=form_for :product,:url=>"/cart/add",:remote=>true do |f|%>
             <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
             <%=f.hidden_field :type_id,:value=>@good.type_id%>
-
             <%=hidden_field_tag :supplier_id, @supplier.id%>
           <%=hidden_field_tag :platform,'mobile'%>
           <%=hidden_field_tag :return_url,{:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
@@ -42,9 +41,17 @@
           <span class="g_d_price">¥<%=@good.default_product.price %></span>
           <span class="prf05">(<%=format('%.1f', @good.price*10/@good.mktprice)%>折)</span>
           <span class="fontstyle">¥<%=@good.mktprice %></span>
-          <span class="fr new_re_time bglight" data-saleproduct="true" data-saletime="83552"><span class="clockicon fl"></span>
+          <span class="fr new_re_time bglight" data-saleproduct="true" data-saletime=""><span class="clockicon fl">运费：<%=@good.freight%></span>
           <span class="J-time" style="display:none"><span>00</span><span>天</span><span>23</span><span>时</span><span>11</span><span>分</span><span>40</span><span>.</span><span>7</span><span>秒</span></span></span>
         </p>
+          <p class="new_pricediv clearfix">
+            <span class="g_d_price">佣金：¥<%=@good.share %></span>
+            <span class="prf05">(<%=format('%.1f', @good.price*10/@good.mktprice)%>折)</span>
+          <span class="fr new_re_time bglight" data-saleproduct="true" data-saletime="83552"><span class="clockicon fl"></span>
+          <span class="J-time"> &nbsp;&nbsp;&nbsp;&nbsp;<a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">什么是佣金</a>&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">怎么赚佣金</a>&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">怎么领佣金</a></span>
+          </p>
         <p class="space5"></p>
         <p class="clear"></p>
         <div class="good_salesize clearfix">
