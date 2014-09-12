@@ -133,7 +133,12 @@ class Store::OrdersController < ApplicationController
 
 		@order = Ecstore::Order.find_by_order_id(params[:id])
     if params["platform"]=="mobile"
-      render :layout=>"mobile_new"
+      supplier_id=params[:supplier_id]
+      if supplier_id==nil
+        supplier_id=78
+      end
+      @supplier = Ecstore::Supplier.find(supplier_id)
+      render :layout=>@supplier.layout
     else
       params["platform"]=="manco"
       render :layout =>"manco_new"
@@ -313,7 +318,7 @@ class Store::OrdersController < ApplicationController
   end
 
   def new_mobile
-    
+
     supplier_id= @user.account.supplier_id
 
     if supplier_id==nil
