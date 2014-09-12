@@ -31,11 +31,11 @@
   <div class="footnav clearfix">
     <%if @user%>
         <a href="user.html">您好！</a>
-        <a href="/wlogout?platform=tairyo">退出登录</a>
+        <a href="/mlogout?platform=mobile">退出登录</a>
     <%else%>
 
         <a href="/mlogin?id=99&platform=mobile&return_url=/tairyo" mars_sead="footer-login_btn">登录</a>
-        <a href="/wregister?platform=manco&return_url=/tairyo">注册</a>
+        <a href="/wregister?platform=tairyo&return_url=/tairyo">注册</a>
     <%end%>
     <a href="?t=1#" class="backtop" mars_sead="home_foot_top_btn"></a>
   </div>
