@@ -56,6 +56,7 @@ end
     get   'tuangouxiang'  ,:on=>:collection
     get   'tese'  ,:on=>:collection
     get   'user'  ,:on=>:collection
+    get 'tairyo_comment' ,:on=>:collection
   end
 
   # 大渔用户注册登陆
