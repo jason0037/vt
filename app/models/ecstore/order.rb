@@ -71,7 +71,7 @@ class Ecstore::Order < Ecstore::Base
           items_amount = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+)
 
           # =====pmts  amount====
-          pmts_amount = self.order_pmts.collect { |order_pmt| order_pmt.pmt_amount }.inject(:+).to_i
+          pmts_amount = self.order_pmts.collect { |order_pmt| order_pmt.pmt_amount }.inject(:+)
           if  items_amount&&pmts_amount
              self.final_amount = self.total_amount =  items_amount - pmts_amount
           else
@@ -198,19 +198,19 @@ class Ecstore::Order < Ecstore::Base
 
 
        def products_total
-          self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+).to_i
+          self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+)
        end
 
        def pmts_total
-           self.order_pmts.collect { |order_pmt| order_pmt.pmt_amount }.inject(:+).to_i
+           self.order_pmts.collect { |order_pmt| order_pmt.pmt_amount }.inject(:+)
        end
 
        def final_pay
-        products_total - pmts_total - part_pay.to_i - bcom_discount
+        products_total - pmts_total - part_pay - bcom_discount
        end
 
        def bcom_discount
-          return (products_total - pmts_total) - ((products_total - pmts_total) * 0.95).to_i if payment == 'bcom'
+          return (products_total - pmts_total) - ((products_total - pmts_total) * 0.95) if payment == 'bcom'
           0
        end
 
