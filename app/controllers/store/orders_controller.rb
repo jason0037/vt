@@ -145,9 +145,9 @@ class Store::OrdersController < ApplicationController
 	def create
 		addr = Ecstore::MemberAddr.find_by_addr_id(params[:member_addr])
      platform=params["platform"];
-		# ["name","area","addr","zip","tel","mobile"].each do |key,val|      #做大渔页面 需要修改
-		# 	params[:order].merge!("ship_#{key}"=>addr.attributes[key])
-		# end
+		 ["name","area","addr","zip","tel","mobile"].each do |key,val|      #做大渔页面 需要修改
+		 	params[:order].merge!("ship_#{key}"=>addr.attributes[key])
+		 end
     supplier_id = @user.account.supplier_id
     if supplier_id == nil
       supplier_id =78
@@ -156,15 +156,9 @@ class Store::OrdersController < ApplicationController
 		params[:order].merge!(:member_id=>@user.member_id)
     params[:order].merge!(:supplier_id=>supplier_id)
 
-    recommend_user=session[:recommend_user]
-    if recommend_user
-        params[:order].merge!(:recommend_user=>recommend_user)
-      #  params[:order].merge!(:commission=>params[:order][:total_amount]*0.01)
-        session[:recommend_user]=''
-    end
 
 		@order = Ecstore::Order.new params[:order]
-return render :text=>params[:order]
+
 		@line_items.each do |line_item|
 			product = line_item.product
 			good = line_item.good
@@ -253,8 +247,16 @@ return render :text=>params[:order]
 	            			order_pmt.pmt_desc = promotion.desc
 	            		end
 	            end
-	       end
-
+       end
+  #=====推广佣金计算=======
+    #return render :text=>session[:recommend_user]
+    recommend_user = session[:recommend_user]
+    if recommend_user
+      @order.recommend_user = recommend_user
+      @order.commission = @order.total_amount * 0.01
+      session[:recommend_user] = ''
+    end
+    #====================
 		if @order.save
 			@line_items.delete_all
 
@@ -266,7 +268,7 @@ return render :text=>params[:order]
 				order_log.behavior = 'creates'
 				order_log.result = "SUCCESS"
 				order_log.log_text = "订单创建成功！"
-			end.save
+      end.save
 
 			redirect_to "#{order_path(@order)}?platform=?#{platform}&supplier_id=#{supplier_id}"
 			

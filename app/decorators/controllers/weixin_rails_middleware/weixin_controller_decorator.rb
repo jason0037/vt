@@ -51,7 +51,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2)]
         reply_news_message(articles)
-        
+
       when '黄油'
         title="[总统 PRESIDENT]超高温灭菌稀奶油 200毫升仅售¥22.4元"
         desc ="法国进口的总统谈奶油，是从牛奶中提炼出来的纯天然食品，一般乳脂含量为16.5%，营养价值高，入口即化"
