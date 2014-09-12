@@ -41,12 +41,11 @@
           <span class="g_d_price">¥<%=@good.default_product.price %></span>
           <span class="prf05">(<%=format('%.1f', @good.price*10/@good.mktprice)%>折)</span>
           <span class="fontstyle">¥<%=@good.mktprice %></span>
-          <span class="fr new_re_time bglight" data-saleproduct="true" data-saletime=""><span class="clockicon fl"></span>运费：<%=@good.freight%></span>
+          <span class="fr new_re_time bglight" data-saleproduct="true" data-saletime=""><span class="clockicon fl"></span>运费：¥<%=@good.freight%></span>
         </p>
           <p class="new_pricediv clearfix">
             <span class="g_d_price">佣金：¥<%=@good.share %></span>
-          <span class="fr new_re_time bglight" data-saleproduct="true" data-saletime="83552"><span class="clockicon fl"></span>
-          <span class="J-time"> &nbsp;&nbsp;&nbsp;&nbsp;<a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">什么是佣金</a>&nbsp;&nbsp;&nbsp;&nbsp;
+          <span class="prf05">&nbsp;&nbsp;&nbsp;&nbsp;<a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">什么是佣金</a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">怎么赚佣金</a>&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">怎么领佣金</a></span>
           </p>
