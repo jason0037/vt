@@ -20,14 +20,14 @@ function mapInit() {
      
     mapObj = new AMap.Map("iCenter", {
         view: new AMap.View2D({
-        center:new AMap.LngLat(116.397428,39.90923),//地图中心点
+        center:new AMap.LngLat(121.370877,31.187765),//地图中心点
         zoom:13 //地图显示的缩放级别
         })
     });
 }
 //起、终点
-var start_xy = new AMap.LngLat(116.379018,39.865026);
-var end_xy = new AMap.LngLat(116.321139, 39.896028);
+var start_xy = new AMap.LngLat(121.370800,35.187765);
+var end_xy = new AMap.LngLat(121.370877,31.187765);
 //驾车导航
 function driving_route() {
     var MDrive;
