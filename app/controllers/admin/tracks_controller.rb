@@ -5,7 +5,7 @@ class Admin::TracksController < Admin::BaseController
 
   end
   def index
-    @logs = Ecstore::RecommendLog.paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
+    @logs = Ecstore::RecommendLog.paginate(:page => params[:page], :per_page => 20).order("access_time DESC")
 
     respond_to do |format|
       format.html # index.html.erb

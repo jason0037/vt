@@ -31,11 +31,15 @@ class VshopController < ApplicationController
 
   #get /vshop/orders
   def orders
+
     if @user
+
+      @orders_nw =Ecstore::Order.where(:supplier_id=> @user.account.supplier_id).order("order_id desc")
+
       if params[:status].nil?
-        @orders_nw = Ecstore::Order.order("order_id desc")
+        @orders_nw = @orders_nw
       elsif
-      @orders_nw = Ecstore::Order.where(:status=>params[:status]).order("order_id desc")
+      @orders_nw = @orders_nw.where(:status=>params[:status])
       end
 
       if !params[:pay_status].nil?
@@ -48,14 +52,8 @@ class VshopController < ApplicationController
 
       @order_ids = @orders_nw.pluck(:order_id)
 
-      if ( @user.id== 2495)  #贸威
 
-        @orders = @orders_nw
-       else
-              @orders =@orders_nw.where(:supplier_id=> @user.id)
-      #  @orders = @orders_nw.where(:member_id=>"0")
-      end
-      @orders = @orders.includes(:user).paginate(:page=>params[:page],:per_page=>30)
+      @orders = @orders_nw.includes(:user).paginate(:page=>params[:page],:per_page=>30)
       respond_to do |format|
         format.js
         format.html

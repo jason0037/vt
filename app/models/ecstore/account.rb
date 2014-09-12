@@ -17,8 +17,8 @@ class Ecstore::Account < Ecstore::Base
   has_many :commission,:foreign_key=>"member_id"
 
 
-	attr_accessible :auth_ext_id, :login_name, :login_password, :login_password_confirmation, :email, :mobile, :follow_imodec,:license,:current_password ,:supplier_id
-	attr_accessor :license,:current_password,:supplier_id
+	attr_accessible :auth_ext_id, :login_name, :login_password, :login_password_confirmation, :email, :mobile, :follow_imodec,:license,:current_password
+	attr_accessor :license,:current_password
 
 
 	validates :login_name, :presence=>{:presence=>true,:message=>"请填写用户名"}
@@ -160,6 +160,17 @@ class Ecstore::Account < Ecstore::Base
         end
       end
     end
+
+    if account
+
+      if account.login_password[0] == "s"
+        encrypt = "s" + Digest::MD5.hexdigest("#{Digest::MD5.hexdigest(password)}#{account.login_name}#{account.createtime}")[0..30]
+        return account if encrypt == account.login_password
+      else
+        return account if Digest::MD5.hexdigest(password) == account.login_password
+      end
+    end
+    nil
   end
 
 	def self.user_authenticate(name,password)

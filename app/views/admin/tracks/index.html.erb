@@ -1,0 +1,33 @@
+<div>
+  <h4>微信用户访问记录</h4>
+</div>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>ID</th>
+    <th>微信用户号</th>
+    <th>商品ID</th>
+    <th>用户ID</th>
+    <th>终端信息</th>
+    <th>IP</th>
+    <th>时间</th>
+    <th>页面</th>
+  </tr>
+
+  <% @logs.each do |log| %>
+      <tr>
+        <td><%=log.id%></td>
+        <td><%=log.wechat_id%></td>
+        <td><%=log.goods_id%></td>
+        <td><%=log.member_id%></td>
+        <td><%=log.terminal_info%></td>
+        <td><%=log.remote_ip%></td>
+        <td><%=Time.at(log.access_time)%></td>
+        <td><%=log.link%></td>
+      </tr>
+  <% end %>
+</table>
+
+<div class="pagination">
+  <%= will_paginate @logs, :container => false %>
+</div>

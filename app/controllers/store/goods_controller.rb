@@ -136,7 +136,6 @@ class Store::GoodsController < ApplicationController
 
    if params[:supplier_id]
      @supplier  =  Ecstore::Supplier.find(params[:supplier_id])
-     #return  render :text=>@supplier.layout
      render :layout=>@supplier.layout
    else
      render :layout=>"mobile_new"
