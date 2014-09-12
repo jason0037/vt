@@ -80,9 +80,14 @@ class Ecstore::Order < Ecstore::Base
 
       before_save :calculate_commission
       def calculate_commission
-        if self.recommend_user
-           self.commission = self.total_amount * 0.01
-        end
+#=====推广佣金计算=======
+    recommend_user = session[:recommend_user]
+    if recommend_user
+      self.recommend_user= recommend_user
+      self.commission = self.total_amount * 0.01
+      session[:recommend_user]=''
+    end
+    #====================
       end
 
        before_save :calculate_itemnum
