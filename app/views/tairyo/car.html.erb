@@ -17,17 +17,17 @@ var route_text, steps;
 var polyline;
 //基本地图加载
 function mapInit() {
-     
+
     mapObj = new AMap.Map("iCenter", {
         view: new AMap.View2D({
-        center:new AMap.LngLat(121.370877,31.187765),//地图中心点
-        zoom:13 //地图显示的缩放级别
+        center:new AMap.LngLat(121.3642780000,31.1821170000),//地图中心点
+        zoom:25 //地图显示的缩放级别
         })
     });
 }
 //起、终点
-var start_xy = new AMap.LngLat(121.370800,35.187765);
-var end_xy = new AMap.LngLat(121.370877,31.187765);
+var start_xy = new AMap.LngLat(121.3642780000,31.1821170000);
+var end_xy = new AMap.LngLat(121.3642780000,31.1821170000);
 //驾车导航
 function driving_route() {
     var MDrive;
@@ -61,7 +61,7 @@ function driving_routeCallBack(data) {
             }
         }
         //输出行车路线指示
-        route_text = "<table cellspacing=\"5px\"><tr><td style=\"background:#e1e1e1;\">路线</td></tr><tr><td><img src=\"http://code.mapabc.com/images/start.gif\" />  北京南站</td></tr>" + route_text + "<tr><td><img src=\"http://code.mapabc.com/images/end.gif\" />  北京西站</td></tr></table>";
+        route_text = "<table cellspacing=\"5px\"><tr><td style=\"background:#e1e1e1;\">路线</td></tr><tr><td><img src=\"http://code.mapabc.com/images/start.gif\" />  </td></tr>" + route_text + "<tr><td><img src=\"http://code.mapabc.com/images/end.gif\" /> </td></tr></table>";
         document.getElementById("result").innerHTML = route_text;
         drivingDrawLine();
     }  
