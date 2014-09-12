@@ -66,12 +66,12 @@ class Ecstore::Order < Ecstore::Base
 
        def calculate_order_amount
           # =====order amount ====
-         self.commission = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount * order_item.good.share}.inject(:+)
+         self.commission = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount *order_item.good.share}.inject(:+)
 
-          items_amount = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+)
+          items_amount = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+).to_f
 
           # =====pmts  amount====
-          pmts_amount = self.order_pmts.collect { |order_pmt| order_pmt.pmt_amount }.inject(:+)
+          pmts_amount = self.order_pmts.collect { |order_pmt| order_pmt.pmt_amount }.inject(:+).to_f
           if  items_amount&&pmts_amount
              self.final_amount = self.total_amount =  items_amount - pmts_amount
           else
@@ -198,19 +198,19 @@ class Ecstore::Order < Ecstore::Base
 
 
        def products_total
-          self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+)
+          self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+).to_f
        end
 
        def pmts_total
-           self.order_pmts.collect { |order_pmt| order_pmt.pmt_amount }.inject(:+)
+           self.order_pmts.collect { |order_pmt| order_pmt.pmt_amount }.inject(:+).to_f
        end
 
        def final_pay
-        products_total - pmts_total - part_pay - bcom_discount
+        products_total - pmts_total - part_pay.to_f - bcom_discount
        end
 
        def bcom_discount
-          return (products_total - pmts_total) - ((products_total - pmts_total) * 0.95) if payment == 'bcom'
+          return (products_total - pmts_total) - ((products_total - pmts_total) * 0.95).to_f if payment == 'bcom'
           0
        end
 
