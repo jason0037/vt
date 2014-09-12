@@ -66,6 +66,7 @@ class Ecstore::Order < Ecstore::Base
 
        def calculate_order_amount
           # =====order amount ====
+         self.commission = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount*order_item.good.share }.inject(:+)
 
           items_amount = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+)
 
@@ -74,21 +75,9 @@ class Ecstore::Order < Ecstore::Base
           if  items_amount&&pmts_amount
              self.final_amount = self.total_amount =  items_amount - pmts_amount
           else
-            end
+          end
 
        end
-
-      before_save :calculate_commission
-      def calculate_commission
-#=====推广佣金计算=======
-    recommend_user = session[:recommend_user]
-    if recommend_user
-      self.recommend_user= recommend_user
-      self.commission = self.total_amount * 0.01
-      session[:recommend_user]=''
-    end
-    #====================
-      end
 
        before_save :calculate_itemnum
 
