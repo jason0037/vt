@@ -159,7 +159,7 @@ class Store::OrdersController < ApplicationController
     recommend_user=session[:recommend_user]
     if recommend_user
         params[:order].merge!(:recommend_user=>recommend_user)
-        params[:order].merge!(:commission=>params[:order][:final_amount]*0.01)
+        params[:order].merge!(:commission=>params[:order][:total_amount]*0.01)
         session[:recommend_user]=''
     end
 
