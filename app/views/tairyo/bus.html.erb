@@ -30,8 +30,8 @@ function mapInit() {
      
     mapObj = new AMap.Map("iCenter", {
          view: new AMap.View2D({
-        center:new AMap.LngLat(116.397428,39.90923),//地图中心点
-        zoom:13 //地图显示的缩放级别
+        center:new AMap.LngLat(121.3642780000,31.1821170000),//地图中心点
+        zoom:27 //地图显示的缩放级别
         })
     });
 }
@@ -54,7 +54,7 @@ function transfer_route() {
         //显示错误信息
         AMap.event.addListener(trans, "error", function(e) {alert(e.info);});
         //根据起、终点坐标查询公交换乘路线
-        trans.search(new AMap.LngLat(116.379028,39.865042), new AMap.LngLat(116.427281,39.903719));
+        trans.search(new AMap.LngLat(121.3642780000,31.1821170000), new AMap.LngLat(121.3642780000,31.1821170000));
     });
 }
  /*
