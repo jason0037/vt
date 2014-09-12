@@ -259,13 +259,13 @@ module Admin
       end
       @supplier = Ecstore::Supplier.find(id)
 
-      appid = @supplier.weixin_appid
-      appsecret = @supplier.weixin_appsecret
-      $openid=@supplier.weixin_openid
+      @@appid = @supplier.weixin_appid
+      @@appsecret = @supplier.weixin_appsecret
+      $openid = @supplier.weixin_openid
 
     #  return render :text =>appid+'/appsecret/'+appsecret+'/openid/'+$openid
 
-      $client ||= WeixinAuthorize::Client.new(appid,appsecret)
+      $client ||= WeixinAuthorize::Client.new(@@appid,@@appsecret)
 
       if ($client.is_valid?)
         #"url":"https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxec23a03bf5422635&redirect_uri=http%3A%2F%2Fwww.trade-v.com%2Fauth%2Fweixin%2Fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"

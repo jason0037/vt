@@ -155,7 +155,7 @@ class Store::OrdersController < ApplicationController
 		params[:order].merge!(:ip=>request.remote_ip)
 		params[:order].merge!(:member_id=>@user.member_id)
     params[:order].merge!(:supplier_id=>supplier_id)
-    # params[:order].merge!(:wechat_recommend=>session[:recommend_user])
+    params[:order].merge!(:wechat_recommend=>session[:recommend_user])
     session[:recommend_user]=''
 
     wechat_recommend=session[:recommend_user]
