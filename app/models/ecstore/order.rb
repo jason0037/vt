@@ -66,7 +66,7 @@ class Ecstore::Order < Ecstore::Base
 
        def calculate_order_amount
           # =====order amount ====
-         self.commission = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount*order_item.good.share }.inject(:+)
+         self.commission = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount * order_item.good.share}.inject(:+)
 
           items_amount = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+)
 

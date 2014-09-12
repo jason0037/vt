@@ -272,7 +272,7 @@ class Store::OrdersController < ApplicationController
 				order_log.log_text = "订单创建成功！"
       end.save
 
-			redirect_to "#{order_path(@order)}?platform=?#{platform}&supplier_id=#{supplier_id}"
+			redirect_to "#{order_path(@order)}?platform=#{platform}&supplier_id=#{supplier_id}"
 			
 		else
 			@addrs =  @user.member_addrs
@@ -313,7 +313,9 @@ class Store::OrdersController < ApplicationController
   end
 
   def new_mobile
+    
     supplier_id= @user.account.supplier_id
+
     if supplier_id==nil
       supplier_id=78
     end
