@@ -1,4 +1,4 @@
-class AddSupplierIdToAccounts < ActiveRecord::Migration
+class AddFreightToGoods < ActiveRecord::Migration
 
    def self.up
      change_table :sdb_b2c_goods do |t|
