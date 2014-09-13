@@ -77,7 +77,8 @@ class Ecstore::Order < Ecstore::Base
           end
 
           # ====commission amount===
-          self.commission = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.good.share}.inject(:+).to_f
+          commission = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount * order_item.good.share}.inject(:+).to_f
+          self.commission = commission
        end
 
        before_save :calculate_itemnum
