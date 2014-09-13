@@ -1241,10 +1241,10 @@ span.sz_seleted {
     position:relative
 }
 .gridItem dl:nth-child(odd) {
-    float:right
+    clear: both;
 }
 .gridItem dl:nth-child(even) {
-   clear: both;
+     float: left;
 }
 .gridItem dl dt,.gridItem2 {
     position:relative;
