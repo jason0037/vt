@@ -107,7 +107,7 @@
     <%=hidden_field_tag :goods_id, :id=>"goods_id"%>
     <%=f.hidden_field :type_id,:id=>"type_id"%>
     <%=hidden_field_tag :platform,'mancoexpress'%>
-    <%=hidden_field_tag :manco_unit_price, :id=>"manco_unit_price"%>
+    <%=hidden_field_tag :manco_unit_price, :id=>"manco_total_price"%>
     <%=f.hidden_field :manco_name_two, :id=>"manco_name_two"%>
     <%=f.hidden_field :suppliers_id, :id=>"suppliers_id",:value=>"98"%>
    <table class="am-table">
@@ -115,14 +115,14 @@
     <tr>
       <th>始发站-终点站</th>
       <th>运费单价为:</th>
-
+      <th>运费总价价为:</th>
     </tr>
     </thead>
     <tbody>
     <tr>
       <td> <span style="text-align: center ;color: red" id="manco_name_show"></span></td>
       <td><span style="text-align: center;color: red" id="manco_price_show"></span></td>
-
+      <td><span style="text-align: center;color: red" id="manco_total_price_show"></span></td>
     </tr>
        </tbody>
      </table>
