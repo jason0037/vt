@@ -134,12 +134,17 @@ class Store::GoodsController < ApplicationController
      end
    end
 
-   if params[:supplier_id]
-     @supplier  =  Ecstore::Supplier.find(params[:supplier_id])
-     render :layout=>@supplier.layout
-   else
-     render :layout=>"mobile_new"
+   supplier_id = params[:supplier_id]
+   if supplier_id==nil
+      if @user
+        supplier_id= @user.acount.supplier_id
+      else
+        upplier_id =@good.supplier_id
+      end
+
    end
+   @supplier  =  Ecstore::Supplier.find(supplier_id)
+   render :layout=>@supplier.layout
  end
 
   def tairyo_tuan
