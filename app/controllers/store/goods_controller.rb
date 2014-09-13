@@ -137,9 +137,9 @@ class Store::GoodsController < ApplicationController
    supplier_id = params[:supplier_id]
    if supplier_id==nil
       if @user
-        supplier_id= @user.acount.supplier_id
+        supplier_id= @user.account.supplier_id
       else
-        upplier_id =@good.supplier_id
+        supplier_id =@good.supplier_id
       end
 
    end
