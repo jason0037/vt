@@ -66,17 +66,18 @@ class Ecstore::Order < Ecstore::Base
 
        def calculate_order_amount
           # =====order amount ====
-         self.commission = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount *order_item.good.share}.inject(:+)
-
           items_amount = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+).to_f
 
           # =====pmts  amount====
           pmts_amount = self.order_pmts.collect { |order_pmt| order_pmt.pmt_amount }.inject(:+).to_f
+
           if  items_amount&&pmts_amount
              self.final_amount = self.total_amount =  items_amount - pmts_amount
           else
           end
 
+          # ====commission amount===
+          self.commission = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.good.share}.inject(:+).to_f
        end
 
        before_save :calculate_itemnum
