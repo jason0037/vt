@@ -5913,6 +5913,7 @@ ul {
 }
 ul li {
     list-style: none;
+    font-size: 25px;
 }
 
 .clear:after {
