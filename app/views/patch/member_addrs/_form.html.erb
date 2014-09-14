@@ -1,3 +1,9 @@
+<%if params[:platform]=='mobile'%>
+    <link href="/assets/patch.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/assets/patch/member_addrs.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/assets/mobile/layout.min.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/assets/mobile/common.min.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<%end%>
 <%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
 <input type="hidden" name="platform" value="<%=params[:platform]%>">
 	<div class="new-addr <%='hide' unless display==true%>" id="addr_form">

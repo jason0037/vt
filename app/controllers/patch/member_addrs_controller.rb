@@ -40,7 +40,7 @@ class Patch::MemberAddrsController < ApplicationController
 =end
     if params[:platform]=="mobile"
       @supplier = Ecstore::Supplier.find(@user.account.supplier_id)
-      layout =@supplier.layout
+      layout = @supplier.layout
       render :layout =>layout
     end
   end
@@ -48,14 +48,15 @@ class Patch::MemberAddrsController < ApplicationController
   def create
     @addr = Ecstore::MemberAddr.new params[:addr].merge!(:member_id=>@user.member_id)
 
-    return_url=params[:return_url]
+    return_url= params[:return_url]
 
-    if return_url  && @addr.save
+    @addr.save
+
+    if return_url
       @ids=@addr.addr_id
       session[:depar]=@ids
       redirect_to return_url
     else
-      @addr.save
          respond_to do |format|
            format.js
            format.html { redirect_to "/member_addrs?platform=#{params[:platform]}" }
