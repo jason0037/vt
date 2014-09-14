@@ -1,4 +1,5 @@
 <%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
+    <input type="hidden" name="return_url" value="/orders/new_mobile">
 <dl class="connerbox">
   <dd><span class="form_hd">*姓名：</span>
     <span class="form_td"><%=f.text_field :name, :maxlength=>"50", :class=>"text_input"%></span></dd>
