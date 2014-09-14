@@ -10,21 +10,38 @@ class Patch::MemberAddrsController < ApplicationController
 
   def new
     @addr = Ecstore::MemberAddr.new
+    if params[:platform]=="mobile"
+      @supplier = Ecstore::Supplier.find(@user.account.supplier_id)
+      layout = @supplier.layout
+      render :layout =>layout
+    end
   end
 
   def index
     @addrs = @user.member_addrs.paginate(:per_page=>10,:page=>params[:page])
     add_breadcrumb("收货地址")
+
+    if params[:platform]=="mobile"
+      @supplier = Ecstore::Supplier.find(@user.account.supplier_id)
+      layout =@supplier.layout
+      render :layout =>layout
+    end
   end
 
   def edit
     @addr = Ecstore::MemberAddr.find(params[:id])
     @method = :put
     @action_url = member_addr_path(@addr)
-
+=begin
     respond_to do |format|
       format.html
       format.js
+    end
+=end
+    if params[:platform]=="mobile"
+      @supplier = Ecstore::Supplier.find(@user.account.supplier_id)
+      layout =@supplier.layout
+      render :layout =>layout
     end
   end
 
@@ -39,13 +56,10 @@ class Patch::MemberAddrsController < ApplicationController
       redirect_to return_url
     else
       @addr.save
-      redirect_to '/orders/new_mobile'
-
-      # else
-      #   respond_to do |format|
-      #     format.js
-      #     format.html { redirect_to member_addrs_url }
-      #   end
+         respond_to do |format|
+           format.js
+           format.html { redirect_to "/member_addrs?platform=#{params[:platform]}" }
+         end
     end
 
 
@@ -56,7 +70,7 @@ class Patch::MemberAddrsController < ApplicationController
     if @addr.update_attributes(params[:addr])
       respond_to do |format|
         format.js
-        format.html { redirect_to member_addrs_url }
+        format.html { redirect_to "/member_addrs?platform=#{params[:platform]}" }
       end
     else
       render 'error.js' #, status: :unprocessable_entity
@@ -66,7 +80,7 @@ class Patch::MemberAddrsController < ApplicationController
   def destroy
     @addr = Ecstore::MemberAddr.find(params[:id])
     @addr.destroy
-    redirect_to member_addrs_url
+    redirect_to "/member_addrs?platform=#{params[:platform]}"
   end
 
 

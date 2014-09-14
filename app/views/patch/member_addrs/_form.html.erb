@@ -1,5 +1,5 @@
 <%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
-
+<input type="hidden" name="platform" value="<%=params[:platform]%>">
 	<div class="new-addr <%='hide' unless display==true%>" id="addr_form">
 		<div class="control-group">
 		    <%=f.label :area, "<span class='required'>*</span>收货地区：".html_safe,:class=>"control-label"%>
