@@ -79,7 +79,7 @@
 
       <div class="sumtotal clearfix">
         <p>商品金额：<span class="fr money sum" id="order_amount" data-amount = "<%=@cart_total%>">¥<%=@cart_total%></span></p>
-        <p>发货运费：<span class="fr">¥10</span></p>
+        <p>发货运费：<span class="fr">¥<%=@cart_freight%></span></p>
         <p>待支付总额：<span class="fr">¥<%=@cart_total%></span></p>
       </div>
       <input type="hidden" name="payable" value="">
@@ -96,7 +96,7 @@
     <div class="invoice clearfix hide">
       <h3>发票抬头:</h3>
       <div class="dashline2"></div>
-      <input name="invoice" type="text" placeholder="请输入发票抬头" value="" class="text_input w100">
+      <%=f.text_field :tax_company,:placeholder=>"请输入发票抬头",:class=>"text_input w100"%>
     </div>
   </div>
 

@@ -62,7 +62,7 @@ class Ecstore::Order < Ecstore::Base
          return "自提" if self.shipping_id==0
        end
 
-       before_create :calculate_order_amount
+       before_create :calculate_order_amount,:calculate_commission
 
        def calculate_order_amount
           # =====order amount ====
@@ -71,15 +71,26 @@ class Ecstore::Order < Ecstore::Base
           # =====pmts  amount====
           pmts_amount = self.order_pmts.collect { |order_pmt| order_pmt.pmt_amount }.inject(:+).to_f
 
+          #=========freigh ammount=========
+          freight = 10
+          order_item =  self.order_items.first
+          supplier =order_item.goods.supplier_id
+          if items_amount>=60 && supplier==98
+            freight =0
+          end
+         # items_amount = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+).to_f
+
           if  items_amount&&pmts_amount
-             self.final_amount = self.total_amount =  items_amount - pmts_amount
+             self.final_amount = self.total_amount =  items_amount - pmts_amount + freight
           else
           end
-
-          # ====commission amount===
-          commission = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount * order_item.good.share}.inject(:+).to_f
-          self.commission = commission
        end
+
+      def calculate_commission
+          # ====commission amount===
+        commission = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount * order_item.good.share}.inject(:+).to_f
+        self.commission = commission
+      end
 
        before_save :calculate_itemnum
 

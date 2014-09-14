@@ -324,7 +324,10 @@ class Store::OrdersController < ApplicationController
       supplier_id=78
     end
     @supplier = Ecstore::Supplier.find(supplier_id)
-
+    @cart_freigh = 10
+    if @cart_total>=60 && @supplier.id==98
+      @cart_frieght=0
+    end
     @addrs =  @user.member_addrs
     if @addrs.size==0
       redirect_to "/orders/new_mobile_addr?supplier_id=#{supplier_id}&return_url=/orders/new_mobile&supplier_id=#{supplier_id}"
