@@ -10,6 +10,10 @@ class Patch::MemberAddrsController < ApplicationController
 
   def new
     @addr = Ecstore::MemberAddr.new
+    if params[:platform]=="mobile"
+      @supplier = Ecstore::Supplier.find(@user.account.supplier_id)
+      layout =@supplier.layout
+    end
   end
 
   def index
