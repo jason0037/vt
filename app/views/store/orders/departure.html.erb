@@ -2,6 +2,16 @@
   .form-sure{
       float: right;
   }
+  .href{
+      text-align: center;
+      padding: 10px;
+  }
+  #ahref{
+      font-size: 20px;
+      color: red;
+
+
+  }
 
 </style>
 <header id="am-topbar am-topbar-inverse">
@@ -10,7 +20,9 @@
     <div class="am-panel-hd">寄货人地址</div>
  </div>
 </header>
-   <a href="/orders/new_manco_addr" title="">新增寄货人地址 </a>
+<div class="href">
+   <a id="ahref" href="/orders/new_manco_addr" title="">新增寄货人地址 </a>
+</div>
   <form action="arrival" class="am-form" method="post">
        <table class="am-table am-table-striped am-table-hover">
          <tr>

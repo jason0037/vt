@@ -51,7 +51,7 @@
             </div>
           </div>
           物流线路:  <span class=""><em style="color: #1b66b7"><%=line_item.good.name%></em></span>  <br/>
-          运价:<span class="c_price">¥<%= format('%.2f',line_item.good.bulk)%></span>
+          运价:<span class="c_price">¥<%= format('%.2f',line_item.good.price)%></span>
           市场价 : <span class="fontstyle">¥<%= format('%.2f',line_item.good.mktprice)%></span>  <br/>
 
 		<span class="delete">
@@ -85,16 +85,7 @@
   </div>
 </div>
 
-<div id="demo-view" data-backend-compiled="">
-  <div data-am-widget="list_news" class="am-list-news am-list-news-default am-no-layout">
 
-    <ul class="am-list">
-      <div class="am-list-thumb am-col col-sm-12"></div><div class="am-col am-list-main">
-   <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-top"><div class="am-list-thumb am-col col-sm-12">
-     <a href="http://www.douban.com/online/11645411/"><img src="http://img3.douban.com/lpic/o638852.jpg" alt="“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！"></a></div>
-      <div class="am-col am-list-main"><h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11645411/">“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！</a></h3>
-      <div class="am-list-item-text"></div></div></li></div>
-    </ul></div></div></div>
 
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
 <script>

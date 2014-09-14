@@ -3,6 +3,17 @@
         float: right;
     }
 
+    .href{
+        text-align: center;
+        padding: 10px;
+    }
+    #ahref{
+        font-size: 20px;
+        color: red;
+
+
+    }
+
 </style>
 <header id="am-topbar am-topbar-inverse">
 
@@ -12,9 +23,10 @@
   </div>
 
 </header>
-<a href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>" >新增收获人地址 </a>
+<div class="href">
+<a id="ahref" href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>" >新增收获人地址 </a>
 
-
+         </div>
 
 
 
