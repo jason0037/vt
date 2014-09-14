@@ -12,7 +12,8 @@ class Patch::MemberAddrsController < ApplicationController
     @addr = Ecstore::MemberAddr.new
     if params[:platform]=="mobile"
       @supplier = Ecstore::Supplier.find(@user.account.supplier_id)
-      layout =@supplier.layout
+      layout = @supplier.layout
+      render :layout =>layout
     end
   end
 
@@ -23,6 +24,7 @@ class Patch::MemberAddrsController < ApplicationController
     if params[:platform]=="mobile"
       @supplier = Ecstore::Supplier.find(@user.account.supplier_id)
       layout =@supplier.layout
+      render :layout =>layout
     end
   end
 
@@ -34,6 +36,11 @@ class Patch::MemberAddrsController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+    end
+    if params[:platform]=="mobile"
+      @supplier = Ecstore::Supplier.find(@user.account.supplier_id)
+      layout =@supplier.layout
+      render :layout =>layout
     end
   end
 
