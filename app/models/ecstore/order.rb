@@ -74,7 +74,7 @@ class Ecstore::Order < Ecstore::Base
           #=========freigh ammount=========
           freight = 10
           order_item =  self.order_items.first
-          supplier =order_item.goods.supplier_id
+          supplier =order_item.good.supplier_id
           if items_amount>=60 && supplier==98
             freight =0
           end
