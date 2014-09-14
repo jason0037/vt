@@ -55,15 +55,15 @@
 					left: offset.left + 'px'
 				});
 			}
-			
-			
+
+
 			function processKey(e) {
-				
+
 				// handling up/down/escape requires results to be visible
 				// handling enter/tab requires that AND a result to be selected
 				if ((/27$|38$|40$/.test(e.keyCode) && $results.is(':visible')) ||
 					(/^13$|^9$/.test(e.keyCode) && getCurrentResult())) {
-		            
+
 		            if (e.preventDefault)
 		                e.preventDefault();
 					if (e.stopPropagation)
@@ -71,36 +71,36 @@
 
 	                e.cancelBubble = true;
 	                e.returnValue = false;
-				
+
 					switch(e.keyCode) {
-	
+
 						case 38: // up
 							prevResult();
 							break;
-				
+
 						case 40: // down
 							nextResult();
 							break;
 						case 13: // return
 							selectCurrentResult();
 							break;
-							
+
 						case 27: //	escape
 							$results.hide();
 							break;
-	
+
 					}
-					
+
 				} else if ($input.val().length != prevLength) {
 
-					if (timeout) 
+					if (timeout)
 						clearTimeout(timeout);
 					timeout = setTimeout(suggest, options.delay);
 					prevLength = $input.val().length;
-					
-				}			
-					
-				
+
+				}
+
+
 			}
 			
 			function suggest() {
@@ -150,7 +150,8 @@
 					.click(function(e) {
 						e.preventDefault(); 
 						e.stopPropagation();
-						selectCurrentResult();
+                        $input.val($(this).children('a').html().replace(/<span>.+?<\/span>/i,''));
+                        $results.hide();
 					});
 			}
 						
@@ -168,28 +169,29 @@
 			}
 			
 			function selectCurrentResult() {
-			
+
 				$currentResult = getCurrentResult();
-			
+
 				if ($currentResult) {
+                    alert($currentResult.children('a').html().replace(/<span>.+?<\/span>/i,''));
 					$input.val($currentResult.children('a').html().replace(/<span>.+?<\/span>/i,''));
 					$results.hide();
 
 					if( $(options.dataContainer) ) {
 						$(options.dataContainer).val($currentResult.attr('rel'));
 					}
-	
+
 					if (options.onSelect) {
 						options.onSelect.apply($input[0]);
 					}
 				}
-			
+
 			}
-			
+
 			function nextResult() {
-			
+
 				$currentResult = getCurrentResult();
-			
+
 				if ($currentResult)
 					$currentResult
 						.removeClass(options.selectClass)
@@ -197,13 +199,13 @@
 							.addClass(options.selectClass);
 				else
 					$results.children('ul').children('li:first-child').addClass(options.selectClass);
-			
+
 			}
-			
+
 			function prevResult() {
-			
+
 				$currentResult = getCurrentResult();
-			
+
 				if ($currentResult)
 					$currentResult
 						.removeClass(options.selectClass)
@@ -211,7 +213,7 @@
 							.addClass(options.selectClass);
 				else
 					$results.children('ul').children('li:last-child').addClass(options.selectClass);
-			
+
 			}
 	
 		}

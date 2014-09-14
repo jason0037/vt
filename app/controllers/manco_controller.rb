@@ -13,7 +13,7 @@ class MancoController < ApplicationController
      if @user
 
      else
-       redirect_to "/mlogin?id=98&platform=mobile&return_url=manco/find_manco"
+       redirect_to "/mlogin?id=98&platform=mobile&return_url=/manco/find_manco"
      end
   end
 
