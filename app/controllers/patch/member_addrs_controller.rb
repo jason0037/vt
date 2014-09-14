@@ -15,6 +15,11 @@ class Patch::MemberAddrsController < ApplicationController
   def index
     @addrs = @user.member_addrs.paginate(:per_page=>10,:page=>params[:page])
     add_breadcrumb("收货地址")
+
+    if params[:platform]=="mobile"
+      @supplier = Ecstore::Supplier.find(@user.account.supplier_id)
+      layout =@supplier.layout
+    end
   end
 
   def edit
