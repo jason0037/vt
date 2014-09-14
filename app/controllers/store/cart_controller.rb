@@ -182,7 +182,7 @@ login_name=Ecstore::Account.find(account_id)
     @cart = Ecstore::Cart.where(:obj_ident=>"goods_#{goods_id}_#{@product.product_id}",
                                 :member_ident=>member_ident).first_or_initialize do |cart|
       cart.obj_type = "goods"
-      cart.quantity = (mancoweight.to_f+0.5)
+      cart.quantity = mancoweight
       cart.time = Time.now.to_i
       cart.member_id = member_id
     end
@@ -218,10 +218,6 @@ login_name=Ecstore::Account.find(account_id)
        quantity=1
      end
      goods_id = params[:product][:goods_id]
-     @manco_unit_price =params[:manco_unit_price]
-     mancoweight=params[:mancoweight]
-
-     @manco_total=  @manco_unit_price.to_f * mancoweight.to_f
 
      @good=Ecstore::Good.find(goods_id)
      @product = @good.products.first
@@ -237,7 +233,7 @@ login_name=Ecstore::Account.find(account_id)
      @cart = Ecstore::Cart.where(:obj_ident=>"goods_#{goods_id}_#{@product.product_id}",
                                  :member_ident=>member_ident).first_or_initialize do |cart|
        cart.obj_type = "goods"
-       cart.quantity = (mancoweight.to_f+0.5)
+       cart.quantity = quantity
        cart.time = Time.now.to_i
        cart.member_id = member_id
      end
