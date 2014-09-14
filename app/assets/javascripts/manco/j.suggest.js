@@ -172,6 +172,7 @@
 				$currentResult = getCurrentResult();
 			
 				if ($currentResult) {
+                    alert($currentResult.children('a').html().replace(/<span>.+?<\/span>/i,''));
 					$input.val($currentResult.children('a').html().replace(/<span>.+?<\/span>/i,''));
 					$results.hide();
 
