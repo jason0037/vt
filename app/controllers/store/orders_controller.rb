@@ -388,14 +388,14 @@ class Store::OrdersController < ApplicationController
     @share=0
     @sharelast = 0
     if wechat_user
-      @order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("sum(commission) as share").group(:recommend_user).first
+      @order_all = Ecstore::Order.where(:recommend_user=>wechat_user,:pay_status=>1).select("sum(commission) as share").group(:recommend_user).first
 
       #return render :text=>@order.final_amount
       if @order_all
         @share = @order_all.share.round(2)
-        @order_last =Ecstore::Order.where(:recommend_user=>wechat_user).order("createtime desc").first
+        @order_last =Ecstore::Order.where(:recommend_user=>wechat_user,:pay_status=>1).order("createtime desc").first
         if @order_last
-          @sharelast = @order_last.final_amount*0.01.round(2)
+          @sharelast = @order_last.commission
         end
       end
     end
