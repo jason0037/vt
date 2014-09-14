@@ -9,7 +9,7 @@
 		<div class="title">订单已经成功提交!</div>
 		<p>订单编号: <span><%=@order.order_id%></span>
 			&nbsp;&nbsp;&nbsp;     
-			支付金额: ￥<span id="final_pay"><%=@order.final_pay%></span>
+			支付金额: ￥<span id="final_pay"><%#=@order.final_pay%><%=@order.final_amount%></span>
 			&nbsp;&nbsp;&nbsp; 
 			<span id="products_total" data-amount="<%=@order.products_total%>"></span> 
 			订单状态: <span class="status"><%=@order.order_status_text%></span>
