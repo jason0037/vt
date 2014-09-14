@@ -1,23 +1,34 @@
 <style>
-body{
-    background: #fcfffa;
-}
-.s_links,.footnav,.copyright{
-       display: none;
-   }
-  .cartdiv{
-      line-height: 40px;
-  }
-input.textcenter {
+    body{
+        background: #fcfffa;
+    }
+    .s_links,.footnav,.copyright{
+        display: none;
+    }
+    .clearfix .we{
+        float: left;
+    }
+    .cart_orderlist_info{
+        margin: 0;
+
+    }
+    .cartdiv{
+        line-height: 40px;
+        background-color: #f0f1ff;
+    }
+    #quantity{
+        width: 100px;
+    }
+    input.textcenter {
         text-align: center;
         position: relative;
         margin: 0 auto;
         width: 40px;
         border: solid 1px #ccc;
     }
-     .delete{
-         float: right;
-     }
+    .delete{
+        float: right;
+    }
 </style>
 <header id="header" class="header clearfix">
 
@@ -25,58 +36,62 @@ input.textcenter {
   <span class="headtit">万家购物车</span>
   <div class="head_right fr"><a href="/manco" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
 </header>
-<br/>
-<%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
-    <div class="cartdiv" id="line_<%=line_item.obj_ident%>">
-      <div class="cartlist clearfix">
 
 
-        <div class=" clearfix">
+<div id="cart">
+  <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
+      <div class="cartdiv" id="line_<%=line_item.obj_ident%>">
+        <div class="cartlist clearfix">
 
-          <div class="">
-            <em>请选择货物重量 </em>
-              <em>
 
-           <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity  J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
-            </em>
-            <em>kg </em>
-          <div class="goods_Cnum clearfix" id="goods_Cnum">
-              <div class="good_data_num J_pro_num_btn_cart" data-product="68671252" style="border:none;height:33px;">
+          <div class="cartlistinner clearfix">
+
+            <div class="cart_orderlist_info">
+
+
+              <div class="goods_Cnum clearfix" id="goods_Cnum">
+
+                <span class="we" >请选择货物重量</span>
+                <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity good_data_num_m J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
+                <span class="unit">kg</span>
+
+              </div>
+
             </div>
-            </div>
-          </div>
+            小黑板单价:<span class="c_price">¥<%= line_item.good.price%></span>
+            万家单价 : <span class="fontstyle">¥<%=line_item.good.mktprice%></span>  <br/>
 
-            小黑板价:<span class="c_price">¥<%= format('%.2f',line_item.good.price)%></span>
-          万家原价 : <span class="fontstyle">¥<%= format('%.2f',line_item.good.mktprice)%></span>  <br/>
 
 		<span class="delete">
 
-           <a href="<%="#{cart_path(line_item.obj_ident)}?platform=manco"%>" class="delete" data-method="delete" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
-             不需要？  <img src="/assets/mobile/scan_layer-33.png" width="22" height="22">
+           <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile"%>" class="delete" data-method="delete" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
+             <img src="/assets/mobile/scan_layer-33.png" width="22" height="22">
            </a>
 		</span>
+          </div>
+        </div>
+        <div class="orderaction clearfix">
+
+          <div class="fl"></div>
+
+          <p class="fr"><span class="c_price line-total"> ¥<%=(line_item.product.price*line_item.quantity)%> </span></p>
+
+          <div class="clear"></div>
+
         </div>
       </div>
-      <div class="orderaction clearfix">
-
-        <p class="fr">总金额:&nbsp; &nbsp;<span class="c_price line-total"> ¥<%=(line_item.product.price*line_item.quantity)%> </span></p>
-
-
-
+  <%end%>
+  <div class="bottomdiv clearfix">
+    <div class="inner clearfix">
+      <div class="fl">
+        <p class="cart_total modal-footer">总金额：<span class="c_t_price total">¥<%= format('%.2f',@cart_total)%> </span></p>
       </div>
-    </div>
-<%end%>
-<div class="bottomdiv clearfix">
-  <div class="inner clearfix">
-    <div class="fl">
-
-      <p class="cart_total">总金额：<span class="c_t_price">¥<%= format('%.2f',@cart_total)%> </span></p>
-    </div>
-    <a href="/orders/departure" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
-      结算
+      <a href="/orders/departure" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
+        结算
       <span class="fr cart_time_smb"><span class="clockicon fl"></span>
         <span class="num_cunt"><span class=":">19</span><span>:</span><span>42</span><span></span></span></span>
-    </a>
+      </a>
+    </div>
   </div>
 </div>
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
@@ -85,30 +100,15 @@ input.textcenter {
     $(document).ready(function(){
 
         $(" .quantity").on("change",function(){
-            var quantity = parseInt($(this).val());
-             var store=parseInt($("#manco_store").html());
-
-              if(quantity>store) alert("已经达到最大运货量"),
-                      $(".quantity").val(store) ;
-
-            event.preventDefault() ;
-               var newquantity =$(this).val();
+            var quantity = $(this).val();
+            if(!/\d+/.test(quantity)) return false;
             var url = $(this).data('url');
             $.ajax(url,{
                 type: "PUT",
-                data:{ quantity:newquantity },
+                data:{ quantity:quantity },
                 success:function(res){
                 }
             });
         });
-
     });
-
-        window.onload=function(){
-            var quantity = parseInt($(".quantity").val());
-            var store=parseInt($("#manco_store").html());
-            $(".quantity").val(store) ;
-
-
-        }
 </script>
