@@ -1,6 +1,6 @@
 
 <div class="new">
-	<%=link_to "+添加新地址",new_member_addr_path%>
+	<%=link_to "+添加新地址",new_member_addr_path(platform:params[:platform])%>
 </div>
 
 <table class="table table-striped">
@@ -22,9 +22,9 @@
 			<td><%=addr.mobile%></td>
 			<td><%=addr.def_addr ? "是" : "否"%></td>
 			<td>
-				<%=link_to "修改",edit_member_addr_path(addr)%>
-				<%=link_to "删除",member_addr_path(addr),:method=>:delete,:confirm=>"确定要删除吗？"%>
-				<%=link_to "设为默认",member_addr_path(addr,"addr[def_addr]"=>1),:method=>:put unless addr.def_addr%>
+				<%=link_to "修改",edit_member_addr_path(id:addr,platform:params[:platform])%>
+				<%=link_to "删除",member_addr_path(id:addr,platform:params[:platform]),:method=>:delete,:confirm=>"确定要删除吗？"%>
+				<%=link_to "设为默认",member_addr_path(id:addr,platform:params[:platform],"addr[def_addr]"=>1),:method=>:put unless addr.def_addr%>
 			</td>
 		</tr>
 		<%end%>
