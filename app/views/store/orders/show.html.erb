@@ -1,5 +1,5 @@
 <div class="order-holder">
-<%=form_for :payment,:url=>payments_path(:order_id=>@order.order_id),:html=>{ :target=>"_blank" } do |f|%>
+<%=form_for :payment,:url=>payments_path(:order_id=>@order.order_id),:method=>'post',:html=>{ :target=>"_blank" } do |f|%>
 	<%=f.hidden_field :currency, :value=>"CNY" %>
 	<%if @order.payment == "bcom"%>
 		<%=f.hidden_field :memo, :value=>"持交通银行卡在线支付可享受订单金额95折优惠" %>
@@ -29,7 +29,6 @@
 
 	<div class="payments hide" id="payment_choices">
 			<h5>已选择的支付方式现修改为：</h5>
-
 
 			<%if @order.part_pay?%>
 		 	<label class="checkbox">
