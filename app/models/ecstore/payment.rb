@@ -24,9 +24,6 @@ class Ecstore::Payment < Ecstore::Base
 
 	#  status => enum('succ','failed','cancel','error','invalid','progress','timeout','ready')
 
-	
-
-
 	def self.generate_payment_id
           seq = rand(0..9999)
           loop do

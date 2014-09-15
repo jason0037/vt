@@ -328,7 +328,7 @@ class Store::OrdersController < ApplicationController
     if (@cart_total>=60 && @supplier.id==97) || @cart_total==0.01 #测试商品
       @cart_freight=0
     end
-    @cart_total_final = @cart_total+@cart_freight
+    @cart_total_final = @cart_total+ @cart_freight
     @addrs =  @user.member_addrs
     if @addrs.size==0
       redirect_to "/orders/new_mobile_addr?supplier_id=#{supplier_id}&return_url=/orders/new_mobile&supplier_id=#{supplier_id}"

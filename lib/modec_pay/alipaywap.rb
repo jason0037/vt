@@ -103,8 +103,8 @@ module ModecPay
 				is_success = params['is_success']
 				if verify_sign(params)
 					ModecPay.logger.info "[alipaywap][#{Time.now}] verify return successfully."
-					case params['trade_status']
-						when 'TRADE_FINISHED','TRADE_SUCCESS'
+					case params['result']
+						when 'success'
 							t_payed = Time.now
 							result = {  :payment_id=>params['out_trade_no'],
 								   :trade_no=>params['trade_no']
