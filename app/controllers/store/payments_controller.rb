@@ -31,7 +31,7 @@ class Store::PaymentsController < ApplicationController
 			payment.pay_ver = '1.0'
 			payment.paycost = 0
 
-			payment.account = 'TRADE | 跨境贸易 一键直达'
+			payment.account = 'TRADE-V | 跨境贸易 一键直达'
 			payment.member_id = payment.op_id = @user.member_id
 			payment.pay_account = @user.login_name
 			payment.ip = request.remote_ip

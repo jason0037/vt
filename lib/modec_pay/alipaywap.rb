@@ -69,7 +69,7 @@ module ModecPay
 
 				unsign = _sorted_hash.collect do |key,val|
 					"#{key}=#{val}"
-				end.join("&") + self.private_key
+				end.join("&") + @@private_key #self.private_key
 
 				Digest::MD5.hexdigest(unsign) == sign
 			end
