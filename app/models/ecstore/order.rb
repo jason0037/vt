@@ -76,7 +76,7 @@ class Ecstore::Order < Ecstore::Base
           order_item =  self.order_items.first
           supplier =order_item.good.supplier_id
           if supplier==97 #诺狮满60免运费
-            if items_amount>=60
+            if items_amount>=60 || order_item.good.price==0.01 #测试商品
                 freight =0
             else
               freight = 10
