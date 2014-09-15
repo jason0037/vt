@@ -29,7 +29,7 @@ module ModecPay
       self.fields['partner'] = @@mer_id
 			self.fields['sec_id'] ='MD5' #'0001' #=>RSA
 
-      @member_id = 'userid' #买家在商户系统的唯一标识。可空
+      @member_id = @user.member_id #'userid' #买家在商户系统的唯一标识。可空
       @merchant_url = 'http://www.trade-v.com/m' #操作中断返回地址,可空
       @pay_expire = 21600 #交易自动关闭时间，单位为 分钟。 默认值 21600（即 15 天），可空
 
