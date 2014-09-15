@@ -6,6 +6,7 @@ class Store::PaymentsController < ApplicationController
 	skip_before_filter :verify_authenticity_token,:only=>[:callback,:notify]
  
 	def create
+    return render :text=>params[:payment]
 		rel_id = params[:order_id]
 		@order  = Ecstore::Order.find_by_order_id(rel_id)
 		installment = params[:payment].delete(:installment) || 1
@@ -74,7 +75,7 @@ class Store::PaymentsController < ApplicationController
 				pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
 				pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"
 				pay.pay_id = @payment.payment_id
-				pay.pay_amount = @payment.cur_money.to_i
+				pay.pay_amount = @payment.cur_money
 				pay.pay_time = Time.now
 				pay.subject = "贸威订单(#{order_id})"
 				pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
