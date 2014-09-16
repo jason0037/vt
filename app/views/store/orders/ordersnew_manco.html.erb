@@ -6,7 +6,7 @@
 </header>
 <%=form_for :order,:url=>"#{orders_path}?platform=manco",:html=>{ :class=>"form-horizontal",:id=>"order_form" } do |f|%>
     <%=hidden_field_tag "member_addr",@departure_addr&&@departure_addr.addr_id%>
-
+    <%=f.hidden_field :supplier_id,:value=>"98"%>
     <%=f.hidden_field :from_addr,:value=>"#{@departure_addr.name},#{@departure_addr.mobile},#{@departure_addr.addr}"%>
 
 

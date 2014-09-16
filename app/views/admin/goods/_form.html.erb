@@ -49,7 +49,7 @@
       </div>
     </div>
 
-    <div class="control-group" style="display:none">
+    <div class="control-group" >
       <%= f.label :supplier_id, "供应商", :class => "control-label" %>
       <div class="controls">
         <%=f.select :supplier_id, Ecstore::Supplier.all.collect {|supplier| [supplier.name, supplier.id] },{:include_blank=>"请选择"},{:class=>"span3"} %>
