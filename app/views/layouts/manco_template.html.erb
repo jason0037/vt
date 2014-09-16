@@ -29,6 +29,11 @@
 <div class="footer clearfix">
   <div class="footnav clearfix">
     <%if @user%>
+        <script>
+            if ('<%=@user.account.supplier_id %>'!='98'){
+                location.href = "/logout?id=98&platform=mobile"
+            }
+        </script>
         <a href="/manco/user">你好</a>
         <a href="/wlogout?platform=manco">退出登录</a>
     <%else%>
