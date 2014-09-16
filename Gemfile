@@ -55,6 +55,7 @@ gem 'axlsx'
 gem 'weixin_rails_middleware'
 
 gem 'weixin_authorize'
+gem "redis-namespace"
 
 gem 'rest-client'
 gem 'httpclient'
