@@ -1,0 +1,37 @@
+<style>
+    input.textcenter {
+        text-align: center;
+        position: relative;
+        margin: 0 auto;
+        width: 40px;
+        border: solid 1px #ccc;
+    }
+</style>
+<div class="space10"></div>
+
+<h2 class="order_sendby clearfix">
+  <span style="display:none">	供应商发货,</span>
+</h2>
+<script type="application/javascript">
+    location.href="/orders/tairyo_order"
+
+
+</script>
+<%= javascript_include_tag "jquery", "jquery_ujs" %>
+<script>
+
+    $(document).ready(function(){
+
+        $(" .quantity").on("change",function(){
+            var quantity = $(this).val();
+            if(!/\d+/.test(quantity)) return false;
+            var url = $(this).data('url');
+            $.ajax(url,{
+                type: "PUT",
+                data:{ quantity:quantity },
+                success:function(res){
+                }
+            });
+        });
+    });
+</script>

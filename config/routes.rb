@@ -57,6 +57,7 @@ end
     get   'tese'  ,:on=>:collection
     get   'user'  ,:on=>:collection
     get 'tairyo_comment' ,:on=>:collection
+    get 'showorder' ,:on=>:collection
   end
 
   # 大渔用户注册登陆
@@ -402,14 +403,13 @@ end
   get 'm' =>"mobile#show", :as=>"mobile" ,:controller=>"mobile"
 
   scope :module => "store" do
-    resources :orders,:only=>[:tairyo_order]
-    get 'tairyo_order'=>"orders#tairyo_order"
 
     get 'search' => "search#index", :as=> :search
     get 'mproducts' =>"goods#mproduct", :as=>"goods" ,:controller=>"goods"
 
     get 'show_goodblack' =>  "goods#show_goodblack",  :as=>"goods" ,:controller=>"goods"   ###货源信息
     get 'mancoproduct' =>"goods#mancoproduct",  :as=>"goods" ,:controller=>"goods"
+    get 'tairyoall'=>"goods#tairyoall",  :as=>"goods" ,:controller=>"goods"         ###金芭浪直接订单
     get 'tproducts' =>"goods#tairyo_tuan", :as=>"goods" ,:controller=>"goods"
     post'manco/serach_goods_manco'=>"goods#serach_goods_manco",:controller=>"goods"
     post 'manco/find_manco_good_first'=>"goods#find_manco_good_first",:controller=>"goods"    #通过AJAX查询出来价钱
@@ -436,15 +436,16 @@ end
     post 'cart/tairyo_add'=>"cart#tairyo_add",:as=>:add_to_cart   #团购商品添加购物车
     post 'cart/add'=>"cart#add",:as=>:add_to_cart
     post 'cart/manco_add'=>"cart#manco_add" ,:as=>:add_to_cart
-
+    post 'cart/tairyoall_add'=>"cart#tairyoall_add" ,:as=>:add_to_cart
 
     post 'cart/mancoexpress_add'=>"cart#mancoexpress_add",:as=>:add_to_cart
 
     resources :cart do
       get 'manco_express'  ,:on=>:collection
       post 'add',:on=>:collection
+      get 'show_tairyo',:on=>:collection   ###直接下单购物车
       get 'mobile', :on=>:collection
-      get 'tairyo_cart',:on=>:collection
+      get 'tairyo_cart',:on=>:collection   ##小头像上的查看订单
       post 'tairyo', :on=>:collection      #大渔订餐 不是团购
       get 'jinbalang',:on=>:collection
       get 'manco_black_buy',:on=>:collection
@@ -492,6 +493,8 @@ end
         post 'arrival'
         get 'arrival'
         get 'mancoder_show'   ###显示万家当前用户的所有订单
+        get 'tairyo_order'
+
 
       end
     end

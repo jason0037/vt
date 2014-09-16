@@ -147,6 +147,56 @@ class Store::GoodsController < ApplicationController
    render :layout=>@supplier.layout
  end
 
+
+  def tairyoall
+    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
+
+    return render "not_find_good",:layout=>"tairyo_new" unless @good
+
+    @recommend_user = session[:recommend_user]
+
+    if params[:wechatuser]
+      @recommend_user=params[:wechatuser]
+    end
+    if @recommend_user
+      member_id =-1
+      if signed_in?
+        member_id = @user.member_id
+      end
+      now  = Time.now.to_i
+      Ecstore::RecommendLog.new do |rl|
+        rl.wechat_id = @recommend_user
+        rl.goods_id = @good.goods_id
+        rl.member_id = member_id
+        rl.terminal_info = request.env['HTTP_USER_AGENT']
+        #   rl.remote_ip = request.remote_ip
+        rl.access_time = now
+      end.save
+      session[:recommend_user]=@recommend_user
+      session[:recommend_time] =now
+    end
+
+    tag_name = params[:tag]
+    @tag = Ecstore::TagName.find_by_tag_name(tag_name)
+
+    @cat = @good.cat
+
+    @recommend_goods = []
+    if @cat.goods.size >= 4
+      @recommend_goods =  @cat.goods.where("goods_id <> ?", @good.goods_id).order("goods_id desc").limit(4)
+    else
+      @recommend_goods += @cat.goods.where("goods_id <> ?", @good.goods_id).limit(4).to_a
+      @recommend_goods += @cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-@recommend_goods.size] if @cat.parent_cat && @recommend_goods.size < 4
+      @recommend_goods.compact!
+      if @cat.parent_cat.parent_cat && @recommend_goods.size < 4
+        count = @recommend_goods.size
+        @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
+      end
+    end
+
+    render :layout=>"tairyo_new"
+
+  end
   def tairyo_tuan
     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
 

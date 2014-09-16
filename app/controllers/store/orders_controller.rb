@@ -4,9 +4,7 @@ class Store::OrdersController < ApplicationController
 	layout 'order'
 
   def mancoder_show
-    if @user
 
-      supplier_id = params[:supplier_id]
       if  @user
         supplier_id = @user.account.supplier_id
         if supplier_id == nil
@@ -25,9 +23,7 @@ class Store::OrdersController < ApplicationController
 
       render :layout => "manco_template"
 
-    else
-      redirect_to ' /mlogin?id=98&platform=mobile&return_url=/manco/user'
-    end
+
 
   end
 
@@ -149,8 +145,15 @@ class Store::OrdersController < ApplicationController
 
 	def create
 		addr = Ecstore::MemberAddr.find_by_addr_id(params[:member_addr])
+    hour=params["hour"];
+     ship_day= params[:order][:ship_day]
+   if ship_day!=("任意日期")
+
+     ship_riqi=Time.parse(ship_day).to_i;
+    end
+     return_url=params[:return_url]
      platform=params["platform"];
-		 ["name","area","addr","zip","tel","mobile"].each do |key,val|      #做大渔页面 需要修改
+		 ["name","area","addr","zip","tel","mobile"].each do |key,val|
 		 	params[:order].merge!("ship_#{key}"=>addr.attributes[key])
 		 end
     supplier_id = @user.account.supplier_id
@@ -160,6 +163,9 @@ class Store::OrdersController < ApplicationController
 		params[:order].merge!(:ip=>request.remote_ip)
 		params[:order].merge!(:member_id=>@user.member_id)
     params[:order].merge!(:supplier_id=>supplier_id)
+     params[:order].merge!(:ship_day=>ship_riqi.to_s)
+     params[:order].merge!(:ship_time=>hour.to_s)
+
 
 		@order = Ecstore::Order.new params[:order]
     #=====推广佣金计算=======
@@ -275,9 +281,11 @@ class Store::OrdersController < ApplicationController
 				order_log.result = "SUCCESS"
 				order_log.log_text = "订单创建成功！"
       end.save
-
-			redirect_to "#{order_path(@order)}?platform=#{platform}&supplier_id=#{supplier_id}"
-			
+        if return_url.nil?
+			   redirect_to "#{order_path(@order)}?platform=#{platform}&supplier_id=#{supplier_id}"
+        else
+          redirect_to return_url
+          end
 		else
 			@addrs =  @user.member_addrs
 			@def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
@@ -484,9 +492,9 @@ class Store::OrdersController < ApplicationController
 
   def tairyo_order
     if @user
-     #   @addrs =  @user.member_addrs
-     #
-     # @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
+        @addrs =  @user.member_addrs
+
+        @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
       login_name=@user.login_name
       sql="select * from sdb_pam_account where login_name=?",login_name  ;
       @account = Ecstore::Account.find_by_sql(sql)
@@ -553,5 +561,8 @@ class Store::OrdersController < ApplicationController
     render :layout => "manco_template"
 
   end
+
+
+
 
 end

@@ -43,23 +43,34 @@ input[type=text]{
       </div>
   <%end%>
 </header>
-    <%=form_for :@order_dining ,:url=>"cart/tairyo" do |f|  %>
+<%=form_for :order,:url=>"#{orders_path}?platform=tairyorder",:html=>{ :class=>"form-horizontal",:id=>"order_form" } do |f|%>
+    <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
+   <%=f.hidden_field :payment ,:value=>"offline"%>
+    <%=f.hidden_field :member_id,:value=>@account[0].account_id %>
+    <%=f.hidden_field :supplier_id,:value=>@suppliers[0].id %>
+    <%=hidden_field_tag :return_url,"/tairyo/showorder"%>
+    <div class="userdiv">
+      <div class="checktit clearfix"><span class=""></span>信息</div>
+      <div class="checkcon clearfix" id="order-m-list">
+        <p><%=@def_addr.name%>:<%=@def_addr.mobile%></p>
+        <div class="sumtotal clearfix">
 
+        </div>
 
+      </div>
+    </div>
 
     <dl class="connerbox">
 
 
-    <dd> 电话: <%=f.text_field :phone,  :value=>@user.mobile if @user  %></dd>
-       <%=f.hidden_field :account_id,:value=>@account[0].account_id %>
-      <%=f.hidden_field :suppliers_id,:value=>@suppliers[0].id %>
+
 
       <span class="i_up_arrow"></span></dd>
 
       <br/>
     <dd><span class="form_hd">*日期：</span>
          <span class="form_td">
-         <%=f.text_field :dining_time,:class=>"ui_timepicker" %>
+         <%=f.text_field :ship_day,:class=>"ui_timepicker" %>
 
   </span>
       <span class="i_up_arrow"></span></dd>
@@ -104,13 +115,13 @@ input[type=text]{
         <br/>
       <dd><span class="form_hd">*人数：</span>
          <span class="form_td">
-           <%=f.select :dining_count, options_for_select([['1', 1],['2', 2],['3', 3],['4', 4],['5', 5]] ) %>
+           <%=f.select :weight, options_for_select([['1', 1],['2', 2],['3', 3],['4', 4],['5', 5]] ) %>
  </span>
       <span class="i_up_arrow"></span></dd>
   </dl>
 
   <dl class="connerbox"><dd><span>其他要求，如您有特殊要求，请在这里注明：</span>
-    <%=f.text_area :dining_content  %>
+    <%=f.text_area :tostr  %>
     <span class="help-inline error"></span>
   </dd></dl>
   <div class="ui-btn-area">
