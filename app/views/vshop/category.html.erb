@@ -283,7 +283,7 @@
       <span class="fontstyle fl pl05">¥<%=format('%.1f',good.mktprice)%></span>
       <span class="fr"><%=format('%.1f', good.price*10/good.mktprice)%>折</span></dd>
     <dd class="pricebox clearfix">
-      <span class="grallyprice fl">¥<%=format('%.2f',@good.share*@good.default_product.price) %></span>
+      <span class="grallyprice fl">¥<%=format('%.2f',good.share*good.default_product.price) %></span>
       <span class="fr">(推广佣金）</span>
     </dd>
     <dd>
