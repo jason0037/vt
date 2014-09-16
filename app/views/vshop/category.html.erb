@@ -2,7 +2,12 @@
 <header id="header" class="header clearfix">
 
   <div class="head_left fl"><a href="javascript:history.go(-1)"><span class="h_back"></span></a></div>
-  <span class="headtit"><%=params[:name]%></span>
+  <span class="headtit">
+  <%#=params[:name]%>
+      <% if @supplier.id==97%>
+       限时特惠：全场满60元全国包邮
+      <%end%>
+  </span>
   <div class="head_right fr"><a href="/m" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
 </header>
 <div id="w_container" style="overflow:hidden; position:relative">
@@ -285,11 +290,6 @@
     <dd class="pricebox clearfix">
       <span class="grallyprice fl">¥<%=format('%.2f',good.share*good.default_product.price) %></span>
       <span class="fr">(推广佣金）</span>
-    </dd>
-    <dd>
-      <% if @supplier.id==97%>
-          <h1 style="color:red">限时特惠：全场满60元全国包邮！！！</h1>
-      <%end%>
     </dd>
   </a>
 </dl>
