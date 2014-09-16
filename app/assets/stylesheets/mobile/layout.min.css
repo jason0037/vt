@@ -478,7 +478,7 @@ textarea#msg {
 }
 .headtit {
     display:inline-block;
-    width:30%;
+    width:70%;
     overflow:hidden;
     white-space:nowrap;
     word-break:keep-all;
