@@ -138,7 +138,7 @@ class Store::OrdersController < ApplicationController
 
 
 	end
-
+  end
 	def create
 		addr = Ecstore::MemberAddr.find_by_addr_id(params[:member_addr])
     hour=params["hour"];
