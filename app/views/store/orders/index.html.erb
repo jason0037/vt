@@ -45,7 +45,7 @@
 					link_title = order_item.name
 					link_title = "赠品:#{link_title}" if order_item.item_type == 'gift'
 				%>
-              <a href="/orders/norsh_show_order?id=#{<%order.order_id%>}"
+              <a href="/orders/norsh_show_order?id=#{<%order.order_id%>}" >
 					<%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product'%>
 					<%=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
                        </a>
