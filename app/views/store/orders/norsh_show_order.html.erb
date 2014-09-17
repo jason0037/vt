@@ -1,15 +1,18 @@
 <%= stylesheet_link_tag    "manco/amui.all.min.css" %>
 <%= stylesheet_link_tag    "manco/amui.all.css" %>
    <style type="text/css">
+       body{
+         width: 100%;
+     }
      span{
          color: #dd514c;
      }
    </style>
 <%@order.order_items.each do |order_item|%>
-
+    <body>
 
 <div class="am-panel am-panel-danger">
-  <div class="am-panel-hd" style="text-align: center">订单详细</div>
+  <div class="am-panel-hd" >订单详细</div>
   <div class="am-panel-bd">
 
 
@@ -48,3 +51,4 @@
 
 </div>
     <%end%>
+</body>
