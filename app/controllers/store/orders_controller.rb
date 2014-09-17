@@ -149,7 +149,7 @@ class Store::OrdersController < ApplicationController
      ship_day= params[:order][:ship_day]
    if ship_day!=("任意日期")
 
-     ship_riqi=Time.parse(ship_day).to_i;
+     ship_riqi=Time.parse(ship_day).to_i;       ###大渔饭店订餐日期
     end
      return_url=params[:return_url]
      platform=params["platform"];
@@ -562,7 +562,11 @@ class Store::OrdersController < ApplicationController
 
   end
 
+ def norsh_show_order
 
+
+   @order=Ecstore::Order.paginate :page=>params[:page]
+ end
 
 
 end
