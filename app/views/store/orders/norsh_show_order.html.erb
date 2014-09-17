@@ -97,19 +97,7 @@
     <div class="footer clearfix">
       <div class="footnav clearfix">
         <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
-        <%if @user%>
-            <script>
-                if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-                    location.href = "/logout?id=<%=@supplier.id%>&platform=mobile"
-                }
-            </script>
-            <a href="user.html"><%=@user.account.id%></a>
-            <a href="/logout?id=<%=@supplier.id%>&platform=mobile">退出登录</a>
-        <%else%>
 
-            <a href="/mlogin?id=<%=@supplier.id%>&platform=mobile&<%=return_url %>" mars_sead="footer-login_btn">登录</a>
-            <a href="/mregister?id=<%=@supplier.id%>&platform=mobile&<%=return_url%>">注册</a>
-        <%end%>
         <a href="?t=1#" class="backtop" mars_sead="home_foot_top_btn"></a>
       </div>
       <p class="copyright">Copyright © 2013-2014 trade-v.com 版权所有 上海普慧信息科技有限公司 All rights reserved. 沪ICP备13045311号-1 </p>
