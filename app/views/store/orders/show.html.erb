@@ -1,4 +1,7 @@
 <style type="text/css">
+  html{
+      width: 100%;
+  }
   body{
       background: #ffffff;
   }
@@ -76,7 +79,7 @@
 	<div class="detail" >
     <span class="span">	&nbsp; &nbsp; 订单编号:</span> <span class="ovalue"><%=@order.order_id%></span>
     </div>
-         <br/>
+
       <div class="detail" >
         <span class="span">	&nbsp; &nbsp; 支付金额:</span> <span id="final_pay" class="ovalue"><%#=@order.final_pay%><%=@order.final_amount%>
            </span>￥ </div>
@@ -102,7 +105,7 @@
       <span class="span">&nbsp; &nbsp; 	支付方式:</span>
 		<span class="title" style="color: #0abede"><%=payments[@order.payment][:name]%></span>
 		<%if @order.status == 'active' && @order.pay_status == '0'%>
-		<a href="#" class="change " style="margin-left: 40%" id="change_payment">更改支付方式>> </a>
+		<a href="#" class="change " style="margin-left: 30%" id="change_payment">更改支付方式>> </a>
 		<%end%>
 		<div><%=payments[@order.payment][:extra].html_safe%></div>
 	</div>
