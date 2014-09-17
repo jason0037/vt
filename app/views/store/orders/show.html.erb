@@ -1,28 +1,108 @@
-<div class="order-holder">
+<style type="text/css">
+  body{
+      background: #ffffff;
+  }
+
+  .showall{
+
+  }
+ .status_text {
+        font-family: "微软雅黑","宋体";
+        display: inline-block;
+        font-weight: normal;
+
+        margin-left: 30%;
+        line-height: 65px;
+        line-height: 1.5;
+        text-align: left;
+        font-size: 24px;
+        color: #ed145b;
+    }
+  .blue .pay_icon, .list_status .green .pay_icon {
+      background-position: 0 -160px;
+      width: 24px;
+      height: 24px;
+  }
+
+ .pay_success {
+     width: 65px;
+     height: 65px;
+     background-position: 0 0px;
+ }
+ .pay_icon {
+     display: block;
+     _display: inline;
+     float: left;
+     background: url(/assets/payment_status_icons.jpg) top left no-repeat;
+ }
+   .detail{
+       border: 1px;
+       width: 100%;
+       padding: 5px;
+      border: 1px solid #f0f1ff;
+   }
+ .ovalue{
+     margin-left: 50%;
+
+ }
+   .pay_text{
+       line-height: 3;
+   }
+</style>
+
+<div class="">
 <%=form_for :payment,:url=>payments_path(:order_id=>@order.order_id),:method=>'post',:html=>{ :target=>"_blank" } do |f|%>
 	<%=f.hidden_field :currency, :value=>"CNY" %>
 	<%if @order.payment == "bcom"%>
 		<%=f.hidden_field :memo, :value=>"持交通银行卡在线支付可享受订单金额95折优惠" %>
 	<%end%>
+      <br/>
+      <div class="status_text">
+        <span class="pay_icon pay_success "></span>
+       <span class="pay_text">订单已经成功提交!</span>
+      </div>
+      <div class="list_status">
 
-	<div class="order">
-		<div class="title">订单已经成功提交!</div>
-		<p>订单编号: <span><%=@order.order_id%></span>
-			&nbsp;&nbsp;&nbsp;     
-			支付金额: ￥<span id="final_pay"><%#=@order.final_pay%><%=@order.final_amount%></span>
-			&nbsp;&nbsp;&nbsp; 
-			<span id="products_total" data-amount="<%=@order.products_total%>"></span> 
-			订单状态: <span class="status"><%=@order.order_status_text%></span>
+        <h2 class="blue" >
+            <span class="pay_icon"></span>
+        <span style="color: #0abede">以下订单尚未成功支付，请您尽快完成支付!</span>
+
+        </h2>
+           </div>
+            <br/>
+
+
+     <div class="showall">
+	<div class="detail" >
+    <span class="span">	&nbsp; &nbsp; 订单编号:</span> <span class="ovalue"><%=@order.order_id%></span>
+    </div>
+         <br/>
+      <div class="detail" >
+        <span class="span">	&nbsp; &nbsp; 支付金额:</span> <span id="final_pay" class="ovalue"><%#=@order.final_pay%><%=@order.final_amount%>
+           </span>￥ </div>
+       <br/>
+
+			<span id="products_total" data-amount="<%=@order.products_total%>" style="display: none"></span>
+
+
+      <div class="detail" >
+		 <span class="span">&nbsp; &nbsp; 	订单状态:</span> <span style=" color: #ed145b;" class="ovalue"><%=@order.order_status_text%></span>
+            </div>
+
 
 			<span id="pmts_total" class="hide" data-amount="<%=@order.pmts_total%>"></span>
-		</p>
-		<%=link_to "查看订单详细信息>>",detail_order_path(@order),:target=>"_blank"%>
-	</div>
 
+       <br/>
+      <div class="detail" >
+		<%=link_to "查看订单详细信息>>","/orders/norsh_show_order?id=#{@order.order_id}",:style => "text-align=center",:target=>"_blank"%>
+      </div>
+       </div>
+      <br/>
 	<div class="payment">
-		<span class="title"><%=payments[@order.payment][:name]%></span>
+      <span class="span">&nbsp; &nbsp; 	支付方式:</span>
+		<span class="title" style="color: #0abede"><%=payments[@order.payment][:name]%></span>
 		<%if @order.status == 'active' && @order.pay_status == '0'%>
-		<a href="#" class="change" id="change_payment">更改支付方式>> </a>
+		<a href="#" class="change " style="margin-left: 40%" id="change_payment">更改支付方式>> </a>
 		<%end%>
 		<div><%=payments[@order.payment][:extra].html_safe%></div>
 	</div>
@@ -79,10 +159,21 @@
             </label>
 	</div>
 
+        <br/>
+      <br/>
+
+
 	<div class="actions">
-		<div>支付成功后，可以在<%=link_to "订单详情",detail_order_path(@order),:target=>"_blank"%>处查看订单和追踪订单状态</div>
+      <div class="list_status">
+
+        <h2 class="blue" style="color: #0abede">
+          <span class="pay_icon"></span>
+          <span >支付成功后，可以在<%=link_to "订单详情",detail_order_path(@order),:target=>"_blank"%>处查看订单和追踪订单状态</span>
+        </h2>
+      </div>
 		<br>
 		<%=f.submit "安全支付",:class=>"btn  btn-inverse" if @order.pay_status == '0' && @order.status == 'active' && @order.payment != 'offline' %>
 	</div>
 <%end%>
 </div>
+
