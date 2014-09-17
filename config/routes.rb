@@ -495,7 +495,7 @@ end
         get 'mancoder_show'   ###显示万家当前用户的所有订单
         get 'tairyo_order'
         get 'norsh_show_order'
-
+        get 'index_mobile'
 
       end
     end

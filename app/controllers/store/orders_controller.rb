@@ -125,6 +125,24 @@ class Store::OrdersController < ApplicationController
     end
 	end
 
+  def index_mobile             ###手机订单
+    supplier_id = params[:supplier_id]
+    if  @user
+      supplier_id = @user.account.supplier_id
+      if supplier_id == nil
+        supplier_id=78
+      end
+      @supplier = Ecstore::Supplier.find(supplier_id)
+      @orders =  @user.orders.order("createtime desc")
+
+      if params["platform"]=="mobile"
+        render :layout=>@supplier.layout
+      end
+    else
+      return_url={:return_url => "/goods?platform= #{params["platform"]}&supplier_id=#{supplier_id}"}.to_query
+      redirect_to "/mlogin?#{return_url}&id=#{supplier_id}"
+    end
+  end
 	def show
 
 		@order = Ecstore::Order.find_by_order_id(params[:id])
