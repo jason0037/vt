@@ -24,9 +24,7 @@
           color: #dd514c;
       }
       .ahref{
-          clear: both;
-       float: right;
-
+        width: 100%;
 
       }
   </style>
@@ -53,43 +51,40 @@
 
 
   <div >
-    <span class="span">商品价格：</span>        <span style="float: right">   <%=order_item.price%>    </span>
+    <span class="span"> &nbsp; &nbsp;商品价格：</span>        <span style="float: right">   <%=order_item.price%> &nbsp; &nbsp;    </span>
   </div>
 
   <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
   <div class="">
-    <span class="span">商品数量：</span>     <span style="float: right">   <%=order_item.nums.to_i%>    </span>
+    <span class="span"> &nbsp; &nbsp;商品数量：</span>     <span style="float: right">   <%=order_item.nums.to_i%>个 &nbsp; &nbsp;    </span>
   </div>
 
   <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
-  <div style="display: none">
-   </div>
-<hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">                                             </span>
 
 
   <div class="">
-    <span class="span">金额小计：</span>       <span style="float: right">    &yen;<%=(order_item.price * order_item.nums).to_i if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
-                  </span>
+    <span class="span"> &nbsp; &nbsp;金额小计：</span>       <span style="float: right">    &yen;<%=(order_item.price * order_item.nums).to_i if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
+    &nbsp; &nbsp;            </span>
   </div>
   <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
 
   <div >
-    <span class="span">订单编号：</span> <span style="float: right">  <%=@order.order_id%>     </span>
+    <span class="span"> &nbsp; &nbsp;订单编号：</span> <span style="float: right">  <%=@order.order_id%> &nbsp; &nbsp;    </span>
   </div>
 
   <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
 
   <div >
-    <span class="span">下单时间：</span> <span style="float: right">  <%=@order.created_at%>     </span>
+    <span class="span"> &nbsp; &nbsp;下单时间：</span> <span style="float: right">  <%=@order.created_at%> &nbsp; &nbsp;     </span>
   </div>
   <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
 
   <div >
-    <span class="span">订单状态：</span> <span >  <%=@order.order_status_text%>     </span>  <a class="ahref am-btn  am-btn-danger " href="/goods/<%=@order.order_id%>?platform=mobile&supplier_id=97" class="btn btn-inverse">去付款</a>
-
+    <span class="span"> &nbsp; &nbsp;订单状态：</span> <span >  <%=@order.order_status_text%> &nbsp; &nbsp;     </span>
 
   </div>
 
+  <a class="ahref am-btn  am-btn-danger " href="/goods/<%=@order.order_id%>?platform=mobile&supplier_id=97" class="btn btn-inverse">去付款</a>
 
 </div>
     <%end%>
