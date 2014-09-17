@@ -135,9 +135,8 @@ class Store::OrdersController < ApplicationController
       end
       @supplier = Ecstore::Supplier.find(supplier_id)
       render :layout=>@supplier.layout
-    else
-      params["platform"]=="manco"
-      render :layout =>"manco_new"
+
+
 
     end
 
