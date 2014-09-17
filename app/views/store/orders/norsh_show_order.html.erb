@@ -3,10 +3,10 @@
 <head>
   <%= stylesheet_link_tag    "manco/amui.all.min.css" %>
   <%= stylesheet_link_tag    "manco/amui.all.css" %>
-  <%= javascript_include_tag "manco/amui.widget.helper.js" %>
-  <%= javascript_include_tag "manco/zepto.min.js" %>
 
-  <%= javascript_include_tag "manco/amui.widget.helper.min" %>
+
+  <%= javascript_include_tag "manco/amui.widget.helper.js" %>
+ <%= javascript_include_tag "manco/zepto.min.js" %>
   <%= javascript_include_tag "manco/amui.js" %>
   <%= javascript_include_tag "manco/amui.min.js" %>
 
@@ -39,7 +39,7 @@
   <div id="demo-view" data-backend-compiled=""><figure data-am-widget="figure" class="am am-figure am-figure-default am-no-layout am-figure-zoomable">
     <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product'%>
     <%=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
-    <figcaption class="am-figure-capition-btm"><%=link_to order_item.name,good_path(order_item.good.bn),:target=>"_blank"%></figcaption></figure></div>
+    <figcaption ><%=link_to order_item.name,good_path(order_item.good.bn),:target=>"_blank"%></figcaption></figure></div>
 
 
 
