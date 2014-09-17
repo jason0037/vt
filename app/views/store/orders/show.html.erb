@@ -1,15 +1,11 @@
 <style type="text/css">
-  html{
-      width: 100%;
-  }
+
   body{
       background: #ffffff;
-      width: 100%;
-  }
-
-  .showall{
 
   }
+
+
  .status_text {
         font-family: "微软雅黑","宋体";
         display: inline-block;
@@ -52,6 +48,9 @@
    .pay_text{
        line-height: 3;
    }
+        .btn-inverse{
+            width: 100%;
+        }
 </style>
 
 <div class="">
@@ -77,8 +76,8 @@
 
 
      <div class="showall">
-	<div class="detail" >
-    <span class="span">	&nbsp; &nbsp; 订单编号:</span> <span style="text-align: right"><%=@order.order_id%>&nbsp; &nbsp;&nbsp; &nbsp;</span>
+	<div  class="detail" >
+    <span class="span">	&nbsp; &nbsp; 订单编号:</span> <span style="margin-left: 40%" ><%=@order.order_id%></span>
     </div>
 
       <div class="detail" >
@@ -97,8 +96,8 @@
 			<span id="pmts_total" class="hide" data-amount="<%=@order.pmts_total%>"></span>
 
        <br/>
-      <div class="detail" >
-		<%=link_to "查看订单详细信息>>","/orders/norsh_show_order?id=#{@order.order_id}",:style => "text-align=center",:target=>"_blank"%>
+      <div class="detail" style="text-align: right" >
+		<%=link_to "查看订单详细信息>>","/orders/norsh_show_order?id=#{@order.order_id}",:style => "text-align=center",:target=>"_blank"%>&nbsp;
       </div>
        </div>
       <br/>
