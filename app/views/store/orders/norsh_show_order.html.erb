@@ -1,0 +1,50 @@
+<%= stylesheet_link_tag    "manco/amui.all.min.css" %>
+<%= stylesheet_link_tag    "manco/amui.all.css" %>
+   <style type="text/css">
+     span{
+         color: #dd514c;
+     }
+   </style>
+<%@order.order_items.each do |order_item|%>
+
+
+<div class="am-panel am-panel-danger">
+  <div class="am-panel-hd" style="text-align: center">订单详细</div>
+  <div class="am-panel-bd">
+
+
+    <span >商品名称：</span>  <%=link_to order_item.name,good_path(order_item.good.bn),:target=>"_blank"%>
+  </div>
+
+  <div class="am-panel-bd">
+    <span>商品属性：</span>    <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product'%>
+    <%=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
+
+  </div>
+
+  <div class="am-panel-bd">
+    <span>商品价格：</span>           <%=order_item.price%>
+  </div>
+  <div class="am-panel-bd">
+    <span>商品数量：</span>           <%=order_item.nums.to_i%>
+  </div>
+  <div class="am-panel-bd">
+    <span>金额小计：</span>           &yen;<%=(order_item.price * order_item.nums).to_i if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
+
+  </div>
+
+
+
+
+  <div class="am-panel-bd">
+
+
+  <span >下单时间：</span>   <%=@order.created_at%>
+  </div>
+
+
+
+
+
+</div>
+    <%end%>

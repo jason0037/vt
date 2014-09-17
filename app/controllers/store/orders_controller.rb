@@ -136,9 +136,10 @@ class Store::OrdersController < ApplicationController
       @supplier = Ecstore::Supplier.find(supplier_id)
       render :layout=>@supplier.layout
 
-
-	end
+    end
   end
+
+
 	def create
 		addr = Ecstore::MemberAddr.find_by_addr_id(params[:member_addr])
     hour=params["hour"];
@@ -561,7 +562,9 @@ class Store::OrdersController < ApplicationController
  def norsh_show_order
 
 
-   @order=Ecstore::Order.paginate :page=>params[:page]
+   @order =Ecstore::Order.find_by_order_id(params[:id])
+   render layout: nil
+
  end
 
 
