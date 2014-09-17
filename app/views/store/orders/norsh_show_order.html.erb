@@ -28,13 +28,14 @@
 
 <div class="am-panel am-panel-danger">
   <div class="am-panel-hd" style="text-align: center" >订单详细</div>
-  <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product'%>
-  <%=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
 
-  <
-  <div class="am-panel-bd">
-  <span >商品名称：</span>  <%=link_to order_item.name,good_path(order_item.good.bn),:target=>"_blank"%>
-  </div>
+  <div id="demo-view" data-backend-compiled=""><figure data-am-widget="figure" class="am am-figure am-figure-default am-no-layout am-figure-zoomable">
+    <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product'%>
+    <%=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
+    <figcaption class="am-figure-capition-btm"><%=link_to order_item.name,good_path(order_item.good.bn),:target=>"_blank"%></figcaption></figure></div>
+
+
+
 
 
 
