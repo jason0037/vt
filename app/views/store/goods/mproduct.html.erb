@@ -49,11 +49,11 @@
         </p>
           <p class="new_pricediv clearfix">
             <span class="g_d_price" style="font-size:15px ">原价：</span>
-            <span class="g_d_price">¥<%=@good.wholesale %></span>
+            <span class="fontstyle">¥<%=@good.wholesale %></span>
             </p>
           <p class="new_pricediv clearfix">
-            <span class="g_d_price" style="font-size:15px ">市场价：</span>
-            <span class="g_d_price">¥<%=@good.mktprice %></span>
+
+            <span class="g_d_price" style="font-size:15px ;color:#cc69bc ">市场价:¥<%=@good.mktprice %></span>
             </p>
           <p class="new_pricediv clearfix">
             <span class="g_d_price">¥<%=format('%.2f',@good.share*@good.default_product.price) %></span>
