@@ -48,7 +48,7 @@
           </div>
           <a class="cart_orderlist_p" href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%>" target="_blank"  style="display:block">
             <span class="c_price">¥<%= format('%.2f',line_item.good.price)%></span>
-            <span class="fontstyle">¥<%= format('%.2f',line_item.good.mktprice)%></span>
+            <span class="fontstyle">¥<%= format('%.2f',line_item.good.wholesale)%></span>
           </a>
 		<span class="delete">
 
