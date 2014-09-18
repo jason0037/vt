@@ -122,7 +122,9 @@
 
 <div class="bottomdiv clearfix">
   <div class="inner clearfix">
-    <a class="fl cart_time" href="/cart/mobile?id=<%=@supplier.id%>">
+    <%if @user%>
+        <a class="fl cart_time" href="/cart/mobile?id=<%=@supplier.id%>">
+    <%end%>
       <em class="num_cart hide"></em>
       <span class="carticon fl"></span>
       <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
