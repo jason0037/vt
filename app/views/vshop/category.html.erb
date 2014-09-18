@@ -5,7 +5,7 @@
   <span class="headtit">
   <%#=params[:name]%>
       <% if @supplier.id==97%>
-       开业大酬宾 全场<span style="color: red">8</span>折
+       开业酬宾全场<span style="color: red">8</span>折一个月
       <%end%>
   </span>
   <div class="head_right fr"><a href="/m" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
@@ -285,15 +285,17 @@
     <dt class="pic"> <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">  </dt>
     <dd class="b_goods_name"><%=good.name%></dd>
     <dd class="pricebox clearfix"><span class="grallyprice fl">¥<%=good.price%></span>
-     原价 <span class="fontstyle fl pl05">¥<%=format('%.1f',good.wholesale)%></span>
-     市场价 <span class="fontstyle fl pl05">¥<%=format('%.1f',good.mktprice)%></span>
+    <span class="fontstyle fl pl05">¥<%=format('%.1f',good.wholesale)%></span>
+     <!--市场价 <span class="fontstyle fl pl05">¥<#%=format('%.1f',good.mktprice)%></span>-->
       <!--<span class="fr"><%#=format('%.1f', good.price*10/good.mktprice)%>折</span>-->
-         <span style="color: red">8</span>折
+
     </dd>
+
     <dd class="pricebox clearfix">
       <span class="grallyprice fl">¥<%=format('%.2f',good.share*good.default_product.price) %></span>
       <span class="fr">(推广佣金）</span>
     </dd>
+
   </a>
 </dl>
 <%end%>
