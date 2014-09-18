@@ -75,9 +75,17 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         desc ="每公斤奶酪都是有10公斤的牛奶浓缩而成，含有丰富的蛋白质、钙、脂肪、钠和维生素等营养成分。70克*24/箱 产地:法国"
         pic_url="http://www.trade-v.com/images/a074/a0741022_m.jpg"
         link_url="http://www.trade-v.com/mproducts?id=a0741022&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
-
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
+
+      when '测'
+        title="[测试商品]-----------------"
+        desc ="每公斤奶酪都是有10公斤的牛奶浓缩而成，含有丰富的蛋白质、钙、脂肪、钠和维生素等营养成分。70克*24/箱 产地:法国"
+        pic_url="http://www.trade-v.com/images/a074/a0741022_m.jpg"
+        link_url="http://www.trade-v.com/mproducts?id=a980000&supplier_id=78&fp=mproducts"
+        articles = [generate_article(title, desc, pic_url, link_url)]
+        reply_news_message(articles)
+
       when 'share'
         share = 0
         @order = Ecstore::Order.where(:recommend_user=>@weixin_message.FromUserName).select("sum(commission) as share").group(:recommend_user).first
@@ -91,6 +99,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         link_url="http://www.trade-v.com/share?FromUserName=#{user}&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
+
       when 'subscribe'
         title="您好，#{@weixin_public_account.name}欢迎您"
         desc ="#{@weixin_public_account.desc}"
@@ -99,18 +108,13 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
       else
-        title="[紫薇]牛奶/起司棒饼干仅售 35.10元"
-        desc ="[紫薇]牛奶/起司棒饼干 500克 产地:台湾"
-        pic_url="http://www.trade-v.com/images/a076/a0761003_m.jpg"
-        link_url="http://www.trade-v.com/mproducts?id=a0751003&from=weixin&user=#{user}&supplier_id=#{id}"
-
-        title1="[叶客]小叶苦丁茶仅售 50.00元"
-        desc1 ="保质期：365   包装种类: 罐装   产地: 中国大陆  是否含糖: 无糖   配料表：小叶苦丁"
-        pic_url1="http://www.trade-v.com/images/a075/a0751003_m.jpg"
-        link_url1="http://www.trade-v.com/mproducts?id=a0751003&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
-
-        articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
+        title="[测试商品]-----------------"
+        desc ="每公斤奶酪都是有10公斤的牛奶浓缩而成，含有丰富的蛋白质、钙、脂肪、钠和维生素等营养成分。70克*24/箱 产地:法国"
+        pic_url="http://www.trade-v.com/images/a074/a0741022_m.jpg"
+        link_url="http://www.trade-v.com/mproducts?id=a980000&supplier_id=78&fp=mproducts"
+        articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
+
     end
 
   end
