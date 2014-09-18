@@ -8,6 +8,8 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     case @keyword
       when '买'
         render xml: send("response_news_message",{})
+      when '测'
+        render xml: send("response_news_message",{})
       when '地址'
         render xml: send("response_location_message", {})
       when '奶酪'
@@ -57,9 +59,9 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         desc ="法国进口的总统谈奶油，是从牛奶中提炼出来的纯天然食品，一般乳脂含量为16.5%，营养价值高，入口即化"
         pic_url="http://www.trade-v.com/images/a074/a0742048_m.jpg"
         link_url="http://www.trade-v.com/mproducts?id=a0742048&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
-
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
+
       when '大渔'
         title="[大渔]海鲜铁板烧"
         desc =""
@@ -67,6 +69,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         link_url="http://www.trade-v.com/tairyo"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
+
       when '奶酪'
         title="[总统 PRESIDENT]安文达切丝奶酪70克 仅售¥20.5元"
         desc ="每公斤奶酪都是有10公斤的牛奶浓缩而成，含有丰富的蛋白质、钙、脂肪、钠和维生素等营养成分。70克*24/箱 产地:法国"
