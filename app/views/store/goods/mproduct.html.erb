@@ -51,11 +51,11 @@
             <span class="g_d_price" style="font-size:15px ">原价：</span>
             <span class="fontstyle">¥<%=@good.wholesale %></span>
             </p>
-          <p class="new_pricediv clearfix">
+          <!--<p class="new_pricediv clearfix">-->
 
-            <span class="g_d_price" style="font-size:15px ;color:#cc69bc ">市场价:¥<%=@good.mktprice %></span>
-            </p>
-          <p class="new_pricediv clearfix">
+            <!--<span class="g_d_price" style="font-size:15px ;color:#cc69bc ">市场价:¥<%#=@good.mktprice %></span>-->
+            <!--</p>-->
+          <p class="new_pricediv clearfix" style="background: #ffffff">
             <span class="g_d_price">¥<%=format('%.2f',@good.share*@good.default_product.price) %></span>
             <span class="prf05">(推广佣金）</span>
             <span class="prf05"><a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">什么是佣金</a></span>
