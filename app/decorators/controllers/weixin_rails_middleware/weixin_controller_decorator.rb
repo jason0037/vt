@@ -81,14 +81,14 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       when '测'
         title="[测试商品]-----------------"
         desc ="每公斤奶酪都是有10公斤的牛奶浓缩而成，含有丰富的蛋白质、钙、脂肪、钠和维生素等营养成分。70克*24/箱 产地:法国"
-        pic_url="http://www.trade-v.com/images/a074/a0741022_m.jpg"
-        link_url="http://www.trade-v.com/mproducts?id=a980000&supplier_id=78&fp=mproducts"
+        pic_url="http://www.trade-v.com/images/a072/a0729002_b_1.jpg"
+        link_url="http://www.trade-v.com/mproducts?id=a980000&fp=mproducts&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
       when 'share'
         share = 0
-        @order = Ecstore::Order.where(:recommend_user=>@weixin_message.FromUserName).select("sum(commission) as share").group(:recommend_user).first
+        @order = Ecstore::Order.where(:recommend_user=>@weixin_message.FromUserName,:pay_status=>'1').select("sum(commission) as share").group(:recommend_user).first
         if @order
           share =@order.share.round(2)
         end

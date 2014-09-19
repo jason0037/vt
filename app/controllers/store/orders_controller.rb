@@ -178,21 +178,21 @@ class Store::OrdersController < ApplicationController
 		params[:order].merge!(:ip=>request.remote_ip)
 		params[:order].merge!(:member_id=>@user.member_id)
     params[:order].merge!(:supplier_id=>supplier_id)
-     params[:order].merge!(:ship_day=>ship_riqi.to_s)
-     params[:order].merge!(:ship_time=>hour.to_s)
+    params[:order].merge!(:ship_day=>ship_riqi.to_s)
+    params[:order].merge!(:ship_time=>hour.to_s)
 
-
-		@order = Ecstore::Order.new params[:order]
     #=====推广佣金计算=======
-    #return render :text=>session[:recommend_user]
     recommend_user = session[:recommend_user]
     if recommend_user
       params[:order].merge!(:recommend_user=>recommend_user)
       session[:recommend_user]=''
-    else
+    end
+    #return render :text=>params[:order]
+    #====================
+		@order = Ecstore::Order.new params[:order]
+    if recommend_user == nil
       @order.commission=0
     end
-    #====================
 
 		@line_items.each do |line_item|
 			product = line_item.product
@@ -407,16 +407,19 @@ class Store::OrdersController < ApplicationController
 
   def share
     wechat_user = params[:FromUserName]
+    if @user
+      wechat_user=@user.account.login_name
+    end
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
     @share=0
     @sharelast = 0
     if wechat_user
-      @order_all = Ecstore::Order.where(:recommend_user=>wechat_user,:pay_status=>1).select("sum(commission) as share").group(:recommend_user).first
+      @order_all = Ecstore::Order.where(:recommend_user=>wechat_user,:pay_status=>'1').select("sum(commission) as share").group(:recommend_user).first
 
       #return render :text=>@order.final_amount
       if @order_all
         @share = @order_all.share.round(2)
-        @order_last =Ecstore::Order.where(:recommend_user=>wechat_user,:pay_status=>1).order("createtime desc").first
+        @order_last =Ecstore::Order.where(:recommend_user=>wechat_user,:pay_status=>'1').order("createtime desc").first
         if @order_last
           @sharelast = @order_last.commission
         end

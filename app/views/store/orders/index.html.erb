@@ -19,7 +19,7 @@
                  link_title = "赠品:#{link_title}" if order_item.item_type == 'gift'
               %>
               <%=link_to good_path_ext(order_item.good),:title=>link_title,:target=>"_blank",:class=>"thumb-link" do %>
-                  <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product'%>
+                  <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product' && order_item.good%>
                   <%=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
               <%end%>
 

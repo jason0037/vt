@@ -16,8 +16,8 @@ class Ecstore::Order < Ecstore::Base
 
       self.accessible_all_columns
 
-  attr_accessor :ship_day,:ship_special,:ship_time2
-      attr_accessible :order_id,:ship_day, :ship_special,:from_addr, :ship_time2, :coupon, :coupon_no,:province,:city,:district,:weight
+      attr_accessor :ship_day,:ship_special,:ship_time2
+      attr_accessible :order_id,:ship_day, :ship_special,:from_addr, :ship_time2, :coupon, :coupon_no,:province,:city,:district,:weight,:recommend_user
 
       include Ecstore::AddressFields
 

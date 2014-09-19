@@ -45,9 +45,9 @@
                  link_title = order_item.name
                  link_title = "赠品:#{link_title}" if order_item.item_type == 'gift'
               %>
-
-              <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product'%>
-              <%=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
+              <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.good%>
+              <%#=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product'%>
+              <%#=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
 
 
           <%end%>

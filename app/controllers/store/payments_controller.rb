@@ -137,7 +137,8 @@ class Store::PaymentsController < ApplicationController
 			response =  result
 		end
 		
-		redirect_to detail_order_path(@payment.pay_bill.order)
+		#redirect_to detail_order_path(@payment.pay_bill.order)
+    redirect_to  "/orders/norsh_show_order?id=#{@payment.pay_bill.order.order_id}"
 	end
 
 	def test_notify
