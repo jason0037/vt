@@ -80,7 +80,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
       when '测'
         title="[测试商品]-----------------"
-        desc ="每公斤奶酪都是有10公斤的牛奶浓缩而成，含有丰富的蛋白质、钙、脂肪、钠和维生素等营养成分。70克*24/箱 产地:法国"
+        desc ="测试商品0.01元，佣金3.00元"
         pic_url="http://www.trade-v.com/images/a072/a0729002_b_1.jpg"
         link_url="http://www.trade-v.com/mproducts?id=a980000&fp=mproducts&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
