@@ -96,8 +96,8 @@ class Store::GoodsController < ApplicationController
 
    @recommend_user = session[:recommend_user]
 
-   if params[:wechatuser]
-    @recommend_user=params[:wechatuser]
+   if @recommend_user==nil &&  params[:wechatuser]
+    @recommend_user = params[:wechatuser]
    end
    if @recommend_user
      member_id =-1

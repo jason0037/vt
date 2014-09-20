@@ -185,7 +185,6 @@ class Store::OrdersController < ApplicationController
     recommend_user = session[:recommend_user]
     if recommend_user
       params[:order].merge!(:recommend_user=>recommend_user)
-      session[:recommend_user]=''
     end
     #return render :text=>params[:order]
     #====================
