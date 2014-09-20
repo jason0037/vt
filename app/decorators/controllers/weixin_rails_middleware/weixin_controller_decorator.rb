@@ -8,7 +8,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     case @keyword
       when '买'
         render xml: send("response_news_message",{})
-      when '测'
+      when '测试'
         render xml: send("response_news_message",{})
       when '地址'
         render xml: send("response_location_message", {})
