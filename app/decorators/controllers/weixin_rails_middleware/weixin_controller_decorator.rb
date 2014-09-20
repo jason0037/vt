@@ -78,7 +78,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
-      when '测'
+      when '测试'
         title="[测试商品]-----------------"
         desc ="测试商品0.01元，佣金3.00元"
         pic_url="http://www.trade-v.com/images/a072/a0729002_b_1.jpg"
