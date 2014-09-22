@@ -40,23 +40,10 @@
 <div class="am-panel am-panel-danger">
   <div class="am-panel-hd" style="text-align: center" >订单详细</div>
 
-
-  <div data-am-widget="slider" class="am-slider am-slider-default" data-am-slider='{}'>
-    <ul class="am-slides">
-      <%@order.order_items.each do |order_items|%>
-      <li>
-        <%=image_tag order_items.good.medium_pic,:class=>"thumb" if order_items.item_type == 'product'%>
-        <%=image_tag order_items.product.gift_image_url,:class=>"thumb" if order_items.item_type == 'gift'%>
-      </li>
-       <%end%>
-    </ul>
-  </div>
-
-
-
-
-
-
+  <div id="demo-view" data-backend-compiled=""><figure data-am-widget="figure" class="am am-figure am-figure-default am-no-layout am-figure-zoomable">
+    <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product'%>
+    <%=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
+    <figcaption ><%= order_item.name%></figcaption></figure></div>
 
 
   <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
