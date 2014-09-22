@@ -49,11 +49,23 @@
   <div class="am-panel-hd">购物车</div>
 
 </div>
+
+
+
 <div id="cart">
   <div class="am-list-news-bd">
     <ul class="am-list">
+      <%if @line_items[0]== nil%>
+          <a class="am-btn am-btn-warning" style="margin-left: 30%" href="/vshop/97/category?cat=573">
+            <i class="am-icon-shopping-cart"></i>
+            购物车是空的哦～～
+          </a>
 
-      <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
+    <%else%>
+
+
+        <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
+
           <div style="background: #f0f1ff" id="line_<%=line_item.obj_ident%>">
             <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
               <div class="am-col col-sm-4 am-list-thumb">
@@ -108,6 +120,7 @@
             <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
           </div>
       <%end%>
+      <%end %>
     </ul>
   </div>
 

@@ -3,12 +3,12 @@
         margin-left: 100px;
 
     }
-    #sex{
-        width: 100%;
-        height: 100%;
-    }
-</style>
 
+</style>
+<div class="am-panel am-panel-success" style="text-align: center">
+  <div class="am-panel-hd">佣金账号</div>
+
+</div>
 
 <%=form_for @user,:url=>profile_path,:method=>:put,:html=>{:id=>"basic_form",:class=>"am-form",:supplier=>"#{@supplier.id}"} do |f|%>
 
@@ -24,7 +24,7 @@
 
     <div class="am-input-group">
       <span class="am-input-group-label">性别:</span>
-      <select name="ecstore_user[sex] " class="am-input-group-label" id="sex">
+      <select name="ecstore_user[sex] " class="am-form-field" style="height: 40px" >
 
         <option name="1" value="1">男</option> <option name="2" value="2">女</option>
       </select>
