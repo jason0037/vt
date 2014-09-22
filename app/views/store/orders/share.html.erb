@@ -4,33 +4,36 @@
   <div class="head_right fr"><a href="/m" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
 </header>
 <div class="space10"></div>
-<div class="userdiv">
-  <div class="checktit clearfix"><span class="pay_sum"></span>佣金结算</div>
-  <div class="checkcon clearfix" id="order-m-list">
 
-    <div class="sumtotal clearfix">
-      <p>总收益佣金：<span class="fr">¥<%=@share%></span></p>
+<div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+  <div class="am-panel-hd">总收益佣金 <span style="float: right">¥<%=@share%></span></div>
+</div>
+<div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+  <div class="am-panel-hd">已领取佣金 <span style="float: right">¥0</span></div>
+</div>
 
-      <p>已领取佣金：<span class="fr">¥0</span></p>
-      <p>待领取佣金：<span class="fr">¥<%=@share%></span></p>
-    </div>
-    <input type="hidden" name="payable" value="">
-  </div>
+<div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+  <div class="am-panel-hd">待领取佣金 <span style="float: right">¥<%=@share%></span></div>
 </div>
 <input type="hidden" name="favourable_id" value="">
 
-<div class="userdiv" data-cartforms="invoice">
-  <div class="invoice clearfix">
-    <h3>最新佣金:
-      <span class="new">¥<%=format("%.2f",@sharelast)%></span><span class="down_arrow"></span>
-    </h3>
-  </div>
-  <div class="invoice clearfix hide">
-    <h3>最新佣金:</h3>
-    <div class="dashline2"></div>
-    <input name="invoice" type="text" placeholder="" value="¥<%=format("%.2f",@sharelast)%>" class="text_input w100">
-  </div>
+
+<div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+  <div class="am-panel-hd">最新佣金 <span style="float: right">¥<%=format("%.2f",@sharelast)%></span></div>
 </div>
+
+<!--<div class="userdiv" data-cartforms="invoice">-->
+<!--<div class="invoice clearfix">-->
+<!--<h3>最新佣金:-->
+<!--<span class="new">¥<%#=format("%.2f",@sharelast)%></span><span class="down_arrow"></span>-->
+<!--</h3>-->
+<!--</div>-->
+<!--<div class="invoice clearfix hide">-->
+<!--<h3>最新佣金:</h3>-->
+<!--<div class="dashline2"></div>-->
+<!--<input name="invoice" type="text" placeholder="" value="¥<%#=format("%.2f",@sharelast)%>" class="text_input w100">-->
+<!--</div>-->
+<!--</div>-->
 
 </div>
 <div class="checktit clearfix">

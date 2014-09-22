@@ -1,14 +1,31 @@
+<style type="text/css">
+    .new-search .new-mu_l2 {
+        padding: 5px 0;
+        border-bottom: 1px solid #e8e5e5;
+    }
+    .new-mu_l2 {
+        _zoom: 1;
+    }
 
-<header id="header" class="header clearfix">
+    .new-mu_l2a {
+        display: block;
+        overflow: hidden;
+        clear: both;
+        padding: .22em 5px;
+    }
+    a {
+        color: #000;
+        text-decoration: none;
+    }
 
-  <div class="head_left fl"><a href="javascript:history.go(-1)"><span class="h_back"></span></a></div>
-  <span class="headtit">
-  <%#=params[:name]%>
-      <% if @supplier.id==97%>
-       开业酬宾全场<span style="color: red">8</span>折一个月
-      <%end%>
-  </span>
-  <div class="head_right fr"><a href="/m" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
+</style>
+<header style="text-align: center" >
+  <% if @supplier.id==97%>
+      <span >开业酬宾全场<span style="color: red">8</span>折一个月 </span>
+  <%end%></header>
+
+</span>
+<div class="head_right fr"><a href="/m" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
 </header>
 <div id="w_container" style="overflow:hidden; position:relative">
 
@@ -273,36 +290,52 @@
 
 
     </div>
-     </div>
+  </div>
 </div>
 
 
-<div class="gridItem">
+<div class="am-list-news-bd">
+  <ul class="am-list">
 
-<% @goods.each do |good|%>
-<dl class="rs-item pg1" data-mid="<%=good.bn%>">
-  <a href="/mproducts?id=<%=good.bn%>&supplier_id=<%=@supplier.id%>&fp=category" class="clearfix ablock">
-    <dt class="pic"> <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">  </dt>
-    <dd class="b_goods_name"><%=good.name%></dd>
-    <dd class="pricebox clearfix"><span class="grallyprice fl">¥<%=good.price%></span>
-    <span class="fontstyle fl pl05">¥<%=format('%.1f',good.wholesale)%></span>
-     <!--市场价 <span class="fontstyle fl pl05">¥<#%=format('%.1f',good.mktprice)%></span>-->
-      <!--<span class="fr"><%#=format('%.1f', good.price*10/good.mktprice)%>折</span>-->
+    <% @goods.each do |good|%>
 
-    </dd>
+        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+          <a href="/mproducts?id=<%=good.bn%>&supplier_id=<%=@supplier.id%>&fp=category" class="cart_orderlist_i">
+            <div class="am-col col-sm-4 am-list-thumb">
 
-    <dd class="pricebox clearfix">
-      <span class="grallyprice fl">¥<%=format('%.2f',good.share*good.default_product.price) %></span>
-      <span class="fr">(推广佣金）</span>
-    </dd>
+              <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
 
-  </a>
-</dl>
-<%end%>
+            </div>
+            <div class="am-col col-sm-8 am-list-main">
+              <h3 class="am-list-item-hd">
+                <%=good.name%>
+              </h3>
+              <div class="am-list-item-text">
+                <span class="" style="color: red;padding: 2px">¥<%=good.price%> </span>
+              </div>
+              <div class="am-list-item-text">
+                <span style="text-decoration:line-through">¥<%=format('%.1f',good.wholesale)%> </span>
+              </div>
+
+              <div class="am-list-item-text" >
+
+                <span style="float: right;background-color: red;color: #ffffff">(推广佣金） &nbsp;¥<%=format('%.2f',good.share*good.default_product.price) %> </span>
+              </div>
+            </div>
+
+            <div>
+
+
+            </div>
+
+          </a>
+        </li>
+
+    <%end%>
+  </ul>
 </div>
 
 
-</div>
 
 
 <!-- <div class="num_coupon"><p>有一张满<span class="fontred">300</span>减<span class="fontred">100</span>优惠券可用</p></div> -->

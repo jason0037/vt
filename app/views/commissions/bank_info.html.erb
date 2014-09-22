@@ -1,46 +1,88 @@
-<%=form_for @user,:url=>profile_path,:method=>:put,:html=>{:id=>"basic_form",:supplier=>"#{@supplier.id}"} do |f|%>
-    <div class="field">
-      <label>真实姓名:</label>
-      <%=f.text_field :name%>
-    </div>
-    <div class="field">
-      <label>性别:</label>
-		<span>
-			<%=f.radio_button :sex, 1%>
-          <label for="ecstore_user_sex_1" class="radio-label">男</label>
-          <%=f.radio_button :sex, 0%>
-          <label for="ecstore_user_sex_0" class="radio-label">女</label>
-		</span>
-    </div>
-    <div class="field">
-      <label>银行信息:</label>
-      <span>银行</span>
-      <input name="bank_info[bank]" value=""><br/>
-      <span>支行</span>
-      <input name="bank_info[branch]" value=""><br/>
-      <span>账号</span>
-      <input name="bank_info[account]" value=""><br/>
-      <span class="tip"> </span>
-    </div>
+<style type="text/css">
+    input[type="radio"]{
+        margin-left: 100px;
 
-    <div class="field">
-      <label><em class="required">*</em> 收信邮箱:</label>
-      <%=f.text_field :email%>
-      <%if @user.email_validate=='true'%>
-          <span class="help-block"></span>
-          <span class="tip">邮箱已认证</span>
-      <%end%>
-    </div>
+    }
+    #sex{
+        width: 100%;
+        height: 100%;
+    }
+</style>
 
-    <div class="field">
-      <label>手机:</label>
-      <%=f.text_field :mobile%>
-      <%if @user.sms_validate=='true'%>
-          <span class="tip">手机已认证</span>
-      <%end%>
+
+<%=form_for @user,:url=>profile_path,:method=>:put,:html=>{:id=>"basic_form",:class=>"am-form",:supplier=>"#{@supplier.id}"} do |f|%>
+
+
+    <div class="am-input-group">
+      <span class="am-input-group-label">真实姓名:</span>
+
+      <%=f.text_field :name,  :class=>"am-form-field" ,:placeholder=>"真实姓名"%>
+    </div>
+    <br/>
+
+
+
+    <div class="am-input-group">
+      <span class="am-input-group-label">性别:</span>
+      <select name="ecstore_user[sex] " class="am-input-group-label" id="sex">
+
+        <option name="1" value="1">男</option> <option name="2" value="2">女</option>
+      </select>
 
     </div>
+    <br/>
+
+    <div class="am-panel am-panel-default">
+      <div class="am-panel-hd">银行信息</div>
+      <div class="am-panel-bd">
+        <div class="am-input-group">
+          <span class="am-input-group-label">银行:</span>
+          <input name="bank_info[bank]" class="am-form-field" value=""><br/>
+        </div>
+        <br/>
+
+        <div class="am-input-group">
+          <span class="am-input-group-label">支行:</span>
+          <input name="bank_info[branch]" class="am-form-field" value=""><br/>
+        </div>
+        <br/>
+
+        <div class="am-input-group">
+          <span class="am-input-group-label">账号:</span>
+          <input name="bank_info[account]" class="am-form-field" value=""><br/>
+        </div>
+
+        <span class="tip"> </span>
+
+      </div>
+    </div>
+
+    <div class="am-panel am-panel-default">
+      <div class="am-panel-hd">收信邮箱</div>
+      <div class="am-panel-bd">
+        <div class="am-input-group">
+          <span class="am-input-group-label">收信邮箱:</span>
+          <%=f.text_field :email ,:class=>"am-form-field"%>
+          <%if @user.email_validate=='true'%>
+              <span class="help-block"></span>
+              <span class="tip">邮箱已认证</span>
+          <%end%>
+        </div>
+        <br/>
+        <div class="am-input-group">
+          <span class="am-input-group-label">手机:</span>
+          <%=f.text_field :mobile ,:class=>"am-form-field"%>
+          <%if @user.sms_validate=='true'%>
+              <span class="help-block"></span>
+              <span class="tip">手机已认证</span>
+          <%end%>
+        </div>
+
+
+      </div>
+    </div>
+
     <div class="actions">
-      <%=f.submit "保存",:class=>"btn"%>
+      <%=f.submit "保存",:class=>"am-btn am-btn-warning am-btn-block"%>
     </div>
 <%end%>
