@@ -59,7 +59,7 @@
 </head>
 <body>
 <header data-am-widget="header" class="am-header am-header-warning  am-no-layout"><div class="am-header-left am-header-nav">
-  <!--<a href="#left-link" class=""><img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""></a>-->
+  <a href="javascript:history.go(-1)" class=""><img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""></a>
 </div>
   <h1 class="am-header-title"><img src="/images/a0<%=@supplier.id%>/logo.png"></h1>
   <div class="am-header-right am-header-nav">
@@ -171,7 +171,7 @@
     </div>
   </div>
 </div>
-
+     <br/>
 
 <div class="footer clearfix">
   <div class="footnav clearfix">
@@ -182,8 +182,8 @@
                 location.href = "/logout?id=<%=@supplier.id%>&platform=mobile"
             }
         </script>
-        <a href="user.html"><%=@user.account.id%></a>
-        <a href="/logout?id=<%=@supplier.id%>&platform=mobile">退出登录</a>
+        <a href="/vshop/<%=@supplier.id%>/user" style="font-size: 20px; "><%=@user.account.id%></a>
+        <a href="/logout?id=<%=@supplier.id%>&platform=mobile" class="am-btn am-btn-warning " >退出登录</a>
     <%else%>
 
         <a href="/mlogin?id=<%=@supplier.id%>&platform=mobile&<%=return_url %>" mars_sead="footer-login_btn">登录</a>
