@@ -4,7 +4,7 @@
     }
     .icon-arr {
         position: absolute;
-        top: 17px;
+        top: 10px;
         right: 10px;
         width: 10px;
         height: 15px;
@@ -66,4 +66,22 @@
 
   <a href="user-logout.html" class="btn_white btn_out" mars_sead="logout_btn" style="display:none">退出登录</a>
   <div class="space20"></div>
+</div>
+
+<div class="footnav clearfix">
+  <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+  <%if @user%>
+      <script>
+          if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
+              location.href = "/logout?id=<%=@supplier.id%>&platform=mobile"
+          }
+      </script>
+      <a href="/vshop/<%=@supplier.id%>/user" style="font-size: 20px; "><%=@user.account.id%></a>
+      <a href="/logout?id=<%=@supplier.id%>&platform=mobile" class="am-btn am-btn-warning " >退出登录</a>
+  <%else%>
+
+      <a href="/mlogin?id=<%=@supplier.id%>&platform=mobile&<%=return_url %>" mars_sead="footer-login_btn">登录</a>
+      <a href="/mregister?id=<%=@supplier.id%>&platform=mobile&<%=return_url%>">注册</a>
+  <%end%>
+  <a href="?t=1#" class="backtop" mars_sead="home_foot_top_btn"></a>
 </div>
