@@ -311,14 +311,14 @@
                 <%=good.name%>
               </h1>
               <div class="am-list-item-text">
-                <strong class="" style="color: red;font-size: 16px">¥<%=good.price%> </strong> <span style="text-decoration:line-through">¥<%=format('%.1f',good.wholesale)%> </span>
+                <strong class="" style="color: red;font-size: 16px">¥<%=good.price%> &nbsp;</strong> <span style="text-decoration:line-through">¥<%=format('%.1f',good.wholesale)%> </span>
               </div>
 
+                 <br/>
 
-              <div class="am-list-item-text" >
 
                 <span class="am-btn am-btn-danger  " style="float: right">(推广佣金） &nbsp;¥<%=format('%.2f',good.share*good.default_product.price) %> </span>
-              </div>
+
             </div>
 
             <div>
