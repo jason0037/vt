@@ -8,11 +8,9 @@ class Store::CartController < ApplicationController
   end
 
   def mobile
-
+    supplier_id=params[:id]
     if  @user
-      supplier_id=params[:id]
-
-      if supplier_id == nil
+         if supplier_id == nil
         supplier_id=78
       end
       @supplier = Ecstore::Supplier.find(supplier_id)
