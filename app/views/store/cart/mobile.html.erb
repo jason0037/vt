@@ -90,14 +90,14 @@
             	 	数量：
 				 </span>
             	 <span class="good_data_num_l J_num_cart_reduce" >
-            	 	<a href="javascript:;" id="subtract"  mars_sead="cart_edit_btn" style="font-size: 30px" data_mars="prd_id:26038564">-</a>
+            	 	<a href="javascript:;" class="subtract"  mars_sead="cart_edit_btn" style="font-size: 30px" data_mars="prd_id:26038564">-</a>
 				 </span>
 
                     <em class="good_data_num_m J_num_cart_txt">
                       <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity good_data_num_m J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
                     </em>
 				 <span class="good_data_num_r J_num_cart_add" onclick="VsmCart.addNum(this)" >
-                      <a href="javascript:;" id="addition" mars_sead="cart_edit_btn" style="font-size: 26px"  data_mars="prd_id:26038564">+</a>
+                      <a href="javascript:;" class="addition" mars_sead="cart_edit_btn" style="font-size: 26px"  data_mars="prd_id:26038564">+</a>
 				</span>
                     <span  style="float: right;color: #ff0000">¥<%= format('%.2f',line_item.good.price)%></span>
 
@@ -168,14 +168,14 @@
             });
         });
 
-     $("#subtract").click(function(){
-         var quantitys = $("#quantity").val();
+     $(".subtract").click(function(){
+         var quantitys = $(".quantity").val();
                if (quantitys<=1){
                            alert("亲，不能在减了～") ;return false;
          }
         else{
              var quantity= quantitys-1;
-            $("#quantity").val(quantity) ;
+            $(".quantity").val(quantity) ;
                    var url = $(" .quantity").data('url');
                    $.ajax(url,{
                        type: "PUT",
@@ -185,11 +185,11 @@
                    });
          }
      })
-        $("#addition").click(function(){
-            var quantitys = $("#quantity").val();
+        $(".addition").click(function(){
+            var quantitys = $(".quantity").val();
 
                 var quantity = quantitys * 1 + 1;
-                $("#quantity").val(quantity);
+                $(".quantity").val(quantity);
                 var url = $(" .quantity").data('url');
                 $.ajax(url, {
                     type: "PUT",
