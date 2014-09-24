@@ -3,9 +3,7 @@ class MancoController < ApplicationController
 
   layout "manco"
   def index
-    @supplier_id=params[:id]
-    @supplier = Ecstore::Supplier.find(@supplier_id)
-    render :layout=>@supplier.layout
+
   end
   def show
     @supplier_id=params[:supplier_id]
@@ -13,24 +11,27 @@ class MancoController < ApplicationController
   end
 
   def find_manco
+    supplier_id = params[:supplier_id]
      if @user
-       supplier_id = params[:supplier_id]
+
        @supplier =Ecstore::Supplier.find(supplier_id)
 
      else
-       redirect_to "/mlogin?id=98&platform=mobile&return_url=/manco/find_manco?supplier_id=98"
+       redirect_to "/mlogin?id=98&platform=mobile&return_url=/manco/find_manco?supplier_id=#{supplier_id}"
      end
   end
 
   def user
+
+    supplier_id = params[:supplier_id]
     if @user
-      supplier_id = params[:supplier_id]
+
       @supplier =Ecstore::Supplier.find(supplier_id)
     login_name=@user.login_name
     account_id=Ecstore::Account.find_by_sql(["select account_id from sdb_pam_account where login_name=?",login_name])
     @member=Ecstore::Member.find_by_sql(["select * from sdb_b2c_members where member_id=?",account_id])
    else
-       redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/user?supplier_id=98'
+       redirect_to "/mlogin?id=#{supplier_id}&platform=mobile&return_url=/manco/user?supplier_id=#{supplier_id}"
    end
 
   end
@@ -46,15 +47,16 @@ class MancoController < ApplicationController
   end
 
  def black_good_index     ###货源信息小黑板
+   supplier_id = params[:supplier_id]
    if @user
-     supplier_id = params[:supplier_id]
+
      @supplier =Ecstore::Supplier.find(supplier_id)
       @good=Ecstore::BlackGood.paginate :page=>params[:page],        ###分页语句
                                 :per_page =>5,              ###当前只显示一条
                                 :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
       @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
    else
-     redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/black_good_index?supplier_id=98'
+     redirect_to "/mlogin?id=#{supplier_id}&platform=mobile&return_url=/manco/black_good_index?supplier_id=#{supplier_id}"
    end
 
  end
@@ -74,8 +76,9 @@ class MancoController < ApplicationController
     redirect_to "/manco/black_good_index?supplier_id=98"
   end
   def black_index
-  if @user
     supplier_id = params[:supplier_id]
+  if @user
+
     @supplier =Ecstore::Supplier.find(supplier_id)
 
     account=@user.member_id
@@ -85,7 +88,7 @@ class MancoController < ApplicationController
                                    :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
     @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
   else
-  redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/black_index?supplier_id=98'
+  redirect_to "/mlogin?id=#{supplier_id}&platform=mobile&return_url=/manco/black_index?supplier_id=#{supplier_id}"
   end
   end
 
@@ -134,8 +137,9 @@ class MancoController < ApplicationController
 
 
   def blackbord
+    supplier_id = params[:supplier_id]
     if @user
-      supplier_id = params[:supplier_id]
+
       @supplier =Ecstore::Supplier.find(supplier_id)
        account=@user.member_id
        @member=   Ecstore::User.find_by_member_id(account)
@@ -143,7 +147,7 @@ class MancoController < ApplicationController
         redirect_to '/profile/mancouser?supplier_id=98'
       end
   else
-    redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/blackbord?supplier_id=98'
+    redirect_to "/mlogin?id=#{supplier_id}&platform=mobile&return_url=/manco/blackbord?supplier_id=#{supplier_id}"
   end
 
 
