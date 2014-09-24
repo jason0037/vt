@@ -39,7 +39,7 @@ end
 
   get 'wlogin'=>"sessions#new_manco"
   get 'wregister'=>"sessions#register_manco"
-  get 'wlogout'=>"sessions#destroy_manco"
+
   post 'users/manco' =>"users#manco_user" ,:controller=>"users"
 
   post 'wlogin'=>"sessions#create_manco"

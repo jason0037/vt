@@ -1,4 +1,6 @@
-/*! AmazeUI - v1.0.0 | (c) 2014 AllMobilize, Inc. | @license MIT | 2014-08-12 14:08:17 */ /*! Sea.js 2.2.1 | seajs.org/LICENSE.md */
+/*! AmazeUI - 1.0.0 | by Amaze UI Team | (c) 2014 AllMobilize, Inc. | Licensed under MIT | 2014-09-19T08:09:31 UTC */ 
+
+/*! Sea.js 2.2.1 | seajs.org/LICENSE.md */
 !function(a,b){function c(a){return function(b){return{}.toString.call(b)=="[object "+a+"]"}}function d(){return A++}function e(a){return a.match(D)[0]}function f(a){for(a=a.replace(E,"/");a.match(F);)a=a.replace(F,"/");return a=a.replace(G,"$1/")}function g(a){var b=a.length-1,c=a.charAt(b);return"#"===c?a.substring(0,b):".js"===a.substring(b-2)||a.indexOf("?")>0||".css"===a.substring(b-3)||"/"===c?a:a+".js"}function h(a){var b=v.alias;return b&&x(b[a])?b[a]:a}function i(a){var b=v.paths,c;return b&&(c=a.match(H))&&x(b[c[1]])&&(a=b[c[1]]+c[2]),a}function j(a){var b=v.vars;return b&&a.indexOf("{")>-1&&(a=a.replace(I,function(a,c){return x(b[c])?b[c]:a})),a}function k(a){var b=v.map,c=a;if(b)for(var d=0,e=b.length;e>d;d++){var f=b[d];if(c=z(f)?f(a)||a:a.replace(f[0],f[1]),c!==a)break}return c}function l(a,b){var c,d=a.charAt(0);if(J.test(a))c=a;else if("."===d)c=f((b?e(b):v.cwd)+a);else if("/"===d){var g=v.cwd.match(K);c=g?g[0]+a.substring(1):a}else c=v.base+a;return 0===c.indexOf("//")&&(c=location.protocol+c),c}function m(a,b){if(!a)return"";a=h(a),a=i(a),a=j(a),a=g(a);var c=l(a,b);return c=k(c)}function n(a){return a.hasAttribute?a.src:a.getAttribute("src",4)}function o(a,b,c){var d=S.test(a),e=L.createElement(d?"link":"script");if(c){var f=z(c)?c(a):c;f&&(e.charset=f)}p(e,b,d,a),d?(e.rel="stylesheet",e.href=a):(e.async=!0,e.src=a),T=e,R?Q.insertBefore(e,R):Q.appendChild(e),T=null}function p(a,c,d,e){function f(){a.onload=a.onerror=a.onreadystatechange=null,d||v.debug||Q.removeChild(a),a=null,c()}var g="onload"in a;return!d||!V&&g?(g?(a.onload=f,a.onerror=function(){C("error",{uri:e,node:a}),f()}):a.onreadystatechange=function(){/loaded|complete/.test(a.readyState)&&f()},b):(setTimeout(function(){q(a,c)},1),b)}function q(a,b){var c=a.sheet,d;if(V)c&&(d=!0);else if(c)try{c.cssRules&&(d=!0)}catch(e){"NS_ERROR_DOM_SECURITY_ERR"===e.name&&(d=!0)}setTimeout(function(){d?b():q(a,b)},20)}function r(){if(T)return T;if(U&&"interactive"===U.readyState)return U;for(var a=Q.getElementsByTagName("script"),b=a.length-1;b>=0;b--){var c=a[b];if("interactive"===c.readyState)return U=c}}function s(a){var b=[];return a.replace(X,"").replace(W,function(a,c,d){d&&b.push(d)}),b}function t(a,b){this.uri=a,this.dependencies=b||[],this.exports=null,this.status=0,this._waitings={},this._remain=0}if(!a.seajs){var u=a.seajs={version:"2.2.1"},v=u.data={},w=c("Object"),x=c("String"),y=Array.isArray||c("Array"),z=c("Function"),A=0,B=v.events={};u.on=function(a,b){var c=B[a]||(B[a]=[]);return c.push(b),u},u.off=function(a,b){if(!a&&!b)return B=v.events={},u;var c=B[a];if(c)if(b)for(var d=c.length-1;d>=0;d--)c[d]===b&&c.splice(d,1);else delete B[a];return u};var C=u.emit=function(a,b){var c=B[a],d;if(c)for(c=c.slice();d=c.shift();)d(b);return u},D=/[^?#]*\//,E=/\/\.\//g,F=/\/[^/]+\/\.\.\//,G=/([^:/])\/\//g,H=/^([^/:]+)(\/.+)$/,I=/{([^{]+)}/g,J=/^\/\/.|:\//,K=/^.*?\/\/.*?\//,L=document,M=e(L.URL),N=L.scripts,O=L.getElementById("seajsnode")||N[N.length-1],P=e(n(O)||M);u.resolve=m;var Q=L.head||L.getElementsByTagName("head")[0]||L.documentElement,R=Q.getElementsByTagName("base")[0],S=/\.css(?:\?|$)/i,T,U,V=+navigator.userAgent.replace(/.*(?:AppleWebKit|AndroidWebKit)\/(\d+).*/,"$1")<536;u.request=o;var W=/"(?:\\"|[^"])*"|'(?:\\'|[^'])*'|\/\*[\S\s]*?\*\/|\/(?:\\\/|[^\/\r\n])+\/(?=[^\/])|\/\/.*|\.\s*require|(?:^|[^$])\brequire\s*\(\s*(["'])(.+?)\1\s*\)/g,X=/\\\\/g,Y=u.cache={},Z,$={},_={},ab={},bb=t.STATUS={FETCHING:1,SAVED:2,LOADING:3,LOADED:4,EXECUTING:5,EXECUTED:6};t.prototype.resolve=function(){for(var a=this,b=a.dependencies,c=[],d=0,e=b.length;e>d;d++)c[d]=t.resolve(b[d],a.uri);return c},t.prototype.load=function(){var a=this;if(!(a.status>=bb.LOADING)){a.status=bb.LOADING;var c=a.resolve();C("load",c);for(var d=a._remain=c.length,e,f=0;d>f;f++)e=t.get(c[f]),e.status<bb.LOADED?e._waitings[a.uri]=(e._waitings[a.uri]||0)+1:a._remain--;if(0===a._remain)return a.onload(),b;var g={};for(f=0;d>f;f++)e=Y[c[f]],e.status<bb.FETCHING?e.fetch(g):e.status===bb.SAVED&&e.load();for(var h in g)g.hasOwnProperty(h)&&g[h]()}},t.prototype.onload=function(){var a=this;a.status=bb.LOADED,a.callback&&a.callback();var b=a._waitings,c,d;for(c in b)b.hasOwnProperty(c)&&(d=Y[c],d._remain-=b[c],0===d._remain&&d.onload());delete a._waitings,delete a._remain},t.prototype.fetch=function(a){function c(){u.request(g.requestUri,g.onRequest,g.charset)}function d(){delete $[h],_[h]=!0,Z&&(t.save(f,Z),Z=null);var a,b=ab[h];for(delete ab[h];a=b.shift();)a.load()}var e=this,f=e.uri;e.status=bb.FETCHING;var g={uri:f};C("fetch",g);var h=g.requestUri||f;return!h||_[h]?(e.load(),b):$[h]?(ab[h].push(e),b):($[h]=!0,ab[h]=[e],C("request",g={uri:f,requestUri:h,onRequest:d,charset:v.charset}),g.requested||(a?a[g.requestUri]=c:c()),b)},t.prototype.exec=function(){function a(b){return t.get(a.resolve(b)).exec()}var c=this;if(c.status>=bb.EXECUTING)return c.exports;c.status=bb.EXECUTING;var e=c.uri;a.resolve=function(a){return t.resolve(a,e)},a.async=function(b,c){return t.use(b,c,e+"_async_"+d()),a};var f=c.factory,g=z(f)?f(a,c.exports={},c):f;return g===b&&(g=c.exports),delete c.factory,c.exports=g,c.status=bb.EXECUTED,C("exec",c),g},t.resolve=function(a,b){var c={id:a,refUri:b};return C("resolve",c),c.uri||u.resolve(c.id,b)},t.define=function(a,c,d){var e=arguments.length;1===e?(d=a,a=b):2===e&&(d=c,y(a)?(c=a,a=b):c=b),!y(c)&&z(d)&&(c=s(""+d));var f={id:a,uri:t.resolve(a),deps:c,factory:d};if(!f.uri&&L.attachEvent){var g=r();g&&(f.uri=g.src)}C("define",f),f.uri?t.save(f.uri,f):Z=f},t.save=function(a,b){var c=t.get(a);c.status<bb.SAVED&&(c.id=b.id||a,c.dependencies=b.deps||[],c.factory=b.factory,c.status=bb.SAVED)},t.get=function(a,b){return Y[a]||(Y[a]=new t(a,b))},t.use=function(b,c,d){var e=t.get(d,y(b)?b:[b]);e.callback=function(){for(var b=[],d=e.resolve(),f=0,g=d.length;g>f;f++)b[f]=Y[d[f]].exec();c&&c.apply(a,b),delete e.callback},e.load()},t.preload=function(a){var b=v.preload,c=b.length;c?t.use(b,function(){b.splice(0,c),t.preload(a)},v.cwd+"_preload_"+d()):a()},u.use=function(a,b){return t.preload(function(){t.use(a,b,v.cwd+"_use_"+d())}),u},t.define.cmd={},a.define=t.define,u.Module=t,v.fetchedList=_,v.cid=d,u.require=function(a){var b=t.get(t.resolve(a));return b.status<bb.EXECUTING&&(b.onload(),b.exec()),b.exports};var cb=/^(.+?\/)(\?\?)?(seajs\/)+/;v.base=(P.match(cb)||["",P])[1],v.dir=P,v.cwd=M,v.charset="utf-8",v.preload=function(){var a=[],b=location.search.replace(/(seajs-\w+)(&|$)/g,"$1=1$2");return b+=" "+L.cookie,b.replace(/(seajs-\w+)=1/g,function(b,c){a.push(c)}),a}(),u.config=function(a){for(var b in a){var c=a[b],d=v[b];if(d&&w(d))for(var e in c)d[e]=c[e];else y(d)?c=d.concat(c):"base"===b&&("/"!==c.slice(-1)&&(c+="/"),c=l(c)),v[b]=c}return C("config",a),u}}}(this);
 
 define("core", [ "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
@@ -9,24 +11,10 @@ define("core", [ "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector"
     // Zepto selector extend
     require("zepto.extend.selector");
     var $ = window.Zepto, UI = $.AMUI || {}, $win = $(window), doc = window.document, $html = $("html");
-    if (UI.fn) {
-        return UI;
-    }
-    UI.fn = function(command, options) {
-        var args = arguments, cmd = command.match(/^([a-z\-]+)(?:\.([a-z]+))?/i), component = cmd[1], method = cmd[2];
-        if (!UI[component]) {
-            log.error('Amaze UI component [" + component + "] does not exist.');
-            return this;
-        }
-        return this.each(function() {
-            var $this = $(this), data = $this.data(component);
-            if (!data) $this.data(component, data = UI[component](this, method ? undefined : options));
-            if (method) data[method].apply(data, Array.prototype.slice.call(args, 1));
-        });
-    };
     UI.support = {};
     UI.support.transition = function() {
         var transitionEnd = function() {
+            // https://developer.mozilla.org/en-US/docs/Web/Events/transitionend#Browser_compatibility
             var element = doc.body || doc.documentElement, transEndEventNames = {
                 WebkitTransition: "webkitTransitionEnd",
                 MozTransition: "transitionend",
@@ -113,11 +101,14 @@ define("core", [ "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector"
         }
         return options;
     };
-    UI.utils.event = {};
-    UI.utils.event.click = UI.support.touch ? "tap" : "click";
+    UI.utils.generateGUID = function(namespace) {
+        var uid = namespace + "-" || "am-";
+        do {
+            uid += Math.random().toString(36).substring(2, 7);
+        } while (document.getElementById(uid));
+        return uid;
+    };
     $.AMUI = UI;
-    $.fn.amui = UI.fn;
-    $.AMUI.langdirection = $("html").attr("dir") == "rtl" ? "right" : "left";
     // http://blog.alexmaccaw.com/css-transitions
     $.fn.emulateTransitionEnd = function(duration) {
         var called = false, $el = this;
@@ -275,10 +266,13 @@ define("core", [ "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector"
         });
     }
     $(function() {
+        var $body = $("body");
         // trigger domready event
         $(document).trigger("domready:amui");
         $html.removeClass("no-js").addClass("js");
         UI.support.animation && $html.addClass("cssanimations");
+        $(".am-topbar-fixed-top").length && $body.addClass("am-with-topbar-fixed-top");
+        $(".am-topbar-fixed-bottom").length && $body.addClass("am-with-topbar-fixed-bottom");
         // Remove responsive classes in .am-layout
         var $layout = $(".am-layout");
         $layout.find('[class*="md-block-grid"]').alterClass("md-block-grid-*");
@@ -294,17 +288,27 @@ define("core", [ "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector"
     });
     module.exports = UI;
 });
-define("accordion", [ "ui.accordion" ], function(require, exports, module) {
-    var accordion = require("ui.accordion");
-    var $ = window.Zepto, accordionInit = function() {
-        $(".am-accordion").each(function(index, item) {
-            var settings = $(item).attr("data-accordion-settings");
-            try {
-                settings = JSON.parse(settings);
-                $(item).accordion(settings);
-            } catch (e) {
-                $(item).accordion();
-            }
+define("accordion", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.collapse" ], function(require, exports, module) {
+    require("core");
+    require("ui.collapse");
+    var $ = window.Zepto, UI = $.AMUI, accordionInit = function() {
+        var $accordion = $('[data-am-widget="accordion"]'), selector = {
+            item: ".am-accordion-item",
+            title: ".am-accordion-title",
+            content: ".am-accordion-content"
+        };
+        $accordion.each(function(i, item) {
+            var options = UI.utils.parseOptions($(item).attr("data-am-accordion")), $title = $accordion.find(selector.title);
+            $title.on("click", function() {
+                var $content = $(this).next(selector.content), $parent = $(this).parent(selector.item), data = $content.data("amui.collapse");
+                $parent.toggleClass("am-active");
+                if (!data) {
+                    $content.collapse();
+                } else {
+                    $content.collapse("toggle");
+                }
+                !options.multiple && $(item).children(".am-active").not($parent).removeClass("am-active").find(".am-accordion-content.am-in").collapse("close");
+            });
         });
     };
     // Init on DOM ready
@@ -314,70 +318,71 @@ define("accordion", [ "ui.accordion" ], function(require, exports, module) {
     exports.init = accordionInit;
 });
 define("divider", [], function(require, exports, module) {});
-define("figure", [ "zepto.pinchzoom" ], function(require, exports, module) {
+define("duoshuo", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
+    require("core");
     var $ = window.Zepto;
-    // PinchZoom Plugin
-    var PinchZoom = require("zepto.pinchzoom");
+    function duoshuoInit() {
+        var $dsThread = $(".ds-thread"), dsShortName = $dsThread.parent('[data-am-widget="duoshuo"]').attr("data-ds-short-name"), dsSrc = (document.location.protocol == "https:" ? "https:" : "http:") + "//static.duoshuo.com/embed.js";
+        if (!$dsThread.length || !dsShortName) return;
+        window.duoshuoQuery = {
+            short_name: dsShortName
+        };
+        // 已经有多说脚本
+        if ($('script[src="' + dsSrc + '"]').length) return;
+        var $dsJS = $("<script>", {
+            async: true,
+            type: "text/javascript",
+            src: dsSrc,
+            charset: "utf-8"
+        });
+        $("body").append($dsJS);
+    }
+    $(window).on("load", duoshuoInit);
+    exports.init = duoshuoInit;
+});
+define("figure", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.pureview", "zepto.pinchzoom", "util.hammer" ], function(require, exports, module) {
+    require("core");
+    require("ui.pureview");
+    var $ = window.Zepto, UI = $.AMUI;
     /**
      * Is Images zoomable
      * @return {Boolean}
      */
-    $.isImgZoomAble = function(imgElement) {
+    $.isImgZoomAble = function(element) {
         var t = new Image();
-        t.src = imgElement.src;
-        var zoomAble = $(imgElement).width() < t.width;
+        t.src = element.src;
+        var zoomAble = $(element).width() < t.width;
         if (zoomAble) {
-            $(imgElement).parent(".am-figure").addClass("am-figure-zoomable");
+            $(element).parent(".am-figure").addClass("am-figure-zoomable");
         }
         return zoomAble;
     };
-    $.fn.imgZoomToggle = function() {
-        return this.each(function() {
-            var zoomAble = $.isImgZoomAble(this), $wrapDom = $('<div class="am-figure-wrap"><div class="pinch-zoom"></div></div>');
-            $zoomWrap = $(".am-figure-wrap");
-            if ($zoomWrap.length == 0) {
-                $("body").append($wrapDom);
-                $zoomWrap = $(".am-figure-wrap");
-                $pinch = $zoomWrap.find(".pinch-zoom");
-                $pinch.each(function() {
-                    new PinchZoom($(this), {});
-                });
-            }
-            if (zoomAble) {
-                //$zoomWrap.empty().html(this.outerHTML);
-                $pinch.empty().html(this.outerHTML);
-                $zoomWrap.find("img").width($(window).width());
-                $(this).parent(".am-figure").on("click", function() {
-                    $zoomWrap.toggleClass("am-active");
-                });
-                $zoomWrap.on("click", function(e) {
-                    e.preventDefault();
-                    var target = e.target;
-                    // Img is using pinch zoom
-                    if (!$(target).is("img")) {
-                        $(this).toggleClass("am-active");
-                    }
-                });
+    var figureInit = function() {
+        $(".am-figure").each(function(i, item) {
+            var options = UI.utils.parseOptions($(item).attr("data-am-figure"));
+            if (options.pureview) {
+                $(item).pureview();
+            } else if (options.autoZoom) {
+                var zoomAble = $.isImgZoomAble($(item).find("img")[0]);
+                zoomAble && $(item).pureview();
             }
         });
-    };
-    var figureInit = function() {
-        $(".am-figure img").imgZoomToggle();
     };
     $(window).on("load", function() {
         figureInit();
     });
     exports.init = figureInit;
 });
-define("footer", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.add2home", "util.cookie", "ui.modal" ], function(require, exports, module) {
+define("footer", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.add2home", "util.cookie", "ui.modal", "ui.dimmer" ], function(require, exports, module) {
     require("core");
     // add2home
-    require("ui.add2home");
+    var addToHS = require("ui.add2home");
     var cookie = require("util.cookie"), modal = require("ui.modal"), $ = window.Zepto, footerInit = function() {
         // modal mode
         $(".am-footer-ysp").on("click", function() {
-            $("#am-switch-mode").modal();
+            $("#am-footer-mode").modal();
         });
+        addToHS();
         // switch mode
         // switch to desktop
         $('[data-rel="desktop"]').on("click", function(e) {
@@ -397,18 +402,22 @@ define("footer", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend
     });
     exports.init = footerInit;
 });
-define("gallery", [ "zepto.touchgallery" ], function(require, exports, module) {
-    var touchGallery = require("zepto.touchgallery");
-    var $ = window.Zepto;
+define("gallery", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.pureview", "zepto.pinchzoom", "util.hammer" ], function(require, exports, module) {
+    require("core");
+    var PureView = require("ui.pureview");
+    var $ = window.Zepto, UI = $.AMUI;
     var galleryInit = function() {
-        var $themeOne = $(".am-gallery-one");
-        $("[data-am-gallery] a").touchTouch();
-        $themeOne.each(function() {
+        var $gallery = $('[data-am-widget="gallery"]'), $galleryOne = $gallery.filter(".am-gallery-one");
+        $gallery.each(function() {
+            var options = UI.utils.parseOptions($(this).attr("data-am-gallery"));
+            options.pureview && $(this).pureview();
+        });
+        $galleryOne.each(function() {
             galleryMore($(this));
         });
     };
     function galleryMore(object) {
-        var moreData = $("<li class='am-gallery-more'><a href='javascript:;' class='am-btn am-btn-default'>更多 &gt;&gt;</a></li>");
+        var moreData = $("<li class='am-gallery-more'><a href='javascript:;'>更多 &gt;&gt;</a></li>");
         if (object.children().length > 6) {
             object.children().each(function(index) {
                 if (index > 5) {
@@ -418,7 +427,7 @@ define("gallery", [ "zepto.touchgallery" ], function(require, exports, module) {
             object.find(".am-gallery-more").remove();
             object.append(moreData);
         }
-        $(".am-gallery-more").on("click", function() {
+        object.find(".am-gallery-more").on("click", function() {
             object.children().show();
             $(this).hide();
         });
@@ -428,20 +437,30 @@ define("gallery", [ "zepto.touchgallery" ], function(require, exports, module) {
     });
     exports.init = galleryInit;
 });
-define("gotop", [ "./ui.smooth-scroll", "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
-    require("./ui.smooth-scroll");
+define("gotop", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.smooth-scroll" ], function(require, exports, module) {
+    require("core");
+    require("ui.smooth-scroll");
     var $ = window.Zepto;
     var UI = $.AMUI;
     var goTopInit = function() {
-        $(".am-gotop").find("a").on("click", function(e) {
+        var $goTop = $('[data-am-widget="gotop"]'), $fixed = $goTop.filter(".am-gotop-fixed"), $win = $(window);
+        $goTop.find("a").on("click", function(e) {
             e.preventDefault();
-            $("body").smoothScroll(0);
+            $win.smoothScroll();
         });
+        function checkPosition() {
+            $fixed[($win.scrollTop() > 50 ? "add" : "remove") + "Class"]("am-active");
+        }
+        checkPosition();
+        $win.on("scroll.gotop.amui", $.AMUI.utils.debounce(checkPosition, 100));
     };
     $(function() {
         goTopInit();
     });
     exports.init = goTopInit;
+});
+define("header", [], function(require, exports, module) {
+    var $ = window.Zepto;
 });
 define("intro", [], function(require, exports, module) {
     var $ = window.Zepto;
@@ -464,7 +483,7 @@ define("list_news", [], function(require, exports, module) {
             object.find(".am-list-news-more").remove();
             object.append($listMore);
         }
-        $(".am-list-news-more").on("click", function() {
+        object.find(".am-list-news-more").on("click", function() {
             $amList.children().show();
             $(this).hide();
         });
@@ -548,601 +567,270 @@ define("map", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.se
     $(document).on("ready", mapInit);
     exports.init = mapInit;
 });
-define("menu", [ "nav", "zepto.outerdemension", "zepto.extend.data", "zepto.extend.selector", "zepto.extend.fx", "core", "ui.offcanvas" ], function(require, exports, module) {
-    require("nav");
+define("mechat", [], function(require, exports, module) {
+    var $ = window.Zepto;
+    var mechatInit = function() {
+        if (!$("#mechat").length) return;
+        var $mechat = $('[data-am-widget="mechat"]'), unitid = $mechat.data("am-mechat-unitid"), $mechatData = $("<script>", {
+            charset: "utf-8",
+            src: "http://mechatim.com/js/unit/button.js?id=" + unitid
+        });
+        $("body").append($mechatData);
+    };
+    // Lazy load
+    $(window).on("load", mechatInit);
+    exports.init = mechatInit;
+});
+define("menu", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.offcanvas", "zepto.outerdemension", "ui.collapse", "ui.iscroll-lite" ], function(require, exports, module) {
+    require("core");
     require("ui.offcanvas");
+    require("ui.collapse");
+    var IScroll = require("ui.iscroll-lite");
     var $ = window.Zepto;
     var UI = $.AMUI;
     var menuInit = function() {
-        //one theme variable
-        var $this, $next, $width, iNow, aNum, $menuLv2, $menuLv3;
-        //排除掉one主题
-        $(".am-menu").not("[data-am-nav]").not(".am-menu-one").each(function() {
-            var nav = $(this);
-            if (!nav.data("nav")) {
-                var obj = new UI.nav(nav, nav.data("am-nav") ? UI.utils.options(nav.data("am-nav")) : {});
-            }
+        var $menus = $('[data-am-widget="menu"]');
+        $menus.find(".am-menu-nav .am-parent > a").on("click", function(e) {
+            e.preventDefault();
+            var $clicked = $(this), $parent = $clicked.parent(), $subMenu = $clicked.next(".am-menu-sub");
+            $parent.toggleClass("am-open");
+            $subMenu.collapse("toggle");
+            $parent.siblings(".am-parent").removeClass("am-open").children(".am-menu-sub.am-in").collapse("close");
         });
-        // has one class
-        if ($(".am-menu").hasClass("am-menu-one")) {
-            $this = $(".am-menu-one");
-            $next = $("<a>").attr({
-                "class": "am-menu-next",
-                href: "javascript:;"
+        // Dropdown/slidedown menu
+        $menus.filter("[data-am-menu-collapse]").find("> .am-menu-toggle").on("click", function(e) {
+            e.preventDefault();
+            var $this = $(this), $nav = $this.next(".am-menu-nav");
+            $this.toggleClass("am-active");
+            $nav.collapse("toggle");
+        });
+        // OffCanvas menu
+        $menus.filter("[data-am-menu-offcanvas]").find("> .am-menu-toggle").on("click", function(e) {
+            e.preventDefault();
+            var $this = $(this), $nav = $this.next(".am-offcanvas");
+            $this.toggleClass("am-active");
+            $nav.offCanvas("open");
+        });
+        // Close offCanvas when link clicked
+        var autoCloseOffCanvas = '.am-offcanvas[data-dismiss-on="click"]', $autoCloseOffCanvas = $(autoCloseOffCanvas);
+        $autoCloseOffCanvas.find("a").not(".am-parent>a").on("click", function(e) {
+            $(this).parents(autoCloseOffCanvas).offCanvas("close");
+        });
+        // one theme
+        $menus.filter(".am-menu-one").each(function(index) {
+            var $this = $(this), $wrap = $('<div class="am-menu-nav-sub-wrap"></div>'), allWidth = 0, prevIndex, $nav = $this.find(".am-menu-nav"), $navTopItem = $nav.children("li");
+            $navTopItem.filter(".am-parent").each(function(index) {
+                $(this).attr("data-rel", "#am-menu-sub-" + index);
+                $(this).find(".am-menu-sub").attr("id", "am-menu-sub-" + index).appendTo($wrap);
             });
-            $width = 0;
-            iNow = -1;
-            aNum = [];
-            $menuLv2 = $(".am-menu-lv2");
-            $menuLv3 = $(".am-menu-lv3");
-            $this.children("li").find("a").eq(0).attr("href", "javascript:;").addClass("am-menu-prev am-menu-disabled");
-            $this.find("li").eq(0).append($next);
-            $this.find(".am-menu-lv2").wrap("<div class='am-menu-wrap'></div>");
-            $menuLv2.children("li").children("a").each(function() {
-                $(this).parent().width($(this).width());
-                $width += $(this).width();
-                aNum.push($width);
+            $this.append($wrap);
+            $nav.wrap('<div class="am-menu-nav-wrap" id="am-menu-' + index + '">');
+            // $navTopItem.eq(0).addClass('am-active');
+            // 计算出所有 li 宽度
+            $navTopItem.each(function(i) {
+                allWidth += parseFloat($(this).css("width"));
             });
-            $menuLv2.find(".am-parent").each(function() {
-                var $firstA = $(this).find("a"), $li = $("<li class='am-menu-item-more'><a class='am-menu-item-close' href='javascript:;'>×</a><a class='am-menu-item-into' href=" + $firstA.attr("href") + ">进入" + $firstA.html() + "</a></li>");
-                $firstA.attr("href", "javascript:;");
-                $(this).find(".am-menu-lv3").append($li);
+            $nav.width(allWidth);
+            var menuScroll = new IScroll("#am-menu-" + index, {
+                eventPassthrough: true,
+                scrollX: true,
+                scrollY: false,
+                preventDefault: false
             });
-            $menuLv2.width($width);
-            $menuLv3.width($(".am-menu-lv1").width() - 20);
-            // 减去Menu 左右padding
-            // FIXME: ide border
-            //$menuLv3.width($('.am-menu-lv1').width() - 22);// 减去Menu 左右padding
-            $(".am-menu-wrap .am-parent").children("a").on("click", function() {
-                if ($(this).hasClass("active")) {
-                    $(this).removeClass("active");
-                    $(this).siblings(".am-menu-lv3").animate({
-                        opacity: 0
-                    }, "fast", "linear", function() {
-                        $(this).css("display", "none");
-                    });
+            $navTopItem.on("click", function() {
+                var $clicked = $(this);
+                $clicked.addClass("am-active").siblings().removeClass("am-active");
+                $wrap.find(".am-menu-sub.am-in").collapse("close");
+                if ($clicked.is(".am-parent")) {
+                    !$clicked.hasClass(".am-open") && $wrap.find($clicked.attr("data-rel")).collapse("open");
                 } else {
-                    offAll();
-                    $(this).addClass("active");
-                    $(this).siblings(".am-menu-lv3").css("display", "block").animate({
-                        left: -$(this).offset().left + 10,
-                        opacity: 1
-                    }, "fast", "linear");
+                    $clicked.siblings().removeClass("am-open");
                 }
-            });
-            $(".am-menu-next").on("click", function() {
-                offAll();
-                if (-aNum[iNow] + parseInt($menuLv2.css("left")) < -$menuLv2.width() + $menuLv2.parent().width() - $next.width() * 2) {
-                    $menuLv2.animate({
-                        left: -$menuLv2.width() + $menuLv2.parent().width() - $next.width() * 2
-                    }, "fast", "linear");
-                    $(this).addClass("am-menu-disabled");
-                } else {
-                    iNow++;
-                    $menuLv2.animate({
-                        left: -aNum[iNow]
-                    }, "fast", "linear");
-                    $(".am-menu-prev").removeClass("am-menu-disabled");
+                // 第一次调用，没有prevIndex
+                if (prevIndex === undefined) {
+                    prevIndex = $(this).index() ? 0 : 1;
                 }
-            });
-            $(".am-menu-item-close").on("click", function() {
-                offAll();
-            });
-            $(".am-menu-prev").on("click", function() {
-                offAll();
-                if (iNow <= -1) {
-                    $menuLv2.animate({
-                        left: 0
-                    }, "fast", "linear");
-                    $(this).addClass("am-menu-disabled");
-                } else {
-                    iNow--;
-                    $menuLv2.animate({
-                        left: -aNum[iNow]
-                    }, "fast", "linear");
-                    $(".am-menu-next").removeClass("am-menu-disabled");
+                // 判断方向
+                var dir = $(this).index() > prevIndex;
+                var target = $(this)[dir ? "next" : "prev"]();
+                // 点击的按钮，显示一半
+                var offset = target.offset() || $(this).offset();
+                var within = $this.offset();
+                // 父类左边距
+                var listOffset, parentLeft = parseInt($this.css("padding-left"));
+                if (dir ? offset.left + offset.width > within.left + within.width : offset.left < within.left) {
+                    listOffset = $nav.offset();
+                    menuScroll.scrollTo(dir ? within.width - offset.left + listOffset.left - offset.width - parentLeft : listOffset.left - offset.left, 0, 400);
                 }
+                prevIndex = $(this).index();
             });
-            drag($menuLv2);
-        }
-        /*
-         *  offAll menu children active
-         */
-        function offAll() {
-            $(".am-menu-wrap .am-parent").children("a").removeClass("active").siblings(".am-menu-lv3").animate({
-                opacity: 0
-            }, "fast", "linear").css("display", "none");
-        }
-        /*
-         *  drag menu children
-         *  @obj Zepto object
-         */
-        function drag(obj) {
-            var disX, downX, nOffsetLeft = 0;
-            obj.on("touchstart MSPointerDown pointerdown", function(ev) {
-                offAll();
-                ev.preventDefault();
-                var oTarget = ev.targetTouches[0];
-                disX = oTarget.clientX - $(this).offset().left;
-                downX = oTarget.clientX;
-                $(document).on("touchmove MSPointerMove pointermove", fnMove);
-                $(document).on("touchend MSPointerUp pointerup", fnUp);
+            $this.on("touchmove", function(event) {
+                event.preventDefault();
             });
-            function fnUp(ev) {
-                $.each(aNum, function(index, item) {
-                    nOffsetLeft += -aNum[index];
-                    if (parseInt(obj.css("left")) >= nOffsetLeft) {
-                        iNow = index;
-                        return false;
-                    }
-                });
-                nOffsetLeft = 0;
-                $(document).off("touchend MSPointerUp pointerup", fnUp);
-                $(document).off("touchmove MSPointerMove pointermove", fnMove);
-            }
-            function fnMove(ev) {
-                ev.preventDefault();
-                var oTarget = ev.targetTouches[0];
-                var nLeft = oTarget.clientX - disX;
-                // ->
-                if (nLeft > 0) {
-                    nLeft = 0;
-                }
-                // <-
-                if (nLeft < -obj.width() + obj.parent().width() - $next.width() * 2) {
-                    nLeft = -obj.width() + obj.parent().width() - $next.width() * 2;
-                }
-                obj.css("left", nLeft);
-            }
-        }
+        });
     };
     $(function() {
         menuInit();
     });
     exports.init = menuInit;
 });
-define("nav", [ "./zepto.outerdemension", "./zepto.extend.data", "./zepto.extend.selector", "./zepto.extend.fx", "./core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
-    require("./zepto.outerdemension");
-    require("./zepto.extend.data");
-    // selector extend
-    require("./zepto.extend.selector");
-    require("./zepto.extend.fx");
-    require("./core");
-    var $ = window.Zepto;
-    var UI = $.AMUI;
-    /**
-     * @via https://github.com/uikit/uikit/blob/master/src/js/nav.js
-     * @license https://github.com/uikit/uikit/blob/master/LICENSE.md
-     */
-    var Nav = function(element, options) {
-        var $this = this, $element = $(element);
-        if ($element.data("nav")) return;
-        this.options = $.extend({}, this.options, options);
-        this.element = $element.on("click", this.options.trigger, function(e) {
-            e.preventDefault();
-            // trigger link
-            var ele = $(this);
-            $this.toggleNav(ele.parent(".am-parent"));
-        });
-        // wrap sub menu
-        this.element.find(this.options.lists).each(function() {
-            var $ele = $(this), parent = $ele.parent();
-            // li.am-parent
-            var navHeight = getHeight($ele);
-            parent.data("list-container", $ele).attr("data-nav-height", navHeight);
-        });
-        this.element.data("nav", this);
-    };
-    $.extend(Nav.prototype, {
-        options: {
-            trigger: ".am-parent > a",
-            lists: ".am-parent > ul",
-            multiple: false
-        },
-        toggleNav: function(li, noanimation) {
-            var element = this.element, $li = $(li);
-            // 是否允许同时展开多个菜单
-            if (!this.options.multiple) {
-                $li.siblings(".am-open").each(function() {
-                    if ($(this).data("list-container")) {
-                        $(this).removeClass("am-open").data("list-container").animate({
-                            height: 0
-                        }, function() {});
-                    }
-                });
-            }
-            $li.toggleClass("am-open");
-            var targetMenu = $li.data("list-container"), targetMenuPosition = targetMenu.css("position");
-            if ($li.data("list-container")) {
-                if (noanimation) {
-                    $li.data("list-container").height($li.hasClass("am-open") ? "auto" : 0);
-                } else {
-                    // 三级菜单展开时增加二级菜单容器高度
-                    var parentWrap = $li.parents(".am-parent");
-                    // 二级菜单
-                    if (parentWrap.length > 0) {
-                        var parentNavWrap = parentWrap.eq(0).data("list-container");
-                        // 三级菜单展开且三级菜单非绝对定位时增加父级容器高度
-                        var addHeight = $li.hasClass("am-open") && targetMenuPosition != "absolute" ? Number($li.attr("data-nav-height")) : 0;
-                        parentNavWrap.animate({
-                            height: Number(parentWrap.attr("data-nav-height")) + addHeight
-                        });
-                        // 三级菜单绝对定位时
-                        if (targetMenuPosition == "absolute") {
-                            parentNavWrap.css({
-                                overflow: $li.hasClass("am-open") ? "visible" : "hidden"
-                            });
-                        }
-                    }
-                    $li.data("list-container").animate({
-                        height: $li.hasClass("am-open") ? $li.attr("data-nav-height") + "px" : 0
-                    });
-                    // 一级菜单闭合时闭合所有展开子菜单
-                    var subNavs = $li.find(".am-menu-sub");
-                    // console.log($li);
-                    if (subNavs.length > 0 && !$li.hasClass("am-open")) {
-                        // console.log(subNavs.length);
-                        subNavs.each(function(index, item) {
-                            $(item).animate({
-                                height: 0,
-                                overflow: "hidden"
-                            });
-                            $(item).parent(".am-parent.am-open").not($li).removeClass("am-open");
-                        });
-                    }
-                }
-            }
-        }
-    });
-    UI["nav"] = Nav;
-    // helper
-    function getHeight(ele) {
-        var $ele = ele, height = "auto";
-        if ($ele.is(":visible")) {
-            height = $ele.outerHeight();
-        } else {
-            var position = $ele.css("position");
-            // show element if it is hidden (it is needed if display is none)
-            $ele.show();
-            // place it so it displays as usually but hidden
-            $ele.css({
-                position: "absolute",
-                visibility: "hidden",
-                height: "auto"
-            });
-            // get naturally height
-            height = $ele.outerHeight();
-            //console.log($ele.outerHeight(), $ele.height());
-            // set initial css for animation
-            $ele.css({
-                position: position,
-                visibility: "visible",
-                overflow: "hidden",
-                height: 0
-            });
-        }
-        return height;
-    }
-    // init code
-    $(function() {
-        $("[data-am-nav]").each(function() {
-            var nav = $(this);
-            if (!nav.data("nav")) {
-                var obj = new Nav(nav, UI.utils.options(nav.data("am-nav")));
-            }
-        });
-    });
-});
-define("navbar", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "util.qrcode", "ui.modal" ], function(require, exports, module) {
+define("navbar", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "util.qrcode", "ui.modal", "ui.dimmer", "ui.share" ], function(require, exports, module) {
     require("core");
-    var $ = window.Zepto, qrcode = require("util.qrcode"), modal = require("ui.modal");
+    var $ = window.Zepto, UI = $.AMUI, QRCode = require("util.qrcode"), modal = require("ui.modal"), share = require("ui.share");
     var navbarInit = function() {
-        var _parent = $(".am-navbar"), parentUl = _parent.find("ul"), subLi = _parent.find("li"), oneWidth = subLi.width(), minWidth = 100, //每个li最小宽度
-        _more = null, _moreList = null, onOff = true, onOffCreat = true, // 防止多次的创建
-        $body = $("body");
-        var $share = $("[data-am-navbar-share]");
-        var $qrcode = $("[data-am-navbar-qrcode]");
-        var navbarPosition = _parent.css("position");
-        if (navbarPosition == "fixed") {
+        var $navBar = $('[data-am-widget="navbar"]');
+        if (!$navBar.length) return;
+        var $win = $(window), $body = $("body"), $navBarNav = $navBar.find(".am-navbar-nav"), $navItems = $navBar.find("li"), navItemsCounter = $navItems.length;
+        configItems = $navBarNav.attr("class") && parseInt($navBarNav.attr("class").match(/sm-block-grid-(\d)/)[1]) || 3, 
+        navMinWidth = 60, //每个li最小宽度
+        offsetWidth = 16, $share = $navItems.filter("[data-am-navbar-share]"), $qrcode = $navItems.filter("[data-am-navbar-qrcode]"), 
+        activeStatus = "am-active", $moreActions = $('<ul class="am-navbar-actions"></ul>', {
+            id: UI.utils.generateGUID("am-navbar-actions")
+        }), $moreLink = $('<li class="am-navbar-labels am-navbar-more"><a href="javascript: void(0);"><span class="am-icon-angle-up"></span><span class="am-navbar-label">更多</span></a></li>');
+        // 如果有 Fix 的工具栏则设置 body 的 padding-bottom
+        if ($navBar.css("position") == "fixed") {
             $body.addClass("with-fixed-navbar");
         }
         if ($qrcode.length) {
-            var qrImg = $("[data-am-navbar-qrcode]").attr("data-am-navbar-qrcode");
-            var url = window.location.href;
-            var qrData = $("<div class=\"am-modal am-modal-no-btn\" id='am-navbar-boxqrcode'>" + "<div class='am-modal-dialog' id='am-navbar-qrcode-data'></div>" + "</div>");
-            $body.append(qrData);
-            //判断上传自定义的二维码没有，否则生成二维码
-            if (qrImg) {
-                $("#am-navbar-qrcode-data").html('<img src="' + qrImg + '"/>');
-            } else {
-                var qrnode = new qrcode({
-                    render: "canvas",
-                    correctLevel: 0,
-                    text: url,
-                    width: 190,
-                    height: 190,
-                    background: "#fff",
-                    foreground: "#000"
-                });
-                $("#am-navbar-qrcode-data").html(qrnode);
-            }
-        }
-        //添加share className
-        $share.addClass("am-navbar-share");
-        $qrcode.addClass("am-navbar-qrcode");
-        if ($share.length) {
-            //share start
-            window._bd_share_config = {
-                common: {
-                    bdSnsKey: {},
-                    bdText: "",
-                    bdMini: "2",
-                    bdMiniList: false,
-                    bdPic: "",
-                    bdStyle: "1",
-                    bdSize: "16"
-                },
-                share: {
-                    bdSize: 24
+            var qrId = "am-navbar-qrcode";
+            $qrModal = $("#" + qrId);
+            if (!$qrModal.length) {
+                var qrImg = $qrcode.attr("data-am-navbar-qrcode"), $qrModal = $('<div class="am-modal am-modal-no-btn" id="">' + '<div class="am-modal-dialog"><div class="am-modal-bd"></div></div>' + "</div>", {
+                    id: qrId
+                }), $qrContainer = $qrModal.find(".am-modal-bd");
+                // 判断上传自定义的二维码没有，否则生成二维码
+                if (qrImg) {
+                    $qrContainer.html('<img src="' + qrImg + '"/>');
+                } else {
+                    var qrnode = new QRCode({
+                        render: "canvas",
+                        correctLevel: 0,
+                        text: window.location.href,
+                        width: 200,
+                        height: 200,
+                        background: "#fff",
+                        foreground: "#000"
+                    });
+                    $qrContainer.html(qrnode);
                 }
-            };
-            $body.append($("<script />", {
-                src: "http://bdimg.share.baidu.com/static/api/js/share.js?v=89343201.js?cdnversion=" + ~(-new Date() / 36e5)
-            }));
-            var shareData = '<div class="bdsharebuttonbox">' + '<div class="am-modal-actions am-modal-out" id="am-navbar-share">' + '<div class="am-modal-actions-group">' + '<ul class="am-list">' + '<li class="am-modal-actions-header" data-cmd="more">分享到</li>' + '<li><a href="#" class="am-icon-qq" data-cmd="qzone" title="分享到QQ空间">QQ空间</a></li>' + '<li><a href="#" class="am-icon-weibo" data-cmd="tsina" title="分享到新浪微博">新浪微博</a></li>' + '<li><a href="#" class="am-icon-tencent-weibo" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a></li>' + '<li><a href="#" class="am-icon-renren" data-cmd="renren" title="分享到人人网">人人网</a></li>' + '<li><a href="#" class="am-icon-wechat" data-cmd="weixin" title="分享到微信">微信</a></li>' + "</ul>" + "</div>" + '<div class="am-modal-actions-group"><button type="button" class="am-btn am-btn-secondary am-btn-block" data-am-modal-close>取消</button></div>' + "</div>" + "</div>";
-            $body.append(shareData);
-            $share.on("click", function(event) {
-                event.preventDefault();
-                $("#am-navbar-share").modal();
+                $body.append($qrModal);
+            }
+            $qrcode.on("click", function(e) {
+                e.preventDefault();
+                $qrModal.modal();
             });
         }
-        if ($qrcode.length) {
-            //qrcode start
-            $qrcode.on("click", function(event) {
-                event.preventDefault();
-                $("#am-navbar-boxqrcode").modal();
-            });
+        if (navItemsCounter > configItems && navItemsCounter > calcSuiteItems()) {
+            initActions();
         }
-        //qrcode end
-        if (_parent.length) {
-            $body.append($('<ul class="am-navbar-moreList"></ul>'));
+        function initActions() {
+            $navBarNav.append($moreLink);
+            $navBarNav.find("li").not(".am-navbar-more").slice(calcSuiteItems() - 1).appendTo($moreActions);
+            // Append more actions
+            $navBar.append($moreActions);
         }
-        if (_parent.find("li").length * _parent.find("li").width() > $(window).width()) {
-            //如果li没有完全展示
-            //替换父级的class
-            displaceClass(_parent.find("li").length, parentUl);
-            var nowWidth = _parent.find("li").width();
-            if (nowWidth < minWidth) {
-                if (onOffCreat) {
-                    addMore();
-                    onOffCreat = false;
+        function checkNavBarItems() {
+            // console.log('best: %d', calcSuiteItems());
+            if (calcSuiteItems() >= navItemsCounter) {
+                // 显示所有链接，隐藏 more
+                $moreLink.hide();
+                $moreActions.find("li").insertBefore($moreLink);
+                return;
+            }
+            !$navBar.find(".am-navbar-actions").length && initActions();
+            $moreLink.show();
+            if ($navBarNav.find("li").length < calcSuiteItems()) {
+                $moreActions.find("li").slice(0, calcSuiteItems() - $navBarNav.find("li").length).insertBefore($moreLink);
+            } else if ($navBarNav.find("li").length > calcSuiteItems()) {
+                if ($moreActions.find("li").length) {
+                    $navBarNav.find("li").not($moreLink).slice(calcSuiteItems() - 1).insertBefore($moreActions.find("li").first());
+                } else {
+                    $navBarNav.find("li").not($moreLink).slice(calcSuiteItems() - 1).appendTo($moreActions);
                 }
-                displaceClass(liLength(), parentUl);
-                addMoreLi(liLength());
             }
         }
-        //有问题的代码：
-        /*$(window).on("resize",function(){
-
-         if(_parent.find("li").length * _parent.find("li").width() > $(window).width()){ //如果li没有完全展示
-
-         //替换父级的class
-         displaceClass(_parent.find("li").length,parentUl);
-         var nowWidth = _parent.find("li").width();
-
-         //现在的宽度小于最小宽度
-         if(nowWidth < minWidth){
-
-         if(onOffCreat){
-         addMore();
-         onOffCreat = false;
-         }
-         displaceClass(liLength(),parentUl);
-         addMoreLi(liLength());
-         }else{
-
-         addParentLi(liLength());
-
-         if($(".am-navbar-moreList").children().length){
-         removeMore();
-         onOffCreat = true;
-         }
-
-         displaceClass(liLength(),parentUl);
-         }
-         }else{
-         displaceClass(_parent.find("li").length,parentUl);
-         if(_parent.find("li").width < minWidth){
-         console.log("小于")
-         }
-         }
-
-         })*/
-        _more = $(".am-navbar-more");
-        _moreList = $(".am-navbar-moreList");
-        _parent.on("click", ".am-navbar-more", function() {
-            if (onOff) {
-                _moreList.css({
-                    bottom: _moreList.height(),
-                    display: "block"
-                }).animate({
-                    bottom: 49
-                }, {
-                    duration: "fast",
-                    complete: function() {
-                        _more.addClass("am-navbar-more-active");
-                    }
-                });
-                onOff = !onOff;
-            } else {
-                _moreList.animate({
-                    bottom: -_moreList.height()
-                }, {
-                    complete: function() {
-                        $(this).css("display", "none");
-                        _more.removeClass("am-navbar-more-active");
-                    }
-                });
-                onOff = !onOff;
-            }
+        /**
+         * 计算最适合显示的条目个数
+         * @returns {number}
+         */
+        function calcSuiteItems() {
+            return Math.floor(($win.width() - offsetWidth) / navMinWidth);
+        }
+        $navBar.on("click.navbar.amui", ".am-navbar-more", function(e) {
+            e.preventDefault();
+            $moreLink[$moreActions.hasClass(activeStatus) ? "removeClass" : "addClass"](activeStatus);
+            $moreActions.toggleClass(activeStatus);
         });
-        //添加more
-        function addMore() {
-            parentUl.append($('<li class="am-navbar-item am-navbar-more"><a href="javascript:;"><span class="am-icon-chevron-up"></span>更多</a></li>'));
-        }
-        //删除more
-        function removeMore() {
-            parentUl.find(".am-navbar-more").remove();
-        }
-        //计算合适的长度
-        function liLength() {
-            return parseInt($(window).width() / minWidth);
-        }
-        //移出parent下的li,并添加到moreList里面
-        function addMoreLi(len) {
-            subLi.not(".am-navbar-more").each(function(index) {
-                if (index > len - 2) {
-                    $(this).appendTo($(".am-navbar-moreList"));
-                }
+        if ($share.length) {
+            $share.on("click.navbar.amui", function(e) {
+                e.preventDefault();
+                share.toggle();
             });
         }
-        //移出moreList里面的li,并添加到parent下面
-        function addParentLi(len) {
-            $(".am-navbar-moreList").children().first().appendTo(parentUl);
-        }
-        //替换class
-        function displaceClass(num, object) {
-            var $className = object.attr("class").replace(/sm-block-grid-\d/, "sm-block-grid-" + num);
-            object.attr("class", $className);
-        }
+        $win.on("resize.navbar.amui orientationchange.navbar.amui", UI.utils.debounce(checkNavBarItems, 150));
     };
-    // DOMContentLoaded
+    // DOMContent ready
     $(function() {
         navbarInit();
     });
     exports.init = navbarInit;
 });
-define("pagination", [], function(require, exports, module) {});
-define("paragraph", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "zepto.pinchzoom" ], function(require, exports, module) {
-    require("core");
+define("pagination", [], function(require, exports, module) {
     var $ = window.Zepto;
-    // PinchZoom Plugin
-    var PinchZoom = require("zepto.pinchzoom");
+});
+define("paragraph", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.iscroll-lite" ], function(require, exports, module) {
+    require("core");
+    var $ = window.Zepto, UI = $.AMUI;
+    // Iscroll-lite Plugin
+    var IScroll = require("ui.iscroll-lite");
     var paragraphInit;
-    $.fn.paragraphZoomToggle = function() {
-        var $warpHead, $pinch, $zoomWrap, onOff = true, // 防止重复创建
-        $wrapDom = $("<div class='am-paragraph-wrap'><header></header><div class='pinch-zoom'></div></div>");
-        $zoomWrap = $(".am-paragraph-wrap");
-        $warpHead = $(".am-paragraph-wrap header");
-        $pinch = $zoomWrap.find(".pinch-zoom");
-        this.each(function() {
-            $(this).on("click", function() {
-                if (onOff && $(".am-paragraph").length) {
-                    $("body").append($wrapDom);
-                    $zoomWrap = $(".am-paragraph-wrap");
-                    $pinch = $zoomWrap.find(".pinch-zoom");
-                    $warpHead = $zoomWrap.find("header");
-                    $pinch.each(function() {
-                        new PinchZoom($(this), {});
-                    });
-                    onOff = false;
-                }
-                $pinch.html(this.outerHTML);
-                if ($(this).attr("alt")) {
-                    $warpHead.html($(this).attr("alt"));
-                } else {
-                    $warpHead.html("返回");
-                }
-                $zoomWrap.addClass("am-active").find("img").width($(window).width());
-            });
+    /**
+     * 表格滚动
+     * @param index ID 标识，多个 paragraph 里面多个 table
+     */
+    $.fn.scrollTable = function(index) {
+        var $this = $(this), $parent;
+        $this.wrap("<div class='am-paragraph-table-container' id='am-paragraph-table-" + index + "'><div class='am-paragraph-table-scroller'></div></div>");
+        $parent = $this.parent();
+        $parent.width($this.width());
+        $parent.height($this.height());
+        var tableScroll = new IScroll("#am-paragraph-table-" + index, {
+            eventPassthrough: true,
+            scrollX: true,
+            scrollY: false,
+            preventDefault: false
         });
     };
-    $.fn.paragraphTable = function(objWidth) {
-        var This = $(this), distX = 0, disX = 0, disY = 0, downX, downY, $parent, scrollY;
-        if (objWidth > $("body").width()) {
-            This.wrap("<div class='am-paragraph-table-container'><div class='am-paragraph-table-scroller'></div></div>");
-            $parent = This.parent();
-            $parent.width(objWidth);
-            $parent.height(This.height());
-            $parent.parent().height(This.height() + 20);
-            $parent.on("touchstart MSPointerDown pointerdown", function(ev) {
-                var oTarget = ev.targetTouches[0];
-                distX = oTarget.clientX - $(this).offset().left;
-                downX = oTarget.clientX;
-                downY = oTarget.clientY;
-                scrollY = undefined;
-                $(document).on("touchmove MSPointerMove pointermove", fnMove);
-                $(document).on("touchend MSPointerUp pointerup", fnUp);
-            });
-        }
-        function fnUp(ev) {
-            ev.preventDefault();
-            var oTarget = ev.changedTouches[0];
-            var L = $parent.offset().left;
-            // ->
-            if (L > 10) {
-                $parent.animate({
-                    left: 10
-                }, 500, "ease-out");
-            }
-            //<-
-            if (L < -$parent.width() + $(window).width() - 10) {
-                $parent.animate({
-                    left: -$parent.width() + $(window).width() - 10
-                }, 500, "ease-out");
-            }
-            $(document).off("touchend MSPointerUp pointerup", fnUp);
-            $(document).off("touchmove MSPointerMove pointermove", fnMove);
-        }
-        function fnMove(ev) {
-            var oTarget = ev.targetTouches[0];
-            disX = oTarget.clientX - downX;
-            disY = oTarget.clientY - downY;
-            if (typeof scrollY == "undefined") {
-                scrollY = !!(scrollY || Math.abs(disX) < Math.abs(disY));
-            }
-            if (!scrollY) {
-                ev.preventDefault();
-                This.parent().css("left", oTarget.clientX - distX);
-            }
-        }
-    };
     paragraphInit = function() {
-        var $body = $("body"), $paragraph = $(".am-paragraph"), $tableWidth;
-        if ($paragraph.length && $paragraph.attr("data-am-imgParagraph")) {
-            $paragraph.find("img").paragraphZoomToggle();
-            $body.on("click", ".am-paragraph-wrap", function(e) {
-                e.preventDefault();
-                var target = e.target;
-                // Img is using pinch zoom
-                if (!$(target).is("img")) {
-                    $(this).toggleClass("am-active");
-                }
-            });
-        }
-        if ($paragraph.length && $paragraph.attr("data-am-tableParagraph")) {
-            $paragraph.find("table").each(function() {
-                $tableWidth = $(this).width();
-                $(this).paragraphTable($tableWidth);
-            });
-        }
+        var $body = $("body"), $paragraph = $('[data-am-widget="paragraph"]');
+        $paragraph.each(function(index) {
+            var $this = $(this), options = UI.utils.parseOptions($this.attr("data-am-paragraph")), $index = index;
+            if (options.pureview) {
+                $this.pureview();
+            }
+            if (options.tableScrollable) {
+                $this.find("table").each(function(index) {
+                    if ($(this).width() > $(window).width()) {
+                        $(this).scrollTable($index + "-" + index);
+                    }
+                });
+            }
+        });
     };
     $(window).on("load", function() {
         paragraphInit();
     });
     exports.init = paragraphInit;
 });
-define("slider", [ "zepto.flexslider" ], function(require, exports, module) {
-    var $ = window.Zepto;
+define("slider", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "zepto.flexslider" ], function(require, exports, module) {
+    require("core");
     require("zepto.flexslider");
+    var $ = window.Zepto, UI = $.AMUI;
     var sliderInit = function() {
-        $(".am-slider").not(".am-slider-manual").each(function(i, item) {
-            var options = $(item).attr("data-slider-config");
-            if (options) {
-                $(item).flexslider($.parseJSON(options));
-            } else {
-                $(item).flexslider();
-            }
+        var $sliders = $('[data-am-widget="slider"]');
+        $sliders.not(".am-slider-manual").each(function(i, item) {
+            var options = UI.utils.parseOptions($(item).attr("data-am-slider"));
+            $(item).flexslider(options);
         });
     };
     $(document).on("ready", sliderInit);
@@ -1163,480 +851,520 @@ define("sohucs", [], function(require, exports, module) {
     $(window).on("load", sohuCSInit);
     exports.init = sohuCSInit;
 });
-define("tabs", [ "zepto.extend.touch", "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
-    require("zepto.extend.touch");
+define("tabs", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.tabs", "util.hammer" ], function(require, exports, module) {
     require("core");
+    require("ui.tabs");
     var $ = window.Zepto;
     var tabsInit = function() {
-        $(".am-tabs").each(function() {
-            amTabs($(this));
-        });
+        $('[data-am-widget="tabs"]').tabs();
     };
-    function amTabs(parent) {
-        var $tabsContent = parent.find(".am-tabs-bd-content"), $tabsDiv = $tabsContent.children(), oneWidth, iNow = 0, disX, disY, downY, downX, $tabLi = parent.find(".am-tabs-hd").children();
-        //设置tabsdiv宽度
-        $tabsContent.width($tabsContent.parent().width() * $tabsDiv.length);
-        $tabsDiv.width($tabsContent.parent().width());
-        oneWidth = $tabsDiv.width();
-        $(window).on("resize", function() {
-            $tabsContent.width($tabsContent.parent().width() * $tabsDiv.length);
-            $tabsDiv.width($tabsContent.parent().width());
-            oneWidth = $tabsDiv.width();
-        });
-        /*$tabsContent.on("touchstart MSPointerDown pointerdown", function(ev){
-         ev.preventDefault();
-         var oTarget = ev.targetTouches[0];
-         disX = oTarget.clientX - $tabsContent.offset().left;
-         disY = oTarget.clientY - $tabsContent.offset().top;
-         downX = oTarget.clientX;
-         downY = oTarget.clientY;
-         $( $tabsContent ).on("touchmove MSPointerMove pointermove", fnMove);
-         $( $tabsContent ).on("touchend MSPointerUp pointerup", fnUp);
-         });*/
-        $tabsContent.swipeRight(function() {
-            iNow--;
-            if (iNow < 0) {
-                iNow = 0;
-            }
-            $tabsContent.animate({
-                left: -iNow * oneWidth
-            });
-            $tabLi.removeClass("am-tabs-hd-active");
-            $tabLi.eq(iNow).addClass("am-tabs-hd-active");
-        });
-        $tabsContent.swipeLeft(function() {
-            iNow++;
-            if (iNow > $tabsDiv.length - 1) {
-                iNow = $tabsDiv.length - 1;
-            }
-            $tabsContent.animate({
-                left: -iNow * oneWidth
-            });
-            $tabLi.removeClass("am-tabs-hd-active");
-            $tabLi.eq(iNow).addClass("am-tabs-hd-active");
-        });
-        $tabLi.on("click", function() {
-            iNow = $(this).index();
-            $tabLi.removeClass("am-tabs-hd-active");
-            $tabLi.eq(iNow).addClass("am-tabs-hd-active");
-            $tabsContent.animate({
-                left: -iNow * oneWidth
-            });
-        });
-    }
     $(function() {
         tabsInit();
     });
     exports.init = tabsInit;
 });
-define("titlebar", [], function(require, exports, module) {});
-define("ui.accordion", [ "./zepto.extend.fx", "./zepto.extend.selector", "./zepto.extend.data" ], function(require, exports, module) {
+define("titlebar", [], function(require, exports, module) {
     var $ = window.Zepto;
-    require("./zepto.extend.fx");
-    require("./zepto.extend.selector");
-    require("./zepto.extend.data");
-    /**
-     * @via https://github.com/Semantic-Org/Semantic-UI/blob/master/src/modules/accordion.js
-     * @license https://github.com/Semantic-Org/Semantic-UI/blob/master/LICENSE.md
-     */
-    $.fn.accordion = function(parameters) {
-        var $allModules = $(this), query = arguments[0], methodInvoked = typeof query == "string", queryArguments = [].slice.call(arguments, 1), returnedValue;
-        $allModules.each(function() {
-            var settings = $.isPlainObject(parameters) ? $.extend(true, {}, $.fn.accordion.settings, parameters) : $.extend({}, $.fn.accordion.settings), className = settings.className, namespace = settings.namespace, selector = settings.selector, eventNamespace = "." + namespace, moduleNamespace = "module-" + namespace, $module = $(this), $title = $module.find(selector.title), $content = $module.find(selector.content), $item = $module.find(selector.item), element = this, instance = $module.data(moduleNamespace), module;
-            module = {
-                initialize: function() {
-                    // initializing
-                    $title.on("click" + eventNamespace, module.event.click);
-                    module.instantiate();
-                },
-                instantiate: function() {
-                    instance = module;
-                    $module.data(moduleNamespace, module);
-                },
-                destroy: function() {
-                    $module.removeData(moduleNamespace);
-                    $title.off(eventNamespace);
-                },
-                event: {
-                    click: function() {
-                        var $activeTitle = $(this), index = $item.index($activeTitle.parent(selector.item));
-                        module.toggle(index);
-                    }
-                },
-                toggle: function(index) {
-                    var $activeItem = $item.eq(index), contentIsOpen = $activeItem.hasClass(className.active);
-                    if (contentIsOpen) {
-                        if (settings.collapsible) {
-                            module.close(index);
-                        }
-                    } else {
-                        module.open(index);
-                    }
-                },
-                open: function(index) {
-                    var $activeItem = $item.eq(index), $activeContent = $activeItem.next(selector.content);
-                    if (!settings.multiple) {
-                        $item.not($activeItem).removeClass(className.active);
-                    }
-                    $activeItem.addClass(className.active);
-                    $activeContent.animate(settings.duration, settings.easing, function() {
-                        $.proxy(settings.onOpen, $activeContent)();
-                        $.proxy(settings.onChange, $activeContent)();
-                    });
-                },
-                close: function(index) {
-                    var $activeItem = $item.eq(index), $activeContent = $activeItem.find(selector.content);
-                    $activeItem.removeClass(className.active);
-                    $activeContent.animate(settings.duration, settings.easing, function() {
-                        $.proxy(settings.onClose, $activeContent)();
-                        $.proxy(settings.onChange, $activeContent)();
-                    });
-                },
-                setting: function(name, value) {
-                    if ($.isPlainObject(name)) {
-                        $.extend(true, settings, name);
-                    } else if (value !== undefined) {
-                        settings[name] = value;
-                    } else {
-                        return settings[name];
-                    }
-                },
-                internal: function(name, value) {
-                    if (value !== undefined) {
-                        if ($.isPlainObject(name)) {
-                            $.extend(true, module, name);
-                        } else {
-                            module[name] = value;
-                        }
-                    } else {
-                        return module[name];
-                    }
-                },
-                invoke: function(query, passedArguments, context) {
-                    var object = instance, maxDepth, found, response;
-                    passedArguments = passedArguments || queryArguments;
-                    context = element || context;
-                    if (typeof query == "string" && object !== undefined) {
-                        query = query.split(/[\. ]/);
-                        maxDepth = query.length - 1;
-                        $.each(query, function(depth, value) {
-                            var camelCaseValue = depth != maxDepth ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1) : query;
-                            if ($.isPlainObject(object[camelCaseValue]) && depth != maxDepth) {
-                                object = object[camelCaseValue];
-                            } else if (object[camelCaseValue] !== undefined) {
-                                found = object[camelCaseValue];
-                                return false;
-                            } else if ($.isPlainObject(object[value]) && depth != maxDepth) {
-                                object = object[value];
-                            } else if (object[value] !== undefined) {
-                                found = object[value];
-                                return false;
-                            } else {
-                                return false;
-                            }
-                        });
-                    }
-                    if ($.isFunction(found)) {
-                        response = found.apply(context, passedArguments);
-                    } else if (found !== undefined) {
-                        response = found;
-                    }
-                    if ($.isArray(returnedValue)) {
-                        returnedValue.push(response);
-                    } else if (returnedValue !== undefined) {
-                        returnedValue = [ returnedValue, response ];
-                    } else if (response !== undefined) {
-                        returnedValue = response;
-                    }
-                    return found;
-                }
-            };
-            if (methodInvoked) {
-                if (instance === undefined) {
-                    module.initialize();
-                }
-                module.invoke(query);
-            } else {
-                if (instance !== undefined) {
-                    module.destroy();
-                }
-                module.initialize();
-            }
-        });
-        return returnedValue !== undefined ? returnedValue : this;
-    };
-    $.fn.accordion.settings = {
-        name: "Accordion",
-        namespace: "accordion",
-        multiple: false,
-        collapsible: true,
-        duration: 500,
-        easing: "ease-in-out",
-        onOpen: function() {},
-        onClose: function() {},
-        onChange: function() {},
-        className: {
-            active: "am-active"
-        },
-        selector: {
-            item: ".am-accordion-item",
-            title: ".am-accordion-title",
-            content: ".am-accordion-content"
-        }
-    };
 });
 define("ui.add2home", [], function(require, exports, module) {
-    /*!
-     * Add to Homescreen v2.0.11 ~ Copyright (c) 2013 Matteo Spinelli, http://cubiq.org
-     * Released under MIT license, http://cubiq.org/license
+    var $ = window.Zepto;
+    /**
+     * Add to Homescreen v3.0.7
+     * @copyright (c) 2014 Matteo Spinelli
+     * @license: http://cubiq.org/license
      */
-    var addToHome = function(w) {
-        var nav = w.navigator, isIDevice = "platform" in nav && /iphone|ipod|ipad/gi.test(nav.platform), isIPad, isRetina, isSafari, isStandalone, OSVersion, startX = 0, startY = 0, lastVisit = 0, isExpired, isSessionActive, isReturningVisitor, balloon, overrideChecks, positionInterval, closeTimeout, options = {
-            autostart: true,
-            // Automatically open the balloon
-            returningVisitor: false,
-            // Show the balloon to returning visitors only (setting this to true is highly recommended)
-            animationIn: "drop",
-            // drop || bubble || fade
-            animationOut: "fade",
-            // drop || bubble || fade
-            startDelay: 2e3,
-            // 2 seconds from page load before the balloon appears
-            lifespan: 15e3,
-            // 15 seconds before it is automatically destroyed
-            bottomOffset: 14,
-            // Distance of the balloon from bottom
-            expire: 0,
-            // Minutes to wait before showing the popup again (0 = always displayed)
-            message: "",
-            // Customize your message or force a language ('' = automatic)
-            touchIcon: false,
-            // Display the touch icon
-            arrow: true,
-            // Display the balloon arrow
-            hookOnLoad: true,
-            // Should we hook to onload event? (really advanced usage)
-            closeButton: true,
-            // Let the user close the balloon
-            iterations: 100
-        }, intl = {
-            en_us: "Install this web app on your %device: tap %icon and then <strong>Add to Home Screen</strong>.",
-            zh_cn: "您可以将此应用安装到您的 %device 上。请按 %icon 然后选择<strong>添加至主屏幕</strong>。",
-            zh_tw: "您可以將此應用程式安裝到您的 %device 上。請按 %icon 然後點選<strong>加入主畫面螢幕</strong>。"
-        };
-        function init() {
-            // Preliminary check, all further checks are performed on iDevices only
-            if (!isIDevice) return;
-            var now = Date.now(), i;
-            // Merge local with global options
-            if (w.addToHomeConfig) {
-                for (i in w.addToHomeConfig) {
-                    options[i] = w.addToHomeConfig[i];
-                }
+    // Check if document is loaded, needed by autostart
+    var _DOMReady = false;
+    if (document.readyState === "complete") {
+        _DOMReady = true;
+    } else {
+        window.addEventListener("load", loaded, false);
+    }
+    function loaded() {
+        window.removeEventListener("load", loaded, false);
+        _DOMReady = true;
+    }
+    // regex used to detect if app has been added to the homescreen
+    var _reSmartURL = /\/ath(\/)?$/;
+    var _reQueryString = /([\?&]ath=[^&]*$|&ath=[^&]*(&))/;
+    // singleton
+    var _instance;
+    function ath(options) {
+        _instance = _instance || new ath.Class(options);
+        return _instance;
+    }
+    // message in all supported languages
+    ath.intl = {
+        en_us: {
+            message: "To add this web app to the home screen: tap %icon and then <strong>%action</strong>.",
+            action: {
+                ios: "Add to Home Screen",
+                android: "Add to homescreen",
+                windows: "pin to start"
             }
-            if (!options.autostart) options.hookOnLoad = false;
-            isIPad = /ipad/gi.test(nav.platform);
-            isRetina = w.devicePixelRatio && w.devicePixelRatio > 1;
-            isSafari = /Safari/i.test(nav.appVersion) && !/CriOS/i.test(nav.appVersion);
-            isStandalone = nav.standalone;
-            OSVersion = nav.appVersion.match(/OS (\d+_\d+)/i);
-            OSVersion = OSVersion && OSVersion[1] ? +OSVersion[1].replace("_", ".") : 0;
-            lastVisit = +w.localStorage.getItem("addToHome");
-            isSessionActive = w.sessionStorage.getItem("addToHomeSession");
-            isReturningVisitor = options.returningVisitor ? lastVisit && lastVisit + 28 * 24 * 60 * 60 * 1e3 > now : true;
-            if (!lastVisit) lastVisit = now;
-            // If it is expired we need to reissue a new balloon
-            isExpired = isReturningVisitor && lastVisit <= now;
-            if (options.hookOnLoad) w.addEventListener("load", loaded, false); else if (!options.hookOnLoad && options.autostart) loaded();
+        },
+        zh_cn: {
+            message: "如要把应用程式加至主屏幕,请点击%icon, 然后<strong>%action</strong>",
+            action: {
+                ios: "加至主屏幕",
+                android: "加至主屏幕",
+                windows: "按住启动"
+            }
+        },
+        zh_tw: {
+            message: "如要把應用程式加至主屏幕, 請點擊%icon, 然後<strong>%action</strong>.",
+            action: {
+                ios: "加至主屏幕",
+                android: "加至主屏幕",
+                windows: "按住啟動"
+            }
         }
-        function loaded() {
-            w.removeEventListener("load", loaded, false);
-            if (!isReturningVisitor) w.localStorage.setItem("addToHome", Date.now()); else if (options.expire && isExpired) w.localStorage.setItem("addToHome", Date.now() + options.expire * 6e4);
-            if (!overrideChecks && (!isSafari || !isExpired || isSessionActive || isStandalone || !isReturningVisitor)) return;
-            var touchIcon = "", platform = nav.platform.split(" ")[0], language = nav.language.replace("-", "_");
-            balloon = document.createElement("div");
-            balloon.id = "addToHomeScreen";
-            balloon.style.cssText += "left:-9999px;-webkit-transition-property:-webkit-transform,opacity;-webkit-transition-duration:0;-webkit-transform:translate3d(0,0,0);position:" + (OSVersion < 5 ? "absolute" : "fixed");
-            // Localize message
-            if (options.message in intl) {
-                // You may force a language despite the user's locale
-                language = options.message;
-                options.message = "";
-            }
-            if (options.message === "") {
-                // We look for a suitable language (defaulted to en_us)
-                options.message = language in intl ? intl[language] : intl["en_us"];
-            }
-            if (options.touchIcon) {
-                touchIcon = isRetina ? document.querySelector('head link[rel^=apple-touch-icon][sizes="114x114"],head link[rel^=apple-touch-icon][sizes="144x144"],head link[rel^=apple-touch-icon]') : document.querySelector('head link[rel^=apple-touch-icon][sizes="57x57"],head link[rel^=apple-touch-icon]');
-                if (touchIcon) {
-                    touchIcon = '<span style="background-image:url(' + touchIcon.href + ')" class="addToHomeTouchIcon"></span>';
-                }
-            }
-            balloon.className = (OSVersion >= 7 ? "addToHomeIOS7 " : "") + (isIPad ? "addToHomeIpad" : "addToHomeIphone") + (touchIcon ? " addToHomeWide" : "");
-            balloon.innerHTML = touchIcon + options.message.replace("%device", platform).replace("%icon", OSVersion >= 4.2 ? '<span class="addToHomeShare"></span>' : '<span class="addToHomePlus">+</span>') + (options.arrow ? '<span class="addToHomeArrow"' + (OSVersion >= 7 && isIPad && touchIcon ? ' style="margin-left:-32px"' : "") + "></span>" : "") + (options.closeButton ? '<span class="addToHomeClose">×</span>' : "");
-            document.body.appendChild(balloon);
-            // Add the close action
-            if (options.closeButton) balloon.addEventListener("click", clicked, false);
-            if (!isIPad && OSVersion >= 6) window.addEventListener("orientationchange", orientationCheck, false);
-            setTimeout(show, options.startDelay);
+    };
+    // Add 2 characters language support (Android mostly)
+    for (var lang in ath.intl) {
+        ath.intl[lang.substr(0, 2)] = ath.intl[lang];
+    }
+    // default options
+    ath.defaults = {
+        appID: "org.cubiq.addtohome",
+        // local storage name (no need to change)
+        fontSize: 15,
+        // base font size, used to properly resize the popup based on viewport scale factor
+        debug: false,
+        // override browser checks
+        modal: false,
+        // prevent further actions until the message is closed
+        mandatory: false,
+        // you can't proceed if you don't add the app to the homescreen
+        autostart: true,
+        // show the message automatically
+        skipFirstVisit: false,
+        // show only to returning visitors (ie: skip the first time you visit)
+        startDelay: 1,
+        // display the message after that many seconds from page load
+        lifespan: 15,
+        // life of the message in seconds
+        displayPace: 1440,
+        // minutes before the message is shown again (0: display every time, default 24 hours)
+        maxDisplayCount: 0,
+        // absolute maximum number of times the message will be shown to the user (0: no limit)
+        icon: true,
+        // add touch icon to the message
+        message: "",
+        // the message can be customized
+        validLocation: [],
+        // list of pages where the message will be shown (array of regexes)
+        onInit: null,
+        // executed on instance creation
+        onShow: null,
+        // executed when the message is shown
+        onRemove: null,
+        // executed when the message is removed
+        onAdd: null,
+        // when the application is launched the first time from the homescreen (guesstimate)
+        onPrivate: null,
+        // executed if user is in private mode
+        detectHomescreen: false
+    };
+    // browser info and capability
+    var _ua = window.navigator.userAgent;
+    var _nav = window.navigator;
+    _extend(ath, {
+        hasToken: document.location.hash == "#ath" || _reSmartURL.test(document.location.href) || _reQueryString.test(document.location.search),
+        isRetina: window.devicePixelRatio && window.devicePixelRatio > 1,
+        isIDevice: /iphone|ipod|ipad/i.test(_ua),
+        isMobileChrome: _ua.indexOf("Android") > -1 && /Chrome\/[.0-9]*/.test(_ua),
+        isMobileIE: _ua.indexOf("Windows Phone") > -1,
+        language: _nav.language && _nav.language.toLowerCase().replace("-", "_") || ""
+    });
+    // falls back to en_us if language is unsupported
+    ath.language = ath.language && ath.language in ath.intl ? ath.language : "en_us";
+    ath.isMobileSafari = ath.isIDevice && _ua.indexOf("Safari") > -1 && _ua.indexOf("CriOS") < 0;
+    ath.OS = ath.isIDevice ? "ios" : ath.isMobileChrome ? "android" : ath.isMobileIE ? "windows" : "unsupported";
+    ath.OSVersion = _ua.match(/(OS|Android) (\d+[_\.]\d+)/);
+    ath.OSVersion = ath.OSVersion && ath.OSVersion[2] ? +ath.OSVersion[2].replace("_", ".") : 0;
+    ath.isStandalone = window.navigator.standalone || ath.isMobileChrome && screen.height - document.documentElement.clientHeight < 40;
+    // TODO: check the lame polyfill
+    ath.isTablet = ath.isMobileSafari && _ua.indexOf("iPad") > -1 || ath.isMobileChrome && _ua.indexOf("Mobile") < 0;
+    ath.isCompatible = ath.isMobileSafari && ath.OSVersion >= 6 || ath.isMobileChrome;
+    // TODO: add winphone
+    var _defaultSession = {
+        lastDisplayTime: 0,
+        // last time we displayed the message
+        returningVisitor: false,
+        // is this the first time you visit
+        displayCount: 0,
+        // number of times the message has been shown
+        optedout: false,
+        // has the user opted out
+        added: false
+    };
+    ath.removeSession = function(appID) {
+        try {
+            localStorage.removeItem(appID || ath.defaults.appID);
+        } catch (e) {}
+    };
+    ath.Class = function(options) {
+        // merge default options with user config
+        this.options = _extend({}, ath.defaults);
+        _extend(this.options, options);
+        // normalize some options
+        this.options.mandatory = this.options.mandatory && ("standalone" in window.navigator || this.options.debug);
+        this.options.modal = this.options.modal || this.options.mandatory;
+        if (this.options.mandatory) {
+            this.options.startDelay = -.5;
         }
-        function show() {
-            var duration, iPadXShift = 208;
-            // Set the initial position
-            if (isIPad) {
-                if (OSVersion < 5) {
-                    startY = w.scrollY;
-                    startX = w.scrollX;
-                } else if (OSVersion < 6) {
-                    iPadXShift = 160;
-                } else if (OSVersion >= 7) {
-                    iPadXShift = 143;
-                }
-                balloon.style.top = startY + options.bottomOffset + "px";
-                balloon.style.left = Math.max(startX + iPadXShift - Math.round(balloon.offsetWidth / 2), 9) + "px";
-                switch (options.animationIn) {
-                  case "drop":
-                    duration = "0.6s";
-                    balloon.style.webkitTransform = "translate3d(0," + -(w.scrollY + options.bottomOffset + balloon.offsetHeight) + "px,0)";
-                    break;
-
-                  case "bubble":
-                    duration = "0.6s";
-                    balloon.style.opacity = "0";
-                    balloon.style.webkitTransform = "translate3d(0," + (startY + 50) + "px,0)";
-                    break;
-
-                  default:
-                    duration = "1s";
-                    balloon.style.opacity = "0";
-                }
-            } else {
-                startY = w.innerHeight + w.scrollY;
-                if (OSVersion < 5) {
-                    startX = Math.round((w.innerWidth - balloon.offsetWidth) / 2) + w.scrollX;
-                    balloon.style.left = startX + "px";
-                    balloon.style.top = startY - balloon.offsetHeight - options.bottomOffset + "px";
-                } else {
-                    balloon.style.left = "50%";
-                    balloon.style.marginLeft = -Math.round(balloon.offsetWidth / 2) - (w.orientation % 180 && OSVersion >= 6 && OSVersion < 7 ? 40 : 0) + "px";
-                    balloon.style.bottom = options.bottomOffset + "px";
-                }
-                switch (options.animationIn) {
-                  case "drop":
-                    duration = "1s";
-                    balloon.style.webkitTransform = "translate3d(0," + -(startY + options.bottomOffset) + "px,0)";
-                    break;
-
-                  case "bubble":
-                    duration = "0.6s";
-                    balloon.style.webkitTransform = "translate3d(0," + (balloon.offsetHeight + options.bottomOffset + 50) + "px,0)";
-                    break;
-
-                  default:
-                    duration = "1s";
-                    balloon.style.opacity = "0";
-                }
-            }
-            balloon.offsetHeight;
-            // repaint trick
-            balloon.style.webkitTransitionDuration = duration;
-            balloon.style.opacity = "1";
-            balloon.style.webkitTransform = "translate3d(0,0,0)";
-            balloon.addEventListener("webkitTransitionEnd", transitionEnd, false);
-            closeTimeout = setTimeout(close, options.lifespan);
+        this.options.detectHomescreen = this.options.detectHomescreen === true ? "hash" : this.options.detectHomescreen;
+        // setup the debug environment
+        if (this.options.debug) {
+            ath.isCompatible = true;
+            ath.OS = typeof this.options.debug == "string" ? this.options.debug : ath.OS == "unsupported" ? "android" : ath.OS;
+            ath.OSVersion = ath.OS == "ios" ? "7" : "4";
         }
-        function manualShow(override) {
-            if (!isIDevice || balloon) return;
-            overrideChecks = override;
-            loaded();
+        // the element the message will be appended to
+        this.container = document.documentElement;
+        // load session
+        this.session = JSON.parse(localStorage.getItem(this.options.appID));
+        // user most likely came from a direct link containing our token, we don't need it and we remove it
+        if (ath.hasToken && (!ath.isCompatible || !this.session)) {
+            ath.hasToken = false;
+            _removeToken();
         }
-        function close() {
-            clearInterval(positionInterval);
-            clearTimeout(closeTimeout);
-            closeTimeout = null;
-            // check if the popup is displayed and prevent errors
-            if (!balloon) return;
-            var posY = 0, posX = 0, opacity = "1", duration = "0";
-            if (options.closeButton) balloon.removeEventListener("click", clicked, false);
-            if (!isIPad && OSVersion >= 6) window.removeEventListener("orientationchange", orientationCheck, false);
-            if (OSVersion < 5) {
-                posY = isIPad ? w.scrollY - startY : w.scrollY + w.innerHeight - startY;
-                posX = isIPad ? w.scrollX - startX : w.scrollX + Math.round((w.innerWidth - balloon.offsetWidth) / 2) - startX;
+        // the device is not supported
+        if (!ath.isCompatible) {
+            return;
+        }
+        this.session = this.session || _defaultSession;
+        // check if we can use the local storage
+        try {
+            localStorage.setItem(this.options.appID, JSON.stringify(this.session));
+            ath.hasLocalStorage = true;
+        } catch (e) {
+            // we are most likely in private mode
+            ath.hasLocalStorage = false;
+            if (this.options.onPrivate) {
+                this.options.onPrivate.call(this);
             }
-            balloon.style.webkitTransitionProperty = "-webkit-transform,opacity";
-            switch (options.animationOut) {
-              case "drop":
-                if (isIPad) {
-                    duration = "0.4s";
-                    opacity = "0";
-                    posY += 50;
-                } else {
-                    duration = "0.6s";
-                    posY += balloon.offsetHeight + options.bottomOffset + 50;
-                }
+        }
+        // check if this is a valid location
+        var isValidLocation = !this.options.validLocation.length;
+        for (var i = this.options.validLocation.length; i--; ) {
+            if (this.options.validLocation[i].test(document.location.href)) {
+                isValidLocation = true;
                 break;
-
-              case "bubble":
-                if (isIPad) {
-                    duration = "0.8s";
-                    posY -= balloon.offsetHeight + options.bottomOffset + 50;
-                } else {
-                    duration = "0.4s";
-                    opacity = "0";
-                    posY -= 50;
-                }
-                break;
-
-              default:
-                duration = "0.8s";
-                opacity = "0";
             }
-            balloon.addEventListener("webkitTransitionEnd", transitionEnd, false);
-            balloon.style.opacity = opacity;
-            balloon.style.webkitTransitionDuration = duration;
-            balloon.style.webkitTransform = "translate3d(" + posX + "px," + posY + "px,0)";
         }
-        function clicked() {
-            w.sessionStorage.setItem("addToHomeSession", "1");
-            isSessionActive = true;
-            close();
+        // check compatibility with old versions of add to homescreen. Opt-out if an old session is found
+        if (localStorage.getItem("addToHome")) {
+            this.optOut();
         }
-        function transitionEnd() {
-            balloon.removeEventListener("webkitTransitionEnd", transitionEnd, false);
-            balloon.style.webkitTransitionProperty = "-webkit-transform";
-            balloon.style.webkitTransitionDuration = "0.2s";
-            // We reached the end!
-            if (!closeTimeout) {
-                balloon.parentNode.removeChild(balloon);
-                balloon = null;
+        // critical errors:
+        // user opted out, already added to the homescreen, not a valid location
+        if (this.session.optedout || this.session.added || !isValidLocation) {
+            return;
+        }
+        // check if the app is in stand alone mode
+        if (ath.isStandalone) {
+            // execute the onAdd event if we haven't already
+            if (!this.session.added) {
+                this.session.added = true;
+                this.updateSession();
+                if (this.options.onAdd && ath.hasLocalStorage) {
+                    // double check on localstorage to avoid multiple calls to the custom event
+                    this.options.onAdd.call(this);
+                }
+            }
+            return;
+        }
+        // (try to) check if the page has been added to the homescreen
+        if (this.options.detectHomescreen) {
+            // the URL has the token, we are likely coming from the homescreen
+            if (ath.hasToken) {
+                _removeToken();
+                // we don't actually need the token anymore, we remove it to prevent redistribution
+                // this is called the first time the user opens the app from the homescreen
+                if (!this.session.added) {
+                    this.session.added = true;
+                    this.updateSession();
+                    if (this.options.onAdd && ath.hasLocalStorage) {
+                        // double check on localstorage to avoid multiple calls to the custom event
+                        this.options.onAdd.call(this);
+                    }
+                }
                 return;
             }
-            // On iOS 4 we start checking the element position
-            if (OSVersion < 5 && closeTimeout) positionInterval = setInterval(setPosition, options.iterations);
+            // URL doesn't have the token, so add it
+            if (this.options.detectHomescreen == "hash") {
+                history.replaceState("", window.document.title, document.location.href + "#ath");
+            } else if (this.options.detectHomescreen == "smartURL") {
+                history.replaceState("", window.document.title, document.location.href.replace(/(\/)?$/, "/ath$1"));
+            } else {
+                history.replaceState("", window.document.title, document.location.href + (document.location.search ? "&" : "?") + "ath=");
+            }
         }
-        function setPosition() {
-            var matrix = new WebKitCSSMatrix(w.getComputedStyle(balloon, null).webkitTransform), posY = isIPad ? w.scrollY - startY : w.scrollY + w.innerHeight - startY, posX = isIPad ? w.scrollX - startX : w.scrollX + Math.round((w.innerWidth - balloon.offsetWidth) / 2) - startX;
-            // Screen didn't move
-            if (posY == matrix.m42 && posX == matrix.m41) return;
-            balloon.style.webkitTransform = "translate3d(" + posX + "px," + posY + "px,0)";
+        // check if this is a returning visitor
+        if (!this.session.returningVisitor) {
+            this.session.returningVisitor = true;
+            this.updateSession();
+            // we do not show the message if this is your first visit
+            if (this.options.skipFirstVisit) {
+                return;
+            }
         }
-        // Clear local and session storages (this is useful primarily in development)
-        function reset() {
-            w.localStorage.removeItem("addToHome");
-            w.sessionStorage.removeItem("addToHomeSession");
+        // we do no show the message in private mode
+        if (!ath.hasLocalStorage) {
+            return;
         }
-        function orientationCheck() {
-            balloon.style.marginLeft = -Math.round(balloon.offsetWidth / 2) - (w.orientation % 180 && OSVersion >= 6 && OSVersion < 7 ? 40 : 0) + "px";
+        // all checks passed, ready to display
+        this.ready = true;
+        if (this.options.onInit) {
+            this.options.onInit.call(this);
         }
-        // Bootstrap!
-        init();
-        return {
-            show: manualShow,
-            close: close,
-            reset: reset
-        };
-    }(window);
+        if (this.options.autostart) {
+            this.show();
+        }
+    };
+    ath.Class.prototype = {
+        // event type to method conversion
+        events: {
+            load: "_delayedShow",
+            error: "_delayedShow",
+            orientationchange: "resize",
+            resize: "resize",
+            scroll: "resize",
+            click: "remove",
+            touchmove: "_preventDefault",
+            transitionend: "_removeElements",
+            webkitTransitionEnd: "_removeElements",
+            MSTransitionEnd: "_removeElements"
+        },
+        handleEvent: function(e) {
+            var type = this.events[e.type];
+            if (type) {
+                this[type](e);
+            }
+        },
+        show: function(force) {
+            // in autostart mode wait for the document to be ready
+            if (this.options.autostart && !_DOMReady) {
+                setTimeout(this.show.bind(this), 50);
+                return;
+            }
+            // message already on screen
+            if (this.shown) {
+                return;
+            }
+            var now = Date.now();
+            var lastDisplayTime = this.session.lastDisplayTime;
+            if (force !== true) {
+                // this is needed if autostart is disabled and you programmatically call the show() method
+                if (!this.ready) {
+                    return;
+                }
+                // we obey the display pace (prevent the message to popup too often)
+                if (now - lastDisplayTime < this.options.displayPace * 6e4) {
+                    return;
+                }
+                // obey the maximum number of display count
+                if (this.options.maxDisplayCount && this.session.displayCount >= this.options.maxDisplayCount) {
+                    return;
+                }
+            }
+            this.shown = true;
+            // increment the display count
+            this.session.lastDisplayTime = now;
+            this.session.displayCount++;
+            this.updateSession();
+            // try to get the highest resolution application icon
+            if (!this.applicationIcon) {
+                if (ath.OS == "ios") {
+                    this.applicationIcon = document.querySelector('head link[rel^=apple-touch-icon][sizes="152x152"],head link[rel^=apple-touch-icon][sizes="144x144"],head link[rel^=apple-touch-icon][sizes="120x120"],head link[rel^=apple-touch-icon][sizes="114x114"],head link[rel^=apple-touch-icon]');
+                } else {
+                    this.applicationIcon = document.querySelector('head link[rel^="shortcut icon"][sizes="196x196"],head link[rel^=apple-touch-icon]');
+                }
+            }
+            var message = "";
+            if (this.options.message in ath.intl) {
+                // you can force the locale
+                message = ath.intl[this.options.message].message.replace("%action", ath.intl[this.options.message].action[ath.OS]);
+            } else if (this.options.message !== "") {
+                // or use a custom message
+                message = this.options.message;
+            } else {
+                // otherwise we use our message
+                message = ath.intl[ath.language].message.replace("%action", ath.intl[ath.language].action[ath.OS]);
+            }
+            // add the action icon
+            message = "<p>" + message.replace("%icon", '<span class="ath-action-icon">icon</span>') + "</p>";
+            // create the message container
+            this.viewport = document.createElement("div");
+            this.viewport.className = "ath-viewport";
+            if (this.options.modal) {
+                this.viewport.className += " ath-modal";
+            }
+            if (this.options.mandatory) {
+                this.viewport.className += " ath-mandatory";
+            }
+            this.viewport.style.position = "absolute";
+            // create the actual message element
+            this.element = document.createElement("div");
+            this.element.className = "ath-container ath-" + ath.OS + " ath-" + ath.OS + (ath.OSVersion + "").substr(0, 1) + " ath-" + (ath.isTablet ? "tablet" : "phone");
+            this.element.style.cssText = "-webkit-transition-property:-webkit-transform,opacity;-webkit-transition-duration:0;-webkit-transform:translate3d(0,0,0);transition-property:transform,opacity;transition-duration:0;transform:translate3d(0,0,0);-webkit-transition-timing-function:ease-out";
+            this.element.style.webkitTransform = "translate3d(0,-" + window.innerHeight + "px,0)";
+            this.element.style.webkitTransitionDuration = "0s";
+            // add the application icon
+            if (this.options.icon && this.applicationIcon) {
+                this.element.className += " ath-icon";
+                this.img = document.createElement("img");
+                this.img.className = "ath-application-icon";
+                this.img.addEventListener("load", this, false);
+                this.img.addEventListener("error", this, false);
+                this.img.src = this.applicationIcon.href;
+                this.element.appendChild(this.img);
+            }
+            this.element.innerHTML += message;
+            // we are not ready to show, place the message out of sight
+            this.viewport.style.left = "-99999em";
+            // attach all elements to the DOM
+            this.viewport.appendChild(this.element);
+            this.container.appendChild(this.viewport);
+            // if we don't have to wait for an image to load, show the message right away
+            if (!this.img) {
+                this._delayedShow();
+            }
+        },
+        _delayedShow: function(e) {
+            setTimeout(this._show.bind(this), this.options.startDelay * 1e3 + 500);
+        },
+        _show: function() {
+            var that = this;
+            // update the viewport size and orientation
+            this.updateViewport();
+            // reposition/resize the message on orientation change
+            window.addEventListener("resize", this, false);
+            window.addEventListener("scroll", this, false);
+            window.addEventListener("orientationchange", this, false);
+            if (this.options.modal) {
+                // lock any other interaction
+                document.addEventListener("touchmove", this, true);
+            }
+            // Enable closing after 1 second
+            if (!this.options.mandatory) {
+                setTimeout(function() {
+                    that.element.addEventListener("click", that, true);
+                }, 1e3);
+            }
+            // kick the animation
+            setTimeout(function() {
+                that.element.style.webkitTransform = "translate3d(0,0,0)";
+                that.element.style.webkitTransitionDuration = "1.2s";
+            }, 0);
+            // set the destroy timer
+            if (this.options.lifespan) {
+                this.removeTimer = setTimeout(this.remove.bind(this), this.options.lifespan * 1e3);
+            }
+            // fire the custom onShow event
+            if (this.options.onShow) {
+                this.options.onShow.call(this);
+            }
+        },
+        remove: function() {
+            clearTimeout(this.removeTimer);
+            // clear up the event listeners
+            if (this.img) {
+                this.img.removeEventListener("load", this, false);
+                this.img.removeEventListener("error", this, false);
+            }
+            window.removeEventListener("resize", this, false);
+            window.removeEventListener("scroll", this, false);
+            window.removeEventListener("orientationchange", this, false);
+            document.removeEventListener("touchmove", this, true);
+            this.element.removeEventListener("click", this, true);
+            // remove the message element on transition end
+            this.element.addEventListener("transitionend", this, false);
+            this.element.addEventListener("webkitTransitionEnd", this, false);
+            this.element.addEventListener("MSTransitionEnd", this, false);
+            // start the fade out animation
+            this.element.style.webkitTransitionDuration = "0.3s";
+            this.element.style.opacity = "0";
+        },
+        _removeElements: function() {
+            this.element.removeEventListener("transitionend", this, false);
+            this.element.removeEventListener("webkitTransitionEnd", this, false);
+            this.element.removeEventListener("MSTransitionEnd", this, false);
+            // remove the message from the DOM
+            this.container.removeChild(this.viewport);
+            this.shown = false;
+            // fire the custom onRemove event
+            if (this.options.onRemove) {
+                this.options.onRemove.call(this);
+            }
+        },
+        updateViewport: function() {
+            if (!this.shown) {
+                return;
+            }
+            this.viewport.style.width = window.innerWidth + "px";
+            this.viewport.style.height = window.innerHeight + "px";
+            this.viewport.style.left = window.scrollX + "px";
+            this.viewport.style.top = window.scrollY + "px";
+            var clientWidth = document.documentElement.clientWidth;
+            this.orientation = clientWidth > document.documentElement.clientHeight ? "landscape" : "portrait";
+            var screenWidth = ath.OS == "ios" ? this.orientation == "portrait" ? screen.width : screen.height : screen.width;
+            this.scale = screen.width > clientWidth ? 1 : screenWidth / window.innerWidth;
+            this.element.style.fontSize = this.options.fontSize / this.scale + "px";
+        },
+        resize: function() {
+            clearTimeout(this.resizeTimer);
+            this.resizeTimer = setTimeout(this.updateViewport.bind(this), 100);
+        },
+        updateSession: function() {
+            if (ath.hasLocalStorage === false) {
+                return;
+            }
+            localStorage.setItem(this.options.appID, JSON.stringify(this.session));
+        },
+        clearSession: function() {
+            this.session = _defaultSession;
+            this.updateSession();
+        },
+        optOut: function() {
+            this.session.optedout = true;
+            this.updateSession();
+        },
+        optIn: function() {
+            this.session.optedout = false;
+            this.updateSession();
+        },
+        clearDisplayCount: function() {
+            this.session.displayCount = 0;
+            this.updateSession();
+        },
+        _preventDefault: function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    };
+    // utility
+    function _extend(target, obj) {
+        for (var i in obj) {
+            target[i] = obj[i];
+        }
+        return target;
+    }
+    function _removeToken() {
+        if (document.location.hash == "#ath") {
+            history.replaceState("", window.document.title, document.location.href.split("#")[0]);
+        }
+        if (_reSmartURL.test(document.location.href)) {
+            history.replaceState("", window.document.title, document.location.href.replace(_reSmartURL, "$1"));
+        }
+        if (_reQueryString.test(document.location.search)) {
+            history.replaceState("", window.document.title, document.location.href.replace(_reQueryString, "$2"));
+        }
+    }
+    $.AMUI.addToHomescreen = ath;
+    module.exports = ath;
 });
 define("ui.alert", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
     "use strict";
@@ -1652,7 +1380,7 @@ define("ui.alert", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.exte
     var Alert = function(element, options) {
         this.options = $.extend({}, Alert.DEFAULTS, options);
         this.$element = $(element);
-        this.$element.addClass("am-fade am-in").on("click", ".am-close", $.proxy(this.close, this));
+        this.$element.addClass("am-fade am-in").on("click.alert.amui", ".am-close", $.proxy(this.close, this));
     };
     Alert.DEFAULTS = {
         removeElement: true
@@ -1672,7 +1400,7 @@ define("ui.alert", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.exte
         return this.each(function() {
             var $this = $(this), data = $this.data("amui.alert"), options = typeof option == "object" && option;
             if (!data) {
-                $this.data("amui.alert", data = new Alert(this, options));
+                $this.data("amui.alert", data = new Alert(this, options || {}));
             }
             if (typeof option == "string") {
                 data[option].call($this);
@@ -1822,7 +1550,7 @@ define("ui.collapse", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.e
         if (!UI.support.transition) {
             return complete.call(this);
         }
-        this.$element.one(UI.support.transition.end, $.proxy(complete, this)).emulateTransitionEnd(350).height(this.$element[0].scrollHeight);
+        this.$element.one(UI.support.transition.end, $.proxy(complete, this)).emulateTransitionEnd(300).height(this.$element[0].scrollHeight);
     };
     Collapse.prototype.close = function() {
         if (this.transitioning || !this.$element.hasClass("am-in")) return;
@@ -1922,9 +1650,8 @@ define("ui.dimmer", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.ext
     module.exports = dimmer;
 });
 define("ui.dropdown", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
-    "use strict";
     require("core");
-    var $ = window.Zepto, UI = $.AMUI;
+    var $ = window.Zepto, UI = $.AMUI, animation = UI.support.animation;
     /**
      * @via https://github.com/Minwe/bootstrap/blob/master/js/dropdown.js
      * @copyright Copyright 2013 Twitter, Inc.
@@ -1932,79 +1659,868 @@ define("ui.dropdown", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.e
      */
     var toggle = "[data-am-dropdown] > .am-dropdown-toggle";
     var Dropdown = function(element, options) {
-        $(element).on("click.dropdown.amui", this.toggle);
+        this.options = $.extend({}, Dropdown.DEFAULTS, options);
+        options = this.options;
+        this.$element = $(element);
+        this.$toggle = this.$element.find(options.selector.toggle);
+        this.$dropdown = this.$element.find(options.selector.dropdown);
+        this.$boundary = options.boundary === window ? $(window) : this.$element.closest(options.boundary);
+        this.$justify = options.justify && $(options.justify).length && $(options.justify) || undefined;
+        !this.$boundary.length && (this.$boundary = $(window));
+        this.active = this.$element.hasClass("am-active") ? true : false;
+        this.animating = null;
+        this.events();
     };
-    Dropdown.prototype.toggle = function(e) {
-        var $this = $(this);
-        if ($this.is(".am-disabled, :disabled")) {
-            return;
-        }
-        var $parent = $this.parent(), isActive = $parent.hasClass("am-active");
-        clearDropdowns();
-        if (!isActive) {
-            var relatedTarget = {
-                relatedTarget: this
-            };
-            $parent.trigger(e = $.Event("open:dropdown:amui", relatedTarget));
-            if (e.isDefaultPrevented()) {
-                return;
-            }
-            $this.trigger("focus");
-            $parent.toggleClass("am-active").trigger(e = $.Event("opened:dropdown:amui", relatedTarget));
+    Dropdown.DEFAULTS = {
+        animation: "am-animation-slide-top-fixed",
+        boundary: window,
+        justify: undefined,
+        selector: {
+            dropdown: ".am-dropdown-content",
+            toggle: ".am-dropdown-toggle"
+        },
+        trigger: "click"
+    };
+    Dropdown.prototype.toggle = function() {
+        this.clear();
+        if (this.animating) return;
+        this[this.active ? "close" : "open"]();
+    };
+    Dropdown.prototype.open = function(e) {
+        var $toggle = this.$toggle, $element = this.$element, $dropdown = this.$dropdown;
+        if ($toggle.is(".am-disabled, :disabled")) return;
+        if (this.active) return;
+        $element.trigger("open:dropdown:amui").addClass("am-active");
+        $toggle.trigger("focus");
+        this.checkDimensions();
+        var complete = $.proxy(function() {
+            $element.trigger("opened:dropdown:amui");
+            this.active = true;
+            this.animating = 0;
+        }, this);
+        if (animation) {
+            this.animating = 1;
+            $dropdown.addClass(this.options.animation).on(animation.end + ".open.dropdown.amui", $.proxy(function() {
+                complete();
+                $dropdown.removeClass(this.options.animation);
+            }, this));
         } else {
-            $this.blur();
-        }
-        return false;
-    };
-    Dropdown.prototype.keydown = function(e) {
-        if (!/(38|40|27)/.test(e.keyCode)) return;
-        var $this = $(this);
-        e.preventDefault();
-        e.stopPropagation();
-        if ($this.is(".am-disabled, :disabled")) {
-            return;
-        }
-        var $parent = $this.parent(), isActive = $parent.hasClass("am-active");
-        if (!isActive || isActive && e.keyCode == 27) {
-            if (e.which == 27) {
-                $parent.find(toggle).trigger("focus");
-            }
-            return $this.trigger("click");
+            complete();
         }
     };
-    function clearDropdowns(e) {
-        if (e && e.which === 3) return;
-        $(toggle).each(function() {
-            var $parent = $(this).parent(), relatedTarget = {
-                relatedTarget: this
-            };
-            if (!$parent.hasClass("am-active")) {
-                return;
-            }
-            $parent.trigger(e = $.Event("close:dropdown:amui", relatedTarget));
-            if (e.isDefaultPrevented()) return;
-            $parent.removeClass("am-active").trigger(e = $.Event("closed:dropdown:amui", relatedTarget));
+    Dropdown.prototype.close = function() {
+        if (!this.active) return;
+        var animationName = this.options.animation + " am-animation-reverse", $element = this.$element, $dropdown = this.$dropdown;
+        $element.trigger("close:dropdown:amui");
+        var complete = $.proxy(function complete() {
+            $element.removeClass("am-active").trigger("closed:dropdown:amui");
+            this.active = false;
+            this.animating = 0;
+            this.$toggle.blur();
+        }, this);
+        if (animation) {
+            $dropdown.addClass(animationName);
+            this.animating = 1;
+            // animation
+            $dropdown.one(animation.end + ".close.dropdown.amui", function() {
+                complete();
+                $dropdown.removeClass(animationName);
+            });
+        } else {
+            complete();
+        }
+    };
+    Dropdown.prototype.checkDimensions = function() {
+        if (!this.$dropdown.length) return;
+        var $dropdown = this.$dropdown, offset = $dropdown.offset(), width = $dropdown.outerWidth(), boundaryWidth = this.$boundary.width(), boundaryOffset = $.isWindow(this.boundary) && this.$boundary.offset() ? this.$boundary.offset().left : 0;
+        if (this.$justify) {
+            $dropdown.css({
+                "min-width": this.$justify.width()
+            });
+        }
+        if (width + (offset.left - boundaryOffset) > boundaryWidth) {
+            this.$element.addClass("am-dropdown-flip");
+        }
+    };
+    Dropdown.prototype.clear = function() {
+        $("[data-am-dropdown]").not(this.$element).each(function() {
+            var data = $(this).data("amui.dropdown");
+            data && data["close"]();
         });
-    }
+    };
+    Dropdown.prototype.events = function() {
+        var eventNS = "dropdown.amui", triggers = this.options.trigger.split(" "), $toggle = this.$toggle;
+        $toggle.on("click." + eventNS, $.proxy(this.toggle, this));
+        /*for (var i = triggers.length; i--;) {
+            var trigger = triggers[i];
+
+            if (trigger === 'click') {
+                $toggle.on('click.' + eventNS, $.proxy(this.toggle, this))
+            }
+
+            if (trigger === 'focus' || trigger === 'hover') {
+                var eventIn  = trigger == 'hover' ? 'mouseenter' : 'focusin';
+                var eventOut = trigger == 'hover' ? 'mouseleave' : 'focusout';
+
+                this.$element.on(eventIn + '.' + eventNS, $.proxy(this.open, this))
+                    .on(eventOut + '.' + eventNS, $.proxy(this.close, this));
+            }
+        }*/
+        $(document).on("keydown.dropdown.amui", $.proxy(function(e) {
+            e.keyCode === 27 && this.active && this.close();
+        }, this)).on("click.outer.dropdown.amui", $.proxy(function(e) {
+            var $target = $(e.target);
+            if (this.active && (this.$element[0] === e.target || !this.$element.find(e.target).length)) {
+                this.close();
+            }
+        }, this));
+    };
     UI.dropdown = Dropdown;
     // Dropdown Plugin
     function Plugin(option) {
         return this.each(function() {
-            var $this = $(this);
-            var data = $this.data("amui.dropdown");
+            var $this = $(this), data = $this.data("amui.dropdown"), options = $.extend({}, UI.utils.parseOptions($this.attr("data-am-dropdown")), typeof option == "object" && option);
             if (!data) {
-                $this.data("amui.dropdown", data = new Dropdown(this));
+                $this.data("amui.dropdown", data = new Dropdown(this, options));
             }
             if (typeof option == "string") {
-                data[option].call($this);
+                data[option]();
             }
         });
     }
     $.fn.dropdown = Plugin;
     // Init code
+    $(function() {
+        $("[data-am-dropdown]").dropdown();
+    });
     $(document).on("click.dropdown.amui", ".am-dropdown form", function(e) {
         e.stopPropagation();
-    }).on("click.dropdown.amui", toggle, Dropdown.prototype.toggle).on("keydown.dropdown.amui", toggle, Dropdown.prototype.keydown);
+    });
+});
+define("ui.iscroll-lite", [], function(require, exports, module) {
+    /*! iScroll v5.1.2 ~ (c) 2008-2014 Matteo Spinelli ~ http://cubiq.org/license */
+    (function(window, document, Math) {
+        var rAF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
+            window.setTimeout(callback, 1e3 / 60);
+        };
+        var utils = function() {
+            var me = {};
+            var _elementStyle = document.createElement("div").style;
+            var _vendor = function() {
+                var vendors = [ "t", "webkitT", "MozT", "msT", "OT" ], transform, i = 0, l = vendors.length;
+                for (;i < l; i++) {
+                    transform = vendors[i] + "ransform";
+                    if (transform in _elementStyle) return vendors[i].substr(0, vendors[i].length - 1);
+                }
+                return false;
+            }();
+            function _prefixStyle(style) {
+                if (_vendor === false) return false;
+                if (_vendor === "") return style;
+                return _vendor + style.charAt(0).toUpperCase() + style.substr(1);
+            }
+            me.getTime = Date.now || function getTime() {
+                return new Date().getTime();
+            };
+            me.extend = function(target, obj) {
+                for (var i in obj) {
+                    target[i] = obj[i];
+                }
+            };
+            me.addEvent = function(el, type, fn, capture) {
+                el.addEventListener(type, fn, !!capture);
+            };
+            me.removeEvent = function(el, type, fn, capture) {
+                el.removeEventListener(type, fn, !!capture);
+            };
+            me.prefixPointerEvent = function(pointerEvent) {
+                return window.MSPointerEvent ? "MSPointer" + pointerEvent.charAt(9).toUpperCase() + pointerEvent.substr(10) : pointerEvent;
+            };
+            me.momentum = function(current, start, time, lowerMargin, wrapperSize, deceleration) {
+                var distance = current - start, speed = Math.abs(distance) / time, destination, duration;
+                deceleration = deceleration === undefined ? 6e-4 : deceleration;
+                destination = current + speed * speed / (2 * deceleration) * (distance < 0 ? -1 : 1);
+                duration = speed / deceleration;
+                if (destination < lowerMargin) {
+                    destination = wrapperSize ? lowerMargin - wrapperSize / 2.5 * (speed / 8) : lowerMargin;
+                    distance = Math.abs(destination - current);
+                    duration = distance / speed;
+                } else if (destination > 0) {
+                    destination = wrapperSize ? wrapperSize / 2.5 * (speed / 8) : 0;
+                    distance = Math.abs(current) + destination;
+                    duration = distance / speed;
+                }
+                return {
+                    destination: Math.round(destination),
+                    duration: duration
+                };
+            };
+            var _transform = _prefixStyle("transform");
+            me.extend(me, {
+                hasTransform: _transform !== false,
+                hasPerspective: _prefixStyle("perspective") in _elementStyle,
+                hasTouch: "ontouchstart" in window,
+                hasPointer: window.PointerEvent || window.MSPointerEvent,
+                // IE10 is prefixed
+                hasTransition: _prefixStyle("transition") in _elementStyle
+            });
+            // This should find all Android browsers lower than build 535.19 (both stock browser and webview)
+            me.isBadAndroid = /Android /.test(window.navigator.appVersion) && !/Chrome\/\d/.test(window.navigator.appVersion);
+            me.extend(me.style = {}, {
+                transform: _transform,
+                transitionTimingFunction: _prefixStyle("transitionTimingFunction"),
+                transitionDuration: _prefixStyle("transitionDuration"),
+                transitionDelay: _prefixStyle("transitionDelay"),
+                transformOrigin: _prefixStyle("transformOrigin")
+            });
+            me.hasClass = function(e, c) {
+                var re = new RegExp("(^|\\s)" + c + "(\\s|$)");
+                return re.test(e.className);
+            };
+            me.addClass = function(e, c) {
+                if (me.hasClass(e, c)) {
+                    return;
+                }
+                var newclass = e.className.split(" ");
+                newclass.push(c);
+                e.className = newclass.join(" ");
+            };
+            me.removeClass = function(e, c) {
+                if (!me.hasClass(e, c)) {
+                    return;
+                }
+                var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g");
+                e.className = e.className.replace(re, " ");
+            };
+            me.offset = function(el) {
+                var left = -el.offsetLeft, top = -el.offsetTop;
+                // jshint -W084
+                while (el = el.offsetParent) {
+                    left -= el.offsetLeft;
+                    top -= el.offsetTop;
+                }
+                // jshint +W084
+                return {
+                    left: left,
+                    top: top
+                };
+            };
+            me.preventDefaultException = function(el, exceptions) {
+                for (var i in exceptions) {
+                    if (exceptions[i].test(el[i])) {
+                        return true;
+                    }
+                }
+                return false;
+            };
+            me.extend(me.eventType = {}, {
+                touchstart: 1,
+                touchmove: 1,
+                touchend: 1,
+                mousedown: 2,
+                mousemove: 2,
+                mouseup: 2,
+                pointerdown: 3,
+                pointermove: 3,
+                pointerup: 3,
+                MSPointerDown: 3,
+                MSPointerMove: 3,
+                MSPointerUp: 3
+            });
+            me.extend(me.ease = {}, {
+                quadratic: {
+                    style: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                    fn: function(k) {
+                        return k * (2 - k);
+                    }
+                },
+                circular: {
+                    style: "cubic-bezier(0.1, 0.57, 0.1, 1)",
+                    // Not properly "circular" but this looks better, it should be (0.075, 0.82, 0.165, 1)
+                    fn: function(k) {
+                        return Math.sqrt(1 - --k * k);
+                    }
+                },
+                back: {
+                    style: "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                    fn: function(k) {
+                        var b = 4;
+                        return (k = k - 1) * k * ((b + 1) * k + b) + 1;
+                    }
+                },
+                bounce: {
+                    style: "",
+                    fn: function(k) {
+                        if ((k /= 1) < 1 / 2.75) {
+                            return 7.5625 * k * k;
+                        } else if (k < 2 / 2.75) {
+                            return 7.5625 * (k -= 1.5 / 2.75) * k + .75;
+                        } else if (k < 2.5 / 2.75) {
+                            return 7.5625 * (k -= 2.25 / 2.75) * k + .9375;
+                        } else {
+                            return 7.5625 * (k -= 2.625 / 2.75) * k + .984375;
+                        }
+                    }
+                },
+                elastic: {
+                    style: "",
+                    fn: function(k) {
+                        var f = .22, e = .4;
+                        if (k === 0) {
+                            return 0;
+                        }
+                        if (k == 1) {
+                            return 1;
+                        }
+                        return e * Math.pow(2, -10 * k) * Math.sin((k - f / 4) * 2 * Math.PI / f) + 1;
+                    }
+                }
+            });
+            me.tap = function(e, eventName) {
+                var ev = document.createEvent("Event");
+                ev.initEvent(eventName, true, true);
+                ev.pageX = e.pageX;
+                ev.pageY = e.pageY;
+                e.target.dispatchEvent(ev);
+            };
+            me.click = function(e) {
+                var target = e.target, ev;
+                if (!/(SELECT|INPUT|TEXTAREA)/i.test(target.tagName)) {
+                    ev = document.createEvent("MouseEvents");
+                    ev.initMouseEvent("click", true, true, e.view, 1, target.screenX, target.screenY, target.clientX, target.clientY, e.ctrlKey, e.altKey, e.shiftKey, e.metaKey, 0, null);
+                    ev._constructed = true;
+                    target.dispatchEvent(ev);
+                }
+            };
+            return me;
+        }();
+        function IScroll(el, options) {
+            this.wrapper = typeof el == "string" ? document.querySelector(el) : el;
+            this.scroller = this.wrapper.children[0];
+            this.scrollerStyle = this.scroller.style;
+            // cache style for better performance
+            this.options = {
+                // INSERT POINT: OPTIONS
+                startX: 0,
+                startY: 0,
+                scrollY: true,
+                directionLockThreshold: 5,
+                momentum: true,
+                bounce: true,
+                bounceTime: 600,
+                bounceEasing: "",
+                preventDefault: true,
+                preventDefaultException: {
+                    tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT)$/
+                },
+                HWCompositing: true,
+                useTransition: true,
+                useTransform: true
+            };
+            for (var i in options) {
+                this.options[i] = options[i];
+            }
+            // Normalize options
+            this.translateZ = this.options.HWCompositing && utils.hasPerspective ? " translateZ(0)" : "";
+            this.options.useTransition = utils.hasTransition && this.options.useTransition;
+            this.options.useTransform = utils.hasTransform && this.options.useTransform;
+            this.options.eventPassthrough = this.options.eventPassthrough === true ? "vertical" : this.options.eventPassthrough;
+            this.options.preventDefault = !this.options.eventPassthrough && this.options.preventDefault;
+            // If you want eventPassthrough I have to lock one of the axes
+            this.options.scrollY = this.options.eventPassthrough == "vertical" ? false : this.options.scrollY;
+            this.options.scrollX = this.options.eventPassthrough == "horizontal" ? false : this.options.scrollX;
+            // With eventPassthrough we also need lockDirection mechanism
+            this.options.freeScroll = this.options.freeScroll && !this.options.eventPassthrough;
+            this.options.directionLockThreshold = this.options.eventPassthrough ? 0 : this.options.directionLockThreshold;
+            this.options.bounceEasing = typeof this.options.bounceEasing == "string" ? utils.ease[this.options.bounceEasing] || utils.ease.circular : this.options.bounceEasing;
+            this.options.resizePolling = this.options.resizePolling === undefined ? 60 : this.options.resizePolling;
+            if (this.options.tap === true) {
+                this.options.tap = "tap";
+            }
+            // INSERT POINT: NORMALIZATION
+            // Some defaults
+            this.x = 0;
+            this.y = 0;
+            this.directionX = 0;
+            this.directionY = 0;
+            this._events = {};
+            // INSERT POINT: DEFAULTS
+            this._init();
+            this.refresh();
+            this.scrollTo(this.options.startX, this.options.startY);
+            this.enable();
+        }
+        IScroll.prototype = {
+            version: "5.1.2",
+            _init: function() {
+                this._initEvents();
+            },
+            destroy: function() {
+                this._initEvents(true);
+                this._execEvent("destroy");
+            },
+            _transitionEnd: function(e) {
+                if (e.target != this.scroller || !this.isInTransition) {
+                    return;
+                }
+                this._transitionTime();
+                if (!this.resetPosition(this.options.bounceTime)) {
+                    this.isInTransition = false;
+                    this._execEvent("scrollEnd");
+                }
+            },
+            _start: function(e) {
+                // React to left mouse button only
+                if (utils.eventType[e.type] != 1) {
+                    if (e.button !== 0) {
+                        return;
+                    }
+                }
+                if (!this.enabled || this.initiated && utils.eventType[e.type] !== this.initiated) {
+                    return;
+                }
+                if (this.options.preventDefault && !utils.isBadAndroid && !utils.preventDefaultException(e.target, this.options.preventDefaultException)) {
+                    e.preventDefault();
+                }
+                var point = e.touches ? e.touches[0] : e, pos;
+                this.initiated = utils.eventType[e.type];
+                this.moved = false;
+                this.distX = 0;
+                this.distY = 0;
+                this.directionX = 0;
+                this.directionY = 0;
+                this.directionLocked = 0;
+                this._transitionTime();
+                this.startTime = utils.getTime();
+                if (this.options.useTransition && this.isInTransition) {
+                    this.isInTransition = false;
+                    pos = this.getComputedPosition();
+                    this._translate(Math.round(pos.x), Math.round(pos.y));
+                    this._execEvent("scrollEnd");
+                } else if (!this.options.useTransition && this.isAnimating) {
+                    this.isAnimating = false;
+                    this._execEvent("scrollEnd");
+                }
+                this.startX = this.x;
+                this.startY = this.y;
+                this.absStartX = this.x;
+                this.absStartY = this.y;
+                this.pointX = point.pageX;
+                this.pointY = point.pageY;
+                this._execEvent("beforeScrollStart");
+            },
+            _move: function(e) {
+                if (!this.enabled || utils.eventType[e.type] !== this.initiated) {
+                    return;
+                }
+                if (this.options.preventDefault) {
+                    // increases performance on Android? TODO: check!
+                    e.preventDefault();
+                }
+                var point = e.touches ? e.touches[0] : e, deltaX = point.pageX - this.pointX, deltaY = point.pageY - this.pointY, timestamp = utils.getTime(), newX, newY, absDistX, absDistY;
+                this.pointX = point.pageX;
+                this.pointY = point.pageY;
+                this.distX += deltaX;
+                this.distY += deltaY;
+                absDistX = Math.abs(this.distX);
+                absDistY = Math.abs(this.distY);
+                // We need to move at least 10 pixels for the scrolling to initiate
+                if (timestamp - this.endTime > 300 && absDistX < 10 && absDistY < 10) {
+                    return;
+                }
+                // If you are scrolling in one direction lock the other
+                if (!this.directionLocked && !this.options.freeScroll) {
+                    if (absDistX > absDistY + this.options.directionLockThreshold) {
+                        this.directionLocked = "h";
+                    } else if (absDistY >= absDistX + this.options.directionLockThreshold) {
+                        this.directionLocked = "v";
+                    } else {
+                        this.directionLocked = "n";
+                    }
+                }
+                if (this.directionLocked == "h") {
+                    if (this.options.eventPassthrough == "vertical") {
+                        e.preventDefault();
+                    } else if (this.options.eventPassthrough == "horizontal") {
+                        this.initiated = false;
+                        return;
+                    }
+                    deltaY = 0;
+                } else if (this.directionLocked == "v") {
+                    if (this.options.eventPassthrough == "horizontal") {
+                        e.preventDefault();
+                    } else if (this.options.eventPassthrough == "vertical") {
+                        this.initiated = false;
+                        return;
+                    }
+                    deltaX = 0;
+                }
+                deltaX = this.hasHorizontalScroll ? deltaX : 0;
+                deltaY = this.hasVerticalScroll ? deltaY : 0;
+                newX = this.x + deltaX;
+                newY = this.y + deltaY;
+                // Slow down if outside of the boundaries
+                if (newX > 0 || newX < this.maxScrollX) {
+                    newX = this.options.bounce ? this.x + deltaX / 3 : newX > 0 ? 0 : this.maxScrollX;
+                }
+                if (newY > 0 || newY < this.maxScrollY) {
+                    newY = this.options.bounce ? this.y + deltaY / 3 : newY > 0 ? 0 : this.maxScrollY;
+                }
+                this.directionX = deltaX > 0 ? -1 : deltaX < 0 ? 1 : 0;
+                this.directionY = deltaY > 0 ? -1 : deltaY < 0 ? 1 : 0;
+                if (!this.moved) {
+                    this._execEvent("scrollStart");
+                }
+                this.moved = true;
+                this._translate(newX, newY);
+                /* REPLACE START: _move */
+                if (timestamp - this.startTime > 300) {
+                    this.startTime = timestamp;
+                    this.startX = this.x;
+                    this.startY = this.y;
+                }
+            },
+            _end: function(e) {
+                if (!this.enabled || utils.eventType[e.type] !== this.initiated) {
+                    return;
+                }
+                if (this.options.preventDefault && !utils.preventDefaultException(e.target, this.options.preventDefaultException)) {
+                    e.preventDefault();
+                }
+                var point = e.changedTouches ? e.changedTouches[0] : e, momentumX, momentumY, duration = utils.getTime() - this.startTime, newX = Math.round(this.x), newY = Math.round(this.y), distanceX = Math.abs(newX - this.startX), distanceY = Math.abs(newY - this.startY), time = 0, easing = "";
+                this.isInTransition = 0;
+                this.initiated = 0;
+                this.endTime = utils.getTime();
+                // reset if we are outside of the boundaries
+                if (this.resetPosition(this.options.bounceTime)) {
+                    return;
+                }
+                this.scrollTo(newX, newY);
+                // ensures that the last position is rounded
+                // we scrolled less than 10 pixels
+                if (!this.moved) {
+                    if (this.options.tap) {
+                        utils.tap(e, this.options.tap);
+                    }
+                    if (this.options.click) {
+                        utils.click(e);
+                    }
+                    this._execEvent("scrollCancel");
+                    return;
+                }
+                if (this._events.flick && duration < 200 && distanceX < 100 && distanceY < 100) {
+                    this._execEvent("flick");
+                    return;
+                }
+                // start momentum animation if needed
+                if (this.options.momentum && duration < 300) {
+                    momentumX = this.hasHorizontalScroll ? utils.momentum(this.x, this.startX, duration, this.maxScrollX, this.options.bounce ? this.wrapperWidth : 0, this.options.deceleration) : {
+                        destination: newX,
+                        duration: 0
+                    };
+                    momentumY = this.hasVerticalScroll ? utils.momentum(this.y, this.startY, duration, this.maxScrollY, this.options.bounce ? this.wrapperHeight : 0, this.options.deceleration) : {
+                        destination: newY,
+                        duration: 0
+                    };
+                    newX = momentumX.destination;
+                    newY = momentumY.destination;
+                    time = Math.max(momentumX.duration, momentumY.duration);
+                    this.isInTransition = 1;
+                }
+                // INSERT POINT: _end
+                if (newX != this.x || newY != this.y) {
+                    // change easing function when scroller goes out of the boundaries
+                    if (newX > 0 || newX < this.maxScrollX || newY > 0 || newY < this.maxScrollY) {
+                        easing = utils.ease.quadratic;
+                    }
+                    this.scrollTo(newX, newY, time, easing);
+                    return;
+                }
+                this._execEvent("scrollEnd");
+            },
+            _resize: function() {
+                var that = this;
+                clearTimeout(this.resizeTimeout);
+                this.resizeTimeout = setTimeout(function() {
+                    that.refresh();
+                }, this.options.resizePolling);
+            },
+            resetPosition: function(time) {
+                var x = this.x, y = this.y;
+                time = time || 0;
+                if (!this.hasHorizontalScroll || this.x > 0) {
+                    x = 0;
+                } else if (this.x < this.maxScrollX) {
+                    x = this.maxScrollX;
+                }
+                if (!this.hasVerticalScroll || this.y > 0) {
+                    y = 0;
+                } else if (this.y < this.maxScrollY) {
+                    y = this.maxScrollY;
+                }
+                if (x == this.x && y == this.y) {
+                    return false;
+                }
+                this.scrollTo(x, y, time, this.options.bounceEasing);
+                return true;
+            },
+            disable: function() {
+                this.enabled = false;
+            },
+            enable: function() {
+                this.enabled = true;
+            },
+            refresh: function() {
+                var rf = this.wrapper.offsetHeight;
+                // Force reflow
+                this.wrapperWidth = this.wrapper.clientWidth;
+                this.wrapperHeight = this.wrapper.clientHeight;
+                /* REPLACE START: refresh */
+                this.scrollerWidth = this.scroller.offsetWidth;
+                this.scrollerHeight = this.scroller.offsetHeight;
+                this.maxScrollX = this.wrapperWidth - this.scrollerWidth;
+                this.maxScrollY = this.wrapperHeight - this.scrollerHeight;
+                /* REPLACE END: refresh */
+                this.hasHorizontalScroll = this.options.scrollX && this.maxScrollX < 0;
+                this.hasVerticalScroll = this.options.scrollY && this.maxScrollY < 0;
+                if (!this.hasHorizontalScroll) {
+                    this.maxScrollX = 0;
+                    this.scrollerWidth = this.wrapperWidth;
+                }
+                if (!this.hasVerticalScroll) {
+                    this.maxScrollY = 0;
+                    this.scrollerHeight = this.wrapperHeight;
+                }
+                this.endTime = 0;
+                this.directionX = 0;
+                this.directionY = 0;
+                this.wrapperOffset = utils.offset(this.wrapper);
+                this._execEvent("refresh");
+                this.resetPosition();
+            },
+            on: function(type, fn) {
+                if (!this._events[type]) {
+                    this._events[type] = [];
+                }
+                this._events[type].push(fn);
+            },
+            off: function(type, fn) {
+                if (!this._events[type]) {
+                    return;
+                }
+                var index = this._events[type].indexOf(fn);
+                if (index > -1) {
+                    this._events[type].splice(index, 1);
+                }
+            },
+            _execEvent: function(type) {
+                if (!this._events[type]) {
+                    return;
+                }
+                var i = 0, l = this._events[type].length;
+                if (!l) {
+                    return;
+                }
+                for (;i < l; i++) {
+                    this._events[type][i].apply(this, [].slice.call(arguments, 1));
+                }
+            },
+            scrollBy: function(x, y, time, easing) {
+                x = this.x + x;
+                y = this.y + y;
+                time = time || 0;
+                this.scrollTo(x, y, time, easing);
+            },
+            scrollTo: function(x, y, time, easing) {
+                easing = easing || utils.ease.circular;
+                this.isInTransition = this.options.useTransition && time > 0;
+                if (!time || this.options.useTransition && easing.style) {
+                    this._transitionTimingFunction(easing.style);
+                    this._transitionTime(time);
+                    this._translate(x, y);
+                } else {
+                    this._animate(x, y, time, easing.fn);
+                }
+            },
+            scrollToElement: function(el, time, offsetX, offsetY, easing) {
+                el = el.nodeType ? el : this.scroller.querySelector(el);
+                if (!el) {
+                    return;
+                }
+                var pos = utils.offset(el);
+                pos.left -= this.wrapperOffset.left;
+                pos.top -= this.wrapperOffset.top;
+                // if offsetX/Y are true we center the element to the screen
+                if (offsetX === true) {
+                    offsetX = Math.round(el.offsetWidth / 2 - this.wrapper.offsetWidth / 2);
+                }
+                if (offsetY === true) {
+                    offsetY = Math.round(el.offsetHeight / 2 - this.wrapper.offsetHeight / 2);
+                }
+                pos.left -= offsetX || 0;
+                pos.top -= offsetY || 0;
+                pos.left = pos.left > 0 ? 0 : pos.left < this.maxScrollX ? this.maxScrollX : pos.left;
+                pos.top = pos.top > 0 ? 0 : pos.top < this.maxScrollY ? this.maxScrollY : pos.top;
+                time = time === undefined || time === null || time === "auto" ? Math.max(Math.abs(this.x - pos.left), Math.abs(this.y - pos.top)) : time;
+                this.scrollTo(pos.left, pos.top, time, easing);
+            },
+            _transitionTime: function(time) {
+                time = time || 0;
+                this.scrollerStyle[utils.style.transitionDuration] = time + "ms";
+                if (!time && utils.isBadAndroid) {
+                    this.scrollerStyle[utils.style.transitionDuration] = "0.001s";
+                }
+            },
+            _transitionTimingFunction: function(easing) {
+                this.scrollerStyle[utils.style.transitionTimingFunction] = easing;
+            },
+            _translate: function(x, y) {
+                if (this.options.useTransform) {
+                    /* REPLACE START: _translate */
+                    this.scrollerStyle[utils.style.transform] = "translate(" + x + "px," + y + "px)" + this.translateZ;
+                } else {
+                    x = Math.round(x);
+                    y = Math.round(y);
+                    this.scrollerStyle.left = x + "px";
+                    this.scrollerStyle.top = y + "px";
+                }
+                this.x = x;
+                this.y = y;
+            },
+            _initEvents: function(remove) {
+                var eventType = remove ? utils.removeEvent : utils.addEvent, target = this.options.bindToWrapper ? this.wrapper : window;
+                eventType(window, "orientationchange", this);
+                eventType(window, "resize", this);
+                if (this.options.click) {
+                    eventType(this.wrapper, "click", this, true);
+                }
+                if (!this.options.disableMouse) {
+                    eventType(this.wrapper, "mousedown", this);
+                    eventType(target, "mousemove", this);
+                    eventType(target, "mousecancel", this);
+                    eventType(target, "mouseup", this);
+                }
+                if (utils.hasPointer && !this.options.disablePointer) {
+                    eventType(this.wrapper, utils.prefixPointerEvent("pointerdown"), this);
+                    eventType(target, utils.prefixPointerEvent("pointermove"), this);
+                    eventType(target, utils.prefixPointerEvent("pointercancel"), this);
+                    eventType(target, utils.prefixPointerEvent("pointerup"), this);
+                }
+                if (utils.hasTouch && !this.options.disableTouch) {
+                    eventType(this.wrapper, "touchstart", this);
+                    eventType(target, "touchmove", this);
+                    eventType(target, "touchcancel", this);
+                    eventType(target, "touchend", this);
+                }
+                eventType(this.scroller, "transitionend", this);
+                eventType(this.scroller, "webkitTransitionEnd", this);
+                eventType(this.scroller, "oTransitionEnd", this);
+                eventType(this.scroller, "MSTransitionEnd", this);
+            },
+            getComputedPosition: function() {
+                var matrix = window.getComputedStyle(this.scroller, null), x, y;
+                if (this.options.useTransform) {
+                    matrix = matrix[utils.style.transform].split(")")[0].split(", ");
+                    x = +(matrix[12] || matrix[4]);
+                    y = +(matrix[13] || matrix[5]);
+                } else {
+                    x = +matrix.left.replace(/[^-\d.]/g, "");
+                    y = +matrix.top.replace(/[^-\d.]/g, "");
+                }
+                return {
+                    x: x,
+                    y: y
+                };
+            },
+            _animate: function(destX, destY, duration, easingFn) {
+                var that = this, startX = this.x, startY = this.y, startTime = utils.getTime(), destTime = startTime + duration;
+                function step() {
+                    var now = utils.getTime(), newX, newY, easing;
+                    if (now >= destTime) {
+                        that.isAnimating = false;
+                        that._translate(destX, destY);
+                        if (!that.resetPosition(that.options.bounceTime)) {
+                            that._execEvent("scrollEnd");
+                        }
+                        return;
+                    }
+                    now = (now - startTime) / duration;
+                    easing = easingFn(now);
+                    newX = (destX - startX) * easing + startX;
+                    newY = (destY - startY) * easing + startY;
+                    that._translate(newX, newY);
+                    if (that.isAnimating) {
+                        rAF(step);
+                    }
+                }
+                this.isAnimating = true;
+                step();
+            },
+            handleEvent: function(e) {
+                switch (e.type) {
+                  case "touchstart":
+                  case "pointerdown":
+                  case "MSPointerDown":
+                  case "mousedown":
+                    this._start(e);
+                    break;
+
+                  case "touchmove":
+                  case "pointermove":
+                  case "MSPointerMove":
+                  case "mousemove":
+                    this._move(e);
+                    break;
+
+                  case "touchend":
+                  case "pointerup":
+                  case "MSPointerUp":
+                  case "mouseup":
+                  case "touchcancel":
+                  case "pointercancel":
+                  case "MSPointerCancel":
+                  case "mousecancel":
+                    this._end(e);
+                    break;
+
+                  case "orientationchange":
+                  case "resize":
+                    this._resize();
+                    break;
+
+                  case "transitionend":
+                  case "webkitTransitionEnd":
+                  case "oTransitionEnd":
+                  case "MSTransitionEnd":
+                    this._transitionEnd(e);
+                    break;
+
+                  case "wheel":
+                  case "DOMMouseScroll":
+                  case "mousewheel":
+                    this._wheel(e);
+                    break;
+
+                  case "keydown":
+                    this._key(e);
+                    break;
+
+                  case "click":
+                    if (!e._constructed) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                    break;
+                }
+            }
+        };
+        IScroll.utils = utils;
+        if (typeof module != "undefined" && module.exports) {
+            module.exports = IScroll;
+        } else {
+            window.IScroll = IScroll;
+        }
+    })(window, document, Math);
 });
 define("ui.modal", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.dimmer" ], function(require, exports, module) {
     require("core");
@@ -2071,7 +2587,7 @@ define("ui.modal", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.exte
         }));
         this.transitioning = 1;
         var complete = function() {
-            $element.trigger("closed.amui.modal");
+            $element.trigger("closed:amui:modal");
             isPopup && $element.removeClass("am-modal-out");
             $element.hide();
             this.transitioning = 0;
@@ -2269,82 +2785,87 @@ define("ui.popover", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.ex
         tpl: '<div class="am-popover"><div class="am-popover-inner"></div><div class="am-popover-caret"></div></div>'
     };
     Popover.prototype.init = function() {
-        var $element = this.$element, $popover;
+        var me = this, $element = this.$element, $popover;
         if (!this.options.target) {
             this.$popover = this.getPopover();
             this.setContent();
         }
         $popover = this.$popover;
         $popover.appendTo($("body"));
+        this.sizePopover();
         function sizePopover() {
-            var popSize = $popover.getSize(), popWidth = $popover.width() || popSize.width, popHeight = $popover.height() || popSize.height, $popCaret = $popover.find(".am-popover-caret"), popCaretSize = $popCaret.width() / 2 || 10, popTotalHeight = popHeight + popCaretSize;
-            var triggerWidth = $element.outerWidth(), triggerHeight = $element.outerHeight(), triggerOffset = $element.offset(), triggerRect = $element[0].getBoundingClientRect();
-            var winHeight = $w.height(), winWidth = $w.width();
-            var popTop = 0, popLeft = 0, diff = 0, spacing = 3, popPosition = "top";
-            $popover.css({
-                left: "",
-                top: ""
-            }).removeClass("am-popover-left am-popover-right am-popover-top am-popover-bottom");
-            $popCaret.css({
-                left: "",
-                top: ""
-            });
-            if (popTotalHeight - spacing < triggerRect.top + spacing) {
-                // on Top
-                popTop = triggerOffset.top - popTotalHeight - spacing;
-            } else if (popTotalHeight < winHeight - triggerRect.top - triggerRect.height) {
-                // On bottom
-                popPosition = "bottom";
-                popTop = triggerOffset.top + triggerHeight + popCaretSize + spacing;
-            } else {
-                // On middle
-                popPosition = "middle";
-                popTop = triggerHeight / 2 + triggerOffset.top - popHeight / 2;
-            }
-            // Horizontal Position
-            if (popPosition === "top" || popPosition === "bottom") {
-                popLeft = triggerWidth / 2 + triggerOffset.left - popWidth / 2;
-                diff = popLeft;
-                if (popLeft < 5) popLeft = 5;
-                if (popLeft + popWidth > winWidth) {
-                    popLeft = winWidth - popWidth - 20;
-                }
-                if (popPosition === "top") $popover.addClass("am-popover-bottom");
-                if (popPosition === "bottom") $popover.addClass("am-popover-top");
-                diff = diff - popLeft;
-                $popCaret.css({
-                    left: popWidth / 2 - popCaretSize + diff + "px"
-                });
-            } else if (popPosition === "middle") {
-                popLeft = triggerOffset.left - popWidth - popCaretSize;
-                $popover.addClass("am-popover-left");
-                if (popLeft < 5) {
-                    popLeft = triggerOffset.left + triggerWidth + popCaretSize;
-                    $popover.removeClass("am-popover-left").addClass("am-popover-right");
-                }
-                if (popLeft + popWidth > winWidth) {
-                    popLeft = winWidth - popWidth - 5;
-                    $popover.removeClass("am-popover-left").addClass("am-popover-right");
-                }
-                $popCaret.css({
-                    top: popHeight / 2 - popCaretSize / 2 + "px"
-                });
-            }
-            // Apply position style
-            $popover.css({
-                top: popTop + "px",
-                left: popLeft + "px"
-            });
+            me.sizePopover();
         }
-        sizePopover();
-        $(window).on("resize", UI.utils.debounce(sizePopover, 50));
+        $(window).on("resize:popover:amui", UI.utils.debounce(sizePopover, 50));
         $element.on("open:popover:amui", function() {
-            $(window).on("resize", UI.utils.debounce(sizePopover, 50));
+            $(window).on("resize:popover:amui", UI.utils.debounce(sizePopover, 50));
         });
         $element.on("close:popover:amui", function() {
-            $(window).off("resize", sizePopover);
+            $(window).off("resize:popover:amui", sizePopover);
         });
         this.options.open && this.open();
+    };
+    Popover.prototype.sizePopover = function sizePopover() {
+        var $element = this.$element, $popover = this.$popover;
+        if (!$popover || !$popover.length) return;
+        var popSize = $popover.getSize(), popWidth = $popover.width() || popSize.width, popHeight = $popover.height() || popSize.height, $popCaret = $popover.find(".am-popover-caret"), popCaretSize = $popCaret.width() / 2 || 10, popTotalHeight = popHeight + popCaretSize;
+        var triggerWidth = $element.outerWidth(), triggerHeight = $element.outerHeight(), triggerOffset = $element.offset(), triggerRect = $element[0].getBoundingClientRect();
+        var winHeight = $w.height(), winWidth = $w.width();
+        var popTop = 0, popLeft = 0, diff = 0, spacing = 3, popPosition = "top";
+        $popover.css({
+            left: "",
+            top: ""
+        }).removeClass("am-popover-left am-popover-right am-popover-top am-popover-bottom");
+        $popCaret.css({
+            left: "",
+            top: ""
+        });
+        if (popTotalHeight - spacing < triggerRect.top + spacing) {
+            // on Top
+            popTop = triggerOffset.top - popTotalHeight - spacing;
+        } else if (popTotalHeight < winHeight - triggerRect.top - triggerRect.height) {
+            // On bottom
+            popPosition = "bottom";
+            popTop = triggerOffset.top + triggerHeight + popCaretSize + spacing;
+        } else {
+            // On middle
+            popPosition = "middle";
+            popTop = triggerHeight / 2 + triggerOffset.top - popHeight / 2;
+        }
+        // Horizontal Position
+        if (popPosition === "top" || popPosition === "bottom") {
+            popLeft = triggerWidth / 2 + triggerOffset.left - popWidth / 2;
+            diff = popLeft;
+            if (popLeft < 5) popLeft = 5;
+            if (popLeft + popWidth > winWidth) {
+                popLeft = winWidth - popWidth - 20;
+            }
+            if (popPosition === "top") $popover.addClass("am-popover-bottom");
+            if (popPosition === "bottom") $popover.addClass("am-popover-top");
+            diff = diff - popLeft;
+            $popCaret.css({
+                left: popWidth / 2 - popCaretSize + diff + "px"
+            });
+        } else if (popPosition === "middle") {
+            popLeft = triggerOffset.left - popWidth - popCaretSize;
+            $popover.addClass("am-popover-left");
+            if (popLeft < 5) {
+                popLeft = triggerOffset.left + triggerWidth + popCaretSize;
+                $popover.removeClass("am-popover-left").addClass("am-popover-right");
+            }
+            if (popLeft + popWidth > winWidth) {
+                popLeft = winWidth - popWidth - 5;
+                $popover.removeClass("am-popover-left").addClass("am-popover-right");
+            }
+            $popCaret.css({
+                top: popHeight / 2 - popCaretSize / 2 + "px"
+            });
+        }
+        // Apply position style
+        $popover.css({
+            top: popTop + "px",
+            left: popLeft + "px"
+        });
     };
     Popover.prototype.toggle = function() {
         return this[this.active ? "close" : "open"]();
@@ -2352,6 +2873,7 @@ define("ui.popover", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.ex
     Popover.prototype.open = function() {
         var $popover = this.$popover;
         this.$element.trigger("open:popover:amui");
+        this.sizePopover();
         $popover.show().addClass("am-active");
         this.active = true;
     };
@@ -2361,15 +2883,8 @@ define("ui.popover", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.ex
         $popover.removeClass("am-active").trigger("closed:popover:amui").hide();
         this.active = false;
     };
-    Popover.prototype.getUID = function() {
-        var ns = "am-popover-";
-        do {
-            ns += parseInt(Math.random() * 1e6);
-        } while (document.getElementById(ns));
-        return ns;
-    };
     Popover.prototype.getPopover = function() {
-        var uid = this.getUID();
+        var uid = UI.utils.generateGUID("am-popover");
         return $(this.options.tpl, {
             id: uid
         });
@@ -2378,12 +2893,18 @@ define("ui.popover", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.ex
         this.$popover && this.$popover.find(".am-popover-inner").empty().html(this.options.content);
     };
     Popover.prototype.events = function() {
-        var trigger = this.options.trigger, eventNS = "popover.amui";
-        if (trigger === "click") {
-            this.$element.on("click." + eventNS, $.proxy(this.toggle, this));
-        } else if (trigger === "hover") {
-            this.$element.on("mouseenter." + eventNS, $.proxy(this.open, this));
-            this.$element.on("mouseleave." + eventNS, $.proxy(this.close, this));
+        var eventNS = "popover.amui", triggers = this.options.trigger.split(" ");
+        for (var i = triggers.length; i--; ) {
+            var trigger = triggers[i];
+            if (trigger === "click") {
+                this.$element.on("click." + eventNS, $.proxy(this.toggle, this));
+            } else {
+                // hover or focus
+                var eventIn = trigger == "hover" ? "mouseenter" : "focusin";
+                var eventOut = trigger == "hover" ? "mouseleave" : "focusout";
+                this.$element.on(eventIn + "." + eventNS, $.proxy(this.open, this));
+                this.$element.on(eventOut + "." + eventNS, $.proxy(this.close, this));
+            }
         }
     };
     UI.popover = Popover;
@@ -2706,6 +3227,194 @@ define("ui.progress", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.e
     UI.progress = Progress;
     module.exports = Progress;
 });
+define("ui.pureview", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "zepto.pinchzoom", "util.hammer" ], function(require, exports, module) {
+    require("core");
+    var PinchZoom = require("zepto.pinchzoom"), Hammer = require("util.hammer"), $ = window.Zepto, UI = $.AMUI, animation = UI.support.animation, transition = UI.support.transition, $html = $("html");
+    var PureView = function(element, options) {
+        this.$element = $(element);
+        this.options = $.extend({}, PureView.DEFAULTS, options);
+        this.$pureview = $(this.options.tpl, {
+            id: UI.utils.generateGUID("am-pureview")
+        });
+        this.$slides = null;
+        this.transitioning = null;
+        this.init();
+    };
+    PureView.DEFAULTS = {
+        tpl: '<div class="am-pureview am-pureview-bar-active">' + '<ul class="am-pureview-slider"></ul>' + '<ul class="am-pureview-direction"><li class="am-pureview-prev"><a href=""></a></li><li class="am-pureview-next"><a href=""></a></li></ul>' + '<ol class="am-pureview-nav"></ol>' + '<div class="am-pureview-bar am-active"><span class="am-pureview-current"></span> / <span class="am-pureview-total"></span><span class="am-pureview-title"></span></div>' + '<div class="am-pureview-actions am-active"><a href="javascript: void(0)" class="am-icon-chevron-left" data-am-close="pureview"></a><a href="javascript: void(0)" class="am-icon-share-square-o" data-am-toggle="share"></a></div>' + "</div>",
+        className: {
+            prevSlide: "am-pureview-slide-prev",
+            nextSlide: "am-pureview-slide-next",
+            active: "am-active",
+            barActive: "am-pureview-bar-active",
+            onlyOne: "am-pureview-only"
+        },
+        selector: {
+            slider: ".am-pureview-slider",
+            close: '[data-am-close="pureview"]',
+            total: ".am-pureview-total",
+            current: ".am-pureview-current",
+            title: ".am-pureview-title",
+            actions: ".am-pureview-actions",
+            bar: ".am-pureview-bar",
+            pinchZoom: ".am-pinch-zoom",
+            nav: ".am-pureview-nav"
+        }
+    };
+    PureView.prototype.init = function() {
+        var me = this, options = me.options, $element = me.$element, $images = $element.find("img"), $pureview = me.$pureview, $slider = $pureview.find(options.selector.slider), $nav = $pureview.find(options.selector.nav), $slides = $([]), total = $images.length, $navItems = $([]);
+        if (!total) return;
+        if (total === 1) {
+            $pureview.addClass(options.className.onlyOne);
+        }
+        $images.each(function(i, img) {
+            var alt = $(img).attr("alt") || "";
+            $slides = $slides.add($('<li><div class="am-pinch-zoom"><img src="' + img.src + '" alt="' + alt + '"/></div></li>'));
+            $navItems = $navItems.add($("<li>" + (i + 1) + "</li>"));
+        });
+        $slider.append($slides);
+        $nav.append($navItems);
+        $("body").append($pureview);
+        $pureview.find(options.selector.total).text(total);
+        this.$title = $pureview.find(options.selector.title);
+        this.$current = $pureview.find(options.selector.current);
+        this.$bar = $pureview.find(options.selector.bar);
+        this.$actions = $pureview.find(options.selector.actions);
+        this.$navItems = $nav.find("li");
+        this.$slides = $slider.find("li");
+        $slider.find(options.selector.pinchZoom).each(function() {
+            $(this).data("amui.pinchzoom", new PinchZoom($(this), {}));
+            $(this).on("pz_doubletap", function(e) {});
+        });
+        $images.on("click.pureview.amui", function(e) {
+            e.preventDefault();
+            me.open($images.index(this));
+        });
+        $pureview.find(".am-pureview-direction a").on("click", function(e) {
+            e.preventDefault();
+            var $clicked = $(e.target).parent("li");
+            if ($clicked.is(".am-pureview-prev")) {
+                me.prevSlide();
+            } else {
+                me.nextSlide();
+            }
+        });
+        // Nav Contorl
+        this.$navItems.on("click.pureview.amui", function() {
+            var index = me.$navItems.index($(this));
+            me.activate(me.$slides.eq(index));
+        });
+        // Close Icon
+        $pureview.find(options.selector.close).on("click.pureview.amui", function(e) {
+            e.preventDefault();
+            me.close();
+        });
+        $slider.hammer().on("press.pureview.amui", function(e) {
+            e.preventDefault();
+            me.toggleToolBar();
+        }).on("swipeleft.pureview.amui", function(e) {
+            e.preventDefault();
+            me.nextSlide();
+        }).on("swiperight.pureview.amui", function(e) {
+            e.preventDefault();
+            me.prevSlide();
+        });
+        $slider.data("hammer").get("swipe").set({
+            direction: Hammer.DIRECTION_HORIZONTAL,
+            velocity: .35
+        });
+        $(document).on("keydown.pureview.amui", $.proxy(function(e) {
+            var keyCode = e.keyCode;
+            if (keyCode == 37) {
+                this.prevSlide();
+            } else if (keyCode == 39) {
+                this.nextSlide();
+            } else if (keyCode == 27) {
+                this.close();
+            }
+        }, this));
+    };
+    PureView.prototype.activate = function($slide) {
+        var options = this.options, $slides = this.$slides, activeIndex = $slides.index($slide), alt = $slide.find("img").attr("alt"), active = options.className.active;
+        if ($slides.find("." + active).is($slide)) return;
+        if (this.transitioning) return;
+        this.transitioning = 1;
+        alt && this.$title.text(alt);
+        this.$current.text(activeIndex + 1);
+        $slides.removeClass();
+        $slide.addClass(active);
+        $slides.eq(activeIndex - 1).addClass(options.className.prevSlide);
+        $slides.eq(activeIndex + 1).addClass(options.className.nextSlide);
+        this.$navItems.removeClass().eq(activeIndex).addClass("am-active");
+        if (transition) {
+            $slide.one(transition.end, $.proxy(function() {
+                this.transitioning = 0;
+            }, this));
+        } else {
+            this.transitioning = 0;
+        }
+    };
+    PureView.prototype.nextSlide = function() {
+        var $slides = this.$slides, $active = $slides.filter(".am-active"), activeIndex = $slides.index($active), rightSpring = "am-animation-right-spring";
+        if (activeIndex + 1 >= $slides.length) {
+            // last one
+            animation && $active.addClass(rightSpring).on(animation.end, function() {
+                $active.removeClass(rightSpring);
+            });
+        } else {
+            this.activate($slides.eq(activeIndex + 1));
+        }
+    };
+    PureView.prototype.prevSlide = function() {
+        var $slides = this.$slides, $active = $slides.filter(".am-active"), activeIndex = this.$slides.index($active), leftSpring = "am-animation-left-spring";
+        if (activeIndex === 0) {
+            // first one
+            animation && $active.addClass(leftSpring).on(animation.end, function() {
+                $active.removeClass(leftSpring);
+            });
+        } else {
+            this.activate($slides.eq(activeIndex - 1));
+        }
+    };
+    PureView.prototype.toggleToolBar = function() {
+        this.$pureview.toggleClass(this.options.className.barActive);
+    };
+    PureView.prototype.open = function(index) {
+        var active = index || 0;
+        this.activate(this.$slides.eq(active));
+        this.$pureview.addClass("am-active");
+        $html.addClass("am-dimmer-active");
+    };
+    PureView.prototype.close = function() {
+        this.$pureview.removeClass("am-active");
+        this.$slides.removeClass();
+        if (transition) {
+            this.$pureview.one(transition.end, function() {
+                $html.removeClass("am-dimmer-active");
+            });
+        } else {
+            $html.removeClass("am-dimmer-active");
+        }
+    };
+    UI.pureview = PureView;
+    function Plugin(option) {
+        return this.each(function() {
+            var $this = $(this), data = $this.data("am.pureview"), options = $.extend({}, UI.utils.parseOptions($this.attr("data-am-pureview")), typeof option == "object" && option);
+            if (!data) {
+                $this.data("am.pureview", data = new PureView(this, options));
+            }
+            if (typeof option == "string") {
+                data[option]();
+            }
+        });
+    }
+    $.fn.pureview = Plugin;
+    // Init code
+    $(function() {
+        $("[data-am-pureview]").pureview();
+    });
+    module.exports = PureView;
+});
 define("ui.scrollspy", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
     "use strict";
     require("core");
@@ -2780,9 +3489,9 @@ define("ui.scrollspy", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.
     });
     module.exports = ScrollSpy;
 });
-define("ui.scrollspynav", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
-    "use strict";
+define("ui.scrollspynav", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.smooth-scroll" ], function(require, exports, module) {
     require("core");
+    require("ui.smooth-scroll");
     var $ = window.Zepto, UI = $.AMUI;
     /**
      * @via https://github.com/uikit/uikit/
@@ -2842,12 +3551,12 @@ define("ui.scrollspynav", [ "core", "zepto.extend.fx", "zepto.extend.data", "zep
         var $links = this.$links;
         // smoothScroll
         if (this.options.smooth) {
-            require.async([ "ui.smooth-scroll" ], function() {
-                $links.on("click", function(e) {
-                    e.preventDefault();
-                    var $this = $(this), target = $this.attr("href"), position = $this.data("am.smoothScroll");
-                    !position && $this.data("am.smoothScroll", position = $(target).offset().top);
-                    $(window).smoothScroll(position);
+            $links.on("click", function(e) {
+                e.preventDefault();
+                var $this = $(this), $target = $($this.attr("href"));
+                if (!$target) return;
+                $(window).smoothScroll({
+                    position: $target.offset().top
                 });
             });
         }
@@ -2871,6 +3580,294 @@ define("ui.scrollspynav", [ "core", "zepto.extend.fx", "zepto.extend.data", "zep
     });
     module.exports = ScrollSpyNav;
 });
+define("ui.share", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.modal", "ui.dimmer", "util.qrcode" ], function(require, exports, module) {
+    require("core");
+    require("ui.modal");
+    var QRCode = require("util.qrcode");
+    var $ = window.Zepto, UI = $.AMUI, doc = document, $doc = $(doc), transition = UI.support.transition;
+    /**
+     * https://github.com/cho45/micro-template.js
+     * (c) cho45 http://cho45.github.com/mit-license
+     */
+    function template(id, data) {
+        var me = arguments.callee;
+        if (!me.cache[id]) me.cache[id] = function() {
+            var name = id, string = /^[\w\-]+$/.test(id) ? me.get(id) : (name = "template(string)", 
+            id);
+            // no warnings
+            var line = 1, body = ("try { " + (me.variable ? "var " + me.variable + " = this.stash;" : "with (this.stash) { ") + "this.ret += '" + string.replace(/<%/g, "").replace(/%>/g, "").replace(/'(?![^\x11\x13]+?\x13)/g, "\\x27").replace(/^\s*|\s*$/g, "").replace(/\n/g, function() {
+                return "';\nthis.line = " + ++line + "; this.ret += '\\n";
+            }).replace(/\x11=raw(.+?)\x13/g, "' + ($1) + '").replace(/\x11=(.+?)\x13/g, "' + this.escapeHTML($1) + '").replace(/\x11(.+?)\x13/g, "'; $1; this.ret += '") + "'; " + (me.variable ? "" : "}") + "return this.ret;" + "} catch (e) { throw 'TemplateError: ' + e + ' (on " + name + "' + ' line ' + this.line + ')'; } " + "//@ sourceURL=" + name + "\n").replace(/this\.ret \+= '';/g, "");
+            var func = new Function(body);
+            var map = {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&#x22;",
+                "'": "&#x27;"
+            };
+            var escapeHTML = function(string) {
+                return ("" + string).replace(/[&<>\'\"]/g, function(_) {
+                    return map[_];
+                });
+            };
+            return function(stash) {
+                return func.call(me.context = {
+                    escapeHTML: escapeHTML,
+                    line: 1,
+                    ret: "",
+                    stash: stash
+                });
+            };
+        }();
+        return data ? me.cache[id](data) : me.cache[id];
+    }
+    template.cache = {};
+    template.get = function(id) {
+        return Share.DEFAULTS.tpl;
+    };
+    var Share = function(options) {
+        this.options = $.extend({}, Share.DEFAULTS, options || {});
+        this.$element = null;
+        this.$wechatQr = null;
+        this.pics = null;
+        this.init();
+    };
+    Share.DEFAULTS = {
+        sns: [ "weibo", "qq", "qzone", "tqq", "wechat", "renren" ],
+        title: "分享到",
+        cancel: "取消",
+        closeOnShare: true,
+        id: UI.utils.generateGUID("am-share"),
+        desc: "Hi，孤夜观天象，发现一个不错的西西，分享一下下 ;-)",
+        via: "Amaze UI",
+        tpl: '<div class="am-share am-modal-actions" id="<%= id %>">' + '<h3 class="am-share-title"><%= title %></h3>' + '<ul class="am-share-sns sm-block-grid-3"><% for(var i = 0; i < sns.length; i++) {%>' + '<li><a href="<%= sns[i].shareUrl %>" data-am-share-to="<%= sns[i].id %>" ><i class="am-icon-<%= sns[i].icon %>"></i><span><%= sns[i].title %></span></a></li>' + "<% } %></ul>" + '<div class="am-share-footer"><button class="am-btn am-btn-default am-btn-block" data-am-share-close><%= cancel %></button></div>' + "</div>"
+    };
+    Share.SNS = {
+        weibo: {
+            title: "新浪微博",
+            url: "http://service.weibo.com/share/share.php",
+            width: 620,
+            height: 450,
+            icon: "weibo"
+        },
+        // url          链接地址
+        // title:”,     分享的文字内容(可选，默认为所在页面的title)
+        // appkey:”,    您申请的应用appkey,显示分享来源(可选)
+        // pic:”,       分享图片的路径(可选)
+        // ralateUid:”, 关联用户的UID，分享微博会@该用户(可选)
+        // NOTE: 会自动抓取图片，不用指定 pic
+        qq: {
+            title: "QQ 好友",
+            url: "http://connect.qq.com/widget/shareqq/index.html",
+            icon: "qq"
+        },
+        // url:,
+        // title:'',    分享标题(可选)
+        // pics:'',     分享图片的路径(可选)
+        // summary:'',  分享摘要(可选)
+        // site:'',     分享来源 如：腾讯网(可选)
+        // desc: ''     发送给用户的消息
+        // NOTE: 经过测试，最终发给用户的只有 url 和 desc
+        qzone: {
+            title: "QQ 空间",
+            url: "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey",
+            icon: "star"
+        },
+        // http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=xxx&title=xxx&desc=&summary=&site=
+        // url:,
+        // title:'',    分享标题(可选)
+        // desc:'',     默认分享理由(可选)
+        // summary:'',  分享摘要(可选)
+        // site:'',     分享来源 如：腾讯网(可选)
+        // pics:'',     分享图片的路径(可选)，不会自动抓取，多个图片用|分隔
+        tqq: {
+            title: "腾讯微博",
+            url: "http://v.t.qq.com/share/share.php",
+            icon: "tencent-weibo"
+        },
+        // url=xx&title=&appkey=801cf76d3cfc44ada52ec13114e84a96
+        // url
+        // title
+        // pic 多个图片用 | 分隔
+        // appkey
+        // NOTE: 不会自动抓取图片
+        wechat: {
+            title: "微信",
+            url: "[qrcode]",
+            icon: "wechat"
+        },
+        // 生成一个二维码 供用户扫描
+        // 相关接口 https://github.com/zxlie/WeixinApi
+        renren: {
+            title: "人人网",
+            url: "http://widget.renren.com/dialog/share",
+            icon: "renren"
+        },
+        // http://widget.renren.com/dialog/share?resourceUrl=www&srcUrl=www&title=ww&description=xxx
+        // 550 * 400
+        // resourceUrl : '', // 分享的资源Url
+        // srcUrl : '',	     // 分享的资源来源Url,默认为header中的Referer,如果分享失败可以调整此值为resourceUrl试试
+        // pic : '',		 // 分享的主题图片，会自动抓取
+        // title : '',		 // 分享的标题
+        // description : ''	 // 分享的详细描述
+        // NOTE: 经过测试，直接使用 url 参数即可
+        douban: {
+            title: "豆瓣",
+            url: "http://www.douban.com/recommend/",
+            icon: "share-alt"
+        },
+        // http://www.douban.com/service/sharebutton
+        // 450 * 330
+        // http://www.douban.com/share/service?bm=1&image=&href=xxx&updated=&name=
+        // href 链接
+        // name 标题
+        /* void (function() {
+         var d = document, e = encodeURIComponent, s1 = window.getSelection, s2 = d.getSelection, s3 = d.selection, s = s1 ? s1()
+         : s2 ? s2() : s3 ? s3.createRange().text : '', r = 'http://www.douban.com/recommend/?url=&title=&sel=&v=1&r=1'
+         })();
+         */
+        // tsohu: '',
+        // http://t.sohu.com/third/post.jsp?url=&title=&content=utf-8&pic=
+        //print: '',
+        mail: {
+            title: "邮件分享",
+            url: "mailto:",
+            icon: "envelope-o"
+        },
+        sms: {
+            title: "短信分享",
+            url: "sms:",
+            icon: "comment"
+        }
+    };
+    Share.prototype.render = function() {
+        var options = this.options, snsData = [], title = encodeURIComponent(doc.title), link = encodeURIComponent(doc.location), msgBody = "?body=" + title + link;
+        options.sns.forEach(function(item, i) {
+            if (Share.SNS[item]) {
+                var tmp = Share.SNS[item], shareUrl;
+                tmp.id = item;
+                if (item === "mail") {
+                    shareUrl = msgBody + "&subject=" + options.desc;
+                } else if (item === "sms") {
+                    shareUrl = msgBody;
+                } else {
+                    shareUrl = "?url=" + link + "&title=" + title;
+                }
+                tmp.shareUrl = tmp.url + shareUrl;
+                snsData.push(tmp);
+            }
+        });
+        return template("share", $.extend({}, options, {
+            sns: snsData
+        }));
+    };
+    Share.prototype.init = function() {
+        var me = this, shareItem = "[data-am-share-to]";
+        $doc.ready($.proxy(function() {
+            $("body").append(this.render());
+            // append share DOM to body
+            this.$element = $("#" + this.options.id);
+            this.$element.find("[data-am-share-close]").on("click.share.amui", function() {
+                me.close();
+            });
+        }, this));
+        $doc.on("click.share.amui", shareItem, $.proxy(function(e) {
+            var $clicked = $(e.target), $target = $clicked.is(shareItem) && $clicked || $clicked.parent(shareItem), sns = $target.attr("data-am-share-to");
+            if (!(sns === "mail" || sns === "sms")) {
+                e.preventDefault();
+                this.shareTo(sns, this.setData(sns));
+            }
+            this.close();
+        }, this));
+    };
+    Share.prototype.open = function() {
+        this.$element && this.$element.modal("open");
+        this.$element.trigger("open:share:amui");
+    };
+    Share.prototype.close = function() {
+        this.$element && this.$element.modal("close");
+        this.$element.trigger("close:share:amui");
+    };
+    Share.prototype.toggle = function() {
+        this.$element.is(".am-modal-active") ? this.close() : this.open();
+    };
+    Share.prototype.setData = function(sns) {
+        if (!sns) return;
+        var shareData = {
+            url: doc.location,
+            title: doc.title
+        }, desc = this.options.desc, imgSrc = this.pics || [], qqReg = /^(qzone|qq|tqq)$/;
+        if (qqReg.test(sns) && !imgSrc.length) {
+            var allImages = doc.images;
+            for (var i = 0; i < allImages.length && i < 10; i++) {
+                !!allImages[i].src && imgSrc.push(encodeURIComponent(allImages[i].src));
+            }
+            this.pics = imgSrc;
+        }
+        switch (sns) {
+          case "qzone":
+            shareData.desc = desc;
+            shareData.site = this.options.via;
+            shareData.pics = imgSrc.join("|");
+            // TODO: 抓取图片多张
+            break;
+
+          case "qq":
+            shareData.desc = desc;
+            shareData.site = this.options.via;
+            shareData.pics = imgSrc[0];
+            // 抓取一张图片
+            break;
+
+          case "tqq":
+            // 抓取图片多张
+            shareData.pic = imgSrc.join("|");
+            break;
+        }
+        return shareData;
+    };
+    Share.prototype.shareTo = function(sns, data) {
+        var snsInfo = Share.SNS[sns];
+        if (!snsInfo) return;
+        if (sns === "wechat" || sns === "weixin") return this.wechatQr();
+        var query = [];
+        for (var key in data) {
+            if (data[key]) {
+                // 避免 encode 图片分隔符 |
+                query.push(key.toString() + "=" + (key === "pic" || key === "pics" ? data[key] : encodeURIComponent(data[key])));
+            }
+        }
+        window.open(snsInfo.url + "?" + query.join("&"));
+    };
+    Share.prototype.wechatQr = function() {
+        if (!this.$wechatQr) {
+            var qrId = UI.utils.generateGUID("am-share-wechat"), $qr = $('<div class="am-modal am-modal-no-btn am-share-wechat-qr"><div class="am-modal-dialog"><div class="am-modal-hd">分享到微信 <a href="" class="am-close am-close-spin" data-am-modal-close>&times;</a> </div><div class="am-modal-bd"><div class="am-share-wx-qr"></div><div class="am-share-wechat-tip">打开微信，点击底部的<em>发现</em>，<br/> 使用<em>扫一扫</em>将网页分享至朋友圈</div></div></div></div>', {
+                id: qrId
+            });
+            var qrNode = new QRCode({
+                render: "canvas",
+                correctLevel: 0,
+                text: doc.location.href,
+                width: 180,
+                height: 180,
+                background: "#fff",
+                foreground: "#000"
+            });
+            $qr.find(".am-share-wx-qr").html(qrNode);
+            $qr.appendTo($("body"));
+            this.$wechatQr = $("#" + qrId);
+        }
+        this.$wechatQr.modal("open");
+    };
+    var share = new Share();
+    UI.share = share;
+    $doc.on("click.share.amui", '[data-am-toggle="share"]', function(e) {
+        e.preventDefault();
+        share.toggle();
+    });
+    module.exports = share;
+});
 define("ui.smooth-scroll", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
     var UI = require("core"), rAF = UI.utils.rAF;
     var $ = window.Zepto;
@@ -2879,15 +3876,16 @@ define("ui.smooth-scroll", [ "core", "zepto.extend.fx", "zepto.extend.data", "ze
      * @param position
      * @via http://mir.aculo.us/2014/01/19/scrolling-dom-elements-to-the-top-a-zepto-plugin/
      */
-    // Usage: $(element).smoothScroll([position])
+    // Usage: $(window).smoothScroll([options])
     // only allow one scroll to top operation to be in progress at a time,
     // which is probably what you want
     var smoothScrollInProgress = false;
-    $.fn.smoothScroll = function(position) {
-        var $this = this, targetY = position || 0, initialY = $this.scrollTop(), lastY = initialY, delta = targetY - initialY, // duration in ms, make it a bit shorter for short distances
+    $.fn.smoothScroll = function(options) {
+        options = options || {};
+        var $this = this, targetY = parseInt(options.position) || 0, initialY = $this.scrollTop(), lastY = initialY, delta = targetY - initialY, // duration in ms, make it a bit shorter for short distances
         // this is not scientific and you might want to adjust this for
         // your preferences
-        speed = Math.min(750, Math.min(1500, Math.abs(initialY - targetY))), // temp variables (t will be a position between 0 and 1, y is the calculated scrollTop)
+        speed = options.speed || Math.min(750, Math.min(1500, Math.abs(initialY - targetY))), // temp variables (t will be a position between 0 and 1, y is the calculated scrollTop)
         start, t, y, cancelScroll = function() {
             abort();
         };
@@ -2935,12 +3933,11 @@ define("ui.smooth-scroll", [ "core", "zepto.extend.fx", "zepto.extend.data", "ze
     // Init code
     $(document).on("click.smoothScroll.amui", "[data-am-smooth-scroll]", function(e) {
         e.preventDefault();
-        var $this = $(this), ssTo = Number($this.attr("data-am-smooth-scroll"));
-        $(window).smoothScroll(isNaN(ssTo) ? 0 : ssTo);
+        var options = UI.utils.parseOptions($(this).attr("data-am-smooth-scroll"));
+        $(window).smoothScroll(options);
     });
 });
 define("ui.sticky", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
-    "use strict";
     require("core");
     var $ = window.Zepto, UI = $.AMUI;
     /**
@@ -2949,33 +3946,124 @@ define("ui.sticky", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.ext
      */
     // Sticky Class
     var Sticky = function(element, options) {
+        var me = this;
         this.options = $.extend({}, Sticky.DEFAULTS, options);
         this.$element = $(element);
-        this.$window = $(window).on("scroll.sticky.amui", UI.utils.debounce($.proxy(this.checkPosition, this), 50)).on("click.sticky.amui", UI.utils.debounce($.proxy(this.checkPosition, this), 1));
-        this.original = {
-            offsetTop: this.$element.offset().top,
-            width: this.$element.width()
-        };
         this.sticked = null;
-        this.checkPosition();
+        this.inited = null;
+        this.$holder = undefined;
+        this.$window = $(window).on("scroll.sticky.amui", UI.utils.debounce($.proxy(this.checkPosition, this), 100)).on("resize.sticky.amui orientationchange.sticky.amui", UI.utils.debounce(function() {
+            me.reset(true, function() {
+                me.checkPosition();
+            });
+        }, 100));
+        this.offset = this.$element.offset();
+        this.init();
     };
     Sticky.DEFAULTS = {
         top: 0,
-        cls: "am-sticky"
+        bottom: 0,
+        animation: "",
+        className: {
+            sticky: "am-sticky",
+            resetting: "am-sticky-resetting",
+            stickyBtm: "am-sticky-bottom",
+            animationRev: "am-animation-reverse"
+        }
+    };
+    Sticky.prototype.init = function() {
+        var result = this.check();
+        if (!result) return false;
+        var $element = this.$element, $holder = $('<div class="am-sticky-placeholder"></div>').css({
+            height: $element.css("position") != "absolute" ? $element.outerHeight() : "",
+            "float": $element.css("float") != "none" ? $element.css("float") : "",
+            margin: $element.css("margin")
+        });
+        this.$holder = $element.css("margin", 0).wrap($holder).parent();
+        this.inited = 1;
+        return true;
+    };
+    Sticky.prototype.reset = function(force, cb) {
+        var options = this.options, $element = this.$element, animation = options.animation ? " am-animation-" + options.animation : "", complete = function() {
+            $element.css({
+                position: "",
+                top: "",
+                width: "",
+                left: "",
+                margin: 0
+            });
+            $element.removeClass([ animation, options.className.animationRev, options.className.sticky, options.className.resetting ].join(" "));
+            this.animating = false;
+            this.sticked = false;
+            this.offset = $element.offset();
+            cb && cb();
+        }.bind(this);
+        $element.addClass(options.className.resetting);
+        if (!force && options.animation && UI.support.animation) {
+            this.animating = true;
+            $element.removeClass(animation).one(UI.support.animation.end, function() {
+                complete();
+            }).width();
+            // force redraw
+            $element.addClass(animation + " " + options.className.animationRev);
+        } else {
+            complete();
+        }
+    };
+    Sticky.prototype.check = function() {
+        if (!this.$element.is(":visible")) return false;
+        var media = this.options.media;
+        if (media) {
+            switch (typeof media) {
+              case "number":
+                if (window.innerWidth < media) {
+                    return false;
+                }
+                break;
+
+              case "string":
+                if (window.matchMedia && !window.matchMedia(media).matches) {
+                    return false;
+                }
+                break;
+            }
+        }
+        return true;
     };
     Sticky.prototype.checkPosition = function() {
-        if (!this.$element.is(":visible")) return;
-        var scrollHeight = $(document).height(), scrollTop = this.$window.scrollTop(), options = this.options, offsetTop = options.top, $element = this.$element, animation = options.animation ? " am-animation-" + options.animation : "";
-        this.sticked = scrollTop > this.original.offsetTop ? "sticky" : false;
-        if (this.sticked) {
-            $element.addClass(options.cls + animation).css({
-                top: offsetTop
-            });
-        } else {
-            $element.removeClass(options.cls + animation).css({
-                top: ""
-            });
+        if (!this.inited) {
+            var initialized = this.init();
+            if (!initialized) return;
         }
+        var options = this.options, scrollHeight = $("body").height(), scrollTop = this.$window.scrollTop(), offsetTop = options.top, offsetBottom = options.bottom, $element = this.$element, animation = options.animation ? " am-animation-" + options.animation : "", className = [ options.className.sticky, animation ].join(" ");
+        if (typeof offsetBottom == "function") offsetBottom = offsetBottom(this.$element);
+        var checkResult = scrollTop > this.$holder.offset().top;
+        if (!this.sticked && checkResult) {
+            $element.addClass(className);
+        } else if (this.sticked && !checkResult) {
+            this.reset();
+        }
+        if (checkResult) {
+            $element.css({
+                top: offsetTop,
+                left: this.$holder.offset().left,
+                width: this.offset.width
+            });
+            this.$holder.height(this.offset.height);
+            if (offsetBottom) {
+                // （底部边距 + 元素高度 > 窗口高度） 时定位到底部
+                if (offsetBottom + this.offset.height > $(window).height() && scrollTop + $(window).height() >= scrollHeight - offsetBottom) {
+                    $element.addClass(options.className.stickyBtm).css({
+                        top: $(window).height() - offsetBottom - this.offset.height
+                    });
+                } else {
+                    $element.removeClass(options.className.stickyBtm).css({
+                        top: offsetTop
+                    });
+                }
+            }
+        }
+        this.sticked = checkResult;
     };
     UI.sticky = Sticky;
     // Sticky Plugin
@@ -2995,6 +4083,138 @@ define("ui.sticky", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.ext
         });
     });
     module.exports = Sticky;
+});
+define("ui.tabs", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "util.hammer" ], function(require, exports, module) {
+    require("core");
+    var Hammer = require("util.hammer");
+    var $ = window.Zepto, UI = $.AMUI, supportTransition = UI.support.transition, animation = UI.support.animation;
+    /**
+     * @via https://github.com/twbs/bootstrap/blob/master/js/tab.js
+     * @copyright 2011-2014 Twitter, Inc.
+     * @license MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+     */
+    var Tabs = function(element) {
+        this.$element = $(element);
+        this.$tabNav = this.$element.find(Tabs.DEFAULTS.selector.nav);
+        this.$navs = this.$tabNav.find("a");
+        this.$content = this.$element.find(Tabs.DEFAULTS.selector.content);
+        this.$tabPanels = this.$content.find(Tabs.DEFAULTS.selector.panel);
+        this.transitioning = null;
+        this.init();
+    };
+    Tabs.DEFAULTS = {
+        selector: {
+            nav: ".am-tabs-nav",
+            content: ".am-tabs-bd",
+            panel: ".am-tab-panel"
+        },
+        className: {
+            active: "am-active"
+        }
+    };
+    Tabs.prototype.init = function() {
+        var me = this;
+        // Activate the first Tab when no active Tab or multiple active Tabs
+        if (this.$tabNav.find("> .am-active").length !== 1) {
+            var $tabNav = this.$tabNav;
+            this.activate($tabNav.children("li").first(), $tabNav);
+            this.activate(this.$tabPanels.first(), this.$content);
+        }
+        this.$navs.on("click.tabs.amui", function(e) {
+            e.preventDefault();
+            me.open($(this));
+        });
+        var hammer = new Hammer(this.$content[0]);
+        hammer.get("pan").set({
+            direction: Hammer.DIRECTION_HORIZONTAL,
+            threshold: 30
+        });
+        hammer.on("panleft", UI.utils.debounce(function(e) {
+            e.preventDefault();
+            $(e.target).focus();
+            var $nav = me.getNextNav($(e.target));
+            $nav && me.open($nav);
+        }, 100));
+        hammer.on("panright", UI.utils.debounce(function(e) {
+            e.preventDefault();
+            var $nav = me.getPrevNav($(e.target));
+            $nav && me.open($nav);
+        }, 100));
+    };
+    Tabs.prototype.open = function($nav) {
+        if (!$nav || this.transitioning || $nav.parent("li").hasClass("am-active")) return;
+        var $tabNav = this.$tabNav, $navs = this.$navs, $tabContent = this.$content, href = $nav.attr("href"), regexHash = /^#.+$/, $target = regexHash.test(href) && this.$content.find(href) || this.$tabPanels.eq($navs.index($nav));
+        var previous = $tabNav.find(".am-active a")[0], e = $.Event("open:tabs:amui", {
+            relatedTarget: previous
+        });
+        $nav.trigger(e);
+        if (e.isDefaultPrevented()) return;
+        // activate Tab nav
+        this.activate($nav.closest("li"), $tabNav);
+        // activate Tab content
+        this.activate($target, $tabContent, function() {
+            $nav.trigger({
+                type: "opened:tabs:amui",
+                relatedTarget: previous
+            });
+        });
+    };
+    Tabs.prototype.activate = function($element, $container, callback) {
+        this.transitioning = true;
+        var $active = $container.find("> .am-active"), transition = callback && supportTransition && !!$active.length;
+        $active.removeClass("am-active am-in");
+        $element.addClass("am-active");
+        if (transition) {
+            $element.redraw();
+            // reflow for transition
+            $element.addClass("am-in");
+        } else {
+            $element.removeClass("am-fade");
+        }
+        function complete() {
+            callback && callback();
+            this.transitioning = false;
+        }
+        transition ? $active.one(supportTransition.end, $.proxy(complete, this)) : $.proxy(complete, this)();
+    };
+    Tabs.prototype.getNextNav = function($panel) {
+        var navIndex = this.$tabPanels.index($panel), rightSpring = "am-animation-right-spring";
+        if (navIndex + 1 >= this.$navs.length) {
+            // last one
+            animation && $panel.addClass(rightSpring).on(animation.end, function() {
+                $panel.removeClass(rightSpring);
+            });
+            return null;
+        } else {
+            return this.$navs.eq(navIndex + 1);
+        }
+    };
+    Tabs.prototype.getPrevNav = function($panel) {
+        var navIndex = this.$tabPanels.index($panel), leftSpring = "am-animation-left-spring";
+        if (navIndex === 0) {
+            // first one
+            animation && $panel.addClass(leftSpring).on(animation.end, function() {
+                $panel.removeClass(leftSpring);
+            });
+            return null;
+        } else {
+            return this.$navs.eq(navIndex - 1);
+        }
+    };
+    // Plugin
+    function Plugin(option) {
+        return this.each(function() {
+            var $this = $(this), $tabs = $this.is(".am-tabs") && $this || $this.closest(".am-tabs"), data = $tabs.data("amui.tabs");
+            if (!data) $tabs.data("amui.tabs", data = new Tabs($tabs[0]));
+            if (typeof option == "string" && $this.is(".am-tabs-nav a")) data[option]($this);
+        });
+    }
+    $.fn.tabs = Plugin;
+    // Init code
+    $(document).on("ready", function(e) {
+        $("[data-am-tabs]").tabs();
+    });
+    module.exports = Tabs;
 });
 define("util.cookie", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
     "use strict";
@@ -3760,6 +4980,2089 @@ define("util.fullscreen", [ "core", "zepto.extend.fx", "zepto.extend.data", "zep
     //!window.fullscreen && (window.fullscreen = fullscreen);
     UI.fullscreen = fullscreen;
     module.exports = fullscreen;
+});
+define("util.hammer", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
+    require("core");
+    var $ = window.Zepto, UI = $.AMUI;
+    /**
+     * Hammer.js
+     * @via https://github.com/hammerjs/hammer.js
+     * @copyright Copyright (C) 2011-2014 by Jorik Tangelder (Eight Media)
+     * @license https://github.com/hammerjs/hammer.js/blob/master/LICENSE.md
+     */
+    var VENDOR_PREFIXES = [ "", "webkit", "moz", "MS", "ms", "o" ];
+    var TEST_ELEMENT = document.createElement("div");
+    var TYPE_FUNCTION = "function";
+    var round = Math.round;
+    var abs = Math.abs;
+    var now = Date.now;
+    /**
+     * set a timeout with a given scope
+     * @param {Function} fn
+     * @param {Number} timeout
+     * @param {Object} context
+     * @returns {number}
+     */
+    function setTimeoutContext(fn, timeout, context) {
+        return setTimeout(bindFn(fn, context), timeout);
+    }
+    /**
+     * if the argument is an array, we want to execute the fn on each entry
+     * if it aint an array we don't want to do a thing.
+     * this is used by all the methods that accept a single and array argument.
+     * @param {*|Array} arg
+     * @param {String} fn
+     * @param {Object} [context]
+     * @returns {Boolean}
+     */
+    function invokeArrayArg(arg, fn, context) {
+        if (Array.isArray(arg)) {
+            each(arg, context[fn], context);
+            return true;
+        }
+        return false;
+    }
+    /**
+     * walk objects and arrays
+     * @param {Object} obj
+     * @param {Function} iterator
+     * @param {Object} context
+     */
+    function each(obj, iterator, context) {
+        var i;
+        if (!obj) {
+            return;
+        }
+        if (obj.forEach) {
+            obj.forEach(iterator, context);
+        } else if (obj.length !== undefined) {
+            i = 0;
+            while (i < obj.length) {
+                iterator.call(context, obj[i], i, obj);
+                i++;
+            }
+        } else {
+            for (i in obj) {
+                obj.hasOwnProperty(i) && iterator.call(context, obj[i], i, obj);
+            }
+        }
+    }
+    /**
+     * extend object.
+     * means that properties in dest will be overwritten by the ones in src.
+     * @param {Object} dest
+     * @param {Object} src
+     * @param {Boolean} [merge]
+     * @returns {Object} dest
+     */
+    function extend(dest, src, merge) {
+        var keys = Object.keys(src);
+        var i = 0;
+        while (i < keys.length) {
+            if (!merge || merge && dest[keys[i]] === undefined) {
+                dest[keys[i]] = src[keys[i]];
+            }
+            i++;
+        }
+        return dest;
+    }
+    /**
+     * merge the values from src in the dest.
+     * means that properties that exist in dest will not be overwritten by src
+     * @param {Object} dest
+     * @param {Object} src
+     * @returns {Object} dest
+     */
+    function merge(dest, src) {
+        return extend(dest, src, true);
+    }
+    /**
+     * simple class inheritance
+     * @param {Function} child
+     * @param {Function} base
+     * @param {Object} [properties]
+     */
+    function inherit(child, base, properties) {
+        var baseP = base.prototype, childP;
+        childP = child.prototype = Object.create(baseP);
+        childP.constructor = child;
+        childP._super = baseP;
+        if (properties) {
+            extend(childP, properties);
+        }
+    }
+    /**
+     * simple function bind
+     * @param {Function} fn
+     * @param {Object} context
+     * @returns {Function}
+     */
+    function bindFn(fn, context) {
+        return function boundFn() {
+            return fn.apply(context, arguments);
+        };
+    }
+    /**
+     * let a boolean value also be a function that must return a boolean
+     * this first item in args will be used as the context
+     * @param {Boolean|Function} val
+     * @param {Array} [args]
+     * @returns {Boolean}
+     */
+    function boolOrFn(val, args) {
+        if (typeof val == TYPE_FUNCTION) {
+            return val.apply(args ? args[0] || undefined : undefined, args);
+        }
+        return val;
+    }
+    /**
+     * use the val2 when val1 is undefined
+     * @param {*} val1
+     * @param {*} val2
+     * @returns {*}
+     */
+    function ifUndefined(val1, val2) {
+        return val1 === undefined ? val2 : val1;
+    }
+    /**
+     * addEventListener with multiple events at once
+     * @param {EventTarget} target
+     * @param {String} types
+     * @param {Function} handler
+     */
+    function addEventListeners(target, types, handler) {
+        each(splitStr(types), function(type) {
+            target.addEventListener(type, handler, false);
+        });
+    }
+    /**
+     * removeEventListener with multiple events at once
+     * @param {EventTarget} target
+     * @param {String} types
+     * @param {Function} handler
+     */
+    function removeEventListeners(target, types, handler) {
+        each(splitStr(types), function(type) {
+            target.removeEventListener(type, handler, false);
+        });
+    }
+    /**
+     * find if a node is in the given parent
+     * @method hasParent
+     * @param {HTMLElement} node
+     * @param {HTMLElement} parent
+     * @return {Boolean} found
+     */
+    function hasParent(node, parent) {
+        while (node) {
+            if (node == parent) {
+                return true;
+            }
+            node = node.parentNode;
+        }
+        return false;
+    }
+    /**
+     * small indexOf wrapper
+     * @param {String} str
+     * @param {String} find
+     * @returns {Boolean} found
+     */
+    function inStr(str, find) {
+        return str.indexOf(find) > -1;
+    }
+    /**
+     * split string on whitespace
+     * @param {String} str
+     * @returns {Array} words
+     */
+    function splitStr(str) {
+        return str.trim().split(/\s+/g);
+    }
+    /**
+     * find if a array contains the object using indexOf or a simple polyFill
+     * @param {Array} src
+     * @param {String} find
+     * @param {String} [findByKey]
+     * @return {Boolean|Number} false when not found, or the index
+     */
+    function inArray(src, find, findByKey) {
+        if (src.indexOf && !findByKey) {
+            return src.indexOf(find);
+        } else {
+            var i = 0;
+            while (i < src.length) {
+                if (findByKey && src[i][findByKey] == find || !findByKey && src[i] === find) {
+                    return i;
+                }
+                i++;
+            }
+            return -1;
+        }
+    }
+    /**
+     * convert array-like objects to real arrays
+     * @param {Object} obj
+     * @returns {Array}
+     */
+    function toArray(obj) {
+        return Array.prototype.slice.call(obj, 0);
+    }
+    /**
+     * unique array with objects based on a key (like 'id') or just by the array's value
+     * @param {Array} src [{id:1},{id:2},{id:1}]
+     * @param {String} [key]
+     * @param {Boolean} [sort=False]
+     * @returns {Array} [{id:1},{id:2}]
+     */
+    function uniqueArray(src, key, sort) {
+        var results = [];
+        var values = [];
+        var i = 0;
+        while (i < src.length) {
+            var val = key ? src[i][key] : src[i];
+            if (inArray(values, val) < 0) {
+                results.push(src[i]);
+            }
+            values[i] = val;
+            i++;
+        }
+        if (sort) {
+            if (!key) {
+                results = results.sort();
+            } else {
+                results = results.sort(function sortUniqueArray(a, b) {
+                    return a[key] > b[key];
+                });
+            }
+        }
+        return results;
+    }
+    /**
+     * get the prefixed property
+     * @param {Object} obj
+     * @param {String} property
+     * @returns {String|Undefined} prefixed
+     */
+    function prefixed(obj, property) {
+        var prefix, prop;
+        var camelProp = property[0].toUpperCase() + property.slice(1);
+        var i = 0;
+        while (i < VENDOR_PREFIXES.length) {
+            prefix = VENDOR_PREFIXES[i];
+            prop = prefix ? prefix + camelProp : property;
+            if (prop in obj) {
+                return prop;
+            }
+            i++;
+        }
+        return undefined;
+    }
+    /**
+     * get a unique id
+     * @returns {number} uniqueId
+     */
+    var _uniqueId = 1;
+    function uniqueId() {
+        return _uniqueId++;
+    }
+    /**
+     * get the window object of an element
+     * @param {HTMLElement} element
+     * @returns {DocumentView|Window}
+     */
+    function getWindowForElement(element) {
+        var doc = element.ownerDocument;
+        return doc.defaultView || doc.parentWindow;
+    }
+    var MOBILE_REGEX = /mobile|tablet|ip(ad|hone|od)|android/i;
+    var SUPPORT_TOUCH = "ontouchstart" in window;
+    var SUPPORT_POINTER_EVENTS = prefixed(window, "PointerEvent") !== undefined;
+    var SUPPORT_ONLY_TOUCH = SUPPORT_TOUCH && MOBILE_REGEX.test(navigator.userAgent);
+    var INPUT_TYPE_TOUCH = "touch";
+    var INPUT_TYPE_PEN = "pen";
+    var INPUT_TYPE_MOUSE = "mouse";
+    var INPUT_TYPE_KINECT = "kinect";
+    var COMPUTE_INTERVAL = 25;
+    var INPUT_START = 1;
+    var INPUT_MOVE = 2;
+    var INPUT_END = 4;
+    var INPUT_CANCEL = 8;
+    var DIRECTION_NONE = 1;
+    var DIRECTION_LEFT = 2;
+    var DIRECTION_RIGHT = 4;
+    var DIRECTION_UP = 8;
+    var DIRECTION_DOWN = 16;
+    var DIRECTION_HORIZONTAL = DIRECTION_LEFT | DIRECTION_RIGHT;
+    var DIRECTION_VERTICAL = DIRECTION_UP | DIRECTION_DOWN;
+    var DIRECTION_ALL = DIRECTION_HORIZONTAL | DIRECTION_VERTICAL;
+    var PROPS_XY = [ "x", "y" ];
+    var PROPS_CLIENT_XY = [ "clientX", "clientY" ];
+    /**
+     * create new input type manager
+     * @param {Manager} manager
+     * @param {Function} callback
+     * @returns {Input}
+     * @constructor
+     */
+    function Input(manager, callback) {
+        var self = this;
+        this.manager = manager;
+        this.callback = callback;
+        this.element = manager.element;
+        this.target = manager.options.inputTarget;
+        // smaller wrapper around the handler, for the scope and the enabled state of the manager,
+        // so when disabled the input events are completely bypassed.
+        this.domHandler = function(ev) {
+            if (boolOrFn(manager.options.enable, [ manager ])) {
+                self.handler(ev);
+            }
+        };
+        this.init();
+    }
+    Input.prototype = {
+        /**
+         * should handle the inputEvent data and trigger the callback
+         * @virtual
+         */
+        handler: function() {},
+        /**
+         * bind the events
+         */
+        init: function() {
+            this.evEl && addEventListeners(this.element, this.evEl, this.domHandler);
+            this.evTarget && addEventListeners(this.target, this.evTarget, this.domHandler);
+            this.evWin && addEventListeners(getWindowForElement(this.element), this.evWin, this.domHandler);
+        },
+        /**
+         * unbind the events
+         */
+        destroy: function() {
+            this.evEl && removeEventListeners(this.element, this.evEl, this.domHandler);
+            this.evTarget && removeEventListeners(this.target, this.evTarget, this.domHandler);
+            this.evWin && removeEventListeners(getWindowForElement(this.element), this.evWin, this.domHandler);
+        }
+    };
+    /**
+     * create new input type manager
+     * called by the Manager constructor
+     * @param {Hammer} manager
+     * @returns {Input}
+     */
+    function createInputInstance(manager) {
+        var Type;
+        var inputClass = manager.options.inputClass;
+        if (inputClass) {
+            Type = inputClass;
+        } else if (SUPPORT_POINTER_EVENTS) {
+            Type = PointerEventInput;
+        } else if (SUPPORT_ONLY_TOUCH) {
+            Type = TouchInput;
+        } else if (!SUPPORT_TOUCH) {
+            Type = MouseInput;
+        } else {
+            Type = TouchMouseInput;
+        }
+        return new Type(manager, inputHandler);
+    }
+    /**
+     * handle input events
+     * @param {Manager} manager
+     * @param {String} eventType
+     * @param {Object} input
+     */
+    function inputHandler(manager, eventType, input) {
+        var pointersLen = input.pointers.length;
+        var changedPointersLen = input.changedPointers.length;
+        var isFirst = eventType & INPUT_START && pointersLen - changedPointersLen === 0;
+        var isFinal = eventType & (INPUT_END | INPUT_CANCEL) && pointersLen - changedPointersLen === 0;
+        input.isFirst = !!isFirst;
+        input.isFinal = !!isFinal;
+        if (isFirst) {
+            manager.session = {};
+        }
+        // source event is the normalized value of the domEvents
+        // like 'touchstart, mouseup, pointerdown'
+        input.eventType = eventType;
+        // compute scale, rotation etc
+        computeInputData(manager, input);
+        // emit secret event
+        manager.emit("hammer.input", input);
+        manager.recognize(input);
+        manager.session.prevInput = input;
+    }
+    /**
+     * extend the data with some usable properties like scale, rotate, velocity etc
+     * @param {Object} manager
+     * @param {Object} input
+     */
+    function computeInputData(manager, input) {
+        var session = manager.session;
+        var pointers = input.pointers;
+        var pointersLength = pointers.length;
+        // store the first input to calculate the distance and direction
+        if (!session.firstInput) {
+            session.firstInput = simpleCloneInputData(input);
+        }
+        // to compute scale and rotation we need to store the multiple touches
+        if (pointersLength > 1 && !session.firstMultiple) {
+            session.firstMultiple = simpleCloneInputData(input);
+        } else if (pointersLength === 1) {
+            session.firstMultiple = false;
+        }
+        var firstInput = session.firstInput;
+        var firstMultiple = session.firstMultiple;
+        var offsetCenter = firstMultiple ? firstMultiple.center : firstInput.center;
+        var center = input.center = getCenter(pointers);
+        input.timeStamp = now();
+        input.deltaTime = input.timeStamp - firstInput.timeStamp;
+        input.angle = getAngle(offsetCenter, center);
+        input.distance = getDistance(offsetCenter, center);
+        computeDeltaXY(session, input);
+        input.offsetDirection = getDirection(input.deltaX, input.deltaY);
+        input.scale = firstMultiple ? getScale(firstMultiple.pointers, pointers) : 1;
+        input.rotation = firstMultiple ? getRotation(firstMultiple.pointers, pointers) : 0;
+        computeIntervalInputData(session, input);
+        // find the correct target
+        var target = manager.element;
+        if (hasParent(input.srcEvent.target, target)) {
+            target = input.srcEvent.target;
+        }
+        input.target = target;
+    }
+    function computeDeltaXY(session, input) {
+        var center = input.center;
+        var offset = session.offsetDelta || {};
+        var prevDelta = session.prevDelta || {};
+        var prevInput = session.prevInput || {};
+        if (input.eventType === INPUT_START || prevInput.eventType === INPUT_END) {
+            prevDelta = session.prevDelta = {
+                x: prevInput.deltaX || 0,
+                y: prevInput.deltaY || 0
+            };
+            offset = session.offsetDelta = {
+                x: center.x,
+                y: center.y
+            };
+        }
+        input.deltaX = prevDelta.x + (center.x - offset.x);
+        input.deltaY = prevDelta.y + (center.y - offset.y);
+    }
+    /**
+     * velocity is calculated every x ms
+     * @param {Object} session
+     * @param {Object} input
+     */
+    function computeIntervalInputData(session, input) {
+        var last = session.lastInterval || input, deltaTime = input.timeStamp - last.timeStamp, velocity, velocityX, velocityY, direction;
+        if (input.eventType != INPUT_CANCEL && (deltaTime > COMPUTE_INTERVAL || last.velocity === undefined)) {
+            var deltaX = last.deltaX - input.deltaX;
+            var deltaY = last.deltaY - input.deltaY;
+            var v = getVelocity(deltaTime, deltaX, deltaY);
+            velocityX = v.x;
+            velocityY = v.y;
+            velocity = abs(v.x) > abs(v.y) ? v.x : v.y;
+            direction = getDirection(deltaX, deltaY);
+            session.lastInterval = input;
+        } else {
+            // use latest velocity info if it doesn't overtake a minimum period
+            velocity = last.velocity;
+            velocityX = last.velocityX;
+            velocityY = last.velocityY;
+            direction = last.direction;
+        }
+        input.velocity = velocity;
+        input.velocityX = velocityX;
+        input.velocityY = velocityY;
+        input.direction = direction;
+    }
+    /**
+     * create a simple clone from the input used for storage of firstInput and firstMultiple
+     * @param {Object} input
+     * @returns {Object} clonedInputData
+     */
+    function simpleCloneInputData(input) {
+        // make a simple copy of the pointers because we will get a reference if we don't
+        // we only need clientXY for the calculations
+        var pointers = [];
+        var i = 0;
+        while (i < input.pointers.length) {
+            pointers[i] = {
+                clientX: round(input.pointers[i].clientX),
+                clientY: round(input.pointers[i].clientY)
+            };
+            i++;
+        }
+        return {
+            timeStamp: now(),
+            pointers: pointers,
+            center: getCenter(pointers),
+            deltaX: input.deltaX,
+            deltaY: input.deltaY
+        };
+    }
+    /**
+     * get the center of all the pointers
+     * @param {Array} pointers
+     * @return {Object} center contains `x` and `y` properties
+     */
+    function getCenter(pointers) {
+        var pointersLength = pointers.length;
+        // no need to loop when only one touch
+        if (pointersLength === 1) {
+            return {
+                x: round(pointers[0].clientX),
+                y: round(pointers[0].clientY)
+            };
+        }
+        var x = 0, y = 0, i = 0;
+        while (i < pointersLength) {
+            x += pointers[i].clientX;
+            y += pointers[i].clientY;
+            i++;
+        }
+        return {
+            x: round(x / pointersLength),
+            y: round(y / pointersLength)
+        };
+    }
+    /**
+     * calculate the velocity between two points. unit is in px per ms.
+     * @param {Number} deltaTime
+     * @param {Number} x
+     * @param {Number} y
+     * @return {Object} velocity `x` and `y`
+     */
+    function getVelocity(deltaTime, x, y) {
+        return {
+            x: x / deltaTime || 0,
+            y: y / deltaTime || 0
+        };
+    }
+    /**
+     * get the direction between two points
+     * @param {Number} x
+     * @param {Number} y
+     * @return {Number} direction
+     */
+    function getDirection(x, y) {
+        if (x === y) {
+            return DIRECTION_NONE;
+        }
+        if (abs(x) >= abs(y)) {
+            return x > 0 ? DIRECTION_LEFT : DIRECTION_RIGHT;
+        }
+        return y > 0 ? DIRECTION_UP : DIRECTION_DOWN;
+    }
+    /**
+     * calculate the absolute distance between two points
+     * @param {Object} p1 {x, y}
+     * @param {Object} p2 {x, y}
+     * @param {Array} [props] containing x and y keys
+     * @return {Number} distance
+     */
+    function getDistance(p1, p2, props) {
+        if (!props) {
+            props = PROPS_XY;
+        }
+        var x = p2[props[0]] - p1[props[0]], y = p2[props[1]] - p1[props[1]];
+        return Math.sqrt(x * x + y * y);
+    }
+    /**
+     * calculate the angle between two coordinates
+     * @param {Object} p1
+     * @param {Object} p2
+     * @param {Array} [props] containing x and y keys
+     * @return {Number} angle
+     */
+    function getAngle(p1, p2, props) {
+        if (!props) {
+            props = PROPS_XY;
+        }
+        var x = p2[props[0]] - p1[props[0]], y = p2[props[1]] - p1[props[1]];
+        return Math.atan2(y, x) * 180 / Math.PI;
+    }
+    /**
+     * calculate the rotation degrees between two pointersets
+     * @param {Array} start array of pointers
+     * @param {Array} end array of pointers
+     * @return {Number} rotation
+     */
+    function getRotation(start, end) {
+        return getAngle(end[1], end[0], PROPS_CLIENT_XY) - getAngle(start[1], start[0], PROPS_CLIENT_XY);
+    }
+    /**
+     * calculate the scale factor between two pointersets
+     * no scale is 1, and goes down to 0 when pinched together, and bigger when pinched out
+     * @param {Array} start array of pointers
+     * @param {Array} end array of pointers
+     * @return {Number} scale
+     */
+    function getScale(start, end) {
+        return getDistance(end[0], end[1], PROPS_CLIENT_XY) / getDistance(start[0], start[1], PROPS_CLIENT_XY);
+    }
+    var MOUSE_INPUT_MAP = {
+        mousedown: INPUT_START,
+        mousemove: INPUT_MOVE,
+        mouseup: INPUT_END
+    };
+    var MOUSE_ELEMENT_EVENTS = "mousedown";
+    var MOUSE_WINDOW_EVENTS = "mousemove mouseup";
+    /**
+     * Mouse events input
+     * @constructor
+     * @extends Input
+     */
+    function MouseInput() {
+        this.evEl = MOUSE_ELEMENT_EVENTS;
+        this.evWin = MOUSE_WINDOW_EVENTS;
+        this.allow = true;
+        // used by Input.TouchMouse to disable mouse events
+        this.pressed = false;
+        // mousedown state
+        Input.apply(this, arguments);
+    }
+    inherit(MouseInput, Input, {
+        /**
+         * handle mouse events
+         * @param {Object} ev
+         */
+        handler: function MEhandler(ev) {
+            var eventType = MOUSE_INPUT_MAP[ev.type];
+            // on start we want to have the left mouse button down
+            if (eventType & INPUT_START && ev.button === 0) {
+                this.pressed = true;
+            }
+            if (eventType & INPUT_MOVE && ev.which !== 1) {
+                eventType = INPUT_END;
+            }
+            // mouse must be down, and mouse events are allowed (see the TouchMouse input)
+            if (!this.pressed || !this.allow) {
+                return;
+            }
+            if (eventType & INPUT_END) {
+                this.pressed = false;
+            }
+            this.callback(this.manager, eventType, {
+                pointers: [ ev ],
+                changedPointers: [ ev ],
+                pointerType: INPUT_TYPE_MOUSE,
+                srcEvent: ev
+            });
+        }
+    });
+    var POINTER_INPUT_MAP = {
+        pointerdown: INPUT_START,
+        pointermove: INPUT_MOVE,
+        pointerup: INPUT_END,
+        pointercancel: INPUT_CANCEL,
+        pointerout: INPUT_CANCEL
+    };
+    // in IE10 the pointer types is defined as an enum
+    var IE10_POINTER_TYPE_ENUM = {
+        2: INPUT_TYPE_TOUCH,
+        3: INPUT_TYPE_PEN,
+        4: INPUT_TYPE_MOUSE,
+        5: INPUT_TYPE_KINECT
+    };
+    var POINTER_ELEMENT_EVENTS = "pointerdown";
+    var POINTER_WINDOW_EVENTS = "pointermove pointerup pointercancel";
+    // IE10 has prefixed support, and case-sensitive
+    if (window.MSPointerEvent) {
+        POINTER_ELEMENT_EVENTS = "MSPointerDown";
+        POINTER_WINDOW_EVENTS = "MSPointerMove MSPointerUp MSPointerCancel";
+    }
+    /**
+     * Pointer events input
+     * @constructor
+     * @extends Input
+     */
+    function PointerEventInput() {
+        this.evEl = POINTER_ELEMENT_EVENTS;
+        this.evWin = POINTER_WINDOW_EVENTS;
+        Input.apply(this, arguments);
+        this.store = this.manager.session.pointerEvents = [];
+    }
+    inherit(PointerEventInput, Input, {
+        /**
+         * handle mouse events
+         * @param {Object} ev
+         */
+        handler: function PEhandler(ev) {
+            var store = this.store;
+            var removePointer = false;
+            var eventTypeNormalized = ev.type.toLowerCase().replace("ms", "");
+            var eventType = POINTER_INPUT_MAP[eventTypeNormalized];
+            var pointerType = IE10_POINTER_TYPE_ENUM[ev.pointerType] || ev.pointerType;
+            var isTouch = pointerType == INPUT_TYPE_TOUCH;
+            // start and mouse must be down
+            if (eventType & INPUT_START && (ev.button === 0 || isTouch)) {
+                store.push(ev);
+            } else if (eventType & (INPUT_END | INPUT_CANCEL)) {
+                removePointer = true;
+            }
+            // get index of the event in the store
+            // it not found, so the pointer hasn't been down (so it's probably a hover)
+            var storeIndex = inArray(store, ev.pointerId, "pointerId");
+            if (storeIndex < 0) {
+                return;
+            }
+            // update the event in the store
+            store[storeIndex] = ev;
+            this.callback(this.manager, eventType, {
+                pointers: store,
+                changedPointers: [ ev ],
+                pointerType: pointerType,
+                srcEvent: ev
+            });
+            if (removePointer) {
+                // remove from the store
+                store.splice(storeIndex, 1);
+            }
+        }
+    });
+    var TOUCH_INPUT_MAP = {
+        touchstart: INPUT_START,
+        touchmove: INPUT_MOVE,
+        touchend: INPUT_END,
+        touchcancel: INPUT_CANCEL
+    };
+    var TOUCH_TARGET_EVENTS = "touchstart touchmove touchend touchcancel";
+    /**
+     * Touch events input
+     * @constructor
+     * @extends Input
+     */
+    function TouchInput() {
+        this.evTarget = TOUCH_TARGET_EVENTS;
+        this.targetIds = {};
+        Input.apply(this, arguments);
+    }
+    inherit(TouchInput, Input, {
+        /**
+         * handle touch events
+         * @param {Object} ev
+         */
+        handler: function TEhandler(ev) {
+            var type = TOUCH_INPUT_MAP[ev.type];
+            var touches = getTouches.call(this, ev, type);
+            if (!touches) {
+                return;
+            }
+            this.callback(this.manager, type, {
+                pointers: touches[0],
+                changedPointers: touches[1],
+                pointerType: INPUT_TYPE_TOUCH,
+                srcEvent: ev
+            });
+        }
+    });
+    /**
+     * @this {TouchInput}
+     * @param {Object} ev
+     * @param {Number} type flag
+     * @returns {undefined|Array} [all, changed]
+     */
+    function getTouches(ev, type) {
+        var allTouches = toArray(ev.touches);
+        var targetIds = this.targetIds;
+        // when there is only one touch, the process can be simplified
+        if (type & (INPUT_START | INPUT_MOVE) && allTouches.length === 1) {
+            targetIds[allTouches[0].identifier] = true;
+            return [ allTouches, allTouches ];
+        }
+        var i, targetTouches = toArray(ev.targetTouches), changedTouches = toArray(ev.changedTouches), changedTargetTouches = [];
+        // collect touches
+        if (type === INPUT_START) {
+            i = 0;
+            while (i < targetTouches.length) {
+                targetIds[targetTouches[i].identifier] = true;
+                i++;
+            }
+        }
+        // filter changed touches to only contain touches that exist in the collected target ids
+        i = 0;
+        while (i < changedTouches.length) {
+            if (targetIds[changedTouches[i].identifier]) {
+                changedTargetTouches.push(changedTouches[i]);
+            }
+            // cleanup removed touches
+            if (type & (INPUT_END | INPUT_CANCEL)) {
+                delete targetIds[changedTouches[i].identifier];
+            }
+            i++;
+        }
+        if (!changedTargetTouches.length) {
+            return;
+        }
+        return [ // merge targetTouches with changedTargetTouches so it contains ALL touches, including 'end' and 'cancel'
+        uniqueArray(targetTouches.concat(changedTargetTouches), "identifier", true), changedTargetTouches ];
+    }
+    /**
+     * Combined touch and mouse input
+     *
+     * Touch has a higher priority then mouse, and while touching no mouse events are allowed.
+     * This because touch devices also emit mouse events while doing a touch.
+     *
+     * @constructor
+     * @extends Input
+     */
+    function TouchMouseInput() {
+        Input.apply(this, arguments);
+        var handler = bindFn(this.handler, this);
+        this.touch = new TouchInput(this.manager, handler);
+        this.mouse = new MouseInput(this.manager, handler);
+    }
+    inherit(TouchMouseInput, Input, {
+        /**
+         * handle mouse and touch events
+         * @param {Hammer} manager
+         * @param {String} inputEvent
+         * @param {Object} inputData
+         */
+        handler: function TMEhandler(manager, inputEvent, inputData) {
+            var isTouch = inputData.pointerType == INPUT_TYPE_TOUCH, isMouse = inputData.pointerType == INPUT_TYPE_MOUSE;
+            // when we're in a touch event, so  block all upcoming mouse events
+            // most mobile browser also emit mouseevents, right after touchstart
+            if (isTouch) {
+                this.mouse.allow = false;
+            } else if (isMouse && !this.mouse.allow) {
+                return;
+            }
+            // reset the allowMouse when we're done
+            if (inputEvent & (INPUT_END | INPUT_CANCEL)) {
+                this.mouse.allow = true;
+            }
+            this.callback(manager, inputEvent, inputData);
+        },
+        /**
+         * remove the event listeners
+         */
+        destroy: function destroy() {
+            this.touch.destroy();
+            this.mouse.destroy();
+        }
+    });
+    var PREFIXED_TOUCH_ACTION = prefixed(TEST_ELEMENT.style, "touchAction");
+    var NATIVE_TOUCH_ACTION = PREFIXED_TOUCH_ACTION !== undefined;
+    // magical touchAction value
+    var TOUCH_ACTION_COMPUTE = "compute";
+    var TOUCH_ACTION_AUTO = "auto";
+    var TOUCH_ACTION_MANIPULATION = "manipulation";
+    // not implemented
+    var TOUCH_ACTION_NONE = "none";
+    var TOUCH_ACTION_PAN_X = "pan-x";
+    var TOUCH_ACTION_PAN_Y = "pan-y";
+    /**
+     * Touch Action
+     * sets the touchAction property or uses the js alternative
+     * @param {Manager} manager
+     * @param {String} value
+     * @constructor
+     */
+    function TouchAction(manager, value) {
+        this.manager = manager;
+        this.set(value);
+    }
+    TouchAction.prototype = {
+        /**
+         * set the touchAction value on the element or enable the polyfill
+         * @param {String} value
+         */
+        set: function(value) {
+            // find out the touch-action by the event handlers
+            if (value == TOUCH_ACTION_COMPUTE) {
+                value = this.compute();
+            }
+            if (NATIVE_TOUCH_ACTION) {
+                this.manager.element.style[PREFIXED_TOUCH_ACTION] = value;
+            }
+            this.actions = value.toLowerCase().trim();
+        },
+        /**
+         * just re-set the touchAction value
+         */
+        update: function() {
+            this.set(this.manager.options.touchAction);
+        },
+        /**
+         * compute the value for the touchAction property based on the recognizer's settings
+         * @returns {String} value
+         */
+        compute: function() {
+            var actions = [];
+            each(this.manager.recognizers, function(recognizer) {
+                if (boolOrFn(recognizer.options.enable, [ recognizer ])) {
+                    actions = actions.concat(recognizer.getTouchAction());
+                }
+            });
+            return cleanTouchActions(actions.join(" "));
+        },
+        /**
+         * this method is called on each input cycle and provides the preventing of the browser behavior
+         * @param {Object} input
+         */
+        preventDefaults: function(input) {
+            // not needed with native support for the touchAction property
+            if (NATIVE_TOUCH_ACTION) {
+                return;
+            }
+            var srcEvent = input.srcEvent;
+            var direction = input.offsetDirection;
+            // if the touch action did prevented once this session
+            if (this.manager.session.prevented) {
+                srcEvent.preventDefault();
+                return;
+            }
+            var actions = this.actions;
+            var hasNone = inStr(actions, TOUCH_ACTION_NONE);
+            var hasPanY = inStr(actions, TOUCH_ACTION_PAN_Y);
+            var hasPanX = inStr(actions, TOUCH_ACTION_PAN_X);
+            if (hasNone || hasPanY && direction & DIRECTION_HORIZONTAL || hasPanX && direction & DIRECTION_VERTICAL) {
+                return this.preventSrc(srcEvent);
+            }
+        },
+        /**
+         * call preventDefault to prevent the browser's default behavior (scrolling in most cases)
+         * @param {Object} srcEvent
+         */
+        preventSrc: function(srcEvent) {
+            this.manager.session.prevented = true;
+            srcEvent.preventDefault();
+        }
+    };
+    /**
+     * when the touchActions are collected they are not a valid value, so we need to clean things up. *
+     * @param {String} actions
+     * @returns {*}
+     */
+    function cleanTouchActions(actions) {
+        // none
+        if (inStr(actions, TOUCH_ACTION_NONE)) {
+            return TOUCH_ACTION_NONE;
+        }
+        var hasPanX = inStr(actions, TOUCH_ACTION_PAN_X);
+        var hasPanY = inStr(actions, TOUCH_ACTION_PAN_Y);
+        // pan-x and pan-y can be combined
+        if (hasPanX && hasPanY) {
+            return TOUCH_ACTION_PAN_X + " " + TOUCH_ACTION_PAN_Y;
+        }
+        // pan-x OR pan-y
+        if (hasPanX || hasPanY) {
+            return hasPanX ? TOUCH_ACTION_PAN_X : TOUCH_ACTION_PAN_Y;
+        }
+        // manipulation
+        if (inStr(actions, TOUCH_ACTION_MANIPULATION)) {
+            return TOUCH_ACTION_MANIPULATION;
+        }
+        return TOUCH_ACTION_AUTO;
+    }
+    /**
+     * Recognizer flow explained; *
+     * All recognizers have the initial state of POSSIBLE when a input session starts.
+     * The definition of a input session is from the first input until the last input, with all it's movement in it. *
+     * Example session for mouse-input: mousedown -> mousemove -> mouseup
+     *
+     * On each recognizing cycle (see Manager.recognize) the .recognize() method is executed
+     * which determines with state it should be.
+     *
+     * If the recognizer has the state FAILED, CANCELLED or RECOGNIZED (equals ENDED), it is reset to
+     * POSSIBLE to give it another change on the next cycle.
+     *
+     *               Possible
+     *                  |
+     *            +-----+---------------+
+     *            |                     |
+     *      +-----+-----+               |
+     *      |           |               |
+     *   Failed      Cancelled          |
+     *                          +-------+------+
+     *                          |              |
+     *                      Recognized       Began
+     *                                         |
+     *                                      Changed
+     *                                         |
+     *                                  Ended/Recognized
+     */
+    var STATE_POSSIBLE = 1;
+    var STATE_BEGAN = 2;
+    var STATE_CHANGED = 4;
+    var STATE_ENDED = 8;
+    var STATE_RECOGNIZED = STATE_ENDED;
+    var STATE_CANCELLED = 16;
+    var STATE_FAILED = 32;
+    /**
+     * Recognizer
+     * Every recognizer needs to extend from this class.
+     * @constructor
+     * @param {Object} options
+     */
+    function Recognizer(options) {
+        this.id = uniqueId();
+        this.manager = null;
+        this.options = merge(options || {}, this.defaults);
+        // default is enable true
+        this.options.enable = ifUndefined(this.options.enable, true);
+        this.state = STATE_POSSIBLE;
+        this.simultaneous = {};
+        this.requireFail = [];
+    }
+    Recognizer.prototype = {
+        /**
+         * @virtual
+         * @type {Object}
+         */
+        defaults: {},
+        /**
+         * set options
+         * @param {Object} options
+         * @return {Recognizer}
+         */
+        set: function(options) {
+            extend(this.options, options);
+            // also update the touchAction, in case something changed about the directions/enabled state
+            this.manager && this.manager.touchAction.update();
+            return this;
+        },
+        /**
+         * recognize simultaneous with an other recognizer.
+         * @param {Recognizer} otherRecognizer
+         * @returns {Recognizer} this
+         */
+        recognizeWith: function(otherRecognizer) {
+            if (invokeArrayArg(otherRecognizer, "recognizeWith", this)) {
+                return this;
+            }
+            var simultaneous = this.simultaneous;
+            otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
+            if (!simultaneous[otherRecognizer.id]) {
+                simultaneous[otherRecognizer.id] = otherRecognizer;
+                otherRecognizer.recognizeWith(this);
+            }
+            return this;
+        },
+        /**
+         * drop the simultaneous link. it doesnt remove the link on the other recognizer.
+         * @param {Recognizer} otherRecognizer
+         * @returns {Recognizer} this
+         */
+        dropRecognizeWith: function(otherRecognizer) {
+            if (invokeArrayArg(otherRecognizer, "dropRecognizeWith", this)) {
+                return this;
+            }
+            otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
+            delete this.simultaneous[otherRecognizer.id];
+            return this;
+        },
+        /**
+         * recognizer can only run when an other is failing
+         * @param {Recognizer} otherRecognizer
+         * @returns {Recognizer} this
+         */
+        requireFailure: function(otherRecognizer) {
+            if (invokeArrayArg(otherRecognizer, "requireFailure", this)) {
+                return this;
+            }
+            var requireFail = this.requireFail;
+            otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
+            if (inArray(requireFail, otherRecognizer) === -1) {
+                requireFail.push(otherRecognizer);
+                otherRecognizer.requireFailure(this);
+            }
+            return this;
+        },
+        /**
+         * drop the requireFailure link. it does not remove the link on the other recognizer.
+         * @param {Recognizer} otherRecognizer
+         * @returns {Recognizer} this
+         */
+        dropRequireFailure: function(otherRecognizer) {
+            if (invokeArrayArg(otherRecognizer, "dropRequireFailure", this)) {
+                return this;
+            }
+            otherRecognizer = getRecognizerByNameIfManager(otherRecognizer, this);
+            var index = inArray(this.requireFail, otherRecognizer);
+            if (index > -1) {
+                this.requireFail.splice(index, 1);
+            }
+            return this;
+        },
+        /**
+         * has require failures boolean
+         * @returns {boolean}
+         */
+        hasRequireFailures: function() {
+            return this.requireFail.length > 0;
+        },
+        /**
+         * if the recognizer can recognize simultaneous with an other recognizer
+         * @param {Recognizer} otherRecognizer
+         * @returns {Boolean}
+         */
+        canRecognizeWith: function(otherRecognizer) {
+            return !!this.simultaneous[otherRecognizer.id];
+        },
+        /**
+         * You should use `tryEmit` instead of `emit` directly to check
+         * that all the needed recognizers has failed before emitting.
+         * @param {Object} input
+         */
+        emit: function(input) {
+            var self = this;
+            var state = this.state;
+            function emit(withState) {
+                self.manager.emit(self.options.event + (withState ? stateStr(state) : ""), input);
+            }
+            // 'panstart' and 'panmove'
+            if (state < STATE_ENDED) {
+                emit(true);
+            }
+            emit();
+            // simple 'eventName' events
+            // panend and pancancel
+            if (state >= STATE_ENDED) {
+                emit(true);
+            }
+        },
+        /**
+         * Check that all the require failure recognizers has failed,
+         * if true, it emits a gesture event,
+         * otherwise, setup the state to FAILED.
+         * @param {Object} input
+         */
+        tryEmit: function(input) {
+            if (this.canEmit()) {
+                return this.emit(input);
+            }
+            // it's failing anyway
+            this.state = STATE_FAILED;
+        },
+        /**
+         * can we emit?
+         * @returns {boolean}
+         */
+        canEmit: function() {
+            var i = 0;
+            while (i < this.requireFail.length) {
+                if (!(this.requireFail[i].state & (STATE_FAILED | STATE_POSSIBLE))) {
+                    return false;
+                }
+                i++;
+            }
+            return true;
+        },
+        /**
+         * update the recognizer
+         * @param {Object} inputData
+         */
+        recognize: function(inputData) {
+            // make a new copy of the inputData
+            // so we can change the inputData without messing up the other recognizers
+            var inputDataClone = extend({}, inputData);
+            // is is enabled and allow recognizing?
+            if (!boolOrFn(this.options.enable, [ this, inputDataClone ])) {
+                this.reset();
+                this.state = STATE_FAILED;
+                return;
+            }
+            // reset when we've reached the end
+            if (this.state & (STATE_RECOGNIZED | STATE_CANCELLED | STATE_FAILED)) {
+                this.state = STATE_POSSIBLE;
+            }
+            this.state = this.process(inputDataClone);
+            // the recognizer has recognized a gesture
+            // so trigger an event
+            if (this.state & (STATE_BEGAN | STATE_CHANGED | STATE_ENDED | STATE_CANCELLED)) {
+                this.tryEmit(inputDataClone);
+            }
+        },
+        /**
+         * return the state of the recognizer
+         * the actual recognizing happens in this method
+         * @virtual
+         * @param {Object} inputData
+         * @returns {Const} STATE
+         */
+        process: function(inputData) {},
+        // jshint ignore:line
+        /**
+         * return the preferred touch-action
+         * @virtual
+         * @returns {Array}
+         */
+        getTouchAction: function() {},
+        /**
+         * called when the gesture isn't allowed to recognize
+         * like when another is being recognized or it is disabled
+         * @virtual
+         */
+        reset: function() {}
+    };
+    /**
+     * get a usable string, used as event postfix
+     * @param {Const} state
+     * @returns {String} state
+     */
+    function stateStr(state) {
+        if (state & STATE_CANCELLED) {
+            return "cancel";
+        } else if (state & STATE_ENDED) {
+            return "end";
+        } else if (state & STATE_CHANGED) {
+            return "move";
+        } else if (state & STATE_BEGAN) {
+            return "start";
+        }
+        return "";
+    }
+    /**
+     * direction cons to string
+     * @param {Const} direction
+     * @returns {String}
+     */
+    function directionStr(direction) {
+        if (direction == DIRECTION_DOWN) {
+            return "down";
+        } else if (direction == DIRECTION_UP) {
+            return "up";
+        } else if (direction == DIRECTION_LEFT) {
+            return "left";
+        } else if (direction == DIRECTION_RIGHT) {
+            return "right";
+        }
+        return "";
+    }
+    /**
+     * get a recognizer by name if it is bound to a manager
+     * @param {Recognizer|String} otherRecognizer
+     * @param {Recognizer} recognizer
+     * @returns {Recognizer}
+     */
+    function getRecognizerByNameIfManager(otherRecognizer, recognizer) {
+        var manager = recognizer.manager;
+        if (manager) {
+            return manager.get(otherRecognizer);
+        }
+        return otherRecognizer;
+    }
+    /**
+     * This recognizer is just used as a base for the simple attribute recognizers.
+     * @constructor
+     * @extends Recognizer
+     */
+    function AttrRecognizer() {
+        Recognizer.apply(this, arguments);
+    }
+    inherit(AttrRecognizer, Recognizer, {
+        /**
+         * @namespace
+         * @memberof AttrRecognizer
+         */
+        defaults: {
+            /**
+             * @type {Number}
+             * @default 1
+             */
+            pointers: 1
+        },
+        /**
+         * Used to check if it the recognizer receives valid input, like input.distance > 10.
+         * @memberof AttrRecognizer
+         * @param {Object} input
+         * @returns {Boolean} recognized
+         */
+        attrTest: function(input) {
+            var optionPointers = this.options.pointers;
+            return optionPointers === 0 || input.pointers.length === optionPointers;
+        },
+        /**
+         * Process the input and return the state for the recognizer
+         * @memberof AttrRecognizer
+         * @param {Object} input
+         * @returns {*} State
+         */
+        process: function(input) {
+            var state = this.state;
+            var eventType = input.eventType;
+            var isRecognized = state & (STATE_BEGAN | STATE_CHANGED);
+            var isValid = this.attrTest(input);
+            // on cancel input and we've recognized before, return STATE_CANCELLED
+            if (isRecognized && (eventType & INPUT_CANCEL || !isValid)) {
+                return state | STATE_CANCELLED;
+            } else if (isRecognized || isValid) {
+                if (eventType & INPUT_END) {
+                    return state | STATE_ENDED;
+                } else if (!(state & STATE_BEGAN)) {
+                    return STATE_BEGAN;
+                }
+                return state | STATE_CHANGED;
+            }
+            return STATE_FAILED;
+        }
+    });
+    /**
+     * Pan
+     * Recognized when the pointer is down and moved in the allowed direction.
+     * @constructor
+     * @extends AttrRecognizer
+     */
+    function PanRecognizer() {
+        AttrRecognizer.apply(this, arguments);
+        this.pX = null;
+        this.pY = null;
+    }
+    inherit(PanRecognizer, AttrRecognizer, {
+        /**
+         * @namespace
+         * @memberof PanRecognizer
+         */
+        defaults: {
+            event: "pan",
+            threshold: 10,
+            pointers: 1,
+            direction: DIRECTION_ALL
+        },
+        getTouchAction: function() {
+            var direction = this.options.direction;
+            var actions = [];
+            if (direction & DIRECTION_HORIZONTAL) {
+                actions.push(TOUCH_ACTION_PAN_Y);
+            }
+            if (direction & DIRECTION_VERTICAL) {
+                actions.push(TOUCH_ACTION_PAN_X);
+            }
+            return actions;
+        },
+        directionTest: function(input) {
+            var options = this.options;
+            var hasMoved = true;
+            var distance = input.distance;
+            var direction = input.direction;
+            var x = input.deltaX;
+            var y = input.deltaY;
+            // lock to axis?
+            if (!(direction & options.direction)) {
+                if (options.direction & DIRECTION_HORIZONTAL) {
+                    direction = x === 0 ? DIRECTION_NONE : x < 0 ? DIRECTION_LEFT : DIRECTION_RIGHT;
+                    hasMoved = x != this.pX;
+                    distance = Math.abs(input.deltaX);
+                } else {
+                    direction = y === 0 ? DIRECTION_NONE : y < 0 ? DIRECTION_UP : DIRECTION_DOWN;
+                    hasMoved = y != this.pY;
+                    distance = Math.abs(input.deltaY);
+                }
+            }
+            input.direction = direction;
+            return hasMoved && distance > options.threshold && direction & options.direction;
+        },
+        attrTest: function(input) {
+            return AttrRecognizer.prototype.attrTest.call(this, input) && (this.state & STATE_BEGAN || !(this.state & STATE_BEGAN) && this.directionTest(input));
+        },
+        emit: function(input) {
+            this.pX = input.deltaX;
+            this.pY = input.deltaY;
+            var direction = directionStr(input.direction);
+            if (direction) {
+                this.manager.emit(this.options.event + direction, input);
+            }
+            this._super.emit.call(this, input);
+        }
+    });
+    /**
+     * Pinch
+     * Recognized when two or more pointers are moving toward (zoom-in) or away from each other (zoom-out).
+     * @constructor
+     * @extends AttrRecognizer
+     */
+    function PinchRecognizer() {
+        AttrRecognizer.apply(this, arguments);
+    }
+    inherit(PinchRecognizer, AttrRecognizer, {
+        /**
+         * @namespace
+         * @memberof PinchRecognizer
+         */
+        defaults: {
+            event: "pinch",
+            threshold: 0,
+            pointers: 2
+        },
+        getTouchAction: function() {
+            return [ TOUCH_ACTION_NONE ];
+        },
+        attrTest: function(input) {
+            return this._super.attrTest.call(this, input) && (Math.abs(input.scale - 1) > this.options.threshold || this.state & STATE_BEGAN);
+        },
+        emit: function(input) {
+            this._super.emit.call(this, input);
+            if (input.scale !== 1) {
+                var inOut = input.scale < 1 ? "in" : "out";
+                this.manager.emit(this.options.event + inOut, input);
+            }
+        }
+    });
+    /**
+     * Press
+     * Recognized when the pointer is down for x ms without any movement.
+     * @constructor
+     * @extends Recognizer
+     */
+    function PressRecognizer() {
+        Recognizer.apply(this, arguments);
+        this._timer = null;
+        this._input = null;
+    }
+    inherit(PressRecognizer, Recognizer, {
+        /**
+         * @namespace
+         * @memberof PressRecognizer
+         */
+        defaults: {
+            event: "press",
+            pointers: 1,
+            time: 500,
+            // minimal time of the pointer to be pressed
+            threshold: 5
+        },
+        getTouchAction: function() {
+            return [ TOUCH_ACTION_AUTO ];
+        },
+        process: function(input) {
+            var options = this.options;
+            var validPointers = input.pointers.length === options.pointers;
+            var validMovement = input.distance < options.threshold;
+            var validTime = input.deltaTime > options.time;
+            this._input = input;
+            // we only allow little movement
+            // and we've reached an end event, so a tap is possible
+            if (!validMovement || !validPointers || input.eventType & (INPUT_END | INPUT_CANCEL) && !validTime) {
+                this.reset();
+            } else if (input.eventType & INPUT_START) {
+                this.reset();
+                this._timer = setTimeoutContext(function() {
+                    this.state = STATE_RECOGNIZED;
+                    this.tryEmit();
+                }, options.time, this);
+            } else if (input.eventType & INPUT_END) {
+                return STATE_RECOGNIZED;
+            }
+            return STATE_FAILED;
+        },
+        reset: function() {
+            clearTimeout(this._timer);
+        },
+        emit: function(input) {
+            if (this.state !== STATE_RECOGNIZED) {
+                return;
+            }
+            if (input && input.eventType & INPUT_END) {
+                this.manager.emit(this.options.event + "up", input);
+            } else {
+                this._input.timeStamp = now();
+                this.manager.emit(this.options.event, this._input);
+            }
+        }
+    });
+    /**
+     * Rotate
+     * Recognized when two or more pointer are moving in a circular motion.
+     * @constructor
+     * @extends AttrRecognizer
+     */
+    function RotateRecognizer() {
+        AttrRecognizer.apply(this, arguments);
+    }
+    inherit(RotateRecognizer, AttrRecognizer, {
+        /**
+         * @namespace
+         * @memberof RotateRecognizer
+         */
+        defaults: {
+            event: "rotate",
+            threshold: 0,
+            pointers: 2
+        },
+        getTouchAction: function() {
+            return [ TOUCH_ACTION_NONE ];
+        },
+        attrTest: function(input) {
+            return this._super.attrTest.call(this, input) && (Math.abs(input.rotation) > this.options.threshold || this.state & STATE_BEGAN);
+        }
+    });
+    /**
+     * Swipe
+     * Recognized when the pointer is moving fast (velocity), with enough distance in the allowed direction.
+     * @constructor
+     * @extends AttrRecognizer
+     */
+    function SwipeRecognizer() {
+        AttrRecognizer.apply(this, arguments);
+    }
+    inherit(SwipeRecognizer, AttrRecognizer, {
+        /**
+         * @namespace
+         * @memberof SwipeRecognizer
+         */
+        defaults: {
+            event: "swipe",
+            threshold: 10,
+            velocity: .65,
+            direction: DIRECTION_HORIZONTAL | DIRECTION_VERTICAL,
+            pointers: 1
+        },
+        getTouchAction: function() {
+            return PanRecognizer.prototype.getTouchAction.call(this);
+        },
+        attrTest: function(input) {
+            var direction = this.options.direction;
+            var velocity;
+            if (direction & (DIRECTION_HORIZONTAL | DIRECTION_VERTICAL)) {
+                velocity = input.velocity;
+            } else if (direction & DIRECTION_HORIZONTAL) {
+                velocity = input.velocityX;
+            } else if (direction & DIRECTION_VERTICAL) {
+                velocity = input.velocityY;
+            }
+            return this._super.attrTest.call(this, input) && direction & input.direction && input.distance > this.options.threshold && abs(velocity) > this.options.velocity && input.eventType & INPUT_END;
+        },
+        emit: function(input) {
+            var direction = directionStr(input.direction);
+            if (direction) {
+                this.manager.emit(this.options.event + direction, input);
+            }
+            this.manager.emit(this.options.event, input);
+        }
+    });
+    /**
+     * A tap is ecognized when the pointer is doing a small tap/click. Multiple taps are recognized if they occur
+     * between the given interval and position. The delay option can be used to recognize multi-taps without firing
+     * a single tap.
+     *
+     * The eventData from the emitted event contains the property `tapCount`, which contains the amount of
+     * multi-taps being recognized.
+     * @constructor
+     * @extends Recognizer
+     */
+    function TapRecognizer() {
+        Recognizer.apply(this, arguments);
+        // previous time and center,
+        // used for tap counting
+        this.pTime = false;
+        this.pCenter = false;
+        this._timer = null;
+        this._input = null;
+        this.count = 0;
+    }
+    inherit(TapRecognizer, Recognizer, {
+        /**
+         * @namespace
+         * @memberof PinchRecognizer
+         */
+        defaults: {
+            event: "tap",
+            pointers: 1,
+            taps: 1,
+            interval: 300,
+            // max time between the multi-tap taps
+            time: 250,
+            // max time of the pointer to be down (like finger on the screen)
+            threshold: 2,
+            // a minimal movement is ok, but keep it low
+            posThreshold: 10
+        },
+        getTouchAction: function() {
+            return [ TOUCH_ACTION_MANIPULATION ];
+        },
+        process: function(input) {
+            var options = this.options;
+            var validPointers = input.pointers.length === options.pointers;
+            var validMovement = input.distance < options.threshold;
+            var validTouchTime = input.deltaTime < options.time;
+            this.reset();
+            if (input.eventType & INPUT_START && this.count === 0) {
+                return this.failTimeout();
+            }
+            // we only allow little movement
+            // and we've reached an end event, so a tap is possible
+            if (validMovement && validTouchTime && validPointers) {
+                if (input.eventType != INPUT_END) {
+                    return this.failTimeout();
+                }
+                var validInterval = this.pTime ? input.timeStamp - this.pTime < options.interval : true;
+                var validMultiTap = !this.pCenter || getDistance(this.pCenter, input.center) < options.posThreshold;
+                this.pTime = input.timeStamp;
+                this.pCenter = input.center;
+                if (!validMultiTap || !validInterval) {
+                    this.count = 1;
+                } else {
+                    this.count += 1;
+                }
+                this._input = input;
+                // if tap count matches we have recognized it,
+                // else it has began recognizing...
+                var tapCount = this.count % options.taps;
+                if (tapCount === 0) {
+                    // no failing requirements, immediately trigger the tap event
+                    // or wait as long as the multitap interval to trigger
+                    if (!this.hasRequireFailures()) {
+                        return STATE_RECOGNIZED;
+                    } else {
+                        this._timer = setTimeoutContext(function() {
+                            this.state = STATE_RECOGNIZED;
+                            this.tryEmit();
+                        }, options.interval, this);
+                        return STATE_BEGAN;
+                    }
+                }
+            }
+            return STATE_FAILED;
+        },
+        failTimeout: function() {
+            this._timer = setTimeoutContext(function() {
+                this.state = STATE_FAILED;
+            }, this.options.interval, this);
+            return STATE_FAILED;
+        },
+        reset: function() {
+            clearTimeout(this._timer);
+        },
+        emit: function() {
+            if (this.state == STATE_RECOGNIZED) {
+                this._input.tapCount = this.count;
+                this.manager.emit(this.options.event, this._input);
+            }
+        }
+    });
+    /**
+     * Simple way to create an manager with a default set of recognizers.
+     * @param {HTMLElement} element
+     * @param {Object} [options]
+     * @constructor
+     */
+    function Hammer(element, options) {
+        options = options || {};
+        options.recognizers = ifUndefined(options.recognizers, Hammer.defaults.preset);
+        return new Manager(element, options);
+    }
+    /**
+     * @const {string}
+     */
+    Hammer.VERSION = "2.0.3";
+    /**
+     * default settings
+     * @namespace
+     */
+    Hammer.defaults = {
+        /**
+         * set if DOM events are being triggered.
+         * But this is slower and unused by simple implementations, so disabled by default.
+         * @type {Boolean}
+         * @default false
+         */
+        domEvents: false,
+        /**
+         * The value for the touchAction property/fallback.
+         * When set to `compute` it will magically set the correct value based on the added recognizers.
+         * @type {String}
+         * @default compute
+         */
+        touchAction: TOUCH_ACTION_COMPUTE,
+        /**
+         * @type {Boolean}
+         * @default true
+         */
+        enable: true,
+        /**
+         * EXPERIMENTAL FEATURE -- can be removed/changed
+         * Change the parent input target element.
+         * If Null, then it is being set the to main element.
+         * @type {Null|EventTarget}
+         * @default null
+         */
+        inputTarget: null,
+        /**
+         * force an input class
+         * @type {Null|Function}
+         * @default null
+         */
+        inputClass: null,
+        /**
+         * Default recognizer setup when calling `Hammer()`
+         * When creating a new Manager these will be skipped.
+         * @type {Array}
+         */
+        preset: [ // RecognizerClass, options, [recognizeWith, ...], [requireFailure, ...]
+        [ RotateRecognizer, {
+            enable: false
+        } ], [ PinchRecognizer, {
+            enable: false
+        }, [ "rotate" ] ], [ SwipeRecognizer, {
+            direction: DIRECTION_HORIZONTAL
+        } ], [ PanRecognizer, {
+            direction: DIRECTION_HORIZONTAL
+        }, [ "swipe" ] ], [ TapRecognizer ], [ TapRecognizer, {
+            event: "doubletap",
+            taps: 2
+        }, [ "tap" ] ], [ PressRecognizer ] ],
+        /**
+         * Some CSS properties can be used to improve the working of Hammer.
+         * Add them to this method and they will be set when creating a new Manager.
+         * @namespace
+         */
+        cssProps: {
+            /**
+             * Disables text selection to improve the dragging gesture. Mainly for desktop browsers.
+             * @type {String}
+             * @default 'none'
+             */
+            userSelect: "none",
+            /**
+             * Disable the Windows Phone grippers when pressing an element.
+             * @type {String}
+             * @default 'none'
+             */
+            touchSelect: "none",
+            /**
+             * Disables the default callout shown when you touch and hold a touch target.
+             * On iOS, when you touch and hold a touch target such as a link, Safari displays
+             * a callout containing information about the link. This property allows you to disable that callout.
+             * @type {String}
+             * @default 'none'
+             */
+            touchCallout: "none",
+            /**
+             * Specifies whether zooming is enabled. Used by IE10>
+             * @type {String}
+             * @default 'none'
+             */
+            contentZooming: "none",
+            /**
+             * Specifies that an entire element should be draggable instead of its contents. Mainly for desktop browsers.
+             * @type {String}
+             * @default 'none'
+             */
+            userDrag: "none",
+            /**
+             * Overrides the highlight color shown when the user taps a link or a JavaScript
+             * clickable element in iOS. This property obeys the alpha value, if specified.
+             * @type {String}
+             * @default 'rgba(0,0,0,0)'
+             */
+            tapHighlightColor: "rgba(0,0,0,0)"
+        }
+    };
+    var STOP = 1;
+    var FORCED_STOP = 2;
+    /**
+     * Manager
+     * @param {HTMLElement} element
+     * @param {Object} [options]
+     * @constructor
+     */
+    function Manager(element, options) {
+        options = options || {};
+        this.options = merge(options, Hammer.defaults);
+        this.options.inputTarget = this.options.inputTarget || element;
+        this.handlers = {};
+        this.session = {};
+        this.recognizers = [];
+        this.element = element;
+        this.input = createInputInstance(this);
+        this.touchAction = new TouchAction(this, this.options.touchAction);
+        toggleCssProps(this, true);
+        each(options.recognizers, function(item) {
+            var recognizer = this.add(new item[0](item[1]));
+            item[2] && recognizer.recognizeWith(item[2]);
+            item[3] && recognizer.requireFailure(item[3]);
+        }, this);
+    }
+    Manager.prototype = {
+        /**
+         * set options
+         * @param {Object} options
+         * @returns {Manager}
+         */
+        set: function(options) {
+            extend(this.options, options);
+            // Options that need a little more setup
+            if (options.touchAction) {
+                this.touchAction.update();
+            }
+            if (options.inputTarget) {
+                // Clean up existing event listeners and reinitialize
+                this.input.destroy();
+                this.input.target = options.inputTarget;
+                this.input.init();
+            }
+            return this;
+        },
+        /**
+         * stop recognizing for this session.
+         * This session will be discarded, when a new [input]start event is fired.
+         * When forced, the recognizer cycle is stopped immediately.
+         * @param {Boolean} [force]
+         */
+        stop: function(force) {
+            this.session.stopped = force ? FORCED_STOP : STOP;
+        },
+        /**
+         * run the recognizers!
+         * called by the inputHandler function on every movement of the pointers (touches)
+         * it walks through all the recognizers and tries to detect the gesture that is being made
+         * @param {Object} inputData
+         */
+        recognize: function(inputData) {
+            var session = this.session;
+            if (session.stopped) {
+                return;
+            }
+            // run the touch-action polyfill
+            this.touchAction.preventDefaults(inputData);
+            var recognizer;
+            var recognizers = this.recognizers;
+            // this holds the recognizer that is being recognized.
+            // so the recognizer's state needs to be BEGAN, CHANGED, ENDED or RECOGNIZED
+            // if no recognizer is detecting a thing, it is set to `null`
+            var curRecognizer = session.curRecognizer;
+            // reset when the last recognizer is recognized
+            // or when we're in a new session
+            if (!curRecognizer || curRecognizer && curRecognizer.state & STATE_RECOGNIZED) {
+                curRecognizer = session.curRecognizer = null;
+            }
+            var i = 0;
+            while (i < recognizers.length) {
+                recognizer = recognizers[i];
+                // find out if we are allowed try to recognize the input for this one.
+                // 1.   allow if the session is NOT forced stopped (see the .stop() method)
+                // 2.   allow if we still haven't recognized a gesture in this session, or the this recognizer is the one
+                //      that is being recognized.
+                // 3.   allow if the recognizer is allowed to run simultaneous with the current recognized recognizer.
+                //      this can be setup with the `recognizeWith()` method on the recognizer.
+                if (session.stopped !== FORCED_STOP && (// 1
+                !curRecognizer || recognizer == curRecognizer || // 2
+                recognizer.canRecognizeWith(curRecognizer))) {
+                    // 3
+                    recognizer.recognize(inputData);
+                } else {
+                    recognizer.reset();
+                }
+                // if the recognizer has been recognizing the input as a valid gesture, we want to store this one as the
+                // current active recognizer. but only if we don't already have an active recognizer
+                if (!curRecognizer && recognizer.state & (STATE_BEGAN | STATE_CHANGED | STATE_ENDED)) {
+                    curRecognizer = session.curRecognizer = recognizer;
+                }
+                i++;
+            }
+        },
+        /**
+         * get a recognizer by its event name.
+         * @param {Recognizer|String} recognizer
+         * @returns {Recognizer|Null}
+         */
+        get: function(recognizer) {
+            if (recognizer instanceof Recognizer) {
+                return recognizer;
+            }
+            var recognizers = this.recognizers;
+            for (var i = 0; i < recognizers.length; i++) {
+                if (recognizers[i].options.event == recognizer) {
+                    return recognizers[i];
+                }
+            }
+            return null;
+        },
+        /**
+         * add a recognizer to the manager
+         * existing recognizers with the same event name will be removed
+         * @param {Recognizer} recognizer
+         * @returns {Recognizer|Manager}
+         */
+        add: function(recognizer) {
+            if (invokeArrayArg(recognizer, "add", this)) {
+                return this;
+            }
+            // remove existing
+            var existing = this.get(recognizer.options.event);
+            if (existing) {
+                this.remove(existing);
+            }
+            this.recognizers.push(recognizer);
+            recognizer.manager = this;
+            this.touchAction.update();
+            return recognizer;
+        },
+        /**
+         * remove a recognizer by name or instance
+         * @param {Recognizer|String} recognizer
+         * @returns {Manager}
+         */
+        remove: function(recognizer) {
+            if (invokeArrayArg(recognizer, "remove", this)) {
+                return this;
+            }
+            var recognizers = this.recognizers;
+            recognizer = this.get(recognizer);
+            recognizers.splice(inArray(recognizers, recognizer), 1);
+            this.touchAction.update();
+            return this;
+        },
+        /**
+         * bind event
+         * @param {String} events
+         * @param {Function} handler
+         * @returns {EventEmitter} this
+         */
+        on: function(events, handler) {
+            var handlers = this.handlers;
+            each(splitStr(events), function(event) {
+                handlers[event] = handlers[event] || [];
+                handlers[event].push(handler);
+            });
+            return this;
+        },
+        /**
+         * unbind event, leave emit blank to remove all handlers
+         * @param {String} events
+         * @param {Function} [handler]
+         * @returns {EventEmitter} this
+         */
+        off: function(events, handler) {
+            var handlers = this.handlers;
+            each(splitStr(events), function(event) {
+                if (!handler) {
+                    delete handlers[event];
+                } else {
+                    handlers[event].splice(inArray(handlers[event], handler), 1);
+                }
+            });
+            return this;
+        },
+        /**
+         * emit event to the listeners
+         * @param {String} event
+         * @param {Object} data
+         */
+        emit: function(event, data) {
+            // we also want to trigger dom events
+            if (this.options.domEvents) {
+                triggerDomEvent(event, data);
+            }
+            // no handlers, so skip it all
+            var handlers = this.handlers[event] && this.handlers[event].slice();
+            if (!handlers || !handlers.length) {
+                return;
+            }
+            data.type = event;
+            data.preventDefault = function() {
+                data.srcEvent.preventDefault();
+            };
+            var i = 0;
+            while (i < handlers.length) {
+                handlers[i](data);
+                i++;
+            }
+        },
+        /**
+         * destroy the manager and unbinds all events
+         * it doesn't unbind dom events, that is the user own responsibility
+         */
+        destroy: function() {
+            this.element && toggleCssProps(this, false);
+            this.handlers = {};
+            this.session = {};
+            this.input.destroy();
+            this.element = null;
+        }
+    };
+    /**
+     * add/remove the css properties as defined in manager.options.cssProps
+     * @param {Manager} manager
+     * @param {Boolean} add
+     */
+    function toggleCssProps(manager, add) {
+        var element = manager.element;
+        each(manager.options.cssProps, function(value, name) {
+            element.style[prefixed(element.style, name)] = add ? value : "";
+        });
+    }
+    /**
+     * trigger dom event
+     * @param {String} event
+     * @param {Object} data
+     */
+    function triggerDomEvent(event, data) {
+        var gestureEvent = document.createEvent("Event");
+        gestureEvent.initEvent(event, true, true);
+        gestureEvent.gesture = data;
+        data.target.dispatchEvent(gestureEvent);
+    }
+    extend(Hammer, {
+        INPUT_START: INPUT_START,
+        INPUT_MOVE: INPUT_MOVE,
+        INPUT_END: INPUT_END,
+        INPUT_CANCEL: INPUT_CANCEL,
+        STATE_POSSIBLE: STATE_POSSIBLE,
+        STATE_BEGAN: STATE_BEGAN,
+        STATE_CHANGED: STATE_CHANGED,
+        STATE_ENDED: STATE_ENDED,
+        STATE_RECOGNIZED: STATE_RECOGNIZED,
+        STATE_CANCELLED: STATE_CANCELLED,
+        STATE_FAILED: STATE_FAILED,
+        DIRECTION_NONE: DIRECTION_NONE,
+        DIRECTION_LEFT: DIRECTION_LEFT,
+        DIRECTION_RIGHT: DIRECTION_RIGHT,
+        DIRECTION_UP: DIRECTION_UP,
+        DIRECTION_DOWN: DIRECTION_DOWN,
+        DIRECTION_HORIZONTAL: DIRECTION_HORIZONTAL,
+        DIRECTION_VERTICAL: DIRECTION_VERTICAL,
+        DIRECTION_ALL: DIRECTION_ALL,
+        Manager: Manager,
+        Input: Input,
+        TouchAction: TouchAction,
+        TouchInput: TouchInput,
+        MouseInput: MouseInput,
+        PointerEventInput: PointerEventInput,
+        TouchMouseInput: TouchMouseInput,
+        Recognizer: Recognizer,
+        AttrRecognizer: AttrRecognizer,
+        Tap: TapRecognizer,
+        Pan: PanRecognizer,
+        Swipe: SwipeRecognizer,
+        Pinch: PinchRecognizer,
+        Rotate: RotateRecognizer,
+        Press: PressRecognizer,
+        on: addEventListeners,
+        off: removeEventListeners,
+        each: each,
+        merge: merge,
+        extend: extend,
+        inherit: inherit,
+        bindFn: bindFn,
+        prefixed: prefixed
+    });
+    module.exports = Hammer;
+    function hammerify(el, options) {
+        var $el = $(el);
+        if (!$el.data("hammer")) {
+            $el.data("hammer", new Hammer($el[0], options));
+        }
+    }
+    // extend the emit method to also trigger jQuery events
+    Hammer.Manager.prototype.emit = function(originalEmit) {
+        return function(type, data) {
+            originalEmit.call(this, type, data);
+            // console.log('trigger....%s', type);
+            $(this.element).trigger({
+                type: type,
+                gesture: data
+            });
+        };
+    }(Hammer.Manager.prototype.emit);
+    $.fn.hammer = function(options) {
+        return this.each(function() {
+            hammerify(this, options);
+        });
+    };
 });
 define("util.qrcode", [], function(require, exports, module) {
     var $ = Zepto;
@@ -5723,128 +9026,7 @@ define("zepto.extend.selector", [], function(require, exports, module) {
         });
     };
 });
-define("zepto.extend.touch", [], function(require, exports, module) {
-    // 2014.01.22  Support IE11 touch events.
-    var $ = window.Zepto;
-    // Zepto.js
-    // (c) 2010-2014 Thomas Fuchs
-    // Zepto.js may be freely distributed under the MIT license.
-    var touch = {}, touchTimeout, tapTimeout, swipeTimeout, longTapTimeout, longTapDelay = 750, gesture;
-    function swipeDirection(x1, x2, y1, y2) {
-        return Math.abs(x1 - x2) >= Math.abs(y1 - y2) ? x1 - x2 > 0 ? "Left" : "Right" : y1 - y2 > 0 ? "Up" : "Down";
-    }
-    function longTap() {
-        longTapTimeout = null;
-        if (touch.last) {
-            touch.el.trigger("longTap");
-            touch = {};
-        }
-    }
-    function cancelLongTap() {
-        if (longTapTimeout) clearTimeout(longTapTimeout);
-        longTapTimeout = null;
-    }
-    function cancelAll() {
-        if (touchTimeout) clearTimeout(touchTimeout);
-        if (tapTimeout) clearTimeout(tapTimeout);
-        if (swipeTimeout) clearTimeout(swipeTimeout);
-        if (longTapTimeout) clearTimeout(longTapTimeout);
-        touchTimeout = tapTimeout = swipeTimeout = longTapTimeout = null;
-        touch = {};
-    }
-    function isPrimaryTouch(event) {
-        return (event.pointerType == "touch" || event.pointerType == event.MSPOINTER_TYPE_TOUCH) && event.isPrimary;
-    }
-    function isPointerEventType(e, type) {
-        return e.type == "pointer" + type || e.type.toLowerCase() == "mspointer" + type;
-    }
-    $(document).ready(function() {
-        var now, delta, deltaX = 0, deltaY = 0, firstTouch, _isPointerType;
-        if ("MSGesture" in window) {
-            gesture = new MSGesture();
-            gesture.target = document.body;
-        }
-        $(document).bind("MSGestureEnd", function(e) {
-            var swipeDirectionFromVelocity = e.velocityX > 1 ? "Right" : e.velocityX < -1 ? "Left" : e.velocityY > 1 ? "Down" : e.velocityY < -1 ? "Up" : null;
-            if (swipeDirectionFromVelocity) {
-                touch.el.trigger("swipe");
-                touch.el.trigger("swipe" + swipeDirectionFromVelocity);
-            }
-        }).on("touchstart MSPointerDown pointerdown", function(e) {
-            if ((_isPointerType = isPointerEventType(e, "down")) && !isPrimaryTouch(e)) return;
-            firstTouch = _isPointerType ? e : e.touches[0];
-            if (e.touches && e.touches.length === 1 && touch.x2) {
-                // Clear out touch movement data if we have it sticking around
-                // This can occur if touchcancel doesn't fire due to preventDefault, etc.
-                touch.x2 = undefined;
-                touch.y2 = undefined;
-            }
-            now = Date.now();
-            delta = now - (touch.last || now);
-            touch.el = $("tagName" in firstTouch.target ? firstTouch.target : firstTouch.target.parentNode);
-            touchTimeout && clearTimeout(touchTimeout);
-            touch.x1 = firstTouch.pageX;
-            touch.y1 = firstTouch.pageY;
-            if (delta > 0 && delta <= 250) touch.isDoubleTap = true;
-            touch.last = now;
-            longTapTimeout = setTimeout(longTap, longTapDelay);
-            // adds the current touch contact for IE gesture recognition
-            if (gesture && _isPointerType) gesture.addPointer(e.pointerId);
-        }).on("touchmove MSPointerMove pointermove", function(e) {
-            if ((_isPointerType = isPointerEventType(e, "move")) && !isPrimaryTouch(e)) return;
-            firstTouch = _isPointerType ? e : e.touches[0];
-            cancelLongTap();
-            touch.x2 = firstTouch.pageX;
-            touch.y2 = firstTouch.pageY;
-            deltaX += Math.abs(touch.x1 - touch.x2);
-            deltaY += Math.abs(touch.y1 - touch.y2);
-        }).on("touchend MSPointerUp pointerup", function(e) {
-            if ((_isPointerType = isPointerEventType(e, "up")) && !isPrimaryTouch(e)) return;
-            cancelLongTap();
-            // swipe
-            if (touch.x2 && Math.abs(touch.x1 - touch.x2) > 30 || touch.y2 && Math.abs(touch.y1 - touch.y2) > 30) swipeTimeout = setTimeout(function() {
-                touch.el.trigger("swipe");
-                touch.el.trigger("swipe" + swipeDirection(touch.x1, touch.x2, touch.y1, touch.y2));
-                touch = {};
-            }, 0); else if ("last" in touch) // don't fire tap when delta position changed by more than 30 pixels,
-            // for instance when moving to a point and back to origin
-            if (deltaX < 30 && deltaY < 30) {
-                // delay by one tick so we can cancel the 'tap' event if 'scroll' fires
-                // ('tap' fires before 'scroll')
-                tapTimeout = setTimeout(function() {
-                    // trigger universal 'tap' with the option to cancelTouch()
-                    // (cancelTouch cancels processing of single vs double taps for faster 'tap' response)
-                    var event = $.Event("tap");
-                    event.cancelTouch = cancelAll;
-                    touch.el.trigger(event);
-                    // trigger double tap immediately
-                    if (touch.isDoubleTap) {
-                        if (touch.el) touch.el.trigger("doubleTap");
-                        touch = {};
-                    } else {
-                        touchTimeout = setTimeout(function() {
-                            touchTimeout = null;
-                            if (touch.el) touch.el.trigger("singleTap");
-                            touch = {};
-                        }, 250);
-                    }
-                }, 0);
-            } else {
-                touch = {};
-            }
-            deltaX = deltaY = 0;
-        }).on("touchcancel MSPointerCancel pointercancel", cancelAll);
-        // scrolling the window indicates intention of the user
-        // to scroll, not tap or swipe, so cancel all ongoing events
-        $(window).on("scroll", cancelAll);
-    });
-    [ "swipe", "swipeLeft", "swipeRight", "swipeUp", "swipeDown", "doubleTap", "tap", "singleTap", "longTap" ].forEach(function(eventName) {
-        $.fn[eventName] = function(callback) {
-            return this.on(eventName, callback);
-        };
-    });
-});
-define("zepto.flexslider", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "zepto.extend.data" ], function(require, exports, module) {
+define("zepto.flexslider", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
     var $ = window.Zepto;
     require("core");
     require("zepto.extend.data");
@@ -7042,26 +10224,36 @@ define("zepto.outerdemension", [], function(require, exports, module) {
 });
 define("zepto.pinchzoom", [], function(require, exports, module) {
     /**
-     * @via http://rtp-ch.github.io/pinchzoom/
-     * @license GNU General Public License,
+     * @via https://github.com/manuelstofer/pinchzoom/blob/master/src/pinchzoom.js
+     * @license the MIT License.
      */
-    var definePinchZoom = function(d) {
-        var PinchZoom = function(h, g) {
-            this.el = d(h);
+    var definePinchZoom = function($) {
+        /**
+         * Pinch zoom using jQuery
+         * @version 0.0.2
+         * @author Manuel Stofer <mst@rtp.ch>
+         * @param el
+         * @param options
+         * @constructor
+         */
+        var PinchZoom = function(el, options) {
+            this.el = $(el);
             this.zoomFactor = 1;
             this.lastScale = 1;
             this.offset = {
                 x: 0,
                 y: 0
             };
-            this.options = d.extend({}, this.defaults, g);
+            this.options = $.extend({}, this.defaults, options);
             this.setupMarkup();
             this.bindEvents();
             this.update();
-        }, b = function(h, g) {
-            return h + g;
-        }, e = function(h, g) {
-            return h > g - .01 && h < g + .01;
+            // default enable.
+            this.enable();
+        }, sum = function(a, b) {
+            return a + b;
+        }, isCloseTo = function(value, expected) {
+            return value > expected - .01 && value < expected + .01;
         };
         PinchZoom.prototype = {
             defaults: {
@@ -7071,230 +10263,382 @@ define("zepto.pinchzoom", [], function(require, exports, module) {
                 animationInterval: 5,
                 maxZoom: 4,
                 minZoom: .5,
-                use2d: true
+                lockDragAxis: false,
+                use2d: false,
+                zoomStartEventName: "pz_zoomstart",
+                zoomEndEventName: "pz_zoomend",
+                dragStartEventName: "pz_dragstart",
+                dragEndEventName: "pz_dragend",
+                doubleTapEventName: "pz_doubletap"
             },
-            handleDragStart: function(g) {
+            /**
+             * Event handler for 'dragstart'
+             * @param event
+             */
+            handleDragStart: function(event) {
+                this.el.trigger(this.options.dragStartEventName);
                 this.stopAnimation();
                 this.lastDragPosition = false;
                 this.hasInteraction = true;
-                this.handleDrag(g);
+                this.handleDrag(event);
             },
-            handleDrag: function(g) {
+            /**
+             * Event handler for 'drag'
+             * @param event
+             */
+            handleDrag: function(event) {
                 if (this.zoomFactor > 1) {
-                    var h = this.getTouches(g)[0];
-                    this.drag(h, this.lastDragPosition);
+                    var touch = this.getTouches(event)[0];
+                    this.drag(touch, this.lastDragPosition);
                     this.offset = this.sanitizeOffset(this.offset);
-                    this.lastDragPosition = h;
+                    this.lastDragPosition = touch;
                 }
             },
             handleDragEnd: function() {
+                this.el.trigger(this.options.dragEndEventName);
                 this.end();
             },
-            handleZoomStart: function(g) {
+            /**
+             * Event handler for 'zoomstart'
+             * @param event
+             */
+            handleZoomStart: function(event) {
+                this.el.trigger(this.options.zoomStartEventName);
                 this.stopAnimation();
                 this.lastScale = 1;
                 this.nthZoom = 0;
                 this.lastZoomCenter = false;
                 this.hasInteraction = true;
             },
-            handleZoom: function(h, j) {
-                var g = this.getTouchCenter(this.getTouches(h)), i = j / this.lastScale;
-                this.lastScale = j;
+            /**
+             * Event handler for 'zoom'
+             * @param event
+             */
+            handleZoom: function(event, newScale) {
+                // a relative scale factor is used
+                var touchCenter = this.getTouchCenter(this.getTouches(event)), scale = newScale / this.lastScale;
+                this.lastScale = newScale;
+                // the first touch events are thrown away since they are not precise
                 this.nthZoom += 1;
                 if (this.nthZoom > 3) {
-                    this.scale(i, g);
-                    this.drag(g, this.lastZoomCenter);
+                    this.scale(scale, touchCenter);
+                    this.drag(touchCenter, this.lastZoomCenter);
                 }
-                this.lastZoomCenter = g;
+                this.lastZoomCenter = touchCenter;
             },
             handleZoomEnd: function() {
+                this.el.trigger(this.options.zoomEndEventName);
                 this.end();
             },
-            handleDoubleTap: function(i) {
-                var g = this.getTouches(i)[0], h = this.zoomFactor > 1 ? 1 : this.options.tapZoomFactor, j = this.zoomFactor, k = function(l) {
-                    this.scaleTo(j + l * (h - j), g);
+            /**
+             * Event handler for 'doubletap'
+             * @param event
+             */
+            handleDoubleTap: function(event) {
+                var center = this.getTouches(event)[0], zoomFactor = this.zoomFactor > 1 ? 1 : this.options.tapZoomFactor, startZoomFactor = this.zoomFactor, updateProgress = function(progress) {
+                    this.scaleTo(startZoomFactor + progress * (zoomFactor - startZoomFactor), center);
                 }.bind(this);
                 if (this.hasInteraction) {
                     return;
                 }
-                if (j > h) {
-                    g = this.getCurrentZoomCenter();
+                if (startZoomFactor > zoomFactor) {
+                    center = this.getCurrentZoomCenter();
                 }
-                if (h > 1) {
-                    this.options.doubleTapOutCallback && this.options.doubleTapOutCallback();
-                } else {
-                    this.options.doubleTapInCallback && this.options.doubleTapInCallback();
-                }
-                this.animate(this.options.animationDuration, this.options.animationInterval, k, this.swing);
+                this.animate(this.options.animationDuration, this.options.animationInterval, updateProgress, this.swing);
+                this.el.trigger(this.options.doubleTapEventName);
             },
-            sanitizeOffset: function(m) {
-                var l = (this.zoomFactor - 1) * this.getContainerX(), k = (this.zoomFactor - 1) * this.getContainerY(), j = Math.max(l, 0), i = Math.max(k, 0), h = Math.min(l, 0), g = Math.min(k, 0);
+            /**
+             * Max / min values for the offset
+             * @param offset
+             * @return {Object} the sanitized offset
+             */
+            sanitizeOffset: function(offset) {
+                var maxX = (this.zoomFactor - 1) * this.getContainerX(), maxY = (this.zoomFactor - 1) * this.getContainerY(), maxOffsetX = Math.max(maxX, 0), maxOffsetY = Math.max(maxY, 0), minOffsetX = Math.min(maxX, 0), minOffsetY = Math.min(maxY, 0);
                 return {
-                    x: Math.min(Math.max(m.x, h), j),
-                    y: Math.min(Math.max(m.y, g), i)
+                    x: Math.min(Math.max(offset.x, minOffsetX), maxOffsetX),
+                    y: Math.min(Math.max(offset.y, minOffsetY), maxOffsetY)
                 };
             },
-            scaleTo: function(h, g) {
-                this.scale(h / this.zoomFactor, g);
+            /**
+             * Scale to a specific zoom factor (not relative)
+             * @param zoomFactor
+             * @param center
+             */
+            scaleTo: function(zoomFactor, center) {
+                this.scale(zoomFactor / this.zoomFactor, center);
             },
-            scale: function(h, g) {
-                h = this.scaleZoomFactor(h);
+            /**
+             * Scales the element from specified center
+             * @param scale
+             * @param center
+             */
+            scale: function(scale, center) {
+                scale = this.scaleZoomFactor(scale);
                 this.addOffset({
-                    x: (h - 1) * (g.x + this.offset.x),
-                    y: (h - 1) * (g.y + this.offset.y)
+                    x: (scale - 1) * (center.x + this.offset.x),
+                    y: (scale - 1) * (center.y + this.offset.y)
                 });
             },
-            scaleZoomFactor: function(g) {
-                var h = this.zoomFactor;
-                this.zoomFactor *= g;
+            /**
+             * Scales the zoom factor relative to current state
+             * @param scale
+             * @return the actual scale (can differ because of max min zoom factor)
+             */
+            scaleZoomFactor: function(scale) {
+                var originalZoomFactor = this.zoomFactor;
+                this.zoomFactor *= scale;
                 this.zoomFactor = Math.min(this.options.maxZoom, Math.max(this.zoomFactor, this.options.minZoom));
-                return this.zoomFactor / h;
+                return this.zoomFactor / originalZoomFactor;
             },
-            drag: function(g, h) {
-                if (h) {
-                    this.addOffset({
-                        x: -(g.x - h.x),
-                        y: -(g.y - h.y)
-                    });
+            /**
+             * Drags the element
+             * @param center
+             * @param lastCenter
+             */
+            drag: function(center, lastCenter) {
+                if (lastCenter) {
+                    if (this.options.lockDragAxis) {
+                        // lock scroll to position that was changed the most
+                        if (Math.abs(center.x - lastCenter.x) > Math.abs(center.y - lastCenter.y)) {
+                            this.addOffset({
+                                x: -(center.x - lastCenter.x),
+                                y: 0
+                            });
+                        } else {
+                            this.addOffset({
+                                y: -(center.y - lastCenter.y),
+                                x: 0
+                            });
+                        }
+                    } else {
+                        this.addOffset({
+                            y: -(center.y - lastCenter.y),
+                            x: -(center.x - lastCenter.x)
+                        });
+                    }
                 }
             },
-            getTouchCenter: function(g) {
-                return this.getVectorAvg(g);
+            /**
+             * Calculates the touch center of multiple touches
+             * @param touches
+             * @return {Object}
+             */
+            getTouchCenter: function(touches) {
+                return this.getVectorAvg(touches);
             },
-            getVectorAvg: function(g) {
+            /**
+             * Calculates the average of multiple vectors (x, y values)
+             */
+            getVectorAvg: function(vectors) {
                 return {
-                    x: g.map(function(h) {
-                        return h.x;
-                    }).reduce(b) / g.length,
-                    y: g.map(function(h) {
-                        return h.y;
-                    }).reduce(b) / g.length
+                    x: vectors.map(function(v) {
+                        return v.x;
+                    }).reduce(sum) / vectors.length,
+                    y: vectors.map(function(v) {
+                        return v.y;
+                    }).reduce(sum) / vectors.length
                 };
             },
-            addOffset: function(g) {
+            /**
+             * Adds an offset
+             * @param offset the offset to add
+             * @return return true when the offset change was accepted
+             */
+            addOffset: function(offset) {
                 this.offset = {
-                    x: this.offset.x + g.x,
-                    y: this.offset.y + g.y
+                    x: this.offset.x + offset.x,
+                    y: this.offset.y + offset.y
                 };
             },
             sanitize: function() {
                 if (this.zoomFactor < this.options.zoomOutFactor) {
                     this.zoomOutAnimation();
-                } else {
-                    if (this.isInsaneOffset(this.offset)) {
-                        this.sanitizeOffsetAnimation();
-                    }
+                } else if (this.isInsaneOffset(this.offset)) {
+                    this.sanitizeOffsetAnimation();
                 }
             },
-            isInsaneOffset: function(h) {
-                var g = this.sanitizeOffset(h);
-                return g.x !== h.x || g.y !== h.y;
+            /**
+             * Checks if the offset is ok with the current zoom factor
+             * @param offset
+             * @return {Boolean}
+             */
+            isInsaneOffset: function(offset) {
+                var sanitizedOffset = this.sanitizeOffset(offset);
+                return sanitizedOffset.x !== offset.x || sanitizedOffset.y !== offset.y;
             },
+            /**
+             * Creates an animation moving to a sane offset
+             */
             sanitizeOffsetAnimation: function() {
-                var h = this.sanitizeOffset(this.offset), g = {
+                var targetOffset = this.sanitizeOffset(this.offset), startOffset = {
                     x: this.offset.x,
                     y: this.offset.y
-                }, i = function(j) {
-                    this.offset.x = g.x + j * (h.x - g.x);
-                    this.offset.y = g.y + j * (h.y - g.y);
+                }, updateProgress = function(progress) {
+                    this.offset.x = startOffset.x + progress * (targetOffset.x - startOffset.x);
+                    this.offset.y = startOffset.y + progress * (targetOffset.y - startOffset.y);
                     this.update();
                 }.bind(this);
-                this.animate(this.options.animationDuration, this.options.animationInterval, i, this.swing);
+                this.animate(this.options.animationDuration, this.options.animationInterval, updateProgress, this.swing);
             },
+            /**
+             * Zooms back to the original position,
+             * (no offset and zoom factor 1)
+             */
             zoomOutAnimation: function() {
-                var i = this.zoomFactor, h = 1, g = this.getCurrentZoomCenter(), j = function(k) {
-                    this.scaleTo(i + k * (h - i), g);
+                var startZoomFactor = this.zoomFactor, zoomFactor = 1, center = this.getCurrentZoomCenter(), updateProgress = function(progress) {
+                    this.scaleTo(startZoomFactor + progress * (zoomFactor - startZoomFactor), center);
                 }.bind(this);
-                this.animate(this.options.animationDuration, this.options.animationInterval, j, this.swing);
+                this.animate(this.options.animationDuration, this.options.animationInterval, updateProgress, this.swing);
             },
+            /**
+             * Updates the aspect ratio
+             */
             updateAspectRatio: function() {
-                this.setContainerY(window.innerHeight);
+                // this.setContainerY(this.getContainerX() / this.getAspectRatio());
+                // @modified
+                this.setContainerY();
             },
+            /**
+             * Calculates the initial zoom factor (for the element to fit into the container)
+             * @return the initial zoom factor
+             */
             getInitialZoomFactor: function() {
-                return 1;
+                // use .offsetWidth instead of width()
+                // because jQuery-width() return the original width but Zepto-width() will calculate width with transform.
+                // the same as .height()
+                return this.container[0].offsetWidth / this.el[0].offsetWidth;
             },
+            /**
+             * Calculates the aspect ratio of the element
+             * @return the aspect ratio
+             */
             getAspectRatio: function() {
-                return this.el.width() / this.el.height();
+                return this.el[0].offsetWidth / this.el[0].offsetHeight;
             },
+            /**
+             * Calculates the virtual zoom center for the current offset and zoom factor
+             * (used for reverse zoom)
+             * @return {Object} the current zoom center
+             */
             getCurrentZoomCenter: function() {
-                var o = this.getContainerX(), h = o * this.zoomFactor, i = this.offset.x, l = h - i - o, q = i / l, n = q * o / (q + 1), m = this.getContainerY(), r = m * this.zoomFactor, g = this.offset.y, j = r - g - m, p = g / j, k = p * m / (p + 1);
-                if (l === 0) {
-                    n = o;
+                // uses following formula to calculate the zoom center x value
+                // offset_left / offset_right = zoomcenter_x / (container_x - zoomcenter_x)
+                var length = this.container[0].offsetWidth * this.zoomFactor, offsetLeft = this.offset.x, offsetRight = length - offsetLeft - this.container[0].offsetWidth, widthOffsetRatio = offsetLeft / offsetRight, centerX = widthOffsetRatio * this.container[0].offsetWidth / (widthOffsetRatio + 1), // the same for the zoomcenter y
+                height = this.container[0].offsetHeight * this.zoomFactor, offsetTop = this.offset.y, offsetBottom = height - offsetTop - this.container[0].offsetHeight, heightOffsetRatio = offsetTop / offsetBottom, centerY = heightOffsetRatio * this.container[0].offsetHeight / (heightOffsetRatio + 1);
+                // prevents division by zero
+                if (offsetRight === 0) {
+                    centerX = this.container[0].offsetWidth;
                 }
-                if (j === 0) {
-                    k = m;
+                if (offsetBottom === 0) {
+                    centerY = this.container[0].offsetHeight;
                 }
                 return {
-                    x: n,
-                    y: k
+                    x: centerX,
+                    y: centerY
                 };
             },
             canDrag: function() {
-                return !e(this.zoomFactor, 1);
+                return !isCloseTo(this.zoomFactor, 1);
             },
-            getTouches: function(h) {
-                var g = this.container.offset();
-                return Array.prototype.slice.call(h.touches).map(function(i) {
+            /**
+             * Returns the touches of an event relative to the container offset
+             * @param event
+             * @return array touches
+             */
+            getTouches: function(event) {
+                var position = this.container.offset();
+                return Array.prototype.slice.call(event.touches).map(function(touch) {
                     return {
-                        x: i.pageX - g.left,
-                        y: i.pageY - g.top
+                        x: touch.pageX - position.left,
+                        y: touch.pageY - position.top
                     };
                 });
             },
-            animate: function(i, g, m, l, k) {
-                var h = new Date().getTime(), j = function() {
+            /**
+             * Animation loop
+             * does not support simultaneous animations
+             * @param duration
+             * @param interval
+             * @param framefn
+             * @param timefn
+             * @param callback
+             */
+            animate: function(duration, interval, framefn, timefn, callback) {
+                var startTime = new Date().getTime(), renderFrame = function() {
                     if (!this.inAnimation) {
                         return;
                     }
-                    var o = new Date().getTime() - h, n = o / i;
-                    if (o >= i) {
-                        m(1);
-                        if (k) {
-                            k();
+                    var frameTime = new Date().getTime() - startTime, progress = frameTime / duration;
+                    if (frameTime >= duration) {
+                        framefn(1);
+                        if (callback) {
+                            callback();
                         }
                         this.update();
                         this.stopAnimation();
                         this.update();
                     } else {
-                        if (l) {
-                            n = l(n);
+                        if (timefn) {
+                            progress = timefn(progress);
                         }
-                        m(n);
+                        framefn(progress);
                         this.update();
-                        setTimeout(j, g);
+                        setTimeout(renderFrame, interval);
                     }
                 }.bind(this);
                 this.inAnimation = true;
-                j();
+                renderFrame();
             },
+            /**
+             * Stops the animation
+             */
             stopAnimation: function() {
                 this.inAnimation = false;
             },
-            swing: function(g) {
-                return -Math.cos(g * Math.PI) / 2 + .5;
+            /**
+             * Swing timing function for animations
+             * @param p
+             * @return {Number}
+             */
+            swing: function(p) {
+                return -Math.cos(p * Math.PI) / 2 + .5;
             },
             getContainerX: function() {
+                // return this.container[0].offsetWidth;
+                // @modified
                 return window.innerWidth;
             },
             getContainerY: function() {
+                // return this.container[0].offsetHeight;
+                // @modified
                 return window.innerHeight;
             },
-            setContainerY: function(g) {
-                this.el.width(window.innerWidth);
-                this.el.height(window.innerHeight);
-                return this.container.height(g);
+            setContainerY: function(y) {
+                // return this.container.height(y);
+                // @modified
+                var t = window.innerHeight;
+                return this.el.css({
+                    height: t
+                }), this.container.height(t);
             },
+            /**
+             * Creates the expected html structure
+             */
             setupMarkup: function() {
-                this.container = d('<div class="pinch-zoom-container"></div>');
+                this.container = $('<div class="pinch-zoom-container"></div>');
                 this.el.before(this.container);
                 this.container.append(this.el);
                 this.container.css({
                     overflow: "hidden",
                     position: "relative"
                 });
+                // Zepto doesn't recognize `webkitTransform..` style
                 this.el.css({
                     "-webkit-transform-origin": "0% 0%",
-                    transformOrigin: "0% 0%",
+                    "-moz-transform-origin": "0% 0%",
+                    "-ms-transform-origin": "0% 0%",
+                    "-o-transform-origin": "0% 0%",
+                    "transform-origin": "0% 0%",
                     position: "absolute"
                 });
             },
@@ -7303,25 +10647,18 @@ define("zepto.pinchzoom", [], function(require, exports, module) {
                 this.sanitize();
                 this.update();
             },
+            /**
+             * Binds all required event listeners
+             */
             bindEvents: function() {
-                c(this.container.get(0), this);
-                d(window).bind("ortchange", this.ortHandle.bind(this));
+                detectGestures(this.container.get(0), this);
+                // Zepto and jQuery both know about `on`
+                $(window).on("resize", this.update.bind(this));
+                $(this.el).find("img").on("load", this.update.bind(this));
             },
-            isCached: function(h) {
-                var g = document.createElement("img");
-                g.src = h;
-                var i = g.complete || g.width + g.height > 0;
-                g = null;
-                return i;
-            },
-            ortHandle: function() {
-                this.zoomFactor = 1;
-                this.offset = {
-                    x: 0,
-                    y: 0
-                };
-                this.update();
-            },
+            /**
+             * Updates the css values according to the current zoom factor and offset
+             */
             update: function() {
                 if (this.updatePlaned) {
                     return;
@@ -7330,396 +10667,175 @@ define("zepto.pinchzoom", [], function(require, exports, module) {
                 setTimeout(function() {
                     this.updatePlaned = false;
                     this.updateAspectRatio();
-                    var k = this.getInitialZoomFactor() * this.zoomFactor, h = parseFloat(-this.offset.x / k).toFixed(4), m = parseFloat(-this.offset.y / k).toFixed(4), j = "scale3d(" + k + ", " + k + ",1) translate3d(" + h + "px," + m + "px,0px)", g = "scale(" + k + ", " + k + ") translate(" + h + "px," + m + "px)", i = function() {
+                    var zoomFactor = this.getInitialZoomFactor() * this.zoomFactor, offsetX = -this.offset.x / zoomFactor, offsetY = -this.offset.y / zoomFactor, transform3d = "scale3d(" + zoomFactor + ", " + zoomFactor + ",1) " + "translate3d(" + offsetX + "px," + offsetY + "px,0px)", transform2d = "scale(" + zoomFactor + ", " + zoomFactor + ") " + "translate(" + offsetX + "px," + offsetY + "px)", removeClone = function() {
                         if (this.clone) {
                             this.clone.remove();
                             delete this.clone;
                         }
                     }.bind(this);
+                    // Scale 3d and translate3d are faster (at least on ios)
+                    // but they also reduce the quality.
+                    // PinchZoom uses the 3d transformations during interactions
+                    // after interactions it falls back to 2d transformations
                     if (!this.options.use2d || this.hasInteraction || this.inAnimation) {
                         this.is3d = true;
-                        i();
+                        removeClone();
                         this.el.css({
-                            "-webkit-transform": j,
-                            background: "rgba(0,0,0,0.9)",
-                            transform: j
-                        }).addClass("zooming");
+                            "-webkit-transform": transform3d,
+                            "-o-transform": transform2d,
+                            "-ms-transform": transform2d,
+                            "-moz-transform": transform2d,
+                            transform: transform3d
+                        });
                     } else {
+                        // When changing from 3d to 2d transform webkit has some glitches.
+                        // To avoid this, a copy of the 3d transformed element is displayed in the
+                        // foreground while the element is converted from 3d to 2d transform
                         if (this.is3d) {
-                            var l = this.el.find("img").attr("src");
-                            if (this.isCached(l)) {
-                                this.clone = this.el.clone();
-                                this.clone.css({
-                                    "pointer-events": "none"
-                                });
-                                this.clone.appendTo(this.container);
-                                setTimeout(i, 200);
-                            }
+                            this.clone = this.el.clone();
+                            this.clone.css("pointer-events", "none");
+                            this.clone.appendTo(this.container);
+                            setTimeout(removeClone, 200);
                         }
                         this.el.css({
-                            "-webkit-transform": g,
-                            transform: g
-                        }).removeClass("zooming");
+                            "-webkit-transform": transform2d,
+                            "-o-transform": transform2d,
+                            "-ms-transform": transform2d,
+                            "-moz-transform": transform2d,
+                            transform: transform2d
+                        });
                         this.is3d = false;
                     }
                 }.bind(this), 0);
+            },
+            /**
+             * Enables event handling for gestures
+             */
+            enable: function() {
+                this.enabled = true;
+            },
+            /**
+             * Disables event handling for gestures
+             */
+            disable: function() {
+                this.enabled = false;
             }
         };
-        var c = function(h, q) {
-            var s = null, l = 0, j = null, u = null, i = 1, o = function(v, w) {
-                if (s !== v) {
-                    if (s && !v) {
-                        switch (s) {
+        var detectGestures = function(el, target) {
+            var interaction = null, fingers = 0, lastTouchStart = null, startTouches = null, setInteraction = function(newInteraction, event) {
+                if (interaction !== newInteraction) {
+                    if (interaction && !newInteraction) {
+                        switch (interaction) {
                           case "zoom":
-                            q.handleZoomEnd(w);
+                            target.handleZoomEnd(event);
                             break;
 
                           case "drag":
-                            q.handleDragEnd(w);
+                            target.handleDragEnd(event);
                             break;
                         }
                     }
-                    switch (v) {
+                    switch (newInteraction) {
                       case "zoom":
-                        q.handleZoomStart(w);
+                        target.handleZoomStart(event);
                         break;
 
                       case "drag":
-                        q.handleDragStart(w);
+                        target.handleDragStart(event);
                         break;
                     }
                 }
-                s = v;
-            }, n = function(v) {
-                if (l === 2) {
-                    o("zoom");
+                interaction = newInteraction;
+            }, updateInteraction = function(event) {
+                if (fingers === 2) {
+                    setInteraction("zoom");
+                } else if (fingers === 1 && target.canDrag()) {
+                    setInteraction("drag", event);
                 } else {
-                    if (l === 1 && q.canDrag()) {
-                        o("drag", v);
-                    } else {
-                        o(null, v);
-                    }
+                    setInteraction(null, event);
                 }
-            }, r = function(v) {
-                return Array.prototype.slice.call(v).map(function(w) {
+            }, targetTouches = function(touches) {
+                return Array.prototype.slice.call(touches).map(function(touch) {
                     return {
-                        x: w.pageX,
-                        y: w.pageY
+                        x: touch.pageX,
+                        y: touch.pageY
                     };
                 });
-            }, m = function(z, w) {
-                var v, A;
-                v = z.x - w.x;
-                A = z.y - w.y;
-                return Math.sqrt(v * v + A * A);
-            }, k = function(y, x) {
-                var v = m(y[0], y[1]), w = m(x[0], x[1]);
-                return w / v;
-            }, p = function(v) {
-                v.stopPropagation();
-                v.preventDefault();
-            }, t = function(v) {
-                var w = new Date().getTime();
-                if (l > 1) {
-                    j = null;
+            }, getDistance = function(a, b) {
+                var x, y;
+                x = a.x - b.x;
+                y = a.y - b.y;
+                return Math.sqrt(x * x + y * y);
+            }, calculateScale = function(startTouches, endTouches) {
+                var startDistance = getDistance(startTouches[0], startTouches[1]), endDistance = getDistance(endTouches[0], endTouches[1]);
+                return endDistance / startDistance;
+            }, cancelEvent = function(event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }, detectDoubleTap = function(event) {
+                var time = new Date().getTime();
+                if (fingers > 1) {
+                    lastTouchStart = null;
                 }
-                if (w - j < 400) {
-                    p(v);
-                    q.handleDoubleTap(v);
-                    switch (s) {
+                if (time - lastTouchStart < 300) {
+                    cancelEvent(event);
+                    target.handleDoubleTap(event);
+                    switch (interaction) {
                       case "zoom":
-                        q.handleZoomEnd(v);
+                        target.handleZoomEnd(event);
                         break;
 
                       case "drag":
-                        q.handleDragEnd(v);
+                        target.handleDragEnd(event);
                         break;
                     }
                 }
-                if (l === 1) {
-                    j = w;
+                if (fingers === 1) {
+                    lastTouchStart = time;
                 }
-            }, g = true;
-            h.addEventListener("touchstart", function(v) {
-                g = true;
-                i = q.zoomFactor, l = v.touches.length;
-                t(v);
+            }, firstMove = true;
+            el.addEventListener("touchstart", function(event) {
+                if (target.enabled) {
+                    firstMove = true;
+                    fingers = event.touches.length;
+                    detectDoubleTap(event);
+                }
             });
-            h.addEventListener("touchmove", function(v) {
-                if (g) {
-                    n(v);
-                    if (s) {
-                        p(v);
-                    }
-                    u = r(v.touches);
-                } else {
-                    switch (s) {
-                      case "zoom":
-                        q.handleZoom(v, k(u, r(v.touches)));
-                        break;
-
-                      case "drag":
-                        q.handleDrag(v);
-                        break;
-                    }
-                    if (s) {
-                        p(v);
-                        q.update();
-                    }
-                }
-                g = false;
-            });
-            h.addEventListener("touchend", function(v) {
-                if (s) {
-                    p(v);
-                }
-                if (s == "zoom") {
-                    if (q.zoomFactor >= i) {
-                        q.options.zoomOutCallback && q.options.zoomOutCallback();
+            el.addEventListener("touchmove", function(event) {
+                if (target.enabled) {
+                    if (firstMove) {
+                        updateInteraction(event);
+                        if (interaction) {
+                            cancelEvent(event);
+                        }
+                        startTouches = targetTouches(event.touches);
                     } else {
-                        q.options.zoomInCallback && q.options.zoomInCallback();
+                        switch (interaction) {
+                          case "zoom":
+                            target.handleZoom(event, calculateScale(startTouches, targetTouches(event.touches)));
+                            break;
+
+                          case "drag":
+                            target.handleDrag(event);
+                            break;
+                        }
+                        if (interaction) {
+                            cancelEvent(event);
+                            target.update();
+                        }
                     }
+                    firstMove = false;
                 }
-                l = v.touches.length;
-                n(v);
+            });
+            el.addEventListener("touchend", function(event) {
+                if (target.enabled) {
+                    fingers = event.touches.length;
+                    updateInteraction(event);
+                }
             });
         };
         return PinchZoom;
     };
     module.exports = definePinchZoom(window.Zepto);
 });
-define("zepto.touchgallery", [ "./zepto.extend.touch", "zepto.pinchzoom" ], function(require, exports, module) {
-    require("./zepto.extend.touch");
-    // PinchZoom Plugin
-    var PinchZoom = require("zepto.pinchzoom");
-    var $ = window.Zepto;
-    /**
-     * @name        jQuery touchTouch plugin
-     * @author        Martin Angelov
-     * @version    1.0
-     * @url            http://tutorialzine.com/2012/04/mobile-touch-gallery/
-     * @license        MIT License
-     */
-    /* Private variables */
-    var overlay = $('<div id="galleryOverlay">'), slider = $('<div id="gallerySlider">'), prevArrow = $('<a id="prevArrow"></a>'), nextArrow = $('<a id="nextArrow"></a>'), navControl = $('<ol class="nav-control"></ol>'), overlayVisible = false, msie = navigator.userAgent.indexOf("MSIE") > -1;
-    /* Creating the plugin */
-    $.fn.touchTouch = function() {
-        var placeholders = $([]), index = 0, allitems = this, items = allitems, navControlItems = $([]);
-        // Appending the markup to the page
-        if ($("[data-am-gallery]").length) {
-            overlay.hide().appendTo("body");
-            slider.appendTo(overlay);
-        }
-        // Creating a placeholder for each image
-        items.each(function(i) {
-            placeholders = placeholders.add($('<div class="placeholder">'));
-            navControlItems = navControlItems.add($("<li>" + (i + 1) + "</li>"));
-        });
-        navControl.append(navControlItems);
-        overlay.append(navControl);
-        // Hide the gallery if the background is touched / clicked
-        slider.append(placeholders).on("click", function(e) {
-            if (!$(e.target).is("img")) {
-                hideOverlay();
-            }
-        });
-        // Listen for touch events on the body and check if they
-        // originated in #gallerySlider img - the images in the slider.
-        $("body").on("touchstart", "#gallerySlider img", function(e) {
-            var touch = e.originalEvent ? e.originalEvent : e, startX = touch.changedTouches[0].pageX;
-            slider.on("touchmove", function(e) {
-                e.preventDefault();
-                touch = e.touches[0] || e.changedTouches[0];
-                if (touch.pageX - startX > 10) {
-                    slider.off("touchmove");
-                    showPrevious();
-                } else if (touch.pageX - startX < -10) {
-                    slider.off("touchmove");
-                    showNext();
-                }
-            });
-            // Return false to prevent image
-            // highlighting on Android
-            return false;
-        }).on("touchend", function() {
-            slider.off("touchmove");
-        });
-        // for IE 10+
-        if (window.PointerEvent || window.MSPointerEvent) {
-            $("body").on("swipe", "#gallerySlider img", function(e) {
-                e.preventDefault();
-            }).on("swipeRight", "#gallerySlider img", function(e) {
-                showPrevious();
-            }).on("swipeLeft", "#gallerySlider img", function(e) {
-                showNext();
-            });
-        }
-        // Listening for clicks on the thumbnails
-        items.on("click", function(e) {
-            e.preventDefault();
-            var $this = $(this), galleryName, selectorType, $closestGallery = $this.parent().closest("[data-gallery]");
-            // Find gallery name and change items object to only have
-            // that gallery
-            //If gallery name given to each item
-            if ($this.attr("data-gallery")) {
-                galleryName = $this.attr("data-gallery");
-                selectorType = "item";
-            } else if ($closestGallery.length) {
-                galleryName = $closestGallery.attr("data-gallery");
-                selectorType = "ancestor";
-            }
-            //These statements kept seperate in case elements have data-gallery on both
-            //items and ancestor. Ancestor will always win because of above statments.
-            if (galleryName && selectorType == "item") {
-                items = $("[data-gallery=" + galleryName + "]");
-            } else if (galleryName && selectorType == "ancestor") {
-                //Filter to check if item has an ancestory with data-gallery attribute
-                items = items.filter(function() {
-                    return $(this).parent().closest("[data-gallery]").length;
-                });
-            }
-            // Find the position of this image
-            // in the collection
-            index = items.index(this);
-            showOverlay(index);
-            showImage(index);
-            activeNavControl(index);
-            // Preload the next image
-            preload(index + 1);
-            // Preload the previous
-            preload(index - 1);
-        });
-        // If the browser does not have support
-        // for touch, display the arrows
-        if (!("ontouchstart" in window)) {
-            overlay.append(prevArrow).append(nextArrow);
-            prevArrow.click(function(e) {
-                e.preventDefault();
-                showPrevious();
-            });
-            nextArrow.click(function(e) {
-                e.preventDefault();
-                showNext();
-            });
-        }
-        // Listen for arrow keys
-        $(window).on("keydown", function(e) {
-            var keyCode = e.keyCode;
-            if (keyCode == 37) {
-                showPrevious();
-            } else if (keyCode == 39) {
-                showNext();
-            } else if (keyCode == 27) {
-                hideOverlay();
-            }
-        });
-        /* Private functions */
-        function showOverlay(index) {
-            // If the overlay is already shown, exit
-            if (overlayVisible) {
-                return false;
-            }
-            // Show the overlay
-            overlay.show();
-            setTimeout(function() {
-                // Trigger the opacity CSS transition
-                overlay.addClass("visible");
-            }, 100);
-            // Move the slider to the correct image
-            offsetSlider(index);
-            // Raise the visible flag
-            overlayVisible = true;
-        }
-        function hideOverlay() {
-            // If the overlay is not shown, exit
-            if (!overlayVisible) {
-                return false;
-            }
-            // Hide the overlay
-            overlay.animate({
-                opacity: 0,
-                display: "none"
-            }, 300).removeClass("visible");
-            overlayVisible = false;
-            //Clear preloaded items
-            $(".placeholder").empty();
-            //Reset possibly filtered items
-            items = allitems;
-        }
-        function offsetSlider(index) {
-            if (msie) {
-                // windows phone 8 IE 显示有问题，单独处理
-                slider.find(".placeholder").css({
-                    display: "none"
-                }).eq(index).css({
-                    display: "inline-block"
-                });
-            } else {
-                // This will trigger a smooth css transition
-                slider.css("left", -index * 100 + "%");
-            }
-        }
-        // Preload an image by its index in the items array
-        function preload(index) {
-            setTimeout(function() {
-                showImage(index);
-            }, 1e3);
-        }
-        // active nav control
-        function activeNavControl(index) {
-            var navItems = navControl.children("li");
-            navItems.removeClass().eq(index).addClass("nav-active");
-        }
-        // Show image in the slider
-        function showImage(index) {
-            // If the index is outside the bonds of the array
-            if (index < 0 || index >= items.length) {
-                return false;
-            }
-            // Call the load function with the href attribute of the item
-            loadImage(items.eq(index).attr("href"), function() {
-                placeholders.eq(index).html(this).wrapInner('<div class="pinch-zoom"></div>');
-                new PinchZoom(placeholders.eq(index).find(".pinch-zoom"), {});
-            });
-        }
-        // Load the image and execute a callback function.
-        // Returns a jQuery object
-        function loadImage(src, callback) {
-            var img = $("<img>").on("load", function() {
-                callback.call(img);
-            });
-            img.attr("src", src);
-        }
-        function showNext() {
-            // If this is not the last image
-            if (index + 1 < items.length) {
-                index++;
-                offsetSlider(index);
-                preload(index + 1);
-                activeNavControl(index);
-            } else {
-                // Trigger the spring animation
-                slider.addClass("rightSpring");
-                setTimeout(function() {
-                    slider.removeClass("rightSpring");
-                }, 500);
-            }
-        }
-        function showPrevious() {
-            // If this is not the first image
-            if (index > 0) {
-                index--;
-                offsetSlider(index);
-                preload(index - 1);
-                activeNavControl(index);
-            } else {
-                // Trigger the spring animation
-                slider.addClass("leftSpring");
-                setTimeout(function() {
-                    slider.removeClass("leftSpring");
-                }, 500);
-            }
-        }
-    };
-});
-seajs.use(["accordion","core","divider","figure","footer","gallery","gotop","intro","list_news","map","menu","nav","navbar","pagination","paragraph","slider","sohucs","tabs","titlebar","ui.accordion","ui.add2home","ui.alert","ui.button","ui.collapse","ui.dimmer","ui.dropdown","ui.modal","ui.offcanvas","ui.popover","ui.progress","ui.scrollspy","ui.scrollspynav","ui.smooth-scroll","ui.sticky","util.cookie","util.fastclick","util.fullscreen","util.qrcode","zepto.extend.data","zepto.extend.fx","zepto.extend.selector","zepto.extend.touch","zepto.flexslider","zepto.outerdemension","zepto.pinchzoom","zepto.touchgallery"]);
+seajs.use(["accordion","core","divider","duoshuo","figure","footer","gallery","gotop","header","intro","list_news","map","mechat","menu","navbar","pagination","paragraph","slider","sohucs","tabs","titlebar","ui.add2home","ui.alert","ui.button","ui.collapse","ui.dimmer","ui.dropdown","ui.iscroll-lite","ui.modal","ui.offcanvas","ui.popover","ui.progress","ui.pureview","ui.scrollspy","ui.scrollspynav","ui.share","ui.smooth-scroll","ui.sticky","ui.tabs","util.cookie","util.fastclick","util.fullscreen","util.hammer","util.qrcode","zepto.extend.data","zepto.extend.fx","zepto.extend.selector","zepto.flexslider","zepto.outerdemension","zepto.pinchzoom"]);

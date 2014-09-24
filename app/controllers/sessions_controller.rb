@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
 
   def new_manco
     session[:return_url]=params[:return_url]
-    render :layout=>"manco_new"
+    render :layout=>"manco_template"
   end
 
   def register_tairyo
@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
   end
 
   def register_manco
-    render :layout=>"manco_new"
+    render :layout=>"manco_template"
     # 大渔饭店
   end
   def register_mobile
@@ -72,7 +72,7 @@ class SessionsController < ApplicationController
       sign_in(@account,params[:remember_me])
 
 
-      render "create_manco"
+      render "manco_template"
 
 
     else

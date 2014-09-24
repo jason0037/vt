@@ -1,36 +1,44 @@
 #encoding:utf-8
 class MancoController < ApplicationController
 
-  layout "manco_template"
+  layout "manco"
   def index
-
+    @supplier_id=params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(@supplier_id)
+    render :layout=>@supplier.layout
   end
   def show
-
+    @supplier_id=params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(@supplier_id)
   end
 
   def find_manco
      if @user
+       supplier_id = params[:supplier_id]
+       @supplier =Ecstore::Supplier.find(supplier_id)
 
      else
-       redirect_to "/mlogin?id=98&platform=mobile&return_url=/manco/find_manco"
+       redirect_to "/mlogin?id=98&platform=mobile&return_url=/manco/find_manco?supplier_id=98"
      end
   end
 
   def user
     if @user
-
+      supplier_id = params[:supplier_id]
+      @supplier =Ecstore::Supplier.find(supplier_id)
     login_name=@user.login_name
     account_id=Ecstore::Account.find_by_sql(["select account_id from sdb_pam_account where login_name=?",login_name])
     @member=Ecstore::Member.find_by_sql(["select * from sdb_b2c_members where member_id=?",account_id])
    else
-       redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/user'
+       redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/user?supplier_id=98'
    end
 
   end
 
 
   def good_source
+    supplier_id = params[:supplier_id]
+    @supplier =Ecstore::Supplier.find(supplier_id)
     @addr=Ecstore::MemberAddr.new
     account=@user.member_id
     @member= Ecstore::User.find_by_member_id(account)
@@ -39,12 +47,14 @@ class MancoController < ApplicationController
 
  def black_good_index     ###货源信息小黑板
    if @user
+     supplier_id = params[:supplier_id]
+     @supplier =Ecstore::Supplier.find(supplier_id)
       @good=Ecstore::BlackGood.paginate :page=>params[:page],        ###分页语句
                                 :per_page =>5,              ###当前只显示一条
                                 :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
       @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
    else
-     redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/black_good_index'
+     redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/black_good_index?supplier_id=98'
    end
 
  end
@@ -61,11 +71,13 @@ class MancoController < ApplicationController
 
     end.save
 
-    redirect_to "/manco/black_good_index"
+    redirect_to "/manco/black_good_index?supplier_id=98"
   end
   def black_index
   if @user
-    # @good=Ecstore::Good.find_all_by_cat_id(571)
+    supplier_id = params[:supplier_id]
+    @supplier =Ecstore::Supplier.find(supplier_id)
+
     account=@user.member_id
     @member=   Ecstore::User.find_by_member_id(account)
       @good=Ecstore::Good.paginate :page=>params[:page],        ###分页语句
@@ -73,7 +85,7 @@ class MancoController < ApplicationController
                                    :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
     @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
   else
-  redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/black_index'
+  redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/black_index?supplier_id=98'
   end
   end
 
@@ -86,15 +98,35 @@ class MancoController < ApplicationController
 
   end
 
+  def main
+    @supplier_id=params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(@supplier_id)
+  end
 
+  def history
+    @supplier_id=params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(@supplier_id)
+  end
 
+ def express                 ###运价查询
+
+  @supplier_id=params[:supplier_id]
+  @supplier = Ecstore::Supplier.find(@supplier_id)
+  end
+
+  def follow       ###快递跟踪
+
+    @supplier_id=params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(@supplier_id)
+
+   end
 
 
   def new
     @good  =  Ecstore::Good.new
 
     @method = :post
-    redirect_to '/manco/blackbord'
+    redirect_to '/manco/blackbord?supplier_id=98'
   end
   def black_board
 
@@ -103,13 +135,15 @@ class MancoController < ApplicationController
 
   def blackbord
     if @user
+      supplier_id = params[:supplier_id]
+      @supplier =Ecstore::Supplier.find(supplier_id)
        account=@user.member_id
        @member=   Ecstore::User.find_by_member_id(account)
       unless @member.name and @member.bank_info          ####判断逻辑不严谨
-        redirect_to '/profile/mancouser'
+        redirect_to '/profile/mancouser?supplier_id=98'
       end
   else
-    redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/blackbord'
+    redirect_to '/mlogin?id=98&platform=mobile&return_url=/manco/blackbord?supplier_id=98'
   end
 
 
@@ -179,12 +213,18 @@ end
     render "new"
 
     end
-    redirect_to '/manco/black_index'
+    redirect_to '/manco/black_index?supplier_id=98'
   end
 
-  def user
-    render :layout => "manco_new"
+  def manco_comment             ###评论
+    supplier_id = params[:supplier_id]
+    @supplier =Ecstore::Supplier.find(supplier_id)
+
   end
+
+
+
+
 
   def show_carblack
 
@@ -193,10 +233,20 @@ end
                                  :per_page => 5,              ###当前只显示一条
                                  :conditions => ["member_id=#{id}"]
 
-    render :layout => "manco_template"
+
   end
 
-  end                                 ###分页语句
+
+
+
+
+
+
+
+
+
+
+  end
 
 
 

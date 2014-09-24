@@ -307,19 +307,17 @@
 
             </div>
             <div class="am-col col-sm-8 am-list-main">
-              <h3 class="am-list-item-hd">
+              <h1 class="am-list-item-hd">
                 <%=good.name%>
-              </h3>
+              </h1>
               <div class="am-list-item-text">
-                <span class="" style="color: red;padding: 2px">¥<%=good.price%> </span>
+                <strong class="" style="color: red;font-size: 16px">¥<%=good.price%> </strong> <span style="text-decoration:line-through">¥<%=format('%.1f',good.wholesale)%> </span>
               </div>
-              <div class="am-list-item-text">
-                <span style="text-decoration:line-through">¥<%=format('%.1f',good.wholesale)%> </span>
-              </div>
+
 
               <div class="am-list-item-text" >
 
-                <span style="float: right;background-color: red;color: #ffffff">(推广佣金） &nbsp;¥<%=format('%.2f',good.share*good.default_product.price) %> </span>
+                <span class="am-btn am-btn-danger  " style="float: right">(推广佣金） &nbsp;¥<%=format('%.2f',good.share*good.default_product.price) %> </span>
               </div>
             </div>
 
