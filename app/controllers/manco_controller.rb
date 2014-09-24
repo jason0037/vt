@@ -3,7 +3,7 @@ class MancoController < ApplicationController
 
   layout "manco"
   def index
-    @supplier_id=params[:supplier_id]
+    @supplier_id=params[:id]
     @supplier = Ecstore::Supplier.find(@supplier_id)
     render :layout=>@supplier.layout
   end
