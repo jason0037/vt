@@ -17,9 +17,10 @@ class Store::CartController < ApplicationController
       end
       @supplier = Ecstore::Supplier.find(supplier_id)
       render :layout=>@supplier.layout
-    end
+
   else
      redirect_to  "/mlogin?id=#{supplier_id}&platform=mobile&return_url=/cart/mobile?supplier_id=#{supplier_id}"
+  end
   end
 
 	
