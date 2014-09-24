@@ -2,7 +2,7 @@
   <div class="am-panel-hd" style="text-align: center" >晒单</div>
   <%@order.order_items.each do |order_item|%>
 
-      <a href="#">
+      <a href="/mproducts?id=<%=order_item.good.bn%>&supplier_id=<%=@order.supplier_id%>&fp=mproducts">
       <div class="am-g am-intro-bd">
 
         <div class="am-intro-left am-col col-sm-5">
