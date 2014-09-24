@@ -4,9 +4,9 @@ class Store::OrdersController < ApplicationController
 	layout 'order'
 
   def mancoder_show
-
+    supplier_id = @user.account.supplier_id
       if  @user
-        supplier_id = @user.account.supplier_id
+
         if supplier_id == nil
           supplier_id=78
         end
@@ -21,11 +21,20 @@ class Store::OrdersController < ApplicationController
         redirect_to "/mlogin?#{return_url}"
       end
 
-      render :layout => "manco_template"
+    render :layout=>@supplier.layout
 
 
 
   end
+
+  def share_order
+    supplier_id =params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(supplier_id)
+    @order =Ecstore::Order.find_by_order_id(params[:id])
+
+    render :layout=>@supplier.layout
+  end
+
 
   def out_inventory
     return_url =  request.env["HTTP_REFERER"]

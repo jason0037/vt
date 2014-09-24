@@ -496,6 +496,7 @@ end
         get 'tairyo_order'
         get 'norsh_show_order'
         get 'index_mobile'
+        get 'share_order'   ###推荐订单
 
       end
     end

@@ -1,0 +1,43 @@
+<div class="am-panel am-panel-danger">
+  <div class="am-panel-hd" style="text-align: center" >该用户的订单</div>
+  <%@order.order_items.each do |order_item|%>
+      <div id="demo-view" data-backend-compiled=""><figure data-am-widget="figure" class="am am-figure am-figure-default am-no-layout am-figure-zoomable">
+        <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product'%>
+        <%=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
+        <figcaption ><%= order_item.name%></figcaption></figure></div>
+
+
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+
+
+
+      <div >
+        <span class="span"> &nbsp; &nbsp;商品价格：</span>        <span style="float: right">   <%=order_item.price%> &nbsp; &nbsp;    </span>
+      </div>
+
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+
+
+
+      <div >
+        <span class="span"> &nbsp; &nbsp;推广佣金：</span>        <span style="float: right">   <%=order_item.good.share*order_item.good.default_product.price%> &nbsp; &nbsp;    </span>
+      </div>
+
+
+
+      <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
+  <%end%>
+  <div >
+    <span class="span"> &nbsp; &nbsp;订单编号：</span> <span style="float: right">  <%=@order.order_id%> &nbsp; &nbsp;    </span>
+  </div>
+
+  <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
+
+  <div >
+    <span class="span"> &nbsp; &nbsp;下单时间：</span> <span style="float: right">  <%=@order.created_at%> &nbsp; &nbsp;     </span>
+  </div>
+  <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
+
+
+
+</div>
