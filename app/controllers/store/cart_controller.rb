@@ -10,7 +10,7 @@ class Store::CartController < ApplicationController
   def mobile
 
     if  @user
-      supplier_id=params[:supplier_id]
+      supplier_id=params[:id]
 
       if supplier_id == nil
         supplier_id=78
