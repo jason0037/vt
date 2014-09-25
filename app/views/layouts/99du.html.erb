@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+  <title><%=@supplier.name%>微商城</title>
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <%= stylesheet_link_tag    "manco/amui.all.min.css" %>
+  <%= stylesheet_link_tag    "manco/navbar.css" %>
+  <%= stylesheet_link_tag    "manco/amui.all.css" %>
+  <%= javascript_include_tag "manco/amui.widget.helper.js" %>
+  <%= javascript_include_tag "manco/zepto.min.js" %>
+
+  <%= javascript_include_tag "manco/amui.widget.helper.min" %>
+  <%= javascript_include_tag "manco/handlebars.min.js" %>
+  <%= javascript_include_tag "manco/amui.js" %>
+  <%= javascript_include_tag "manco/amui.min.js" %>
+  <style type="text/css">
+      .am-icon-user{
+          color: #ffffff;
+          height: 20px;
+      }
+      .bottomdivs {
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          background: #fff;
+          border: #ddd 1px solid;
+          border-top: #fff 1px solid;
+          z-index: 1000000;
+          margin: 3px;
+      }
+      .am-navbar-default .am-navbar-nav {
+          background-color: #dc852d;
+      }
+
+
+  </style>
+
+  <script>
+      $(document).ready(function(){
+          $("#showgood").click(function(){
+              if($('#am-share-swcw4').is(':hidden')){
+                  $('#am-share-swcw4').show() ;
+              }
+              else{
+                  $('#am-share-swcw4').hide() ;
+              }
+          })
+      })
+
+
+  </script>
+  <script type="text/x-handlebars-template" id="amz-tpl">
+    {{>navbar navbar}}
+  </script>
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-warning  am-no-layout"><div class="am-header-left am-header-nav">
+  <a href="javascript:history.go(-1)" class=""><img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""></a>
+</div>
+  <h1 class="am-header-title"><img src="/images/a0<%=@supplier.id%>/logo.png"></h1>
+  <div class="am-header-right am-header-nav">
+  </div></header>
+
+<%= yield %>
+
+
+
+<div class="bottomdivs clearfix">
+
+  <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout"
+       id="">
+    <ul class="am-navbar-nav am-cf sm-block-grid-4">
+      <li>
+        <a href="tel:<%=@supplier.tel%>">
+				<span class="am-icon-phone">
+				</span>
+
+        </a>
+      </li>
+      <li >
+        <a id="showgood" href="###">
+				<span  class="am-icon-dashboard">
+				</span>
+
+        </a>
+      </li>
+      <li >
+        <a href="/vshop/<%=@supplier.id%>/user" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot"">
+				<span class="am-icon-user">
+				</span>
+
+        </a>
+      </li>
+
+      <li >
+        <a href="/cart/mobile?id=<%=@supplier.id%>">
+				<span class="am-icon-shopping-cart">
+				</span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<div >
+  <div class="am-share am-modal-actions am-modal-active" id="am-share-swcw4"
+       style="margin-top: -138px;display: none
+       ">
+
+    <ul style="clear: both" class="am-share-sns sm-block-grid-4">
+      <li style="clear: both">
+
+        <a href="/vshop/<%=@supplier.id%>/category?cat=572"
+        >
+          <i class="am-icon-star">
+          </i>
+				<span>
+					手工皂
+				</span>
+        </a>
+      </li>
+      <li>
+        <a href="/vshop/<%=@supplier.id%>/category?cat=573"
+        >
+          <i class="am-icon-star">
+          </i>
+				<span>
+					餐具
+				</span>
+        </a>
+      </li>
+      <li>
+        <a href="/vshop/<%=@supplier.id%>/category?cat=516"
+        >
+          <i class="am-icon-star">
+          </i>
+				<span>
+					牙膏
+				</span>
+        </a>
+      </li>
+      <li>
+        <a href="/vshop/<%=@supplier.id%>/category?cat=515"
+        >
+          <i class="am-icon-star">
+          </i>
+				<span>
+					牙刷
+				</span>
+        </a>
+      </li>
+    </ul>
+    <div class="am-share-footer">
+      <button class="am-btn am-btn-default am-btn-block" data-am-share-close="">
+        取消
+      </button>
+    </div>
+  </div>
+</div>
+<br/>
+
+<div class="footer clearfix">
+
+  <p class="copyright">Copyright © 2013-2014 trade-v.com 版权所有 上海普慧信息科技有限公司 All rights reserved. 沪ICP备13045311号-1 </p>
+</div>
+<div class="space10"></div>
+
+<div class="c-bottom"></div>
+</body>
+</html>
+
+
+
+
