@@ -16,12 +16,13 @@ class VshopController < ApplicationController
   end
 
   def user
+
     if @user
-    supplier_id = params[:id]
-    @supplier =Ecstore::Supplier.find(supplier_id)
+
+    @supplier =Ecstore::Supplier.find(params[:id])
     render :layout=>@supplier.layout
     else
-      redirect_to "/mlogin?id=97&platform=mobile&return_url=/vshop/97/user"
+      redirect_to "/mlogin?id=#{params[:id]}&platform=mobile&return_url=/vshop/#{params[:id]}/user?id=#{params[:id]}"
      end
   end
 
