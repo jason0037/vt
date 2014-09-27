@@ -2,7 +2,7 @@
 module ModecPay
   class Weixin < Payment
 
-    @@appid='wxec23a03bf5422635'
+    @@appid = 'wxec23a03bf5422635'
     @@mch_id = '10011618'
     @@partner_key  = 'fe699e8e82144ddba567bcfcf441ece0'
     @@partnerid ='1221177901'
@@ -148,15 +148,7 @@ module ModecPay
     def make_package
       return '' if self.fields.blank?
 
-      bank_type = 'WX'
-      body = '订单商品' #商品描述 string（128）
-      partner = @@partnerid  #商户号 partnerId;
-      out_trade_no = ''
-      total_fee = 1  #int
-      fee_type = '1'
-      notify_url = 'http://www.trade-v.com/' #string(255)
-      spbill_create_id ='' #格式为IPV4
-      input_charset ='GBK' #传入参数字符编码，取值范围 “GBK”，“UTF-8”
+    #  bank_type   body   partner   out_trade_no   total_fee =  fee_type =  notify_url   spbill_create_id   input_charset
 
       _sorted = Hash.send :[],  self.fields.select{ |key,val|  val.present?&& key != 'sign_type' && key != 'sign' }.sort_by{ |key,val|  key }
 
