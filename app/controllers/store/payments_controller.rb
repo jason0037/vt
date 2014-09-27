@@ -79,8 +79,11 @@ class Store::PaymentsController < ApplicationController
 				pay.subject = "贸威订单(#{order_id})"
 				pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
       end
+
       if adapter=='alipaywap'
         render :text=>@modec_pay.get_token
+      elsif adapter=='weixin'
+        render :inline=>@modec_pay.html_form_weixin
       else
 			  render :inline=>@modec_pay.html_form
       end
