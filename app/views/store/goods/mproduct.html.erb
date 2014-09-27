@@ -125,6 +125,7 @@
                     <ul class="good_sizechioce clearfix am-tabs-nav am-cf" data-mersale="true">
                       <%@good.spec_values.where(:spec_id=>spec.spec_id).uniq.order("p_order asc").each do |spec_value|%>
                           <li data-size="<%=spec_value.spec_value_id%>" class="choose" data-maxamount="2" data-minamount="1"><%=spec_value.spec_value%></li>
+                          <li> <%=@good.desc%></li>
                       <%end%>
                     </ul>
                 <%end%>
