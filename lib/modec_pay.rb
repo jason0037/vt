@@ -7,6 +7,7 @@ require 'modec_pay/icbc'
 require 'modec_pay/offline'
 require 'modec_pay/deposit'
 require 'modec_pay/ips'
+require 'modec_pay/weixin'
 
 module ModecPay
 
@@ -45,7 +46,8 @@ module ModecPay
 				 'bcom' => ModecPay::Bcom,
 				 'icbc' => ModecPay::Icbc,
 				 'offline'=> ModecPay::Offline,
-				 'deposit'=> ModecPay::Deposit
+				 'deposit'=> ModecPay::Deposit,
+         'weixin' => ModecPay::Weixin
 			}
 		end
 	end

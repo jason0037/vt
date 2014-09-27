@@ -35,11 +35,9 @@ class Store::OrdersController < ApplicationController
     render :layout=>@supplier.layout
   end
 
-
   def out_inventory
     return_url =  request.env["HTTP_REFERER"]
     return_url =  member_goods_url if return_url.blank?
-
 
     @inventory = Ecstore::Inventory.where(:member_id=>current_account,:product_id=>params[:id]).first
 
@@ -152,6 +150,7 @@ class Store::OrdersController < ApplicationController
       redirect_to "/mlogin?#{return_url}&id=#{supplier_id}"
     end
   end
+
 	def show
 
 		@order = Ecstore::Order.find_by_order_id(params[:id])
@@ -165,7 +164,6 @@ class Store::OrdersController < ApplicationController
 
     end
   end
-
 
 	def create
 		addr = Ecstore::MemberAddr.find_by_addr_id(params[:member_addr])

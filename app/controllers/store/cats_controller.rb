@@ -3,24 +3,21 @@ class Store::CatsController < ApplicationController
       layout 'standard'
   	before_filter :require_top_cats
 
-      def show_mobile
+  def show_mobile
         @supplier = Ecstore::Supplier.find(params[:id])
         name= params[:name]
 
-            goods_ids =""
-            sql = "select replace(replace(replace(field_vals,'---\n- ',''''),'- ',','''),'\n','''') as goods_ids FROM mdk.sdb_imodec_promotions where name='#{name}'"
-            results = ActiveRecord::Base.connection.execute(sql)
-            results.each(:as => :hash) do |row|
-              goods_ids= row["goods_ids"]
-            end
-            # return render :text=>goods_ids
-            sql = "select * FROM mdk.sdb_b2c_goods where bn in (#{goods_ids})"
-            #return render :text=>sql
-            #@all_goods = ActiveRecord::Base.connection.execute(sql)
-            sql = " bn in (#{goods_ids})"
-            @all_goods = Ecstore::Good.where(sql)
-            @goods = @all_goods
-          render :layout=>@supplier.layout
+        goods_ids =""
+        sql = "select replace(replace(replace(field_vals,'---\n- ',''''),'- ',','''),'\n','''') as goods_ids FROM mdk.sdb_imodec_promotions where name='#{name}'"
+        results = ActiveRecord::Base.connection.execute(sql)
+        results.each(:as => :hash) do |row|
+          goods_ids= row["goods_ids"]
+        end
+
+        sql = " bn in (#{goods_ids})"
+        @all_goods = Ecstore::Good.where(sql)
+        @goods = @all_goods
+        render :layout=>@supplier.layout
 
 end
                         #金芭浪团购
@@ -33,8 +30,6 @@ end
         results.each(:as => :hash) do |row|
           goods_ids= row["goods_ids"]
         end
-
-        sql = "select * FROM mdk.sdb_b2c_goods where bn in (#{goods_ids})"
 
         sql = " bn in (#{goods_ids})"
         @all_goods = Ecstore::Good.where(sql)

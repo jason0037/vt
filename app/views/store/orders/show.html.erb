@@ -194,6 +194,9 @@
           <label class="radio">
             <%=f.radio_button :pay_app_id, "alipaywap", { :checked=>(@order.payment == 'alipaywap') }%> <b>支付宝手机版</b>
           </label>
+          <label class="radio">
+            <%=f.radio_button :pay_app_id, "weixin", { :checked=>(@order.payment == 'weixin') }%> <b>微信支付</b>
+          </label>
         </div>
 
         <br/>
