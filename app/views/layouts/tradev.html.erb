@@ -14,35 +14,138 @@
   <script>
       var ui = 'touch';
   </script>
+
+  <style>
+      .am-icon-user{
+          color: #ffffff;
+          height: 20px;
+      }
+      .bottomdivs {
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          background: #fff;
+          border: #ddd 1px solid;
+          border-top: #fff 1px solid;
+          z-index: 1000000;
+          margin: 3px;
+      }
+      .am-navbar-default .am-navbar-nav {
+          background-color: #ff0e1a;
+      }
+  </style>
 </head>
 <body>
 <header id="header" class="header clearfix">
   <div class="head_logo fl"><a href="/vshop/<%=@supplier.id%>"  mars_sead="nav_home_btn"></a></div>
-  <%if @user%>
-      <div class="head_right fr">
-        <a href="/cart/mobile" mars_sead="home_head_cart_btn" onclick="setBackAct(&#39;topHeaderCart&#39;)">
-          <span class="h_cart"></span>
-        </a>
-      </div>
-      <div class="head_right fr">
-        <a href="/vshop/<%=@supplier.id%>/user" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot">
-          <span class="h_logn">                </span>
-        </a>
-      </div>
-  <%end%>
+
   <div class="head_right fr" style="display:none"><a href="brand-search.html"><span class="h_search"></span></a></div>
 </header>
-<div id="nav" class="clearfix">
-  <ul class="clearfix">
-    <li class="num05"><a href="/m" class="nav_current"><span>首页</span></a></li>
-    <li class="num05"><a href="/mgallery?name=香肠&id=<%=@supplier.id%>"><span>香肠</span></a></li>
-    <li class="num05"><a href="/mgallery?name=火腿&id=<%=@supplier.id%>"><span>火腿</span></a></li>
-    <li class="num05"><a href="/mgallery?name=培根&id=<%=@supplier.id%>"><span>培根</span></a></li>
-    <li class="num05"><a href="/mgallery?name=其它&id=<%=@supplier.id%>"><span>其它</span></a></li>
-  </ul>
-</div>
+
 
 <%= yield %>
+
+
+<div class="bottomdivs clearfix">
+
+  <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout"
+       id="">
+    <ul class="am-navbar-nav am-cf sm-block-grid-4">
+      <li>
+        <a href="tel:<%=@supplier.tel%>">
+				<span class="am-icon-phone">
+				</span>
+
+        </a>
+      </li>
+      <li >
+        <a id="showgood" href="###">
+				<span  class="am-icon-dashboard">
+				</span>
+
+        </a>
+      </li>
+      <li >
+        <a href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot"">
+				<span class="am-icon-user">
+				</span>
+
+        </a>
+      </li>
+
+      <li >
+        <a href="/cart/mobile?id=<%=@supplier.id%>">
+				<span class="am-icon-shopping-cart">
+				</span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<div >
+  <div class="am-share am-modal-actions am-modal-active" id="am-share-swcw4"
+       style="margin-top: -138px;display: none
+       ">
+
+    <ul style="clear: both" class="am-share-sns sm-block-grid-4">
+      <li style="clear: both">
+
+        <a href="/mgallery?name=香肠&id=<%=@supplier.id%>"
+        >
+          <i class="am-icon-star">
+          </i>
+				<span>
+					香肠
+				</span>
+        </a>
+      </li>
+
+
+      <li>
+        <a href="/mgallery?name=火腿&id=<%=@supplier.id%>"
+        >
+          <i class="am-icon-star">
+          </i>
+				<span>
+					火腿
+				</span>
+        </a>
+      </li>
+      <li>
+        <a href="/mgallery?name=培根&id=<%=@supplier.id%>"
+        >
+          <i class="am-icon-star">
+          </i>
+				<span>
+                    培根
+				</span>
+        </a>
+      </li>
+      <li>
+        <a href="/mgallery?name=其他肉类&id=<%=@supplier.id%>"
+        >
+          <i class="am-icon-star">
+          </i>
+				<span>
+					其他肉类
+				</span>
+        </a>
+      </li>
+
+    </ul>
+    <div class="am-share-footer">
+      <button class="am-btn am-btn-default am-btn-block" data-am-share-close="">
+        取消
+      </button>
+    </div>
+  </div>
+</div>
+<br/>
+
+
+
 
 
 
@@ -185,5 +288,18 @@
         })
     })
 </script>
+<script>
+    $(document).ready(function(){
+        $("#showgood").click(function(){
+            if($('#am-share-swcw4').is(':hidden')){
+                $('#am-share-swcw4').show() ;
+            }
+            else{
+                $('#am-share-swcw4').hide() ;
+            }
+        })
+    })
 
+
+</script>
 </body></html>
