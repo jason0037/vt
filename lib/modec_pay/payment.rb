@@ -25,6 +25,8 @@ module ModecPay
 		# payment description
 		attr_accessor :body
 
+    attr_accessor :appid ,:time_stamp,:nonce_str,:sign_type
+
 		# A block pass to sort_by 
 		# == Example
 		#   payment.sorter = Proc.new { |key,val|  key }
