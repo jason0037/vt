@@ -81,7 +81,7 @@ class Store::PaymentsController < ApplicationController
       end
 
       if adapter=='alipaywap'
-        render :text=>@modec_pay.get_token
+        render :text=>@modec_pay.html_form_alipaywb
       elsif adapter=='weixin'
         render :inline=>@modec_pay.html_form_weixin
       else

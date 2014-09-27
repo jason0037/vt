@@ -88,8 +88,8 @@ module ModecPay
     end
 
     def html_form_weixin
-      make_sign
-
+      #make_sign
+      make_pay_sign
       if sorter.is_a?(Proc)
         self.fields = Hash.send :[],  self.fields.select{ |key,val|  val.present? }.sort_by(&self.sorter)
       end
@@ -125,9 +125,9 @@ module ModecPay
 					#{form_inputs}
 				</form>
 				<script type="text/javascript">
-					window.onload=function(){
-						document.getElementById("pay_form").submit();
-					}
+				//	window.onload=function(){
+				//		document.getElementById("pay_form").submit();
+				//	}
 				</script>
  <script language="javascript" type="text/javascript">
       function auto_remove(img){
@@ -151,7 +151,7 @@ module ModecPay
                   "nonceStr" : "#{self.fields['nonce_str']}", //随机串
                   "package" : "#{self.fields['package']}",//扩展包
                   "signType" : "#{self.fields['sign_type']}", //微信签名方式:1.sha1;2.md5
-                  "paySign" : "#{self.fiels['pay_sign']}" //微信签名
+                  "paySign" : "#{self.fields['pay_sign']}" //微信签名
               },function(res){
 
                   if(res.err_msg == "get_brand_wcpay_request:ok" ) {}
@@ -196,14 +196,14 @@ module ModecPay
 </head>
 <body>
 <div class="WCPay">
-  <a id="getBrandWCPayRequest" href="javascript:void(0);"><h1 class="title">点击提交可体验微信支付</h1></a>
+  <a id="getBrandWCPayRequest" href="javascript:void(0);"><h1 class="title">您的初始密钥已经失效，请登录商户后台重新设置</h1></a>
 </div>
 				</body>
 				</html>
       FORM
     end
 
-    def get_token
+    def html_form_alipaywb
       make_sign
 
       if sorter.is_a?(Proc)

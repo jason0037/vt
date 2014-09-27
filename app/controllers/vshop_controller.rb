@@ -189,7 +189,7 @@ end
     @supplier = Ecstore::Supplier.find(supplier_id)
 
     @appId= @supplier.weixin_appid
-    @timeStamp = Time.Now.to_i      #时间戳
+    @timeStamp = Time.now.to_i      #时间戳
     @nonceStr = '' #随机串
     @packageValue ='' #扩展包
     @signType = "SHA1"  #微信签名方式:1.sha1
