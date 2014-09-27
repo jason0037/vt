@@ -146,12 +146,12 @@ module ModecPay
           //公众号支付
           jQuery('a#getBrandWCPayRequest').click(function(e){
               WeixinJSBridge.invoke('getBrandWCPayRequest',{
-                  "appId" : "#{self.appid}", //公众号名称，由商户传入
-                  "timeStamp" : "#{self.time_stamp}", //时间戳
-                  "nonceStr" : "#{self.nonce_str}", //随机串
-                  "package" : "#{self.package}",//扩展包
-                  "signType" : "#{self.sign_type}", //微信签名方式:1.sha1;2.md5
-                  "paySign" : "#{self.pay_sign}" //微信签名
+                  "appId" : "#{self.fields['appid']}", //公众号名称，由商户传入
+                  "timeStamp" : "#{self.fields['time_stamp']}", //时间戳
+                  "nonceStr" : "#{self.fields['nonce_str']}", //随机串
+                  "package" : "#{self.fields['package']}",//扩展包
+                  "signType" : "#{self.fields['sign_type']}", //微信签名方式:1.sha1;2.md5
+                  "paySign" : "#{self.fiels['pay_sign']}" //微信签名
               },function(res){
 
                   if(res.err_msg == "get_brand_wcpay_request:ok" ) {}
