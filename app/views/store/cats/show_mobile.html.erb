@@ -1,4 +1,24 @@
+<style type="text/css">
+    .new-search .new-mu_l2 {
+        padding: 5px 0;
+        border-bottom: 1px solid #e8e5e5;
+    }
+    .new-mu_l2 {
+        _zoom: 1;
+    }
 
+    .new-mu_l2a {
+        display: block;
+        overflow: hidden;
+        clear: both;
+        padding: .22em 5px;
+    }
+    a {
+        color: #000;
+        text-decoration: none;
+    }
+
+</style>
 <header id="header" class="header clearfix">
 
   <div class="head_left fl"><a href="javascript:history.go(-1)"><span class="h_back"></span></a></div>
@@ -272,25 +292,43 @@
 </div>
 
 
-<div class="gridItem">
+<div class="am-list-news-bd">
+  <ul class="am-list">
 
-<% @goods.each do |good|%>
-<dl class="rs-item pg1" data-mid="<%=good.bn%>">
-  <a href="/mproducts?id=<%=good.bn%>&supplier_id=<%=@supplier.id%>&fp=mproducts" class="clearfix ablock">
-    <dt class="pic"> <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">  </dt>
-    <dd class="b_goods_name"><%=good.name%></dd>
-    <dd class="pricebox clearfix">
-      <span class="grallyprice fl">¥<%=good.price%></span>
-      <span class="fontstyle fl pl05">¥<%=format('%.1f',good.mktprice)%></span>
-      <span class="fr"><%=format('%.1f', good.price*10/good.mktprice)%>折</span>
-    </dd>
-    <dd class="pricebox clearfix">
-      <span class="grallyprice fl">¥<%=format('%.2f',good.share*good.default_product.price) %></span>
-      <span class="fr">(推广佣金）</span>
-    </dd>
-  </a>
-</dl>
-<%end%>
+    <% @goods.each do |good|%>
+
+        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+          <a href="/mproducts?id=<%=good.bn%>&supplier_id=<%=@supplier.id%>&fp=category" class="cart_orderlist_i">
+            <div class="am-col col-sm-4 am-list-thumb">
+
+              <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
+
+            </div>
+            <div class="am-col col-sm-8 am-list-main">
+              <h1 class="am-list-item-hd">
+                <%=good.name%>
+              </h1>
+              <div class="am-list-item-text">
+                <strong class="" style="color: red;font-size: 16px">¥<%=good.price%> &nbsp;</strong> <span style="text-decoration:line-through">¥<%=format('%.1f',good.wholesale)%> </span>
+              </div>
+
+              <br/>
+
+
+              <span class="am-btn am-btn-danger  " style="float: right">(推广佣金） &nbsp;¥<%=format('%.2f',good.share*good.default_product.price) %> </span>
+
+            </div>
+
+            <div>
+
+
+            </div>
+
+          </a>
+        </li>
+
+    <%end%>
+  </ul>
 </div>
 
 
