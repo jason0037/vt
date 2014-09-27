@@ -18,14 +18,14 @@ module ModecPay
       self.charset ='utf-8'
 
       self.appid = @@appid
-      self.time_stamp = Time.Now.to_i
+      self.time_stamp = Time.now.to_i
       self.nonce_str = '' #随机串,不长于32位
       self.sign_type ='SHA1' #微信签名方式:1.sha1;2.md5 目前只支持SHA1
 
       self.sorter = Proc.new { |key,val| key }
       self.filter = Proc.new { |key,val| key.present? }
 
-      self.fields['appid'] = @@appid
+      #self.fields['appid'] = @@appid
 
       self.fields['bank_type'] = 'WX'
       self.fields['body'] = '订单商品' #商品描述 string(127)
