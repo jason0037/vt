@@ -45,8 +45,6 @@ end
   post 'wlogin'=>"sessions#create_manco"
 
 
-
-
   resources :tairyo do                   # #大渔饭店
     get   'index'  ,:on=>:collection
     get   'bus'  ,:on=>:collection
@@ -124,11 +122,14 @@ end
       get 'weixin'
     end
     member do
+      get :user
       get :category
       get :commodity
       get :order
-      get :payment
-      get :user
+      get :payments
+      get :native
+      get :paynotifyurl
+      get :feedback
     end
 
 
