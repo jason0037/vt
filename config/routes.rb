@@ -514,6 +514,7 @@ end
         get 'norsh_show_order'
         get 'index_mobile'
         get 'share_order'   ###推荐订单
+        get 'mobile_show'
 
       end
     end
