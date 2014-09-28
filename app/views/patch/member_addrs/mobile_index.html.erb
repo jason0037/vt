@@ -1,12 +1,11 @@
 
 
-<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
-<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+
 
 <div class="am-panel-group">
 
-  <section class="am-panel am-panel-warning" >
-    <div class="am-panel-hd" style="text-align: center">您的地址信息</div>
+  <section class="am-panel am-panel-warning">
+    <div class="am-panel-hd">您的地址信息</div>
     <table class="am-table">
       <thead>
       <tr>
@@ -16,8 +15,6 @@
         <th>手机</th>
         <th>默认</th>
         <th>操作</th>
-        <th>删除</th>
-        <th> 设为默认</th>
       </tr>
       </thead>
       <tbody>
@@ -30,9 +27,10 @@
 
                 <td><%=addr.mobile%></td>
                 <td><%=addr.def_addr ? "是" : "否"%></td>
-                <td>  <%=link_to "修改",edit_member_addr_path(id:addr,platform:params[:platform])%>  </td>
-                 <td> <%=link_to "删除",member_addr_path(id:addr,platform:params[:platform]),:method=>:delete,:confirm=>"确定要删除吗？"%>  </td>
-                <td>  <%=link_to "设为默认",member_addr_path(id:addr,platform:params[:platform],"addr[def_addr]"=>1),:method=>:put unless addr.def_addr%>
+                <td>
+                  <%=link_to "修改",edit_member_addr_path(id:addr,platform:params[:platform])%>
+                  <%=link_to "删除",member_addr_path(id:addr,platform:params[:platform]),:method=>:put,:confirm=>"确定要删除吗？"%>
+                  <%=link_to "设为默认",member_addr_path(id:addr,platform:params[:platform],"addr[def_addr]"=>1),:method=>:put unless addr.def_addr%>
                 </td>
               </tr>
           <%end%>
