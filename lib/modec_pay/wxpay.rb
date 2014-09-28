@@ -1,7 +1,7 @@
 #encoding:utf-8
 
 module ModecPay
-  class Weixin < Payment
+  class Wxpay < Payment
 
     @@appid = 'wxec23a03bf5422635'
     @@mch_id = '10011618'
@@ -11,7 +11,13 @@ module ModecPay
 
     @@sub_mch_id=''
     @@device_info=''
-
+=begin
+    @order_info.merge!('subOrderInfoList'=>{'subOrderInfo'=>@sub_order_info})
+    @tran_data.merge!('orderInfo'=>@order_info)
+    @tran_data.merge!('custom'=>@custom)
+    @tran_data.merge!('message'=>@message)
+    tran_data_xml = '<?xml version="1.0" encoding="GBK" standalone="no"?>' + @tran_data.to_xml(:root=>"B2CReq",:skip_instruct=>true,:indent=>0)
+=end
     def initialize
       super
 

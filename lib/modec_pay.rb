@@ -47,7 +47,7 @@ module ModecPay
 				 'icbc' => ModecPay::Icbc,
 				 'offline'=> ModecPay::Offline,
 				 'deposit'=> ModecPay::Deposit,
-         'weixin' => ModecPay::Weixin
+         'wxpay' => ModecPay::Wxpay
 			}
 		end
 	end
