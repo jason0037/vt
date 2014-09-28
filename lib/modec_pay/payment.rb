@@ -1,6 +1,6 @@
 #encoding:utf-8
 require 'rest-client'
-require "uri"
+
 module ModecPay
 
 	class Payment
