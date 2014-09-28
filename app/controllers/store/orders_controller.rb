@@ -233,9 +233,9 @@ class Store::OrdersController < ApplicationController
  #       debug_line_item +=line_item.id.to_s + '|'
   #    end
 		end
-if debug_line_item
-  return render :text=>debug_line_item
-end
+#if debug_line_item
+#  return render :text=>debug_line_item
+#end
 		# ==== promotion gifts =====
 		gifts = params[:gifts] || []
 		gifts.each do |gift_id|
