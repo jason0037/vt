@@ -26,14 +26,15 @@ module ModecPay
       self.fields['sub_mch_id'] = @@sub_mch_id
       self.fields['device_info']= @@device_info
 
-      self.fields['attach'] = '' #附加数据原样返回
-      self.fields['apbill_create_ip'] ='127.0.0.1' #订单生成的机器IP string(16)
-      #     self.fields['time_start'] = '' #订单生成时间 yyyyMMddHHmmss string(14)，否
-      #     self.fields['time_expire'] = '' #交易结束时间时间 yyyyMMddHHmmss string（14），否
-      #     self.fields['goods_tag'] = '' #商品标记，不能随便填 String（32），否
+     # self.fields['attach'] = '' #附加数据原样返回
+
+     # self.fields['time_start'] = '' #订单生成时间 yyyyMMddHHmmss string(14)，否
+     # self.fields['time_expire'] = '' #交易结束时间时间 yyyyMMddHHmmss string（14），否
+     # self.fields['goods_tag'] = '' #商品标记，不能随便填 String（32），否
 
       self.fields['trade_type'] = 'JSAPI' #JSAPI, NATIVE, APP
       self.fields['openid'] = '' #用户的openid, trade_type为JSAPP时，必传，否
+      self.fields['nonce_str'] =  Digest::MD5.hexdigest(rand(1000).to_s) #随机串,不长于32位
       self.fields['products_id'] = '' #trade_type为NATIVE时，需要，此id为二维码中包含的商品ID
 
 
@@ -53,6 +54,10 @@ module ModecPay
    #   self.fields['return_url'] = val
    # end
 
+    def spbill_create_ip(val)
+      self.fields['spbill_create_ip'] = val #订单生成的机器IP string(16)
+    end
+
     def notify_url=(val)
       self.fields['notify_url'] = val #接受微信支付成功通知
     end
@@ -70,7 +75,7 @@ module ModecPay
     end
 
     def pay_amount=(val)
-      self.fields['total_fee'] = (val*100).to_s #int fee*100 单位为分
+      self.fields['total_fee'] = (val*100).to_i.to_s #int fee*100 单位为分
     end
 
     def subject=(val)
@@ -152,19 +157,19 @@ module ModecPay
       self.fields['sign']  = Digest::MD5.hexdigest(unsign).upcase
     end
 
-
     def pre_pay
+        self.fields['openid']='oVxC9uChJqM0nf-PREaLjk5Xf2MU'
         make_sign
         self.fields['body'] ="<![CDATA[#{self.fields['body']}]]>"
         self.fields['attach'] ="<![CDATA[#{self.fields['attach']}]]>"
         self.fields['sign'] ="<![CDATA[#{self.fields['sign']}]]>"
 
-        self.fields['pre_pay_xml'] =  self.fields.to_xml(:root=>"xml",:skip_instruct=>true,:indent=>0)
+        self.fields['pre_pay_xml'] =  self.fields.to_xml(:root=>"xml",:skip_instruct=>true,:indent=>0).gsub('&lt;','<').gsub('&gt;','>')
 
         #=====JSAPI
         self.fields['time_stamp'] = Time.now.to_i
-        self.fields['nonce_str'] =  Digest::MD5.hexdigest(rand(1000).to_s) #随机串,不长于32位
-        self.fields['sign_type'] ='MD5' #微信签名方式:1.sha1;2.md5 目前只支持SHA1
+
+        self.fields['sign_type'] ='MD5' #微信签名方式:1.sha1;2.md5
 # appId package paySign
 
     end

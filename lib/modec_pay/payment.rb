@@ -25,7 +25,7 @@ module ModecPay
 		# payment description
 		attr_accessor :body
 
-    attr_accessor :openid
+    attr_accessor :openid, :spbill_create_ip
 
 		# A block pass to sort_by 
 		# == Example
@@ -92,8 +92,12 @@ module ModecPay
       #make_pay_sign
       pre_pay
 
-
       xml = self.fields['pre_pay_xml']
+
+      RestClient.get(self.action)
+      res_data = RestClient.post self.action , xml , {:content_type => :xml}
+      #res_data = URI.decode(res_data)
+      #return res_data
 
       <<-FORM
 				<!DOCTYPE html>
@@ -108,7 +112,8 @@ module ModecPay
 				<body>
 				<div>Redirecting...</div>
         <form accept-charset="#{self.charset}" action="#{self.action}" method="#{self.method}" id="pay_form">
-        #{xml}
+        #{xml}<br/>
+        #{res_data}
         </form>
 				<script type="text/javascript">
 				//	window.onload=function(){
