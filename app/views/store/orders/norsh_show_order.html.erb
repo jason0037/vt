@@ -78,8 +78,8 @@
 
   </div>
     <br/>
-  <% if @order.order_status_text=="待付款" %> 
-  <a class="ahref am-btn  am-btn-danger " href="/mobile_show?id=<%=@order.order_id%>&supplier_id=<%=@order.supplier_id%>" class="btn btn-inverse">去付款</a>
+  <% if @order.order_status_text=="待付款" %>
+  <a class="ahref am-btn  am-btn-danger " href="/orders/mobile_show?id=<%=@order.order_id%>&supplier_id=<%=@order.supplier_id%>" class="btn btn-inverse">去付款</a>
   <% else%>
       <span>您已经成功支付了</span>
   <% end %>
