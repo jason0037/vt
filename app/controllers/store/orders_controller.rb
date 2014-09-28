@@ -199,22 +199,23 @@ class Store::OrdersController < ApplicationController
     if recommend_user == nil
       @order.commission=0
     end
-
+#debug_line_item =''
 		@line_items.each do |line_item|
 			product = line_item.product
 			good = line_item.good
 
+ #     if product || good
 			@order.order_items << Ecstore::OrderItem.new do |order_item|
 				order_item.product_id = product.product_id
-				order_item.goods_id = good.goods_id
-				order_item.type_id = good.type_id
-				order_item.bn = product.bn
-				order_item.name = product.name
+        order_item.bn = product.bn
+        order_item.name = product.name
         if cookies[:MLV] == "10"
-				  order_item.price = product.bulk
+          order_item.price = product.bulk
         else
           order_item.price = product.price
         end
+				order_item.goods_id = good.goods_id
+				order_item.type_id = good.type_id
 				order_item.nums = line_item.quantity.to_i
 				order_item.item_type = "product"
 				order_item.amount = order_item.price * order_item.nums
@@ -227,9 +228,14 @@ class Store::OrdersController < ApplicationController
 				order_item.addon = { :product_attr => product_attr }.serialize
 
 				# @order.total_amount += order_item.calculate_amount
-			end
+      end
+ #     else
+ #       debug_line_item +=line_item.id.to_s + '|'
+  #    end
 		end
-
+#if debug_line_item
+#  return render :text=>debug_line_item
+#end
 		# ==== promotion gifts =====
 		gifts = params[:gifts] || []
 		gifts.each do |gift_id|

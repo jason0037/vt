@@ -1,5 +1,5 @@
 #encoding:utf-8
-require 'uri'
+
 module ModecPay
   class Weixin < Payment
 
@@ -142,7 +142,7 @@ module ModecPay
                 "out_trade_no" => self.fields["out_trade_no"],
                 "total_fee" => self.fields["total_fee"],
                 "fee_type" => self.fields["fee_type"],
-                "notify_url" => self.fields["notify_url"],
+                "notify_url" => CGI::escape(self.fields["notify_url"]),
                 "spbill_create_id" => self.fields["spbill_create_id"],
                 "input_charset" => self.fields["input_charset"]
       }
@@ -161,7 +161,7 @@ module ModecPay
                 "out_trade_no" => self.fields["out_trade_no"],
                 "total_fee" => self.fields["total_fee"],
                 "fee_type" => self.fields["fee_type"],
-                "notify_url" => self.fields["notify_url"],
+                "notify_url" => CGI::escape(self.fields["notify_url"]),
                 "spbill_create_id" => self.fields["spbill_create_id"],
                 "input_charset" => self.fields["input_charset"]
       }
@@ -169,7 +169,7 @@ module ModecPay
 
       unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&")+ "sign=#{self.fields['sign']}"
       #self.fields['package'] =unsign.force_encoding('UTF-8')
-      self.fields['package'] = URI.escape(unsign)
+      self.fields['package'] = unsign
     end
 
     def make_pay_sign
