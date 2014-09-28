@@ -131,8 +131,24 @@ end
       get :paynotifyurl
       get :feedback
     end
+=begin
+    resources :payments do
+      collection do
+        get 'callback'
+        get 'debug'
+      end
 
-
+      member do
+        get 'pay'
+        match ':adapter/notify'=>"payments#notify", :as=>"notify"
+        match ':adapter/callback'=>"payments#callback", :as=>"callback"
+        if Rails.env == 'development'
+          get 'test_notify'
+          get 'test_callback'
+        end
+      end
+    end
+=end
   end
 
   get 'login'=>"sessions#new"
