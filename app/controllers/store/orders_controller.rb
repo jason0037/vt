@@ -309,7 +309,11 @@ class Store::OrdersController < ApplicationController
 				order_log.log_text = "订单创建成功！"
       end.save
         if return_url.nil?
-			   redirect_to "#{order_path(@order)}?platform=#{platform}&supplier_id=#{supplier_id}"
+          if platform=="mobile"
+             redirect_to "/orders/mobile_show?id=#{@order.order_id}&supplier_id=#{supplier_id}"
+          else
+			     redirect_to "#{order_path(@order)}?platform=#{platform}&supplier_id=#{supplier_id}"
+          end
         else
           redirect_to return_url
           end
@@ -321,6 +325,19 @@ class Store::OrdersController < ApplicationController
 		end
 
 	end
+
+  def mobile_show
+    supplier_id=params[:supplier_id]
+    @order = Ecstore::Order.find_by_order_id(params[:id])
+
+      if supplier_id==nil
+        supplier_id=78
+      end
+      @supplier = Ecstore::Supplier.find(supplier_id)
+
+
+    render :layout=>@supplier.layout
+  end
 
 	def new
 		# @order = Ecstore::Order.new
