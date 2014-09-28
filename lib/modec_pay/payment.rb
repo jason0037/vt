@@ -25,7 +25,7 @@ module ModecPay
 		# payment description
 		attr_accessor :body
 
-    attr_accessor :appid ,:time_stamp,:nonce_str,:sign_type
+    attr_accessor :openid
 
 		# A block pass to sort_by 
 		# == Example
@@ -89,27 +89,11 @@ module ModecPay
 
     def html_form_wxpay
       #make_sign
-      make_pay_sign
-      if sorter.is_a?(Proc)
-        self.fields = Hash.send :[],  self.fields.select{ |key,val|  val.present? }.sort_by(&self.sorter)
-      end
-
-      if sorter.is_a?(Array)
-        _fields = self.fields.dup
-        self.fields = {}
-        sorter.each do |key|
-          self.fields[key] = _fields.delete(key)
-        end
-        self.fields.merge!(_fields)  unless _fields.empty?
-      end
-
-      _filter = self.filter if self.filter.is_a?(Proc)
-      _filter = proc { true }  unless _filter
+      #make_pay_sign
+      pre_pay
 
 
-      form_inputs = self.fields.select(&_filter).collect do |key,val|
-        "<input type='hidden' name='#{key}' value='#{val}' />"
-      end.join(" ")
+      xml = self.fields['pre_pay_xml']
 
       <<-FORM
 				<!DOCTYPE html>
@@ -124,7 +108,7 @@ module ModecPay
 				<body>
 				<div>Redirecting...</div>
         <form accept-charset="#{self.charset}" action="#{self.action}" method="#{self.method}" id="pay_form">
-        #{form_inputs}
+        #{xml}
         </form>
 				<script type="text/javascript">
 				//	window.onload=function(){
