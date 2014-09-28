@@ -165,7 +165,13 @@
      <br/>
 
 <div class="footer clearfix">
-
+  <%if @user%>
+      <script>
+          if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
+              location.href = "/logout?id=<%=@supplier.id%>&platform=mobile"
+          }
+      </script>
+      <%end%>
   <p class="copyright">Copyright © 2013-2014 trade-v.com 版权所有 上海普慧信息科技有限公司 All rights reserved. 沪ICP备13045311号-1 </p>
 </div>
 <div class="space10"></div>
