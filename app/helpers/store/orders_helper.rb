@@ -27,7 +27,7 @@ module Store::OrdersHelper
 			"99bill"=>{ :name=>"其他银行网上支付",:extra=>"" },
 			"alipay"=>{ :name=>"支付宝",:extra=>"" },
       "alipaywap"=>{ :name=>"支付宝手机版",:extra=>"" },
-      "weixin"=>{:name=>"微信支付",:extra=>""}
+      "wxpay"=>{:name=>"微信支付",:extra=>""}
 		}
 	end
 end

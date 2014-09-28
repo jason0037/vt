@@ -92,9 +92,6 @@
 <div class="">
   <%=form_for :payment,:url=>payments_path(:order_id=>@order.order_id),:method=>'post',:html=>{ :target=>"_blank" } do |f|%>
       <%=f.hidden_field :currency, :value=>"CNY" %>
-      <%if @order.payment == "bcom"%>
-          <%=f.hidden_field :memo, :value=>"持交通银行卡在线支付可享受订单金额95折优惠" %>
-      <%end%>
       <br/>
       <div class="status_text">
         <span class="pay_icon pay_success "></span>
@@ -157,26 +154,6 @@
             <%=f.radio_button :pay_app_id, "ips", { :checked=>(@order.payment == 'ips') }%> <b>环迅人民币支付</b>
             <span class="extra-desc"></span>
           </label>
-          <div  style="display:none">
-            <label class="radio">
-              <%=f.radio_button :pay_app_id, "bcom", { :checked=>(@order.payment == 'bcom'),:id=>"bcom_payment",:'data-amount'=>(@order.total_amount*0.05).round }%> <b>交通银行网上支付</b>
-              <span class="extra-desc">持交通银行卡在线支付可享受订单金额95折优惠</span>
-            </label>
-            <label class="radio">
-              <%=f.radio_button :pay_app_id, "icbc", { :checked=>(@order.payment == 'icbc') }%> <b>工商银行网上支付</b>
-				<span class="extra-desc">
-					<input id="installment_on"  type="checkbox" value="1">
-					申请分期付款 (<span class="highlight">申请信用卡分期付款，超低手续费，月还款无压力！</span>)
-				</span>
-				<span id="installment_select" class="hide">
-					请选择适合您的期数:
-                  <%=f.select :installment,[3,6,9,12,18,24],{:include_blank=>"请选择"}%>期
-				</span>
-            </label>
-            <label class="radio">
-              <%=f.radio_button :pay_app_id, "99bill", { :checked=>(@order.payment == '99bill') }%> <b>其他银行网上支付</b>
-            </label>
-          </div>
           <%if @user.advance >= @order.final_amount%>
               <label class="radio">
                 <%=f.radio_button :pay_app_id, "deposit", { :checked=>(@order.payment == 'deposit') } %> <b>预存款</b>
@@ -195,7 +172,7 @@
             <%=f.radio_button :pay_app_id, "alipaywap", { :checked=>(@order.payment == 'alipaywap') }%> <b>支付宝手机版</b>
           </label>
           <label class="radio">
-            <%=f.radio_button :pay_app_id, "weixin", { :checked=>(@order.payment == 'weixin') }%> <b>微信支付</b>
+            <%=f.radio_button :pay_app_id, "wxpay", { :checked=>(@order.payment == 'wxpay') }%> <b>微信支付</b>
           </label>
         </div>
 

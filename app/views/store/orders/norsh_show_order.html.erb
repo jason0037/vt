@@ -31,12 +31,6 @@
 </head>
 <body>
 
-
-
-
-
-
-
 <div class="am-panel am-panel-danger">
   <div class="am-panel-hd" style="text-align: center" >订单详细</div>
   <%@order.order_items.each do |order_item|%>
@@ -85,7 +79,7 @@
   </div>
     <br/>
   <% if @order.order_status_text=="待付款" %>
-  <a class="ahref am-btn  am-btn-danger " href="/goods/<%=@order.order_id%>?platform=mobile&supplier_id=<%=@order.supplier_id%>" class="btn btn-inverse">去付款</a>
+  <a class="ahref am-btn  am-btn-danger " href="/orders/mobile_show?id=<%=@order.order_id%>&supplier_id=<%=@order.supplier_id%>" class="btn btn-inverse">去付款</a>
   <% else%>
       <span>您已经成功支付了</span>
   <% end %>
