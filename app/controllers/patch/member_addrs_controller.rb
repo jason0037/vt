@@ -65,6 +65,12 @@ class Patch::MemberAddrsController < ApplicationController
 
 
   end
+  def new_memberaddr_add
+
+    @supplier=Ecstore::Supplier.find_by_id(params[:supplier_id])
+    @addr=Ecstore::MemberAddr.new
+    render :layout=>@supplier.layout
+  end
 
   def update
     @addr = Ecstore::MemberAddr.find(params[:id])

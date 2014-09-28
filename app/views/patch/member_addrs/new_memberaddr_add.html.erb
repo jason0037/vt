@@ -1,0 +1,90 @@
+<style type="text/css">
+    #province,#city,#district{
+        width: 100%;
+        height: 100%;
+    }
+    #addr{
+        width: 100%;
+        height: 10%;
+    }
+
+</style>
+<%=javascript_include_tag "area_seletor"%>
+<%=javascript_include_tag "patch/member_addrs"%>
+<div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
+  <div class="am-panel-hd" style="text-align: center">新增地址</div>
+</div>
+<%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
+    <input type="hidden" name="return_url" value="/member_addrs?platform=mobile">
+    <br/>
+    <div class="am-input-group">
+      <span class="am-input-group-label"><i class="am-icon-user"></i></span>
+
+      <%=f.text_field :name,  :class=>"am-form-field" ,:placeholder=>"姓名"%>
+    </div>
+    <br/>
+    <div class="am-input-group">
+      <span class="am-input-group-label"><i class="am-icon-mobile"></i></span>
+
+      <%=f.text_field :mobile,  :class=>"am-form-field" ,:placeholder=>"手机"%>
+    </div>
+    <br/>
+    <div class="am-input-group">
+      <span class="am-input-group-label"><i class=" am-icon-phone"></i></span>
+
+      <%=f.text_field :tel,  :class=>"am-form-field" ,:placeholder=>"电话"%>
+    </div>
+    <br/>
+    <div class="am-input-group">
+      <span class="am-input-group-label">省份</span>
+
+      <%=f.select :province,Ecstore::Region.provinces.collect{|p| [p.local_name,p.region_id] } ,{:include_blank=>"请选择省" },{ :onchange=>"selectProvince(this,'#city','#district');",:id=>"province" ,:class=>"am-input-group-label"}%>
+    </div>
+    <br/>
+    <div class="am-input-group">
+      <span class="am-input-group-label">城市</span>
+
+      <%if @addr&&@addr.city%>
+          <%=f.select :city,Ecstore::Region.cities_of(@addr.province).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择市"},{ :onchange=>"selectCity(this,'#district');",:id=>"city" ,:class=>"am-input-group-label" }%>
+      <%else%>
+          <%=f.select :city, {}, { :include_blank=>"请选择市" }, { :onchange=>"selectCity(this,'#district');",:id=>"city",:class=>"am-input-group-label" }%>
+      <%end%>    </div>
+    <br/>
+    <div class="am-input-group">
+      <span class="am-input-group-label">省份</span>
+
+      <%unless @addr&&@addr.new_record?%>
+          <%=f.select :district,Ecstore::Region.districts_of(@addr&&@addr.city).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择区/县" },{ :onchange=>"selectDistrict(this);",:id=>"district" ,:class=>"am-input-group-label",:style=>"#{'display:none;' if @addr.district.blank? }" } %>
+      <%else%>
+          <%=f.select :district, {}, { :include_blank=>"请选择区/县" }, { :onchange=>"selectDistrict(this);",:id=>"district" }%>
+      <%end%>   </div>
+    <br/>
+    <div class="am-input-group">
+      <span class="am-input-group-label">邮编</span>
+
+      <%=f.text_field :zip,  :class=>"am-form-field" ,:placeholder=>"邮政编码"%>
+    </div>
+    <br/>
+    <div class="">
+      <span class="">详情地址</span>
+
+      <%=f.text_area :addr, :id=>"addr", :cols=>"0",:rows=>"0"%>
+      <span class="help-inline error"></span>
+    </div>
+
+
+
+    <dl class="connerbox" style="display:none"><dd><span> <%=f.label :def_addr, "设置为默认地址：",:class=>"text_input"%></span>
+      <span class="form_td"> <%#=f.check_box :def_addr, {}, 1, 0 %><input name="addr[def_addr]" type="hidden" value="1" checked="true" /></span>
+    </dd></dl>
+    <br/>
+    <div class="ui-btn-area">
+      <%if @method == :put%>
+          <%=f.submit "修 改",:class=>"am-btn am-btn-secondary am-btn-block" %>
+      <%else%>
+          <%=f.submit "确认地址",:class=>"am-btn am-btn-warning am-btn-block" %>
+      <%end%>
+    </div>
+<%end%>
+</div>
+
