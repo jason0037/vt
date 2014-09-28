@@ -4,7 +4,7 @@ class VshopController < ApplicationController
   layout "vshop"
 
   def new
-  	@account = Ecstore::Account.new
+    @account = Ecstore::Account.new
   end
 
   def login
@@ -19,11 +19,11 @@ class VshopController < ApplicationController
 
     if @user
 
-    @supplier =Ecstore::Supplier.find(params[:id])
-    render :layout=>@supplier.layout
+      @supplier =Ecstore::Supplier.find(params[:id])
+      render :layout=>@supplier.layout
     else
       redirect_to "/mlogin?id=#{params[:id]}&platform=mobile&return_url=/vshop/#{params[:id]}/user?id=#{params[:id]}"
-     end
+    end
   end
 
   def apply
@@ -123,45 +123,45 @@ class VshopController < ApplicationController
   end
 
   def create
-  	now  = Time.now
-	  @account = Ecstore::Account.new(params[:user]) do |ac|
-  		ac.account_type ="member"
-  		ac.createtime = now.to_i
-  		ac.user.member_lv_id = 1
-  		ac.user.cur = "CNY"
-  		ac.user.reg_ip = request.remote_ip
-  		ac.user.regtime = now.to_i
-  	end
+    now  = Time.now
+    @account = Ecstore::Account.new(params[:user]) do |ac|
+      ac.account_type ="member"
+      ac.createtime = now.to_i
+      ac.user.member_lv_id = 1
+      ac.user.cur = "CNY"
+      ac.user.reg_ip = request.remote_ip
+      ac.user.regtime = now.to_i
+    end
 
-	  if @account.save
+    if @account.save
       sign_in(@account)
       @return_url=params[:return_url]
       render "create"
     else
       render "error"
     end
-end
+  end
 
   def search
-      @title = "找回密码"
-      @by = params[:user][:by]
-      value = params[:user][:value]
-      col =  case @by
-          when 'mobile' then '手机号码'
-          when 'email' then '邮箱'
-          when 'login_name' then '用户名'
-          else '用户名'
-      end
-      if value.present?
-          @user = Ecstore::User.joins(:account).where("#{@by} = ?",value).first
-          if @user
-            render "find_by_#{@by}"
-          else
-            redirect_to forgot_password_users_url(:by=>@by), :notice=> "您输入的#{col}不存在"
-          end
+    @title = "找回密码"
+    @by = params[:user][:by]
+    value = params[:user][:value]
+    col =  case @by
+             when 'mobile' then '手机号码'
+             when 'email' then '邮箱'
+             when 'login_name' then '用户名'
+             else '用户名'
+           end
+    if value.present?
+      @user = Ecstore::User.joins(:account).where("#{@by} = ?",value).first
+      if @user
+        render "find_by_#{@by}"
       else
-          redirect_to forgot_password_users_url(:by=>@by), :notice=> "请输入#{col}"
+        redirect_to forgot_password_users_url(:by=>@by), :notice=> "您输入的#{col}不存在"
       end
+    else
+      redirect_to forgot_password_users_url(:by=>@by), :notice=> "请输入#{col}"
+    end
   end
 
   #get /vhsop/id 显示微店铺首页
@@ -196,64 +196,6 @@ end
     @paySign = ''    #微信签名
 
 
-    string sp_billno = Request["order_no"]
-    #当前时间 yyyyMMdd
-    string date = DateTime.Now.ToString("yyyyMMdd")
-
-    if (null == sp_billno)
-
-          #生成订单10位序列号，此处用时间和随机数生成，商户根据自己调整，保证唯一
-      sp_billno = DateTime.Now.ToString("HHmmss") + TenpayUtil.BuildRandomStr(4)
-
-    else
-
-          sp_billno = Request["order_no"].ToString()
-
-
-      sp_billno = TenpayUtil.partner + sp_billno;
-
-
-
-      #创建支付应答对象
-      RequestHandler packageReqHandler = new RequestHandler(Context)
-      #初始化
-      packageReqHandler.init()
-
-
-      #设置package订单参数
-      packageReqHandler.setParameter("partner", TenpayUtil.partner)		  #商户号
-      packageReqHandler.setParameter("fee_type", "1")                   #币种，1人民币
-      packageReqHandler.setParameter("input_charset", "GBK")
-      packageReqHandler.setParameter("out_trade_no", sp_billno)		#商家订单号
-      packageReqHandler.setParameter("total_fee", "1")		        #商品金额,以分为单位(money * 100).ToString()
-      packageReqHandler.setParameter("notify_url", TenpayUtil.tenpay_notify)		    #接收财付通通知的URL
-      packageReqHandler.setParameter("body", "JSAPIdemo")	                    #商品描述
-      packageReqHandler.setParameter("spbill_create_ip", Page.Request.UserHostAddress)   #用户的公网ip，不是商户服务器IP
-
-      #获取package包
-      packageValue = packageReqHandler.getRequestURL()
-
-      #调起微信支付签名
-      timeStamp = TenpayUtil.getTimestamp()
-      nonceStr = TenpayUtil.getNoncestr()
-
-      #设置支付参数
-      RequestHandler paySignReqHandler = new RequestHandler(Context)
-      paySignReqHandler.setParameter("appid", appId)
-      paySignReqHandler.setParameter("appkey", TenpayUtil.appkey)
-      paySignReqHandler.setParameter("noncestr", nonceStr)
-      paySignReqHandler.setParameter("timestamp", timeStamp)
-      paySignReqHandler.setParameter("package", packageValue)
-      paySign = paySignReqHandler.createSHA1Sign()
-
-
-
-      #获取debug信息,建议把请求和debug信息写入日志，方便定位问题
-      #string pakcageDebuginfo = packageReqHandler.getDebugInfo();
-      #Response.Write("<br/>pakcageDebuginfo:" + pakcageDebuginfo + "<br/>");
-      #string paySignDebuginfo = paySignReqHandler.getDebugInfo();
-      #Response.Write("<br/>paySignDebuginfo:" + paySignDebuginfo + "<br/>");
-
   end
-end
+
 end
