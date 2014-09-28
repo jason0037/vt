@@ -72,32 +72,30 @@ module ModecPay
      # self.fields['subject'] = val
     end
 
-
     class <<  self
-=begin
-      def verify_sign(self.fields)
-        sign = self.fields['sign']
+      def verify_sign(params)
+        sign = params['sign']
 
-        _sorted_hash = Hash.send :[],  self.fields.select{ |key,val| val.present? && key != 'sign' && key != 'sign_type' }.sort_by{ |key,val|  key }
+        #	_sorted_hash = Hash.send :[],  params.select{ |key,val| val.present? && key != 'sign' && key != 'sign_type' }.sort_by{ |key,val|  key }
 
-        unsign = _sorted_hash.collect do |key,val|
-          "#{key}=#{val}"
-        end.join("&") + @@partner_key
+        #unsign = _sorted_hash.collect do |key,val| 	"#{key}=#{val}" end.join("&") + @@private_key #self.private_key
 
+        unsign_hash =Hash.send :[],  params.select{ |key,val| val.present? && key != 'sign' && key != 'sign_type' }
+        unsign = unsign_hash.collect do |key,val| 	"#{key}=#{val}" end.join("&") + @@private_key #self.private_key
         Digest::MD5.hexdigest(unsign) == sign
       end
 
-      def verify_notify(self.fields,options)
-        if verify_sign(self.fields)
+      def verify_notify(params,options)
+        if verify_sign(params)
 
-          ModecPay.logger.info "[weixin][#{Time.now}] payment=#{self.fields['out_trade_no']} verify notify successfully."
+          ModecPay.logger.info "[alipaywap][#{Time.now}] payment=#{params['out_trade_no']} verify notify successfully."
 
-          case self.fields['trade_status']
-            when 'TRADE_FINISHED','TRADE_SUCCESS'
+          case params['result']
+            when 'success'
               t_payed = Time.now.to_i
-              t_payed = Time.parse(self.fields['gmt_payment']).to_i  if self.fields['gmt_payment'].present?
-              result = {  :payment_id=>self.fields['out_trade_no'],
-                          :trade_no=>self.fields['trade_no'],
+              t_payed = Time.parse(params['gmt_payment']).to_i  if params['gmt_payment'].present?
+              result = {  :payment_id=>params['out_trade_no'],
+                          :trade_no=>params['trade_no'],
                           :status=>'succ',
                           :t_payed=>t_payed,
                           :response => 'success'
@@ -111,21 +109,18 @@ module ModecPay
         result
       end
 
-      def verify_return(self.fields,options)
-        is_success = self.fields['is_success']
-        if verify_sign(self.fields)
-          ModecPay.logger.info "[alipay][#{Time.now}] verify return successfully."
-          case self.fields['trade_status']
-            when 'TRADE_FINISHED','TRADE_SUCCESS'
+
+      def verify_return(params,options)
+        if verify_sign(params)
+          ModecPay.logger.info "[alipaywap][#{Time.now}] verify return successfully."
+          case params['result']
+            when 'success'
               t_payed = Time.now
-              result = {  :payment_id=>self.fields['out_trade_no'],
-                          :trade_no=>self.fields['trade_no']
+              result = {  :payment_id=>params['out_trade_no'],
+                          :trade_no=>params['trade_no']
               }
-              if is_success == "T"
-                result.merge!(:status=>'succ',:response => 'success', :t_payed=>t_payed)
-              else
-                result =  false
-              end
+              result.merge!(:status=>'succ',:response => 'success', :t_payed=>t_payed)
+
             else
               result =  false
           end
@@ -135,7 +130,6 @@ module ModecPay
 
         result
       end
-=end
     end
 
     private
@@ -174,7 +168,8 @@ module ModecPay
       _sorted = Hash.send :[],  unsorted.select{ |key,val|  val.present?}.sort_by{ |key,val|  key }
 
       unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&")+ "sign=#{self.fields['sign']}"
-      self.fields['package'] = URI::escape(unsign)
+      #self.fields['package'] =unsign.force_encoding('UTF-8')
+      self.fields['package'] = URI.escape(unsign)
     end
 
     def make_pay_sign
