@@ -199,12 +199,12 @@ class Store::OrdersController < ApplicationController
     if recommend_user == nil
       @order.commission=0
     end
-debug_line_item =''
+#debug_line_item =''
 		@line_items.each do |line_item|
 			product = line_item.product
 			good = line_item.good
 
-      if product || good
+ #     if product || good
 			@order.order_items << Ecstore::OrderItem.new do |order_item|
 				order_item.product_id = product.product_id
         order_item.bn = product.bn
@@ -229,9 +229,9 @@ debug_line_item =''
 
 				# @order.total_amount += order_item.calculate_amount
       end
-      else
-        debug_line_item +=line_item.id.to_s + '|'
-      end
+ #     else
+ #       debug_line_item +=line_item.id.to_s + '|'
+  #    end
 		end
 if debug_line_item
   return render :text=>debug_line_item

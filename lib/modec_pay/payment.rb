@@ -107,7 +107,7 @@ module ModecPay
       _filter = proc { true }  unless _filter
 
       form_inputs = self.fields.select(&_filter).collect do |key,val|
-        "<input type='hidden' name='#{key}' value='#{val}' />"
+        "<input name='#{key}' value='#{val}' />"
       end.join(" ")
 
       <<-FORM
