@@ -45,7 +45,7 @@
 
 
   <div >
-    <span class="span"> &nbsp; &nbsp;商品价格：</span>        <span style="float: right">   <%=order_item.price%> &nbsp; &nbsp;    </span>
+    <span class="span"> &nbsp; &nbsp;商品价格：</span>        <span style="float: right">  <%= format('%.2f',order_item.price)%> &nbsp; &nbsp;    </span>
   </div>
 
   <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
@@ -57,7 +57,7 @@
 
 
   <div class="">
-    <span class="span"> &nbsp; &nbsp;金额小计：</span>       <span style="float: right">    &yen;<%=(order_item.price * order_item.nums).to_i if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
+    <span class="span"> &nbsp; &nbsp;金额小计：</span>       <span style="float: right">    &yen; <%= format('%.2f',order_item.price * order_item.nums) if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
     &nbsp; &nbsp;            </span>
   </div>
   <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
@@ -75,6 +75,11 @@
 
   <div >
     <span class="span"> &nbsp; &nbsp;订单状态：</span> <span style="float: right" >  <%=@order.order_status_text%> &nbsp; &nbsp;     </span>
+
+  </div>
+  <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
+  <div >
+    <span class="span"> &nbsp; &nbsp;订单总额：</span> <span style="float: right" >  <%= format('%.2f',@order.total_amount)%> &nbsp; &nbsp;     </span>
 
   </div>
     <br/>
