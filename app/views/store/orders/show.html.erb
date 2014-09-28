@@ -45,7 +45,7 @@
             <%=f.radio_button :pay_app_id, "bcom", { :checked=>(@order.payment == 'bcom'),:id=>"bcom_payment",:'data-amount'=>(@order.total_amount*0.05).round }%> <b>交通银行网上支付</b>
             <span class="extra-desc">持交通银行卡在线支付可享受订单金额95折优惠</span>
           </label>
-          <label class="radio">
+          <label class="radio" >
             <%=f.radio_button :pay_app_id, "icbc", { :checked=>(@order.payment == 'icbc') }%> <b>工商银行网上支付</b>
 				<span class="extra-desc">
 					<input id="installment_on"  type="checkbox" value="1">
@@ -56,7 +56,7 @@
                   <%=f.select :installment,[3,6,9,12,18,24],{:include_blank=>"请选择"}%>期
 				</span>
           </label>
-          <label class="radio">
+          <label class="radio" style="display:none">
             <%=f.radio_button :pay_app_id, "99bill", { :checked=>(@order.payment == '99bill') }%> <b>其他银行网上支付</b>
           </label>
         </div>
@@ -73,9 +73,6 @@
 
         <label class="radio">
           <%=f.radio_button :pay_app_id, "alipay", { :checked=>(@order.payment == 'alipay') }%> <b>支付宝</b>
-        </label>
-        <label class="radio">
-          <%=f.radio_button :pay_app_id, "alipaywap", { :checked=>(@order.payment == 'alipaywap') }%> <b>支付宝手机版</b>
         </label>
       </div>
 

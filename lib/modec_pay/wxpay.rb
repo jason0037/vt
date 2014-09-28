@@ -50,7 +50,6 @@ module ModecPay
  #     self.fields['trade_type'] = 'JSAPI' #JSAPI, NATIVE, APP
  #     self.fields['openid'] = '' #用户的openid, trade_type为JSAPP时，必传，否
  #     self.fields['products_id'] = '' #trade_type为NATIVE时，需要，此id为二维码中包含的商品ID
-      self.fields['traceid']='test_'+  self.fields['time_stamp']
 
     end
 
