@@ -6,6 +6,7 @@ module ModecPay
     @@appid = 'wxec23a03bf5422635'
     @@mch_id = '10011618'
     @@partner_key  = 'fe699e8e82144ddba567bcfcf441ece0'
+    @@pay_sign_key ='877a9ba7a98f75b90a9d49f53f15a858'
     @@partnerid ='1221177901'
 
     @@sub_mch_id=''
@@ -43,7 +44,7 @@ module ModecPay
  #     self.fields['trade_type'] = 'JSAPI' #JSAPI, NATIVE, APP
  #     self.fields['openid'] = '' #用户的openid, trade_type为JSAPP时，必传，否
  #     self.fields['products_id'] = '' #trade_type为NATIVE时，需要，此id为二维码中包含的商品ID
-      self.fields['traceid']='12345'
+      self.fields['traceid']='test_'+  self.fields['time_stamp']
 
     end
 
@@ -142,13 +143,13 @@ module ModecPay
                 "out_trade_no" => self.fields["out_trade_no"],
                 "total_fee" => self.fields["total_fee"],
                 "fee_type" => self.fields["fee_type"],
-                "notify_url" => CGI::escape(self.fields["notify_url"]),
+                "notify_url" => self.fields["notify_url"],
                 "spbill_create_id" => self.fields["spbill_create_id"],
                 "input_charset" => self.fields["input_charset"]
       }
       _sorted = Hash.send :[],  unsorted.select{ |key,val|  val.present? }.sort_by{ |key,val|  key }
 
-      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "key=#{@@partner_key}"
+      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{@@partner_key}"
       self.fields['sign'] = Digest::MD5.hexdigest(unsign).upcase
     end
 
@@ -167,7 +168,7 @@ module ModecPay
       }
       _sorted = Hash.send :[],  unsorted.select{ |key,val|  val.present?}.sort_by{ |key,val|  key }
 
-      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&")+ "sign=#{self.fields['sign']}"
+      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&")+ "&sign=#{self.fields['sign']}"
       #self.fields['package'] =unsign.force_encoding('UTF-8')
       self.fields['package'] = unsign
     end
@@ -177,16 +178,15 @@ module ModecPay
       make_package
       # appid  appkey  noncestr package timestamp traceid
       unsorted={"appid" => self.fields["appid"],
-                "appkey" => self.fields["appkey"],
+                "appkey" => @@pay_sign_key,
                 "noncestr" => self.fields["noncestr"],
                 "package" => self.fields["package"],
                 "timestamp" => self.fields["timestamp"],
-                "traceid" => self.fields["traceid"],
-                "key" => @@partner_key
+                "traceid" => self.fields["traceid"]
       }
       _sorted = Hash.send :[],  unsorted.select{ |key,val|  val.present? && key != 'sign_type' && key != 'sign' }.sort_by{ |key,val|  key }
 
-      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "key=#{@@partner_key}"
+      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&")
 
       self.fields['pay_sign'] = Digest::SHA1.hexdigest(unsign)
     end
