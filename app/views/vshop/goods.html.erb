@@ -1,9 +1,68 @@
-<br/><br/><br/><br/><br/>
-<%=link_to "添加",'/admin/goods/new',:class=>"btn btn-primary"%>
-<%=link_to "删除","#",:class=>"btn batch",:data=>{:act=>:destroy},:confirm=>"确定删除吗?"%>
+<br/>     <br/>
+<% if (Ecstore::Account.find(@user.member_id).supplier_id)==(Ecstore::Supplier.find_by_name("万家物流").id)%>
+<a class="btn btn-primary" href="/vshop/goods?cat_id=<%=Ecstore::GoodCat.find_by_cat_name("物流").cat_id%>">物流</a>
+    <a class="btn btn-primary" href="/vshop/goods?name=货源">货源</a>
+    <a class="btn btn-primary" href="/vshop/goods?cat_id=<%=Ecstore::GoodCat.find_by_cat_name("车源").cat_id%>">车源</a>
+    <%end%>
+<div style="float: right">
+
+  <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+  <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+<%=link_to "添加商品",'/admin/goods/new',:class=>"btn btn-primary"%>
+  <% if (Ecstore::Account.find(@user.member_id).supplier_id)==(Ecstore::Supplier.find_by_name("万家物流").id)%>
+  <%=link_to "添加货源小黑板",'/admin/goods/black_good_new',:style => "color:red",:class=>"btn "%>
+      <%end%>
+</div>
+<%if @goodes%>
+
+        <table class="table table-bordered table-striped" id="goods" data-url="<%=request.fullpath.html_safe%>" count="<%=@count%>" goods_ids="<%=@goodes_ids%>" >
+          <tr>
+            <th><input type="checkbox" id="select_page_all"></th>
+            <th class="order" data-field="name" data-sorter="asc">商品名称</th>
+            <th class="order" data-field="weight" data-sorter="asc">重量</th>
+            <th class="order" data-field="mktprice" data-sorter="asc">发布人id</th>
+            <th class="order" data-field="price" data-sorter="asc">价钱</th>
+            <th class="order" data-field="marketable" data-sorter="asc">状态</th>
+            <th class="order" data-field="uptime" data-sorter="asc"  >发布时间</th>
+            <th class="order" data-field="downtime" data-sorter="asc">到期时间</th>
+
+            <th style="width:120px">操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <%@goodes.each do |good|%>
+              <tr>
+                <td><%=check_box_tag "batch[goods_ids][]", good.id, false, :id=>"{good.id}",:class=>"good"%></td>
+                <td><%=good.name%> </td>
+                <td><%= good.weight%> </td>
+
+
+
+                <td ><%=good.ship_id%></td>
+
+            <td>&yen;<%=format("%.2f",good.price) if good.price%></td>
+
+                <td ><%=good.status%></td>
+
+             <td ><%=Time.at(good.uptime).strftime("%Y-%m-%d %H:%M:%S") if good.uptime.present?%></td>
+                <td ><%=Time.at(good.downtime).strftime("%Y-%m-%d %H:%M:%S") if good.downtime.present?%></td>
+                <td>
+                  <%=link_to "编辑","/admin/goods/black_good?id=#{good.id}"%>
+                  <%=link_to "删除","/vshop/black_good_destory?id=#{good.id}",:method=>:post,:confirm=>"确定要删除吗？"%>
+
+
+                </td>
+              </tr>
+
+          <%end%>
+              </tbody>
+            </table>
+
+
+
+<%else%>
 <table class="table table-bordered table-striped" id="goods" data-url="<%=request.fullpath.html_safe%>" count="<%=@count%>" goods_ids="<%=@goods_ids%>" >
-<thead>
-<tr>
+ <tr>
   <th><input type="checkbox" id="select_page_all"></th>
   <th class="order" data-field="brand_id" data-sorter="asc">品牌</th>
   <th class="td-teg" style="display:none">标签</th>
@@ -28,6 +87,7 @@
 </thead>
 
 <tbody>
+
 <%if @count > 0%>
     <%@goods.each do |good|%>
         <tr>
@@ -62,6 +122,8 @@
             <% if (Ecstore::Account.find(@user.member_id).supplier_id)!=(Ecstore::Supplier.find_by_name("万家物流").id)%>
                 <%=link_to "规格",spec_admin_good_path(good)%>
                 <%end%>
+            <%=link_to "删除","/vshop/destory?id=#{good.id}",:method=>:post,:confirm=>"确定要删除吗？"%>
+
           </td>
         </tr>
     <%end%>
@@ -70,8 +132,19 @@
       <td colspan="100">没有找到相关商品!</td>
     </tr>
 <%end%>
+
 </tbody>
 </table>
-<div class="pagination">
+<%end%>
+<%unless @goodes%>
+
+
+    <div class="pagination">
   <%= will_paginate @goods, :container => false,:params=>{ :page=>params[:page] } %>
 </div>
+   <%else%>
+
+    <div class="pagination">
+      <%= will_paginate @goodes, :container => false,:params=>{ :page=>params[:page] } %>
+    </div>
+    <%end%>

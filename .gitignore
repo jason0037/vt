@@ -1,4 +1,5 @@
-tmp/**/*
+tmp/cache/**
+tmp/cache/assets/**/
 log/**/*
 /log/delelopment.log
 /Gemfile.lock

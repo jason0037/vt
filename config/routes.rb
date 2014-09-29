@@ -120,6 +120,8 @@ end
       get 'orders'
       get 'members'
       get 'weixin'
+      post "black_good_destory"
+      post "destory"
     end
     member do
       get :user
@@ -224,6 +226,7 @@ end
   get 'admin'=>'admin/sessions#new'
 
   namespace :admin do
+
     # subdomain = nil
     # subdomain = "www" if Rails.env == "production"
     # constraints :subdomain => subdomain do
@@ -266,8 +269,15 @@ end
       get :delete
       put :update_brand,:on=>:member
     end
+    resources :black_good do
+
+    end
 
     resources :goods do
+       get "black_good"   , :on=>:collection
+      put "black_good_edit" , :on=>:collection
+      get "black_good_new" , :on=>:collection
+       post "black_good_new" , :on=>:collection
       get "tairyo_show",  :on=>:collection
       post "export", :on=>:collection
       post "import", :on=>:collection

@@ -103,20 +103,51 @@ class VshopController < ApplicationController
   #get /vshop/goods
   def goods
     if @user
+
       @goods = Ecstore::Good.includes(:cat).includes(:brand)
 
       if @user.id!= 2495 #贸威
         @supplier =Ecstore::Supplier.find_by_member_id(@user.id)
         @goods = @goods.where(:supplier_id=>@supplier.id)
       end
+      if @supplier.id ==Ecstore::Supplier.find_by_name("万家物流").id
+        if params[:name]=="货源"
+          @goodes=Ecstore::BlackGood.paginate :page=>params[:page],        ###分页语句
+                                            :per_page =>20,              ###当前只显示一条
+                                            :conditions => ["cat_id=571"]
+        else
+            cat_id=params[:cat_id]
+              if cat_id.nil?
+              cat_id=570
+              end
+        @goods = @goods.paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC',:conditions => ["cat_id=#{cat_id}"])
+       end
+      else
+         @goods = @goods.paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC')   #分页
 
-      @goods = @goods .paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC')   #分页
+          end
 
       @count = @goods.count
+
     else
       redirect_to '/vshop/login'
     end
   end
+
+  def black_good_destory          ##万家物流货源信息删除
+    @black_good =  Ecstore::BlackGood.find(params[:id])
+    @black_good.destroy
+    redirect_to "/vshop/goods"
+  end
+
+def destory
+    @good=Ecstore::Good.find(params[:id])
+    @good.destroy
+    redirect_to "/vshop/goods"
+
+end
+
+
 
   def article
     @article = Ecstore::Page.includes(:meta_seo).find(params[:id])
