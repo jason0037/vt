@@ -15,12 +15,12 @@
         //公众号支付
         jQuery('a#getBrandWCPayRequest').click(function(e){
             WeixinJSBridge.invoke('getBrandWCPayRequest',{
-                "appId" : "#{self.fields['appid']}", //公众号名称，由商户传入
-                "timeStamp" : "#{self.fields['time_stamp']}", //时间戳
-                "nonceStr" : "#{self.fields['nonce_str']}", //随机串
-                "package" : "#{self.fields['package']}",//扩展包
-                "signType" : "#{self.fields['sign_type']}", //微信签名方式:1.sha1;2.md5
-                "paySign" : "#{self.fields['pay_sign']}" //微信签名
+                "appId" : "<%=params['appid']%>", //公众号名称，由商户传入
+                "timeStamp" : "<%=params['time_stamp']%>", //时间戳
+                "nonceStr" : "<%=params['nonce_str']%>", //随机串
+                "package" : "<%=params['package']%>",//扩展包
+                "signType" : "<%=params['sign_type']%>", //微信签名方式:1.sha1;2.md5
+                "paySign" : "<%=params['pay_sign']%>" //微信签名
             },function(res){
 // 返回res.err_msg,取值
 //get_brand_wcpay_request:cancel 用户取消
