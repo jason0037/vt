@@ -25,7 +25,7 @@ module ModecPay
 		# payment description
 		attr_accessor :body
 
-    attr_accessor :appid ,:time_stamp,:nonce_str,:sign_type
+    attr_accessor :openid, :spbill_create_ip
 
 		# A block pass to sort_by 
 		# == Example
@@ -89,23 +89,23 @@ module ModecPay
 
     def html_form_wxpay
       #make_sign
-      make_pay_sign
-      if sorter.is_a?(Proc)
-        self.fields = Hash.send :[],  self.fields.select{ |key,val|  val.present? }.sort_by(&self.sorter)
-      end
+      #make_pay_sign
+      pre_pay
 
-      if sorter.is_a?(Array)
-        _fields = self.fields.dup
-        self.fields = {}
-        sorter.each do |key|
-          self.fields[key] = _fields.delete(key)
-        end
-        self.fields.merge!(_fields)  unless _fields.empty?
+      xml = self.fields['pre_pay_xml']
+
+      RestClient.get(self.action)
+      res_data = RestClient.post self.action , xml , {:content_type => :xml}
+      res_data_xml = res_data.force_encoding('utf-8').encode
+      res_data_hash = Hash.from_xml(res_data_xml)
+
+      if res_data_hash['xml']['return_code']=='SUCCESS'
+        self.fields['package'] ="prepay_id=#{res_data_hash['xml']['prepay_id']}"
+        make_pay_sign
       end
 
       _filter = self.filter if self.filter.is_a?(Proc)
       _filter = proc { true }  unless _filter
-
 
       form_inputs = self.fields.select(&_filter).collect do |key,val|
         "<input type='hidden' name='#{key}' value='#{val}' />"
@@ -123,13 +123,13 @@ module ModecPay
 				</head>
 				<body>
 				<div>Redirecting...</div>
-        <form accept-charset="#{self.charset}" action="#{self.action}" method="#{self.method}" id="pay_form">
-        #{form_inputs}
+        <form accept-charset="#{self.charset}" action="/vshop/78/payments" method="post" id="pay_form">
+          #{form_inputs}
         </form>
 				<script type="text/javascript">
-				//	window.onload=function(){
-				//		document.getElementById("pay_form").submit();
-				//	}
+					window.onload=function(){
+					document.getElementById("pay_form").submit();
+				}
 				</script>
  <script language="javascript" type="text/javascript">
       function auto_remove(img){
@@ -205,11 +205,12 @@ alert(res.err_msg)
 </head>
 <body>
 <div class="WCPay">
-  <a id="getBrandWCPayRequest" href="javascript:void(0);"><h1 class="title">您的初始密钥已经失效，请登录商户后台重新设置</h1></a>
+  <a id="getBrandWCPayRequest" href="javascript:void(0);"><h1 class="title">没有权限</h1></a>
 </div>
 				</body>
 				</html>
       FORM
+
     end
 
     def html_form_alipaywap

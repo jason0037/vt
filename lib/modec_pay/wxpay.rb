@@ -6,18 +6,11 @@ module ModecPay
     @@appid = 'wxec23a03bf5422635'
     @@mch_id = '10011618'
     @@partner_key  = 'fe699e8e82144ddba567bcfcf441ece0'
-    @@pay_sign_key ='877a9ba7a98f75b90a9d49f53f15a858'
     @@partnerid ='1221177901'
 
     @@sub_mch_id=''
     @@device_info=''
-=begin
-    @order_info.merge!('subOrderInfoList'=>{'subOrderInfo'=>@sub_order_info})
-    @tran_data.merge!('orderInfo'=>@order_info)
-    @tran_data.merge!('custom'=>@custom)
-    @tran_data.merge!('message'=>@message)
-    tran_data_xml = '<?xml version="1.0" encoding="GBK" standalone="no"?>' + @tran_data.to_xml(:root=>"B2CReq",:skip_instruct=>true,:indent=>0)
-=end
+
     def initialize
       super
 
@@ -25,31 +18,35 @@ module ModecPay
       self.method = 'post'
       self.charset ='utf-8'
 
-      self.fields['appid'] = @@appid
-      self.fields['time_stamp'] = Time.now.to_i
-      self.fields['nonce_str'] =  Digest::MD5.hexdigest(rand(1000).to_s) #随机串,不长于32位
-      self.fields['sign_type'] ='SHA1' #微信签名方式:1.sha1;2.md5 目前只支持SHA1
-
       self.sorter = Proc.new { |key,val| key }
       self.filter = Proc.new { |key,val| key.present? }
 
+      self.fields['appid'] = @@appid
+      self.fields['mch_id'] = @@mch_id
+     # self.fields['sub_mch_id'] = @@sub_mch_id
+    #  self.fields['device_info']= @@device_info
 
-      self.fields['bank_type'] = 'WX'
-      self.fields['body'] = '订单商品' #商品描述 string(127)
-      self.fields['partner'] = @@partnerid  #商户号 partnerId;
- #     self.fields['attach'] = ''
-      self.fields['apbill_create_ip'] ='127.0.0.1' #订单生成的机器IP string(16)
-      self.fields['fee_type'] ='1' #支持币种，1 ：人民币 ，目前只支持人民币
-      self.fields['input_charset'] ='UTF-8' #传入参数字符编码，取值范围 “GBK”，“UTF-8”]
- #     self.fields['time_start'] = '' #订单生成时间 yyyyMMddHHmmss string(14)，否
- #     self.fields['time_expire'] = '' #交易结束时间时间 yyyyMMddHHmmss string（14），否
- #     self.fields['goods_tag'] = '' #商品标记，不能随便填 String（32），否
- #     self.fields['transport_fee'] = '' #物流费用，string，单位为分。如果有值，必须保证 transport_fee+product_fee=total_fee；否
- #     self.fields['product_fee'] = '' #物流费用，string，单位为分。如果有值，必须保证 transport_fee+product_fee=total_fee；否
+     # self.fields['attach'] = 'trade-v' #附加数据原样返回
 
- #     self.fields['trade_type'] = 'JSAPI' #JSAPI, NATIVE, APP
- #     self.fields['openid'] = '' #用户的openid, trade_type为JSAPP时，必传，否
- #     self.fields['products_id'] = '' #trade_type为NATIVE时，需要，此id为二维码中包含的商品ID
+     # self.fields['time_start'] = '' #订单生成时间 yyyyMMddHHmmss string(14)，否
+     # self.fields['time_expire'] = '' #交易结束时间时间 yyyyMMddHHmmss string（14），否
+     # self.fields['goods_tag'] = '' #商品标记，不能随便填 String（32），否
+
+      self.fields['trade_type'] = 'JSAPI' #JSAPI, NATIVE, APP
+      self.fields['openid'] = '' #用户的openid, trade_type为JSAPP时，必传，否
+      self.fields['nonce_str'] =  Digest::MD5.hexdigest(rand(1000).to_s) #随机串,不长于32位
+      self.fields['products_id'] = '' #trade_type为NATIVE时，需要，此id为二维码中包含的商品ID
+
+
+      #     self.fields['transport_fee'] = '' #物流费用，string，单位为分。如果有值，必须保证 transport_fee+product_fee=total_fee；否
+      #     self.fields['product_fee'] = '' #物流费用，string，单位为分。如果有值，必须保证 transport_fee+product_fee=total_fee；否
+
+ #     self.fields['bank_type'] = 'WX'
+  #    self.fields['partner'] = @@partnerid  #商户号 partnerId;
+
+
+ #     self.fields['fee_type'] ='1' #支持币种，1 ：人民币 ，目前只支持人民币
+ #     self.fields['input_charset'] ='UTF-8' #传入参数字符编码，取值范围 “GBK”，“UTF-8”]
 
     end
 
@@ -57,8 +54,16 @@ module ModecPay
    #   self.fields['return_url'] = val
    # end
 
+    def spbill_create_ip=(val)
+      self.fields['spbill_create_ip'] = val #订单生成的机器IP string(16)
+    end
+
     def notify_url=(val)
       self.fields['notify_url'] = val #接受微信支付成功通知
+    end
+
+    def openid=(val)
+      self.fields['openid'] = val #微信用户号
     end
 
     def pay_id=(val)
@@ -70,12 +75,15 @@ module ModecPay
     end
 
     def pay_amount=(val)
-      self.fields['total_fee'] = (val*100).to_i #int fee*100 单位为分
+      self.fields['total_fee'] = (val*100).to_i.to_s #int fee*100 单位为分
     end
 
     def subject=(val)
-      self.fields['attach'] = val #附加数据，原样返回 string(127),否
-     # self.fields['subject'] = val
+      self.fields['body'] = val  #商品信息
+    end
+
+    def attach=(val)
+      self.fields['attach'] = val  #附加数据，原样返回 string(127),否
     end
 
     class <<  self
@@ -142,58 +150,49 @@ module ModecPay
 
     def make_sign
       return '' if self.fields.blank?
-      unsorted={"bank_type" => self.fields["bank_type"],
-                "body" => self.fields["boby"],
-                "partner" => self.fields["partner"],
-                "out_trade_no" => self.fields["out_trade_no"],
-                "total_fee" => self.fields["total_fee"],
-                "fee_type" => self.fields["fee_type"],
-                "notify_url" => self.fields["notify_url"],
-                "spbill_create_id" => self.fields["spbill_create_id"],
-                "input_charset" => self.fields["input_charset"]
-      }
-      _sorted = Hash.send :[],  unsorted.select{ |key,val|  val.present? }.sort_by{ |key,val|  key }
+
+      _sorted = Hash.send :[],  self.fields.select{ |key,val|  val.present? }.sort_by{ |key,val|  key }
 
       unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{@@partner_key}"
-      self.fields['sign'] = Digest::MD5.hexdigest(unsign).upcase
+      self.fields['sign']  = Digest::MD5.hexdigest(unsign).upcase
+      unsign
     end
 
-    def make_package
-      return '' if self.fields.blank?
-      make_sign
-      unsorted={"bank_type" => self.fields["bank_type"],
-                "body" => self.fields["boby"],
-                "partner" => self.fields["partner"],
-                "out_trade_no" => self.fields["out_trade_no"],
-                "total_fee" => self.fields["total_fee"],
-                "fee_type" => self.fields["fee_type"],
-                "notify_url" => CGI::escape(self.fields["notify_url"]),
-                "spbill_create_id" => self.fields["spbill_create_id"],
-                "input_charset" => self.fields["input_charset"]
-      }
-      _sorted = Hash.send :[],  unsorted.select{ |key,val|  val.present?}.sort_by{ |key,val|  key }
+    def pre_pay
+        self.fields['openid']="oVxC9uChJqM0nf-PREaLjk5Xf2MU"
+        unsign=make_sign
+       # self.fields['openid']="<![CDATA[#{self.fields['openid']}]]>"
+       # self.fields['body'] ="<![CDATA[#{self.fields['body']}]]>"
+        if self.fields['attach']
+          self.fields['attach'] ="<![CDATA[#{self.fields['attach']}]]>"
+        end
+       # self.fields['sign'] ="<![CDATA[#{self.fields['sign']}]]>"
 
-      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&")+ "&sign=#{self.fields['sign']}"
-      #self.fields['package'] =unsign.force_encoding('UTF-8')
-      self.fields['package'] = unsign
+        self.fields['pre_pay_xml'] =  self.fields.to_xml(:root=>"xml",:skip_instruct=>true,:indent=>0,:dasherize => false)
+        self.fields['unsign'] = unsign
+        #=====JSAPI
+        self.fields['time_stamp'] = Time.now.to_i
+
+        self.fields['sign_type'] ='MD5' #微信签名方式:1.sha1;2.md5
+# appId package paySign
+
     end
 
     def make_pay_sign
       return '' if self.fields.blank?
-      make_package
+
       # appid  appkey  noncestr package timestamp traceid
       unsorted={"appid" => self.fields["appid"],
-                "appkey" => @@pay_sign_key,
                 "noncestr" => self.fields["noncestr"],
                 "package" => self.fields["package"],
-                "timestamp" => self.fields["timestamp"],
-                "traceid" => self.fields["traceid"]
+                "timestamp" => self.fields["timestamp"]
       }
       _sorted = Hash.send :[],  unsorted.select{ |key,val|  val.present? && key != 'sign_type' && key != 'sign' }.sort_by{ |key,val|  key }
 
-      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&")
+      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{@@partner_key}"
 
-      self.fields['pay_sign'] = Digest::SHA1.hexdigest(unsign)
+      self.fields['pay_sign'] = Digest::MD5.hexdigest(unsign)
     end
+
   end
 end

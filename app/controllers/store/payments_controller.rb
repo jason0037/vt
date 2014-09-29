@@ -78,6 +78,8 @@ class Store::PaymentsController < ApplicationController
 				pay.pay_time = Time.now
 				pay.subject = "贸威订单(#{order_id})"
 				pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
+        pay.openid = @user.account.login_name
+        pay.spbill_create_ip = request.remote_ip
       end
 
       if adapter=='alipaywap'

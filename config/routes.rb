@@ -126,7 +126,7 @@ end
       get :category
       get :commodity
       get :order
-      get :payments
+      post :payments
       get :native
       get :paynotifyurl
       get :feedback

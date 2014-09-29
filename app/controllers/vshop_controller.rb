@@ -194,7 +194,7 @@ class VshopController < ApplicationController
     @packageValue ='' #扩展包
     @signType = "SHA1"  #微信签名方式:1.sha1
     @paySign = ''    #微信签名
-
+    render :layout=>"#{@supplier.layout}"
 
   end
 
