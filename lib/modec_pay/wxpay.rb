@@ -23,10 +23,10 @@ module ModecPay
 
       self.fields['appid'] = @@appid
       self.fields['mch_id'] = @@mch_id
-      self.fields['sub_mch_id'] = @@sub_mch_id
-      self.fields['device_info']= @@device_info
+     # self.fields['sub_mch_id'] = @@sub_mch_id
+    #  self.fields['device_info']= @@device_info
 
-     # self.fields['attach'] = '' #附加数据原样返回
+     # self.fields['attach'] = 'trade-v' #附加数据原样返回
 
      # self.fields['time_start'] = '' #订单生成时间 yyyyMMddHHmmss string(14)，否
      # self.fields['time_expire'] = '' #交易结束时间时间 yyyyMMddHHmmss string（14），否
@@ -54,7 +54,7 @@ module ModecPay
    #   self.fields['return_url'] = val
    # end
 
-    def spbill_create_ip(val)
+    def spbill_create_ip=(val)
       self.fields['spbill_create_ip'] = val #订单生成的机器IP string(16)
     end
 
@@ -155,17 +155,21 @@ module ModecPay
 
       unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{@@partner_key}"
       self.fields['sign']  = Digest::MD5.hexdigest(unsign).upcase
+      unsign
     end
 
     def pre_pay
-        self.fields['openid']='oVxC9uChJqM0nf-PREaLjk5Xf2MU'
-        make_sign
-        self.fields['body'] ="<![CDATA[#{self.fields['body']}]]>"
-        self.fields['attach'] ="<![CDATA[#{self.fields['attach']}]]>"
-        self.fields['sign'] ="<![CDATA[#{self.fields['sign']}]]>"
+        self.fields['openid']="oVxC9uChJqM0nf-PREaLjk5Xf2MU"
+        unsign=make_sign
+       # self.fields['openid']="<![CDATA[#{self.fields['openid']}]]>"
+       # self.fields['body'] ="<![CDATA[#{self.fields['body']}]]>"
+        if self.fields['attach']
+          self.fields['attach'] ="<![CDATA[#{self.fields['attach']}]]>"
+        end
+       # self.fields['sign'] ="<![CDATA[#{self.fields['sign']}]]>"
 
-        self.fields['pre_pay_xml'] =  self.fields.to_xml(:root=>"xml",:skip_instruct=>true,:indent=>0).gsub('&lt;','<').gsub('&gt;','>')
-
+        self.fields['pre_pay_xml'] =  self.fields.to_xml(:root=>"xml",:skip_instruct=>true,:indent=>0,:dasherize => false)
+        self.fields['unsign'] = unsign
         #=====JSAPI
         self.fields['time_stamp'] = Time.now.to_i
 
@@ -173,42 +177,21 @@ module ModecPay
 # appId package paySign
 
     end
-    def make_package
-      return '' if self.fields.blank?
-      make_sign
-      unsorted={"bank_type" => self.fields["bank_type"],
-                "body" => self.fields["boby"],
-                "partner" => self.fields["partner"],
-                "out_trade_no" => self.fields["out_trade_no"],
-                "total_fee" => self.fields["total_fee"],
-                "fee_type" => self.fields["fee_type"],
-                "notify_url" => CGI::escape(self.fields["notify_url"]),
-                "spbill_create_id" => self.fields["spbill_create_id"],
-                "input_charset" => self.fields["input_charset"]
-      }
-      _sorted = Hash.send :[],  unsorted.select{ |key,val|  val.present?}.sort_by{ |key,val|  key }
-
-      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&")+ "&sign=#{self.fields['sign']}"
-      #self.fields['package'] =unsign.force_encoding('UTF-8')
-      self.fields['package'] = unsign
-    end
 
     def make_pay_sign
       return '' if self.fields.blank?
-      make_package
+
       # appid  appkey  noncestr package timestamp traceid
       unsorted={"appid" => self.fields["appid"],
-                "appkey" => @@partner_key,
                 "noncestr" => self.fields["noncestr"],
                 "package" => self.fields["package"],
-                "timestamp" => self.fields["timestamp"],
-                "traceid" => self.fields["traceid"]
+                "timestamp" => self.fields["timestamp"]
       }
       _sorted = Hash.send :[],  unsorted.select{ |key,val|  val.present? && key != 'sign_type' && key != 'sign' }.sort_by{ |key,val|  key }
 
-      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&")
+      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{@@partner_key}"
 
-      self.fields['pay_sign'] = Digest::SHA1.hexdigest(unsign)
+      self.fields['pay_sign'] = Digest::MD5.hexdigest(unsign)
     end
 
   end
