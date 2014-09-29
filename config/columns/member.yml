@@ -34,7 +34,7 @@
 17-income-家庭月收入: 
   - 家庭月收入
   - user.income
-  - "false"
+  - "true"
 18-education-教育程度: 
   - 教育程度
   - user.edu

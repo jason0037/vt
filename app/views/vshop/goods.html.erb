@@ -9,12 +9,16 @@
   <th class="td-teg" style="display:none">标签</th>
   <th class="order" data-field="bn" data-sorter="asc">商品编号</th>
   <th class="order" data-field="name" data-sorter="asc">商品名称</th>
+  <% if (Ecstore::Account.find(@user.member_id).supplier_id)!=(Ecstore::Supplier.find_by_name("万家物流").id)%>
   <th width="50px" align="center">缩略图</th>
+      <%end %>
       <th class="order" data-field="cost" data-sorter="asc">成本价</th>
   <th class="order" data-field="price" data-sorter="asc">会员价</th>
   <th class="order" data-field="mktprice" data-sorter="asc">市场价</th>
       <th class="order" data-field="price" data-sorter="asc">佣金</th>
+  <% if (Ecstore::Account.find(@user.member_id).supplier_id)!=(Ecstore::Supplier.find_by_name("万家物流").id)%>
   <th class="order" data-field="store" data-sorter="asc">库存</th>
+      <%end%>
   <th class="order" data-field="marketable" data-sorter="asc">上架</th>
   <th class="order" data-field="uptime" data-sorter="asc"  style="display:none">上架时间</th>
   <th class="order" data-field="cat_id" data-sorter="asc">分类</th>
@@ -35,24 +39,29 @@
 
           <td><%=good.bn%></td>
           <td><%=link_to good.name,good_path(good.bn),:target=>"_blank"%></td>
+          <% if (Ecstore::Account.find(@user.member_id).supplier_id)!=(Ecstore::Supplier.find_by_name("万家物流").id)%>
           <td align="center">
             <%=link_to "#", :class=>"hover-thumb", :data=>{ :thumb => good.list_default_pic||"",:title=>"#{good.name}(#{good.bn})" } do%>
                 <%=image_tag good.list_default_pic, :size => "35x50"%>
             <%end%>
           </td>
+              <%end %>
               <td>&yen;<%=format("%.2f",good.cost) if good.cost%></td>
           <td>&yen;<%=format("%.2f",good.price) if good.price%></td>
           <td>&yen;<%=format("%.2f",good.mktprice) if good.mktprice%></td>
               <td>&yen;<%=format("%.2f",good.price*0.1) if good.price%></td>
-
+          <% if (Ecstore::Account.find(@user.member_id).supplier_id)!=(Ecstore::Supplier.find_by_name("万家物流").id)%>
           <td><%=good.store.to_i%></td>
+              <%end%>
           <td><%=good.marketable == 'true' ? '是' : '否'%></td>
           <td style="display:none"><%=Time.at(good.uptime).strftime("%Y-%m-%d %H:%M:%S") if good.uptime.present?%></td>
           <td><%=good.cat.cat_name if good.cat%></td>
           <td><%=good.good_type.name if good.good_type%></td>
           <td>
                 <%=link_to "编辑",edit_admin_good_path(good)%>
+            <% if (Ecstore::Account.find(@user.member_id).supplier_id)!=(Ecstore::Supplier.find_by_name("万家物流").id)%>
                 <%=link_to "规格",spec_admin_good_path(good)%>
+                <%end%>
           </td>
         </tr>
     <%end%>
