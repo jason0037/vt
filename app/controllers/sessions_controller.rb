@@ -109,7 +109,7 @@ class SessionsController < ApplicationController
       # refer_url = request.env["HTTP_REFERER"]
       # refer_url = "/" unless refer_url
       if params[:platform]=="mobile"
-        redirect_to "/vshop/#{params[:id]}"
+        redirect_to "/mlogin?id=#{params[:id]}"
       elsif
         redirect_to "/vshop"
       else
