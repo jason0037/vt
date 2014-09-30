@@ -116,7 +116,7 @@ class MancoController < ApplicationController
    @supplier = Ecstore::Supplier.find(supplier_id)
    if @user
    else
-     redirect_to "/mlogin?id=#{supplier_id}&platform=mobile&return_url=manco/express?supplier_id=#{supplier_id}"
+     redirect_to "/mlogin?id=#{supplier_id}&platform=mobile&return_url=/manco/express?supplier_id=#{supplier_id}"
    end
 
   end
