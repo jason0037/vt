@@ -15,7 +15,8 @@ class Store::CatsController < ApplicationController
         end
 
         sql = " bn in (#{goods_ids})"
-        @all_goods = Ecstore::Good.where(sql)
+
+        @all_goods = Ecstore::Good.where(sql).order("place asc")
         @goods = @all_goods
         render :layout=>@supplier.layout
 
