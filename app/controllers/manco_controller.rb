@@ -6,8 +6,8 @@ class MancoController < ApplicationController
 
   end
   def show
-    @supplier_id=params[:supplier_id]
-    @supplier = Ecstore::Supplier.find(@supplier_id)
+    supplier_id=params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(supplier_id)
   end
 
   def find_manco
@@ -102,19 +102,23 @@ class MancoController < ApplicationController
   end
 
   def main
-    @supplier_id=params[:supplier_id]
-    @supplier = Ecstore::Supplier.find(@supplier_id)
+    supplier_id=params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(supplier_id)
   end
 
   def history
-    @supplier_id=params[:supplier_id]
-    @supplier = Ecstore::Supplier.find(@supplier_id)
+    supplier_id=params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(supplier_id)
   end
 
  def express                 ###运价查询
+  supplier_id=params[:supplier_id]
+   @supplier = Ecstore::Supplier.find(supplier_id)
+   if @user
+   else
+     redirect_to "/mlogin?id=#{supplier_id}&platform=mobile&return_url=manco/express?supplier_id=#{supplier_id}"
+   end
 
-  @supplier_id=params[:supplier_id]
-  @supplier = Ecstore::Supplier.find(@supplier_id)
   end
 
   def follow       ###快递跟踪
