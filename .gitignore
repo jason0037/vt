@@ -1,4 +1,4 @@
-tmp/cache/**
+tmp/cache/
 tmp/cache/assets/**/
 log/**/*
 /log/delelopment.log
