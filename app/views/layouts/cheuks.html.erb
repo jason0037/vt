@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <meta content="telephone=no" name="format-detection">
+  <title><%=@supplier.name%>微商城</title>
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <%= stylesheet_link_tag    "manco/amui.all.min.css" %>
+  <%= stylesheet_link_tag    "manco/navbar.css" %>
+  <%= stylesheet_link_tag    "manco/amui.all.css" %>
+  <%= javascript_include_tag "manco/amui.widget.helper.js" %>
+  <%= javascript_include_tag "manco/zepto.min.js" %>
+
+  <%= javascript_include_tag "manco/amui.widget.helper.min" %>
+  <%= javascript_include_tag "manco/handlebars.min.js" %>
+  <%= javascript_include_tag "manco/amui.js" %>
+  <%= javascript_include_tag "manco/amui.min.js" %>
+
+
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-jiu  am-no-layout"><div class="am-header-left am-header-nav">
+
+
+<%= yield %>
+
+
+
+
+
+
+<div class="footer clearfix">
+  <%if @user%>
+      <script>
+          if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
+              location.href = "/logout?id=69&platform=mobile"
+          }
+      </script>
+  <%end%>
+  <p class="copyright">Copyright © 2013-2014 trade-v.com 版权所有 上海普慧信息科技有限公司 All rights reserved. 沪ICP备13045311号-1 </p>
+</div>
+<div class="space10"></div>
+
+<div class="c-bottom"></div>
+</body>
+</html>
+
+
+
+
