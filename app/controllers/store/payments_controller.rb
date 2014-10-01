@@ -25,7 +25,6 @@ class Store::PaymentsController < ApplicationController
 
 		@payment = Ecstore::Payment.new params[:payment]  do |payment|
 			payment.payment_id = Ecstore::Payment.generate_payment_id
-			
 
 			payment.status = 'ready'
 			payment.pay_ver = '1.0'
@@ -319,7 +318,7 @@ class Store::PaymentsController < ApplicationController
 		@user = @payment.user
 
 		result = ModecPay.verify_notify(adapter,params,{ :bill99_redirect_url=>"#{site}/#{order_path(@order)}",:ip=>request.remote_ip })
-		
+
 		@payment.payment_log.update_attributes({:notify_ip=>request.remote_ip,
 			                                                                           :notify_params=> params.to_json,
 			                                                                           :notified_at=>Time.now,
@@ -343,7 +342,7 @@ class Store::PaymentsController < ApplicationController
 		else
 			response =  result
 		end
-		
+
 		render :text=>response
 	end
 

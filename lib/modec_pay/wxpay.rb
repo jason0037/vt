@@ -100,19 +100,19 @@ module ModecPay
         #unsign = _sorted_hash.collect do |key,val| 	"#{key}=#{val}" end.join("&") + @@private_key #self.private_key
 
         unsign_hash =Hash.send :[],  params.select{ |key,val| val.present? && key != 'sign' && key != 'sign_type' }
-        unsign = unsign_hash.collect do |key,val| 	"#{key}=#{val}" end.join("&") + @@private_key #self.private_key
+        unsign = unsign_hash.collect do |key,val| 	"#{key}=#{val}" end.join("&") + "&key=#{@@partner_key}"
         Digest::MD5.hexdigest(unsign) == sign
       end
 
       def verify_notify(params,options)
         if verify_sign(params)
 
-          ModecPay.logger.info "[alipaywap][#{Time.now}] payment=#{params['out_trade_no']} verify notify successfully."
+          ModecPay.logger.info "[wxpay][#{Time.now}] payment=#{params['out_trade_no']} verify notify successfully."
 
-          case params['result']
-            when 'success'
+          case params['return_code']
+            when 'SUCCESS'
               t_payed = Time.now.to_i
-              t_payed = Time.parse(params['gmt_payment']).to_i  if params['gmt_payment'].present?
+              t_payed = Time.parse(params['time_end']).to_i  if params['time_end'].present?
               result = {  :payment_id=>params['out_trade_no'],
                           :trade_no=>params['trade_no'],
                           :status=>'succ',
@@ -131,12 +131,12 @@ module ModecPay
 
       def verify_return(params,options)
         if verify_sign(params)
-          ModecPay.logger.info "[alipaywap][#{Time.now}] verify return successfully."
-          case params['result']
-            when 'success'
+          ModecPay.logger.info "[wxpay][#{Time.now}] verify return successfully."
+          case params['return_code']
+            when 'SUCCESS'
               t_payed = Time.now
               result = {  :payment_id=>params['out_trade_no'],
-                          :trade_no=>params['trade_no']
+                          :trade_no=>params['transaction_id']
               }
               result.merge!(:status=>'succ',:response => 'success', :t_payed=>t_payed)
 
@@ -155,69 +155,28 @@ module ModecPay
 
     def make_sign
       return '' if self.fields.blank?
-
       _sorted = Hash.send :[],  self.fields.select{ |key,val|  val.present? }.sort_by{ |key,val|  key }
-
       unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{@@partner_key}"
       self.fields['sign']  = Digest::MD5.hexdigest(unsign).upcase
-      unsign
     end
 
     def pre_pay
-        unsign=make_sign
-       # self.fields['body'] ="<![CDATA[#{self.fields['body']}]]>"
-        if self.fields['attach']
-          self.fields['attach'] ="<![CDATA[#{self.fields['attach']}]]>"
-        end
-       # self.fields['sign'] ="<![CDATA[#{self.fields['sign']}]]>"
-
+        make_sign
         self.fields['pre_pay_xml'] =  self.fields.to_xml(:root=>"xml",:skip_instruct=>true,:indent=>0,:dasherize => false)
-        self.fields['unsign'] = unsign
-        #=====JSAPI
         self.fields['time_stamp'] = Time.now.to_i
-
         self.fields['sign_type'] ='MD5' #微信签名方式:1.sha1;2.md5
-# appId package paySign
-
     end
 
     def make_pay_sign
       return '' if self.fields.blank?
-
-      # appid  appkey  noncestr package timestamp traceid
-      unsorted={"appid" => self.fields["appid"],
-                "noncestr" => self.fields["nonce_str"],
-                "package" => self.fields["package"],
-                "timestamp" => self.fields["time_stamp"]
-      }
       unsorted={"appId" => self.fields["appid"],
                 "nonceStr" => self.fields["nonce_str"],
                 "package" => self.fields["package"],
                 "timeStamp" => self.fields["time_stamp"],
                 "signType" => self.fields['sign_type']
       }
-=begin
-WeixinJSBridge.invoke('getBrandWCPayRequest',{
-"appId":"wx2421b1c4370ec43b", //公众号名称，由商户传入
-"timeStamp":"1395712654", //时间戳，自1970年以来的秒数
-"nonceStr":"e61463f8efa94090b1f366cccfbbb444", //随机串
-"package":"prepay_id=u802345jgfjsdfgsdg888",
-"signType":"MD5", //微信签名方式:
-"paySign":"70EA570631E4BB79628FBCA90534C63FF7FADD89"//微信签名 }
-           A702F16C21B138EE990D06BEFF6B7B2D
-,function(res){ if(res.err_msg=="get_brand_wcpay_request:ok"){}
-
-      unsorted={"appId" =>"wx2421b1c4370ec43b",
-                "nonceStr" => "e61463f8efa94090b1f366cccfbbb444",
-                "package" => "prepay_id=u802345jgfjsdfgsdg888",
-                "timeStamp" => "1395712654",
-                "signType" =>"MD5"
-      }
-=end
       _sorted = Hash.send :[],  unsorted.select{ |key,val|  val.present? && key != 'sign_Type'}.sort_by{ |key,val|  key }
-
       unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{@@partner_key}"
-
       self.fields['pay_sign'] = Digest::MD5.hexdigest(unsign).upcase
     end
 

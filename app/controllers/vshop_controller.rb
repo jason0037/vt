@@ -233,8 +233,8 @@ end
       order_id = @payment.pay_bill.rel_id
       @modec_pay = ModecPay.new adapter do |pay|
         if adapter=='wxpay'
-          pay.return_url = "#{site}/vshop/78/payments/#{adapter}/callback?payment_id=#{@payment.payment_id}"
-          pay.notify_url = "#{site}/vshop/78/payments/#{adapter}/notify?payment_id=#{@payment.payment_id}"
+          pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
+          pay.notify_url = "#{site}/vshop/78/paynotifyurl?payment_id=#{@payment.payment_id}"
         else
           pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
           pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"
@@ -272,6 +272,49 @@ end
 
    # render :layout=>"#{@supplier.layout}"
 
+  end
+
+  def paynotifyurl
+    ModecPay.logger.info "[#{Time.now}][#{request.remote_ip}] #{request.request_method} \"#{request.fullpath}\" params : #{ params.to_s }"
+
+    @payment = Ecstore::Payment.find(params.delete(:payment_id))
+
+    return render :nothing=>true, :status=>:forbidden if @payment.paid?
+
+    adapter  = params.delete(:adapter)
+    params.delete :controller
+    params.delete :action
+
+    @order = @payment.pay_bill.order
+    @user = @payment.user
+
+    result = ModecPay.verify_notify(adapter,params,{ :bill99_redirect_url=>"#{site}/#{order_path(@order)}",:ip=>request.remote_ip })
+
+    @payment.payment_log.update_attributes({:notify_ip=>request.remote_ip,
+                                            :notify_params=> params.to_json,
+                                            :notified_at=>Time.now,
+                                            :result=>result.to_json}) if @payment.payment_log
+
+    if result.is_a?(Hash) && result.present?
+      response = result.delete(:response)
+      if result.delete(:payment_id) == @payment.payment_id.to_s && !@payment.paid?
+        @payment.update_attributes(result)
+        @order.update_attributes(:pay_status=>'1')
+        Ecstore::OrderLog.new do |order_log|
+          order_log.rel_id = @order.order_id
+          order_log.op_id = @user.member_id
+          order_log.op_name = @user.login_name
+          order_log.alttime = @payment.t_payed
+          order_log.behavior = 'payments'
+          order_log.result = "SUCCESS"
+          order_log.log_text = "订单支付成功！"
+        end.save
+      end
+    else
+      response =  result
+    end
+
+    render :text=>response
   end
 
 end
