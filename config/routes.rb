@@ -138,6 +138,7 @@ end
       get :commodity
       get :order
       post :payments
+      get :payment
       get :native
       get :paynotifyurl
       get :feedback

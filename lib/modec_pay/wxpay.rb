@@ -78,6 +78,11 @@ module ModecPay
       self.fields['total_fee'] = (val*100).to_i.to_s #int fee*100 单位为分
     end
 
+    def openid=(val)
+      self.fields['openid'] = val #支付用户openid
+    end
+
+
     def subject=(val)
       self.fields['body'] = val  #商品信息
     end
@@ -159,9 +164,7 @@ module ModecPay
     end
 
     def pre_pay
-        self.fields['openid']="oVxC9uChJqM0nf-PREaLjk5Xf2MU"
         unsign=make_sign
-       # self.fields['openid']="<![CDATA[#{self.fields['openid']}]]>"
        # self.fields['body'] ="<![CDATA[#{self.fields['body']}]]>"
         if self.fields['attach']
           self.fields['attach'] ="<![CDATA[#{self.fields['attach']}]]>"
