@@ -249,11 +249,12 @@ end
       end
 
       if adapter=='alipaywap'
-        render :text=>@modec_pay.html_form_alipaywap
+        render :text=>@modec_pay.html_form_alipaywap, :layout=>"#{@supplier.layout}"
       elsif adapter=='wxpay'
-        render :inline=>@modec_pay.html_form_wxpay
+        render :inline=>@modec_pay.html_form_wxpay, :layout=>"#{@supplier.layout}"
       else
-        render :inline=>@modec_pay.html_form
+        render :inline=>@modec_pay.html_form, :layout=>"#{@supplier.layout}"
+
       end
 
       Ecstore::PaymentLog.new do |log|
@@ -269,7 +270,7 @@ end
       flash[:msg] = '不能支付,请查看订单状态'
     end
 
-    render :layout=>"#{@supplier.layout}"
+   # render :layout=>"#{@supplier.layout}"
 
   end
 
