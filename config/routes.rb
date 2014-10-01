@@ -140,7 +140,7 @@ end
      # post :payments
       get :payments
       get :native
-      get :paynotifyurl
+      post :paynotifyurl
       get :feedback
     end
 =begin

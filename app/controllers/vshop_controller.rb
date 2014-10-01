@@ -254,7 +254,6 @@ end
         render :inline=>@modec_pay.html_form_wxpay, :layout=>"#{@supplier.layout}"
       else
         render :inline=>@modec_pay.html_form, :layout=>"#{@supplier.layout}"
-
       end
 
       Ecstore::PaymentLog.new do |log|
@@ -265,13 +264,9 @@ end
         log.request_params = @modec_pay.fields.to_json
         log.requested_at = Time.now
       end.save
-
     else
       flash[:msg] = '不能支付,请查看订单状态'
     end
-
-   # render :layout=>"#{@supplier.layout}"
-
   end
 
   def paynotifyurl

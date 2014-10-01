@@ -128,15 +128,13 @@
                   </li>
               <%end%>
               <li class="otherpay"  mars_sead="checkout_payment_paypal_radio">
-                <%=f.radio_button :payment, "alipaywap", :class=>"btn-radio" ,:checked=>true %>
+                <%=f.radio_button :payment, "alipaywap", :class=>"btn-radio" %>
                 <span>支付宝手机版</span>
               </li>
-              <%if @user.member_id==2490%>
               <li class="otherpay"  mars_sead="checkout_payment_paypal_radio">
                 <%=f.radio_button :payment, "wxpay", :class=>"btn-radio" ,:checked=>true %>
-                <span>微信支付</span>
+                <span>微信支付</span><p>需要微信版本5.0以上，以及用微信登录商城</p>
               </li>
-              <%end%>
             </ul>
 
           </div>
