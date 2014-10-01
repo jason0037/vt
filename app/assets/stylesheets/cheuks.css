@@ -1,0 +1,69 @@
+
+.m-widget-list a::after {
+  display: inline-block;
+  font-family: FontAwesome;
+  font-weight: 400;
+  font-style: normal;
+  vertical-align: baseline;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f054";
+  position: absolute;
+  right: 10px;
+  color: #ccc;
+  top: 50%;
+  margin-top: -8px;
+}
+.am-tabs-cheuks .am-tabs-nav {
+    line-height: 40px;
+    background-color: #FF0000;
+}
+.am-tabs-cheuks .am-tabs-nav a {
+    color: #ffffff;
+    line-height: 42px;
+}
+.am-tabs-cheuks .am-tabs-nav > .am-active a {
+    background-color: #ff4422;
+    color: #ffffff;
+}
+
+.am-btn-cheuks {
+    color: #ffffff;
+    background-color: #ff1919;;
+    border-color: #ff1919;;
+}
+.am-btn-cheuks:hover,
+.am-btn-cheuks:focus,
+.am-btn-cheuks:active,
+.am-btn-cheuks.am-active,
+.am-active .am-dropdown-toggle.am-btn-cheuks {
+    color: #ffffff;
+    background-color: #ff4422;;
+    border-color: #ff4422;;
+}
+
+[data-am-widget='cheuks'] {
+    margin: 10px;
+}
+[data-am-widget='cheuks'] .am-tabs-nav {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: -ms-flex;
+    display: flex;
+}
+[data-am-widget='cheuks'] .am-tabs-nav li {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
