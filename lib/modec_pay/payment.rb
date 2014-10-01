@@ -123,7 +123,7 @@ module ModecPay
 				</head>
 				<body>
 				<div>Redirecting...</div>
-        <form accept-charset="#{self.charset}" action="/vshop/78/payments" method="post" id="pay_form">
+        <form accept-charset="#{self.charset}" action="/vshop/78/payments?id=#{self.pay_id}" method="post" id="pay_form">
           #{form_inputs}
         </form>
 				<script type="text/javascript">

@@ -218,7 +218,7 @@ end
     supplier_id=params[:id]
     order_id = params[:order_id]
     @supplier = Ecstore::Supplier.find(supplier_id)
-    @payment = Ecstore::Payment.find(params[:id])
+
     render :layout=>"#{@supplier.layout}"
   end
 
@@ -226,8 +226,8 @@ end
     supplier_id=params[:id]
     order_id = params[:order_id]
     @supplier = Ecstore::Supplier.find(supplier_id)
-    @payment = Ecstore::Payment.find(params[:id])
 
+    @payment = Ecstore::Payment.find(params[:id])
     if @payment && @payment.status == 'ready'
       adapter = @payment.pay_app_id
       order_id = @payment.pay_bill.rel_id
