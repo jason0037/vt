@@ -2,6 +2,15 @@
 require 'httpclient'
 Modengke::Application.routes.draw do
 
+ resource :cheuks do
+   collection do
+      get 'index'
+      get 'news'
+     get 'new_detail'
+     get 'cheuks_goods'
+     end
+ end
+
 resources :commissions do
   collection do
    get  'platform'
