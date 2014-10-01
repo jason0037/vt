@@ -186,15 +186,39 @@ module ModecPay
 
       # appid  appkey  noncestr package timestamp traceid
       unsorted={"appid" => self.fields["appid"],
-                "noncestr" => self.fields["noncestr"],
+                "noncestr" => self.fields["nonce_str"],
                 "package" => self.fields["package"],
-                "timestamp" => self.fields["timestamp"]
+                "timestamp" => self.fields["time_stamp"]
       }
-      _sorted = Hash.send :[],  unsorted.select{ |key,val|  val.present? && key != 'sign_type' && key != 'sign' }.sort_by{ |key,val|  key }
+      unsorted={"appId" => self.fields["appid"],
+                "nonceStr" => self.fields["nonce_str"],
+                "package" => self.fields["package"],
+                "timeStamp" => self.fields["time_stamp"],
+                "signType" => self.fields['sign_type']
+      }
+=begin
+WeixinJSBridge.invoke('getBrandWCPayRequest',{
+"appId":"wx2421b1c4370ec43b", //公众号名称，由商户传入
+"timeStamp":"1395712654", //时间戳，自1970年以来的秒数
+"nonceStr":"e61463f8efa94090b1f366cccfbbb444", //随机串
+"package":"prepay_id=u802345jgfjsdfgsdg888",
+"signType":"MD5", //微信签名方式:
+"paySign":"70EA570631E4BB79628FBCA90534C63FF7FADD89"//微信签名 }
+           A702F16C21B138EE990D06BEFF6B7B2D
+,function(res){ if(res.err_msg=="get_brand_wcpay_request:ok"){}
+
+      unsorted={"appId" =>"wx2421b1c4370ec43b",
+                "nonceStr" => "e61463f8efa94090b1f366cccfbbb444",
+                "package" => "prepay_id=u802345jgfjsdfgsdg888",
+                "timeStamp" => "1395712654",
+                "signType" =>"MD5"
+      }
+=end
+      _sorted = Hash.send :[],  unsorted.select{ |key,val|  val.present? && key != 'sign_Type'}.sort_by{ |key,val|  key }
 
       unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{@@partner_key}"
 
-      self.fields['pay_sign'] = Digest::MD5.hexdigest(unsign)
+      self.fields['pay_sign'] = Digest::MD5.hexdigest(unsign).upcase
     end
 
   end

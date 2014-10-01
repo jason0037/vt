@@ -76,8 +76,8 @@ class Store::PaymentsController < ApplicationController
 			order_id = @payment.pay_bill.rel_id
 			@modec_pay = ModecPay.new adapter do |pay|
 
-          pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
-          pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"
+        pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
+        pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"
 				pay.pay_id = @payment.payment_id
 				pay.pay_amount = @payment.cur_money.to_f
 				pay.pay_time = Time.now
