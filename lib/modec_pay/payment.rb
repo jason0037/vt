@@ -128,9 +128,9 @@ module ModecPay
 正在跳转到到微信支付，如果长时间没有反应，请点击<input type="submit" text="跳转">
         </form>
 				<script type="text/javascript">
-					window.onload=function(){
-					document.getElementById("pay_form").submit();
-				}
+				//	window.onload=function(){
+				//	document.getElementById("pay_form").submit();
+			//	}
 				</script>
  <script language="javascript" type="text/javascript">
       function auto_remove(img){

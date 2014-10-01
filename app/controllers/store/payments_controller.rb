@@ -50,11 +50,11 @@ class Store::PaymentsController < ApplicationController
 
 		@payment.money = @payment.cur_money = @order.pay_amount
 		if @payment.save
-  #    if @payment.adapter=='wxpay'
-  #      redirect_to "/vshop/78/payment?payment_id=#{@payment.payment_id}"
-  #    else
+      if @payment.adapter=='wxpay'
+        redirect_to "/vshop/78/payments?payment_id=#{@payment.payment_id}"
+      else
         redirect_to pay_payment_path(@payment.payment_id)
-   #   end
+      end
 
 		else
 			redirect_to order_url(@order)
@@ -71,10 +71,10 @@ class Store::PaymentsController < ApplicationController
 
 	def pay
 		@payment = Ecstore::Payment.find(params[:id])
-		if @payment && @payment.status == 'ready'
-			adapter = @payment.pay_app_id
-			order_id = @payment.pay_bill.rel_id
-			@modec_pay = ModecPay.new adapter do |pay|
+      if @payment && @payment.status == 'ready'
+        adapter = @payment.pay_app_id
+        order_id = @payment.pay_bill.rel_id
+        @modec_pay = ModecPay.new adapter do |pay|
 
         pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
         pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"

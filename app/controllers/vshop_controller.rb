@@ -214,7 +214,7 @@ end
   end
 
   #get /vhsop/id/payments
-  def payments
+  def payments0
     supplier_id=params[:id]
     order_id = params[:order_id]
     @supplier = Ecstore::Supplier.find(supplier_id)
@@ -222,12 +222,12 @@ end
     render :layout=>"#{@supplier.layout}"
   end
 
-  def payment
+  def payments
     supplier_id=params[:id]
     order_id = params[:order_id]
     @supplier = Ecstore::Supplier.find(supplier_id)
 
-    @payment = Ecstore::Payment.find(params[:id])
+    @payment = Ecstore::Payment.find(params[:payment_id])
     if @payment && @payment.status == 'ready'
       adapter = @payment.pay_app_id
       order_id = @payment.pay_bill.rel_id
