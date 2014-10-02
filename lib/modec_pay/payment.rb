@@ -122,7 +122,13 @@ module ModecPay
 					<title>Redirecting...</title>
 				</head>
 				<body>
-				<div>正在跳转到到微信支付...<br/>如果长时间没有反应，请</div>
+      <br/>
+      <div class="list_status">
+        <h2 class="blue" >
+          <span class="pay_icon"></span>
+          <span style="color: #0abede">正在跳转到到微信支付...<br/>如果长时间没有反应，请</span>
+        </h2>
+      </div>
         <form accept-charset="#{self.charset}" action="/vshop/78/payments?id=#{self.pay_id}" method="post" id="pay_form">
           #{form_inputs}
 
@@ -213,6 +219,9 @@ alert(res.err_msg);
 <body>
 <div class="WCPay" >
   <a id="getBrandWCPayRequest" href="javascript:void(0);"><h1 class="title">点击支付</h1></a>
+ <script language="javascript" type="text/javascript">
+document.getElementById("getBrandWCPayRequest").click();
+</script>
 </div>
 				</body>
 				</html>
