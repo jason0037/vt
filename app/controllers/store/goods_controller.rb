@@ -5,7 +5,7 @@ class Store::GoodsController < ApplicationController
   skip_before_filter :authorize_user!,:only=>[:price]
   before_filter :find_user, :except=>[:price]
   skip_before_filter :find_path_seo, :find_cart!, :only=>[:newest]
-  before_filter :find_tags, :only=>[:index,:newest]
+  before_filter :find_tags, :only=>[:cheuksgroup,:newest]
 
   def find_manco_good_first
 

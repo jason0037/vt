@@ -146,17 +146,17 @@ module Admin
           tegs = params[:tegs] || {}
 
           tegs.values.each  do |teg|
-            if teg[:def] == "checked"
+            if teg[:technicals] == "checked"
               Ecstore::Tagable.where(:rel_id=>goods_ids,:tag_type=>"goods",:tag_id=>teg[:tag_id]).delete_all if teg[:state] == "none"
             end
 
-            if teg[:def] == "uncheck"
+            if teg[:technicals] == "uncheck"
               goods_ids.each do |order_id|
                 Ecstore::Tagable.create(:rel_id=>order_id,:tag_id=>teg[:tag_id],:tag_type=>"goods",:app_id=>"b2c")
               end
             end
 
-            if teg[:def] == "partcheck"
+            if teg[:technicals] == "partcheck"
               if teg[:state] == "all"
                 goods_ids.each do |order_id|
                   tagable = Ecstore::Tagable.where(:rel_id=>order_id,:tag_id=>teg[:tag_id],:tag_type=>"goods").first_or_initialize(:app_id=>"b2c")

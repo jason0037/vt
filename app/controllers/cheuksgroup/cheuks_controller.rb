@@ -1,4 +1,4 @@
-class CheuksController < ApplicationController
+class Cheuksgroup::CheuksController < ApplicationController
   layout "cheuks"
   def index
     @supplier=Ecstore::Supplier.find_by_id("1");
@@ -16,4 +16,10 @@ class CheuksController < ApplicationController
   def cheuks_goods
     @supplier=Ecstore::Supplier.find_by_id("1");
   end
+
+  def  technical       #技术中心
+    @supplier=Ecstore::Supplier.find_by_id("1");
+  end
+
+
 end

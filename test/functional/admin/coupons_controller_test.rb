@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Admin::CouponsControllerTest < ActionController::TestCase
   test "should get index" do
-    get :index
+    get :cheuksgroup
     assert_response :success
   end
 

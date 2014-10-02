@@ -2,7 +2,7 @@ require 'test_helper'
 
 class Store::GoodsControllerTest < ActionController::TestCase
   test "should get index" do
-    get :index
+    get :cheuksgroup
     assert_response :redirect
   end
 
