@@ -166,7 +166,7 @@ module ModecPay
 
 
                   if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-window.location ="/vshop/78/paynotifyurl?temp=solution&order_id=#{self.fields['out_trade_no']}"
+window.location ="/vshop/78/paynotifyurl?temp=solution&payment_id=#{self.fields['out_trade_no']}"
 }
 else{
 alert(res.err_msg);

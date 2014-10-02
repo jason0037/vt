@@ -272,7 +272,10 @@ end
   def paynotifyurl
     #========================
     if params[:temp]=="solution"
-      @order =Ecstore::Order.find_by_order_id(params[:order_id])
+      @payment = Ecstore::Payment.find(params[:payment_id])
+      return redirect_to detail_order_path(@payment.pay_bill.order) if @payment&&@payment.paid?
+
+      @order = @payment.pay_bill.order
       @order.update_attributes(:pay_status=>'1')
       redirect_to detail_order_path(@payment.pay_bill.order)
     end
