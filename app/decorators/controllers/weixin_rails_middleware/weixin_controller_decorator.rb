@@ -12,10 +12,6 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         render xml: send("response_news_message",{})
       when '地址'
         render xml: send("response_location_message", {})
-      when '奶酪'
-        render xml: send("response_news_message",{})
-      when '黄油'
-        render xml: send("response_news_message",{})
       when '大渔'
         render xml: send("response_news_message",{})
       else
@@ -54,11 +50,11 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2)]
         reply_news_message(articles)
 
-      when '黄油'
-        title="[总统 PRESIDENT]超高温灭菌稀奶油 200毫升仅售¥22.4元"
-        desc ="法国进口的总统谈奶油，是从牛奶中提炼出来的纯天然食品，一般乳脂含量为16.5%，营养价值高，入口即化"
-        pic_url="http://www.trade-v.com/images/a074/a0742048_m.jpg"
-        link_url="http://www.trade-v.com/mproducts?id=a0742048&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
+      when 'on_sale'
+        title="法兰克福香肠350克/ Frankfurter Sausages 350g仅售¥40元"
+        desc =""
+        pic_url="http://www.trade-v.com/images/a077/a0771030_m.jpg"
+        link_url="http://www.trade-v.com/mproducts?id=a0771030&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
@@ -70,11 +66,11 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
-      when '奶酪'
-        title="[总统 PRESIDENT]安文达切丝奶酪70克 仅售¥20.5元"
-        desc ="每公斤奶酪都是有10公斤的牛奶浓缩而成，含有丰富的蛋白质、钙、脂肪、钠和维生素等营养成分。70克*24/箱 产地:法国"
-        pic_url="http://www.trade-v.com/images/a074/a0741022_m.jpg"
-        link_url="http://www.trade-v.com/mproducts?id=a0741022&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
+      when 'new'
+        title="那不勒斯萨拉米香肠200克"
+        desc =""
+        pic_url="http://www.trade-v.com/images/a077/a0771043_m.jpg"
+        link_url="http://www.trade-v.com/mproducts?id=a0771043&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
@@ -227,10 +223,10 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
     case @keyword
       when 'ON_SALE'
-        @keyword='奶酪'
+        @keyword='on_sale'
         response_news_message({})
       when 'NEW'
-        @keyword='黄油'
+        @keyword='new'
         response_news_message({})
       when 'SHARE'
         @keyword='share'
