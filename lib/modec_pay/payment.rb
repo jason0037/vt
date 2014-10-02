@@ -125,6 +125,7 @@ module ModecPay
 				<div>Redirecting...</div>
         <form accept-charset="#{self.charset}" action="/vshop/78/payments?id=#{self.pay_id}" method="post" id="pay_form">
           #{form_inputs}
+<a href ="/vshop/78/paynotifyurl?temp=solution&payment_id=#{self.fields['out_trade_no']}">支付测试</a>
 正在跳转到到微信支付，如果长时间没有反应，请点击
         </form>
 				<script type="text/javascript">
