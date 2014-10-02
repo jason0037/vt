@@ -165,8 +165,9 @@
             <span class="bg-border"><span class="icon"></span></span>
             <p>&nbsp;商品金额：<span class="fr  " id="order_amount" data-amount = "<%=@cart_total%>">¥<%=@cart_total%>&nbsp;</span></p>
             <p>&nbsp;发货运费：  <%if @cart_total >=350 %>
-                  <span class="fr">¥<%=@cart_freight=0%>&nbsp;</span></p>
-                  <p>&nbsp;待支付总额：<span class="fr" style="color: red">¥<%=@cart_total_final-10%>&nbsp;</span></p>
+                  <span class="fr">¥0&nbsp;</span></p>
+
+                  <p>&nbsp;待支付总额：<span class="fr" style="color: red">¥<%=@cart_total_final-@cart_freight%>&nbsp;</span></p>
                   <%else%>
                   <span class="fr">¥<%=@cart_freight%>&nbsp;</span></p>
             <p>&nbsp;待支付总额：<span class="fr" style="color: red">¥<%=@cart_total_final%>&nbsp;</span></p>

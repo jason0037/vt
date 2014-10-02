@@ -376,7 +376,11 @@ class Store::OrdersController < ApplicationController
       supplier_id=78
     end
     @supplier = Ecstore::Supplier.find(supplier_id)
-    @cart_freight = 10
+    if @supplier.id=78
+      @cart_freight=35
+      else
+      @cart_freight = 10
+    end
     if (@cart_total>=60 && @supplier.id==97) || @cart_total==0.01 #测试商品
       @cart_freight=0
     end
