@@ -277,7 +277,7 @@ end
 
       @order = @payment.pay_bill.order
       @order.update_attributes(:pay_status=>'1')
-      redirect_to detail_order_path(@payment.pay_bill.order)
+      return redirect_to "/orders/norsh_show_order?id=#{@payment.pay_bill.order}"
     end
     #========================
 
