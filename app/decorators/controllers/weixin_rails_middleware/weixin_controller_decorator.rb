@@ -141,7 +141,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     @ly    = @weixin_message.Location_Y
     @scale = @weixin_message.Scale
     @label = @weixin_message.Label
-    reply_text_message("您现在的位置是: #{@lx}, #{@ly}, #{@scale}, #{@label}")
+ #   reply_text_message("您现在的位置是: #{@lx}, #{@ly}, #{@scale}, #{@label}")
   end
 
   # <PicUrl><![CDATA[this is a url]]></PicUrl>
@@ -159,7 +159,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     @title = @weixin_message.Title
     @desc  = @weixin_message.Description
     @url   = @weixin_message.Url
-    reply_text_message("回复链接信息")
+#    reply_text_message("回复链接信息")
 
   end
 
@@ -179,7 +179,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     @media_id = @weixin_message.MediaId # 可以调用多媒体文件下载接口拉取数据。
     # 视频消息缩略图的媒体id，可以调用多媒体文件下载接口拉取数据。
     @thumb_media_id = @weixin_message.ThumbMediaId
-    reply_text_message("回复视频信息")
+  #  reply_text_message("回复视频信息")
   end
 
   def response_event_message(options={})
@@ -194,7 +194,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
   def handle_subscribe_event
     if @keyword.present?
       # 扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送
-      return reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
+    #  return reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
     end
     reply_text_message("感谢您关注#{@weixin_public_account.name}")
     @keyword = "subscribe"
@@ -208,7 +208,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
   # 扫描带参数二维码事件: 2. 用户已关注时的事件推送
   def handle_scan_event
-    reply_text_message("扫描带参数二维码事件: 2. 用户已关注时的事件推送, keyword: #{@keyword}")
+   # reply_text_message("扫描带参数二维码事件: 2. 用户已关注时的事件推送, keyword: #{@keyword}")
   end
 
   def handle_location_event # 上报地理位置事件
@@ -242,7 +242,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
   # 点击菜单跳转链接时的事件推送
   def handle_view_event
     Rails.logger.info("你点击了: #{@keyword}")
-    reply_text_message("你点击了: #{@keyword}")
+  #  reply_text_message("你点击了: #{@keyword}")
     session[:wechat_user]= @weixin_message.FromUserName
   end
 
