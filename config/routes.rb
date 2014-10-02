@@ -167,6 +167,7 @@ end
       get :payments
       get :native
       post :paynotifyurl
+      get :paynotifyurl
       get :feedback
     end
 =begin
