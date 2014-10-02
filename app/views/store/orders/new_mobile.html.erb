@@ -106,12 +106,12 @@
         <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
           <div class="am-panel-hd">送货方式</div>
           <div class="am-panel-bd">
-            <label class="radio active">
-              &nbsp;&nbsp; <%=f.radio_button :shipping_id, 0%><span class="addr-line">自提</span>
+            <label class="radio active"style="margin-left: 40px;padding: 2px">
+             <%=f.radio_button :shipping_id, 0%><span class="addr-line">自提</span>
             </label>
             <label class="radio" style="margin-left: 40px;padding: 2px">
               <%=f.radio_button :shipping_id, 1, :checked=>true%> 快递
-              <span class="extra-info">+ ￥10</span>
+              <span class="extra-info"><%=@frieght%></span>
             </label>
           </div>
         </div>
@@ -119,24 +119,17 @@
         <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
           <div class="am-panel-hd">支付方式</div>
           <div class="am-panel-bd">
-            <ul>
               <%if @user.advance>0 && @user.advance < @cart_total%>
-                  <li class="" mars_sead="checkout_payment_paypal_radio">
-                    <span class="radio-box"></span>
-                    <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>
-                    <span class="payicon zfbapp"></span><p>预存款先支付</p>
-                  </li>
+                <label class="radio active"style="margin-left: 40px;padding: 2px">
+                    <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>>
               <%end%>
-              <li class="otherpay"  mars_sead="checkout_payment_paypal_radio">
-                <%=f.radio_button :payment, "alipaywap", :class=>"btn-radio" %>
-                <span>支付宝手机版</span>
-              </li>
-              <li class="otherpay"  mars_sead="checkout_payment_paypal_radio">
+            <label class="radio active"style="margin-left: 40px;padding: 2px">
+                <%=f.radio_button :payment, "alipaywap", :class=>"btn-radio" %>支付宝手机版
+            </label>
+            <label class="radio active"style="margin-left: 40px;padding: 2px">
                 <%=f.radio_button :payment, "wxpay", :class=>"btn-radio" ,:checked=>true %>
-                <span>微信支付</span><p>需要微信版本5.0以上，以及用微信登录商城</p>
-              </li>
-            </ul>
-
+                微信支付<p>需要微信版本5.0以上，以及用微信登录商城</p>
+             </label>
           </div>
         </div>
 
