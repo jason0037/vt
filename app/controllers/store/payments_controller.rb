@@ -118,9 +118,7 @@ class Store::PaymentsController < ApplicationController
 		params.delete :controller
 		params.delete :action
 
-		@payment.payment_log.update_attributes({:return_ip=>request.remote_ip,
-			                                                                           :return_params=> params,
-			                                                                           :returned_at=>Time.now}) if @payment.payment_log
+		@payment.payment_log.update_attributes({:return_ip=>request.remote_ip,:return_params=> params,:returned_at=>Time.now}) if @payment.payment_log
 
 		@order = @payment.pay_bill.order
 		@user = @payment.user
