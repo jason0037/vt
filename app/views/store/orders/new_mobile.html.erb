@@ -114,7 +114,7 @@
             </label>
             <label class="radio" style="margin-left: 40px;padding: 2px">
               <%=f.radio_button :shipping_id, 1, :checked=>true%> 快递
-              <span class="extra-info">+ ￥<=@freight></span>
+              <span class="extra-info">+ ￥<%=@freight%></span>
                 <%end%>
             </label>
           </div>
