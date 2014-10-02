@@ -137,9 +137,10 @@ end
       get :category
       get :commodity
       get :order
-      post :payments
+     # post :payments
+      get :payments
       get :native
-      get :paynotifyurl
+      post :paynotifyurl
       get :feedback
     end
 =begin

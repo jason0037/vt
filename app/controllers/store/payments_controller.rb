@@ -25,7 +25,6 @@ class Store::PaymentsController < ApplicationController
 
 		@payment = Ecstore::Payment.new params[:payment]  do |payment|
 			payment.payment_id = Ecstore::Payment.generate_payment_id
-			
 
 			payment.status = 'ready'
 			payment.pay_ver = '1.0'
@@ -47,11 +46,15 @@ class Store::PaymentsController < ApplicationController
 				bill.money = @order.pay_amount
 			end
 		end
-		
 
 		@payment.money = @payment.cur_money = @order.pay_amount
 		if @payment.save
-			redirect_to pay_payment_path(@payment.payment_id)
+      if @payment.pay_app_id=='wxpay'
+        redirect_to "/vshop/78/payments?payment_id=#{@payment.payment_id}"
+      else
+        redirect_to pay_payment_path(@payment.payment_id)
+      end
+
 		else
 			redirect_to order_url(@order)
 		end
@@ -67,12 +70,13 @@ class Store::PaymentsController < ApplicationController
 
 	def pay
 		@payment = Ecstore::Payment.find(params[:id])
-		if @payment && @payment.status == 'ready'
-			adapter = @payment.pay_app_id
-			order_id = @payment.pay_bill.rel_id
-			@modec_pay = ModecPay.new adapter do |pay|
-				pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
-				pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"
+      if @payment && @payment.status == 'ready'
+        adapter = @payment.pay_app_id
+        order_id = @payment.pay_bill.rel_id
+        @modec_pay = ModecPay.new adapter do |pay|
+
+        pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
+        pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"
 				pay.pay_id = @payment.payment_id
 				pay.pay_amount = @payment.cur_money.to_f
 				pay.pay_time = Time.now
@@ -314,7 +318,7 @@ class Store::PaymentsController < ApplicationController
 		@user = @payment.user
 
 		result = ModecPay.verify_notify(adapter,params,{ :bill99_redirect_url=>"#{site}/#{order_path(@order)}",:ip=>request.remote_ip })
-		
+
 		@payment.payment_log.update_attributes({:notify_ip=>request.remote_ip,
 			                                                                           :notify_params=> params.to_json,
 			                                                                           :notified_at=>Time.now,
@@ -338,7 +342,7 @@ class Store::PaymentsController < ApplicationController
 		else
 			response =  result
 		end
-		
+
 		render :text=>response
 	end
 

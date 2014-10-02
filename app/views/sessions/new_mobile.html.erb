@@ -6,8 +6,6 @@
 
 <%=render "shared/metable", :resource => nil %>
 
-
-
 <%=form_for :session,:url=>"/login", :remote=>true do |f|%>
     <%=hidden_field_tag :id,params[:id]%>
     <%=hidden_field_tag :return_url,params[:return_url]%>
@@ -19,7 +17,7 @@
       </a>
     </div>
     <br/>
-    <div class="connerdiv">
+    <div class="connerdiv" style="display:none">
 
       <div class="am-input-group">
         <span class="am-input-group-label">姓名:</span>

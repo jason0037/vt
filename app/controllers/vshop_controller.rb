@@ -214,19 +214,102 @@ end
   end
 
   #get /vhsop/id/payments
+  def payments0
+    supplier_id=params[:id]
+    order_id = params[:order_id]
+    @supplier = Ecstore::Supplier.find(supplier_id)
+
+    render :layout=>"#{@supplier.layout}"
+  end
+
   def payments
     supplier_id=params[:id]
     order_id = params[:order_id]
     @supplier = Ecstore::Supplier.find(supplier_id)
 
-    @appId= @supplier.weixin_appid
-    @timeStamp = Time.now.to_i      #时间戳
-    @nonceStr = '' #随机串
-    @packageValue ='' #扩展包
-    @signType = "SHA1"  #微信签名方式:1.sha1
-    @paySign = ''    #微信签名
-    render :layout=>"#{@supplier.layout}"
+    @payment = Ecstore::Payment.find(params[:payment_id])
+    if @payment && @payment.status == 'ready'
+      adapter = @payment.pay_app_id
+      order_id = @payment.pay_bill.rel_id
+      @modec_pay = ModecPay.new adapter do |pay|
+        if adapter=='wxpay'
+          pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
+          pay.notify_url = "#{site}/vshop/78/paynotifyurl?payment_id=#{@payment.payment_id}"
+        else
+          pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
+          pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"
+        end
+        pay.pay_id = @payment.payment_id
+        pay.pay_amount = @payment.cur_money.to_f
+        pay.pay_time = Time.now
+        pay.subject = "贸威订单(#{order_id})"
+        pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
+        pay.openid = @user.account.login_name
+        pay.spbill_create_ip = request.remote_ip
+      end
 
+      if adapter=='alipaywap'
+        render :text=>@modec_pay.html_form_alipaywap, :layout=>"#{@supplier.layout}"
+      elsif adapter=='wxpay'
+        render :inline=>@modec_pay.html_form_wxpay, :layout=>"#{@supplier.layout}"
+      else
+        render :inline=>@modec_pay.html_form, :layout=>"#{@supplier.layout}"
+      end
+
+      Ecstore::PaymentLog.new do |log|
+        log.payment_id = @payment.payment_id
+        log.order_id = order_id
+        log.pay_name = adapter
+        log.request_ip = request.remote_ip
+        log.request_params = @modec_pay.fields.to_json
+        log.requested_at = Time.now
+      end.save
+    else
+      flash[:msg] = '不能支付,请查看订单状态'
+    end
+  end
+
+  def paynotifyurl
+    ModecPay.logger.info "[#{Time.now}][#{request.remote_ip}] #{request.request_method} \"#{request.fullpath}\" params : #{ params.to_s }"
+
+    @payment = Ecstore::Payment.find(params.delete(:payment_id))
+
+    return render :nothing=>true, :status=>:forbidden if @payment.paid?
+
+    adapter  = params.delete(:adapter)
+    params.delete :controller
+    params.delete :action
+
+    @order = @payment.pay_bill.order
+    @user = @payment.user
+
+    result = ModecPay.verify_notify(adapter,params,{ :bill99_redirect_url=>"#{site}/#{order_path(@order)}",:ip=>request.remote_ip })
+
+    @payment.payment_log.update_attributes({:notify_ip=>request.remote_ip,
+                                            :notify_params=> params.to_json,
+                                            :notified_at=>Time.now,
+                                            :result=>result.to_json}) if @payment.payment_log
+
+    if result.is_a?(Hash) && result.present?
+      response = result.delete(:response)
+      if result.delete(:payment_id) == @payment.payment_id.to_s && !@payment.paid?
+        @payment.update_attributes(result)
+        @order.update_attributes(:pay_status=>'1')
+        Ecstore::OrderLog.new do |order_log|
+          order_log.rel_id = @order.order_id
+          order_log.op_id = @user.member_id
+          order_log.op_name = @user.login_name
+          order_log.alttime = @payment.t_payed
+          order_log.behavior = 'payments'
+          order_log.result = "SUCCESS"
+          order_log.log_text = "订单支付成功！"
+        end.save
+      end
+    else
+      response =  result
+    end
+
+    render :text=>response
   end
 
 end
