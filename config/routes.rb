@@ -4,8 +4,8 @@ Modengke::Application.routes.draw do
 
  resource :cheuks do
    collection do
-      get 'index'
-      get 'news'
+    get 'index'
+    get 'news'
      get 'new_detail'
      get 'cheuks_goods'
      end
