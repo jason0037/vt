@@ -6,7 +6,7 @@ class Admin::CardsControllerTest < ActionController::TestCase
   end
 
   test "should get index" do
-    get :index
+    get :cheuksgroup
     assert_response :success
     assert_not_nil assigns(:admin_cards)
   end

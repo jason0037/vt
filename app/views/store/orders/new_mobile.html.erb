@@ -106,30 +106,37 @@
         <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
           <div class="am-panel-hd">送货方式</div>
           <div class="am-panel-bd">
-            <label class="radio active"style="margin-left: 40px;padding: 2px">
-             <%=f.radio_button :shipping_id, 0%><span class="addr-line">自提</span>
+            <label class="radio active">
+              <%if @cart_total >=350 %>
+                  <label> 您已经购物满350了免运费</label>
+              <%else%>
+              &nbsp;&nbsp; <%=f.radio_button :shipping_id, 0%><span class="addr-line">自提</span>
             </label>
             <label class="radio" style="margin-left: 40px;padding: 2px">
+
               <%=f.radio_button :shipping_id, 1, :checked=>true%> 快递
-              <span class="extra-info"><%=@frieght%></span>
+              <span class="extra-info">+ ￥10</span>
+                <%end%>
             </label>
           </div>
         </div>
 
         <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
-          <div class="am-panel-hd">支付方式</div>
-          <div class="am-panel-bd">
+          <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+            <div class="am-panel-hd">支付方式</div>
+            <div class="am-panel-bd">
               <%if @user.advance>0 && @user.advance < @cart_total%>
-                <label class="radio active"style="margin-left: 40px;padding: 2px">
+                  <label class="radio active"style="margin-left: 40px;padding: 2px">
                     <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>>
               <%end%>
-            <label class="radio active"style="margin-left: 40px;padding: 2px">
+              <label class="radio active"style="margin-left: 40px;padding: 2px">
                 <%=f.radio_button :payment, "alipaywap", :class=>"btn-radio" %>支付宝手机版
-            </label>
-            <label class="radio active"style="margin-left: 40px;padding: 2px">
+              </label>
+              <label class="radio active"style="margin-left: 40px;padding: 2px">
                 <%=f.radio_button :payment, "wxpay", :class=>"btn-radio" ,:checked=>true %>
                 微信支付<p>需要微信版本5.0以上，以及用微信登录商城</p>
-             </label>
+              </label>
+            </div>
           </div>
         </div>
 
@@ -139,7 +146,14 @@
             <%=f.text_field :tax_company,:placeholder=>"请输入发票抬头",:class=>"text_input w100"%>
           </div>
         </div>
-
+        <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+          <div class="am-panel-hd">注意哦！   <span style="color: #ff0000">本店购物满350以上是包邮的哦</span> <br/>
+          <%if @supplier.id=78 %>
+              <span>而且为保证商品新鲜，我们是全程冷藏运输的</span>
+          <%end%>
+          </div>
+          </div>
+        </div>
 
 
         <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
@@ -147,8 +161,15 @@
           <div class="am-panel-bd">
             <span class="bg-border"><span class="icon"></span></span>
             <p>&nbsp;商品金额：<span class="fr  " id="order_amount" data-amount = "<%=@cart_total%>">¥<%=@cart_total%>&nbsp;</span></p>
-            <p>&nbsp;发货运费：<span class="fr">¥<%=@cart_freight%>&nbsp;</span></p>
+            <p>&nbsp;发货运费：  <%if @cart_total >=350 %>
+                  <span class="fr">¥0&nbsp;</span></p>
+
+                  <p>&nbsp;待支付总额：<span class="fr" style="color: red">¥<%=@cart_total_final-@cart_freight%>&nbsp;</span></p>
+                  <%else%>
+
+                  <span class="fr">¥<%=@cart_freight%>&nbsp;</span></p>
             <p>&nbsp;待支付总额：<span class="fr" style="color: red">¥<%=@cart_total_final%>&nbsp;</span></p>
+                  <%end%>
             <input type="hidden" name="payable" value="">
             <span class="bg-border2"></span>
           </div>

@@ -2,13 +2,39 @@
 require 'httpclient'
 Modengke::Application.routes.draw do
 
+
+
+  get "service/index"
+
+ scope :module => "cheuksgroup" do
  resource :cheuks do
    collection do
-      get 'index'
-      get 'news'
+    get 'index'
+    get 'news'
      get 'new_detail'
      get 'cheuks_goods'
-     end
+   end
+ end
+
+   resource :technicals  do
+     collection do
+       get 'index'
+       get 'product_standards'
+       get 'product_detail'
+       get 'failure_analysis'
+       get 'failure_detail'
+       get 'use_experience'
+       get 'use_detail'
+   end
+   end
+ resource :services  do
+   collection do
+     get 'index'
+     get 'services_center'
+     get 'services_detail'
+
+   end
+   end
  end
 
 resources :commissions do

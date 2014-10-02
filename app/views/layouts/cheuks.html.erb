@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="viewport" content="width=640, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
@@ -8,7 +8,7 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
   <%= stylesheet_link_tag    "manco/amui.all.min.css" %>
-  <%= stylesheet_link_tag    "manco/navbar.css" %>
+
   <%= stylesheet_link_tag    "manco/amui.all.css" %>
   <%= javascript_include_tag "manco/amui.widget.helper.js" %>
   <%= javascript_include_tag "manco/zepto.min.js" %>
@@ -28,7 +28,7 @@
 
 </head>
 <body>
-<header class="am-topbar">
+<header >
   <h1 class="am-topbar-brand">
     <a href="#">卓展</a>
   </h1>
@@ -53,19 +53,19 @@
   <div data-am-widget="cheuks" class="am-tabs am-tabs-cheuks">
     <ul class="am-tabs-nav am-cf">
       <li class="am-active">
-        <a href="/cheuks">首页</a>
+        <a href="/vshop/<%=@supplier.id%>">首页</a>
       </li>
       <li class="">
         <a href="#">关于我们</a>
       </li>
       <li class="">
-        <a href="#">产品中心</a>
+        <a href="/cheuks/cheuks_goods">产品中心</a>
       </li>
       <li class="">
         <a href="/cheuks/news">新闻中心</a>
       </li>
       <li class="">
-        <a href="#">服务中心</a>
+        <a href="/services">服务中心</a>
       </li>
     </ul>
       </div>
@@ -80,11 +80,11 @@
 
 
 
-<div class="footer clearfix">
+<div class="footer clearfix" style="display: none">
   <%if @user%>
       <script>
           if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-              location.href = "/logout?id=69&platform=mobile"
+              location.href = "/logout?id=<%=@supplier.id%>&platform=mobile"
           }
       </script>
   <%end%>

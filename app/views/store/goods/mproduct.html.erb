@@ -44,15 +44,20 @@
     }
 </style>
 
-<div id="demo-view" data-backend-compiled="">
-  <figure data-am-widget="figure" class="am am-figure am-figure-default am-no-layout am-figure-zoomable" data-am-figure="{  autoZoom: 1 }">
+<div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
+
+
+<% if @supplier.id==78%>
+    <div class="am-panel-hd" style="text-align: center">现在我们只供应江浙沪地区哦<br>而且满￥<span style="color: red">350</span>包邮！！ </span><%end%>  </div>
+
+<div id="demo-view" >
+
     <img src="<%=@good.big_pic%>"
          data-original="<%=@good.big_pic%>"
          data-onerror="<%=@good.big_pic%>"
          alt="" >
 
-    <figcaption class="am-figure-capition-btm"><%=@good.name %></figcaption></figure></div>
-
+    <div class="am-figure-capition-btm"><%=@good.name %></div></div>
 
 
 <div class="am-panel-group" id="accordion">
@@ -64,7 +69,7 @@
     </div>
     <div id="do-not-say-1" class="am-panel-collapse am-collapse am-in">
       <div class="am-panel-bd" style="text-decoration:line-through">
-        原价为  <%=@good.wholesale %>
+        原价为  <%=@good.mktprice %>
       </div>
     </div>
   </div>
