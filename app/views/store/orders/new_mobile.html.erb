@@ -107,7 +107,7 @@
           <div class="am-panel-hd">送货方式</div>
           <div class="am-panel-bd">
             <label class="radio active">
-              <%if @cart_total >=350 %>
+              <%if @supplier.id==78&& @cart_total >=350 %>
                   <label> 您已经购物满350了免运费</label>
               <%else%>
               &nbsp;&nbsp; <%=f.radio_button :shipping_id, 0%><span class="addr-line">自提</span>
@@ -146,15 +146,16 @@
             <%=f.text_field :tax_company,:placeholder=>"请输入发票抬头",:class=>"text_input w100"%>
           </div>
         </div>
+        <%if @supplier.id==78 %>
         <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
           <div class="am-panel-hd">注意哦！   <span style="color: #ff0000">本店购物满350以上是包邮的哦</span> <br/>
-          <%if @supplier.id=78 %>
+
               <span>而且为保证商品新鲜，我们是全程冷藏运输的</span>
-          <%end%>
+
           </div>
           </div>
         </div>
-
+        <%end%>
 
         <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
           <div class="am-panel-hd">订单金额</div>

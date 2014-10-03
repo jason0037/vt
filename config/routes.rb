@@ -4,7 +4,8 @@ Modengke::Application.routes.draw do
 
 
 
-  get "service/index"
+  get "rongda/index"
+
 
  scope :module => "cheuksgroup" do
  resource :cheuks do
@@ -27,6 +28,15 @@ Modengke::Application.routes.draw do
        get 'use_detail'
    end
    end
+
+ resource :rongdas do
+   collection do
+     get 'index'
+     get 'rongda'
+     get 'rongda_goods'
+   end
+ end
+
  resource :services  do
    collection do
      get 'index'

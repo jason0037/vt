@@ -82,10 +82,12 @@
                     <p class="cart_g_name"><%=line_item.good.brand.brand_name%>,<%=line_item.product.name%> </p>
 
                   </a>
-                </h3>
+                </h3>  <% if @supplier.id==78%>
                  <span>
+
                     <h4  style="color: #ff0000;text-align: center;padding: 0px">亲!我们只供应江浙沪地区哦<br/>而且满350包邮！！</h4>
-                </span>
+
+                </span>      <%end%>
                 <div class="am-list-item-text">
                   <div class="good_data_num J_pro_num_btn_cart" data-product="68671252" style="border:none;height:33px;">
 
