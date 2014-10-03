@@ -223,8 +223,8 @@ end
   end
 
   def payments
-    supplier_id=params[:id]
-    order_id = params[:order_id]
+    supplier_id=params[:supplier_id]
+    
     @supplier = Ecstore::Supplier.find(supplier_id)
 
     @payment = Ecstore::Payment.find(params[:payment_id])
