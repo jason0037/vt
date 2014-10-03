@@ -9,7 +9,7 @@
     }
 
 </style>
-
+<div class="member_addrs">
 <%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
     <input type="hidden" name="return_url" value="/orders/new_mobile">
     <br/>

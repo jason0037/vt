@@ -1,5 +1,3 @@
-<%=javascript_include_tag "area_seletor"%>
-<%=javascript_include_tag "patch/member_addrs"%>
 
 <style type="text/css">
     #province,#city,#district{
@@ -72,10 +70,11 @@
           <%if @method == :put%>
               <%=f.submit "修 改",:class=>"am-btn am-btn-warning am-btn-block" %>
           <%else%>
-              <%=f.submit "确认收货地址"%>
+              <%=f.submit "确认收货地址",:class=>"am-btn am-btn-warning am-btn-block" %>
           <%end%>
         </div>
       </div>
     </div>
-
 <%end%>
+<%=javascript_include_tag "area_seletor"%>
+<%=javascript_include_tag "patch/member_addrs"%>

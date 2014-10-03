@@ -14,6 +14,7 @@
 <div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
   <div class="am-panel-hd" style="text-align: center">新增地址</div>
 </div>
+<div class="member_addrs">
 <%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
     <input type="hidden" name="return_url" value="/member_addrs?platform=mobile">
     <br/>
@@ -71,8 +72,6 @@
       <%=f.text_area :addr, :id=>"addr", :cols=>"0",:rows=>"0"%>
       <span class="help-inline error"></span>
     </div>
-
-
 
     <dl class="connerbox" style="display:none"><dd><span> <%=f.label :def_addr, "设置为默认地址：",:class=>"text_input"%></span>
       <span class="form_td"> <%#=f.check_box :def_addr, {}, 1, 0 %><input name="addr[def_addr]" type="hidden" value="1" checked="true" /></span>
