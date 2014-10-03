@@ -1,0 +1,42 @@
+.am-panel-default>.am-panel-hd{
+    background-color: red;
+}
+.am-panel-title{
+    color: #FFFFFF;
+    text-align: center;
+}
+
+
+.bottomdiv {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    border: #ddd 1px solid;
+    border-top: #fff 1px solid;
+    z-index: 1000000;
+}
+.btn_sure {
+    box-shadow: 0 1px 1px rgba(0,0,0,.2);
+    color: #fff;
+    width: 150px;
+    float: right;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c9b',endColorstr='#e61f80');
+    background: -ms-linear-gradient(top, #ff4422, #ff0100);
+    background: -moz-linear-gradient(top,#ff3c9b,#e61f80);
+    background: -webkit-gradient(linear,0 0,0 100%,from(#ff4422),to(#ff0100));
+    border: #db207b 1px solid!important;
+    cursor: pointer;
+}
+
+
+.btn_cancel, .btn_ensure, .btn_gry, .btn_red, .btn_sure, .btn_unav, .btn_white, .btn_white_order {
+    font-weight: 400;
+    height: 35px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 35px;
+    border-radius: 2px;
+    display: inline-block;
+
+}
