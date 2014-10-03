@@ -25,6 +25,9 @@ class Patch::MemberAddrsController < ApplicationController
       @supplier = Ecstore::Supplier.find(@user.account.supplier_id)
       layout =@supplier.layout
       render :layout =>layout
+      @newurl = "new_memberaddr_add?supplier_id=#{@supplier.id}"
+    else
+      @newurl = "new"
     end
   end
 
