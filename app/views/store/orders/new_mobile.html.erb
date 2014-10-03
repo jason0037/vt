@@ -106,16 +106,17 @@
         <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
           <div class="am-panel-hd">送货方式</div>
           <div class="am-panel-bd">
+
             <label class="radio active">
               <%if @supplier.id==78&& @cart_total >=350 %>
+
                   <label> 您已经购物满350了免运费</label>
               <%else%>
-              &nbsp;&nbsp; <%=f.radio_button :shipping_id, 0%><span class="addr-line">自提</span>
+               <%=f.radio_button :shipping_id, 0%><span class="addr-line">自提</span>
             </label>
             <label class="radio" style="margin-left: 40px;padding: 2px">
-
               <%=f.radio_button :shipping_id, 1, :checked=>true%> 快递
-              <span class="extra-info">+ ￥10</span>
+              <span class="extra-info">+ ￥<%=@freight%></span>
                 <%end%>
             </label>
           </div>
@@ -126,17 +127,18 @@
             <div class="am-panel-hd">支付方式</div>
             <div class="am-panel-bd">
               <%if @user.advance>0 && @user.advance < @cart_total%>
-                  <label class="radio active"style="margin-left: 40px;padding: 2px">
+                  <label class="radio active" style="margin-left: 40px;padding: 2px">
                     <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>>
               <%end%>
-              <label class="radio active"style="margin-left: 40px;padding: 2px">
-                <%=f.radio_button :payment, "alipaywap", :class=>"btn-radio" %>支付宝手机版
+              <label class="radio active" style="margin-left: 40px;padding: 2px">
+                <%=f.radio_button :payment, "alipaywap"%>支付宝手机版
               </label>
-              <label class="radio active"style="margin-left: 40px;padding: 2px">
-                <%=f.radio_button :payment, "wxpay", :class=>"btn-radio" ,:checked=>true %>
-                微信支付<p>需要微信版本5.0以上，以及用微信登录商城</p>
+              <label class="radio active" style="margin-left: 40px;padding: 2px">
+                <%=f.radio_button :payment, "wxpay", :checked=>true %>
+                微信支付
               </label>
             </div>
+            <div class="am-panel-hd">微信支付需要微信版本5.0以上，并且已经用微信授权登录</div>
           </div>
         </div>
 

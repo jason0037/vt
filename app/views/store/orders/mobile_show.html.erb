@@ -90,7 +90,7 @@
 </style>
 
 <div class="">
-  <%=form_for :payment,:url=>payments_path(:order_id=>@order.order_id),:method=>'post',:html=>{ :target=>"_blank" } do |f|%>
+  <%=form_for :payment,:url=>payments_path(:order_id=>@order.order_id,:supplier_id=>@supplier.id),:method=>'post',:html=>{ :target=>"_blank" } do |f|%>
       <%=f.hidden_field :currency, :value=>"CNY" %>
       <br/>
       <div class="status_text">

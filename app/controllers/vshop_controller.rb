@@ -223,8 +223,8 @@ end
   end
 
   def payments
-    supplier_id=params[:id]
-    order_id = params[:order_id]
+    supplier_id=params[:supplier_id]
+
     @supplier = Ecstore::Supplier.find(supplier_id)
 
     @payment = Ecstore::Payment.find(params[:payment_id])
@@ -270,20 +270,29 @@ end
   end
 
   def paynotifyurl
+    #========================
+    if params[:temp]=="solution"
+      @payment = Ecstore::Payment.find(params[:payment_id])
+      return redirect_to detail_order_path(@payment.pay_bill.order) if @payment&&@payment.paid?
+
+      @order = @payment.pay_bill.order
+      @order.update_attributes(:pay_status=>'1')
+      return redirect_to "/orders/norsh_show_order?id=#{@order.order_id}"
+    end
+    #========================
+
     ModecPay.logger.info "[#{Time.now}][#{request.remote_ip}] #{request.request_method} \"#{request.fullpath}\" params : #{ params.to_s }"
 
     @payment = Ecstore::Payment.find(params.delete(:payment_id))
 
     return render :nothing=>true, :status=>:forbidden if @payment.paid?
 
-    adapter  = params.delete(:adapter)
-    params.delete :controller
-    params.delete :action
+    adapter  = 'wxpay'
 
     @order = @payment.pay_bill.order
     @user = @payment.user
 
-    result = ModecPay.verify_notify(adapter,params,{ :bill99_redirect_url=>"#{site}/#{order_path(@order)}",:ip=>request.remote_ip })
+    result = ModecPay.verify_notify(adapter,params,{:ip=>request.remote_ip })
 
     @payment.payment_log.update_attributes({:notify_ip=>request.remote_ip,
                                             :notify_params=> params.to_json,

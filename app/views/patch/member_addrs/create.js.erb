@@ -1,7 +1,8 @@
 if($("#main").hasClass("member_addrs")){
-	window.location.href = '/member_addrs';
+	window.location.href = '/member_addrs?supplier_id=<%=@supplier.id if @supplier%>';
 	return;
 }
+
 var addrLine = '<label class="radio active">'+
 					'<%=radio_button_tag "member_addr", @addr.addr_id,:checked=>true%> '+
 					'<span class="addr-line"><%=@addr.addr_line%></span>'+

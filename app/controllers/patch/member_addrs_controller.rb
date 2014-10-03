@@ -18,13 +18,20 @@ class Patch::MemberAddrsController < ApplicationController
   end
 
   def index
+    if @user.nil?
+      return render :text=>'请先登录;'
+    end
     @addrs = @user.member_addrs.paginate(:per_page=>10,:page=>params[:page])
     add_breadcrumb("收货地址")
 
     if params[:platform]=="mobile"
       @supplier = Ecstore::Supplier.find(@user.account.supplier_id)
+      @newurl = "new_memberaddr_add?supplier_id=#{@supplier.id}"
       layout =@supplier.layout
       render :layout =>layout
+
+    else
+      @newurl = "new"
     end
   end
 
@@ -57,16 +64,18 @@ class Patch::MemberAddrsController < ApplicationController
       session[:depar]=@ids
       redirect_to return_url
     else
-         respond_to do |format|
+      redirect_to "/member_addrs?platform=#{pramas[:platform]}"
+
+    end
+=begin
+  respond_to do |format|
            format.js
            format.html { redirect_to "/member_addrs?platform=#{params[:platform]}" }
          end
-    end
-
+=end
 
   end
   def new_memberaddr_add
-
     @supplier=Ecstore::Supplier.find_by_id(params[:supplier_id])
     @addr=Ecstore::MemberAddr.new
     render :layout=>@supplier.layout

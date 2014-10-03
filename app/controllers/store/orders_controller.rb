@@ -372,22 +372,24 @@ class Store::OrdersController < ApplicationController
 
     supplier_id= @user.account.supplier_id
 
-    if supplier_id==nil
+    if supplier_id.nil?
       supplier_id=78
     end
     @supplier = Ecstore::Supplier.find(supplier_id)
-    if @supplier.id=78
+    if @supplier.id==78
       @cart_freight=35
-      else
+    else
       @cart_freight = 10
     end
-    if (@cart_total>=60 && @supplier.id==97) || @cart_total==0.01 #测试商品
-      @cart_freight=0
+
+    if (@cart_total>=60 && @supplier.id==97) || (@cart_total>=350 && @supplier.id==78) || @cart_total==0.01 #测试商品
+      @cart_freight = 0
     end
+
     @cart_total_final = @cart_total+ @cart_freight
     @addrs =  @user.member_addrs
     if @addrs.size==0
-      redirect_to "/orders/new_mobile_addr?supplier_id=#{supplier_id}&return_url=/orders/new_mobile&supplier_id=#{supplier_id}"
+      redirect_to "/orders/new_mobile_addr?supplier_id=#{supplier_id}&return_url=%2forders%2fnew_mobile%26supplier_id%3d#{supplier_id}"
     else
         @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
 
@@ -396,7 +398,7 @@ class Store::OrdersController < ApplicationController
           @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
           @coupons = @user.usable_coupons
         end
-          render :layout=>@supplier.layout
+        render :layout=>@supplier.layout
     end
   end
 

@@ -122,10 +122,16 @@ module ModecPay
 					<title>Redirecting...</title>
 				</head>
 				<body>
-				<div>Redirecting...</div>
+      <br/>
+      <div class="list_status">
+        <h2 class="blue" >
+          <span class="pay_icon"></span>
+          <span style="color: #0abede">正在跳转到到微信支付...<br/>如果长时间没有反应，请</span>
+        </h2>
+      </div>
         <form accept-charset="#{self.charset}" action="/vshop/78/payments?id=#{self.pay_id}" method="post" id="pay_form">
           #{form_inputs}
-正在跳转到到微信支付，如果长时间没有反应，请点击
+
         </form>
 				<script type="text/javascript">
 				//	window.onload=function(){
@@ -163,13 +169,14 @@ module ModecPay
 //get_brand_wcpay_request:ok 发送成功
 //WeixinJSBridge.log(res.err_msg);
 //alert(res.err_code+res.err_desc);
-alert(res.err_msg)
+
 
                   if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-lo
-}
-                  // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
-                  //因此微信团队建议，当收到ok返回时，向商户后台询问是否收到交易成功的通知，若收到通知，前端展示交易成功的界面；若此时未收到通知，商户后台主动调用查询订单接口，查询订单的当前状态，并反馈给前端展示相应的界面。
+                    window.location ="/vshop/78/paynotifyurl?temp=solution&payment_id=#{self.fields['out_trade_no']}";
+                  }
+                    else{alert('支付未成功');
+                  //  window.location ="/orders/mobile_show?id=20141003100859&supplier_id=97";
+                  }
               });
 
           });
@@ -210,6 +217,9 @@ lo
 <body>
 <div class="WCPay" >
   <a id="getBrandWCPayRequest" href="javascript:void(0);"><h1 class="title">点击支付</h1></a>
+ <script language="javascript" type="text/javascript">
+document.getElementById("getBrandWCPayRequest").click();
+</script>
 </div>
 				</body>
 				</html>
