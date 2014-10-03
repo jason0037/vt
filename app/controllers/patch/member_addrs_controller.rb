@@ -18,6 +18,9 @@ class Patch::MemberAddrsController < ApplicationController
   end
 
   def index
+    if @user.nil?
+      return render :text=>'请先登录;'
+    end
     @addrs = @user.member_addrs.paginate(:per_page=>10,:page=>params[:page])
     add_breadcrumb("收货地址")
 

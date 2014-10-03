@@ -5,12 +5,10 @@
     #province,#city,#district{
         width: 30%;
     }
-
 </style>
 <%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
     <input type="hidden" name="platform" value="<%=params[:platform]%>">
     <div class="new-addr <%='hide' unless display==true%>" id="addr_form">
-
       <div class="am-panel am-panel-default">
         <div class="am-panel-hd"> <%=f.label :area, "收货地区：".html_safe%></div>
         <div class="am-panel-bd">
@@ -37,30 +35,26 @@
           <span class="help-inline error"></span>
         </div>
       </div>
-
-
+      <br/>
       <div class="am-input-group">
-        <span class="am-input-group-label"><i class="am-icon-user"></i></span>
+        <span class="am-input-group-label"><i class="am-icon-user"></i>收货人</span>
 
         <%=f.text_field :name,  :class=>"am-form-field" ,:placeholder=>"收货人姓名"%>
       </div>
       <br/>
       <div class="am-input-group">
-        <span class="am-input-group-label"><i class="am-icon-mobile"></i></span>
+        <span class="am-input-group-label"><i class="am-icon-mobile"></i>手机</span>
 
         <%=f.text_field :mobile,  :class=>"am-form-field" ,:placeholder=>"手机"%>
       </div>
       <br/>
       <div class="am-input-group">
-        <span class="am-input-group-label"><i class=" am-icon-phone"></i></span>
-
+        <span class="am-input-group-label"><i class=" am-icon-phone"></i>固定电话</span>
         <%=f.text_field :tel,  :class=>"am-form-field" ,:placeholder=>"固定电话"%>
       </div>
       <br/>
-
       <div class="am-input-group">
         <span class="am-input-group-label">邮编</span>
-
         <%=f.text_field :zip,  :class=>"am-form-field" ,:placeholder=>"邮编"%>
       </div>
       <br/>
@@ -73,14 +67,12 @@
         </div>
       </div>
 
-
-
       <div class="control-group">
         <div class="controls">
           <%if @method == :put%>
               <%=f.submit "修 改",:class=>"am-btn am-btn-warning am-btn-block" %>
           <%else%>
-              <%=f.submit "确认收货地址",:class=>"am-btn am-btn-warning am-btn-block" %>
+              <%=f.submit "确认收货地址"%>
           <%end%>
         </div>
       </div>
