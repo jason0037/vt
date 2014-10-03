@@ -372,7 +372,7 @@ class Store::OrdersController < ApplicationController
 
     supplier_id= @user.account.supplier_id
 
-    if supplier_id==nil
+    if supplier_id.nil?
       supplier_id=78
     end
     @supplier = Ecstore::Supplier.find(supplier_id)
@@ -383,7 +383,7 @@ class Store::OrdersController < ApplicationController
     end
 
     if (@cart_total>=60 && @supplier.id==97) || (@cart_total>=350 && @supplier.id==78) || @cart_total==0.01 #测试商品
-      @cart_freight=0
+      @cart_freight = 0
     end
 
     @cart_total_final = @cart_total+ @cart_freight
