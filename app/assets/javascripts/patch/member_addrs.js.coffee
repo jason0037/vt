@@ -1,4 +1,4 @@
-#= require area_seletor
+# //= require area_seletor
 
 # $ ->
 #   $("form").on "ajax:success", (e,res) ->
@@ -7,5 +7,5 @@
 #   $("form").on "ajax:error", (e,res) ->
 #     eval(res.responseText);
 
-$(document).on "focus", ".new-addr input[type='text'], .new-addr select", ->
-      $(this).nextAll(".help-inline").empty();
+# $(document).on "focus", ".new-addr input[type='text'], .new-addr select", ->
+#      $(this).nextAll(".help-inline").empty();
