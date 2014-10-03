@@ -14,6 +14,8 @@ Modengke::Application.routes.draw do
     get 'news'
      get 'new_detail'
      get 'cheuks_goods'
+     get 'content'
+     get 'map'
    end
  end
 
@@ -34,6 +36,8 @@ Modengke::Application.routes.draw do
      get 'index'
      get 'rongda'
      get 'rongda_goods'
+     get 'goods_detail'
+     get 'order_rongda'
    end
  end
 
