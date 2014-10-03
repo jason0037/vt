@@ -398,7 +398,6 @@ class Store::OrdersController < ApplicationController
           @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
           @coupons = @user.usable_coupons
         end
-        return render :text=>@supplier.layout
         render :layout=>@supplier.layout
     end
   end
