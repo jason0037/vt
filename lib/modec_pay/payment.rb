@@ -175,7 +175,7 @@ module ModecPay
                     window.location ="/vshop/78/paynotifyurl?temp=solution&payment_id=#{self.fields['out_trade_no']}";
                   }
                     else{alert('支付未成功');
-                    window.location ="/orders/norsh_show_order?id=#{@order.order_id}";
+                  //  window.location ="/orders/mobile_show?id=20141003100859&supplier_id=97";
                   }
               });
 
