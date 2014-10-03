@@ -23,9 +23,10 @@ class Patch::MemberAddrsController < ApplicationController
 
     if params[:platform]=="mobile"
       @supplier = Ecstore::Supplier.find(@user.account.supplier_id)
+      @newurl = "new_memberaddr_add?supplier_id=#{@supplier.id}"
       layout =@supplier.layout
       render :layout =>layout
-      @newurl = "new_memberaddr_add?supplier_id=#{@supplier.id}"
+
     else
       @newurl = "new"
     end
