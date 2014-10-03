@@ -50,7 +50,7 @@ class Store::PaymentsController < ApplicationController
 		@payment.money = @payment.cur_money = @order.pay_amount
 		if @payment.save
       if @payment.pay_app_id=='wxpay'
-        redirect_to "/vshop/78/payments?payment_id=#{@payment.payment_id}"
+        redirect_to "/vshop/78/payments?payment_id=#{@payment.payment_id}&supplier_id=#{params[:supplier_id]}"
       else
         redirect_to pay_payment_path(@payment.payment_id)
       end
