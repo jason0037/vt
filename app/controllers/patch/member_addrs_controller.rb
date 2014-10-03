@@ -60,12 +60,15 @@ class Patch::MemberAddrsController < ApplicationController
       session[:depar]=@ids
       redirect_to return_url
     else
-         respond_to do |format|
+      redirect_to "/member_addrs?platform=#{pramas[:platform]}"
+
+    end
+=begin
+  respond_to do |format|
            format.js
            format.html { redirect_to "/member_addrs?platform=#{params[:platform]}" }
          end
-    end
-
+=end
 
   end
   def new_memberaddr_add
