@@ -28,4 +28,15 @@ class Cheuksgroup::CheuksController < ApplicationController
  def map
    @supplier=Ecstore::Supplier.find_by_id("1");
  end
+
+  def industry_trends
+    @supplier=Ecstore::Supplier.find_by_id("1");
+
+  end
+
+  def industry_detail
+    @supplier=Ecstore::Supplier.find_by_id("1");
+
+  end
+
 end

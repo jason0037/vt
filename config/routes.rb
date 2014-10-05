@@ -16,6 +16,8 @@ Modengke::Application.routes.draw do
      get 'cheuks_goods'
      get 'content'
      get 'map'
+     get 'industry_trends'
+     get 'industry_detail'
    end
  end
 
