@@ -76,10 +76,18 @@ class Ecstore::Order < Ecstore::Base
           order_item =  self.order_items.first
           supplier =order_item.good.supplier_id
 
-          if (supplier==97 && items_amount>=60) || (supplier==78 && items_amount>=350) || ( order_item.good.price==0.01)  #诺狮满60免运费 德国香肠350免运费
-            freight =  0
-          elsif supplier==78 && items_amount < 350
-            freight = 35
+          if supplier==97
+            if items_amount>=60 #诺狮满60免运费
+              freight =  0
+            else
+              freight = 6
+            end
+          elsif supplier==78
+            if items_amount>=350  ||  order_item.good.price==0.01 #德国香肠350免运费 测试商品
+              freight = 0
+            else
+              freight = 35
+            end
           else
             freight = 10
           end
