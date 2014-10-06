@@ -14,7 +14,11 @@ class Cheuksgroup::CheuksController < ApplicationController
   end
 
   def cheuks_goods
-    @supplier=Ecstore::Supplier.find_by_id("1");
+    if @user
+      @supplier=Ecstore::Supplier.find_by_id("1");
+    else
+      redirect_to "/mlogin?id=1&platform=mobile&return_url=/cheuks/cheuks_goods?supplier_id=1"
+      end
   end
 
   def  technical       #技术中心
