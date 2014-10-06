@@ -25,7 +25,7 @@ module ModecPay
 		# payment description
 		attr_accessor :body
 
-    attr_accessor :openid, :spbill_create_ip
+    attr_accessor :openid, :spbill_create_ip,:supplier_id
 
 		# A block pass to sort_by 
 		# == Example
