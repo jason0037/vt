@@ -82,7 +82,7 @@ class Ecstore::Order < Ecstore::Base
             else
               freight = 6
             end
-          elsif supplier==78
+          elsif supplier==77
             if items_amount>=350  ||  order_item.good.price==0.01 #德国香肠350免运费 测试商品
               freight = 0
             else
