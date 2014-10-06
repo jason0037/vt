@@ -246,6 +246,7 @@ end
         pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
         pay.openid = @user.account.login_name
         pay.spbill_create_ip = request.remote_ip
+        pay.supplier_id = supplier_id
       end
 
       if adapter=='alipaywap'

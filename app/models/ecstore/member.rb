@@ -229,7 +229,14 @@ class Ecstore::Member < Ecstore::Base
 	      		else
 	      			content.push member.sex_name
 	      		end
-	      	end
+          end
+          if(fields.include?("9-sex-性别"))
+            if member.sex_name.nil?
+              content.push ""
+            else
+              content.push member.sex_name
+            end
+          end
 	        csv << content   # 将数据插入数组中
 	      end
 	    end
