@@ -110,6 +110,20 @@ class Ecstore::Account < Ecstore::Base
 		nil
   end
 
+  # def self.vshop_authenticate(name,password)
+  #   account = self.where(:login_name=>name,:account_type=>"member").first
+  #   if account
+  #     if account.login_password[0] == "s"
+  #       encrypt = "s" + Digest::MD5.hexdigest("#{Digest::MD5.hexdigest(password)}#{name}#{account.createtime}")[0..30]
+  #       return account if encrypt == account.login_password
+  #     else
+  #       return account if Digest::MD5.hexdigest(password) == account.login_password
+  #     end
+  #   end
+  #   nil
+  # end
+
+
   def self.tairyo_authenticate(name,password)
     account = self.where(:login_name=>name,:account_type=>"tairyo").first
     if account
