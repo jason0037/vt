@@ -17,58 +17,72 @@
   <%= javascript_include_tag "manco/handlebars.min.js" %>
   <%= javascript_include_tag "manco/amui.js" %>
   <%= javascript_include_tag "manco/amui.min.js" %>
-    <style>
-      .am-tabs{
-          padding: 0px;
-          margin: 0px;
- }
+
+  <style>
+      .am-menu-nav-channelt{
+
+           padding: 0;
+           position: relative;
+           color: #ccc;
+           border-top: 1px solid rgba(0,0,0,.3);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+          text-shadow: 0 1px 0 rgba(0,0,0,.5);
+      }
 
 
-    </style>
+      #doc-oc-demo2 ul li a{
+          color: red;
+          padding: 20px;
+          font-size: 30px;
 
+      }
+
+  </style>
 </head>
 <body>
-<header >
-  <h1 class="am-topbar-brand">
-    <a href="#">卓展</a>
-  </h1>
+<header data-am-widget="header" data-am-widget="header" style="background-color: #ff947e;padding: 7px" class=" am-header-default" >
 
-  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-cheuks am-show-sm-only"
-          data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+
+  <!-- 按钮触发器， 需要指定 target -->
+  <button class="am-btn am-btn-cheuks" data-am-offcanvas="{target: '#doc-oc-demo2', effect: 'push'}"><span class="am-sr-only">导航切换</span> <span
+  class="am-icon-bars"></span></button>
+  <button class="am-btn am-btn-cheuks" style="float: right"  data-am-offcanvas="{target: '#doc-oc-demo3'}"><span
   class="am-icon-search"></span></button>
-
-  <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
-    <ul class="am-nav am-nav-pills am-topbar-nav">
-
-    </ul>
-
-    <form class="am-topbar-form am-topbar-left am-form-inline am-topbar-right" role="search">
-      <div class="am-form-group">
-        <input type="text" class="am-form-field am-input-sm" placeholder="搜索">
+<!-- 侧边栏内容 -->
+<div class="col-md-3 col-md-pull-9 my-sidebar">
+    <div class="am-offcanvas" id="doc-oc-demo2">
+      <div class=" am-offcanvas-bar am-offcanvas-bar-overlay am-offcanvas-bar-active">
+        <ul class="am-nav am-menu-nav" style="color:red;">
+          <li class="am-parent"><a  style="color:red"><%=@supplier.name%>微商城</a></li>
+          <li class="am-nav-header">目录</li>
+          <li class="am-menu-nav-channelt">  <a href="/vshop/<%=@supplier.id%>">首页</a> </li>
+          <li class="am-menu-nav-channelt"> <a href="/rongdas">租赁中心</a></li>
+          <li class="am-menu-nav-channelt"><a href="/cheuks/cheuks_goods">产品中心</a></li>
+          <li class="am-menu-nav-channelt"> <a href="/services">服务中心</a></li>
+          <li class="am-menu-nav-channelt"> <a href="/cheuks/news">新闻中心</a></li>
+          <li class="am-menu-nav-channelt"> <a href="/vshop/<#%=@supplier.id%>/user?id=<%=@supplier.id%>">个人中心</a> </li>
+        </ul>
       </div>
-      <button type="submit" class="am-btn am-btn-cheuks am-btn-sm">搜索</button>
-    </form>
-
+    </div>
   </div>
-  <div data-am-widget="cheuks" class="am-tabs am-tabs-cheuks">
-    <ul class="am-tabs-nav am-cf">
-      <li class="am-tab-li">
-        <a href="/vshop/<%=@supplier.id%>">首页</a>
-      </li>
-      <li class="am-tab-li">
-        <a href="/rongdas">租赁中心</a>
-      </li>
-      <li class="am-tab-li">
-        <a href="/cheuks/cheuks_goods">产品中心</a>
-      </li>
-      <li class="am-tab-li">
-        <a href="/services">服务中心</a>
-      </li>
-      <li class="am-tab-li">
-        <a href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>">个人中心</a>
-      </li>
-    </ul>
+
+  <!-- 按钮触发器， 需要指定 target -->
+
+
+  <!-- serach -->
+  <div id="doc-oc-demo3" class="am-offcanvas">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+      <div class="am-offcanvas-content">
+        <form class="" role="search">
+          <div class="am-form-group">
+            <input type="text" class="am-form-field am-input-sm" placeholder="搜索">
+          </div>
+          <button type="submit" class="am-btn am-btn-cheuks am-btn-sm">搜索</button>
+        </form>
       </div>
+    </div>
+  </div>
+
 
 </header>
 
@@ -212,48 +226,48 @@
     })
 </script>
 <div class="bottomdivs clearfix">
-<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default am-no-layout"
-     id="">
-  <ul class="am-navbar-nav am-cf sm-block-grid-4" style="background-color: #ff0000">
-    <li>
-      <a href="/cheuks/content ">
-        <img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/Information.png"
-             alt="消息">
+  <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default am-no-layout"
+       id="">
+    <ul class="am-navbar-nav am-cf sm-block-grid-4" style="background-color: #ff0000">
+      <li>
+        <a href="/cheuks/content ">
+          <img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/Information.png"
+               alt="消息">
 				<span class="am-navbar-label">
 					意见反馈
 				</span>
-      </a>
-    </li>
-    <li>
-      <a href="tel:400-880-5648">
-        <img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/phone.png"
-             alt="呼叫">
+        </a>
+      </li>
+      <li>
+        <a href="tel:400-880-5648">
+          <img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/phone.png"
+               alt="呼叫">
 				<span class="am-navbar-label">
 					联系电话
 				</span>
-      </a>
-    </li>
-    <li data-am-navbar-share="">
-      <a href="###">
-        <img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/share.png"
-             alt="分享">
+        </a>
+      </li>
+      <li data-am-navbar-share="">
+        <a href="###">
+          <img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/share.png"
+               alt="分享">
 				<span class="am-navbar-label">
 					分享
 				</span>
-      </a>
-    </li>
-    <li>
-      <a href="/cheuks/map">
-        <img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/map.png"
-             alt="地图">
+        </a>
+      </li>
+      <li>
+        <a href="/cheuks/map">
+          <img src="http://amazeui.b0.upaiyun.com/assets/i/cpts/navbar/map.png"
+               alt="地图">
 				<span class="am-navbar-label">
 					地图
 				</span>
-      </a>
-    </li>
-  </ul>
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
-    </div>
 </body>
 </html>
 
