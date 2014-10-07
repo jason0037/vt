@@ -99,7 +99,7 @@
   - 性别
   - sex_name
   - "true"
-30-supplier-供应商:
+30-supplier_id-供应商:
  - 供应商
  - supplier_id
  - "true"
