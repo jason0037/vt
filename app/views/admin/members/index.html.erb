@@ -1,3 +1,4 @@
+
 <%=form_for :member,:url=>export_admin_members_path,:method=>:post do |f|%>
 <%= f.hidden_field :select_all,:class=>"sel_operation", :value => 0 %>
 <%if current_admin.login_name=="admin" %>

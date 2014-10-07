@@ -200,7 +200,13 @@ class Ecstore::Member < Ecstore::Base
 	      			content.push member.sms_validate_name
 	      		end
 	      	end
-
+          if(fields.include?("30-supplier_id-供应商"))
+            if member.supplier_id.nil?
+              content.push ""
+            else
+              content.push member.supplier_id
+            end
+          end
 
 	      	if(fields.include?("5-order_num-订单数"))
 	      		if member.order_num.nil?
