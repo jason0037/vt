@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="viewport" content="width=460,target-densitydpi=device-dpi, minimum-scale=0.5, maximum-scale=1.0,user-scalable=no" />
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
@@ -21,8 +21,8 @@
       .am-tabs{
           padding: 0px;
           margin: 0px;
+ }
 
-      }
 
     </style>
 
@@ -52,20 +52,20 @@
   </div>
   <div data-am-widget="cheuks" class="am-tabs am-tabs-cheuks">
     <ul class="am-tabs-nav am-cf">
-      <li class="am-active">
+      <li class="am-tab-li">
         <a href="/vshop/<%=@supplier.id%>">首页</a>
       </li>
-      <li class="">
+      <li class="am-tab-li">
         <a href="/rongdas">租赁中心</a>
       </li>
-      <li class="">
+      <li class="am-tab-li">
         <a href="/cheuks/cheuks_goods">产品中心</a>
       </li>
-      <li class="">
-        <a href="/cheuks/news">新闻中心</a>
-      </li>
-      <li class="">
+      <li class="am-tab-li">
         <a href="/services">服务中心</a>
+      </li>
+      <li class="am-tab-li">
+        <a href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>">个人中心</a>
       </li>
     </ul>
       </div>
