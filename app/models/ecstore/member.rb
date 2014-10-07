@@ -201,10 +201,10 @@ class Ecstore::Member < Ecstore::Base
 	      		end
 	      	end
           if(fields.include?("30-supplier_id-供应商"))
-            if member.supplier_id.nil?
+            if member.account.supplier_id.nil?
               content.push ""
             else
-              content.push member.supplier_id
+              content.push member.account.supplier_id
             end
           end
 
