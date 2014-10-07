@@ -118,7 +118,7 @@
     </div>
     <div data-tab-panel-1 class="am-tab-panel am-second ">
       <div class="am-tabs am-tabs-warningss">
-        <%=form_for :product,:url=>"/cart/add",:remote=>true do |f|%>
+        <%=form_for :product,:url=>"/cart/add", :html=>{:id=>"cartform"},:remote=>true do |f|%>
             <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
             <%=f.hidden_field :type_id,:value=>@good.type_id%>
             <%=hidden_field_tag :supplier_id, @supplier.id%>
@@ -226,8 +226,8 @@
             }//
             // $(".size_helper, .semi_custom").popover('hide');
             //$(this).closest("form").submit();
-
-            var formobj=  document.forms[0];
+             var formobj=document.getElementById("cartform");
+           // var formobj=  document.forms[0];
             formobj.submit();
             return false;
         });
