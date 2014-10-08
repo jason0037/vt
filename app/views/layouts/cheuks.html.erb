@@ -47,8 +47,8 @@
   <button class="am-btn am-btn-cheuks" data-am-offcanvas="{target: '#doc-oc-demo2', effect: 'push'}"><span class="am-sr-only">导航切换</span> <span
   class="am-icon-bars"></span></button>
   <span style="margin-left: 35%;color: white;font-size: 20px"> <%=@supplier.name%></span>
-  <a href="/cheuks/serach" class="am-btn am-btn-cheuks" style="float: right"  ><span
-  class="am-icon-search"></span></a>
+  <button class="am-btn am-btn-cheuks" style="float: right"  data-am-offcanvas="{target: '#doc-oc-demo3'}"><span
+  class="am-icon-search"></span></button>
 <!-- 侧边栏内容 -->
 <div class="col-md-3 col-md-pull-9 my-sidebar">
     <div class="am-offcanvas" id="doc-oc-demo2">
@@ -70,8 +70,19 @@
   <!-- 按钮触发器， 需要指定 target -->
 
 
-
-
+  <!-- serach -->
+  <div id="doc-oc-demo3" class="am-offcanvas">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+      <div class="am-offcanvas-content">
+        <form class="" role="search">
+          <div class="am-form-group">
+            <input type="text" class="am-form-field am-input-sm" placeholder="搜索">
+          </div>
+          <button type="submit" class="am-btn am-btn-cheuks am-btn-sm">搜索</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
 
 </header>

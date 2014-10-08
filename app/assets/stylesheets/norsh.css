@@ -1,0 +1,37 @@
+/**
+*  Tab Theme :warning
+ */
+.am-tabs-warningss .am-tabs-nav {
+    background-color: #eeeeee;
+}
+.am-tabs-warningss .am-tabs-nav li {
+    height: 42px;
+}
+.am-tabs-warningss .am-tabs-nav a {
+    color: #222222;
+    line-height: 42px;
+}
+.am-tabs-warningss .am-tabs-nav > .am-active {
+    position: relative;
+    background-color: #dc852d;
+    border-bottom: 2px solid #dc852d;
+}
+.am-tabs-warningss .am-tabs-nav > .am-active a {
+    line-height: 40px;
+    color: #fcfffa;
+}
+.am-tabs-warningss .am-tabs-nav > .am-active:after {
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 0px;
+    left: 50%;
+    margin-left: -5px;
+    border: 6px rgba(0, 0, 0, 0) solid;
+    content: "";
+    z-index: 1;
+    border-bottom-color: #dc852d;
+}
+.am-header-warning{
+    color: #ffffff;   background-color: #dc852d;   border-color: #ba7512;
+}
