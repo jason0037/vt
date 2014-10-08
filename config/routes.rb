@@ -11,6 +11,7 @@ Modengke::Application.routes.draw do
  resource :cheuks do
    collection do
     get 'index'
+    get 'serach'
     get 'news'
      get 'new_detail'
      get 'cheuks_goods'

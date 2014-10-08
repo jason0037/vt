@@ -1,0 +1,39 @@
+<style>
+  .am-header-default{
+      display: none;  }
+  .header{
+     width: 100%;
+      height:70px ;
+      background-color: red;
+      position: relative;
+  }
+   .am-input-group{
+       position: absolute;
+       bottom: 10px;
+       left: 10px;
+  }
+    .am-form-field{
+        position: absolute;
+         width: 300px;
+        border-left: none;
+    }
+  .am-form-field:focus{
+      background: #ffffff;
+      border-color: #ffffff;
+
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255, 255, 255, 0.60);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255, 255, 255, 0.60);
+  }
+  .am-input-group-label {
+      border-right: none;
+      background-color: #ffffff;
+  }
+</style>
+
+<div class="header">
+
+<div class="am-input-group">
+  <span class="am-input-group-label "><span class="am-icon-search"></span></span>
+  <input type="text" class="am-form-field" placeholder="Username">
+  <a  href="javascript:history.go(-1)" class="am-input-group-label">取消</a>
+</div>              </div>

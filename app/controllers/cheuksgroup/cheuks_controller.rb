@@ -42,5 +42,8 @@ class Cheuksgroup::CheuksController < ApplicationController
     @supplier=Ecstore::Supplier.find_by_id("1");
 
   end
+  def serach
+    @supplier=Ecstore::Supplier.find_by_id("1");
+  end
 
 end
