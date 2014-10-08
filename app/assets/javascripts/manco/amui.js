@@ -1,4 +1,4 @@
-/*! AmazeUI - v1.0.0 | (c) 2014 AllMobilize, Inc. | @license MIT | 2014-08-12 14:08:17 */ 
+/*! AmazeUI - v1.0.0 | (c) 2014 AllMobilize, Inc. | @license MIT | 2014-09-05 16:09:09 */
 /*! Sea.js 2.2.1 | seajs.org/LICENSE.md */
 !function(a,b){function c(a){return function(b){return{}.toString.call(b)=="[object "+a+"]"}}function d(){return A++}function e(a){return a.match(D)[0]}function f(a){for(a=a.replace(E,"/");a.match(F);)a=a.replace(F,"/");return a=a.replace(G,"$1/")}function g(a){var b=a.length-1,c=a.charAt(b);return"#"===c?a.substring(0,b):".js"===a.substring(b-2)||a.indexOf("?")>0||".css"===a.substring(b-3)||"/"===c?a:a+".js"}function h(a){var b=v.alias;return b&&x(b[a])?b[a]:a}function i(a){var b=v.paths,c;return b&&(c=a.match(H))&&x(b[c[1]])&&(a=b[c[1]]+c[2]),a}function j(a){var b=v.vars;return b&&a.indexOf("{")>-1&&(a=a.replace(I,function(a,c){return x(b[c])?b[c]:a})),a}function k(a){var b=v.map,c=a;if(b)for(var d=0,e=b.length;e>d;d++){var f=b[d];if(c=z(f)?f(a)||a:a.replace(f[0],f[1]),c!==a)break}return c}function l(a,b){var c,d=a.charAt(0);if(J.test(a))c=a;else if("."===d)c=f((b?e(b):v.cwd)+a);else if("/"===d){var g=v.cwd.match(K);c=g?g[0]+a.substring(1):a}else c=v.base+a;return 0===c.indexOf("//")&&(c=location.protocol+c),c}function m(a,b){if(!a)return"";a=h(a),a=i(a),a=j(a),a=g(a);var c=l(a,b);return c=k(c)}function n(a){return a.hasAttribute?a.src:a.getAttribute("src",4)}function o(a,b,c){var d=S.test(a),e=L.createElement(d?"link":"script");if(c){var f=z(c)?c(a):c;f&&(e.charset=f)}p(e,b,d,a),d?(e.rel="stylesheet",e.href=a):(e.async=!0,e.src=a),T=e,R?Q.insertBefore(e,R):Q.appendChild(e),T=null}function p(a,c,d,e){function f(){a.onload=a.onerror=a.onreadystatechange=null,d||v.debug||Q.removeChild(a),a=null,c()}var g="onload"in a;return!d||!V&&g?(g?(a.onload=f,a.onerror=function(){C("error",{uri:e,node:a}),f()}):a.onreadystatechange=function(){/loaded|complete/.test(a.readyState)&&f()},b):(setTimeout(function(){q(a,c)},1),b)}function q(a,b){var c=a.sheet,d;if(V)c&&(d=!0);else if(c)try{c.cssRules&&(d=!0)}catch(e){"NS_ERROR_DOM_SECURITY_ERR"===e.name&&(d=!0)}setTimeout(function(){d?b():q(a,b)},20)}function r(){if(T)return T;if(U&&"interactive"===U.readyState)return U;for(var a=Q.getElementsByTagName("script"),b=a.length-1;b>=0;b--){var c=a[b];if("interactive"===c.readyState)return U=c}}function s(a){var b=[];return a.replace(X,"").replace(W,function(a,c,d){d&&b.push(d)}),b}function t(a,b){this.uri=a,this.dependencies=b||[],this.exports=null,this.status=0,this._waitings={},this._remain=0}if(!a.seajs){var u=a.seajs={version:"2.2.1"},v=u.data={},w=c("Object"),x=c("String"),y=Array.isArray||c("Array"),z=c("Function"),A=0,B=v.events={};u.on=function(a,b){var c=B[a]||(B[a]=[]);return c.push(b),u},u.off=function(a,b){if(!a&&!b)return B=v.events={},u;var c=B[a];if(c)if(b)for(var d=c.length-1;d>=0;d--)c[d]===b&&c.splice(d,1);else delete B[a];return u};var C=u.emit=function(a,b){var c=B[a],d;if(c)for(c=c.slice();d=c.shift();)d(b);return u},D=/[^?#]*\//,E=/\/\.\//g,F=/\/[^/]+\/\.\.\//,G=/([^:/])\/\//g,H=/^([^/:]+)(\/.+)$/,I=/{([^{]+)}/g,J=/^\/\/.|:\//,K=/^.*?\/\/.*?\//,L=document,M=e(L.URL),N=L.scripts,O=L.getElementById("seajsnode")||N[N.length-1],P=e(n(O)||M);u.resolve=m;var Q=L.head||L.getElementsByTagName("head")[0]||L.documentElement,R=Q.getElementsByTagName("base")[0],S=/\.css(?:\?|$)/i,T,U,V=+navigator.userAgent.replace(/.*(?:AppleWebKit|AndroidWebKit)\/(\d+).*/,"$1")<536;u.request=o;var W=/"(?:\\"|[^"])*"|'(?:\\'|[^'])*'|\/\*[\S\s]*?\*\/|\/(?:\\\/|[^\/\r\n])+\/(?=[^\/])|\/\/.*|\.\s*require|(?:^|[^$])\brequire\s*\(\s*(["'])(.+?)\1\s*\)/g,X=/\\\\/g,Y=u.cache={},Z,$={},_={},ab={},bb=t.STATUS={FETCHING:1,SAVED:2,LOADING:3,LOADED:4,EXECUTING:5,EXECUTED:6};t.prototype.resolve=function(){for(var a=this,b=a.dependencies,c=[],d=0,e=b.length;e>d;d++)c[d]=t.resolve(b[d],a.uri);return c},t.prototype.load=function(){var a=this;if(!(a.status>=bb.LOADING)){a.status=bb.LOADING;var c=a.resolve();C("load",c);for(var d=a._remain=c.length,e,f=0;d>f;f++)e=t.get(c[f]),e.status<bb.LOADED?e._waitings[a.uri]=(e._waitings[a.uri]||0)+1:a._remain--;if(0===a._remain)return a.onload(),b;var g={};for(f=0;d>f;f++)e=Y[c[f]],e.status<bb.FETCHING?e.fetch(g):e.status===bb.SAVED&&e.load();for(var h in g)g.hasOwnProperty(h)&&g[h]()}},t.prototype.onload=function(){var a=this;a.status=bb.LOADED,a.callback&&a.callback();var b=a._waitings,c,d;for(c in b)b.hasOwnProperty(c)&&(d=Y[c],d._remain-=b[c],0===d._remain&&d.onload());delete a._waitings,delete a._remain},t.prototype.fetch=function(a){function c(){u.request(g.requestUri,g.onRequest,g.charset)}function d(){delete $[h],_[h]=!0,Z&&(t.save(f,Z),Z=null);var a,b=ab[h];for(delete ab[h];a=b.shift();)a.load()}var e=this,f=e.uri;e.status=bb.FETCHING;var g={uri:f};C("fetch",g);var h=g.requestUri||f;return!h||_[h]?(e.load(),b):$[h]?(ab[h].push(e),b):($[h]=!0,ab[h]=[e],C("request",g={uri:f,requestUri:h,onRequest:d,charset:v.charset}),g.requested||(a?a[g.requestUri]=c:c()),b)},t.prototype.exec=function(){function a(b){return t.get(a.resolve(b)).exec()}var c=this;if(c.status>=bb.EXECUTING)return c.exports;c.status=bb.EXECUTING;var e=c.uri;a.resolve=function(a){return t.resolve(a,e)},a.async=function(b,c){return t.use(b,c,e+"_async_"+d()),a};var f=c.factory,g=z(f)?f(a,c.exports={},c):f;return g===b&&(g=c.exports),delete c.factory,c.exports=g,c.status=bb.EXECUTED,C("exec",c),g},t.resolve=function(a,b){var c={id:a,refUri:b};return C("resolve",c),c.uri||u.resolve(c.id,b)},t.define=function(a,c,d){var e=arguments.length;1===e?(d=a,a=b):2===e&&(d=c,y(a)?(c=a,a=b):c=b),!y(c)&&z(d)&&(c=s(""+d));var f={id:a,uri:t.resolve(a),deps:c,factory:d};if(!f.uri&&L.attachEvent){var g=r();g&&(f.uri=g.src)}C("define",f),f.uri?t.save(f.uri,f):Z=f},t.save=function(a,b){var c=t.get(a);c.status<bb.SAVED&&(c.id=b.id||a,c.dependencies=b.deps||[],c.factory=b.factory,c.status=bb.SAVED)},t.get=function(a,b){return Y[a]||(Y[a]=new t(a,b))},t.use=function(b,c,d){var e=t.get(d,y(b)?b:[b]);e.callback=function(){for(var b=[],d=e.resolve(),f=0,g=d.length;g>f;f++)b[f]=Y[d[f]].exec();c&&c.apply(a,b),delete e.callback},e.load()},t.preload=function(a){var b=v.preload,c=b.length;c?t.use(b,function(){b.splice(0,c),t.preload(a)},v.cwd+"_preload_"+d()):a()},u.use=function(a,b){return t.preload(function(){t.use(a,b,v.cwd+"_use_"+d())}),u},t.define.cmd={},a.define=t.define,u.Module=t,v.fetchedList=_,v.cid=d,u.require=function(a){var b=t.get(t.resolve(a));return b.status<bb.EXECUTING&&(b.onload(),b.exec()),b.exports};var cb=/^(.+?\/)(\?\?)?(seajs\/)+/;v.base=(P.match(cb)||["",P])[1],v.dir=P,v.cwd=M,v.charset="utf-8",v.preload=function(){var a=[],b=location.search.replace(/(seajs-\w+)(&|$)/g,"$1=1$2");return b+=" "+L.cookie,b.replace(/(seajs-\w+)=1/g,function(b,c){a.push(c)}),a}(),u.config=function(a){for(var b in a){var c=a[b],d=v[b];if(d&&w(d))for(var e in c)d[e]=c[e];else y(d)?c=d.concat(c):"base"===b&&("/"!==c.slice(-1)&&(c+="/"),c=l(c)),v[b]=c}return C("config",a),u}}}(this);
 
@@ -62,8 +62,8 @@ define("core", [ "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector"
         window.setTimeout(callback, 1e3 / 60);
     };
     UI.support.touch = "ontouchstart" in window && navigator.userAgent.toLowerCase().match(/mobile|tablet/) || window.DocumentTouch && document instanceof window.DocumentTouch || window.navigator["msPointerEnabled"] && window.navigator["msMaxTouchPoints"] > 0 || //IE 10
-    window.navigator["pointerEnabled"] && window.navigator["maxTouchPoints"] > 0 || //IE >=11
-    false;
+        window.navigator["pointerEnabled"] && window.navigator["maxTouchPoints"] > 0 || //IE >=11
+        false;
     // https://developer.mozilla.org/zh-CN/docs/DOM/MutationObserver
     UI.support.mutationobserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || null;
     UI.utils = {};
@@ -113,6 +113,13 @@ define("core", [ "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector"
             } catch (e) {}
         }
         return options;
+    };
+    UI.utils.generateGUID = function(namespace) {
+        var uid = namespace + "-" || "am-";
+        do {
+            uid += Math.random().toString(36).substring(2, 7);
+        } while (document.getElementById(uid));
+        return uid;
     };
     UI.utils.event = {};
     UI.utils.event.click = UI.support.touch ? "tap" : "click";
@@ -254,17 +261,17 @@ define("core", [ "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector"
     // https://github.com/gnarf/jquery-requestAnimationFrame
     UI.utils.rAF = function() {
         return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || //window.oRequestAnimationFrame ||
-        // if all else fails, use setTimeout
-        function(callback) {
-            return window.setTimeout(callback, 1e3 / 60);
-        };
+            // if all else fails, use setTimeout
+            function(callback) {
+                return window.setTimeout(callback, 1e3 / 60);
+            };
     }();
     // handle multiple browsers for cancelAnimationFrame()
     UI.utils.cancelAF = function() {
         return window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame || //window.oCancelAnimationFrame ||
-        function(id) {
-            window.clearTimeout(id);
-        };
+            function(id) {
+                window.clearTimeout(id);
+            };
     }();
     // Require fastclick.js on touch devices
     if (UI.support.touch) {
@@ -295,17 +302,27 @@ define("core", [ "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector"
     });
     module.exports = UI;
 });
-define("accordion", [ "ui.accordion" ], function(require, exports, module) {
-    var accordion = require("ui.accordion");
-    var $ = window.Zepto, accordionInit = function() {
-        $(".am-accordion").each(function(index, item) {
-            var settings = $(item).attr("data-accordion-settings");
-            try {
-                settings = JSON.parse(settings);
-                $(item).accordion(settings);
-            } catch (e) {
-                $(item).accordion();
-            }
+define("accordion", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.collapse" ], function(require, exports, module) {
+    require("core");
+    require("ui.collapse");
+    var $ = window.Zepto, UI = $.AMUI, accordionInit = function() {
+        var $accordion = $('[data-am-widget="accordion"]'), selector = {
+            item: ".am-accordion-item",
+            title: ".am-accordion-title",
+            content: ".am-accordion-content"
+        };
+        $accordion.each(function(i, item) {
+            var options = UI.utils.parseOptions($(item).attr("data-am-accordion")), $title = $accordion.find(selector.title);
+            $title.on("click", function() {
+                var $content = $(this).next(selector.content), $parent = $(this).parent(selector.item), data = $content.data("amui.collapse");
+                $parent.toggleClass("am-active");
+                if (!data) {
+                    $content.collapse();
+                } else {
+                    $content.collapse("toggle");
+                }
+                !options.multiple && $(item).children(".am-active").not($parent).removeClass("am-active").find(".am-accordion-content.am-in").collapse("close");
+            });
         });
     };
     // Init on DOM ready
@@ -315,7 +332,30 @@ define("accordion", [ "ui.accordion" ], function(require, exports, module) {
     exports.init = accordionInit;
 });
 define("divider", [], function(require, exports, module) {});
-define("figure", [ "zepto.pinchzoom" ], function(require, exports, module) {
+define("duoshuo", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
+    require("core");
+    var $ = window.Zepto;
+    function duoshuoInit() {
+        var $dsThread = $(".ds-thread"), dsShortName = $dsThread.parent('[data-am-widget="duoshuo"]').attr("data-ds-short-name"), dsSrc = (document.location.protocol == "https:" ? "https:" : "http:") + "//static.duoshuo.com/embed.js";
+        if (!$dsThread.length || !dsShortName) return;
+        window.duoshuoQuery = {
+            short_name: dsShortName
+        };
+        // 已经有多说脚本
+        if ($('script[src="' + dsSrc + '"]').length) return;
+        var $dsJS = $("<script>", {
+            async: true,
+            type: "text/javascript",
+            src: dsSrc,
+            charset: "utf-8"
+        });
+        $("body").append($dsJS);
+    }
+    $(window).on("load", duoshuoInit);
+    exports.init = duoshuoInit;
+});
+define("figure", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "zepto.pinchzoom" ], function(require, exports, module) {
+    require("core");
     var $ = window.Zepto;
     // PinchZoom Plugin
     var PinchZoom = require("zepto.pinchzoom");
@@ -370,14 +410,14 @@ define("figure", [ "zepto.pinchzoom" ], function(require, exports, module) {
     });
     exports.init = figureInit;
 });
-define("footer", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.add2home", "util.cookie", "ui.modal" ], function(require, exports, module) {
+define("footer", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.add2home", "util.cookie", "ui.modal", "ui.dimmer" ], function(require, exports, module) {
     require("core");
     // add2home
     require("ui.add2home");
     var cookie = require("util.cookie"), modal = require("ui.modal"), $ = window.Zepto, footerInit = function() {
         // modal mode
         $(".am-footer-ysp").on("click", function() {
-            $("#am-switch-mode").modal();
+            $("#am-footer-mode").modal();
         });
         // switch mode
         // switch to desktop
@@ -398,18 +438,22 @@ define("footer", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend
     });
     exports.init = footerInit;
 });
-define("gallery", [ "zepto.touchgallery" ], function(require, exports, module) {
+define("gallery", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "zepto.touchgallery", "zepto.extend.touch", "zepto.pinchzoom" ], function(require, exports, module) {
+    require("core");
     var touchGallery = require("zepto.touchgallery");
-    var $ = window.Zepto;
+    var $ = window.Zepto, UI = $.AMUI;
     var galleryInit = function() {
-        var $themeOne = $(".am-gallery-one");
-        $("[data-am-gallery] a").touchTouch();
-        $themeOne.each(function() {
+        var $gallery = $('[data-am-widget="gallery"]'), $galleryOne = $gallery.filter(".am-gallery-one");
+        $gallery.each(function() {
+            var options = UI.utils.parseOptions($(this).attr("data-am-gallery"));
+            options.lightbox && $(this).find("a").touchTouch();
+        });
+        $galleryOne.each(function() {
             galleryMore($(this));
         });
     };
     function galleryMore(object) {
-        var moreData = $("<li class='am-gallery-more'><a href='javascript:;' class='am-btn am-btn-default'>更多 &gt;&gt;</a></li>");
+        var moreData = $("<li class='am-gallery-more'><a href='javascript:;'>更多 &gt;&gt;</a></li>");
         if (object.children().length > 6) {
             object.children().each(function(index) {
                 if (index > 5) {
@@ -419,7 +463,7 @@ define("gallery", [ "zepto.touchgallery" ], function(require, exports, module) {
             object.find(".am-gallery-more").remove();
             object.append(moreData);
         }
-        $(".am-gallery-more").on("click", function() {
+        object.find(".am-gallery-more").on("click", function() {
             object.children().show();
             $(this).hide();
         });
@@ -429,8 +473,9 @@ define("gallery", [ "zepto.touchgallery" ], function(require, exports, module) {
     });
     exports.init = galleryInit;
 });
-define("gotop", [ "./ui.smooth-scroll", "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
-    require("./ui.smooth-scroll");
+define("gotop", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.smooth-scroll" ], function(require, exports, module) {
+    require("core");
+    require("ui.smooth-scroll");
     var $ = window.Zepto;
     var UI = $.AMUI;
     var goTopInit = function() {
@@ -443,6 +488,9 @@ define("gotop", [ "./ui.smooth-scroll", "core", "zepto.extend.fx", "zepto.extend
         goTopInit();
     });
     exports.init = goTopInit;
+});
+define("header", [], function(require, exports, module) {
+    var $ = window.Zepto;
 });
 define("intro", [], function(require, exports, module) {
     var $ = window.Zepto;
@@ -465,7 +513,7 @@ define("list_news", [], function(require, exports, module) {
             object.find(".am-list-news-more").remove();
             object.append($listMore);
         }
-        $(".am-list-news-more").on("click", function() {
+        object.find(".am-list-news-more").on("click", function() {
             $amList.children().show();
             $(this).hide();
         });
@@ -500,8 +548,8 @@ define("map", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.se
         // 即使传入 $ 也无效，改为使用原生方法
         // 这个函数作为 callback 会插入到 body 以后才执行，应该是 $ 引用错误导致
         var content = document.querySelector(".am-map"), defaultLng = 116.331398, //经度默认值
-        defaultLat = 39.897445, //纬度默认值
-        name = content.getAttribute("data-name"), address = content.getAttribute("data-address"), lng = content.getAttribute("data-longitude") || defaultLng, lat = content.getAttribute("data-latitude") || defaultLat;
+            defaultLat = 39.897445, //纬度默认值
+            name = content.getAttribute("data-name"), address = content.getAttribute("data-address"), lng = content.getAttribute("data-longitude") || defaultLng, lat = content.getAttribute("data-latitude") || defaultLat;
         var map = new BMap.Map("bd-map");
         //实例化一个地理坐标点
         var point = new BMap.Point(lng, lat);
@@ -549,490 +597,226 @@ define("map", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.se
     $(document).on("ready", mapInit);
     exports.init = mapInit;
 });
-define("menu", [ "nav", "zepto.outerdemension", "zepto.extend.data", "zepto.extend.selector", "zepto.extend.fx", "core", "ui.offcanvas" ], function(require, exports, module) {
-    require("nav");
+define("mechat", [], function(require, exports, module) {
+    var $ = window.Zepto;
+    var mechatInit = function() {
+        if (!$("#mechat").length) return;
+        var $mechat = $('[data-am-widget="mechat"]'), unitid = $mechat.data("am-mechat-unitid"), $mechatData = $("<script>", {
+            charset: "utf-8",
+            src: "http://mechatim.com/js/unit/button.js?id=" + unitid
+        });
+        $("body").append($mechatData);
+    };
+    // Lazy load
+    $(window).on("load", mechatInit);
+    exports.init = mechatInit;
+});
+define("menu", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.offcanvas", "zepto.outerdemension", "ui.collapse", "ui.iscroll-lite" ], function(require, exports, module) {
+    require("core");
     require("ui.offcanvas");
+    require("ui.collapse");
+    var IScroll = require("ui.iscroll-lite");
     var $ = window.Zepto;
     var UI = $.AMUI;
     var menuInit = function() {
-        //one theme variable
-        var $this, $next, $width, iNow, aNum, $menuLv2, $menuLv3;
-        //排除掉one主题
-        $(".am-menu").not("[data-am-nav]").not(".am-menu-one").each(function() {
-            var nav = $(this);
-            if (!nav.data("nav")) {
-                var obj = new UI.nav(nav, nav.data("am-nav") ? UI.utils.options(nav.data("am-nav")) : {});
-            }
+        var $menus = $('[data-am-widget="menu"]');
+        $menus.find(".am-menu-nav .am-parent > a").on("click", function(e) {
+            e.preventDefault();
+            var $clicked = $(this), $parent = $clicked.parent(), $subMenu = $clicked.next(".am-menu-sub");
+            $parent.toggleClass("am-open");
+            $subMenu.collapse("toggle");
+            $parent.siblings(".am-parent").removeClass("am-open").children(".am-menu-sub.am-in").collapse("close");
         });
-        // has one class
-        if ($(".am-menu").hasClass("am-menu-one")) {
-            $this = $(".am-menu-one");
-            $next = $("<a>").attr({
-                "class": "am-menu-next",
-                href: "javascript:;"
+        // Dropdown/slidedown menu
+        $menus.filter("[data-am-menu-collapse]").find("> .am-menu-toggle").on("click", function(e) {
+            e.preventDefault();
+            var $this = $(this), $nav = $this.next(".am-menu-nav");
+            $this.toggleClass("am-active");
+            $nav.collapse("toggle");
+        });
+        // OffCanvas menu
+        $menus.filter("[data-am-menu-offcanvas]").find("> .am-menu-toggle").on("click", function(e) {
+            e.preventDefault();
+            var $this = $(this), $nav = $this.next(".am-offcanvas");
+            $this.toggleClass("am-active");
+            $nav.offCanvas("open");
+        });
+        // Close offCanvas when link clicked
+        var autoCloseOffCanvas = '.am-offcanvas[data-dismiss-on="click"]', $autoCloseOffCanvas = $(autoCloseOffCanvas);
+        $autoCloseOffCanvas.find("a").not(".am-parent>a").on("click", function(e) {
+            $(this).parents(autoCloseOffCanvas).offCanvas("close");
+        });
+        // one theme
+        $menus.filter(".am-menu-one").each(function(index) {
+            var $this = $(this), $wrap = $('<div class="am-menu-nav-sub-wrap"></div>'), allWidth = 0, prevIndex, $nav = $this.find(".am-menu-nav"), $navTopItem = $nav.children("li");
+            $navTopItem.filter(".am-parent").each(function(index) {
+                $(this).attr("data-rel", "#am-menu-sub-" + index);
+                $(this).find(".am-menu-sub").attr("id", "am-menu-sub-" + index).appendTo($wrap);
             });
-            $width = 0;
-            iNow = -1;
-            aNum = [];
-            $menuLv2 = $(".am-menu-lv2");
-            $menuLv3 = $(".am-menu-lv3");
-            $this.children("li").find("a").eq(0).attr("href", "javascript:;").addClass("am-menu-prev am-menu-disabled");
-            $this.find("li").eq(0).append($next);
-            $this.find(".am-menu-lv2").wrap("<div class='am-menu-wrap'></div>");
-            $menuLv2.children("li").children("a").each(function() {
-                $(this).parent().width($(this).width());
-                $width += $(this).width();
-                aNum.push($width);
+            $this.append($wrap);
+            $nav.wrap('<div class="am-menu-nav-wrap" id="am-menu-' + index + '">');
+            // $navTopItem.eq(0).addClass('am-active');
+            // 计算出所有 li 宽度
+            $navTopItem.each(function(i) {
+                allWidth += parseInt($(this).width());
             });
-            $menuLv2.find(".am-parent").each(function() {
-                var $firstA = $(this).find("a"), $li = $("<li class='am-menu-item-more'><a class='am-menu-item-close' href='javascript:;'>×</a><a class='am-menu-item-into' href=" + $firstA.attr("href") + ">进入" + $firstA.html() + "</a></li>");
-                $firstA.attr("href", "javascript:;");
-                $(this).find(".am-menu-lv3").append($li);
+            $nav.width(allWidth);
+            var menuScroll = new IScroll("#am-menu-" + index, {
+                eventPassthrough: true,
+                scrollX: true,
+                scrollY: false,
+                preventDefault: false
             });
-            $menuLv2.width($width);
-            $menuLv3.width($(".am-menu-lv1").width() - 20);
-            // 减去Menu 左右padding
-            // FIXME: ide border
-            //$menuLv3.width($('.am-menu-lv1').width() - 22);// 减去Menu 左右padding
-            $(".am-menu-wrap .am-parent").children("a").on("click", function() {
-                if ($(this).hasClass("active")) {
-                    $(this).removeClass("active");
-                    $(this).siblings(".am-menu-lv3").animate({
-                        opacity: 0
-                    }, "fast", "linear", function() {
-                        $(this).css("display", "none");
-                    });
+            $navTopItem.on("click", function() {
+                var $clicked = $(this);
+                $clicked.addClass("am-active").siblings().removeClass("am-active");
+                $wrap.find(".am-menu-sub.am-in").collapse("close");
+                if ($clicked.is(".am-parent")) {
+                    !$clicked.hasClass(".am-open") && $wrap.find($clicked.attr("data-rel")).collapse("open");
                 } else {
-                    offAll();
-                    $(this).addClass("active");
-                    $(this).siblings(".am-menu-lv3").css("display", "block").animate({
-                        left: -$(this).offset().left + 10,
-                        opacity: 1
-                    }, "fast", "linear");
+                    $clicked.siblings().removeClass("am-open");
                 }
-            });
-            $(".am-menu-next").on("click", function() {
-                offAll();
-                if (-aNum[iNow] + parseInt($menuLv2.css("left")) < -$menuLv2.width() + $menuLv2.parent().width() - $next.width() * 2) {
-                    $menuLv2.animate({
-                        left: -$menuLv2.width() + $menuLv2.parent().width() - $next.width() * 2
-                    }, "fast", "linear");
-                    $(this).addClass("am-menu-disabled");
-                } else {
-                    iNow++;
-                    $menuLv2.animate({
-                        left: -aNum[iNow]
-                    }, "fast", "linear");
-                    $(".am-menu-prev").removeClass("am-menu-disabled");
+                // 第一次调用，没有prevIndex
+                if (prevIndex === undefined) {
+                    prevIndex = $(this).index() ? 0 : 1;
                 }
-            });
-            $(".am-menu-item-close").on("click", function() {
-                offAll();
-            });
-            $(".am-menu-prev").on("click", function() {
-                offAll();
-                if (iNow <= -1) {
-                    $menuLv2.animate({
-                        left: 0
-                    }, "fast", "linear");
-                    $(this).addClass("am-menu-disabled");
-                } else {
-                    iNow--;
-                    $menuLv2.animate({
-                        left: -aNum[iNow]
-                    }, "fast", "linear");
-                    $(".am-menu-next").removeClass("am-menu-disabled");
+                // 判断方向
+                var dir = $(this).index() > prevIndex;
+                var target = $(this)[dir ? "next" : "prev"]();
+                // 点击的按钮，显示一半
+                var offset = target.offset() || $(this).offset();
+                var within = $this.offset();
+                // 父类左边距
+                var listOffset, parentLeft = parseInt($this.css("padding-left"));
+                if (dir ? offset.left + offset.width > within.left + within.width : offset.left < within.left) {
+                    listOffset = $nav.offset();
+                    menuScroll.scrollTo(dir ? within.width - offset.left + listOffset.left - offset.width - parentLeft : listOffset.left - offset.left, 0, 400);
                 }
+                prevIndex = $(this).index();
             });
-            drag($menuLv2);
-        }
-        /*
-         *  offAll menu children active
-         */
-        function offAll() {
-            $(".am-menu-wrap .am-parent").children("a").removeClass("active").siblings(".am-menu-lv3").animate({
-                opacity: 0
-            }, "fast", "linear").css("display", "none");
-        }
-        /*
-         *  drag menu children
-         *  @obj Zepto object
-         */
-        function drag(obj) {
-            var disX, downX, nOffsetLeft = 0;
-            obj.on("touchstart MSPointerDown pointerdown", function(ev) {
-                offAll();
-                ev.preventDefault();
-                var oTarget = ev.targetTouches[0];
-                disX = oTarget.clientX - $(this).offset().left;
-                downX = oTarget.clientX;
-                $(document).on("touchmove MSPointerMove pointermove", fnMove);
-                $(document).on("touchend MSPointerUp pointerup", fnUp);
+            $this.on("touchmove", function(event) {
+                event.preventDefault();
             });
-            function fnUp(ev) {
-                $.each(aNum, function(index, item) {
-                    nOffsetLeft += -aNum[index];
-                    if (parseInt(obj.css("left")) >= nOffsetLeft) {
-                        iNow = index;
-                        return false;
-                    }
-                });
-                nOffsetLeft = 0;
-                $(document).off("touchend MSPointerUp pointerup", fnUp);
-                $(document).off("touchmove MSPointerMove pointermove", fnMove);
-            }
-            function fnMove(ev) {
-                ev.preventDefault();
-                var oTarget = ev.targetTouches[0];
-                var nLeft = oTarget.clientX - disX;
-                // ->
-                if (nLeft > 0) {
-                    nLeft = 0;
-                }
-                // <-
-                if (nLeft < -obj.width() + obj.parent().width() - $next.width() * 2) {
-                    nLeft = -obj.width() + obj.parent().width() - $next.width() * 2;
-                }
-                obj.css("left", nLeft);
-            }
-        }
+        });
     };
     $(function() {
         menuInit();
     });
     exports.init = menuInit;
 });
-define("nav", [ "./zepto.outerdemension", "./zepto.extend.data", "./zepto.extend.selector", "./zepto.extend.fx", "./core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
-    require("./zepto.outerdemension");
-    require("./zepto.extend.data");
-    // selector extend
-    require("./zepto.extend.selector");
-    require("./zepto.extend.fx");
-    require("./core");
-    var $ = window.Zepto;
-    var UI = $.AMUI;
-    /**
-     * @via https://github.com/uikit/uikit/blob/master/src/js/nav.js
-     * @license https://github.com/uikit/uikit/blob/master/LICENSE.md
-     */
-    var Nav = function(element, options) {
-        var $this = this, $element = $(element);
-        if ($element.data("nav")) return;
-        this.options = $.extend({}, this.options, options);
-        this.element = $element.on("click", this.options.trigger, function(e) {
-            e.preventDefault();
-            // trigger link
-            var ele = $(this);
-            $this.toggleNav(ele.parent(".am-parent"));
-        });
-        // wrap sub menu
-        this.element.find(this.options.lists).each(function() {
-            var $ele = $(this), parent = $ele.parent();
-            // li.am-parent
-            var navHeight = getHeight($ele);
-            parent.data("list-container", $ele).attr("data-nav-height", navHeight);
-        });
-        this.element.data("nav", this);
-    };
-    $.extend(Nav.prototype, {
-        options: {
-            trigger: ".am-parent > a",
-            lists: ".am-parent > ul",
-            multiple: false
-        },
-        toggleNav: function(li, noanimation) {
-            var element = this.element, $li = $(li);
-            // 是否允许同时展开多个菜单
-            if (!this.options.multiple) {
-                $li.siblings(".am-open").each(function() {
-                    if ($(this).data("list-container")) {
-                        $(this).removeClass("am-open").data("list-container").animate({
-                            height: 0
-                        }, function() {});
-                    }
-                });
-            }
-            $li.toggleClass("am-open");
-            var targetMenu = $li.data("list-container"), targetMenuPosition = targetMenu.css("position");
-            if ($li.data("list-container")) {
-                if (noanimation) {
-                    $li.data("list-container").height($li.hasClass("am-open") ? "auto" : 0);
-                } else {
-                    // 三级菜单展开时增加二级菜单容器高度
-                    var parentWrap = $li.parents(".am-parent");
-                    // 二级菜单
-                    if (parentWrap.length > 0) {
-                        var parentNavWrap = parentWrap.eq(0).data("list-container");
-                        // 三级菜单展开且三级菜单非绝对定位时增加父级容器高度
-                        var addHeight = $li.hasClass("am-open") && targetMenuPosition != "absolute" ? Number($li.attr("data-nav-height")) : 0;
-                        parentNavWrap.animate({
-                            height: Number(parentWrap.attr("data-nav-height")) + addHeight
-                        });
-                        // 三级菜单绝对定位时
-                        if (targetMenuPosition == "absolute") {
-                            parentNavWrap.css({
-                                overflow: $li.hasClass("am-open") ? "visible" : "hidden"
-                            });
-                        }
-                    }
-                    $li.data("list-container").animate({
-                        height: $li.hasClass("am-open") ? $li.attr("data-nav-height") + "px" : 0
-                    });
-                    // 一级菜单闭合时闭合所有展开子菜单
-                    var subNavs = $li.find(".am-menu-sub");
-                    // console.log($li);
-                    if (subNavs.length > 0 && !$li.hasClass("am-open")) {
-                        // console.log(subNavs.length);
-                        subNavs.each(function(index, item) {
-                            $(item).animate({
-                                height: 0,
-                                overflow: "hidden"
-                            });
-                            $(item).parent(".am-parent.am-open").not($li).removeClass("am-open");
-                        });
-                    }
-                }
-            }
-        }
-    });
-    UI["nav"] = Nav;
-    // helper
-    function getHeight(ele) {
-        var $ele = ele, height = "auto";
-        if ($ele.is(":visible")) {
-            height = $ele.outerHeight();
-        } else {
-            var position = $ele.css("position");
-            // show element if it is hidden (it is needed if display is none)
-            $ele.show();
-            // place it so it displays as usually but hidden
-            $ele.css({
-                position: "absolute",
-                visibility: "hidden",
-                height: "auto"
-            });
-            // get naturally height
-            height = $ele.outerHeight();
-            //console.log($ele.outerHeight(), $ele.height());
-            // set initial css for animation
-            $ele.css({
-                position: position,
-                visibility: "visible",
-                overflow: "hidden",
-                height: 0
-            });
-        }
-        return height;
-    }
-    // init code
-    $(function() {
-        $("[data-am-nav]").each(function() {
-            var nav = $(this);
-            if (!nav.data("nav")) {
-                var obj = new Nav(nav, UI.utils.options(nav.data("am-nav")));
-            }
-        });
-    });
-});
-define("navbar", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "util.qrcode", "ui.modal" ], function(require, exports, module) {
+define("navbar", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "util.qrcode", "ui.modal", "ui.dimmer", "ui.share" ], function(require, exports, module) {
     require("core");
-    var $ = window.Zepto, qrcode = require("util.qrcode"), modal = require("ui.modal");
+    var $ = window.Zepto, UI = $.AMUI, QRCode = require("util.qrcode"), modal = require("ui.modal"), share = require("ui.share");
     var navbarInit = function() {
-        var _parent = $(".am-navbar"), parentUl = _parent.find("ul"), subLi = _parent.find("li"), oneWidth = subLi.width(), minWidth = 100, //每个li最小宽度
-        _more = null, _moreList = null, onOff = true, onOffCreat = true, // 防止多次的创建
-        $body = $("body");
-        var $share = $("[data-am-navbar-share]");
-        var $qrcode = $("[data-am-navbar-qrcode]");
-        var navbarPosition = _parent.css("position");
-        if (navbarPosition == "fixed") {
+        var $navBar = $('[data-am-widget="navbar"]');
+        if (!$navBar.length) return;
+        var $win = $(window), $body = $("body"), $navBarNav = $navBar.find(".am-navbar-nav"), $navItems = $navBar.find("li"), navItemsCounter = $navItems.length;
+        configItems = $navBarNav.attr("class") && parseInt($navBarNav.attr("class").match(/sm-block-grid-(\d)/)[1]) || 3,
+            navMinWidth = 60, //每个li最小宽度
+            offsetWidth = 16, $share = $navItems.filter("[data-am-navbar-share]"), $qrcode = $navItems.filter("[data-am-navbar-qrcode]"),
+            activeStatus = "am-active", $moreActions = $('<ul class="am-navbar-actions"></ul>', {
+            id: UI.utils.generateGUID("am-navbar-actions")
+        }), $moreLink = $('<li class="am-navbar-labels am-navbar-more"><a href="javascript: void(0);"><span class="am-icon-angle-up"></span><span class="am-navbar-label">更多</span></a></li>');
+        // 如果有 Fix 的工具栏则设置 body 的 padding-bottom
+        if ($navBar.css("position") == "fixed") {
             $body.addClass("with-fixed-navbar");
         }
         if ($qrcode.length) {
-            var qrImg = $("[data-am-navbar-qrcode]").attr("data-am-navbar-qrcode");
-            var url = window.location.href;
-            var qrData = $("<div class=\"am-modal am-modal-no-btn\" id='am-navbar-boxqrcode'>" + "<div class='am-modal-dialog' id='am-navbar-qrcode-data'></div>" + "</div>");
-            $body.append(qrData);
-            //判断上传自定义的二维码没有，否则生成二维码
-            if (qrImg) {
-                $("#am-navbar-qrcode-data").html('<img src="' + qrImg + '"/>');
-            } else {
-                var qrnode = new qrcode({
-                    render: "canvas",
-                    correctLevel: 0,
-                    text: url,
-                    width: 190,
-                    height: 190,
-                    background: "#fff",
-                    foreground: "#000"
-                });
-                $("#am-navbar-qrcode-data").html(qrnode);
-            }
-        }
-        //添加share className
-        $share.addClass("am-navbar-share");
-        $qrcode.addClass("am-navbar-qrcode");
-        if ($share.length) {
-            //share start
-            window._bd_share_config = {
-                common: {
-                    bdSnsKey: {},
-                    bdText: "",
-                    bdMini: "2",
-                    bdMiniList: false,
-                    bdPic: "",
-                    bdStyle: "1",
-                    bdSize: "16"
-                },
-                share: {
-                    bdSize: 24
+            var qrId = "am-navbar-qrcode";
+            $qrModal = $("#" + qrId);
+            if (!$qrModal.length) {
+                var qrImg = $qrcode.attr("data-am-navbar-qrcode"), $qrModal = $('<div class="am-modal am-modal-no-btn" id="">' + '<div class="am-modal-dialog"><div class="am-modal-bd"></div></div>' + "</div>", {
+                    id: qrId
+                }), $qrContainer = $qrModal.find(".am-modal-bd");
+                // 判断上传自定义的二维码没有，否则生成二维码
+                if (qrImg) {
+                    $qrContainer.html('<img src="' + qrImg + '"/>');
+                } else {
+                    var qrnode = new QRCode({
+                        render: "canvas",
+                        correctLevel: 0,
+                        text: window.location.href,
+                        width: 200,
+                        height: 200,
+                        background: "#fff",
+                        foreground: "#000"
+                    });
+                    $qrContainer.html(qrnode);
                 }
-            };
-            $body.append($("<script />", {
-                src: "http://bdimg.share.baidu.com/static/api/js/share.js?v=89343201.js?cdnversion=" + ~(-new Date() / 36e5)
-            }));
-            var shareData = '<div class="bdsharebuttonbox">' + '<div class="am-modal-actions am-modal-out" id="am-navbar-share">' + '<div class="am-modal-actions-group">' + '<ul class="am-list">' + '<li class="am-modal-actions-header" data-cmd="more">分享到</li>' + '<li><a href="#" class="am-icon-qq" data-cmd="qzone" title="分享到QQ空间">aaaaaaa</a></li>' + '<li><a href="#" class="am-icon-weibo" data-cmd="tsina" title="分享到新浪微博">bbbbb</a></li>' + '<li><a href="#" class="am-icon-tencent-weibo" data-cmd="tqq" title="分享到腾讯微博">ccccc</a></li>' + '<li><a href="#" class="am-icon-renren" data-cmd="renren" title="分享到人人网">ddddd</a></li>' + '<li><a href="#" class="am-icon-wechat" data-cmd="weixin" title="分享到微信">微信</a></li>' + "</ul>" + "</div>" + '<div class="am-modal-actions-group"><button type="button" class="am-btn am-btn-secondary am-btn-block" data-am-modal-close>取消</button></div>' + "</div>" + "</div>";
-            $body.append(shareData);
-            $share.on("click", function(event) {
-                event.preventDefault();
-                $("#am-navbar-share").modal();
+                $body.append($qrModal);
+            }
+            $qrcode.on("click", function(e) {
+                e.preventDefault();
+                $qrModal.modal();
             });
         }
-        if ($qrcode.length) {
-            //qrcode start
-            $qrcode.on("click", function(event) {
-                event.preventDefault();
-                $("#am-navbar-boxqrcode").modal();
-            });
+        if (navItemsCounter > configItems && navItemsCounter > calcSuiteItems()) {
+            initActions();
         }
-        //qrcode end
-        if (_parent.length) {
-            $body.append($('<ul class="am-navbar-moreList"></ul>'));
+        function initActions() {
+            $navBarNav.append($moreLink);
+            $navBarNav.find("li").not(".am-navbar-more").slice(calcSuiteItems() - 1).appendTo($moreActions);
+            // Append more actions
+            $navBar.append($moreActions);
         }
-        if (_parent.find("li").length * _parent.find("li").width() > $(window).width()) {
-            //如果li没有完全展示
-            //替换父级的class
-            displaceClass(_parent.find("li").length, parentUl);
-            var nowWidth = _parent.find("li").width();
-            if (nowWidth < minWidth) {
-                if (onOffCreat) {
-                    addMore();
-                    onOffCreat = false;
+        function checkNavBarItems() {
+            // console.log('best: %d', calcSuiteItems());
+            if (calcSuiteItems() >= navItemsCounter) {
+                // 显示所有链接，隐藏 more
+                $moreLink.hide();
+                $moreActions.find("li").insertBefore($moreLink);
+                return;
+            }
+            !$navBar.find(".am-navbar-actions").length && initActions();
+            $moreLink.show();
+            if ($navBarNav.find("li").length < calcSuiteItems()) {
+                $moreActions.find("li").slice(0, calcSuiteItems() - $navBarNav.find("li").length).insertBefore($moreLink);
+            } else if ($navBarNav.find("li").length > calcSuiteItems()) {
+                if ($moreActions.find("li").length) {
+                    $navBarNav.find("li").not($moreLink).slice(calcSuiteItems() - 1).insertBefore($moreActions.find("li").first());
+                } else {
+                    $navBarNav.find("li").not($moreLink).slice(calcSuiteItems() - 1).appendTo($moreActions);
                 }
-                displaceClass(liLength(), parentUl);
-                addMoreLi(liLength());
             }
         }
-        //有问题的代码：
-        /*$(window).on("resize",function(){
-
-         if(_parent.find("li").length * _parent.find("li").width() > $(window).width()){ //如果li没有完全展示
-
-         //替换父级的class
-         displaceClass(_parent.find("li").length,parentUl);
-         var nowWidth = _parent.find("li").width();
-
-         //现在的宽度小于最小宽度
-         if(nowWidth < minWidth){
-
-         if(onOffCreat){
-         addMore();
-         onOffCreat = false;
-         }
-         displaceClass(liLength(),parentUl);
-         addMoreLi(liLength());
-         }else{
-
-         addParentLi(liLength());
-
-         if($(".am-navbar-moreList").children().length){
-         removeMore();
-         onOffCreat = true;
-         }
-
-         displaceClass(liLength(),parentUl);
-         }
-         }else{
-         displaceClass(_parent.find("li").length,parentUl);
-         if(_parent.find("li").width < minWidth){
-         console.log("小于")
-         }
-         }
-
-         })*/
-        _more = $(".am-navbar-more");
-        _moreList = $(".am-navbar-moreList");
-        _parent.on("click", ".am-navbar-more", function() {
-            if (onOff) {
-                _moreList.css({
-                    bottom: _moreList.height(),
-                    display: "block"
-                }).animate({
-                    bottom: 49
-                }, {
-                    duration: "fast",
-                    complete: function() {
-                        _more.addClass("am-navbar-more-active");
-                    }
-                });
-                onOff = !onOff;
-            } else {
-                _moreList.animate({
-                    bottom: -_moreList.height()
-                }, {
-                    complete: function() {
-                        $(this).css("display", "none");
-                        _more.removeClass("am-navbar-more-active");
-                    }
-                });
-                onOff = !onOff;
-            }
+        /**
+         * 计算最适合显示的条目个数
+         * @returns {number}
+         */
+        function calcSuiteItems() {
+            return Math.floor(($win.width() - offsetWidth) / navMinWidth);
+        }
+        $navBar.on("click.navbar.amui", ".am-navbar-more", function(e) {
+            e.preventDefault();
+            $moreLink[$moreActions.hasClass(activeStatus) ? "removeClass" : "addClass"](activeStatus);
+            $moreActions.toggleClass(activeStatus);
         });
-        //添加more
-        function addMore() {
-            parentUl.append($('<li class="am-navbar-item am-navbar-more"><a href="javascript:;"><span class="am-icon-chevron-up"></span>更多</a></li>'));
-        }
-        //删除more
-        function removeMore() {
-            parentUl.find(".am-navbar-more").remove();
-        }
-        //计算合适的长度
-        function liLength() {
-            return parseInt($(window).width() / minWidth);
-        }
-        //移出parent下的li,并添加到moreList里面
-        function addMoreLi(len) {
-            subLi.not(".am-navbar-more").each(function(index) {
-                if (index > len - 2) {
-                    $(this).appendTo($(".am-navbar-moreList"));
-                }
+        if ($share.length) {
+            $share.on("click.navbar.amui", function(e) {
+                e.preventDefault();
+                share.toggle();
             });
         }
-        //移出moreList里面的li,并添加到parent下面
-        function addParentLi(len) {
-            $(".am-navbar-moreList").children().first().appendTo(parentUl);
-        }
-        //替换class
-        function displaceClass(num, object) {
-            var $className = object.attr("class").replace(/sm-block-grid-\d/, "sm-block-grid-" + num);
-            object.attr("class", $className);
-        }
+        $win.on("resize.navbar.amui orientationchange.navbar.amui", UI.utils.debounce(checkNavBarItems, 150));
     };
-    // DOMContentLoaded
+    // DOMContent ready
     $(function() {
         navbarInit();
     });
     exports.init = navbarInit;
 });
-define("pagination", [], function(require, exports, module) {});
+define("pagination", [], function(require, exports, module) {
+    var $ = window.Zepto;
+});
 define("paragraph", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "zepto.pinchzoom" ], function(require, exports, module) {
     require("core");
-    var $ = window.Zepto;
+    var $ = window.Zepto, UI = $.AMUI;
     // PinchZoom Plugin
     var PinchZoom = require("zepto.pinchzoom");
     var paragraphInit;
     $.fn.paragraphZoomToggle = function() {
         var $warpHead, $pinch, $zoomWrap, onOff = true, // 防止重复创建
-        $wrapDom = $("<div class='am-paragraph-wrap'><header></header><div class='pinch-zoom'></div></div>");
+            $wrapDom = $("<div class='am-paragraph-wrap'><header></header><div class='pinch-zoom'></div></div>");
         $zoomWrap = $(".am-paragraph-wrap");
         $warpHead = $(".am-paragraph-wrap header");
         $pinch = $zoomWrap.find(".pinch-zoom");
@@ -1109,41 +893,42 @@ define("paragraph", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.ext
         }
     };
     paragraphInit = function() {
-        var $body = $("body"), $paragraph = $(".am-paragraph"), $tableWidth;
-        if ($paragraph.length && $paragraph.attr("data-am-imgParagraph")) {
-            $paragraph.find("img").paragraphZoomToggle();
-            $body.on("click", ".am-paragraph-wrap", function(e) {
-                e.preventDefault();
-                var target = e.target;
-                // Img is using pinch zoom
-                if (!$(target).is("img")) {
-                    $(this).toggleClass("am-active");
-                }
-            });
-        }
-        if ($paragraph.length && $paragraph.attr("data-am-tableParagraph")) {
-            $paragraph.find("table").each(function() {
-                $tableWidth = $(this).width();
-                $(this).paragraphTable($tableWidth);
-            });
-        }
+        var $body = $("body"), $paragraph = $('[data-am-widget="paragraph"]'), $tableWidth;
+        $paragraph.each(function() {
+            var $this = $(this), options = UI.utils.parseOptions($this.attr("data-am-paragraph"));
+            if (options.imgLightbox) {
+                $this.find("img").paragraphZoomToggle();
+                $body.on("click", ".am-paragraph-wrap", function(e) {
+                    e.preventDefault();
+                    var target = e.target;
+                    // Img is using pinch zoom
+                    if (!$(target).is("img")) {
+                        $(this).toggleClass("am-active");
+                    }
+                });
+            }
+            if (options.tableScrollable) {
+                $this.find("table").each(function() {
+                    $tableWidth = $(this).width();
+                    $(this).paragraphTable($tableWidth);
+                });
+            }
+        });
     };
     $(window).on("load", function() {
         paragraphInit();
     });
     exports.init = paragraphInit;
 });
-define("slider", [ "zepto.flexslider" ], function(require, exports, module) {
-    var $ = window.Zepto;
+define("slider", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "zepto.flexslider" ], function(require, exports, module) {
+    require("core");
     require("zepto.flexslider");
+    var $ = window.Zepto, UI = $.AMUI;
     var sliderInit = function() {
-        $(".am-slider").not(".am-slider-manual").each(function(i, item) {
-            var options = $(item).attr("data-slider-config");
-            if (options) {
-                $(item).flexslider($.parseJSON(options));
-            } else {
-                $(item).flexslider();
-            }
+        var $sliders = $('[data-am-widget="slider"]');
+        $sliders.not(".am-slider-manual").each(function(i, item) {
+            var options = UI.utils.parseOptions($(item).attr("data-am-slider"));
+            $(item).flexslider(options);
         });
     };
     $(document).on("ready", sliderInit);
@@ -1164,227 +949,21 @@ define("sohucs", [], function(require, exports, module) {
     $(window).on("load", sohuCSInit);
     exports.init = sohuCSInit;
 });
-define("tabs", [ "zepto.extend.touch", "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
+define("tabs", [ "zepto.extend.touch", "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.tabs" ], function(require, exports, module) {
     require("zepto.extend.touch");
     require("core");
+    require("ui.tabs");
     var $ = window.Zepto;
     var tabsInit = function() {
-        $(".am-tabs").each(function() {
-            amTabs($(this));
-        });
+        $('[data-am-widget="tabs"]').tabs();
     };
-    function amTabs(parent) {
-        var $tabsContent = parent.find(".am-tabs-bd-content"), $tabsDiv = $tabsContent.children(), oneWidth, iNow = 0, disX, disY, downY, downX, $tabLi = parent.find(".am-tabs-hd").children();
-        //设置tabsdiv宽度
-        $tabsContent.width($tabsContent.parent().width() * $tabsDiv.length);
-        $tabsDiv.width($tabsContent.parent().width());
-        oneWidth = $tabsDiv.width();
-        $(window).on("resize", function() {
-            $tabsContent.width($tabsContent.parent().width() * $tabsDiv.length);
-            $tabsDiv.width($tabsContent.parent().width());
-            oneWidth = $tabsDiv.width();
-        });
-        /*$tabsContent.on("touchstart MSPointerDown pointerdown", function(ev){
-         ev.preventDefault();
-         var oTarget = ev.targetTouches[0];
-         disX = oTarget.clientX - $tabsContent.offset().left;
-         disY = oTarget.clientY - $tabsContent.offset().top;
-         downX = oTarget.clientX;
-         downY = oTarget.clientY;
-         $( $tabsContent ).on("touchmove MSPointerMove pointermove", fnMove);
-         $( $tabsContent ).on("touchend MSPointerUp pointerup", fnUp);
-         });*/
-        $tabsContent.swipeRight(function() {
-            iNow--;
-            if (iNow < 0) {
-                iNow = 0;
-            }
-            $tabsContent.animate({
-                left: -iNow * oneWidth
-            });
-            $tabLi.removeClass("am-tabs-hd-active");
-            $tabLi.eq(iNow).addClass("am-tabs-hd-active");
-        });
-        $tabsContent.swipeLeft(function() {
-            iNow++;
-            if (iNow > $tabsDiv.length - 1) {
-                iNow = $tabsDiv.length - 1;
-            }
-            $tabsContent.animate({
-                left: -iNow * oneWidth
-            });
-            $tabLi.removeClass("am-tabs-hd-active");
-            $tabLi.eq(iNow).addClass("am-tabs-hd-active");
-        });
-        $tabLi.on("click", function() {
-            iNow = $(this).index();
-            $tabLi.removeClass("am-tabs-hd-active");
-            $tabLi.eq(iNow).addClass("am-tabs-hd-active");
-            $tabsContent.animate({
-                left: -iNow * oneWidth
-            });
-        });
-    }
     $(function() {
         tabsInit();
     });
     exports.init = tabsInit;
 });
-define("titlebar", [], function(require, exports, module) {});
-define("ui.accordion", [ "./zepto.extend.fx", "./zepto.extend.selector", "./zepto.extend.data" ], function(require, exports, module) {
+define("titlebar", [], function(require, exports, module) {
     var $ = window.Zepto;
-    require("./zepto.extend.fx");
-    require("./zepto.extend.selector");
-    require("./zepto.extend.data");
-    /**
-     * @via https://github.com/Semantic-Org/Semantic-UI/blob/master/src/modules/accordion.js
-     * @license https://github.com/Semantic-Org/Semantic-UI/blob/master/LICENSE.md
-     */
-    $.fn.accordion = function(parameters) {
-        var $allModules = $(this), query = arguments[0], methodInvoked = typeof query == "string", queryArguments = [].slice.call(arguments, 1), returnedValue;
-        $allModules.each(function() {
-            var settings = $.isPlainObject(parameters) ? $.extend(true, {}, $.fn.accordion.settings, parameters) : $.extend({}, $.fn.accordion.settings), className = settings.className, namespace = settings.namespace, selector = settings.selector, eventNamespace = "." + namespace, moduleNamespace = "module-" + namespace, $module = $(this), $title = $module.find(selector.title), $content = $module.find(selector.content), $item = $module.find(selector.item), element = this, instance = $module.data(moduleNamespace), module;
-            module = {
-                initialize: function() {
-                    // initializing
-                    $title.on("click" + eventNamespace, module.event.click);
-                    module.instantiate();
-                },
-                instantiate: function() {
-                    instance = module;
-                    $module.data(moduleNamespace, module);
-                },
-                destroy: function() {
-                    $module.removeData(moduleNamespace);
-                    $title.off(eventNamespace);
-                },
-                event: {
-                    click: function() {
-                        var $activeTitle = $(this), index = $item.index($activeTitle.parent(selector.item));
-                        module.toggle(index);
-                    }
-                },
-                toggle: function(index) {
-                    var $activeItem = $item.eq(index), contentIsOpen = $activeItem.hasClass(className.active);
-                    if (contentIsOpen) {
-                        if (settings.collapsible) {
-                            module.close(index);
-                        }
-                    } else {
-                        module.open(index);
-                    }
-                },
-                open: function(index) {
-                    var $activeItem = $item.eq(index), $activeContent = $activeItem.next(selector.content);
-                    if (!settings.multiple) {
-                        $item.not($activeItem).removeClass(className.active);
-                    }
-                    $activeItem.addClass(className.active);
-                    $activeContent.animate(settings.duration, settings.easing, function() {
-                        $.proxy(settings.onOpen, $activeContent)();
-                        $.proxy(settings.onChange, $activeContent)();
-                    });
-                },
-                close: function(index) {
-                    var $activeItem = $item.eq(index), $activeContent = $activeItem.find(selector.content);
-                    $activeItem.removeClass(className.active);
-                    $activeContent.animate(settings.duration, settings.easing, function() {
-                        $.proxy(settings.onClose, $activeContent)();
-                        $.proxy(settings.onChange, $activeContent)();
-                    });
-                },
-                setting: function(name, value) {
-                    if ($.isPlainObject(name)) {
-                        $.extend(true, settings, name);
-                    } else if (value !== undefined) {
-                        settings[name] = value;
-                    } else {
-                        return settings[name];
-                    }
-                },
-                internal: function(name, value) {
-                    if (value !== undefined) {
-                        if ($.isPlainObject(name)) {
-                            $.extend(true, module, name);
-                        } else {
-                            module[name] = value;
-                        }
-                    } else {
-                        return module[name];
-                    }
-                },
-                invoke: function(query, passedArguments, context) {
-                    var object = instance, maxDepth, found, response;
-                    passedArguments = passedArguments || queryArguments;
-                    context = element || context;
-                    if (typeof query == "string" && object !== undefined) {
-                        query = query.split(/[\. ]/);
-                        maxDepth = query.length - 1;
-                        $.each(query, function(depth, value) {
-                            var camelCaseValue = depth != maxDepth ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1) : query;
-                            if ($.isPlainObject(object[camelCaseValue]) && depth != maxDepth) {
-                                object = object[camelCaseValue];
-                            } else if (object[camelCaseValue] !== undefined) {
-                                found = object[camelCaseValue];
-                                return false;
-                            } else if ($.isPlainObject(object[value]) && depth != maxDepth) {
-                                object = object[value];
-                            } else if (object[value] !== undefined) {
-                                found = object[value];
-                                return false;
-                            } else {
-                                return false;
-                            }
-                        });
-                    }
-                    if ($.isFunction(found)) {
-                        response = found.apply(context, passedArguments);
-                    } else if (found !== undefined) {
-                        response = found;
-                    }
-                    if ($.isArray(returnedValue)) {
-                        returnedValue.push(response);
-                    } else if (returnedValue !== undefined) {
-                        returnedValue = [ returnedValue, response ];
-                    } else if (response !== undefined) {
-                        returnedValue = response;
-                    }
-                    return found;
-                }
-            };
-            if (methodInvoked) {
-                if (instance === undefined) {
-                    module.initialize();
-                }
-                module.invoke(query);
-            } else {
-                if (instance !== undefined) {
-                    module.destroy();
-                }
-                module.initialize();
-            }
-        });
-        return returnedValue !== undefined ? returnedValue : this;
-    };
-    $.fn.accordion.settings = {
-        name: "Accordion",
-        namespace: "accordion",
-        multiple: false,
-        collapsible: true,
-        duration: 500,
-        easing: "ease-in-out",
-        onOpen: function() {},
-        onClose: function() {},
-        onChange: function() {},
-        className: {
-            active: "am-active"
-        },
-        selector: {
-            item: ".am-accordion-item",
-            title: ".am-accordion-title",
-            content: ".am-accordion-content"
-        }
-    };
 });
 define("ui.add2home", [], function(require, exports, module) {
     /*!
@@ -1497,20 +1076,20 @@ define("ui.add2home", [], function(require, exports, module) {
                 balloon.style.top = startY + options.bottomOffset + "px";
                 balloon.style.left = Math.max(startX + iPadXShift - Math.round(balloon.offsetWidth / 2), 9) + "px";
                 switch (options.animationIn) {
-                  case "drop":
-                    duration = "0.6s";
-                    balloon.style.webkitTransform = "translate3d(0," + -(w.scrollY + options.bottomOffset + balloon.offsetHeight) + "px,0)";
-                    break;
+                    case "drop":
+                        duration = "0.6s";
+                        balloon.style.webkitTransform = "translate3d(0," + -(w.scrollY + options.bottomOffset + balloon.offsetHeight) + "px,0)";
+                        break;
 
-                  case "bubble":
-                    duration = "0.6s";
-                    balloon.style.opacity = "0";
-                    balloon.style.webkitTransform = "translate3d(0," + (startY + 50) + "px,0)";
-                    break;
+                    case "bubble":
+                        duration = "0.6s";
+                        balloon.style.opacity = "0";
+                        balloon.style.webkitTransform = "translate3d(0," + (startY + 50) + "px,0)";
+                        break;
 
-                  default:
-                    duration = "1s";
-                    balloon.style.opacity = "0";
+                    default:
+                        duration = "1s";
+                        balloon.style.opacity = "0";
                 }
             } else {
                 startY = w.innerHeight + w.scrollY;
@@ -1524,19 +1103,19 @@ define("ui.add2home", [], function(require, exports, module) {
                     balloon.style.bottom = options.bottomOffset + "px";
                 }
                 switch (options.animationIn) {
-                  case "drop":
-                    duration = "1s";
-                    balloon.style.webkitTransform = "translate3d(0," + -(startY + options.bottomOffset) + "px,0)";
-                    break;
+                    case "drop":
+                        duration = "1s";
+                        balloon.style.webkitTransform = "translate3d(0," + -(startY + options.bottomOffset) + "px,0)";
+                        break;
 
-                  case "bubble":
-                    duration = "0.6s";
-                    balloon.style.webkitTransform = "translate3d(0," + (balloon.offsetHeight + options.bottomOffset + 50) + "px,0)";
-                    break;
+                    case "bubble":
+                        duration = "0.6s";
+                        balloon.style.webkitTransform = "translate3d(0," + (balloon.offsetHeight + options.bottomOffset + 50) + "px,0)";
+                        break;
 
-                  default:
-                    duration = "1s";
-                    balloon.style.opacity = "0";
+                    default:
+                        duration = "1s";
+                        balloon.style.opacity = "0";
                 }
             }
             balloon.offsetHeight;
@@ -1567,31 +1146,31 @@ define("ui.add2home", [], function(require, exports, module) {
             }
             balloon.style.webkitTransitionProperty = "-webkit-transform,opacity";
             switch (options.animationOut) {
-              case "drop":
-                if (isIPad) {
-                    duration = "0.4s";
-                    opacity = "0";
-                    posY += 50;
-                } else {
-                    duration = "0.6s";
-                    posY += balloon.offsetHeight + options.bottomOffset + 50;
-                }
-                break;
+                case "drop":
+                    if (isIPad) {
+                        duration = "0.4s";
+                        opacity = "0";
+                        posY += 50;
+                    } else {
+                        duration = "0.6s";
+                        posY += balloon.offsetHeight + options.bottomOffset + 50;
+                    }
+                    break;
 
-              case "bubble":
-                if (isIPad) {
+                case "bubble":
+                    if (isIPad) {
+                        duration = "0.8s";
+                        posY -= balloon.offsetHeight + options.bottomOffset + 50;
+                    } else {
+                        duration = "0.4s";
+                        opacity = "0";
+                        posY -= 50;
+                    }
+                    break;
+
+                default:
                     duration = "0.8s";
-                    posY -= balloon.offsetHeight + options.bottomOffset + 50;
-                } else {
-                    duration = "0.4s";
                     opacity = "0";
-                    posY -= 50;
-                }
-                break;
-
-              default:
-                duration = "0.8s";
-                opacity = "0";
             }
             balloon.addEventListener("webkitTransitionEnd", transitionEnd, false);
             balloon.style.opacity = opacity;
@@ -1673,7 +1252,7 @@ define("ui.alert", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.exte
         return this.each(function() {
             var $this = $(this), data = $this.data("amui.alert"), options = typeof option == "object" && option;
             if (!data) {
-                $this.data("amui.alert", data = new Alert(this, options));
+                $this.data("amui.alert", data = new Alert(this, options || {}));
             }
             if (typeof option == "string") {
                 data[option].call($this);
@@ -1684,7 +1263,8 @@ define("ui.alert", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.exte
     $(document).on("click.alert.amui", "[data-am-alert]", function(e) {
         var $target = $(e.target);
         $(this).addClass("am-fade am-in");
-        $target.is(".am-close") && $(this).alert("close");
+        // $target.is('.am-close') && 
+        $(this).alert("close");
     });
     module.exports = Alert;
 });
@@ -2007,6 +1587,731 @@ define("ui.dropdown", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.e
         e.stopPropagation();
     }).on("click.dropdown.amui", toggle, Dropdown.prototype.toggle).on("keydown.dropdown.amui", toggle, Dropdown.prototype.keydown);
 });
+define("ui.iscroll-lite", [], function(require, exports, module) {
+    /*! iScroll v5.1.2 ~ (c) 2008-2014 Matteo Spinelli ~ http://cubiq.org/license */
+    (function(window, document, Math) {
+        var rAF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
+            window.setTimeout(callback, 1e3 / 60);
+        };
+        var utils = function() {
+            var me = {};
+            var _elementStyle = document.createElement("div").style;
+            var _vendor = function() {
+                var vendors = [ "t", "webkitT", "MozT", "msT", "OT" ], transform, i = 0, l = vendors.length;
+                for (;i < l; i++) {
+                    transform = vendors[i] + "ransform";
+                    if (transform in _elementStyle) return vendors[i].substr(0, vendors[i].length - 1);
+                }
+                return false;
+            }();
+            function _prefixStyle(style) {
+                if (_vendor === false) return false;
+                if (_vendor === "") return style;
+                return _vendor + style.charAt(0).toUpperCase() + style.substr(1);
+            }
+            me.getTime = Date.now || function getTime() {
+                return new Date().getTime();
+            };
+            me.extend = function(target, obj) {
+                for (var i in obj) {
+                    target[i] = obj[i];
+                }
+            };
+            me.addEvent = function(el, type, fn, capture) {
+                el.addEventListener(type, fn, !!capture);
+            };
+            me.removeEvent = function(el, type, fn, capture) {
+                el.removeEventListener(type, fn, !!capture);
+            };
+            me.prefixPointerEvent = function(pointerEvent) {
+                return window.MSPointerEvent ? "MSPointer" + pointerEvent.charAt(9).toUpperCase() + pointerEvent.substr(10) : pointerEvent;
+            };
+            me.momentum = function(current, start, time, lowerMargin, wrapperSize, deceleration) {
+                var distance = current - start, speed = Math.abs(distance) / time, destination, duration;
+                deceleration = deceleration === undefined ? 6e-4 : deceleration;
+                destination = current + speed * speed / (2 * deceleration) * (distance < 0 ? -1 : 1);
+                duration = speed / deceleration;
+                if (destination < lowerMargin) {
+                    destination = wrapperSize ? lowerMargin - wrapperSize / 2.5 * (speed / 8) : lowerMargin;
+                    distance = Math.abs(destination - current);
+                    duration = distance / speed;
+                } else if (destination > 0) {
+                    destination = wrapperSize ? wrapperSize / 2.5 * (speed / 8) : 0;
+                    distance = Math.abs(current) + destination;
+                    duration = distance / speed;
+                }
+                return {
+                    destination: Math.round(destination),
+                    duration: duration
+                };
+            };
+            var _transform = _prefixStyle("transform");
+            me.extend(me, {
+                hasTransform: _transform !== false,
+                hasPerspective: _prefixStyle("perspective") in _elementStyle,
+                hasTouch: "ontouchstart" in window,
+                hasPointer: window.PointerEvent || window.MSPointerEvent,
+                // IE10 is prefixed
+                hasTransition: _prefixStyle("transition") in _elementStyle
+            });
+            // This should find all Android browsers lower than build 535.19 (both stock browser and webview)
+            me.isBadAndroid = /Android /.test(window.navigator.appVersion) && !/Chrome\/\d/.test(window.navigator.appVersion);
+            me.extend(me.style = {}, {
+                transform: _transform,
+                transitionTimingFunction: _prefixStyle("transitionTimingFunction"),
+                transitionDuration: _prefixStyle("transitionDuration"),
+                transitionDelay: _prefixStyle("transitionDelay"),
+                transformOrigin: _prefixStyle("transformOrigin")
+            });
+            me.hasClass = function(e, c) {
+                var re = new RegExp("(^|\\s)" + c + "(\\s|$)");
+                return re.test(e.className);
+            };
+            me.addClass = function(e, c) {
+                if (me.hasClass(e, c)) {
+                    return;
+                }
+                var newclass = e.className.split(" ");
+                newclass.push(c);
+                e.className = newclass.join(" ");
+            };
+            me.removeClass = function(e, c) {
+                if (!me.hasClass(e, c)) {
+                    return;
+                }
+                var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g");
+                e.className = e.className.replace(re, " ");
+            };
+            me.offset = function(el) {
+                var left = -el.offsetLeft, top = -el.offsetTop;
+                // jshint -W084
+                while (el = el.offsetParent) {
+                    left -= el.offsetLeft;
+                    top -= el.offsetTop;
+                }
+                // jshint +W084
+                return {
+                    left: left,
+                    top: top
+                };
+            };
+            me.preventDefaultException = function(el, exceptions) {
+                for (var i in exceptions) {
+                    if (exceptions[i].test(el[i])) {
+                        return true;
+                    }
+                }
+                return false;
+            };
+            me.extend(me.eventType = {}, {
+                touchstart: 1,
+                touchmove: 1,
+                touchend: 1,
+                mousedown: 2,
+                mousemove: 2,
+                mouseup: 2,
+                pointerdown: 3,
+                pointermove: 3,
+                pointerup: 3,
+                MSPointerDown: 3,
+                MSPointerMove: 3,
+                MSPointerUp: 3
+            });
+            me.extend(me.ease = {}, {
+                quadratic: {
+                    style: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+                    fn: function(k) {
+                        return k * (2 - k);
+                    }
+                },
+                circular: {
+                    style: "cubic-bezier(0.1, 0.57, 0.1, 1)",
+                    // Not properly "circular" but this looks better, it should be (0.075, 0.82, 0.165, 1)
+                    fn: function(k) {
+                        return Math.sqrt(1 - --k * k);
+                    }
+                },
+                back: {
+                    style: "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                    fn: function(k) {
+                        var b = 4;
+                        return (k = k - 1) * k * ((b + 1) * k + b) + 1;
+                    }
+                },
+                bounce: {
+                    style: "",
+                    fn: function(k) {
+                        if ((k /= 1) < 1 / 2.75) {
+                            return 7.5625 * k * k;
+                        } else if (k < 2 / 2.75) {
+                            return 7.5625 * (k -= 1.5 / 2.75) * k + .75;
+                        } else if (k < 2.5 / 2.75) {
+                            return 7.5625 * (k -= 2.25 / 2.75) * k + .9375;
+                        } else {
+                            return 7.5625 * (k -= 2.625 / 2.75) * k + .984375;
+                        }
+                    }
+                },
+                elastic: {
+                    style: "",
+                    fn: function(k) {
+                        var f = .22, e = .4;
+                        if (k === 0) {
+                            return 0;
+                        }
+                        if (k == 1) {
+                            return 1;
+                        }
+                        return e * Math.pow(2, -10 * k) * Math.sin((k - f / 4) * 2 * Math.PI / f) + 1;
+                    }
+                }
+            });
+            me.tap = function(e, eventName) {
+                var ev = document.createEvent("Event");
+                ev.initEvent(eventName, true, true);
+                ev.pageX = e.pageX;
+                ev.pageY = e.pageY;
+                e.target.dispatchEvent(ev);
+            };
+            me.click = function(e) {
+                var target = e.target, ev;
+                if (!/(SELECT|INPUT|TEXTAREA)/i.test(target.tagName)) {
+                    ev = document.createEvent("MouseEvents");
+                    ev.initMouseEvent("click", true, true, e.view, 1, target.screenX, target.screenY, target.clientX, target.clientY, e.ctrlKey, e.altKey, e.shiftKey, e.metaKey, 0, null);
+                    ev._constructed = true;
+                    target.dispatchEvent(ev);
+                }
+            };
+            return me;
+        }();
+        function IScroll(el, options) {
+            this.wrapper = typeof el == "string" ? document.querySelector(el) : el;
+            this.scroller = this.wrapper.children[0];
+            this.scrollerStyle = this.scroller.style;
+            // cache style for better performance
+            this.options = {
+                // INSERT POINT: OPTIONS
+                startX: 0,
+                startY: 0,
+                scrollY: true,
+                directionLockThreshold: 5,
+                momentum: true,
+                bounce: true,
+                bounceTime: 600,
+                bounceEasing: "",
+                preventDefault: true,
+                preventDefaultException: {
+                    tagName: /^(INPUT|TEXTAREA|BUTTON|SELECT)$/
+                },
+                HWCompositing: true,
+                useTransition: true,
+                useTransform: true
+            };
+            for (var i in options) {
+                this.options[i] = options[i];
+            }
+            // Normalize options
+            this.translateZ = this.options.HWCompositing && utils.hasPerspective ? " translateZ(0)" : "";
+            this.options.useTransition = utils.hasTransition && this.options.useTransition;
+            this.options.useTransform = utils.hasTransform && this.options.useTransform;
+            this.options.eventPassthrough = this.options.eventPassthrough === true ? "vertical" : this.options.eventPassthrough;
+            this.options.preventDefault = !this.options.eventPassthrough && this.options.preventDefault;
+            // If you want eventPassthrough I have to lock one of the axes
+            this.options.scrollY = this.options.eventPassthrough == "vertical" ? false : this.options.scrollY;
+            this.options.scrollX = this.options.eventPassthrough == "horizontal" ? false : this.options.scrollX;
+            // With eventPassthrough we also need lockDirection mechanism
+            this.options.freeScroll = this.options.freeScroll && !this.options.eventPassthrough;
+            this.options.directionLockThreshold = this.options.eventPassthrough ? 0 : this.options.directionLockThreshold;
+            this.options.bounceEasing = typeof this.options.bounceEasing == "string" ? utils.ease[this.options.bounceEasing] || utils.ease.circular : this.options.bounceEasing;
+            this.options.resizePolling = this.options.resizePolling === undefined ? 60 : this.options.resizePolling;
+            if (this.options.tap === true) {
+                this.options.tap = "tap";
+            }
+            // INSERT POINT: NORMALIZATION
+            // Some defaults
+            this.x = 0;
+            this.y = 0;
+            this.directionX = 0;
+            this.directionY = 0;
+            this._events = {};
+            // INSERT POINT: DEFAULTS
+            this._init();
+            this.refresh();
+            this.scrollTo(this.options.startX, this.options.startY);
+            this.enable();
+        }
+        IScroll.prototype = {
+            version: "5.1.2",
+            _init: function() {
+                this._initEvents();
+            },
+            destroy: function() {
+                this._initEvents(true);
+                this._execEvent("destroy");
+            },
+            _transitionEnd: function(e) {
+                if (e.target != this.scroller || !this.isInTransition) {
+                    return;
+                }
+                this._transitionTime();
+                if (!this.resetPosition(this.options.bounceTime)) {
+                    this.isInTransition = false;
+                    this._execEvent("scrollEnd");
+                }
+            },
+            _start: function(e) {
+                // React to left mouse button only
+                if (utils.eventType[e.type] != 1) {
+                    if (e.button !== 0) {
+                        return;
+                    }
+                }
+                if (!this.enabled || this.initiated && utils.eventType[e.type] !== this.initiated) {
+                    return;
+                }
+                if (this.options.preventDefault && !utils.isBadAndroid && !utils.preventDefaultException(e.target, this.options.preventDefaultException)) {
+                    e.preventDefault();
+                }
+                var point = e.touches ? e.touches[0] : e, pos;
+                this.initiated = utils.eventType[e.type];
+                this.moved = false;
+                this.distX = 0;
+                this.distY = 0;
+                this.directionX = 0;
+                this.directionY = 0;
+                this.directionLocked = 0;
+                this._transitionTime();
+                this.startTime = utils.getTime();
+                if (this.options.useTransition && this.isInTransition) {
+                    this.isInTransition = false;
+                    pos = this.getComputedPosition();
+                    this._translate(Math.round(pos.x), Math.round(pos.y));
+                    this._execEvent("scrollEnd");
+                } else if (!this.options.useTransition && this.isAnimating) {
+                    this.isAnimating = false;
+                    this._execEvent("scrollEnd");
+                }
+                this.startX = this.x;
+                this.startY = this.y;
+                this.absStartX = this.x;
+                this.absStartY = this.y;
+                this.pointX = point.pageX;
+                this.pointY = point.pageY;
+                this._execEvent("beforeScrollStart");
+            },
+            _move: function(e) {
+                if (!this.enabled || utils.eventType[e.type] !== this.initiated) {
+                    return;
+                }
+                if (this.options.preventDefault) {
+                    // increases performance on Android? TODO: check!
+                    e.preventDefault();
+                }
+                var point = e.touches ? e.touches[0] : e, deltaX = point.pageX - this.pointX, deltaY = point.pageY - this.pointY, timestamp = utils.getTime(), newX, newY, absDistX, absDistY;
+                this.pointX = point.pageX;
+                this.pointY = point.pageY;
+                this.distX += deltaX;
+                this.distY += deltaY;
+                absDistX = Math.abs(this.distX);
+                absDistY = Math.abs(this.distY);
+                // We need to move at least 10 pixels for the scrolling to initiate
+                if (timestamp - this.endTime > 300 && absDistX < 10 && absDistY < 10) {
+                    return;
+                }
+                // If you are scrolling in one direction lock the other
+                if (!this.directionLocked && !this.options.freeScroll) {
+                    if (absDistX > absDistY + this.options.directionLockThreshold) {
+                        this.directionLocked = "h";
+                    } else if (absDistY >= absDistX + this.options.directionLockThreshold) {
+                        this.directionLocked = "v";
+                    } else {
+                        this.directionLocked = "n";
+                    }
+                }
+                if (this.directionLocked == "h") {
+                    if (this.options.eventPassthrough == "vertical") {
+                        e.preventDefault();
+                    } else if (this.options.eventPassthrough == "horizontal") {
+                        this.initiated = false;
+                        return;
+                    }
+                    deltaY = 0;
+                } else if (this.directionLocked == "v") {
+                    if (this.options.eventPassthrough == "horizontal") {
+                        e.preventDefault();
+                    } else if (this.options.eventPassthrough == "vertical") {
+                        this.initiated = false;
+                        return;
+                    }
+                    deltaX = 0;
+                }
+                deltaX = this.hasHorizontalScroll ? deltaX : 0;
+                deltaY = this.hasVerticalScroll ? deltaY : 0;
+                newX = this.x + deltaX;
+                newY = this.y + deltaY;
+                // Slow down if outside of the boundaries
+                if (newX > 0 || newX < this.maxScrollX) {
+                    newX = this.options.bounce ? this.x + deltaX / 3 : newX > 0 ? 0 : this.maxScrollX;
+                }
+                if (newY > 0 || newY < this.maxScrollY) {
+                    newY = this.options.bounce ? this.y + deltaY / 3 : newY > 0 ? 0 : this.maxScrollY;
+                }
+                this.directionX = deltaX > 0 ? -1 : deltaX < 0 ? 1 : 0;
+                this.directionY = deltaY > 0 ? -1 : deltaY < 0 ? 1 : 0;
+                if (!this.moved) {
+                    this._execEvent("scrollStart");
+                }
+                this.moved = true;
+                this._translate(newX, newY);
+                /* REPLACE START: _move */
+                if (timestamp - this.startTime > 300) {
+                    this.startTime = timestamp;
+                    this.startX = this.x;
+                    this.startY = this.y;
+                }
+            },
+            _end: function(e) {
+                if (!this.enabled || utils.eventType[e.type] !== this.initiated) {
+                    return;
+                }
+                if (this.options.preventDefault && !utils.preventDefaultException(e.target, this.options.preventDefaultException)) {
+                    e.preventDefault();
+                }
+                var point = e.changedTouches ? e.changedTouches[0] : e, momentumX, momentumY, duration = utils.getTime() - this.startTime, newX = Math.round(this.x), newY = Math.round(this.y), distanceX = Math.abs(newX - this.startX), distanceY = Math.abs(newY - this.startY), time = 0, easing = "";
+                this.isInTransition = 0;
+                this.initiated = 0;
+                this.endTime = utils.getTime();
+                // reset if we are outside of the boundaries
+                if (this.resetPosition(this.options.bounceTime)) {
+                    return;
+                }
+                this.scrollTo(newX, newY);
+                // ensures that the last position is rounded
+                // we scrolled less than 10 pixels
+                if (!this.moved) {
+                    if (this.options.tap) {
+                        utils.tap(e, this.options.tap);
+                    }
+                    if (this.options.click) {
+                        utils.click(e);
+                    }
+                    this._execEvent("scrollCancel");
+                    return;
+                }
+                if (this._events.flick && duration < 200 && distanceX < 100 && distanceY < 100) {
+                    this._execEvent("flick");
+                    return;
+                }
+                // start momentum animation if needed
+                if (this.options.momentum && duration < 300) {
+                    momentumX = this.hasHorizontalScroll ? utils.momentum(this.x, this.startX, duration, this.maxScrollX, this.options.bounce ? this.wrapperWidth : 0, this.options.deceleration) : {
+                        destination: newX,
+                        duration: 0
+                    };
+                    momentumY = this.hasVerticalScroll ? utils.momentum(this.y, this.startY, duration, this.maxScrollY, this.options.bounce ? this.wrapperHeight : 0, this.options.deceleration) : {
+                        destination: newY,
+                        duration: 0
+                    };
+                    newX = momentumX.destination;
+                    newY = momentumY.destination;
+                    time = Math.max(momentumX.duration, momentumY.duration);
+                    this.isInTransition = 1;
+                }
+                // INSERT POINT: _end
+                if (newX != this.x || newY != this.y) {
+                    // change easing function when scroller goes out of the boundaries
+                    if (newX > 0 || newX < this.maxScrollX || newY > 0 || newY < this.maxScrollY) {
+                        easing = utils.ease.quadratic;
+                    }
+                    this.scrollTo(newX, newY, time, easing);
+                    return;
+                }
+                this._execEvent("scrollEnd");
+            },
+            _resize: function() {
+                var that = this;
+                clearTimeout(this.resizeTimeout);
+                this.resizeTimeout = setTimeout(function() {
+                    that.refresh();
+                }, this.options.resizePolling);
+            },
+            resetPosition: function(time) {
+                var x = this.x, y = this.y;
+                time = time || 0;
+                if (!this.hasHorizontalScroll || this.x > 0) {
+                    x = 0;
+                } else if (this.x < this.maxScrollX) {
+                    x = this.maxScrollX;
+                }
+                if (!this.hasVerticalScroll || this.y > 0) {
+                    y = 0;
+                } else if (this.y < this.maxScrollY) {
+                    y = this.maxScrollY;
+                }
+                if (x == this.x && y == this.y) {
+                    return false;
+                }
+                this.scrollTo(x, y, time, this.options.bounceEasing);
+                return true;
+            },
+            disable: function() {
+                this.enabled = false;
+            },
+            enable: function() {
+                this.enabled = true;
+            },
+            refresh: function() {
+                var rf = this.wrapper.offsetHeight;
+                // Force reflow
+                this.wrapperWidth = this.wrapper.clientWidth;
+                this.wrapperHeight = this.wrapper.clientHeight;
+                /* REPLACE START: refresh */
+                this.scrollerWidth = this.scroller.offsetWidth;
+                this.scrollerHeight = this.scroller.offsetHeight;
+                this.maxScrollX = this.wrapperWidth - this.scrollerWidth;
+                this.maxScrollY = this.wrapperHeight - this.scrollerHeight;
+                /* REPLACE END: refresh */
+                this.hasHorizontalScroll = this.options.scrollX && this.maxScrollX < 0;
+                this.hasVerticalScroll = this.options.scrollY && this.maxScrollY < 0;
+                if (!this.hasHorizontalScroll) {
+                    this.maxScrollX = 0;
+                    this.scrollerWidth = this.wrapperWidth;
+                }
+                if (!this.hasVerticalScroll) {
+                    this.maxScrollY = 0;
+                    this.scrollerHeight = this.wrapperHeight;
+                }
+                this.endTime = 0;
+                this.directionX = 0;
+                this.directionY = 0;
+                this.wrapperOffset = utils.offset(this.wrapper);
+                this._execEvent("refresh");
+                this.resetPosition();
+            },
+            on: function(type, fn) {
+                if (!this._events[type]) {
+                    this._events[type] = [];
+                }
+                this._events[type].push(fn);
+            },
+            off: function(type, fn) {
+                if (!this._events[type]) {
+                    return;
+                }
+                var index = this._events[type].indexOf(fn);
+                if (index > -1) {
+                    this._events[type].splice(index, 1);
+                }
+            },
+            _execEvent: function(type) {
+                if (!this._events[type]) {
+                    return;
+                }
+                var i = 0, l = this._events[type].length;
+                if (!l) {
+                    return;
+                }
+                for (;i < l; i++) {
+                    this._events[type][i].apply(this, [].slice.call(arguments, 1));
+                }
+            },
+            scrollBy: function(x, y, time, easing) {
+                x = this.x + x;
+                y = this.y + y;
+                time = time || 0;
+                this.scrollTo(x, y, time, easing);
+            },
+            scrollTo: function(x, y, time, easing) {
+                easing = easing || utils.ease.circular;
+                this.isInTransition = this.options.useTransition && time > 0;
+                if (!time || this.options.useTransition && easing.style) {
+                    this._transitionTimingFunction(easing.style);
+                    this._transitionTime(time);
+                    this._translate(x, y);
+                } else {
+                    this._animate(x, y, time, easing.fn);
+                }
+            },
+            scrollToElement: function(el, time, offsetX, offsetY, easing) {
+                el = el.nodeType ? el : this.scroller.querySelector(el);
+                if (!el) {
+                    return;
+                }
+                var pos = utils.offset(el);
+                pos.left -= this.wrapperOffset.left;
+                pos.top -= this.wrapperOffset.top;
+                // if offsetX/Y are true we center the element to the screen
+                if (offsetX === true) {
+                    offsetX = Math.round(el.offsetWidth / 2 - this.wrapper.offsetWidth / 2);
+                }
+                if (offsetY === true) {
+                    offsetY = Math.round(el.offsetHeight / 2 - this.wrapper.offsetHeight / 2);
+                }
+                pos.left -= offsetX || 0;
+                pos.top -= offsetY || 0;
+                pos.left = pos.left > 0 ? 0 : pos.left < this.maxScrollX ? this.maxScrollX : pos.left;
+                pos.top = pos.top > 0 ? 0 : pos.top < this.maxScrollY ? this.maxScrollY : pos.top;
+                time = time === undefined || time === null || time === "auto" ? Math.max(Math.abs(this.x - pos.left), Math.abs(this.y - pos.top)) : time;
+                this.scrollTo(pos.left, pos.top, time, easing);
+            },
+            _transitionTime: function(time) {
+                time = time || 0;
+                this.scrollerStyle[utils.style.transitionDuration] = time + "ms";
+                if (!time && utils.isBadAndroid) {
+                    this.scrollerStyle[utils.style.transitionDuration] = "0.001s";
+                }
+            },
+            _transitionTimingFunction: function(easing) {
+                this.scrollerStyle[utils.style.transitionTimingFunction] = easing;
+            },
+            _translate: function(x, y) {
+                if (this.options.useTransform) {
+                    /* REPLACE START: _translate */
+                    this.scrollerStyle[utils.style.transform] = "translate(" + x + "px," + y + "px)" + this.translateZ;
+                } else {
+                    x = Math.round(x);
+                    y = Math.round(y);
+                    this.scrollerStyle.left = x + "px";
+                    this.scrollerStyle.top = y + "px";
+                }
+                this.x = x;
+                this.y = y;
+            },
+            _initEvents: function(remove) {
+                var eventType = remove ? utils.removeEvent : utils.addEvent, target = this.options.bindToWrapper ? this.wrapper : window;
+                eventType(window, "orientationchange", this);
+                eventType(window, "resize", this);
+                if (this.options.click) {
+                    eventType(this.wrapper, "click", this, true);
+                }
+                if (!this.options.disableMouse) {
+                    eventType(this.wrapper, "mousedown", this);
+                    eventType(target, "mousemove", this);
+                    eventType(target, "mousecancel", this);
+                    eventType(target, "mouseup", this);
+                }
+                if (utils.hasPointer && !this.options.disablePointer) {
+                    eventType(this.wrapper, utils.prefixPointerEvent("pointerdown"), this);
+                    eventType(target, utils.prefixPointerEvent("pointermove"), this);
+                    eventType(target, utils.prefixPointerEvent("pointercancel"), this);
+                    eventType(target, utils.prefixPointerEvent("pointerup"), this);
+                }
+                if (utils.hasTouch && !this.options.disableTouch) {
+                    eventType(this.wrapper, "touchstart", this);
+                    eventType(target, "touchmove", this);
+                    eventType(target, "touchcancel", this);
+                    eventType(target, "touchend", this);
+                }
+                eventType(this.scroller, "transitionend", this);
+                eventType(this.scroller, "webkitTransitionEnd", this);
+                eventType(this.scroller, "oTransitionEnd", this);
+                eventType(this.scroller, "MSTransitionEnd", this);
+            },
+            getComputedPosition: function() {
+                var matrix = window.getComputedStyle(this.scroller, null), x, y;
+                if (this.options.useTransform) {
+                    matrix = matrix[utils.style.transform].split(")")[0].split(", ");
+                    x = +(matrix[12] || matrix[4]);
+                    y = +(matrix[13] || matrix[5]);
+                } else {
+                    x = +matrix.left.replace(/[^-\d.]/g, "");
+                    y = +matrix.top.replace(/[^-\d.]/g, "");
+                }
+                return {
+                    x: x,
+                    y: y
+                };
+            },
+            _animate: function(destX, destY, duration, easingFn) {
+                var that = this, startX = this.x, startY = this.y, startTime = utils.getTime(), destTime = startTime + duration;
+                function step() {
+                    var now = utils.getTime(), newX, newY, easing;
+                    if (now >= destTime) {
+                        that.isAnimating = false;
+                        that._translate(destX, destY);
+                        if (!that.resetPosition(that.options.bounceTime)) {
+                            that._execEvent("scrollEnd");
+                        }
+                        return;
+                    }
+                    now = (now - startTime) / duration;
+                    easing = easingFn(now);
+                    newX = (destX - startX) * easing + startX;
+                    newY = (destY - startY) * easing + startY;
+                    that._translate(newX, newY);
+                    if (that.isAnimating) {
+                        rAF(step);
+                    }
+                }
+                this.isAnimating = true;
+                step();
+            },
+            handleEvent: function(e) {
+                switch (e.type) {
+                    case "touchstart":
+                    case "pointerdown":
+                    case "MSPointerDown":
+                    case "mousedown":
+                        this._start(e);
+                        break;
+
+                    case "touchmove":
+                    case "pointermove":
+                    case "MSPointerMove":
+                    case "mousemove":
+                        this._move(e);
+                        break;
+
+                    case "touchend":
+                    case "pointerup":
+                    case "MSPointerUp":
+                    case "mouseup":
+                    case "touchcancel":
+                    case "pointercancel":
+                    case "MSPointerCancel":
+                    case "mousecancel":
+                        this._end(e);
+                        break;
+
+                    case "orientationchange":
+                    case "resize":
+                        this._resize();
+                        break;
+
+                    case "transitionend":
+                    case "webkitTransitionEnd":
+                    case "oTransitionEnd":
+                    case "MSTransitionEnd":
+                        this._transitionEnd(e);
+                        break;
+
+                    case "wheel":
+                    case "DOMMouseScroll":
+                    case "mousewheel":
+                        this._wheel(e);
+                        break;
+
+                    case "keydown":
+                        this._key(e);
+                        break;
+
+                    case "click":
+                        if (!e._constructed) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                        }
+                        break;
+                }
+            }
+        };
+        IScroll.utils = utils;
+        if (typeof module != "undefined" && module.exports) {
+            module.exports = IScroll;
+        } else {
+            window.IScroll = IScroll;
+        }
+    })(window, document, Math);
+});
 define("ui.modal", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.dimmer" ], function(require, exports, module) {
     require("core");
     var dimmer = require("ui.dimmer");
@@ -2072,7 +2377,7 @@ define("ui.modal", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.exte
         }));
         this.transitioning = 1;
         var complete = function() {
-            $element.trigger("closed.amui.modal");
+            $element.trigger("closed:amui:modal");
             isPopup && $element.removeClass("am-modal-out");
             $element.hide();
             this.transitioning = 0;
@@ -2707,6 +3012,167 @@ define("ui.progress", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.e
     UI.progress = Progress;
     module.exports = Progress;
 });
+define("ui.pureview", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "zepto.pinchzoom" ], function(require, exports, module) {
+    require("core");
+    var PinchZoom = require("zepto.pinchzoom"), $ = window.Zepto, UI = $.AMUI, animation = UI.support.animation, transition = UI.support.transition, $html = $("html");
+    var PureView = function(element, options) {
+        this.$element = $(element);
+        this.options = $.extend({}, PureView.DEFAULTS, options);
+        this.$pureview = $(this.options.tpl, {
+            id: UI.utils.generateGUID("am-pureview")
+        });
+        this.$slides = null;
+        this.transitioning = null;
+        this.init();
+    };
+    PureView.DEFAULTS = {
+        tpl: '<div class="am-pureview">' + '<ul class="am-pureview-slider"></ul>' + '<ul class="am-pureview-direction"><li class="am-pureview-prev"><a href=""></a></li><li class="am-pureview-next"><a href=""></a></li></ul>' + '<div class="am-pureview-bar am-active"><span class="am-pureview-current"></span> / <span class="am-pureview-total"></span><span class="am-pureview-title"></span></div>' + '<div class="am-pureview-actions am-active"><a href="javascript: void(0)" class="am-icon-chevron-left" data-am-close="pureview"></a><a href="javascript: void(0)" class="am-icon-share-square-o" data-am-toggle="share"></a></div>' + "</div>",
+        className: {
+            prevSlide: "am-pureview-slide-prev",
+            nextSlide: "am-pureview-slide-next",
+            active: "am-active"
+        },
+        selector: {
+            slider: ".am-pureview-slider",
+            close: '[data-am-close="pureview"]',
+            total: ".am-pureview-total",
+            current: ".am-pureview-current",
+            title: ".am-pureview-title",
+            actions: ".am-pureview-actions",
+            bar: ".am-pureview-bar",
+            pinchZoom: ".am-pinch-zoom"
+        }
+    };
+    PureView.prototype.init = function() {
+        var me = this, options = me.options, $element = me.$element, $images = $element.find("img"), $pureview = me.$pureview, $slider = $pureview.find(options.selector.slider), slides = [], total = $images.length;
+        if (!total) return;
+        $images.each(function(i, img) {
+            var alt = $(img).attr("alt") || "", slide = '<li><div class="am-pinch-zoom"><img src="' + img.src + '" alt="' + alt + '"/></div></li>';
+            slides.push(slide);
+        });
+        $slider.html(slides.join("\n"));
+        $("body").append($pureview);
+        $pureview.find(options.selector.total).text(total);
+        this.$title = $pureview.find(options.selector.title);
+        this.$current = $pureview.find(options.selector.current);
+        this.$bar = $pureview.find(options.selector.bar);
+        this.$actions = $pureview.find(options.selector.actions);
+        this.$slides = $slider.find("li");
+        $slider.find(options.selector.pinchZoom).each(function() {
+            $(this).data("amui.pinchzoom", new PinchZoom($(this), {}));
+        });
+        $images.on("click", function(e) {
+            e.preventDefault();
+            me.open($images.index(this));
+        });
+        $pureview.find(".am-pureview-direction a").on("click", function(e) {
+            e.preventDefault();
+            var $clicked = $(e.target).parent("li");
+            if ($clicked.is(".am-pureview-prev")) {
+                me.prevSlide();
+            } else {
+                me.nextSlide();
+            }
+        });
+        // Close Icon
+        $pureview.find(options.selector.close).on("click.pureview.amui", function(e) {
+            e.preventDefault();
+            me.close();
+        });
+        $slider.on("singleTap", function(e) {
+            me.toggleToolBar();
+        }).on("swipeLeft", function(e) {
+            me.nextSlide();
+        }).on("swipeRight", function(e) {
+            me.prevSlide();
+        });
+        $(document).on("keydown.pureview.amui", $.proxy(function(e) {
+            var keyCode = e.keyCode;
+            if (keyCode == 37) {
+                this.prevSlide();
+            } else if (keyCode == 39) {
+                this.nextSlide();
+            } else if (keyCode == 27) {
+                this.close();
+            }
+        }, this));
+    };
+    PureView.prototype.activate = function($slide) {
+        var options = this.options, $slides = this.$slides, activeIndex = $slides.index($slide), alt = $slide.find("img").attr("alt"), active = options.className.active;
+        if ($slides.find("." + active).is($slide)) return;
+        if (this.transitioning) return;
+        this.transitioning = 1;
+        alt && this.$title.text(alt);
+        this.$current.text(activeIndex + 1);
+        $slides.removeAttr("class");
+        $slide.addClass(active);
+        $slides.eq(activeIndex - 1).addClass(options.className.prevSlide);
+        $slides.eq(activeIndex + 1).addClass(options.className.nextSlide);
+        if (transition) {
+            $slide.one(transition.end, $.proxy(function() {
+                this.transitioning = 0;
+            }, this));
+        } else {
+            this.transitioning = 0;
+        }
+    };
+    PureView.prototype.nextSlide = function() {
+        var $slides = this.$slides, $active = $slides.filter(".am-active"), activeIndex = $slides.index($active), rightSpring = "am-animation-right-spring";
+        if (activeIndex + 1 >= $slides.length) {
+            // last one
+            animation && $active.addClass(rightSpring).on(animation.end, function() {
+                $active.removeClass(rightSpring);
+            });
+        } else {
+            this.activate($slides.eq(activeIndex + 1));
+        }
+    };
+    PureView.prototype.prevSlide = function() {
+        var $slides = this.$slides, $active = $slides.filter(".am-active"), activeIndex = this.$slides.index($active), leftSpring = "am-animation-left-spring";
+        if (activeIndex === 0) {
+            // first one
+            animation && $active.addClass(leftSpring).on(animation.end, function() {
+                $active.removeClass(leftSpring);
+            });
+        } else {
+            this.activate($slides.eq(activeIndex - 1));
+        }
+    };
+    PureView.prototype.toggleToolBar = function() {
+        var active = this.options.className.active;
+        this.$bar.toggleClass(active);
+        this.$actions.toggleClass(active);
+    };
+    PureView.prototype.open = function(index) {
+        var active = index || 0;
+        this.activate(this.$slides.eq(active));
+        this.$pureview.addClass("am-active");
+        $html.addClass("am-dimmer-active");
+    };
+    PureView.prototype.close = function() {
+        this.$pureview.removeClass("am-active");
+        $html.removeClass("am-dimmer-active");
+    };
+    UI.pureview = PureView;
+    function Plugin(option) {
+        return this.each(function() {
+            var $this = $(this), data = $this.data("am.pureview"), options = $.extend({}, UI.utils.parseOptions($this.attr("data-am-pureview")), typeof option == "object" && option);
+            console.log(data);
+            if (!data) {
+                $this.data("am.pureview", data = new PureView(this, options));
+            }
+            if (typeof option == "string") {
+                data[option]();
+            }
+        });
+    }
+    $.fn.pureview = Plugin;
+    // Init code
+    $(function() {
+        $("[data-am-pureview]").pureview();
+    });
+    module.exports = PureView;
+});
 define("ui.scrollspy", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
     "use strict";
     require("core");
@@ -2872,6 +3338,294 @@ define("ui.scrollspynav", [ "core", "zepto.extend.fx", "zepto.extend.data", "zep
     });
     module.exports = ScrollSpyNav;
 });
+define("ui.share", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "ui.modal", "ui.dimmer", "util.qrcode" ], function(require, exports, module) {
+    require("core");
+    require("ui.modal");
+    var QRCode = require("util.qrcode");
+    var $ = window.Zepto, UI = $.AMUI, doc = document, $doc = $(doc), transition = UI.support.transition;
+    /**
+     * https://github.com/cho45/micro-template.js
+     * (c) cho45 http://cho45.github.com/mit-license
+     */
+    function template(id, data) {
+        var me = arguments.callee;
+        if (!me.cache[id]) me.cache[id] = function() {
+            var name = id, string = /^[\w\-]+$/.test(id) ? me.get(id) : (name = "template(string)",
+                id);
+            // no warnings
+            var line = 1, body = ("try { " + (me.variable ? "var " + me.variable + " = this.stash;" : "with (this.stash) { ") + "this.ret += '" + string.replace(/<%/g, "").replace(/%>/g, "").replace(/'(?![^\x11\x13]+?\x13)/g, "\\x27").replace(/^\s*|\s*$/g, "").replace(/\n/g, function() {
+                return "';\nthis.line = " + ++line + "; this.ret += '\\n";
+            }).replace(/\x11=raw(.+?)\x13/g, "' + ($1) + '").replace(/\x11=(.+?)\x13/g, "' + this.escapeHTML($1) + '").replace(/\x11(.+?)\x13/g, "'; $1; this.ret += '") + "'; " + (me.variable ? "" : "}") + "return this.ret;" + "} catch (e) { throw 'TemplateError: ' + e + ' (on " + name + "' + ' line ' + this.line + ')'; } " + "//@ sourceURL=" + name + "\n").replace(/this\.ret \+= '';/g, "");
+            var func = new Function(body);
+            var map = {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&#x22;",
+                "'": "&#x27;"
+            };
+            var escapeHTML = function(string) {
+                return ("" + string).replace(/[&<>\'\"]/g, function(_) {
+                    return map[_];
+                });
+            };
+            return function(stash) {
+                return func.call(me.context = {
+                    escapeHTML: escapeHTML,
+                    line: 1,
+                    ret: "",
+                    stash: stash
+                });
+            };
+        }();
+        return data ? me.cache[id](data) : me.cache[id];
+    }
+    template.cache = {};
+    template.get = function(id) {
+        return Share.DEFAULTS.tpl;
+    };
+    var Share = function(options) {
+        this.options = $.extend({}, Share.DEFAULTS, options || {});
+        this.$element = null;
+        this.$wechatQr = null;
+        this.pics = null;
+        this.init();
+    };
+    Share.DEFAULTS = {
+        sns: [ "weibo", "qq", "qzone", "tqq", "wechat", "renren" ],
+        title: "分享到",
+        cancel: "取消",
+        closeOnShare: true,
+        id: UI.utils.generateGUID("am-share"),
+        desc: "Hi，孤夜观天象，发现一个不错的西西，分享一下下 ;-)",
+        via: "Amaze UI",
+        tpl: '<div class="am-share am-modal-actions" id="<%= id %>">' + '<h3 class="am-share-title"><%= title %></h3>' + '<ul class="am-share-sns sm-block-grid-3"><% for(var i = 0; i < sns.length; i++) {%>' + '<li><a href="<%= sns[i].shareUrl %>" data-am-share-to="<%= sns[i].id %>" ><i class="am-icon-<%= sns[i].icon %>"></i><span><%= sns[i].title %></span></a></li>' + "<% } %></ul>" + '<div class="am-share-footer"><button class="am-btn am-btn-default am-btn-block" data-am-share-close><%= cancel %></button></div>' + "</div>"
+    };
+    Share.SNS = {
+        weibo: {
+            title: "新浪微博",
+            url: "http://service.weibo.com/share/share.php",
+            width: 620,
+            height: 450,
+            icon: "weibo"
+        },
+        // url          链接地址
+        // title:”,     分享的文字内容(可选，默认为所在页面的title)
+        // appkey:”,    您申请的应用appkey,显示分享来源(可选)
+        // pic:”,       分享图片的路径(可选)
+        // ralateUid:”, 关联用户的UID，分享微博会@该用户(可选)
+        // NOTE: 会自动抓取图片，不用指定 pic
+        qq: {
+            title: "QQ 好友",
+            url: "http://connect.qq.com/widget/shareqq/index.html",
+            icon: "qq"
+        },
+        // url:,
+        // title:'',    分享标题(可选)
+        // pics:'',     分享图片的路径(可选)
+        // summary:'',  分享摘要(可选)
+        // site:'',     分享来源 如：腾讯网(可选)
+        // desc: ''     发送给用户的消息
+        // NOTE: 经过测试，最终发给用户的只有 url 和 desc
+        qzone: {
+            title: "QQ 空间",
+            url: "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey",
+            icon: "star"
+        },
+        // http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=xxx&title=xxx&desc=&summary=&site=
+        // url:,
+        // title:'',    分享标题(可选)
+        // desc:'',     默认分享理由(可选)
+        // summary:'',  分享摘要(可选)
+        // site:'',     分享来源 如：腾讯网(可选)
+        // pics:'',     分享图片的路径(可选)，不会自动抓取，多个图片用|分隔
+        tqq: {
+            title: "腾讯微博",
+            url: "http://v.t.qq.com/share/share.php",
+            icon: "tencent-weibo"
+        },
+        // url=xx&title=&appkey=801cf76d3cfc44ada52ec13114e84a96
+        // url
+        // title
+        // pic 多个图片用 | 分隔
+        // appkey
+        // NOTE: 不会自动抓取图片
+        wechat: {
+            title: "微信",
+            url: "[qrcode]",
+            icon: "wechat"
+        },
+        // 生成一个二维码 供用户扫描
+        // 相关接口 https://github.com/zxlie/WeixinApi
+        renren: {
+            title: "人人网",
+            url: "http://widget.renren.com/dialog/share",
+            icon: "renren"
+        },
+        // http://widget.renren.com/dialog/share?resourceUrl=www&srcUrl=www&title=ww&description=xxx
+        // 550 * 400
+        // resourceUrl : '', // 分享的资源Url
+        // srcUrl : '',	     // 分享的资源来源Url,默认为header中的Referer,如果分享失败可以调整此值为resourceUrl试试
+        // pic : '',		 // 分享的主题图片，会自动抓取
+        // title : '',		 // 分享的标题
+        // description : ''	 // 分享的详细描述
+        // NOTE: 经过测试，直接使用 url 参数即可
+        douban: {
+            title: "豆瓣",
+            url: "http://www.douban.com/recommend/",
+            icon: "share-alt"
+        },
+        // http://www.douban.com/service/sharebutton
+        // 450 * 330
+        // http://www.douban.com/share/service?bm=1&image=&href=xxx&updated=&name=
+        // href 链接
+        // name 标题
+        /* void (function() {
+         var d = document, e = encodeURIComponent, s1 = window.getSelection, s2 = d.getSelection, s3 = d.selection, s = s1 ? s1()
+         : s2 ? s2() : s3 ? s3.createRange().text : '', r = 'http://www.douban.com/recommend/?url=&title=&sel=&v=1&r=1'
+         })();
+         */
+        // tsohu: '',
+        // http://t.sohu.com/third/post.jsp?url=&title=&content=utf-8&pic=
+        //print: '',
+        mail: {
+            title: "邮件分享",
+            url: "mailto:",
+            icon: "envelope-o"
+        },
+        sms: {
+            title: "短信分享",
+            url: "sms:",
+            icon: "comment"
+        }
+    };
+    Share.prototype.render = function() {
+        var options = this.options, snsData = [], title = encodeURIComponent(doc.title), link = encodeURIComponent(doc.location), msgBody = "?body=" + title + link;
+        options.sns.forEach(function(item, i) {
+            if (Share.SNS[item]) {
+                var tmp = Share.SNS[item], shareUrl;
+                tmp.id = item;
+                if (item === "mail") {
+                    shareUrl = msgBody + "&subject=" + options.desc;
+                } else if (item === "sms") {
+                    shareUrl = msgBody;
+                } else {
+                    shareUrl = "?url=" + link + "&title=" + title;
+                }
+                tmp.shareUrl = tmp.url + shareUrl;
+                snsData.push(tmp);
+            }
+        });
+        return template("share", $.extend({}, options, {
+            sns: snsData
+        }));
+    };
+    Share.prototype.init = function() {
+        var me = this, shareItem = "[data-am-share-to]";
+        $doc.ready($.proxy(function() {
+            $("body").append(this.render());
+            // append share DOM to body
+            this.$element = $("#" + this.options.id);
+            this.$element.find("[data-am-share-close]").on("click.share.amui", function() {
+                me.close();
+            });
+        }, this));
+        $doc.on("click.share.amui", shareItem, $.proxy(function(e) {
+            var $clicked = $(e.target), $target = $clicked.is(shareItem) && $clicked || $clicked.parent(shareItem), sns = $target.attr("data-am-share-to");
+            if (!(sns === "mail" || sns === "sms")) {
+                e.preventDefault();
+                this.shareTo(sns, this.setData(sns));
+            }
+            this.close();
+        }, this));
+    };
+    Share.prototype.open = function() {
+        this.$element && this.$element.modal("open");
+        this.$element.trigger("open:share:amui");
+    };
+    Share.prototype.close = function() {
+        this.$element && this.$element.modal("close");
+        this.$element.trigger("close:share:amui");
+    };
+    Share.prototype.toggle = function() {
+        this.$element.is(".am-modal-active") ? this.close() : this.open();
+    };
+    Share.prototype.setData = function(sns) {
+        if (!sns) return;
+        var shareData = {
+            url: doc.location,
+            title: doc.title
+        }, desc = this.options.desc, imgSrc = this.pics || [], qqReg = /^(qzone|qq|tqq)$/;
+        if (qqReg.test(sns) && !imgSrc.length) {
+            var allImages = doc.images;
+            for (var i = 0; i < allImages.length && i < 10; i++) {
+                !!allImages[i].src && imgSrc.push(encodeURIComponent(allImages[i].src));
+            }
+            this.pics = imgSrc;
+        }
+        switch (sns) {
+            case "qzone":
+                shareData.desc = desc;
+                shareData.site = this.options.via;
+                shareData.pics = imgSrc.join("|");
+                // TODO: 抓取图片多张
+                break;
+
+            case "qq":
+                shareData.desc = desc;
+                shareData.site = this.options.via;
+                shareData.pics = imgSrc[0];
+                // 抓取一张图片
+                break;
+
+            case "tqq":
+                // 抓取图片多张
+                shareData.pic = imgSrc.join("|");
+                break;
+        }
+        return shareData;
+    };
+    Share.prototype.shareTo = function(sns, data) {
+        var snsInfo = Share.SNS[sns];
+        if (!snsInfo) return;
+        if (sns === "wechat" || sns === "weixin") return this.wechatQr();
+        var query = [];
+        for (var key in data) {
+            if (data[key]) {
+                // 避免 encode 图片分隔符 |
+                query.push(key.toString() + "=" + (key === "pic" || key === "pics" ? data[key] : encodeURIComponent(data[key])));
+            }
+        }
+        window.open(snsInfo.url + "?" + query.join("&"));
+    };
+    Share.prototype.wechatQr = function() {
+        if (!this.$wechatQr) {
+            var qrId = UI.utils.generateGUID("am-share-wechat"), $qr = $('<div class="am-modal am-modal-no-btn am-share-wechat-qr"><div class="am-modal-dialog"><div class="am-modal-hd">分享到微信 <a href="" class="am-close am-close-spin" data-am-modal-close>&times;</a> </div><div class="am-modal-bd"><div class="am-share-wx-qr"></div><div class="am-share-wechat-tip">打开微信，点击底部的<em>发现</em>，<br/> 使用<em>扫一扫</em>将网页分享至朋友圈</div></div></div></div>', {
+                id: qrId
+            });
+            var qrNode = new QRCode({
+                render: "canvas",
+                correctLevel: 0,
+                text: doc.location.href,
+                width: 180,
+                height: 180,
+                background: "#fff",
+                foreground: "#000"
+            });
+            $qr.find(".am-share-wx-qr").html(qrNode);
+            $qr.appendTo($("body"));
+            this.$wechatQr = $("#" + qrId);
+        }
+        this.$wechatQr.modal("open");
+    };
+    var share = new Share();
+    UI.share = share;
+    $doc.on("click.share.amui", '[data-am-toggle="share"]', function(e) {
+        e.preventDefault();
+        share.toggle();
+    });
+    module.exports = share;
+});
 define("ui.smooth-scroll", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
     var UI = require("core"), rAF = UI.utils.rAF;
     var $ = window.Zepto;
@@ -2888,10 +3642,10 @@ define("ui.smooth-scroll", [ "core", "zepto.extend.fx", "zepto.extend.data", "ze
         var $this = this, targetY = position || 0, initialY = $this.scrollTop(), lastY = initialY, delta = targetY - initialY, // duration in ms, make it a bit shorter for short distances
         // this is not scientific and you might want to adjust this for
         // your preferences
-        speed = Math.min(750, Math.min(1500, Math.abs(initialY - targetY))), // temp variables (t will be a position between 0 and 1, y is the calculated scrollTop)
-        start, t, y, cancelScroll = function() {
-            abort();
-        };
+            speed = Math.min(750, Math.min(1500, Math.abs(initialY - targetY))), // temp variables (t will be a position between 0 and 1, y is the calculated scrollTop)
+            start, t, y, cancelScroll = function() {
+                abort();
+            };
         // abort if already in progress or nothing to scroll
         if (smoothScrollInProgress) return;
         if (delta == 0) return;
@@ -2996,6 +3750,123 @@ define("ui.sticky", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.ext
         });
     });
     module.exports = Sticky;
+});
+define("ui.tabs", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
+    "use strict";
+    require("core");
+    var $ = window.Zepto, UI = $.AMUI, supportTransition = UI.support.transition, animation = UI.support.animation;
+    /**
+     * @via https://github.com/twbs/bootstrap/blob/master/js/tab.js
+     * @copyright 2011-2014 Twitter, Inc.
+     * @license MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+     */
+    var Tabs = function(element) {
+        this.$element = $(element);
+        this.$tabNav = this.$element.find(Tabs.DEFAULTS.selector.nav);
+        this.$navs = this.$tabNav.find("a");
+        this.$content = this.$element.find(Tabs.DEFAULTS.selector.content);
+        this.$tabPanels = this.$content.find(Tabs.DEFAULTS.selector.panel);
+        this.transitioning = null;
+        this.init();
+    };
+    Tabs.DEFAULTS = {
+        selector: {
+            nav: ".am-tabs-nav",
+            content: ".am-tabs-bd",
+            panel: ".am-tab-panel"
+        },
+        status: {
+            active: "am-active"
+        }
+    };
+    Tabs.prototype.init = function() {
+        this.$navs.on("click.tabs.amui", $.proxy(function(e) {
+            e.preventDefault();
+            this.open($(e.target));
+        }, this));
+        this.$content.on("swipeLeft.tabs.amui", $.proxy(function(e) {
+            var $nav = this.getNextNav($(e.target));
+            $nav && this.open($nav);
+        }, this));
+        this.$content.on("swipeRight.tabs.amui", $.proxy(function(e) {
+            var $nav = this.getPrevNav($(e.target));
+            $nav && this.open($nav);
+        }, this));
+    };
+    Tabs.prototype.open = function($nav) {
+        if (!$nav || this.transitioning || $nav.parent("li").hasClass("am-active")) return;
+        var $tabNav = this.$tabNav, $navs = this.$navs, $tabContent = this.$content, href = $nav.attr("href"), regexHash = /^#.+$/, $target = regexHash.test(href) && this.$content.find(href) || this.$tabPanels.eq($navs.index($nav));
+        var previous = $tabNav.find(".am-active a")[0], e = $.Event("open:tabs:amui", {
+            relatedTarget: previous
+        });
+        $nav.trigger(e);
+        if (e.isDefaultPrevented()) return;
+        // activate Tab nav
+        this.activate($nav.closest("li"), $tabNav);
+        // activate Tab content
+        this.activate($target, $tabContent, function() {
+            $nav.trigger({
+                type: "opened:tabs:amui",
+                relatedTarget: previous
+            });
+        });
+    };
+    Tabs.prototype.activate = function($element, $container, callback) {
+        this.transitioning = true;
+        var $active = $container.find("> .am-active"), transition = callback && supportTransition && !!$active.length;
+        $active.removeClass("am-active am-in").blur();
+        $element.addClass("am-active");
+        if (transition) {
+            $element.redraw();
+            // reflow for transition
+            $element.addClass("am-in");
+        } else {
+            $element.removeClass("am-fade");
+        }
+        function complete() {
+            callback();
+            this.transitioning = false;
+        }
+        transition ? $active.one(supportTransition.end, $.proxy(complete, this)) : $.proxy(complete, this);
+    };
+    Tabs.prototype.getNextNav = function($panel) {
+        var navIndex = this.$tabPanels.index($panel), rightSpring = "am-animation-right-spring";
+        if (navIndex + 1 >= this.$navs.length) {
+            // last one
+            animation && $panel.addClass(rightSpring).on(animation.end, function() {
+                $panel.removeClass(rightSpring);
+            });
+            return null;
+        } else {
+            return this.$navs.eq(navIndex + 1);
+        }
+    };
+    Tabs.prototype.getPrevNav = function($panel) {
+        var navIndex = this.$tabPanels.index($panel), leftSpring = "am-animation-left-spring";
+        if (navIndex === 0) {
+            // first one
+            animation && $panel.addClass(leftSpring).on(animation.end, function() {
+                $panel.removeClass(leftSpring);
+            });
+            return null;
+        } else {
+            return this.$navs.eq(navIndex - 1);
+        }
+    };
+    // Plugin
+    function Plugin(option) {
+        return this.each(function() {
+            var $this = $(this), $tabs = $this.is(".am-tabs") && $this || $this.closest(".am-tabs"), data = $tabs.data("amui.tabs");
+            if (!data) $tabs.data("amui.tabs", data = new Tabs($tabs[0]));
+            if (typeof option == "string" && $this.is(".am-tabs-nav a")) data[option]($this);
+        });
+    }
+    $.fn.tabs = Plugin;
+    // Init code
+    $(document).on("ready", function(e) {
+        $("[data-am-tabs]").tabs();
+    });
+    module.exports = Tabs;
 });
 define("util.cookie", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
     "use strict";
@@ -3209,25 +4080,25 @@ define("util.fastclick", [], function(require, exports, module) {
     FastClick.prototype.needsClick = function(target) {
         "use strict";
         switch (target.nodeName.toLowerCase()) {
-          // Don't send a synthetic click to disabled inputs (issue #62)
+            // Don't send a synthetic click to disabled inputs (issue #62)
             case "button":
-          case "select":
-          case "textarea":
-            if (target.disabled) {
-                return true;
-            }
-            break;
+            case "select":
+            case "textarea":
+                if (target.disabled) {
+                    return true;
+                }
+                break;
 
-          case "input":
-            // File inputs need real clicks on iOS 6 due to a browser bug (issue #68)
-            if (deviceIsIOS && target.type === "file" || target.disabled) {
-                return true;
-            }
-            break;
+            case "input":
+                // File inputs need real clicks on iOS 6 due to a browser bug (issue #68)
+                if (deviceIsIOS && target.type === "file" || target.disabled) {
+                    return true;
+                }
+                break;
 
-          case "label":
-          case "video":
-            return true;
+            case "label":
+            case "video":
+                return true;
         }
         return /\bneedsclick\b/.test(target.className);
     };
@@ -3240,27 +4111,27 @@ define("util.fastclick", [], function(require, exports, module) {
     FastClick.prototype.needsFocus = function(target) {
         "use strict";
         switch (target.nodeName.toLowerCase()) {
-          case "textarea":
-            return true;
+            case "textarea":
+                return true;
 
-          case "select":
-            return !deviceIsAndroid;
+            case "select":
+                return !deviceIsAndroid;
 
-          case "input":
-            switch (target.type) {
-              case "button":
-              case "checkbox":
-              case "file":
-              case "image":
-              case "radio":
-              case "submit":
-                return false;
-            }
-            // No point in attempting to focus disabled inputs
-            return !target.disabled && !target.readOnly;
+            case "input":
+                switch (target.type) {
+                    case "button":
+                    case "checkbox":
+                    case "file":
+                    case "image":
+                    case "radio":
+                    case "submit":
+                        return false;
+                }
+                // No point in attempting to focus disabled inputs
+                return !target.disabled && !target.readOnly;
 
-          default:
-            return /\bneedsfocus\b/.test(target.className);
+            default:
+                return /\bneedsfocus\b/.test(target.className);
         }
     };
     /**
@@ -3684,8 +4555,8 @@ define("util.fullscreen", [ "core", "zepto.extend.fx", "zepto.extend.data", "zep
         var val;
         var valLength;
         var fnMap = [ [ "requestFullscreen", "exitFullscreen", "fullscreenElement", "fullscreenEnabled", "fullscreenchange", "fullscreenerror" ], // new WebKit
-        [ "webkitRequestFullscreen", "webkitExitFullscreen", "webkitFullscreenElement", "webkitFullscreenEnabled", "webkitfullscreenchange", "webkitfullscreenerror" ], // old WebKit (Safari 5.1)
-        [ "webkitRequestFullScreen", "webkitCancelFullScreen", "webkitCurrentFullScreenElement", "webkitCancelFullScreen", "webkitfullscreenchange", "webkitfullscreenerror" ], [ "mozRequestFullScreen", "mozCancelFullScreen", "mozFullScreenElement", "mozFullScreenEnabled", "mozfullscreenchange", "mozfullscreenerror" ], [ "msRequestFullscreen", "msExitFullscreen", "msFullscreenElement", "msFullscreenEnabled", "MSFullscreenChange", "MSFullscreenError" ] ];
+            [ "webkitRequestFullscreen", "webkitExitFullscreen", "webkitFullscreenElement", "webkitFullscreenEnabled", "webkitfullscreenchange", "webkitfullscreenerror" ], // old WebKit (Safari 5.1)
+            [ "webkitRequestFullScreen", "webkitCancelFullScreen", "webkitCurrentFullScreenElement", "webkitCancelFullScreen", "webkitfullscreenchange", "webkitfullscreenerror" ], [ "mozRequestFullScreen", "mozCancelFullScreen", "mozFullScreenElement", "mozFullScreenEnabled", "mozfullscreenchange", "mozfullscreenerror" ], [ "msRequestFullscreen", "msExitFullscreen", "msFullscreenElement", "msFullscreenEnabled", "MSFullscreenChange", "MSFullscreenError" ] ];
         var i = 0;
         var l = fnMap.length;
         var ret = {};
@@ -3810,17 +4681,17 @@ define("util.qrcode", [], function(require, exports, module) {
         }
         if (this.options.render) {
             switch (this.options.render) {
-              case "canvas":
-                return this.createCanvas(qrCodeAlg);
+                case "canvas":
+                    return this.createCanvas(qrCodeAlg);
 
-              case "table":
-                return this.createTable(qrCodeAlg);
+                case "table":
+                    return this.createTable(qrCodeAlg);
 
-              case "svg":
-                return this.createSVG(qrCodeAlg);
+                case "svg":
+                    return this.createSVG(qrCodeAlg);
 
-              default:
-                return this.createDefault(qrCodeAlg);
+                default:
+                    return this.createDefault(qrCodeAlg);
             }
         }
         return this.createDefault(qrCodeAlg);
@@ -3884,9 +4755,9 @@ define("util.qrcode", [], function(require, exports, module) {
             }
         }
         // 绘制二维码
-        foreTd = '<td style="border:0px; margin:0px; padding:0px; width:' + tileW + "px; background-color: " + this.options.foreground + '"></td>', 
-        backTd = '<td style="border:0px; margin:0px; padding:0px; width:' + tileW + "px; background-color: " + this.options.background + '"></td>', 
-        l = qrCodeAlg.getModuleCount();
+        foreTd = '<td style="border:0px; margin:0px; padding:0px; width:' + tileW + "px; background-color: " + this.options.foreground + '"></td>',
+            backTd = '<td style="border:0px; margin:0px; padding:0px; width:' + tileW + "px; background-color: " + this.options.background + '"></td>',
+            l = qrCodeAlg.getModuleCount();
         for (var row = 0; row < l; row++) {
             s.push('<tr style="border:0px; margin:0px; padding:0px; height: ' + tileH + 'px">');
             for (var col = 0; col < l; col++) {
@@ -4355,32 +5226,32 @@ define("util.qrcode", [], function(require, exports, module) {
          */
         getMask: function(maskPattern, i, j) {
             switch (maskPattern) {
-              case QRMaskPattern.PATTERN000:
-                return (i + j) % 2 == 0;
+                case QRMaskPattern.PATTERN000:
+                    return (i + j) % 2 == 0;
 
-              case QRMaskPattern.PATTERN001:
-                return i % 2 == 0;
+                case QRMaskPattern.PATTERN001:
+                    return i % 2 == 0;
 
-              case QRMaskPattern.PATTERN010:
-                return j % 3 == 0;
+                case QRMaskPattern.PATTERN010:
+                    return j % 3 == 0;
 
-              case QRMaskPattern.PATTERN011:
-                return (i + j) % 3 == 0;
+                case QRMaskPattern.PATTERN011:
+                    return (i + j) % 3 == 0;
 
-              case QRMaskPattern.PATTERN100:
-                return (Math.floor(i / 2) + Math.floor(j / 3)) % 2 == 0;
+                case QRMaskPattern.PATTERN100:
+                    return (Math.floor(i / 2) + Math.floor(j / 3)) % 2 == 0;
 
-              case QRMaskPattern.PATTERN101:
-                return i * j % 2 + i * j % 3 == 0;
+                case QRMaskPattern.PATTERN101:
+                    return i * j % 2 + i * j % 3 == 0;
 
-              case QRMaskPattern.PATTERN110:
-                return (i * j % 2 + i * j % 3) % 2 == 0;
+                case QRMaskPattern.PATTERN110:
+                    return (i * j % 2 + i * j % 3) % 2 == 0;
 
-              case QRMaskPattern.PATTERN111:
-                return (i * j % 3 + (i + j) % 2) % 2 == 0;
+                case QRMaskPattern.PATTERN111:
+                    return (i * j % 3 + (i + j) % 2) % 2 == 0;
 
-              default:
-                throw new Error("bad maskPattern:" + maskPattern);
+                default:
+                    throw new Error("bad maskPattern:" + maskPattern);
             }
         },
         /*
@@ -4593,50 +5464,50 @@ define("util.qrcode", [], function(require, exports, module) {
      二维码各个版本信息[块数, 每块中的数据块数, 每块中的信息块数]
      */
     RS_BLOCK_TABLE = [ // L
-    // M
-    // Q
-    // H
-    // 1
-    [ 1, 26, 19 ], [ 1, 26, 16 ], [ 1, 26, 13 ], [ 1, 26, 9 ], // 2
-    [ 1, 44, 34 ], [ 1, 44, 28 ], [ 1, 44, 22 ], [ 1, 44, 16 ], // 3
-    [ 1, 70, 55 ], [ 1, 70, 44 ], [ 2, 35, 17 ], [ 2, 35, 13 ], // 4
-    [ 1, 100, 80 ], [ 2, 50, 32 ], [ 2, 50, 24 ], [ 4, 25, 9 ], // 5
-    [ 1, 134, 108 ], [ 2, 67, 43 ], [ 2, 33, 15, 2, 34, 16 ], [ 2, 33, 11, 2, 34, 12 ], // 6
-    [ 2, 86, 68 ], [ 4, 43, 27 ], [ 4, 43, 19 ], [ 4, 43, 15 ], // 7
-    [ 2, 98, 78 ], [ 4, 49, 31 ], [ 2, 32, 14, 4, 33, 15 ], [ 4, 39, 13, 1, 40, 14 ], // 8
-    [ 2, 121, 97 ], [ 2, 60, 38, 2, 61, 39 ], [ 4, 40, 18, 2, 41, 19 ], [ 4, 40, 14, 2, 41, 15 ], // 9
-    [ 2, 146, 116 ], [ 3, 58, 36, 2, 59, 37 ], [ 4, 36, 16, 4, 37, 17 ], [ 4, 36, 12, 4, 37, 13 ], // 10
-    [ 2, 86, 68, 2, 87, 69 ], [ 4, 69, 43, 1, 70, 44 ], [ 6, 43, 19, 2, 44, 20 ], [ 6, 43, 15, 2, 44, 16 ], // 11
-    [ 4, 101, 81 ], [ 1, 80, 50, 4, 81, 51 ], [ 4, 50, 22, 4, 51, 23 ], [ 3, 36, 12, 8, 37, 13 ], // 12
-    [ 2, 116, 92, 2, 117, 93 ], [ 6, 58, 36, 2, 59, 37 ], [ 4, 46, 20, 6, 47, 21 ], [ 7, 42, 14, 4, 43, 15 ], // 13
-    [ 4, 133, 107 ], [ 8, 59, 37, 1, 60, 38 ], [ 8, 44, 20, 4, 45, 21 ], [ 12, 33, 11, 4, 34, 12 ], // 14
-    [ 3, 145, 115, 1, 146, 116 ], [ 4, 64, 40, 5, 65, 41 ], [ 11, 36, 16, 5, 37, 17 ], [ 11, 36, 12, 5, 37, 13 ], // 15
-    [ 5, 109, 87, 1, 110, 88 ], [ 5, 65, 41, 5, 66, 42 ], [ 5, 54, 24, 7, 55, 25 ], [ 11, 36, 12 ], // 16
-    [ 5, 122, 98, 1, 123, 99 ], [ 7, 73, 45, 3, 74, 46 ], [ 15, 43, 19, 2, 44, 20 ], [ 3, 45, 15, 13, 46, 16 ], // 17
-    [ 1, 135, 107, 5, 136, 108 ], [ 10, 74, 46, 1, 75, 47 ], [ 1, 50, 22, 15, 51, 23 ], [ 2, 42, 14, 17, 43, 15 ], // 18
-    [ 5, 150, 120, 1, 151, 121 ], [ 9, 69, 43, 4, 70, 44 ], [ 17, 50, 22, 1, 51, 23 ], [ 2, 42, 14, 19, 43, 15 ], // 19
-    [ 3, 141, 113, 4, 142, 114 ], [ 3, 70, 44, 11, 71, 45 ], [ 17, 47, 21, 4, 48, 22 ], [ 9, 39, 13, 16, 40, 14 ], // 20
-    [ 3, 135, 107, 5, 136, 108 ], [ 3, 67, 41, 13, 68, 42 ], [ 15, 54, 24, 5, 55, 25 ], [ 15, 43, 15, 10, 44, 16 ], // 21
-    [ 4, 144, 116, 4, 145, 117 ], [ 17, 68, 42 ], [ 17, 50, 22, 6, 51, 23 ], [ 19, 46, 16, 6, 47, 17 ], // 22
-    [ 2, 139, 111, 7, 140, 112 ], [ 17, 74, 46 ], [ 7, 54, 24, 16, 55, 25 ], [ 34, 37, 13 ], // 23
-    [ 4, 151, 121, 5, 152, 122 ], [ 4, 75, 47, 14, 76, 48 ], [ 11, 54, 24, 14, 55, 25 ], [ 16, 45, 15, 14, 46, 16 ], // 24
-    [ 6, 147, 117, 4, 148, 118 ], [ 6, 73, 45, 14, 74, 46 ], [ 11, 54, 24, 16, 55, 25 ], [ 30, 46, 16, 2, 47, 17 ], // 25
-    [ 8, 132, 106, 4, 133, 107 ], [ 8, 75, 47, 13, 76, 48 ], [ 7, 54, 24, 22, 55, 25 ], [ 22, 45, 15, 13, 46, 16 ], // 26
-    [ 10, 142, 114, 2, 143, 115 ], [ 19, 74, 46, 4, 75, 47 ], [ 28, 50, 22, 6, 51, 23 ], [ 33, 46, 16, 4, 47, 17 ], // 27
-    [ 8, 152, 122, 4, 153, 123 ], [ 22, 73, 45, 3, 74, 46 ], [ 8, 53, 23, 26, 54, 24 ], [ 12, 45, 15, 28, 46, 16 ], // 28
-    [ 3, 147, 117, 10, 148, 118 ], [ 3, 73, 45, 23, 74, 46 ], [ 4, 54, 24, 31, 55, 25 ], [ 11, 45, 15, 31, 46, 16 ], // 29
-    [ 7, 146, 116, 7, 147, 117 ], [ 21, 73, 45, 7, 74, 46 ], [ 1, 53, 23, 37, 54, 24 ], [ 19, 45, 15, 26, 46, 16 ], // 30
-    [ 5, 145, 115, 10, 146, 116 ], [ 19, 75, 47, 10, 76, 48 ], [ 15, 54, 24, 25, 55, 25 ], [ 23, 45, 15, 25, 46, 16 ], // 31
-    [ 13, 145, 115, 3, 146, 116 ], [ 2, 74, 46, 29, 75, 47 ], [ 42, 54, 24, 1, 55, 25 ], [ 23, 45, 15, 28, 46, 16 ], // 32
-    [ 17, 145, 115 ], [ 10, 74, 46, 23, 75, 47 ], [ 10, 54, 24, 35, 55, 25 ], [ 19, 45, 15, 35, 46, 16 ], // 33
-    [ 17, 145, 115, 1, 146, 116 ], [ 14, 74, 46, 21, 75, 47 ], [ 29, 54, 24, 19, 55, 25 ], [ 11, 45, 15, 46, 46, 16 ], // 34
-    [ 13, 145, 115, 6, 146, 116 ], [ 14, 74, 46, 23, 75, 47 ], [ 44, 54, 24, 7, 55, 25 ], [ 59, 46, 16, 1, 47, 17 ], // 35
-    [ 12, 151, 121, 7, 152, 122 ], [ 12, 75, 47, 26, 76, 48 ], [ 39, 54, 24, 14, 55, 25 ], [ 22, 45, 15, 41, 46, 16 ], // 36
-    [ 6, 151, 121, 14, 152, 122 ], [ 6, 75, 47, 34, 76, 48 ], [ 46, 54, 24, 10, 55, 25 ], [ 2, 45, 15, 64, 46, 16 ], // 37
-    [ 17, 152, 122, 4, 153, 123 ], [ 29, 74, 46, 14, 75, 47 ], [ 49, 54, 24, 10, 55, 25 ], [ 24, 45, 15, 46, 46, 16 ], // 38
-    [ 4, 152, 122, 18, 153, 123 ], [ 13, 74, 46, 32, 75, 47 ], [ 48, 54, 24, 14, 55, 25 ], [ 42, 45, 15, 32, 46, 16 ], // 39
-    [ 20, 147, 117, 4, 148, 118 ], [ 40, 75, 47, 7, 76, 48 ], [ 43, 54, 24, 22, 55, 25 ], [ 10, 45, 15, 67, 46, 16 ], // 40
-    [ 19, 148, 118, 6, 149, 119 ], [ 18, 75, 47, 31, 76, 48 ], [ 34, 54, 24, 34, 55, 25 ], [ 20, 45, 15, 61, 46, 16 ] ];
+        // M
+        // Q
+        // H
+        // 1
+        [ 1, 26, 19 ], [ 1, 26, 16 ], [ 1, 26, 13 ], [ 1, 26, 9 ], // 2
+        [ 1, 44, 34 ], [ 1, 44, 28 ], [ 1, 44, 22 ], [ 1, 44, 16 ], // 3
+        [ 1, 70, 55 ], [ 1, 70, 44 ], [ 2, 35, 17 ], [ 2, 35, 13 ], // 4
+        [ 1, 100, 80 ], [ 2, 50, 32 ], [ 2, 50, 24 ], [ 4, 25, 9 ], // 5
+        [ 1, 134, 108 ], [ 2, 67, 43 ], [ 2, 33, 15, 2, 34, 16 ], [ 2, 33, 11, 2, 34, 12 ], // 6
+        [ 2, 86, 68 ], [ 4, 43, 27 ], [ 4, 43, 19 ], [ 4, 43, 15 ], // 7
+        [ 2, 98, 78 ], [ 4, 49, 31 ], [ 2, 32, 14, 4, 33, 15 ], [ 4, 39, 13, 1, 40, 14 ], // 8
+        [ 2, 121, 97 ], [ 2, 60, 38, 2, 61, 39 ], [ 4, 40, 18, 2, 41, 19 ], [ 4, 40, 14, 2, 41, 15 ], // 9
+        [ 2, 146, 116 ], [ 3, 58, 36, 2, 59, 37 ], [ 4, 36, 16, 4, 37, 17 ], [ 4, 36, 12, 4, 37, 13 ], // 10
+        [ 2, 86, 68, 2, 87, 69 ], [ 4, 69, 43, 1, 70, 44 ], [ 6, 43, 19, 2, 44, 20 ], [ 6, 43, 15, 2, 44, 16 ], // 11
+        [ 4, 101, 81 ], [ 1, 80, 50, 4, 81, 51 ], [ 4, 50, 22, 4, 51, 23 ], [ 3, 36, 12, 8, 37, 13 ], // 12
+        [ 2, 116, 92, 2, 117, 93 ], [ 6, 58, 36, 2, 59, 37 ], [ 4, 46, 20, 6, 47, 21 ], [ 7, 42, 14, 4, 43, 15 ], // 13
+        [ 4, 133, 107 ], [ 8, 59, 37, 1, 60, 38 ], [ 8, 44, 20, 4, 45, 21 ], [ 12, 33, 11, 4, 34, 12 ], // 14
+        [ 3, 145, 115, 1, 146, 116 ], [ 4, 64, 40, 5, 65, 41 ], [ 11, 36, 16, 5, 37, 17 ], [ 11, 36, 12, 5, 37, 13 ], // 15
+        [ 5, 109, 87, 1, 110, 88 ], [ 5, 65, 41, 5, 66, 42 ], [ 5, 54, 24, 7, 55, 25 ], [ 11, 36, 12 ], // 16
+        [ 5, 122, 98, 1, 123, 99 ], [ 7, 73, 45, 3, 74, 46 ], [ 15, 43, 19, 2, 44, 20 ], [ 3, 45, 15, 13, 46, 16 ], // 17
+        [ 1, 135, 107, 5, 136, 108 ], [ 10, 74, 46, 1, 75, 47 ], [ 1, 50, 22, 15, 51, 23 ], [ 2, 42, 14, 17, 43, 15 ], // 18
+        [ 5, 150, 120, 1, 151, 121 ], [ 9, 69, 43, 4, 70, 44 ], [ 17, 50, 22, 1, 51, 23 ], [ 2, 42, 14, 19, 43, 15 ], // 19
+        [ 3, 141, 113, 4, 142, 114 ], [ 3, 70, 44, 11, 71, 45 ], [ 17, 47, 21, 4, 48, 22 ], [ 9, 39, 13, 16, 40, 14 ], // 20
+        [ 3, 135, 107, 5, 136, 108 ], [ 3, 67, 41, 13, 68, 42 ], [ 15, 54, 24, 5, 55, 25 ], [ 15, 43, 15, 10, 44, 16 ], // 21
+        [ 4, 144, 116, 4, 145, 117 ], [ 17, 68, 42 ], [ 17, 50, 22, 6, 51, 23 ], [ 19, 46, 16, 6, 47, 17 ], // 22
+        [ 2, 139, 111, 7, 140, 112 ], [ 17, 74, 46 ], [ 7, 54, 24, 16, 55, 25 ], [ 34, 37, 13 ], // 23
+        [ 4, 151, 121, 5, 152, 122 ], [ 4, 75, 47, 14, 76, 48 ], [ 11, 54, 24, 14, 55, 25 ], [ 16, 45, 15, 14, 46, 16 ], // 24
+        [ 6, 147, 117, 4, 148, 118 ], [ 6, 73, 45, 14, 74, 46 ], [ 11, 54, 24, 16, 55, 25 ], [ 30, 46, 16, 2, 47, 17 ], // 25
+        [ 8, 132, 106, 4, 133, 107 ], [ 8, 75, 47, 13, 76, 48 ], [ 7, 54, 24, 22, 55, 25 ], [ 22, 45, 15, 13, 46, 16 ], // 26
+        [ 10, 142, 114, 2, 143, 115 ], [ 19, 74, 46, 4, 75, 47 ], [ 28, 50, 22, 6, 51, 23 ], [ 33, 46, 16, 4, 47, 17 ], // 27
+        [ 8, 152, 122, 4, 153, 123 ], [ 22, 73, 45, 3, 74, 46 ], [ 8, 53, 23, 26, 54, 24 ], [ 12, 45, 15, 28, 46, 16 ], // 28
+        [ 3, 147, 117, 10, 148, 118 ], [ 3, 73, 45, 23, 74, 46 ], [ 4, 54, 24, 31, 55, 25 ], [ 11, 45, 15, 31, 46, 16 ], // 29
+        [ 7, 146, 116, 7, 147, 117 ], [ 21, 73, 45, 7, 74, 46 ], [ 1, 53, 23, 37, 54, 24 ], [ 19, 45, 15, 26, 46, 16 ], // 30
+        [ 5, 145, 115, 10, 146, 116 ], [ 19, 75, 47, 10, 76, 48 ], [ 15, 54, 24, 25, 55, 25 ], [ 23, 45, 15, 25, 46, 16 ], // 31
+        [ 13, 145, 115, 3, 146, 116 ], [ 2, 74, 46, 29, 75, 47 ], [ 42, 54, 24, 1, 55, 25 ], [ 23, 45, 15, 28, 46, 16 ], // 32
+        [ 17, 145, 115 ], [ 10, 74, 46, 23, 75, 47 ], [ 10, 54, 24, 35, 55, 25 ], [ 19, 45, 15, 35, 46, 16 ], // 33
+        [ 17, 145, 115, 1, 146, 116 ], [ 14, 74, 46, 21, 75, 47 ], [ 29, 54, 24, 19, 55, 25 ], [ 11, 45, 15, 46, 46, 16 ], // 34
+        [ 13, 145, 115, 6, 146, 116 ], [ 14, 74, 46, 23, 75, 47 ], [ 44, 54, 24, 7, 55, 25 ], [ 59, 46, 16, 1, 47, 17 ], // 35
+        [ 12, 151, 121, 7, 152, 122 ], [ 12, 75, 47, 26, 76, 48 ], [ 39, 54, 24, 14, 55, 25 ], [ 22, 45, 15, 41, 46, 16 ], // 36
+        [ 6, 151, 121, 14, 152, 122 ], [ 6, 75, 47, 34, 76, 48 ], [ 46, 54, 24, 10, 55, 25 ], [ 2, 45, 15, 64, 46, 16 ], // 37
+        [ 17, 152, 122, 4, 153, 123 ], [ 29, 74, 46, 14, 75, 47 ], [ 49, 54, 24, 10, 55, 25 ], [ 24, 45, 15, 46, 46, 16 ], // 38
+        [ 4, 152, 122, 18, 153, 123 ], [ 13, 74, 46, 32, 75, 47 ], [ 48, 54, 24, 14, 55, 25 ], [ 42, 45, 15, 32, 46, 16 ], // 39
+        [ 20, 147, 117, 4, 148, 118 ], [ 40, 75, 47, 7, 76, 48 ], [ 43, 54, 24, 22, 55, 25 ], [ 10, 45, 15, 67, 46, 16 ], // 40
+        [ 19, 148, 118, 6, 149, 119 ], [ 18, 75, 47, 31, 76, 48 ], [ 34, 54, 24, 34, 55, 25 ], [ 20, 45, 15, 61, 46, 16 ] ];
     /**
      * 根据数据获取对应版本
      * @return {[type]} [description]
@@ -5125,32 +5996,32 @@ define("util.qrcode", [], function(require, exports, module) {
          */
         getMask: function(maskPattern, i, j) {
             switch (maskPattern) {
-              case QRMaskPattern.PATTERN000:
-                return (i + j) % 2 == 0;
+                case QRMaskPattern.PATTERN000:
+                    return (i + j) % 2 == 0;
 
-              case QRMaskPattern.PATTERN001:
-                return i % 2 == 0;
+                case QRMaskPattern.PATTERN001:
+                    return i % 2 == 0;
 
-              case QRMaskPattern.PATTERN010:
-                return j % 3 == 0;
+                case QRMaskPattern.PATTERN010:
+                    return j % 3 == 0;
 
-              case QRMaskPattern.PATTERN011:
-                return (i + j) % 3 == 0;
+                case QRMaskPattern.PATTERN011:
+                    return (i + j) % 3 == 0;
 
-              case QRMaskPattern.PATTERN100:
-                return (Math.floor(i / 2) + Math.floor(j / 3)) % 2 == 0;
+                case QRMaskPattern.PATTERN100:
+                    return (Math.floor(i / 2) + Math.floor(j / 3)) % 2 == 0;
 
-              case QRMaskPattern.PATTERN101:
-                return i * j % 2 + i * j % 3 == 0;
+                case QRMaskPattern.PATTERN101:
+                    return i * j % 2 + i * j % 3 == 0;
 
-              case QRMaskPattern.PATTERN110:
-                return (i * j % 2 + i * j % 3) % 2 == 0;
+                case QRMaskPattern.PATTERN110:
+                    return (i * j % 2 + i * j % 3) % 2 == 0;
 
-              case QRMaskPattern.PATTERN111:
-                return (i * j % 3 + (i + j) % 2) % 2 == 0;
+                case QRMaskPattern.PATTERN111:
+                    return (i * j % 3 + (i + j) % 2) % 2 == 0;
 
-              default:
-                throw new Error("bad maskPattern:" + maskPattern);
+                default:
+                    throw new Error("bad maskPattern:" + maskPattern);
             }
         },
         /*
@@ -5363,50 +6234,50 @@ define("util.qrcode", [], function(require, exports, module) {
      二维码各个版本信息[块数, 每块中的数据块数, 每块中的信息块数]
      */
     RS_BLOCK_TABLE = [ // L
-    // M
-    // Q
-    // H
-    // 1
-    [ 1, 26, 19 ], [ 1, 26, 16 ], [ 1, 26, 13 ], [ 1, 26, 9 ], // 2
-    [ 1, 44, 34 ], [ 1, 44, 28 ], [ 1, 44, 22 ], [ 1, 44, 16 ], // 3
-    [ 1, 70, 55 ], [ 1, 70, 44 ], [ 2, 35, 17 ], [ 2, 35, 13 ], // 4
-    [ 1, 100, 80 ], [ 2, 50, 32 ], [ 2, 50, 24 ], [ 4, 25, 9 ], // 5
-    [ 1, 134, 108 ], [ 2, 67, 43 ], [ 2, 33, 15, 2, 34, 16 ], [ 2, 33, 11, 2, 34, 12 ], // 6
-    [ 2, 86, 68 ], [ 4, 43, 27 ], [ 4, 43, 19 ], [ 4, 43, 15 ], // 7
-    [ 2, 98, 78 ], [ 4, 49, 31 ], [ 2, 32, 14, 4, 33, 15 ], [ 4, 39, 13, 1, 40, 14 ], // 8
-    [ 2, 121, 97 ], [ 2, 60, 38, 2, 61, 39 ], [ 4, 40, 18, 2, 41, 19 ], [ 4, 40, 14, 2, 41, 15 ], // 9
-    [ 2, 146, 116 ], [ 3, 58, 36, 2, 59, 37 ], [ 4, 36, 16, 4, 37, 17 ], [ 4, 36, 12, 4, 37, 13 ], // 10
-    [ 2, 86, 68, 2, 87, 69 ], [ 4, 69, 43, 1, 70, 44 ], [ 6, 43, 19, 2, 44, 20 ], [ 6, 43, 15, 2, 44, 16 ], // 11
-    [ 4, 101, 81 ], [ 1, 80, 50, 4, 81, 51 ], [ 4, 50, 22, 4, 51, 23 ], [ 3, 36, 12, 8, 37, 13 ], // 12
-    [ 2, 116, 92, 2, 117, 93 ], [ 6, 58, 36, 2, 59, 37 ], [ 4, 46, 20, 6, 47, 21 ], [ 7, 42, 14, 4, 43, 15 ], // 13
-    [ 4, 133, 107 ], [ 8, 59, 37, 1, 60, 38 ], [ 8, 44, 20, 4, 45, 21 ], [ 12, 33, 11, 4, 34, 12 ], // 14
-    [ 3, 145, 115, 1, 146, 116 ], [ 4, 64, 40, 5, 65, 41 ], [ 11, 36, 16, 5, 37, 17 ], [ 11, 36, 12, 5, 37, 13 ], // 15
-    [ 5, 109, 87, 1, 110, 88 ], [ 5, 65, 41, 5, 66, 42 ], [ 5, 54, 24, 7, 55, 25 ], [ 11, 36, 12 ], // 16
-    [ 5, 122, 98, 1, 123, 99 ], [ 7, 73, 45, 3, 74, 46 ], [ 15, 43, 19, 2, 44, 20 ], [ 3, 45, 15, 13, 46, 16 ], // 17
-    [ 1, 135, 107, 5, 136, 108 ], [ 10, 74, 46, 1, 75, 47 ], [ 1, 50, 22, 15, 51, 23 ], [ 2, 42, 14, 17, 43, 15 ], // 18
-    [ 5, 150, 120, 1, 151, 121 ], [ 9, 69, 43, 4, 70, 44 ], [ 17, 50, 22, 1, 51, 23 ], [ 2, 42, 14, 19, 43, 15 ], // 19
-    [ 3, 141, 113, 4, 142, 114 ], [ 3, 70, 44, 11, 71, 45 ], [ 17, 47, 21, 4, 48, 22 ], [ 9, 39, 13, 16, 40, 14 ], // 20
-    [ 3, 135, 107, 5, 136, 108 ], [ 3, 67, 41, 13, 68, 42 ], [ 15, 54, 24, 5, 55, 25 ], [ 15, 43, 15, 10, 44, 16 ], // 21
-    [ 4, 144, 116, 4, 145, 117 ], [ 17, 68, 42 ], [ 17, 50, 22, 6, 51, 23 ], [ 19, 46, 16, 6, 47, 17 ], // 22
-    [ 2, 139, 111, 7, 140, 112 ], [ 17, 74, 46 ], [ 7, 54, 24, 16, 55, 25 ], [ 34, 37, 13 ], // 23
-    [ 4, 151, 121, 5, 152, 122 ], [ 4, 75, 47, 14, 76, 48 ], [ 11, 54, 24, 14, 55, 25 ], [ 16, 45, 15, 14, 46, 16 ], // 24
-    [ 6, 147, 117, 4, 148, 118 ], [ 6, 73, 45, 14, 74, 46 ], [ 11, 54, 24, 16, 55, 25 ], [ 30, 46, 16, 2, 47, 17 ], // 25
-    [ 8, 132, 106, 4, 133, 107 ], [ 8, 75, 47, 13, 76, 48 ], [ 7, 54, 24, 22, 55, 25 ], [ 22, 45, 15, 13, 46, 16 ], // 26
-    [ 10, 142, 114, 2, 143, 115 ], [ 19, 74, 46, 4, 75, 47 ], [ 28, 50, 22, 6, 51, 23 ], [ 33, 46, 16, 4, 47, 17 ], // 27
-    [ 8, 152, 122, 4, 153, 123 ], [ 22, 73, 45, 3, 74, 46 ], [ 8, 53, 23, 26, 54, 24 ], [ 12, 45, 15, 28, 46, 16 ], // 28
-    [ 3, 147, 117, 10, 148, 118 ], [ 3, 73, 45, 23, 74, 46 ], [ 4, 54, 24, 31, 55, 25 ], [ 11, 45, 15, 31, 46, 16 ], // 29
-    [ 7, 146, 116, 7, 147, 117 ], [ 21, 73, 45, 7, 74, 46 ], [ 1, 53, 23, 37, 54, 24 ], [ 19, 45, 15, 26, 46, 16 ], // 30
-    [ 5, 145, 115, 10, 146, 116 ], [ 19, 75, 47, 10, 76, 48 ], [ 15, 54, 24, 25, 55, 25 ], [ 23, 45, 15, 25, 46, 16 ], // 31
-    [ 13, 145, 115, 3, 146, 116 ], [ 2, 74, 46, 29, 75, 47 ], [ 42, 54, 24, 1, 55, 25 ], [ 23, 45, 15, 28, 46, 16 ], // 32
-    [ 17, 145, 115 ], [ 10, 74, 46, 23, 75, 47 ], [ 10, 54, 24, 35, 55, 25 ], [ 19, 45, 15, 35, 46, 16 ], // 33
-    [ 17, 145, 115, 1, 146, 116 ], [ 14, 74, 46, 21, 75, 47 ], [ 29, 54, 24, 19, 55, 25 ], [ 11, 45, 15, 46, 46, 16 ], // 34
-    [ 13, 145, 115, 6, 146, 116 ], [ 14, 74, 46, 23, 75, 47 ], [ 44, 54, 24, 7, 55, 25 ], [ 59, 46, 16, 1, 47, 17 ], // 35
-    [ 12, 151, 121, 7, 152, 122 ], [ 12, 75, 47, 26, 76, 48 ], [ 39, 54, 24, 14, 55, 25 ], [ 22, 45, 15, 41, 46, 16 ], // 36
-    [ 6, 151, 121, 14, 152, 122 ], [ 6, 75, 47, 34, 76, 48 ], [ 46, 54, 24, 10, 55, 25 ], [ 2, 45, 15, 64, 46, 16 ], // 37
-    [ 17, 152, 122, 4, 153, 123 ], [ 29, 74, 46, 14, 75, 47 ], [ 49, 54, 24, 10, 55, 25 ], [ 24, 45, 15, 46, 46, 16 ], // 38
-    [ 4, 152, 122, 18, 153, 123 ], [ 13, 74, 46, 32, 75, 47 ], [ 48, 54, 24, 14, 55, 25 ], [ 42, 45, 15, 32, 46, 16 ], // 39
-    [ 20, 147, 117, 4, 148, 118 ], [ 40, 75, 47, 7, 76, 48 ], [ 43, 54, 24, 22, 55, 25 ], [ 10, 45, 15, 67, 46, 16 ], // 40
-    [ 19, 148, 118, 6, 149, 119 ], [ 18, 75, 47, 31, 76, 48 ], [ 34, 54, 24, 34, 55, 25 ], [ 20, 45, 15, 61, 46, 16 ] ];
+        // M
+        // Q
+        // H
+        // 1
+        [ 1, 26, 19 ], [ 1, 26, 16 ], [ 1, 26, 13 ], [ 1, 26, 9 ], // 2
+        [ 1, 44, 34 ], [ 1, 44, 28 ], [ 1, 44, 22 ], [ 1, 44, 16 ], // 3
+        [ 1, 70, 55 ], [ 1, 70, 44 ], [ 2, 35, 17 ], [ 2, 35, 13 ], // 4
+        [ 1, 100, 80 ], [ 2, 50, 32 ], [ 2, 50, 24 ], [ 4, 25, 9 ], // 5
+        [ 1, 134, 108 ], [ 2, 67, 43 ], [ 2, 33, 15, 2, 34, 16 ], [ 2, 33, 11, 2, 34, 12 ], // 6
+        [ 2, 86, 68 ], [ 4, 43, 27 ], [ 4, 43, 19 ], [ 4, 43, 15 ], // 7
+        [ 2, 98, 78 ], [ 4, 49, 31 ], [ 2, 32, 14, 4, 33, 15 ], [ 4, 39, 13, 1, 40, 14 ], // 8
+        [ 2, 121, 97 ], [ 2, 60, 38, 2, 61, 39 ], [ 4, 40, 18, 2, 41, 19 ], [ 4, 40, 14, 2, 41, 15 ], // 9
+        [ 2, 146, 116 ], [ 3, 58, 36, 2, 59, 37 ], [ 4, 36, 16, 4, 37, 17 ], [ 4, 36, 12, 4, 37, 13 ], // 10
+        [ 2, 86, 68, 2, 87, 69 ], [ 4, 69, 43, 1, 70, 44 ], [ 6, 43, 19, 2, 44, 20 ], [ 6, 43, 15, 2, 44, 16 ], // 11
+        [ 4, 101, 81 ], [ 1, 80, 50, 4, 81, 51 ], [ 4, 50, 22, 4, 51, 23 ], [ 3, 36, 12, 8, 37, 13 ], // 12
+        [ 2, 116, 92, 2, 117, 93 ], [ 6, 58, 36, 2, 59, 37 ], [ 4, 46, 20, 6, 47, 21 ], [ 7, 42, 14, 4, 43, 15 ], // 13
+        [ 4, 133, 107 ], [ 8, 59, 37, 1, 60, 38 ], [ 8, 44, 20, 4, 45, 21 ], [ 12, 33, 11, 4, 34, 12 ], // 14
+        [ 3, 145, 115, 1, 146, 116 ], [ 4, 64, 40, 5, 65, 41 ], [ 11, 36, 16, 5, 37, 17 ], [ 11, 36, 12, 5, 37, 13 ], // 15
+        [ 5, 109, 87, 1, 110, 88 ], [ 5, 65, 41, 5, 66, 42 ], [ 5, 54, 24, 7, 55, 25 ], [ 11, 36, 12 ], // 16
+        [ 5, 122, 98, 1, 123, 99 ], [ 7, 73, 45, 3, 74, 46 ], [ 15, 43, 19, 2, 44, 20 ], [ 3, 45, 15, 13, 46, 16 ], // 17
+        [ 1, 135, 107, 5, 136, 108 ], [ 10, 74, 46, 1, 75, 47 ], [ 1, 50, 22, 15, 51, 23 ], [ 2, 42, 14, 17, 43, 15 ], // 18
+        [ 5, 150, 120, 1, 151, 121 ], [ 9, 69, 43, 4, 70, 44 ], [ 17, 50, 22, 1, 51, 23 ], [ 2, 42, 14, 19, 43, 15 ], // 19
+        [ 3, 141, 113, 4, 142, 114 ], [ 3, 70, 44, 11, 71, 45 ], [ 17, 47, 21, 4, 48, 22 ], [ 9, 39, 13, 16, 40, 14 ], // 20
+        [ 3, 135, 107, 5, 136, 108 ], [ 3, 67, 41, 13, 68, 42 ], [ 15, 54, 24, 5, 55, 25 ], [ 15, 43, 15, 10, 44, 16 ], // 21
+        [ 4, 144, 116, 4, 145, 117 ], [ 17, 68, 42 ], [ 17, 50, 22, 6, 51, 23 ], [ 19, 46, 16, 6, 47, 17 ], // 22
+        [ 2, 139, 111, 7, 140, 112 ], [ 17, 74, 46 ], [ 7, 54, 24, 16, 55, 25 ], [ 34, 37, 13 ], // 23
+        [ 4, 151, 121, 5, 152, 122 ], [ 4, 75, 47, 14, 76, 48 ], [ 11, 54, 24, 14, 55, 25 ], [ 16, 45, 15, 14, 46, 16 ], // 24
+        [ 6, 147, 117, 4, 148, 118 ], [ 6, 73, 45, 14, 74, 46 ], [ 11, 54, 24, 16, 55, 25 ], [ 30, 46, 16, 2, 47, 17 ], // 25
+        [ 8, 132, 106, 4, 133, 107 ], [ 8, 75, 47, 13, 76, 48 ], [ 7, 54, 24, 22, 55, 25 ], [ 22, 45, 15, 13, 46, 16 ], // 26
+        [ 10, 142, 114, 2, 143, 115 ], [ 19, 74, 46, 4, 75, 47 ], [ 28, 50, 22, 6, 51, 23 ], [ 33, 46, 16, 4, 47, 17 ], // 27
+        [ 8, 152, 122, 4, 153, 123 ], [ 22, 73, 45, 3, 74, 46 ], [ 8, 53, 23, 26, 54, 24 ], [ 12, 45, 15, 28, 46, 16 ], // 28
+        [ 3, 147, 117, 10, 148, 118 ], [ 3, 73, 45, 23, 74, 46 ], [ 4, 54, 24, 31, 55, 25 ], [ 11, 45, 15, 31, 46, 16 ], // 29
+        [ 7, 146, 116, 7, 147, 117 ], [ 21, 73, 45, 7, 74, 46 ], [ 1, 53, 23, 37, 54, 24 ], [ 19, 45, 15, 26, 46, 16 ], // 30
+        [ 5, 145, 115, 10, 146, 116 ], [ 19, 75, 47, 10, 76, 48 ], [ 15, 54, 24, 25, 55, 25 ], [ 23, 45, 15, 25, 46, 16 ], // 31
+        [ 13, 145, 115, 3, 146, 116 ], [ 2, 74, 46, 29, 75, 47 ], [ 42, 54, 24, 1, 55, 25 ], [ 23, 45, 15, 28, 46, 16 ], // 32
+        [ 17, 145, 115 ], [ 10, 74, 46, 23, 75, 47 ], [ 10, 54, 24, 35, 55, 25 ], [ 19, 45, 15, 35, 46, 16 ], // 33
+        [ 17, 145, 115, 1, 146, 116 ], [ 14, 74, 46, 21, 75, 47 ], [ 29, 54, 24, 19, 55, 25 ], [ 11, 45, 15, 46, 46, 16 ], // 34
+        [ 13, 145, 115, 6, 146, 116 ], [ 14, 74, 46, 23, 75, 47 ], [ 44, 54, 24, 7, 55, 25 ], [ 59, 46, 16, 1, 47, 17 ], // 35
+        [ 12, 151, 121, 7, 152, 122 ], [ 12, 75, 47, 26, 76, 48 ], [ 39, 54, 24, 14, 55, 25 ], [ 22, 45, 15, 41, 46, 16 ], // 36
+        [ 6, 151, 121, 14, 152, 122 ], [ 6, 75, 47, 34, 76, 48 ], [ 46, 54, 24, 10, 55, 25 ], [ 2, 45, 15, 64, 46, 16 ], // 37
+        [ 17, 152, 122, 4, 153, 123 ], [ 29, 74, 46, 14, 75, 47 ], [ 49, 54, 24, 10, 55, 25 ], [ 24, 45, 15, 46, 46, 16 ], // 38
+        [ 4, 152, 122, 18, 153, 123 ], [ 13, 74, 46, 32, 75, 47 ], [ 48, 54, 24, 14, 55, 25 ], [ 42, 45, 15, 32, 46, 16 ], // 39
+        [ 20, 147, 117, 4, 148, 118 ], [ 40, 75, 47, 7, 76, 48 ], [ 43, 54, 24, 22, 55, 25 ], [ 10, 45, 15, 67, 46, 16 ], // 40
+        [ 19, 148, 118, 6, 149, 119 ], [ 18, 75, 47, 31, 76, 48 ], [ 34, 54, 24, 34, 55, 25 ], [ 20, 45, 15, 61, 46, 16 ] ];
     /**
      * 根据数据获取对应版本
      * @return {[type]} [description]
@@ -5500,15 +6371,15 @@ define("zepto.extend.data", [], function(require, exports, module) {
     }
     $.fn.data = function(name, value) {
         return value === undefined ? // set multiple values via object
-        $.isPlainObject(name) ? this.each(function(i, node) {
-            $.each(name, function(key, value) {
-                setData(node, key, value);
+            $.isPlainObject(name) ? this.each(function(i, node) {
+                $.each(name, function(key, value) {
+                    setData(node, key, value);
+                });
+            }) : // get value from first element
+                    0 in this ? getData(this[0], name) : undefined : // set value on all elements
+            this.each(function() {
+                setData(this, name, value);
             });
-        }) : // get value from first element
-        0 in this ? getData(this[0], name) : undefined : // set value on all elements
-        this.each(function() {
-            setData(this, name, value);
-        });
     };
     $.fn.removeData = function(names) {
         if (typeof names == "string") names = names.split(/\s+/);
@@ -5568,8 +6439,8 @@ define("zepto.extend.fx", [], function(require, exports, module) {
     $.fn.animate = function(properties, duration, ease, callback, delay) {
         if ($.isFunction(duration)) callback = duration, ease = undefined, duration = undefined;
         if ($.isFunction(ease)) callback = ease, ease = undefined;
-        if ($.isPlainObject(duration)) ease = duration.easing, callback = duration.complete, 
-        delay = duration.delay, duration = duration.duration;
+        if ($.isPlainObject(duration)) ease = duration.easing, callback = duration.complete,
+            delay = duration.delay, duration = duration.duration;
         if (duration) duration = (typeof duration == "number" ? duration : $.fx.speeds[duration] || $.fx.speeds._default) / 1e3;
         if (delay) delay = parseFloat(delay) / 1e3;
         return this.anim(properties, duration, ease, callback, delay);
@@ -5589,8 +6460,8 @@ define("zepto.extend.fx", [], function(require, exports, module) {
         } else {
             cssProperties = [];
             // CSS transitions
-            for (key in properties) if (supportedTransforms.test(key)) transforms += key + "(" + properties[key] + ") "; else cssValues[key] = properties[key], 
-            cssProperties.push(dasherize(key));
+            for (key in properties) if (supportedTransforms.test(key)) transforms += key + "(" + properties[key] + ") "; else cssValues[key] = properties[key],
+                cssProperties.push(dasherize(key));
             if (transforms) cssValues[transform] = transforms, cssProperties.push(transform);
             if (duration > 0 && typeof properties === "object") {
                 cssValues[transitionProperty] = cssProperties.join(", ");
@@ -5705,7 +6576,7 @@ define("zepto.extend.selector", [], function(require, exports, module) {
                 var taggedParent;
                 if (!sel && filter) sel = "*"; else if (childRe.test(sel)) // support "> *" child queries by tagging the parent node with a
                 // unique class and prepending that classname onto the selector
-                taggedParent = $(node).addClass(classTag), sel = "." + classTag + " " + sel;
+                    taggedParent = $(node).addClass(classTag), sel = "." + classTag + " " + sel;
                 var nodes = oldQsa(node, sel);
             } catch (e) {
                 console.error("error performing selector: %o", selector);
@@ -5809,30 +6680,30 @@ define("zepto.extend.touch", [], function(require, exports, module) {
                 touch = {};
             }, 0); else if ("last" in touch) // don't fire tap when delta position changed by more than 30 pixels,
             // for instance when moving to a point and back to origin
-            if (deltaX < 30 && deltaY < 30) {
-                // delay by one tick so we can cancel the 'tap' event if 'scroll' fires
-                // ('tap' fires before 'scroll')
-                tapTimeout = setTimeout(function() {
-                    // trigger universal 'tap' with the option to cancelTouch()
-                    // (cancelTouch cancels processing of single vs double taps for faster 'tap' response)
-                    var event = $.Event("tap");
-                    event.cancelTouch = cancelAll;
-                    touch.el.trigger(event);
-                    // trigger double tap immediately
-                    if (touch.isDoubleTap) {
-                        if (touch.el) touch.el.trigger("doubleTap");
-                        touch = {};
-                    } else {
-                        touchTimeout = setTimeout(function() {
-                            touchTimeout = null;
-                            if (touch.el) touch.el.trigger("singleTap");
+                if (deltaX < 30 && deltaY < 30) {
+                    // delay by one tick so we can cancel the 'tap' event if 'scroll' fires
+                    // ('tap' fires before 'scroll')
+                    tapTimeout = setTimeout(function() {
+                        // trigger universal 'tap' with the option to cancelTouch()
+                        // (cancelTouch cancels processing of single vs double taps for faster 'tap' response)
+                        var event = $.Event("tap");
+                        event.cancelTouch = cancelAll;
+                        touch.el.trigger(event);
+                        // trigger double tap immediately
+                        if (touch.isDoubleTap) {
+                            if (touch.el) touch.el.trigger("doubleTap");
                             touch = {};
-                        }, 250);
-                    }
-                }, 0);
-            } else {
-                touch = {};
-            }
+                        } else {
+                            touchTimeout = setTimeout(function() {
+                                touchTimeout = null;
+                                if (touch.el) touch.el.trigger("singleTap");
+                                touch = {};
+                            }, 250);
+                        }
+                    }, 0);
+                } else {
+                    touch = {};
+                }
             deltaX = deltaY = 0;
         }).on("touchcancel MSPointerCancel pointercancel", cancelAll);
         // scrolling the window indicates intention of the user
@@ -5845,7 +6716,7 @@ define("zepto.extend.touch", [], function(require, exports, module) {
         };
     });
 });
-define("zepto.flexslider", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector", "zepto.extend.data" ], function(require, exports, module) {
+define("zepto.flexslider", [ "core", "zepto.extend.fx", "zepto.extend.data", "zepto.extend.selector" ], function(require, exports, module) {
     var $ = window.Zepto;
     require("core");
     require("zepto.extend.data");
@@ -5920,7 +6791,7 @@ define("zepto.flexslider", [ "core", "zepto.extend.fx", "zepto.extend.data", "ze
         slider.vars = $.extend({}, $.flexslider.defaults, options);
         var namespace = slider.vars.namespace, msGesture = window.navigator && window.navigator.msPointerEnabled && window.MSGesture, touch = ("ontouchstart" in window || msGesture || window.DocumentTouch && document instanceof DocumentTouch) && slider.vars.touch, // depricating this idea, as devices are being released with both of these events
         //eventType = (touch) ? "touchend" : "click",
-        eventType = "click touchend MSPointerUp keyup", watchedEvent = "", watchedEventClearTimer, vertical = slider.vars.direction === "vertical", reverse = slider.vars.reverse, carousel = slider.vars.itemWidth > 0, fade = slider.vars.animation === "fade", asNav = slider.vars.asNavFor !== "", methods = {}, focused = true;
+            eventType = "click touchend MSPointerUp keyup", watchedEvent = "", watchedEventClearTimer, vertical = slider.vars.direction === "vertical", reverse = slider.vars.reverse, carousel = slider.vars.itemWidth > 0, fade = slider.vars.animation === "fade", asNav = slider.vars.asNavFor !== "", methods = {}, focused = true;
         // Store a reference to the slider object
         $.data(el, "flexslider", slider);
         // Private slider methods
@@ -6005,10 +6876,10 @@ define("zepto.flexslider", [ "core", "zepto.extend.fx", "zepto.extend.data", "ze
                 if (slider.vars.slideshow) {
                     if (slider.vars.pauseOnHover) {
                         /*slider.hover(function() {
-                            if (!slider.manualPlay && !slider.manualPause) slider.pause();
-                        }, function() {
-                            if (!slider.manualPause && !slider.manualPlay && !slider.stopped) slider.play();
-                        });*/
+                         if (!slider.manualPlay && !slider.manualPause) slider.pause();
+                         }, function() {
+                         if (!slider.manualPause && !slider.manualPlay && !slider.stopped) slider.play();
+                         });*/
                         slider.on("mouseover", function() {
                             if (!slider.manualPlay && !slider.manualPause) slider.pause();
                         });
@@ -6399,19 +7270,19 @@ define("zepto.flexslider", [ "core", "zepto.extend.fx", "zepto.extend.data", "ze
             sync: function(action) {
                 var $obj = $(slider.vars.sync).data("flexslider"), target = slider.animatingTo;
                 switch (action) {
-                  case "animate":
-                    $obj.flexAnimate(target, slider.vars.pauseOnAction, false, true);
-                    break;
+                    case "animate":
+                        $obj.flexAnimate(target, slider.vars.pauseOnAction, false, true);
+                        break;
 
-                  case "play":
-                    if (!$obj.playing && !$obj.asNav) {
-                        $obj.play();
-                    }
-                    break;
+                    case "play":
+                        if (!$obj.playing && !$obj.asNav) {
+                            $obj.play();
+                        }
+                        break;
 
-                  case "pause":
-                    $obj.pause();
-                    break;
+                    case "pause":
+                        $obj.pause();
+                        break;
                 }
             },
             uniqueID: function($clone) {
@@ -6632,20 +7503,20 @@ define("zepto.flexslider", [ "core", "zepto.extend.fx", "zepto.extend.data", "ze
                         return special === "setTouch" ? pos : reverse && slider.animatingTo === slider.last ? 0 : reverse ? slider.limit - (slider.itemW + slider.vars.itemMargin) * slider.move * slider.animatingTo : slider.animatingTo === slider.last ? slider.limit : posCheck;
                     } else {
                         switch (special) {
-                          case "setTotal":
-                            return reverse ? (slider.count - 1 - slider.currentSlide + slider.cloneOffset) * pos : (slider.currentSlide + slider.cloneOffset) * pos;
+                            case "setTotal":
+                                return reverse ? (slider.count - 1 - slider.currentSlide + slider.cloneOffset) * pos : (slider.currentSlide + slider.cloneOffset) * pos;
 
-                          case "setTouch":
-                            return reverse ? pos : pos;
+                            case "setTouch":
+                                return reverse ? pos : pos;
 
-                          case "jumpEnd":
-                            return reverse ? pos : slider.count * pos;
+                            case "jumpEnd":
+                                return reverse ? pos : slider.count * pos;
 
-                          case "jumpStart":
-                            return reverse ? slider.count * pos : pos;
+                            case "jumpStart":
+                                return reverse ? slider.count * pos : pos;
 
-                          default:
-                            return pos;
+                            default:
+                                return pos;
                         }
                     }
                 }();
@@ -6989,29 +7860,29 @@ define("zepto.flexslider", [ "core", "zepto.extend.fx", "zepto.extend.data", "ze
             // Helper strings to quickly perform functions on the slider
             var $slider = $(this).data("flexslider");
             switch (options) {
-              case "play":
-                $slider.play();
-                break;
+                case "play":
+                    $slider.play();
+                    break;
 
-              case "pause":
-                $slider.pause();
-                break;
+                case "pause":
+                    $slider.pause();
+                    break;
 
-              case "stop":
-                $slider.stop();
-                break;
+                case "stop":
+                    $slider.stop();
+                    break;
 
-              case "next":
-                $slider.flexAnimate($slider.getTarget("next"), true);
-                break;
+                case "next":
+                    $slider.flexAnimate($slider.getTarget("next"), true);
+                    break;
 
-              case "prev":
-              case "previous":
-                $slider.flexAnimate($slider.getTarget("prev"), true);
-                break;
+                case "prev":
+                case "previous":
+                    $slider.flexAnimate($slider.getTarget("prev"), true);
+                    break;
 
-              default:
-                if (typeof options === "number") $slider.flexAnimate(options, true);
+                default:
+                    if (typeof options === "number") $slider.flexAnimate(options, true);
             }
         }
     };
@@ -7043,26 +7914,36 @@ define("zepto.outerdemension", [], function(require, exports, module) {
 });
 define("zepto.pinchzoom", [], function(require, exports, module) {
     /**
-     * @via http://rtp-ch.github.io/pinchzoom/
-     * @license GNU General Public License,
+     * @via https://github.com/manuelstofer/pinchzoom/blob/master/src/pinchzoom.js
+     * @license the MIT License.
      */
-    var definePinchZoom = function(d) {
-        var PinchZoom = function(h, g) {
-            this.el = d(h);
+    var definePinchZoom = function($) {
+        /**
+         * Pinch zoom using jQuery
+         * @version 0.0.2
+         * @author Manuel Stofer <mst@rtp.ch>
+         * @param el
+         * @param options
+         * @constructor
+         */
+        var PinchZoom = function(el, options) {
+            this.el = $(el);
             this.zoomFactor = 1;
             this.lastScale = 1;
             this.offset = {
                 x: 0,
                 y: 0
             };
-            this.options = d.extend({}, this.defaults, g);
+            this.options = $.extend({}, this.defaults, options);
             this.setupMarkup();
             this.bindEvents();
             this.update();
-        }, b = function(h, g) {
-            return h + g;
-        }, e = function(h, g) {
-            return h > g - .01 && h < g + .01;
+            // default enable.
+            this.enable();
+        }, sum = function(a, b) {
+            return a + b;
+        }, isCloseTo = function(value, expected) {
+            return value > expected - .01 && value < expected + .01;
         };
         PinchZoom.prototype = {
             defaults: {
@@ -7072,230 +7953,382 @@ define("zepto.pinchzoom", [], function(require, exports, module) {
                 animationInterval: 5,
                 maxZoom: 4,
                 minZoom: .5,
-                use2d: true
+                lockDragAxis: false,
+                use2d: false,
+                zoomStartEventName: "pz_zoomstart",
+                zoomEndEventName: "pz_zoomend",
+                dragStartEventName: "pz_dragstart",
+                dragEndEventName: "pz_dragend",
+                doubleTapEventName: "pz_doubletap"
             },
-            handleDragStart: function(g) {
+            /**
+             * Event handler for 'dragstart'
+             * @param event
+             */
+            handleDragStart: function(event) {
+                this.el.trigger(this.options.dragStartEventName);
                 this.stopAnimation();
                 this.lastDragPosition = false;
                 this.hasInteraction = true;
-                this.handleDrag(g);
+                this.handleDrag(event);
             },
-            handleDrag: function(g) {
+            /**
+             * Event handler for 'drag'
+             * @param event
+             */
+            handleDrag: function(event) {
                 if (this.zoomFactor > 1) {
-                    var h = this.getTouches(g)[0];
-                    this.drag(h, this.lastDragPosition);
+                    var touch = this.getTouches(event)[0];
+                    this.drag(touch, this.lastDragPosition);
                     this.offset = this.sanitizeOffset(this.offset);
-                    this.lastDragPosition = h;
+                    this.lastDragPosition = touch;
                 }
             },
             handleDragEnd: function() {
+                this.el.trigger(this.options.dragEndEventName);
                 this.end();
             },
-            handleZoomStart: function(g) {
+            /**
+             * Event handler for 'zoomstart'
+             * @param event
+             */
+            handleZoomStart: function(event) {
+                this.el.trigger(this.options.zoomStartEventName);
                 this.stopAnimation();
                 this.lastScale = 1;
                 this.nthZoom = 0;
                 this.lastZoomCenter = false;
                 this.hasInteraction = true;
             },
-            handleZoom: function(h, j) {
-                var g = this.getTouchCenter(this.getTouches(h)), i = j / this.lastScale;
-                this.lastScale = j;
+            /**
+             * Event handler for 'zoom'
+             * @param event
+             */
+            handleZoom: function(event, newScale) {
+                // a relative scale factor is used
+                var touchCenter = this.getTouchCenter(this.getTouches(event)), scale = newScale / this.lastScale;
+                this.lastScale = newScale;
+                // the first touch events are thrown away since they are not precise
                 this.nthZoom += 1;
                 if (this.nthZoom > 3) {
-                    this.scale(i, g);
-                    this.drag(g, this.lastZoomCenter);
+                    this.scale(scale, touchCenter);
+                    this.drag(touchCenter, this.lastZoomCenter);
                 }
-                this.lastZoomCenter = g;
+                this.lastZoomCenter = touchCenter;
             },
             handleZoomEnd: function() {
+                this.el.trigger(this.options.zoomEndEventName);
                 this.end();
             },
-            handleDoubleTap: function(i) {
-                var g = this.getTouches(i)[0], h = this.zoomFactor > 1 ? 1 : this.options.tapZoomFactor, j = this.zoomFactor, k = function(l) {
-                    this.scaleTo(j + l * (h - j), g);
+            /**
+             * Event handler for 'doubletap'
+             * @param event
+             */
+            handleDoubleTap: function(event) {
+                var center = this.getTouches(event)[0], zoomFactor = this.zoomFactor > 1 ? 1 : this.options.tapZoomFactor, startZoomFactor = this.zoomFactor, updateProgress = function(progress) {
+                    this.scaleTo(startZoomFactor + progress * (zoomFactor - startZoomFactor), center);
                 }.bind(this);
                 if (this.hasInteraction) {
                     return;
                 }
-                if (j > h) {
-                    g = this.getCurrentZoomCenter();
+                if (startZoomFactor > zoomFactor) {
+                    center = this.getCurrentZoomCenter();
                 }
-                if (h > 1) {
-                    this.options.doubleTapOutCallback && this.options.doubleTapOutCallback();
-                } else {
-                    this.options.doubleTapInCallback && this.options.doubleTapInCallback();
-                }
-                this.animate(this.options.animationDuration, this.options.animationInterval, k, this.swing);
+                this.animate(this.options.animationDuration, this.options.animationInterval, updateProgress, this.swing);
+                this.el.trigger(this.options.doubleTapEventName);
             },
-            sanitizeOffset: function(m) {
-                var l = (this.zoomFactor - 1) * this.getContainerX(), k = (this.zoomFactor - 1) * this.getContainerY(), j = Math.max(l, 0), i = Math.max(k, 0), h = Math.min(l, 0), g = Math.min(k, 0);
+            /**
+             * Max / min values for the offset
+             * @param offset
+             * @return {Object} the sanitized offset
+             */
+            sanitizeOffset: function(offset) {
+                var maxX = (this.zoomFactor - 1) * this.getContainerX(), maxY = (this.zoomFactor - 1) * this.getContainerY(), maxOffsetX = Math.max(maxX, 0), maxOffsetY = Math.max(maxY, 0), minOffsetX = Math.min(maxX, 0), minOffsetY = Math.min(maxY, 0);
                 return {
-                    x: Math.min(Math.max(m.x, h), j),
-                    y: Math.min(Math.max(m.y, g), i)
+                    x: Math.min(Math.max(offset.x, minOffsetX), maxOffsetX),
+                    y: Math.min(Math.max(offset.y, minOffsetY), maxOffsetY)
                 };
             },
-            scaleTo: function(h, g) {
-                this.scale(h / this.zoomFactor, g);
+            /**
+             * Scale to a specific zoom factor (not relative)
+             * @param zoomFactor
+             * @param center
+             */
+            scaleTo: function(zoomFactor, center) {
+                this.scale(zoomFactor / this.zoomFactor, center);
             },
-            scale: function(h, g) {
-                h = this.scaleZoomFactor(h);
+            /**
+             * Scales the element from specified center
+             * @param scale
+             * @param center
+             */
+            scale: function(scale, center) {
+                scale = this.scaleZoomFactor(scale);
                 this.addOffset({
-                    x: (h - 1) * (g.x + this.offset.x),
-                    y: (h - 1) * (g.y + this.offset.y)
+                    x: (scale - 1) * (center.x + this.offset.x),
+                    y: (scale - 1) * (center.y + this.offset.y)
                 });
             },
-            scaleZoomFactor: function(g) {
-                var h = this.zoomFactor;
-                this.zoomFactor *= g;
+            /**
+             * Scales the zoom factor relative to current state
+             * @param scale
+             * @return the actual scale (can differ because of max min zoom factor)
+             */
+            scaleZoomFactor: function(scale) {
+                var originalZoomFactor = this.zoomFactor;
+                this.zoomFactor *= scale;
                 this.zoomFactor = Math.min(this.options.maxZoom, Math.max(this.zoomFactor, this.options.minZoom));
-                return this.zoomFactor / h;
+                return this.zoomFactor / originalZoomFactor;
             },
-            drag: function(g, h) {
-                if (h) {
-                    this.addOffset({
-                        x: -(g.x - h.x),
-                        y: -(g.y - h.y)
-                    });
+            /**
+             * Drags the element
+             * @param center
+             * @param lastCenter
+             */
+            drag: function(center, lastCenter) {
+                if (lastCenter) {
+                    if (this.options.lockDragAxis) {
+                        // lock scroll to position that was changed the most
+                        if (Math.abs(center.x - lastCenter.x) > Math.abs(center.y - lastCenter.y)) {
+                            this.addOffset({
+                                x: -(center.x - lastCenter.x),
+                                y: 0
+                            });
+                        } else {
+                            this.addOffset({
+                                y: -(center.y - lastCenter.y),
+                                x: 0
+                            });
+                        }
+                    } else {
+                        this.addOffset({
+                            y: -(center.y - lastCenter.y),
+                            x: -(center.x - lastCenter.x)
+                        });
+                    }
                 }
             },
-            getTouchCenter: function(g) {
-                return this.getVectorAvg(g);
+            /**
+             * Calculates the touch center of multiple touches
+             * @param touches
+             * @return {Object}
+             */
+            getTouchCenter: function(touches) {
+                return this.getVectorAvg(touches);
             },
-            getVectorAvg: function(g) {
+            /**
+             * Calculates the average of multiple vectors (x, y values)
+             */
+            getVectorAvg: function(vectors) {
                 return {
-                    x: g.map(function(h) {
-                        return h.x;
-                    }).reduce(b) / g.length,
-                    y: g.map(function(h) {
-                        return h.y;
-                    }).reduce(b) / g.length
+                    x: vectors.map(function(v) {
+                        return v.x;
+                    }).reduce(sum) / vectors.length,
+                    y: vectors.map(function(v) {
+                        return v.y;
+                    }).reduce(sum) / vectors.length
                 };
             },
-            addOffset: function(g) {
+            /**
+             * Adds an offset
+             * @param offset the offset to add
+             * @return return true when the offset change was accepted
+             */
+            addOffset: function(offset) {
                 this.offset = {
-                    x: this.offset.x + g.x,
-                    y: this.offset.y + g.y
+                    x: this.offset.x + offset.x,
+                    y: this.offset.y + offset.y
                 };
             },
             sanitize: function() {
                 if (this.zoomFactor < this.options.zoomOutFactor) {
                     this.zoomOutAnimation();
-                } else {
-                    if (this.isInsaneOffset(this.offset)) {
-                        this.sanitizeOffsetAnimation();
-                    }
+                } else if (this.isInsaneOffset(this.offset)) {
+                    this.sanitizeOffsetAnimation();
                 }
             },
-            isInsaneOffset: function(h) {
-                var g = this.sanitizeOffset(h);
-                return g.x !== h.x || g.y !== h.y;
+            /**
+             * Checks if the offset is ok with the current zoom factor
+             * @param offset
+             * @return {Boolean}
+             */
+            isInsaneOffset: function(offset) {
+                var sanitizedOffset = this.sanitizeOffset(offset);
+                return sanitizedOffset.x !== offset.x || sanitizedOffset.y !== offset.y;
             },
+            /**
+             * Creates an animation moving to a sane offset
+             */
             sanitizeOffsetAnimation: function() {
-                var h = this.sanitizeOffset(this.offset), g = {
+                var targetOffset = this.sanitizeOffset(this.offset), startOffset = {
                     x: this.offset.x,
                     y: this.offset.y
-                }, i = function(j) {
-                    this.offset.x = g.x + j * (h.x - g.x);
-                    this.offset.y = g.y + j * (h.y - g.y);
+                }, updateProgress = function(progress) {
+                    this.offset.x = startOffset.x + progress * (targetOffset.x - startOffset.x);
+                    this.offset.y = startOffset.y + progress * (targetOffset.y - startOffset.y);
                     this.update();
                 }.bind(this);
-                this.animate(this.options.animationDuration, this.options.animationInterval, i, this.swing);
+                this.animate(this.options.animationDuration, this.options.animationInterval, updateProgress, this.swing);
             },
+            /**
+             * Zooms back to the original position,
+             * (no offset and zoom factor 1)
+             */
             zoomOutAnimation: function() {
-                var i = this.zoomFactor, h = 1, g = this.getCurrentZoomCenter(), j = function(k) {
-                    this.scaleTo(i + k * (h - i), g);
+                var startZoomFactor = this.zoomFactor, zoomFactor = 1, center = this.getCurrentZoomCenter(), updateProgress = function(progress) {
+                    this.scaleTo(startZoomFactor + progress * (zoomFactor - startZoomFactor), center);
                 }.bind(this);
-                this.animate(this.options.animationDuration, this.options.animationInterval, j, this.swing);
+                this.animate(this.options.animationDuration, this.options.animationInterval, updateProgress, this.swing);
             },
+            /**
+             * Updates the aspect ratio
+             */
             updateAspectRatio: function() {
-                this.setContainerY(window.innerHeight);
+                // this.setContainerY(this.getContainerX() / this.getAspectRatio());
+                // @modified
+                this.setContainerY();
             },
+            /**
+             * Calculates the initial zoom factor (for the element to fit into the container)
+             * @return the initial zoom factor
+             */
             getInitialZoomFactor: function() {
-                return 1;
+                // use .offsetWidth instead of width()
+                // because jQuery-width() return the original width but Zepto-width() will calculate width with transform.
+                // the same as .height()
+                return this.container[0].offsetWidth / this.el[0].offsetWidth;
             },
+            /**
+             * Calculates the aspect ratio of the element
+             * @return the aspect ratio
+             */
             getAspectRatio: function() {
-                return this.el.width() / this.el.height();
+                return this.el[0].offsetWidth / this.el[0].offsetHeight;
             },
+            /**
+             * Calculates the virtual zoom center for the current offset and zoom factor
+             * (used for reverse zoom)
+             * @return {Object} the current zoom center
+             */
             getCurrentZoomCenter: function() {
-                var o = this.getContainerX(), h = o * this.zoomFactor, i = this.offset.x, l = h - i - o, q = i / l, n = q * o / (q + 1), m = this.getContainerY(), r = m * this.zoomFactor, g = this.offset.y, j = r - g - m, p = g / j, k = p * m / (p + 1);
-                if (l === 0) {
-                    n = o;
+                // uses following formula to calculate the zoom center x value
+                // offset_left / offset_right = zoomcenter_x / (container_x - zoomcenter_x)
+                var length = this.container[0].offsetWidth * this.zoomFactor, offsetLeft = this.offset.x, offsetRight = length - offsetLeft - this.container[0].offsetWidth, widthOffsetRatio = offsetLeft / offsetRight, centerX = widthOffsetRatio * this.container[0].offsetWidth / (widthOffsetRatio + 1), // the same for the zoomcenter y
+                    height = this.container[0].offsetHeight * this.zoomFactor, offsetTop = this.offset.y, offsetBottom = height - offsetTop - this.container[0].offsetHeight, heightOffsetRatio = offsetTop / offsetBottom, centerY = heightOffsetRatio * this.container[0].offsetHeight / (heightOffsetRatio + 1);
+                // prevents division by zero
+                if (offsetRight === 0) {
+                    centerX = this.container[0].offsetWidth;
                 }
-                if (j === 0) {
-                    k = m;
+                if (offsetBottom === 0) {
+                    centerY = this.container[0].offsetHeight;
                 }
                 return {
-                    x: n,
-                    y: k
+                    x: centerX,
+                    y: centerY
                 };
             },
             canDrag: function() {
-                return !e(this.zoomFactor, 1);
+                return !isCloseTo(this.zoomFactor, 1);
             },
-            getTouches: function(h) {
-                var g = this.container.offset();
-                return Array.prototype.slice.call(h.touches).map(function(i) {
+            /**
+             * Returns the touches of an event relative to the container offset
+             * @param event
+             * @return array touches
+             */
+            getTouches: function(event) {
+                var position = this.container.offset();
+                return Array.prototype.slice.call(event.touches).map(function(touch) {
                     return {
-                        x: i.pageX - g.left,
-                        y: i.pageY - g.top
+                        x: touch.pageX - position.left,
+                        y: touch.pageY - position.top
                     };
                 });
             },
-            animate: function(i, g, m, l, k) {
-                var h = new Date().getTime(), j = function() {
+            /**
+             * Animation loop
+             * does not support simultaneous animations
+             * @param duration
+             * @param interval
+             * @param framefn
+             * @param timefn
+             * @param callback
+             */
+            animate: function(duration, interval, framefn, timefn, callback) {
+                var startTime = new Date().getTime(), renderFrame = function() {
                     if (!this.inAnimation) {
                         return;
                     }
-                    var o = new Date().getTime() - h, n = o / i;
-                    if (o >= i) {
-                        m(1);
-                        if (k) {
-                            k();
+                    var frameTime = new Date().getTime() - startTime, progress = frameTime / duration;
+                    if (frameTime >= duration) {
+                        framefn(1);
+                        if (callback) {
+                            callback();
                         }
                         this.update();
                         this.stopAnimation();
                         this.update();
                     } else {
-                        if (l) {
-                            n = l(n);
+                        if (timefn) {
+                            progress = timefn(progress);
                         }
-                        m(n);
+                        framefn(progress);
                         this.update();
-                        setTimeout(j, g);
+                        setTimeout(renderFrame, interval);
                     }
                 }.bind(this);
                 this.inAnimation = true;
-                j();
+                renderFrame();
             },
+            /**
+             * Stops the animation
+             */
             stopAnimation: function() {
                 this.inAnimation = false;
             },
-            swing: function(g) {
-                return -Math.cos(g * Math.PI) / 2 + .5;
+            /**
+             * Swing timing function for animations
+             * @param p
+             * @return {Number}
+             */
+            swing: function(p) {
+                return -Math.cos(p * Math.PI) / 2 + .5;
             },
             getContainerX: function() {
+                // return this.container[0].offsetWidth;
+                // @modified
                 return window.innerWidth;
             },
             getContainerY: function() {
+                // return this.container[0].offsetHeight;
+                // @modified
                 return window.innerHeight;
             },
-            setContainerY: function(g) {
-                this.el.width(window.innerWidth);
-                this.el.height(window.innerHeight);
-                return this.container.height(g);
+            setContainerY: function(y) {
+                // return this.container.height(y);
+                // @modified
+                var t = window.innerHeight;
+                return this.el.css({
+                    height: t
+                }), this.container.height(t);
             },
+            /**
+             * Creates the expected html structure
+             */
             setupMarkup: function() {
-                this.container = d('<div class="pinch-zoom-container"></div>');
+                this.container = $('<div class="pinch-zoom-container"></div>');
                 this.el.before(this.container);
                 this.container.append(this.el);
                 this.container.css({
                     overflow: "hidden",
                     position: "relative"
                 });
+                // Zepto doesn't recognize `webkitTransform..` style
                 this.el.css({
                     "-webkit-transform-origin": "0% 0%",
-                    transformOrigin: "0% 0%",
+                    "-moz-transform-origin": "0% 0%",
+                    "-ms-transform-origin": "0% 0%",
+                    "-o-transform-origin": "0% 0%",
+                    "transform-origin": "0% 0%",
                     position: "absolute"
                 });
             },
@@ -7304,25 +8337,18 @@ define("zepto.pinchzoom", [], function(require, exports, module) {
                 this.sanitize();
                 this.update();
             },
+            /**
+             * Binds all required event listeners
+             */
             bindEvents: function() {
-                c(this.container.get(0), this);
-                d(window).bind("ortchange", this.ortHandle.bind(this));
+                detectGestures(this.container.get(0), this);
+                // Zepto and jQuery both know about `on`
+                $(window).on("resize", this.update.bind(this));
+                $(this.el).find("img").on("load", this.update.bind(this));
             },
-            isCached: function(h) {
-                var g = document.createElement("img");
-                g.src = h;
-                var i = g.complete || g.width + g.height > 0;
-                g = null;
-                return i;
-            },
-            ortHandle: function() {
-                this.zoomFactor = 1;
-                this.offset = {
-                    x: 0,
-                    y: 0
-                };
-                this.update();
-            },
+            /**
+             * Updates the css values according to the current zoom factor and offset
+             */
             update: function() {
                 if (this.updatePlaned) {
                     return;
@@ -7331,158 +8357,171 @@ define("zepto.pinchzoom", [], function(require, exports, module) {
                 setTimeout(function() {
                     this.updatePlaned = false;
                     this.updateAspectRatio();
-                    var k = this.getInitialZoomFactor() * this.zoomFactor, h = parseFloat(-this.offset.x / k).toFixed(4), m = parseFloat(-this.offset.y / k).toFixed(4), j = "scale3d(" + k + ", " + k + ",1) translate3d(" + h + "px," + m + "px,0px)", g = "scale(" + k + ", " + k + ") translate(" + h + "px," + m + "px)", i = function() {
+                    var zoomFactor = this.getInitialZoomFactor() * this.zoomFactor, offsetX = -this.offset.x / zoomFactor, offsetY = -this.offset.y / zoomFactor, transform3d = "scale3d(" + zoomFactor + ", " + zoomFactor + ",1) " + "translate3d(" + offsetX + "px," + offsetY + "px,0px)", transform2d = "scale(" + zoomFactor + ", " + zoomFactor + ") " + "translate(" + offsetX + "px," + offsetY + "px)", removeClone = function() {
                         if (this.clone) {
                             this.clone.remove();
                             delete this.clone;
                         }
                     }.bind(this);
+                    // Scale 3d and translate3d are faster (at least on ios)
+                    // but they also reduce the quality.
+                    // PinchZoom uses the 3d transformations during interactions
+                    // after interactions it falls back to 2d transformations
                     if (!this.options.use2d || this.hasInteraction || this.inAnimation) {
                         this.is3d = true;
-                        i();
+                        removeClone();
                         this.el.css({
-                            "-webkit-transform": j,
-                            background: "rgba(0,0,0,0.9)",
-                            transform: j
-                        }).addClass("zooming");
+                            "-webkit-transform": transform3d,
+                            "-o-transform": transform2d,
+                            "-ms-transform": transform2d,
+                            "-moz-transform": transform2d,
+                            transform: transform3d
+                        });
                     } else {
+                        // When changing from 3d to 2d transform webkit has some glitches.
+                        // To avoid this, a copy of the 3d transformed element is displayed in the
+                        // foreground while the element is converted from 3d to 2d transform
                         if (this.is3d) {
-                            var l = this.el.find("img").attr("src");
-                            if (this.isCached(l)) {
-                                this.clone = this.el.clone();
-                                this.clone.css({
-                                    "pointer-events": "none"
-                                });
-                                this.clone.appendTo(this.container);
-                                setTimeout(i, 200);
-                            }
+                            this.clone = this.el.clone();
+                            this.clone.css("pointer-events", "none");
+                            this.clone.appendTo(this.container);
+                            setTimeout(removeClone, 200);
                         }
                         this.el.css({
-                            "-webkit-transform": g,
-                            transform: g
-                        }).removeClass("zooming");
+                            "-webkit-transform": transform2d,
+                            "-o-transform": transform2d,
+                            "-ms-transform": transform2d,
+                            "-moz-transform": transform2d,
+                            transform: transform2d
+                        });
                         this.is3d = false;
                     }
                 }.bind(this), 0);
+            },
+            /**
+             * Enables event handling for gestures
+             */
+            enable: function() {
+                this.enabled = true;
+            },
+            /**
+             * Disables event handling for gestures
+             */
+            disable: function() {
+                this.enabled = false;
             }
         };
-        var c = function(h, q) {
-            var s = null, l = 0, j = null, u = null, i = 1, o = function(v, w) {
-                if (s !== v) {
-                    if (s && !v) {
-                        switch (s) {
-                          case "zoom":
-                            q.handleZoomEnd(w);
-                            break;
+        var detectGestures = function(el, target) {
+            var interaction = null, fingers = 0, lastTouchStart = null, startTouches = null, setInteraction = function(newInteraction, event) {
+                if (interaction !== newInteraction) {
+                    if (interaction && !newInteraction) {
+                        switch (interaction) {
+                            case "zoom":
+                                target.handleZoomEnd(event);
+                                break;
 
-                          case "drag":
-                            q.handleDragEnd(w);
-                            break;
+                            case "drag":
+                                target.handleDragEnd(event);
+                                break;
                         }
                     }
-                    switch (v) {
-                      case "zoom":
-                        q.handleZoomStart(w);
-                        break;
+                    switch (newInteraction) {
+                        case "zoom":
+                            target.handleZoomStart(event);
+                            break;
 
-                      case "drag":
-                        q.handleDragStart(w);
-                        break;
+                        case "drag":
+                            target.handleDragStart(event);
+                            break;
                     }
                 }
-                s = v;
-            }, n = function(v) {
-                if (l === 2) {
-                    o("zoom");
+                interaction = newInteraction;
+            }, updateInteraction = function(event) {
+                if (fingers === 2) {
+                    setInteraction("zoom");
+                } else if (fingers === 1 && target.canDrag()) {
+                    setInteraction("drag", event);
                 } else {
-                    if (l === 1 && q.canDrag()) {
-                        o("drag", v);
-                    } else {
-                        o(null, v);
-                    }
+                    setInteraction(null, event);
                 }
-            }, r = function(v) {
-                return Array.prototype.slice.call(v).map(function(w) {
+            }, targetTouches = function(touches) {
+                return Array.prototype.slice.call(touches).map(function(touch) {
                     return {
-                        x: w.pageX,
-                        y: w.pageY
+                        x: touch.pageX,
+                        y: touch.pageY
                     };
                 });
-            }, m = function(z, w) {
-                var v, A;
-                v = z.x - w.x;
-                A = z.y - w.y;
-                return Math.sqrt(v * v + A * A);
-            }, k = function(y, x) {
-                var v = m(y[0], y[1]), w = m(x[0], x[1]);
-                return w / v;
-            }, p = function(v) {
-                v.stopPropagation();
-                v.preventDefault();
-            }, t = function(v) {
-                var w = new Date().getTime();
-                if (l > 1) {
-                    j = null;
+            }, getDistance = function(a, b) {
+                var x, y;
+                x = a.x - b.x;
+                y = a.y - b.y;
+                return Math.sqrt(x * x + y * y);
+            }, calculateScale = function(startTouches, endTouches) {
+                var startDistance = getDistance(startTouches[0], startTouches[1]), endDistance = getDistance(endTouches[0], endTouches[1]);
+                return endDistance / startDistance;
+            }, cancelEvent = function(event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }, detectDoubleTap = function(event) {
+                var time = new Date().getTime();
+                if (fingers > 1) {
+                    lastTouchStart = null;
                 }
-                if (w - j < 400) {
-                    p(v);
-                    q.handleDoubleTap(v);
-                    switch (s) {
-                      case "zoom":
-                        q.handleZoomEnd(v);
-                        break;
+                if (time - lastTouchStart < 300) {
+                    cancelEvent(event);
+                    target.handleDoubleTap(event);
+                    switch (interaction) {
+                        case "zoom":
+                            target.handleZoomEnd(event);
+                            break;
 
-                      case "drag":
-                        q.handleDragEnd(v);
-                        break;
+                        case "drag":
+                            target.handleDragEnd(event);
+                            break;
                     }
                 }
-                if (l === 1) {
-                    j = w;
+                if (fingers === 1) {
+                    lastTouchStart = time;
                 }
-            }, g = true;
-            h.addEventListener("touchstart", function(v) {
-                g = true;
-                i = q.zoomFactor, l = v.touches.length;
-                t(v);
+            }, firstMove = true;
+            el.addEventListener("touchstart", function(event) {
+                if (target.enabled) {
+                    firstMove = true;
+                    fingers = event.touches.length;
+                    detectDoubleTap(event);
+                }
             });
-            h.addEventListener("touchmove", function(v) {
-                if (g) {
-                    n(v);
-                    if (s) {
-                        p(v);
-                    }
-                    u = r(v.touches);
-                } else {
-                    switch (s) {
-                      case "zoom":
-                        q.handleZoom(v, k(u, r(v.touches)));
-                        break;
-
-                      case "drag":
-                        q.handleDrag(v);
-                        break;
-                    }
-                    if (s) {
-                        p(v);
-                        q.update();
-                    }
-                }
-                g = false;
-            });
-            h.addEventListener("touchend", function(v) {
-                if (s) {
-                    p(v);
-                }
-                if (s == "zoom") {
-                    if (q.zoomFactor >= i) {
-                        q.options.zoomOutCallback && q.options.zoomOutCallback();
+            el.addEventListener("touchmove", function(event) {
+                if (target.enabled) {
+                    if (firstMove) {
+                        updateInteraction(event);
+                        if (interaction) {
+                            cancelEvent(event);
+                        }
+                        startTouches = targetTouches(event.touches);
                     } else {
-                        q.options.zoomInCallback && q.options.zoomInCallback();
+                        switch (interaction) {
+                            case "zoom":
+                                target.handleZoom(event, calculateScale(startTouches, targetTouches(event.touches)));
+                                break;
+
+                            case "drag":
+                                target.handleDrag(event);
+                                break;
+                        }
+                        if (interaction) {
+                            cancelEvent(event);
+                            target.update();
+                        }
                     }
+                    firstMove = false;
                 }
-                l = v.touches.length;
-                n(v);
+            });
+            el.addEventListener("touchend", function(event) {
+                if (target.enabled) {
+                    fingers = event.touches.length;
+                    updateInteraction(event);
+                }
             });
         };
         return PinchZoom;
@@ -7723,4 +8762,4 @@ define("zepto.touchgallery", [ "./zepto.extend.touch", "zepto.pinchzoom" ], func
         }
     };
 });
-seajs.use(["accordion","core","divider","figure","footer","gallery","gotop","intro","list_news","map","menu","nav","navbar","pagination","paragraph","slider","sohucs","tabs","titlebar","ui.accordion","ui.add2home","ui.alert","ui.button","ui.collapse","ui.dimmer","ui.dropdown","ui.modal","ui.offcanvas","ui.popover","ui.progress","ui.scrollspy","ui.scrollspynav","ui.smooth-scroll","ui.sticky","util.cookie","util.fastclick","util.fullscreen","util.qrcode","zepto.extend.data","zepto.extend.fx","zepto.extend.selector","zepto.extend.touch","zepto.flexslider","zepto.outerdemension","zepto.pinchzoom","zepto.touchgallery"]);
+seajs.use(["accordion","core","divider","duoshuo","figure","footer","gallery","gotop","header","intro","list_news","map","mechat","menu","navbar","pagination","paragraph","slider","sohucs","tabs","titlebar","ui.add2home","ui.alert","ui.button","ui.collapse","ui.dimmer","ui.dropdown","ui.iscroll-lite","ui.modal","ui.offcanvas","ui.popover","ui.progress","ui.pureview","ui.scrollspy","ui.scrollspynav","ui.share","ui.smooth-scroll","ui.sticky","ui.tabs","util.cookie","util.fastclick","util.fullscreen","util.qrcode","zepto.extend.data","zepto.extend.fx","zepto.extend.selector","zepto.extend.touch","zepto.flexslider","zepto.outerdemension","zepto.pinchzoom","zepto.touchgallery"]);
