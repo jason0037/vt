@@ -35,27 +35,27 @@
       .am-navbar-default .am-navbar-nav {
           background-color: #dc852d;
       }
-
+       .am-dimmer, #am-share-qk9e7{
+           display: none !important;
+       }
 
   </style>
 
   <script>
       $(document).ready(function(){
           $("#showgood").click(function(){
-              if($('#am-share-swcw4').is(':hidden')){
-                  $('#am-share-swcw4').show() ;
+              if($('#am-swcw4').is(':hidden')){
+                  $('#am-swcw4').show() ;
               }
               else{
-                  $('#am-share-swcw4').hide() ;
+                  $('#am-swcw4').hide() ;
               }
           })
       })
 
 
   </script>
-  <script type="text/x-handlebars-template" id="amz-tpl">
-    {{>navbar navbar}}
-  </script>
+
 </head>
 <body>
 <header data-am-widget="header" class="am-header am-header-warning  am-no-layout"><div class="am-header-left am-header-nav">
@@ -108,7 +108,7 @@
    </div>
 
 <div >
-  <div class="am-share am-modal-actions am-modal-active" id="am-share-swcw4"
+  <div class="am-share am-modal-actions am-modal-active" id="am-swcw4"
        style="margin-top: -138px;display: none
        ">
 
@@ -155,11 +155,7 @@
         </a>
       </li>
     </ul>
-    <div class="am-share-footer">
-      <button class="am-btn am-btn-default am-btn-block" data-am-share-close="">
-        取消
-      </button>
-    </div>
+
   </div>
 </div>
      <br/>
