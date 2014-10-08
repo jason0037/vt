@@ -8,7 +8,7 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
   <%= stylesheet_link_tag    "manco/amui.all.min.css" %>
-
+  <%= stylesheet_link_tag    "tradev.css" %>
   <%= stylesheet_link_tag    "manco/amui.all.css" %>
   <%= javascript_include_tag "manco/amui.widget.helper.js" %>
   <%= javascript_include_tag "manco/zepto.min.js" %>
@@ -26,7 +26,7 @@
           color: #ffffff;
           height: 20px;
       }
-      .bottomdivs {
+      .bottomdivsclearfix {
           position: fixed;
           bottom: 0;
           width: 100%;
@@ -52,7 +52,7 @@
 <%= yield %>
 
 
-<div class="bottomdivs clearfix">
+<div class="bottomdivsclearfix">
 
   <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout"
        id="">
