@@ -42,7 +42,7 @@ def mancouser_add
   @member.mobile=params[:mobile]
   @member.update_attributes(params[:member])
 
-  redirect_to "/manco/blackbord"
+  redirect_to "/manco/blackbord?supplier_id=98"
 end
 
   def update

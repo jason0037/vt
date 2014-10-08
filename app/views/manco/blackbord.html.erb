@@ -186,16 +186,17 @@
    <script type="application/javascript">
           $(document).ready(function(){
 
-              $("#button").click(function(){
-                var departure=$("#departure").val();
-                 var  arrival=$("#arrival").val();
-                 if (!departure ||!arrival)  {alert("请先输入详细的地址在查询"); return false}
+              $("#button").focus(function(){
+                  var departures=$("#departure").val();
+                  var  arrivals=$("#arrival").val();
+
+                 if (!departures ||!arrivals)  {alert("请先输入详细的地址在查询"); return false}
                  $("#mktprice").removeClass("form_hide");
                   $(this).addClass("form_hide") ;
                   $.ajax({
                       url: "/manco/blackboardfind_e",
                       type: "post",
-                      data: {departure:departure,arrival:arrival},
+                      data: {departure:departures,arrival:arrivals},
                       success: function (res) {
 
                       }
@@ -285,7 +286,7 @@
         var lis = "";
         var style = "";
         style +="<style type='text/css'>";
-        style +=".calender { width:200px; height:200px; font-size:20px; background:#82B3FF;  border:4px solid #397EAE; padding:3px}";
+        style +=".calender { width:200px; height:200px; font-size:20px; background-color:#82B3FF;  border:4px solid #397EAE; padding:3px}";
         style +=".calender ul {list-style-type:none; margin:0; padding:0;}";
         style +=".calender .day { background-color:#EDF5FF; height:20px;}";
         style +=".calender .day li,.calender .date li{ float:left; width:14%; height:19px; line-height:20px; text-align:center}";
