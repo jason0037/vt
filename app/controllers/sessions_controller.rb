@@ -110,7 +110,7 @@ class SessionsController < ApplicationController
       # refer_url = request.env["HTTP_REFERER"]
       # refer_url = "/" unless refer_url
        id=params[:id]
-      return_url= params[:return_url] unless return_url
+      return_url= params[:return_url] unless return_url.nil?
 
 
       if params[:platform]=="mobile"
