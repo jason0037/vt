@@ -104,16 +104,10 @@
 
       <script>
 
-      if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-          location.href =
-                  "/logout?id=<%=@supplier.id%>&platform=mobile&return_url=(
-                  <%if request.url.sub('http://trade','')%>
-                  <%request.url.sub('http://trade','').force_encoding('UTF-8')%>
-                  <%else%>
-                  /vshop/<%=@supplier.id%>
-          <%end %> )"
+          if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
 
-      }
+              location.href = "/logout?id=<%=@supplier.id%>&return_url=<%=request.url.sub('http://trade','').force_encoding('UTF-8')%>&platform=mobile"
+          }
       </script>
   <%end%>
 
