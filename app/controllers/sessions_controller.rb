@@ -113,7 +113,7 @@ class SessionsController < ApplicationController
       supplier_id=params[:id]
       if params[:platform]=="mobile"
 
-          redirect_to "/mlogin?id=#{params[:id]}&supplier_id=#{params[:id]}&return_url=#{return_url}"
+          redirect_to "/mlogin?id=#{params[:id]}&supplier_id=#{params[:id]}&return_url=#{params[:return_url]}"
 
 
       elsif
