@@ -135,7 +135,7 @@ class Store::OrdersController < ApplicationController
   def index_mobile             ###手机订单
     supplier_id = params[:supplier_id]
     if  @user
-      supplier_id = @user.account.supplier_id
+
       if supplier_id == nil
         supplier_id=78
       end
