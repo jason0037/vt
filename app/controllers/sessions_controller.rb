@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
 
     @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
      return_url  =params[:return_url]
+
     session[:return_url] =  return_url
     render :layout => @supplier.layout
     # return redirect_to(after_user_sign_in_path) if signed_in?
@@ -109,16 +110,13 @@ class SessionsController < ApplicationController
       sign_out
       # refer_url = request.env["HTTP_REFERER"]
       # refer_url = "/" unless refer_url
-       id=params[:id]
-      return_url= params[:return_url] unless return_url.nil?
-
 
       if params[:platform]=="mobile"
-         if  params[:return_url].nil?
-           redirect_to "/mlogin?id=#{params[:id]}&supplier_id=#{params[:id]}"
-         else
-           redirect_to "/mlogin?id=#{params[:id]}&supplier_id=#{params[:id]}&return_url=#{return_url}"
-         end
+        if params[:return_url].nil?
+          redirect_to "/mlogin?id=#{params[:id]}&supplier_id=#{params[:id]}"
+        else
+          redirect_to "/mlogin?id=#{params[:id]}&supplier_id=#{params[:id]}&return_url=#{params[:return_url]}"
+        end
 
       elsif
         redirect_to "/vshop"
