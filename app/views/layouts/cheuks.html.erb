@@ -89,7 +89,6 @@
 
 </header>
 
-
 <%= yield %>
 
 
@@ -102,12 +101,12 @@
 
 <div class="footer clearfix">
   <%if @user%>
-      <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+
       <script>
 
           if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
 
-              location.href = "/logout?id=<%=@supplier.id%>&platform=mobile&return_url=<%=params[:return_url]%>"
+              location.href = "/logout?id=<%=@supplier.id%>&return_url=<%=request.url.sub('http://trade','').force_encoding('UTF-8')%>&platform=mobile"
           }
       </script>
   <%end%>

@@ -17,7 +17,7 @@ class Cheuksgroup::CheuksController < ApplicationController
     if @user
       @supplier=Ecstore::Supplier.find_by_id("1");
     else
-      redirect_to "/mlogin?return_url=/cheuks/cheuks_goods?supplier_id=1&id=1&platform=mobile"
+      redirect_to "/mlogin?id=1&platform=mobile&return_url=/cheuks/cheuks_goods?supplier_id=1"
       end
   end
 
