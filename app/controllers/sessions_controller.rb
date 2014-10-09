@@ -114,7 +114,12 @@ class SessionsController < ApplicationController
 
 
       if params[:platform]=="mobile"
-        redirect_to "/mlogin?id=#{params[:id]}&supplier_id=#{params[:id]}&return_url=#{return_url}"
+         if  params[:return_url].nil?
+           redirect_to "/mlogin?id=#{params[:id]}&supplier_id=#{params[:id]}"
+         else
+           redirect_to "/mlogin?id=#{params[:id]}&supplier_id=#{params[:id]}&return_url=#{return_url}"
+         end
+
       elsif
         redirect_to "/vshop"
       else
