@@ -112,11 +112,9 @@ class SessionsController < ApplicationController
       # refer_url = "/" unless refer_url
       supplier_id=params[:id]
       if params[:platform]=="mobile"
-               if supplier_id=78
-                 return_url=params[:return_url].to_s+"&id=78"
-               else
-                 return_url =params[:return_url]
-               end
+
+                 return_url=params[:return_url].to_s+"&id=#{supplier_id}"
+
           redirect_to "/mlogin?id=#{params[:id]}&supplier_id=#{params[:id]}&return_url=#{return_url}"
 
 
