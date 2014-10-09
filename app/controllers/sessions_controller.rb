@@ -16,8 +16,10 @@ class SessionsController < ApplicationController
 
     @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
      return_url  =params[:return_url]
-    if supplier_id=78
-       return_url = return_url.to_s+"&id=#{supplier_id}"
+    if supplier_id=="78"
+       return_url = return_url.to_s+"&id=78"
+    else
+      return_url=return_url
        end
     session[:return_url] =  return_url
     render :layout => @supplier.layout
