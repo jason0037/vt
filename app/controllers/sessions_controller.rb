@@ -15,7 +15,11 @@ class SessionsController < ApplicationController
     redirect_uri="http%3a%2f%2fwww.trade-v.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
 
     @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
-    session[:return_url] = params[:return_url]
+     return_url  =params[:return_url]
+    if supplier_id==78
+       return_url = return_url.to_s+"&id=#{supplier_id}"
+       end
+    session[:return_url] =  return_url
     render :layout => @supplier.layout
     # return redirect_to(after_user_sign_in_path) if signed_in?
   end
