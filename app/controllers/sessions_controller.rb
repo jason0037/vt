@@ -9,14 +9,14 @@ class SessionsController < ApplicationController
   def new_mobile
     supplier_id = params[:id]
     @supplier = Ecstore::Supplier.find(supplier_id)
-
+      id=params[:supplier_id] unless params[:supplier_id].nil?
     #redirect_uri = "http://www.trade-v.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
     #redirect_uri= URI::escape(redirect_uri)
     redirect_uri="http%3a%2f%2fwww.trade-v.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
 
     @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
      return_url  =params[:return_url]
-    if supplier_id=="78"
+    if id=="78"
        return_url = return_url.to_s+"&id=78"
     else
       return_url=return_url
