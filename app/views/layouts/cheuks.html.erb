@@ -105,7 +105,7 @@
       <script>
           <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
           if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-             var return_url=<%=params[:return_url]
+             var return_url=<%=params[:return_url]%>
               alert(return_url) ;
               location.href = "/logout?id=<%=@supplier.id%>&platform=mobile&return_url=<%=params[:return_url]%>"
           }
