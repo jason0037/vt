@@ -12,16 +12,16 @@
   <%= stylesheet_link_tag    "manco/amui.all.css" %>
   <%= javascript_include_tag "manco/amui.widget.helper.js" %>
   <%= javascript_include_tag "manco/zepto.min.js" %>
-
   <%= javascript_include_tag "manco/amui.widget.helper.min" %>
   <%= javascript_include_tag "manco/handlebars.min.js" %>
-
+  <%= javascript_include_tag "manco/amui.js" %>
   <%= javascript_include_tag "manco/amui.min.js" %>
+
+
+
+
   <style type="text/css">
-      .am-icon-user{
-          color: #ffffff;
-          height: 20px;
-      }
+
       .bottomdivsclearfix {
           position: fixed;
           bottom: 0;
@@ -36,18 +36,12 @@
           background-color: #dc852d;
       }
 
-
   </style>
 
   <script>
       $(document).ready(function(){
           $("#showgood").click(function(){
-              if($('#am-swcw4').is(':hidden')){
-                  $('#am-swcw4').show() ;
-              }
-              else{
-                  $('#am-swcw4').hide() ;
-              }
+            $("#aaa").toggle();
           })
       })
 
@@ -106,7 +100,7 @@
    </div>
 
 <div >
-  <div class="am-share am-modal-actions am-modal-active" id="am-swcw4"
+  <div class="am-share am-modal-actions am-modal-active" id="aaa"
        style="margin-top: -138px;display: none
        ">
 
@@ -152,6 +146,11 @@
 				</span>
         </a>
       </li>
+      <div class="am-share-footer">
+        <button class="am-btn am-btn-default am-btn-block" data-am-share-close="">
+          取消
+        </button>
+      </div>
     </ul>
 
   </div>
@@ -269,7 +268,7 @@
 <%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>
 <%#= javascript_include_tag "mobile/jquery.vs.mobile-1.0.0.min" %>
 <%= javascript_include_tag "mobile/jquery.vs.mars_wap" %>
-<script src="/assets/mobile/sm.js" type="text/javascript" charset="utf-8"></script>
+<!--<script src="/assets/mobile/sm.js" type="text/javascript" charset="utf-8"></script>-->
 <script type="text/javascript">
     var _smq = _smq || [];
     _smq.push(['_setAccount', '63e2363', new Date()]);
