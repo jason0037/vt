@@ -172,8 +172,9 @@
 <div class="footer clearfix">
   <%if @user%>
       <script>
+          <% return_url={:return_url => (request.url.sub('http://trade','')+'&id=78'+'&platform=mobile').force_encoding('UTF-8')}.to_query%>
           if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-              location.href = "/logout?id=<%=@supplier.id%>&return_url=<%=request.url.sub('http://trade','')+'&id=78'+'&platform=mobile'%>"
+              location.href = "/logout?id=<%=@supplier.id%>&return_url=<%=return_url%>"
 
           }
       </script>
