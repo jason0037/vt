@@ -8,6 +8,9 @@ class SessionsController < ApplicationController
 
   def new_mobile
     supplier_id = params[:id]
+    if params[:supplier_id]
+      supplier_id=params[:supplier_id]
+    end
     @supplier = Ecstore::Supplier.find(supplier_id)
 
     #redirect_uri = "http://www.trade-v.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
