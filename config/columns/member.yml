@@ -101,5 +101,5 @@
   - "true"
 30-supplier_id-供应商:
  - 供应商
- - supplier_id
+ - user.supplier_id
  - "true"
