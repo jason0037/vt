@@ -47,6 +47,9 @@ class SessionsController < ApplicationController
   end
   def register_mobile
     supplier_id =params[:id]
+     if params[:supplier_id]
+       supplier_id=params[:supplier_id]
+     end
     @supplier = Ecstore::Supplier.find(supplier_id)
     render :layout => @supplier.layout
     # return redirect_to(after_user_sign_in_path) if signed_in?

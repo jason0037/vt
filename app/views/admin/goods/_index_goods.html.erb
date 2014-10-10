@@ -65,7 +65,7 @@
 			<td>&yen;<%=format("%.2f",good.price) if good.price%></td>
             <td>&yen;<%=format("%.2f",good.mktprice) if good.mktprice%></td>
           <%if current_admin.has_right_of("members","index")%>
-            <td>&yen;<%=format("%.2f",good.price*0.1)%></td>
+            <td>&yen;<%=format("%.2f",good.price*good.share)%></td>
           <%end%>
 
 			<td><%=good.store.to_i%></td>
