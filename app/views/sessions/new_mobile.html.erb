@@ -8,7 +8,6 @@
 
 <%=form_for :session,:url=>"/login", :remote=>true do |f|%>
     <%=hidden_field_tag :id,params[:id]%>
-    <%=hidden_field_tag :id,params[:supplier_id]%>
     <%=hidden_field_tag :return_url,params[:return_url]%>
     <%=hidden_field_tag :platform,'mobile'%>
     <br/>
@@ -26,8 +25,6 @@
       </a>
     </div>
     <br/>
-        <p><%=session[:return_url]%></p>
-        <p> &nbsp;<%=params[:id]%>
     <div class="connerdiv"
          <%if params[:dev]!="1" #开发用：显示传统登录页面%>
          style="display:none"
