@@ -26,6 +26,7 @@
     </div>
     <br/>
         <p><%=session[:return_url]%></p>
+        <p> &nbsp;<%=params[:return_url]%>
     <div class="connerdiv"
          <%if params[:dev]!="1" #开发用：显示传统登录页面%>
          style="display:none"
