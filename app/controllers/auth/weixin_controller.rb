@@ -25,6 +25,9 @@ class Auth::WeixinController < ApplicationController
 
 		return redirect_to(site_path) if params[:error].present?
     supplier_id = params[:id]
+     if params[:supplier_id]
+        supplier_id=params[:supplier_id]
+     end
     return_url= session[:return_url]
     session[:return_url]=''
 
