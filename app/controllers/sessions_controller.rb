@@ -111,6 +111,7 @@ class SessionsController < ApplicationController
       # refer_url = request.env["HTTP_REFERER"]
       # refer_url = "/" unless refer_url
       supplier_id=params[:id]
+      render :text =>   supplier_id
       if params[:platform]=="mobile"
 
                  return_url=params[:return_url].to_s+"&id=#{supplier_id}"
