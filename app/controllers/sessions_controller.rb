@@ -113,7 +113,7 @@ class SessionsController < ApplicationController
       sign_out
       # refer_url = request.env["HTTP_REFERER"]
       # refer_url = "/" unless refer_url
-      supplier_id=
+      supplier_id=params[:id]
 
       if params[:platform]=="mobile"
 
