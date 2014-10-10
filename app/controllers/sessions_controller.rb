@@ -115,7 +115,7 @@ class SessionsController < ApplicationController
       if params[:platform]=="mobile"
 
                  return_url=params[:return_url].to_s+"&id=#{supplier_id}"
-          render :text =>   params[:return_url]
+
          # redirect_to "/mlogin?id=#{params[:id]}&supplier_id=#{params[:id]}&return_url=#{return_url}"
 
 
