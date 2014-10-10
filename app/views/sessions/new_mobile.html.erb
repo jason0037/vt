@@ -69,8 +69,8 @@
 
           <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
 
-      <a href="/mregister?id=<%=params[id]%>&platform=mobile&<%=return_url%>" class="forgetkey">立即注册&gt;&gt;</a>
-      <a href="/users/forgot_password?id=<%=params[id]%>&platform=mobile" class="fr forgetkey" target="new">忘记密码?</a>
+      <a href="/mregister?id=<%=params[:id]%>&platform=mobile&<%=return_url%>" class="forgetkey">立即注册&gt;&gt;</a>
+      <a href="/users/forgot_password?id=<%=params[:id]%>&platform=mobile" class="fr forgetkey" target="new">忘记密码?</a>
     </div>
 <%end%>
     <% end%>
