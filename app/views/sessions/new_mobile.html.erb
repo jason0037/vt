@@ -8,26 +8,30 @@
 
 <%=form_for :session,:url=>"/login", :remote=>true do |f|%>
     <%=hidden_field_tag :id,params[:id]%>
+    <%=hidden_field_tag :supplier_id,params[:supplier_id] if params[:supplier_id]%>
     <%=hidden_field_tag :return_url,params[:return_url]%>
     <%=hidden_field_tag :platform,'mobile'%>
     <br/>
 
     <%if @user%>
 
-      <p>你已经登陆了<a href="/vshop/<%=params[id]%>">点击进入首页</a></p>
+      <p>你已经登陆了<a href="/vshop/<%=@supplier.id%>">点击进入首页</a></p>
 
         <%else%>
 
 
-    <div class="connerdiv">
+    <div class="connerdiv" >
       <a href="<%=@oauth2_url%>">
         <img src="/assets/vshop/Oauth_button.png"  class="am-img-thumbnail" style="border: 1px solid grey;width:200px;">
       </a>
     </div>
+        <div class="connerdiv" >
+          轻轻点击图片进行登陆
+          </div>
     <br/>
-    <div class="connerdiv"
+    <div class="connerdiv" style="display: none"
          <%if params[:dev]!="1" #开发用：显示传统登录页面%>
-         style="display:none"
+         style=""
          <%end%>
     >
 

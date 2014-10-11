@@ -89,8 +89,20 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @supplier_id = params[:id]
-  	@return_url = params[:return_url]
+
+     if params[:supplier_id]
+       @supplier_id= params[:supplier_id]
+
+     else
+       @supplier_id = params[:id]
+     end
+      if @supplier_id =="78"
+         @return_url=params[:return_url].to_s+"&id=78"
+      else
+        @return_url=params[:return_url]
+      end
+
+
     @platform = params[:platform]
 
     if @platform =='mobile'
