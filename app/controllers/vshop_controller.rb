@@ -20,7 +20,7 @@ class VshopController < ApplicationController
   end
 
   def user
-       set_locale
+  #     set_locale
     if @user
 
       @supplier =Ecstore::Supplier.find(params[:id])
@@ -201,10 +201,11 @@ end
 
   #get /vhsop/id 显示微店铺首页
   def show
+=begin
      if params[:id]=="78"
        set_locale
      end
-
+=end
     @supplier_id=params[:id]
     @homepage = Ecstore::Home.where(:supplier_id=>@supplier_id).last
     @supplier = Ecstore::Supplier.find(@supplier_id)
