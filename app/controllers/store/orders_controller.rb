@@ -190,9 +190,10 @@ class Store::OrdersController < ApplicationController
 
     #=====推广佣金计算=======
     recommend_user = session[:recommend_user]
-    if recommend_user
-      params[:order].merge!(:recommend_user=>recommend_user)
+    if recommend_user==nil
+      recommend_user= @user.login_name
     end
+    params[:order].merge!(:recommend_user=>recommend_user)
     #return render :text=>params[:order]
     #====================
 		@order = Ecstore::Order.new params[:order]

@@ -1,9 +1,13 @@
 #encoding:utf-8
 class VshopController < ApplicationController
+  skip_before_filter :set_locale
+ layout "vshop"
 
-  layout "vshop"
 
-  def new
+
+
+
+ def new
     @account = Ecstore::Account.new
   end
 
@@ -16,7 +20,7 @@ class VshopController < ApplicationController
   end
 
   def user
-
+       set_locale
     if @user
 
       @supplier =Ecstore::Supplier.find(params[:id])
@@ -197,19 +201,50 @@ end
 
   #get /vhsop/id 显示微店铺首页
   def show
+     if params[:id]=="78"
+       set_locale
+     end
+
     @supplier_id=params[:id]
     @homepage = Ecstore::Home.where(:supplier_id=>@supplier_id).last
     @supplier = Ecstore::Supplier.find(@supplier_id)
     @good=Ecstore::Good.where(:supplier_id=>@supplier_id)
+
+
     render :layout=>@supplier.layout
   end
 
   #get /vhsop/id/category?cat=
   def category
+
     @supplier_id=params[:id]
     @cat = params[:cat]
     @goods =  Ecstore::Good.where(:supplier_id=>@supplier_id,:cat_id=>@cat)
     @supplier = Ecstore::Supplier.find(@supplier_id)
+
+    @recommend_user = session[:recommend_user]
+
+    if @recommend_user==nil &&  params[:wechatuser]
+      @recommend_user = params[:wechatuser]
+    end
+    if @recommend_user
+      member_id =-1
+      if signed_in?
+        member_id = @user.member_id
+      end
+      now  = Time.now.to_i
+      Ecstore::RecommendLog.new do |rl|
+        rl.wechat_id = @recommend_user
+        rl.goods_id = @good.goods_id
+        rl.member_id = member_id
+        rl.terminal_info = request.env['HTTP_USER_AGENT']
+        #   rl.remote_ip = request.remote_ip
+        rl.access_time = now
+      end.save
+      session[:recommend_user]=@recommend_user
+      session[:recommend_time] =now
+    end
+
     render :layout=>"#{@supplier.layout}"
   end
 
