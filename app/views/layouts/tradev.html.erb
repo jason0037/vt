@@ -48,7 +48,9 @@
       .am-navbar-default .am-navbar-nav {
           background-color: #ff0e1a;
       }
-
+      .hiden{
+          display: none;
+      }
   </style>
 </head>
 <body>
@@ -157,7 +159,16 @@
 				</span>
         </a>
       </li>
-
+      <li>
+        <a href="/mgallery?name=天山大闸蟹&id=<%=@supplier.id%>"
+        >
+          <i class="am-icon-star">
+          </i>
+				<span>
+					螃蟹
+				</span>
+        </a>
+      </li>
 
 
     </ul>
@@ -341,6 +352,7 @@
 
 
         $(".change_lange").toggle();
+
     })
     $("#locale").change(function(){
         var pathname = document.location.pathname;

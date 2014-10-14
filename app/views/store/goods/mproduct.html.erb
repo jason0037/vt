@@ -64,11 +64,11 @@
 <div class="am-panel-group" id="accordion">
   <div class="am-panel am-panel-default">
     <div class="am-panel-hd">
-      <h4 class="am-panel-title" style="color:red;" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">
+      <h4 class="am-panel-title" style="color:red;" >
        <%=I18n.t 'preferential-price'%>：¥<%=@good.default_product.price %>
       </h4>
     </div>
-    <div id="do-not-say-1" class="am-panel-collapse am-collapse am-in">
+    <div id="do-not-say-1" >
       <div class="am-panel-bd" style="text-decoration:line-through">
         <%= I18n.t 'original-price'%>:  <%=@good.mktprice %>
       </div>
@@ -76,11 +76,11 @@
   </div>
   <div class="am-panel am-panel-default">
     <div class="am-panel-hd">
-      <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-2'}">
+      <h4 class="am-panel-title" >
         <%=I18n.t 'commission'%>
       </h4>
     </div>
-    <div id="do-not-say-2" class="am-panel-collapse am-collapse">
+    <div id="do-not-say-2" >
       <div class="am-panel-bd">
         <p class="new_pricediv clearfix" style="background: #ffffff">
           <span class="g_d_price">¥<%=format('%.2f',@good.share*@good.default_product.price) %></span>
@@ -96,43 +96,61 @@
 </div>
 </div>
 
-
-<div class="good_salesize clearfix">
-
-</div>
-
-<div data-am-widget="tabs" class="am-tabs am-tabs-warningss">
-  <ul class="am-tabs-nav am-cf">
-    <li class="am-active">
-      <a id="am-first" href="javascript: void(0)"><%= I18n.t "introduction"%></a>
-    </li>
-    <li class="">
-      <a  id="am-second" href="javascript: void(0)"><%= I18n.t "specification"%></a>
-    </li>
-
-  </ul>
-  <div class="am-tabs-bd">
-    <div data-tab-panel-0  class="am-tab-panel am-first am-active">
-      <%=raw @good.intro.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.intro%>
-
-      <%=raw @good.desc.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.desc%>
+<div class="am-panel-group" id="accordion">
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd">
+      <h4 class="am-panel-title" style="color:red;" >
+        <%= I18n.t "introduction"%>
+      </h4>
     </div>
-    <div data-tab-panel-1 class="am-tab-panel am-second ">
-      <div class="am-tabs am-tabs-warningss">
-        <%=form_for :product,:url=>"/cart/add", :html=>{:id=>"cartform"},:remote=>true do |f|%>
-            <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
-            <%=f.hidden_field :type_id,:value=>@good.type_id%>
-            <%=hidden_field_tag :supplier_id, @supplier.id%>
-            <%=hidden_field_tag :platform,'mobile'%>
-            <%=hidden_field_tag :return_url,{:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+    <div  >
+      <div class="am-panel-bd" >
+        <%=raw @good.intro.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.intro%>
 
-            <%if @good.specs.present?%>
-                <%@good.specs.order("spec_id asc").each do |spec|%>
+        <%=raw @good.desc.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.desc%>
+        <article data-am-widget="paragraph" class="am-paragraph am-paragraph-default"
+                 data-am-paragraph="{ tableScrollable: true, pureview: true }">
+          <img src=http://s.cn.bing.net/az/hprichbg/rb/QingdaoJiaozhou_ZH-CN10690497202_1366x768.jpg>
+          <p class=paragraph-default-p>南极洲又称
+            <a href=http://zh.wikipedia.org/w/index.php?title=%E7%AC%AC%E4%B8%83%E5%A4%A7%E9%99%86&redirect=no>第七大陆</a>，是地球上最后一个被发现、唯一没有土著人居住的大陆。</p>
+          <p>南极大陆为通常所说的南大洋（太平洋、印度洋和大西洋的南部水域）所包围，它与南美洲最近的距离为965公里，距新西兰2000公里、距澳大利亚2500公里、距南非3800公里、距中国北京的距离约有12000公里。南极大陆的总面积为1390万平方公里，相当于中国和印巴次大陆面积的总和，居世界各洲第五位。</p>
+          <img
+          src=http://home.hebei.com.cn/xwzx/jypd1/tp3/200911/W020091105523721711433.jpg
+          />
+          <p>整个南极大陆被一个巨大的冰盖所覆盖，平均海拔为2350米。南极洲是由冈瓦纳大陆分离解体而成，是世界上最高的大陆。南极横断山脉将南极大陆分成东西两部分。这两部分在地理和地质上差别很大。</p>
+          <img
+          src=http://a1.att.hudong.com/24/53/300000928390129593530805445.jpg />
+          <p>东南极洲是一块很古老的大陆，据科学家推算,已有几亿年的历史。它的中心位于难接近点，从任何海边到难接近点的距离都很远。东南极洲平均海拔高度2500米，最大高度4800
+            米。在东南极洲有南极大陆最大的活火山，即位于罗斯岛上的埃里伯斯火山，海拔高度3795米，有四个喷火口</p>
+        </article>
+      </div>
+    </div>
+  </div>
 
-                    <%=hidden_field_tag "product[specs][]"%>
-                    <ul class="good_sizechioce clearfix am-tabs-nav am-cf" data-mersale="true">
+  <div class="am-panel-group" id="accordion">
+    <div class="am-panel am-panel-default">
+      <div class="am-panel-hd">
+        <h4 class="am-panel-title" style="color:red;" >
+          <%= I18n.t "specification"%>
+        </h4>
+      </div>
+      <div  >
+        <div class="am-panel-bd" >
+          <%=form_for :product,:url=>"/cart/add", :html=>{:id=>"cartform"},:remote=>true do |f|%>
+              <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
+              <%=f.hidden_field :type_id,:value=>@good.type_id%>
+              <%=hidden_field_tag :supplier_id, @supplier.id%>
+              <%=hidden_field_tag :platform,'mobile'%>
+              <%=hidden_field_tag :return_url,{:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+
+              <%if @good.specs.present?%>
+                  <%@good.specs.order("spec_id asc").each do |spec|%>
+
+                      <%=hidden_field_tag "product[specs][]"%>
+                      <ul class="am-list">
                       <%@good.spec_values.where(:spec_id=>spec.spec_id).uniq.order("p_order asc").each do |spec_value|%>
                           <li data-size="<%=spec_value.spec_value_id%>" class="choose" data-maxamount="2" data-minamount="1"><%=spec_value.spec_value%></li>
+
 
                       <%end%>
                     </ul>
@@ -143,27 +161,9 @@
     </div>
   </div>
 </div>
-
+  </div>
 <script>
-    $(document).ready(function(){
-        $("#am-first").click(function(){
-            $("#am-second").parent("li").removeClass("am-active");
-            $(this).parent("li").addClass("am-active");
-            $(".am-second").removeClass("am-active");
-            $(".am-first").addClass("am-active");
 
-
-
-        })
-        $("#am-second").click(function(){
-            $("#am-first").parent("li").removeClass("am-active");
-            $(this).parent("li").addClass("am-active");
-            $(".am-first").removeClass("am-active");
-            $(".am-second").addClass("am-active");
-
-        })
-
-    })
 </script>
 
 
