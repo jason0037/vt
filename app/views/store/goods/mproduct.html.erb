@@ -10,7 +10,15 @@
            border-top: #fff 1px solid;
            z-index: 1000000;
        }
+    .icon-arr {
+        position: absolute;
 
+        right: 10px;
+        width: 10px;
+        height: 15px;
+        background: url(/assets/icon_order.png) 0 0 no-repeat;
+        background-size: 100px 100px;
+    }
     .bottomdivsclearfix{
         display: none;
     }
@@ -61,7 +69,7 @@
     <div class="am-figure-capition-btm" style="text-align: center"><%=@good.name %></div></div>
 
 
-<div class="am-panel-group" id="accordion">
+
   <div class="am-panel am-panel-default">
     <div class="am-panel-hd">
       <h4 class="am-panel-title" style="color:red;" >
@@ -69,32 +77,39 @@
       </h4>
     </div>
     <div id="do-not-say-1" >
-      <div class="am-panel-bd" style="text-decoration:line-through">
-        <%= I18n.t 'original-price'%>:  <%=@good.mktprice %>
+      <div class="am-panel-bd">
+        <%= I18n.t 'original-price'%>:<span  style="text-decoration:line-through"> <%=@good.mktprice %> </span>
       </div>
     </div>
   </div>
+
   <div class="am-panel am-panel-default">
     <div class="am-panel-hd">
       <h4 class="am-panel-title" >
-        <%=I18n.t 'commission'%>
+        <%=I18n.t 'commission'%> :¥<%=format('%.2f',@good.share*@good.default_product.price) %>
       </h4>
     </div>
-    <div id="do-not-say-2" >
+
       <div class="am-panel-bd">
-
-          <span class="g_d_price">¥<%=format('%.2f',@good.share*@good.default_product.price) %></span>
-
-          <span class="prf05"><a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "what_commission"%></a></span> <br/>
-          <span class="prf05"><a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "earn_commission"%></a></span>  <br/>
-          <span class="prf05"><a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "get_commission"%></a></span><br/>
-
+         <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "what_commission"%>
+           <span class="icon-arr"></span>
+         </a>
+            </div>
+      <div class="am-panel-bd">
+        <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "earn_commission"%>
+          <span class="icon-arr"></span>
+        </a>
       </div>
-    </div>
+      <div class="am-panel-bd">
+        <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "get_commission"%>
+          <span class="icon-arr"></span>
+        </a>
+      </div>
+     </div>
   </div>
 
 </div>
-</div>
+
 
 <div class="am-panel-group" id="accordion">
   <div class="am-panel am-panel-default">
@@ -113,7 +128,7 @@
     </div>
   </div>
 
-  <div class="am-panel-group" id="accordion">
+  <div class="am-panel-group">
     <div class="am-panel am-panel-default">
       <div class="am-panel-hd">
         <h4 class="am-panel-title" style="color:red;" >
@@ -133,9 +148,9 @@
                   <%@good.specs.order("spec_id asc").each do |spec|%>
 
                       <%=hidden_field_tag "product[specs][]"%>
-                      <ul class="am-list">
+
                       <%@good.spec_values.where(:spec_id=>spec.spec_id).uniq.order("p_order asc").each do |spec_value|%>
-                          <li data-size="<%=spec_value.spec_value_id%>" class="choose" data-maxamount="2" data-minamount="1"><%=spec_value.spec_value%></li>
+                          <span data-size="<%=spec_value.spec_value_id%>" class="choose" data-maxamount="2" data-minamount="1"><%=spec_value.spec_value%></span>
 
 
                       <%end%>
