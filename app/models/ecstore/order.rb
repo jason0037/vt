@@ -83,11 +83,13 @@ class Ecstore::Order < Ecstore::Base
               freight = 6
             end
           elsif supplier==77
-            if items_amount>=350  ||  items_amount<=0.05 #德国香肠350免运费 测试商品
+            if items_amount>=350 #德国香肠350免运费
               freight = 0
             else
               freight = 35
             end
+          elsif  items_amount<=0.05  #测试商品
+            freight = 0
           else
             freight = 10
           end
