@@ -136,6 +136,28 @@ zh_cn:
 
   pay_over_click : "点击支付"
 
+  ckeditor:
+    page_title: "图片管理器"
+    confirm_delete: "删除该文件?"
+    buttons:
+      cancel: "取消"
+      upload: "上传"
+      delete: "删除"
+
+  will_paginate:
+    previous_label: "上一页"
+    next_label: "下一页"
+    page_gap: "&hellip;"
+
+  activerecord:
+    attributes:
+      gallery:
+        title: "作品名称"
+        description: "作品简介"
+        image_ids: "作品图片"
+        gallery_type: "作品类型"
+      user:
+        domain_name: "个性域名"
 
  ##
 

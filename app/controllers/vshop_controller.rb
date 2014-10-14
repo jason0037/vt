@@ -203,18 +203,12 @@ end
 
   #get /vhsop/id 显示微店铺首页
   def show
-<<<<<<< HEAD
+
      if params[:id]=="78"
           set_locale
      end
 
-=======
-=begin
-     if params[:id]=="78"
-       set_locale
-     end
-=end
->>>>>>> 9b820f1b500de25b97f4cde70614d1c66bb3b572
+
     @supplier_id=params[:id]
     @homepage = Ecstore::Home.where(:supplier_id=>@supplier_id).last
     @supplier = Ecstore::Supplier.find(@supplier_id)

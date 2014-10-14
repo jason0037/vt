@@ -8,6 +8,12 @@
 <script src="/assets/area_seletor.js?body=1" type="text/javascript"></script>
 <script src="/assets/bootstrap-modal.js?body=1" type="text/javascript"></script>
 <script src="/assets/admin/orders.js?body=1" type="text/javascript"></script>
+
+<style>
+    .paginations > * {
+        padding: 3px 5px;
+    }
+  </style>
 <%=form_for :s,:url=>search_admin_orders_path,:method=>:get,:html=>{:class=>"form-search"} do |f|%>
     <%=f.text_field :q, :value=>params[:s]&&params[:s][:q],:placeholder=>"订单号/收货人"%>
     <input type="submit" value="搜索" class="btn btn-success">
@@ -122,7 +128,7 @@
   <td><%=number_to_currency @total,:unit=>"&yen;",:precision=>2%></td>
   </tbody>
 </table>
-<div class="pagination">
+<div class="paginations">
   <%=will_paginate @orders,:container=>false%>
 </div>
 
