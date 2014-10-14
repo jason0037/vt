@@ -103,7 +103,7 @@
 
 
     </ul>
-     </div>
+  </div>
 </div>
 
 <div >
@@ -146,6 +146,7 @@
 				</span>
         </a>
       </li>
+
       <li>
         <a href="/mgallery?name=其它&id=<%=@supplier.id%>"
         >
@@ -274,7 +275,7 @@
         }, false);
     }
     <%if @user%>
-        <%useraccount=@user.account.login_name%>
+    <%useraccount=@user.account.login_name%>
     <%end%>
     var current_url = document.location.href;
     //去除上一个推荐者的链接
@@ -287,12 +288,12 @@
         var pathname = document.location.pathname;
         if (pathname=="/orders/mobile_show_order"){
             pathnames="/orders/share_order";
-                     var serach =document.location.search;
-               var host=document.location.host;
+            var serach =document.location.search;
+            var host=document.location.host;
 
-                var url=host + pathnames+serach;
-           current_url=url
-                                   }
+            var url=host + pathnames+serach;
+            current_url=url
+        }
 
     }
 
@@ -301,7 +302,7 @@
         current_url = current_url.substr(0,num_index_of);
     }
     current_url += "&from=weixin&wechatuser=<%=useraccount%>";
-   // alert(current_url);
+    // alert(current_url);
     var data = {"img":null,"url":current_url,"title":"关注我们，转发朋友，赚佣金啰！<%#=@wechat_share_title%>","desc":null};
     wechatShare(data);
 </script>
@@ -332,30 +333,30 @@
     $(document).ready(function(){
         $("#showgood").click(function(){
 
-                $('#aaa').toggle();
+            $('#aaa').toggle();
 
-    })  })
+        })  })
 
-       $("#showall").click(function(){
+    $("#showall").click(function(){
 
 
-            $(".change_lange").toggle();
-       })
-      $("#locale").change(function(){
-          var pathname = document.location.pathname;
-          if (pathname=="/mgallery") {
-              var url=document.location.href
-               var selectval= $(this).find("option:selected").val();
-                 ne="&locale="+selectval;
-              var current_url=url+ne;
+        $(".change_lange").toggle();
+    })
+    $("#locale").change(function(){
+        var pathname = document.location.pathname;
+        if (pathname=="/mgallery") {
+            var url=document.location.href
+            var selectval= $(this).find("option:selected").val();
+            ne="&locale="+selectval;
+            var current_url=url+ne;
             window.location.href=current_url;
 
 
-          }
+        }
         else{
-              this.form.submit();
-          }
-      })
+            this.form.submit();
+        }
+    })
 
 
 </script>
