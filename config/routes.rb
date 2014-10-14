@@ -302,7 +302,10 @@ end
     resources :permissions do
 
     end
-    resources :suppliers
+    resources :suppliers do
+      get 'update_state',:on=>:collection
+    end
+
     resources :sessions
     resources :coupons
     resources :goods_cats do
@@ -575,7 +578,7 @@ end
         get 'arrival'
         get 'mancoder_show'   ###显示万家当前用户的所有订单
         get 'tairyo_order'
-        get 'norsh_show_order'
+        get 'mobile_show_order'
         get 'index_mobile'
         get 'share_order'   ###推荐订单
         get 'mobile_show'
@@ -662,6 +665,7 @@ end
     end
 
     resources :member_addrs do
+
         get 'new_memberaddr_add' ,:on=>:collection
       get '_form_manco_second' ,:on=>:collection
       post 'addship' ,:on=>:collection

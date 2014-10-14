@@ -1,25 +1,30 @@
-<header id="header" class="header clearfix">
-  <div class="head_left fl"><a href="/m"><span class="h_back"></span></a></div>
-  <span class="headtit">我的佣金</span>
-  <div class="head_right fr"><a href="/m" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
-</header>
+<style>
+  .change_lange{
+      display: none;
+  }
+
+</style>
+<div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
+  <div class="am-panel-hd"  style="text-align: center;padding: 10px"><%= I18n.t "mycommission"%></div>
+</div>
+
 <div class="space10"></div>
 
 <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
-  <div class="am-panel-hd">总收益佣金 <span style="float: right">¥<%=@share%></span></div>
+  <div class="am-panel-hd"><%= I18n.t "total_commission"%> <span style="float: right">¥<%=@share%></span></div>
 </div>
 <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
-  <div class="am-panel-hd">已领取佣金 <span style="float: right">¥0</span></div>
+  <div class="am-panel-hd"><%= I18n.t "withdrawn_commission"%> <span style="float: right">¥0</span></div>
 </div>
 
 <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
-  <div class="am-panel-hd">待领取佣金 <span style="float: right">¥<%=@share%></span></div>
+  <div class="am-panel-hd"><%= I18n.t "pending_commission"%> <span style="float: right">¥<%=@share%></span></div>
 </div>
 <input type="hidden" name="favourable_id" value="">
 
 
 <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
-  <div class="am-panel-hd">最新佣金 <span style="float: right">¥<%=format("%.2f",@sharelast)%></span></div>
+  <div class="am-panel-hd"><%= I18n.t "latest_commission"%> <span style="float: right">¥<%=format("%.2f",@sharelast)%></span></div>
 </div>
 
 <!--<div class="userdiv" data-cartforms="invoice">-->
@@ -37,7 +42,7 @@
 
 </div>
 <div class="checktit clearfix">
-  &nbsp;&nbsp;&nbsp;&nbsp;<a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">什么是佣金</a>&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">怎么赚佣金</a>&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">怎么领佣金</a>
+  &nbsp;&nbsp;&nbsp;&nbsp;<a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "what_commission"%></a>&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "earn_commission"%></a>&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "get_commission"%></a>
 </div>

@@ -2,4 +2,172 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  title: "trade-vshop"
+
+
+
+  address: "Delivery  Address"
+
+
+
+
+  h4_1: "Only serve  Jiangsu and Zhejiang provinces and the city of Shanghai"
+  h4_2: "And Up to ￥350, the transportation will be  free"
+
+
+
+
+
+   ###佣金信息
+  shopping-basket: "My Shopping Basket"
+  commission: "Commission"
+  mycommission : "My Commission"
+  commission_account: "Designated  Account "
+  total_commission : "Total Commission"
+  withdrawn_commission : "Withdrawn Commission"
+  pending_commission : "Pending Commission"
+  latest_commission : "Latest Commission"
+  what_commission : "What’s Commission?"
+  earn_commission : "How to earn Commission?"
+  get_commission : "How to withdraw Commission?"
+  name : "Your Name"
+  gender: "Gender"
+  bank—information : "Bank Information"
+  bank_name : "Bank Name"
+  branch_name : "The Branch Name"
+  bank_account : "Account Number"
+  notification : "Contact for notification"
+  email :   "Email"
+  m_phone: "Mobile Phone"
+  tel: " Telephone"
+  express_code : "Postcode"
+
+
+
+
+
+     ###地址信息
+  address: "Delivery  Address"
+  delivery_addr : "Delivery Address"
+  consignee  : "Consignee"
+  region  : "Region"
+  default : "Default"
+  operation : "Operation"
+  delete : "Delete"
+  set_default : "Set as default"
+  yes : "Yes"
+  modify : "Modify"
+  new_addr : "Create New Address"
+  use_new_addr : "Use New Address"
+  province : "Province"
+  city  : "City"
+  area : "Area"
+  please : "Please"
+  choose : "Choose"
+  confirm : "Confirm"
+  address_detail: "Details Address "
+  male : "Male"
+  female : "Female"
+
+
+  logout: "Logout"
+  login: "Login"
+  signup: "Signup"
+  personal_center: "Personal Center"
+  sausages : "sausages"
+  hams : "hams"
+  bacons : "bacons"
+  others : "others"
+  preferential-price: "Preferential Price"
+  original-price : "Original Price"
+  introduction : "Introduction"
+  specification : "Specification"
+  add-shoppingbasket : "Add to Shopping Basket"
+  orders : "My Orders"
+  details : "View Details  "
+  amount : "Amount"
+  total-price : "Total Price"
+  create-order : "To create an order"
+  save: "save"
+
+    ###订单生成页面
+  orders:  "My Orders"
+  details_consignee: "Details of Consignee "
+  delivery_options: "Delivery Options"
+  self_options : "Pick up in store"
+  express : "Express"
+  alipay_mobile : "alipay mobile"
+  alipay : "alipay"
+  wechat : "Pay by WeChat"
+  pay_detail: "Paying by WeChat requires the Version 5.0 or higher of WeChat, and need to log on with WeChat account before paying."
+  invoice : "Details of Invoice"
+  details_invoice : "please enter the invoice title"
+  order_notice : "Dear！"
+  order_notice_one : "! Up to ￥350, the transportation fee will be  free."
+  order_notice_two : "And Cold-Chain Delivery is applied to make sure the products fresh."
+  order_notice_three : "You have shopping full 350 free shipping"
+  order_notice_four : "You have not selected merchandise。"
+  order_details_price : "Details of amount"
+  order_goods_price : "Total price for products "
+  express_price : "Transportation Fee"
+  overall : "Overall"
+  confirm_order : "Confirm the order"
+
+   ###订单详细页面
+  order_details : "Details of orders"
+  product_price : "Product Price"
+  product_amount : "Product Amount"
+  order_total_price: "Total Price"
+  order_num: "Order No."
+  order_creat_time : "Ordering Time"
+  order_status : " Order Status"
+  all_of_order: "Total amount of order"
+  success_pay : "Paid successfully"
+  no_pay : "To Pay"
+
+
+
+ ###订单提交成功页面
+  orders_success_get : "Order has been submitted"
+  orders_no_pay : "Order is not paid yet, you can still change the payment method below and  complete this order"
+  orders_pay_price : "Total Payment"
+  order_status_no : " Be Not paid"
+  order_status_yes : "Already paid"
+  change_pay : "Change"
+  pay_options : "Payment Methods"
+  pay_showone : "After paying successfully，you can "
+  pay_showtwo : " View Details"
+
+  pay_change_detail : "Change the payment method to:"
+  IPS_Pay : "IPS Pay"
+   #COD  : "货到付款"
+  #COD_detail : "点击查询货到付款配送区域"
+
+
+
+  pay_over_detail: "Page is redirecting to Wechat payment… If there is no response for a long time, please"
+
+  pay_over_click : "Click to PAY"
+
+
+  ##
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

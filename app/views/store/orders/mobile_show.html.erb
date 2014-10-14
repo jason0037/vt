@@ -26,7 +26,9 @@
         width: 24px;
         height: 24px;
     }
-
+    .change_lange{
+        display: none;
+    }
     .pay_success {
         width: 65px;
         height: 65px;
@@ -95,7 +97,7 @@
       <br/>
       <div class="status_text">
         <span class="pay_icon pay_success "></span>
-        <span class="pay_text">订单已经成功提交!</span>
+        <span class="pay_text"><%= I18n.t "orders_success_get"%></span>
       </div>
 
       <br/>
@@ -103,7 +105,7 @@
 
         <h2 class="blue" >
           <span class="pay_icon"></span>
-          <span style="color: #0abede">以下订单尚未成功支付，请您尽快完成支付!</span>
+          <span style="color: #0abede"><%= I18n.t "orders_no_pay"%></span>
 
         </h2>
       </div>
@@ -112,11 +114,11 @@
       <br/>
       <div class="showall">
         <div  class="detail" >
-          <span class="span">	&nbsp; &nbsp; 订单编号:</span> <span style="margin-left: 40%" ><%=@order.order_id%></span>
+          <span class="span">	&nbsp; &nbsp; <%= I18n.t "order_num"%>:</span> <span style="margin-left: 40%" ><%=@order.order_id%></span>
         </div>
 
         <div class="detail" >
-          <span class="span">	&nbsp; &nbsp; 支付金额:</span> <span id="final_pay" class="ovalue"><%#=@order.final_pay%>￥<%=@order.final_amount%>
+          <span class="span">	&nbsp; &nbsp; <%= I18n.t "orders_pay_price"%>:</span> <span id="final_pay" class="ovalue"><%#=@order.final_pay%>￥<%=@order.final_amount%>
            </span> </div>
         <br/>
 
@@ -124,7 +126,12 @@
 
 
         <div class="detail" >
-          <span class="span">&nbsp; &nbsp; 	订单状态:</span> <span style=" color: #ed145b;" class="ovalue"><%=@order.order_status_text%></span>
+          <span class="span">&nbsp; &nbsp; 	<%= I18n.t "order_status"%>:</span> <span style=" color: #ed145b;" class="ovalue">
+         <% if @order.order_status_text =="待付款" %>
+            <%=I18n.t "order_status_no"%>
+         <%else%>
+          <%=I18n.t "order_status_yes"%></span>
+              <%end%>
         </div>
 
 
@@ -132,17 +139,23 @@
 
         <hr>
         <div class="payment">
-          <span class="span">&nbsp; &nbsp; 	支付方式:</span>
-          <span class="title" style="color: #0abede"><%=payments[@order.payment][:name]%></span>
+          <span class="span">&nbsp; &nbsp; 	<%= I18n.t "pay_options"%>:</span>
+          <span class="title" style="color: #0abede">
+            <% if payments[@order.payment][:name] =="微信支付 " %>
+                <%=I18n.t "wechat"%>
+                <% elsif payments[@order.payment][:name] =="支付宝手机版" %>
+                  <%=I18n.t "alipay_mobile"%>
+                <%end%>
+            </span>
           <%if @order.status == 'active' && @order.pay_status == '0'%>
-              <a href="#" class="change " style="margin-left: 30%" id="change_payment">更改支付方式 </a>
+              <a href="#" class="change " style="margin-left: 30%" id="change_payment"><%= I18n.t "change_pay"%> </a>
           <%end%>
           <hr>
           <div><%=payments[@order.payment][:extra].html_safe%></div>
         </div>
 
         <div class="payments " style="display: none" id="payment_choices">
-          <h5>已选择的支付方式现修改为：</h5>
+          <h5><%= I18n.t "pay_change_detail"%></h5>
 
           <%if @order.part_pay?%>
               <label class="checkbox">
@@ -151,7 +164,7 @@
               </label>
           <%end%>
           <label class="radio">
-            <%=f.radio_button :pay_app_id, "ips", { :checked=>(@order.payment == 'ips') }%> <b>环迅人民币支付</b>
+            <%=f.radio_button :pay_app_id, "ips", { :checked=>(@order.payment == 'ips') }%> <b><%=I18n.t "IPS_Pay"%></b>
             <span class="extra-desc"></span>
           </label>
           <%if @user.advance >= @order.final_amount%>
@@ -160,19 +173,20 @@
               </label>
           <%end%>
 
-          <label class="radio">
-            <%=f.radio_button :pay_app_id, "offline", { :checked=>(@order.payment == 'offline') }%> <b>货到付款</b>
-            <span class="extra-desc"><%=link_to "点击查询货到付款配送区域","http://www.zjs.com.cn/WS_Business/WS_Bussiness_CityArea.aspx?id=6",:target=>"_blank"%></span>
-          </label>
+         <!--<label class="radio">-->
+            <!--<%#=f.radio_button :pay_app_id, "offline", { :checked=>(@order.payment == 'offline') }%>-->
+          <!--<b>货到付款</b>-->
+            <!--<span class="extra-desc"><#%=link_to "点击查询货到付款配送区域","http://www.zjs.com.cn/WS_Business/WS_Bussiness_CityArea.aspx?id=6",:target=>"_blank"%></span>-->
+          <!--</label>-->
 
           <label class="radio">
-            <%=f.radio_button :pay_app_id, "alipay", { :checked=>(@order.payment == 'alipay') }%> <b>支付宝</b>
+            <%=f.radio_button :pay_app_id, "alipay", { :checked=>(@order.payment == 'alipay') }%> <b><%= I18n.t "alipay"%></b>
           </label>
           <label class="radio">
-            <%=f.radio_button :pay_app_id, "alipaywap", { :checked=>(@order.payment == 'alipaywap') }%> <b>支付宝手机版</b>
+            <%=f.radio_button :pay_app_id, "alipaywap", { :checked=>(@order.payment == 'alipaywap') }%> <b><%= I18n.t "alipay_mobile"%></b>
           </label>
           <label class="radio">
-            <%=f.radio_button :pay_app_id, "wxpay", { :checked=>(@order.payment == 'wxpay') }%> <b>微信支付</b>
+            <%=f.radio_button :pay_app_id, "wxpay", { :checked=>(@order.payment == 'wxpay') }%> <b><%= I18n.t "wechat"%></b>
           </label>
         </div>
 
@@ -184,14 +198,17 @@
 
             <h2 class="blue" style="color: #0abede">
               <span class="pay_icon"></span>
-              <span >支付成功后，可以在<a href="/orders/norsh_show_order?id=<%=@order.order_id%>">订单详细</a> 处查看订单和追踪订单状态</span>
+              <span ><%= I18n.t "pay_showone"%><a href="/orders/mobile_show_order?id=<%=@order.order_id%>&supplier_id=<%=@supplier.id%>"><%= I18n.t "order_details"%></a> <%= I18n.t "pay_showtwo"%></span>
             </h2>
           </div>
           <br>
           <% if @order.order_status_text=="待付款" %>
-              <%=f.submit "安全支付",:class=>"btn  btn-inverse" if @order.pay_status == '0' && @order.status == 'active' && @order.payment != 'offline' %>
+              <%#=f.submit I18n.t 'confirm_order',:class=>"btn  btn-inverse" if @order.pay_status == '0' && @order.status == 'active' && @order.payment != 'offline' %>
+               <% if @order.pay_status == '0' && @order.status == 'active' && @order.payment != 'offline' %>
+              <input type="submit" class=" btn btn-inverse " value="<%=I18n.t "confirm_order"%>">
+                  <%end%>
           <% else%>
-              <span>您已经成功支付了</span>
+              <span><%= I18n.t "success_pay"%></span>
           <% end %>
         </div>
   <%end%>

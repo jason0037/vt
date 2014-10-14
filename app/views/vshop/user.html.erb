@@ -14,10 +14,13 @@
         .am-panel-hd{
             padding: 20px;
         }
+      .change_lange{
+          display: none;
+      }
 </style>
 
 <div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
-  <div class="am-panel-hd"  style="text-align: center;padding: 10px">个人中心</div>
+  <div class="am-panel-hd"  style="text-align: center;padding: 10px"><%= I18n.t "personal_center"%></div>
 </div>
 <!--<div class="userinfo clearfix">-->
 <!--<div class="fl"><p class="username">账户：</p></div>-->
@@ -37,28 +40,28 @@
 
 <div class="am-panel am-panel-default">
   <a href="/orders/index_mobile?platform=mobile&supplier_id=<%=@supplier.id%>">
-    <div class="am-panel-hd">我的订单</div>
+    <div class="am-panel-hd"><%=I18n.t "orders"%></div>
     <span class="icon-arr"></span> </a>
 </div>
 
 <div class="am-panel am-panel-default">
   <a href="/cart/mobile?id=<%=@supplier.id%>">
-    <div class="am-panel-hd">我的购物车</div>
+    <div class="am-panel-hd"><%= I18n.t "shopping-basket"%></div>
     <span class="icon-arr"></span> </a>
 </div>
 <div class="am-panel am-panel-default">
   <a href="/share?supplier_id=<%=@supplier.id%>">
-    <div class="am-panel-hd">我的佣金</div>
+    <div class="am-panel-hd"><%= I18n.t "commission"%></div>
     <span class="icon-arr"></span> </a>
 </div>
 <div class="am-panel am-panel-default">
-  <a href="/commissions/bank_info">
-    <div class="am-panel-hd">佣金账号</div>
+  <a href="/commissions/bank_info?supplier_id=<%=@supplier.id%>">
+    <div class="am-panel-hd"><%= I18n.t "commission_account"%></div>
     <span class="icon-arr"></span> </a>
 </div>
 <div class="am-panel am-panel-default">
-  <a href="/member_addrs?platform=mobile">
-    <div class="am-panel-hd">配送地址</div>
+  <a href="/member_addrs?platform=mobile&supplier_id=<%=@supplier.id%>">
+    <div class="am-panel-hd"><%= I18n.t "address"%></div>
     <span class="icon-arr"></span> </a>
 </div>
 
@@ -69,7 +72,7 @@
   </a>
   <!--<a href="/goods?platform=mobile&supplier_id=<#%=@supplier.id%>"><em class="s_back"></em>我的订单<span></span></a>-->
 
-  <a href="user-logout.html" class="btn_white btn_out" mars_sead="logout_btn" style="display:none">退出登录</a>
+  <a href="user-logout.html" class="btn_white btn_out" mars_sead="logout_btn" style="display:none"><%= I18n.t "logout"%></a>
   <div class="space20"></div>
 </div>
 
@@ -83,11 +86,11 @@
           }
       </script>
       <a href="/vshop/<%=@supplier.id%>/user" style="font-size: 20px; "><%=@user.account.id%></a>
-      <a href="/logout?id=<%=@supplier.id%>&platform=mobile&<%=return_url%>" class="am-btn am-btn-warning " >退出登录</a>
+      <a href="/logout?id=<%=@supplier.id%>&platform=mobile&<%=return_url%>" class="am-btn am-btn-warning " ><%= I18n.t "logout"%></a>
   <%else%>
 
-      <a href="/mlogin?id=<%=@supplier.id%>&platform=mobile&<%=return_url %>" mars_sead="footer-login_btn">登录</a>
-      <a href="/mregister?id=<%=@supplier.id%>&platform=mobile&<%=return_url%>">注册</a>
+      <a href="/mlogin?id=<%=@supplier.id%>&platform=mobile&<%=return_url %>" mars_sead="footer-login_btn"><%= I18n.t "login"%></a>
+      <a href="/mregister?id=<%=@supplier.id%>&platform=mobile&<%=return_url%>"><%= I18n.t "signup"%></a>
   <%end%>
   <a href="?t=1#" class="backtop" mars_sead="home_foot_top_btn"></a>
 </div>

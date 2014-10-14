@@ -1,5 +1,6 @@
 class Ecstore::Manager < Ecstore::Base
 	self.table_name = "sdb_desktop_users"
+  attr_accessible :user_id, :status, :name
 
   belongs_to :user,:foreign_key=>"user_id"
 	has_one :account,:foreign_key=>"account_id"

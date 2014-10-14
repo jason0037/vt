@@ -3,7 +3,9 @@
         width: 100%;
         border: 4px,solid #000000;;
  }
-
+    .change_lange{
+        display: none;
+    }
     table th{
 
         background-color: #ffffff;
@@ -21,7 +23,7 @@
 
 </style>
 
-<header class="demo-bar"> <h1 style="text-align: center">我的订单</h1></header>
+<header class="demo-bar"> <h1 style="text-align: center"><%= I18n.t "orders"%></h1></header>
 
 
 <div class="am-list-news-bd">
@@ -43,7 +45,9 @@
         <h3 class="am-list-item-hd">
 
            ￥<%=order.final_amount%>
-         <span style="float: right"> <%=link_to "查看详细","/orders/norsh_show_order?id=#{order.order_id}",:target=>"_blank"%></span>
+         <span style="float: right">
+              <a href="/orders/mobile_show_order?id=<%=order.order_id%>&supplier_id=<%=@supplier.id%>" target="_blank"><%= I18n.t "details"%></a>
+           <%#=link_to "查看详细","/orders/norsh_show_order?id=#{order.order_id}",:target=>"_blank"%></span>
 
         </h3>
 

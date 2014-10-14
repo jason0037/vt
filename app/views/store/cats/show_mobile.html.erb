@@ -6,7 +6,9 @@
     .new-mu_l2 {
         _zoom: 1;
     }
-
+    .change_lange{
+        display: none;
+    }
     .new-mu_l2a {
         display: block;
         overflow: hidden;
@@ -21,9 +23,23 @@
 </style>
 
 <div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
-  <div class="am-panel-hd" style="text-align: center"><%=params[:name]%></div>
+  <div class="am-panel-hd" style="text-align: center">
+    <%if params[:name]=="培根"%>
+       <%= I18n.t "bacons"%>
+    <%elsif params[:name] =="香肠"%>
+          <%= I18n.t "sausages"%>
+    <%elsif params[:name] =="火腿"%>
+        <%= I18n.t "hams"%>
+    <%elsif params[:name] =="其他"%>
+        <%= I18n.t "others"%>
+      <%else %>
+       <%= params[:name]%>
+        <%end%>
 
-  <h4  style="color: #ff0000;text-align: center;padding: 0px">亲! 现在我们只供应江浙沪地区哦～，<br>而且满350包邮！！</h4>
+
+    </div>
+
+  <h5  style="color: #ff0000;text-align: center;padding: 0px"><%=I18n.t 'h4_1'%><br><%= I18n.t 'h4_2'%></h5>
 
 </div>
 
@@ -307,9 +323,9 @@
 
             </div>
             <div class="am-col col-sm-8 am-list-main">
-              <h1 class="am-list-item-hd">
+              <h5 class="am-list-item-hd">
                 <%=good.name%>
-              </h1>
+              </h5>
               <div class="am-list-item-text">
                 <strong class="" style="color: red;font-size: 16px">¥<%=good.price%> &nbsp;</strong> <span style="text-decoration:line-through">¥<%=format('%.1f',good.mktprice)%> </span>
               </div>
@@ -317,7 +333,7 @@
               <br/>
 
 
-              <span class="am-btn am-btn-danger  " style="float: right">(推广佣金） &nbsp;¥<%=format('%.2f',good.share*good.default_product.price) %> </span>
+              <span class="am-btn am-btn-danger  " style="float: right"><%= I18n.t 'commission'%> &nbsp;¥<%=format('%.2f',good.share*good.default_product.price) %> </span>
 
             </div>
 

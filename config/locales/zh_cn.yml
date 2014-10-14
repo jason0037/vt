@@ -1,23 +1,151 @@
 zh_cn:
-  ckeditor:
-    page_title: "图片管理器"
-    confirm_delete: "删除该文件?"
-    buttons:
-      cancel: "取消"
-      upload: "上传"
-      delete: "删除"
-      
-  will_paginate:
-    previous_label: "上一页"
-    next_label: "下一页"
-    page_gap: "&hellip;"
+  title: "贸威手机版"
+  ###佣金信息
 
-  activerecord:
-    attributes:
-      gallery:
-        title: "作品名称"
-        description: "作品简介"
-        image_ids: "作品图片"
-        gallery_type: "作品类型"
-      user:
-        domain_name: "个性域名"
+  h4_1: "亲! 现在我们只供应江浙沪地区哦～"
+  h4_2: "而且满350包邮！！"
+  shopping-basket: "我的购物车"
+  commission: "推广佣金"
+  mycommission : "我的佣金"
+  commission_account: "佣金账号"
+  total_commission : "总收益佣金"
+  withdrawn_commission : "已领取的佣金"
+  pending_commission : "待领取的佣金"
+  latest_commission : "最新的佣金"
+  what_commission : "什么是佣金"
+  earn_commission : "怎么赚佣金"
+  get_commission : "怎么领取佣金"
+  name : "真实姓名"
+  gender: "性别"
+  bank—information : "银行信息"
+  bank_name : "银行"
+  branch_name : "支行"
+  bank_account : "银行账号"
+  notification : "联系方式"
+  email :   "收信邮箱"
+  m_phone: "手机号码"
+  tel: "固定电话"
+  express_code : "邮编"
+
+
+
+    ###地址信息
+  address: "地址信息"
+  delivery_addr : "配送地址"
+  consignee  : "收货人"
+  region  : "地区"
+  default : "默认"
+  operation : "操作"
+  delete : "删除"
+  set_default : "设为默认"
+  yes : "是"
+  modify : "修改"
+  new_addr : "新增收货地址"
+  use_new_addr : "使用新地址"
+  province : "省"
+  city  : "市"
+  area : "区"
+  please : "请"
+  choose : "选择"
+  confirm : "确认"
+  address_detail: "详细地址"
+  male : "男"
+  female : "女"
+
+
+
+
+  logout: "退出"
+  login: "登陆"
+  signup: "注册"
+  personal_center: "个人中心"
+  sausages : "香肠"
+  hams : "火腿"
+  bacons : "培根"
+  others : "其他"
+  preferential-price: "优惠价"
+  original-price : "原价"
+  introduction : "商品介绍"
+  specification : "规格参数"
+  add-shoppingbasket : "添加购物车"
+  orders : "我的订单"
+  details : "查看详细"
+  amount : "数量"
+  total-price : "总金额"
+  create-order : "去结算"
+  save: "保存"
+
+   ###订单生成页面
+  orders:  "我的订单"
+  details_consignee: "收货人信息"
+  delivery_options: "送货方式"
+  self_options : "自提"
+  express : "快递"
+  alipay_mobile : "支付宝手机版"
+  alipay : "支付宝"
+  wechat : "微信支付"
+  pay_detail: "微信支付需要微信5.0版本以上，并且已经用微信授权登陆"
+  invoice : "发票信息"
+
+  details_invoice : "请输入发票抬头"
+  order_notice : "注意哦！"
+  order_notice_one : "本店购物满350以上是包邮的哦！"
+  order_notice_two : "而且为保证商品新鲜，我们是全程冷藏运输的"
+  order_notice_three : "您已经购物满350了免运费"
+  order_notice_four : "您还没有选择商品。"
+
+  order_details_price : "订单金额"
+  order_goods_price : "商品金额"
+  express_price : "发货运费"
+  overall : "待支付总额"
+  confirm_order : "安全结算"
+
+  ###订单详细页面
+  order_details : "订单详细"
+  product_price : "商品价格"
+  product_amount : "商品数量"
+  order_total_price: "金额小计"
+  order_num: "订单编号"
+  order_creat_time : "下单时间"
+  order_status : "订单状态"
+  all_of_order: "订单总金额"
+  success_pay : "您已经成功支付"
+  no_pay : "去付款"
+
+
+
+###订单提交成功页面
+  orders_success_get : "订单已经成功提交"
+  orders_no_pay : "以下订单尚未成功支付，请您尽快完成支付！"
+  orders_pay_price : "支付金额"
+  order_status_no : "待付款"
+  order_status_yes : "已付款"
+  change_pay : "改变支付方式"
+  pay_options : "支付方式"
+  pay_showone : "支付成功后，可以在"
+  pay_showtwo : "处查看订单和追踪订单状态"
+
+  pay_change_detail : "修改支付方式"
+  IPS_Pay : "环讯人名币支付"
+  #COD  : "货到付款"
+ #COD_detail : "点击查询货到付款配送区域"
+
+
+
+  pay_over_detail: "正在跳转到微信支付...如果长时间没有反应，请"
+
+  pay_over_click : "点击支付"
+
+
+ ##
+
+
+
+
+
+
+
+
+
+
+

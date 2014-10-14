@@ -4,7 +4,8 @@ class Store::CatsController < ApplicationController
   	before_filter :require_top_cats
 
   def show_mobile
-        @supplier = Ecstore::Supplier.find(params[:id])
+
+       @supplier = Ecstore::Supplier.find(params[:id])
         name= params[:name]
 
         goods_ids =""

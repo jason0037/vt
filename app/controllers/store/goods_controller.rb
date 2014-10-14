@@ -90,6 +90,11 @@ class Store::GoodsController < ApplicationController
   end
 
  def mproduct
+   if params[:id]=="78"
+
+     set_locale
+   end
+
    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
 
    return render "not_find_good",:layout=>"new_store" unless @good

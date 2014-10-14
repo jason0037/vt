@@ -1,7 +1,7 @@
 <%=javascript_include_tag "area_seletor"%>
 <%=javascript_include_tag "patch/member_addrs"%>
 <div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
-  <div class="am-panel-hd" style="text-align: center">新增地址</div>
+  <div class="am-panel-hd" style="text-align: center"><%= I18n.t "new_addr"%></div>
 </div>
 
 
@@ -14,20 +14,20 @@
             <label class="radio active">
               <%=radio_button_tag "member_addr", addr.addr_id,:checked=>true%>
               <span class="addr-line"><%=addr.addr_line%></span>
-              <%=link_to "修改",edit_member_addr_path(addr),:remote=>true,:class=>"update-link"%>
+              <%=link_to I18n.t 'modify',edit_member_addr_path(addr),:remote=>true,:class=>"update-link"%>
             </label>
         <%else%>
             <label class="radio">
               <%=radio_button_tag "member_addr", addr.addr_id%>
               <span class="addr-line"><%=addr.addr_line%></span>
-              <%=link_to "修改",edit_member_addr_path(addr), :remote=>true, :class=>"update-link"%>
+              <%=link_to I18n.t 'modify',edit_member_addr_path(addr), :remote=>true, :class=>"update-link"%>
             </label>
         <%end%>
     <%end%>
 
     <label class="radio">
       <%=radio_button_tag "member_addr", "new"%>
-      <span>使用新地址+</span>
+      <span><%= I18n.t "use_new_addr"%>+</span>
     </label>
 <%end%>
 

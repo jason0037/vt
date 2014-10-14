@@ -28,6 +28,9 @@ module ApplicationHelper
 		return tmp
 	end
 
+
+
+
 	def truncate2(content,options={})
                  return nil unless content
 

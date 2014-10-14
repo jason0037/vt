@@ -1,5 +1,8 @@
 class TairyoController < ApplicationController
   layout "tairyo_new"
+
+
+
   def index    #大渔饭店首页
 
     @comment_a=Ecstore::Comment.find_by_sql("select * from sdb_imodec_comments where member_id='2459'order by id desc ")

@@ -10,6 +10,7 @@
            border-top: #fff 1px solid;
            z-index: 1000000;
        }
+
     .bottomdivsclearfix{
         display: none;
     }
@@ -48,7 +49,7 @@
 
 
 <% if @supplier.id==78%>
-    <div class="am-panel-hd" style="text-align: center">现在我们只供应江浙沪地区哦<br>而且满￥<span style="color: red">350</span>包邮！！ </span><%end%>  </div>
+    <div class="am-panel-hd" style="text-align: center"><%= I18n.t "h4_1"%><br><%= I18n.t "h4_2"%> </span><%end%>  </div>
 
 <div id="demo-view" >
 
@@ -57,26 +58,26 @@
          data-onerror="<%=@good.big_pic%>"
          alt="" >
 
-    <div class="am-figure-capition-btm"><%=@good.name %></div></div>
+    <div class="am-figure-capition-btm" style="text-align: center"><%=@good.name %></div></div>
 
 
 <div class="am-panel-group" id="accordion">
   <div class="am-panel am-panel-default">
     <div class="am-panel-hd">
       <h4 class="am-panel-title" style="color:red;" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">
-        优惠价：¥<%=@good.default_product.price %>
+       <%=I18n.t 'preferential-price'%>：¥<%=@good.default_product.price %>
       </h4>
     </div>
     <div id="do-not-say-1" class="am-panel-collapse am-collapse am-in">
       <div class="am-panel-bd" style="text-decoration:line-through">
-        原价为  <%=@good.mktprice %>
+        <%= I18n.t 'original-price'%>:  <%=@good.mktprice %>
       </div>
     </div>
   </div>
   <div class="am-panel am-panel-default">
     <div class="am-panel-hd">
       <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-2'}">
-        推广佣金
+        <%=I18n.t 'commission'%>
       </h4>
     </div>
     <div id="do-not-say-2" class="am-panel-collapse am-collapse">
@@ -84,9 +85,9 @@
         <p class="new_pricediv clearfix" style="background: #ffffff">
           <span class="g_d_price">¥<%=format('%.2f',@good.share*@good.default_product.price) %></span>
 
-          <span class="prf05"><a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">什么是佣金</a></span>
-          <span class="prf05"><a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">赚佣金</a></span>
-          <span class="prf05"><a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">领佣金</a></span>
+          <span class="prf05"><a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "what_commission"%></a></span>
+          <span class="prf05"><a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "earn_commission"%></a></span>
+          <span class="prf05"><a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "get_commission"%></a></span>
         </p>
       </div>
     </div>
@@ -103,10 +104,10 @@
 <div data-am-widget="tabs" class="am-tabs am-tabs-warningss">
   <ul class="am-tabs-nav am-cf">
     <li class="am-active">
-      <a id="am-first" href="javascript: void(0)">商品介绍</a>
+      <a id="am-first" href="javascript: void(0)"><%= I18n.t "introduction"%></a>
     </li>
     <li class="">
-      <a  id="am-second" href="javascript: void(0)">规格参数</a>
+      <a  id="am-second" href="javascript: void(0)"><%= I18n.t "specification"%></a>
     </li>
 
   </ul>
@@ -183,8 +184,8 @@
     <span class="carticon fl"></span>
     <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
     </a>
-    <%=link_to "加入购物车","javascript:void(0);",:class=>"add_to_cart fr btn_sure #{'login' unless signed_in?}" ,:id=>"add_to_cart" %>
-
+    <%#=link_to "加入购物车","javascript:void(0);",:class=>"add_to_cart fr btn_sure #{'login' unless signed_in?}" ,:id=>"add_to_cart" %>
+    <a href="javascript:void(0);" class="add_to_cart fr btn_sure " id="add_to_cart"><%=I18n.t "add-shoppingbasket"%></a>
   </div>
 </div>
 

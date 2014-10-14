@@ -50,6 +50,14 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2)]
         reply_news_message(articles)
 
+      when '买'
+        title="[测试商品]-----------------"
+        desc ="测试商品0.01元，佣金3.00元"
+        pic_url="http://www.trade-v.com/images/a072/a0729002_b_1.jpg"
+        link_url="http://www.trade-v.com/mproducts?id=a980000&fp=mproducts&supplier_id=#{id}"
+        articles = [generate_article(title, desc, pic_url, link_url)]
+        reply_news_message(articles)
+
       when 'on_sale'
         title="法兰克福香肠350克/ Frankfurter Sausages 350g仅售¥40元"
         desc =""

@@ -12,10 +12,29 @@ class ApplicationController < ActionController::Base
   before_filter :adjust_format_for_mobile
   before_filter :find_user,:find_session_id,:find_cart!
   before_filter :find_path_seo
+  before_filter :set_locale
+
+
+
 
   require "pp"
 
-
+  def set_locale
+    if params[:id] =="78"|| params[:supplier_id]=="78"
+    session[:locale] = params[:locale] if params[:locale]
+    I18n.locale = session[:locale] || I18n.default_locale
+    locale_path = "#{LOCALES_DIRECTORY}#{I18n.locale}.yml"
+    unless I18n.load_path.include? locale_path
+      I18n.load_path << locale_path
+      I18n.backend.send(:init_translations)
+    end
+    end
+  rescue Exception => err
+    logger.error err
+    flash.now[:notice] = "#{I18n.locale} error"
+    I18n.load_path -= [locale_path]
+    I18n.locale = session[:locale] = I18n.default_locale
+  end
 
 
   private 

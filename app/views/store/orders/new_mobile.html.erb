@@ -3,6 +3,9 @@
     .bottomdivsclearfix{
         display: none;
     }
+    .change_lange{
+        display: none;
+    }
     .am-panel-bd {
         padding: 2px;
         position: relative;
@@ -69,8 +72,8 @@
 <%if @line_items.size > 0%>
 
     <div class="am-panel am-panel-default">
-      <div class="am-panel-hd">收货人信息</div>
-      <a id="addressLink" href="/orders/new_mobile_addr">
+      <div class="am-panel-hd"><%=I18n.t "details_consignee"%></div>
+      <a id="addressLink" href="/orders/new_mobile_addr?supplier_id=<%=@supplier.id%>">
       <div class="am-panel-bd">
 
 
@@ -89,7 +92,7 @@
         <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
 
         <div class="am-panel am-panel-default" style="display: none" data-collapse="true" data-style="arrow">
-          <div class="am-panel-hd">送货时间</div>
+          <div class="am-panel-hd"><%= I18n.t "delivery_options"%></div>
           <div class="am-panel-bd">
             <div class="in_pay clearfix " style="display: none">
               <%=f.select :ship_day,ship_day_options%>&nbsp;&nbsp;&nbsp;
@@ -105,18 +108,18 @@
           </div>  </div>
 
         <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
-          <div class="am-panel-hd">送货方式</div>
+          <div class="am-panel-hd"><%= I18n.t "delivery_options"%></div>
           <div class="am-panel-bd">
 
             <label class="radio active">
               <%if @supplier.id==78&& @cart_total >=350 %>
 
-                  <label> 您已经购物满350了免运费</label>
+                  <label><%=I18n.t "order_notice_three"%></label>
               <%else%>
-               <%=f.radio_button :shipping_id, 0%><span class="addr-line">自提</span>
+               <%=f.radio_button :shipping_id, 0%><span class="addr-line"><%= I18n.t "self_options"%></span>
             </label>
             <label class="radio" style="margin-left: 40px;padding: 2px">
-              <%=f.radio_button :shipping_id, 1, :checked=>true%> 快递
+              <%=f.radio_button :shipping_id, 1, :checked=>true%> <%= I18n.t "express"%>
               <span class="extra-info">+ ￥<%=@cart_freight%></span>
                 <%end%>
             </label>
@@ -125,35 +128,36 @@
 
         <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
           <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
-            <div class="am-panel-hd">支付方式</div>
+            <div class="am-panel-hd"><%= I18n.t "pay_options"%></div>
             <div class="am-panel-bd">
               <%if @user.advance>0 && @user.advance < @cart_total%>
                   <label class="radio active" style="margin-left: 40px;padding: 2px">
                     <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>>
               <%end%>
               <label class="radio active" style="margin-left: 40px;padding: 2px">
-                <%=f.radio_button :payment, "alipaywap"%>支付宝手机版
+                <%=f.radio_button :payment, "alipaywap"%><%= I18n.t "alipay_mobile"%>
               </label>
               <label class="radio active" style="margin-left: 40px;padding: 2px">
                 <%=f.radio_button :payment, "wxpay", :checked=>true %>
-                微信支付
+                <%= I18n.t "wechat"%>
               </label>
             </div>
-            <div class="am-panel-hd">微信支付需要微信版本5.0以上，并且已经用微信授权登录</div>
+            <div class="am-panel-hd"><%= I18n.t "pay_detail"%></div>
           </div>
         </div>
 
         <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
-          <div class="am-panel-hd">发票信息</div>
+          <div class="am-panel-hd"><%= I18n.t "invoice"%></div>
           <div class="am-panel-bd">
-            <%=f.text_field :tax_company,:placeholder=>"请输入发票抬头",:class=>"text_input w100"%>
+            <input class="text_input w100" id="order_tax_company" name="order[tax_company]" placeholder="<%=I18n.t "details_invoice"%>" size="30" type="text">
+            <%#=f.text_field :tax_company,:placeholder=>"请输入发票抬头",:class=>"text_input w100"%>
           </div>
         </div>
         <%if @supplier.id==78 %>
         <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
-          <div class="am-panel-hd">注意哦！   <span style="color: #ff0000">本店购物满350以上是包邮的哦</span> <br/>
+          <div class="am-panel-hd"><%= I18n.t "order_notice"%>   <span style="color: #ff0000"><%= I18n.t "order_notice_one"%></span> <br/>
 
-              <span>而且为保证商品新鲜，我们是全程冷藏运输的</span>
+              <span><%= I18n.t "order_notice_two"%></span>
 
           </div>
           </div>
@@ -161,33 +165,33 @@
         <%end%>
 
         <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
-          <div class="am-panel-hd">订单金额</div>
+          <div class="am-panel-hd"><%= I18n.t "order_details_price"%></div>
           <div class="am-panel-bd">
             <span class="bg-border"><span class="icon"></span></span>
-            <p>&nbsp;商品金额：<span class="fr  " id="order_amount" data-amount = "<%=@cart_total%>">¥<%=@cart_total%>&nbsp;</span></p>
-            <p>&nbsp;发货运费：  <%if @cart_total >=350 %>
+            <p>&nbsp;<%= I18n.t "order_goods_price"%>：<span class="fr  " id="order_amount" data-amount = "<%=@cart_total%>">¥<%=@cart_total%>&nbsp;</span></p>
+            <p>&nbsp;<%= I18n.t "express_price"%>：  <%if @cart_total >=350 %>
                   <span class="fr">¥0&nbsp;</span></p>
 
-                  <p>&nbsp;待支付总额：<span class="fr" style="color: red">¥<%=@cart_total_final-@cart_freight%>&nbsp;</span></p>
+                  <p>&nbsp;<%= I18n.t "overall"%>：<span class="fr" style="color: red">¥<%=@cart_total_final-@cart_freight%>&nbsp;</span></p>
                   <%else%>
 
                   <span class="fr">¥<%=@cart_freight%>&nbsp;</span></p>
-            <p>&nbsp;待支付总额：<span class="fr" style="color: red">¥<%=@cart_total_final%>&nbsp;</span></p>
+            <p>&nbsp;<%= I18n.t "overall"%>：<span class="fr" style="color: red">¥<%=@cart_total_final%>&nbsp;</span></p>
                   <%end%>
             <input type="hidden" name="payable" value="">
             <span class="bg-border2"></span>
           </div>
         </div>
 
-
-        <%=f.submit "安 全 结 算",:class=>"am-btn am-btn-warning am-btn-block"%>
+         <input type="submit" class="am-btn am-btn-warning am-btn-block" value="<%=I18n.t 'confirm_order'%>">
+        <%#=f.submit I18n.t 'confirm_order',:class=>"am-btn am-btn-warning am-btn-block"%>
 
 
 
 
     <%end%>
 <%else%>
-    <p>您还没有选择商品。</p>
+    <p><%=I18n.t "order_notice_four"%>。</p>
 <%end%>
 <br/>
 <br/>

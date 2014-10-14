@@ -11,13 +11,17 @@
   <%=stylesheet_link_tag "mobile/common.min"%>
   <%= javascript_include_tag "mobile/jquery-2.1.0.min" %>
   <%= csrf_meta_tag %>
-
+  <title><%= I18n.t 'base.title' %></title>
   <script>
       var ui = 'touch';
   </script>
 </head>
 <body>
-
+<% form_tag '', :method => 'GET', do %>
+    <%= select_tag 'locale', options_for_select(LANGUAGES, I18n.locale),
+                   :onchange => 'this.form.submit()' %>
+    <%= submit_tag 'submit' %>
+<% end %>
 
 <%= yield %>
 

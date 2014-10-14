@@ -35,6 +35,8 @@ class Patch::MemberAddrsController < ApplicationController
     end
   end
 
+
+
   def edit
     @addr = Ecstore::MemberAddr.find(params[:id])
     @method = :put

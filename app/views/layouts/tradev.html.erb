@@ -4,7 +4,7 @@
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <title>贸威手机版</title>
+  <title><%= I18n.t 'title' %></title>
   <meta content="" name="keywords">
   <meta content="" name="description">
   <%= stylesheet_link_tag    "tradev.css" %>
@@ -48,6 +48,7 @@
       .am-navbar-default .am-navbar-nav {
           background-color: #ff0e1a;
       }
+
   </style>
 </head>
 <body>
@@ -56,10 +57,11 @@
 
   <div class="head_right fr" style="display:none"><a href="brand-search.html"><span class="h_search"></span></a></div>
 </header>
-
+<form class="am-form change_lange " style="display: none">
+  <%= select_tag 'locale', options_for_select(LANGUAGES, I18n.locale)%>
+</form>
 
 <%= yield %>
-
 
 <div class="bottomdivsclearfix">
 
@@ -89,14 +91,19 @@
       </li>
 
       <li >
-        <a href="/cart/mobile?id=<%=@supplier.id%>">
+        <a href="/cart/mobile?id=<%=@supplier.id%>"
 				<span class="am-icon-shopping-cart">
 				</span>
         </a>
       </li>
-    </ul>
+      <li class="am-navbar-labels am-navbar-more " >
+        <a id="showall" ><span class="am-icon-angle-up"></span><span class="am-navbar-label">语言切换</span></a>
 
-  </div>
+      </li>
+
+
+    </ul>
+     </div>
 </div>
 
 <div >
@@ -112,7 +119,8 @@
           <i class="am-icon-star">
           </i>
 				<span>
-					香肠
+                  <%= I18n.t 'sausages' %>
+
 				</span>
         </a>
       </li>
@@ -124,7 +132,7 @@
           <i class="am-icon-star">
           </i>
 				<span>
-					火腿
+					<%= I18n.t 'hams' %>
 				</span>
         </a>
       </li>
@@ -134,7 +142,7 @@
           <i class="am-icon-star">
           </i>
 				<span>
-                    培根
+                   <%= I18n.t 'bacons' %>
 				</span>
         </a>
       </li>
@@ -144,15 +152,17 @@
           <i class="am-icon-star">
           </i>
 				<span>
-					其它商品
+					<%= I18n.t 'others' %>
 				</span>
         </a>
       </li>
 
+
+
     </ul>
     <div class="am-share-footer">
       <button class="am-btn am-btn-default am-btn-block" data-am-share-close="">
-        取消
+        关闭
       </button>
     </div>
   </div>
@@ -174,7 +184,7 @@
       <script>
           <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
           if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-              location.href = "/logout?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile&id=78"
+              location.href = "/logout?id=<%=@supplier.id%>&return_url=<%=return_url%>&platform=mobile&id=78"
 
           }
       </script>
@@ -268,6 +278,24 @@
     <%end%>
     var current_url = document.location.href;
     //去除上一个推荐者的链接
+
+
+
+
+
+    if (document.location.href.indexOf('order')>0){
+        var pathname = document.location.pathname;
+        if (pathname=="/orders/mobile_show_order"){
+            pathnames="/orders/share_order";
+                     var serach =document.location.search;
+               var host=document.location.host;
+
+                var url=host + pathnames+serach;
+           current_url=url
+                                   }
+
+    }
+
     num_index_of = current_url.indexOf("&from=weixin&wechatuser=");
     if (num_index_of >0){
         current_url = current_url.substr(0,num_index_of);
@@ -307,6 +335,27 @@
                 $('#aaa').toggle();
 
     })  })
+
+       $("#showall").click(function(){
+
+
+            $(".change_lange").toggle();
+       })
+      $("#locale").change(function(){
+          var pathname = document.location.pathname;
+          if (pathname=="/mgallery") {
+              var url=document.location.href
+               var selectval= $(this).find("option:selected").val();
+                 ne="&locale="+selectval;
+              var current_url=url+ne;
+            window.location.href=current_url;
+
+
+          }
+        else{
+              this.form.submit();
+          }
+      })
 
 
 </script>

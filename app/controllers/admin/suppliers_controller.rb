@@ -1,3 +1,4 @@
+#encoding:utf-8
 class Admin::SuppliersController < ApplicationController
 	layout 'admin'
 
@@ -69,10 +70,37 @@ class Admin::SuppliersController < ApplicationController
 		end
 	end
 
+
+
 	def destroy
 		@supplier = Ecstore::Supplier.find(params[:id])
 		@supplier.destroy
 
 		redirect_to admin_suppliers_url
-	end
+  end
+
+  def update_state
+    @supplier = Ecstore::Supplier.find(params[:supplier_id])
+      unless @supplier.status=="1"
+        Ecstore::Supplier.where(:id=>params[:supplier_id]).update(params[:supplier_id],{:status=>1})
+       end
+
+    @account=Ecstore::Account.find(params[:user_id])
+    @account.update_attribute(:supplier_id,params[:supplier_id])
+    if @account.account_type=="shopadmin"
+       @account.update_attribute(:account_type,"member")
+
+    end
+    @manager=Ecstore::Manager.find_by_user_id(params[:user_id])
+    unless @manager
+     Ecstore::Manager.new do |sv|
+        sv.user_id = @account.account_id
+        sv.status = "1"
+        sv.name = @supplier.name
+    end.save
+    end
+
+    redirect_to "/admin/suppliers"  ,:notice=>'更新成功!'
+  end
+
 end
