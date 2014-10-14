@@ -458,20 +458,20 @@
 		<ul>
 			<li>
 				<span class="name">商品总额 : </span>
-				<span class="val"> &yen;<%=@order.products_total%></span>
+				<span class="val"> &yen;<%=@order.products_total.to_f%></span>
 			</li>
 
 			<li>
 				<span class="name">+运费 : </span>
-				<span class="val"> &yen;<%=@order.cost_freight.to_i%></span>
+				<span class="val"> &yen;<%=@order.cost_freight.to_f%></span>
 			</li>
 			<li>
 				<span class="name">-优惠 : </span>
-				<span class="val"> &yen;<%=@order.pmts_total%></span>
+				<span class="val"> &yen;<%=@order.pmts_total.to_f%></span>
 			</li>
 			<li>
 				<span class="name">-余额 : </span>
-				<span class="val"> &yen;<%=@order.part_pay.to_i%></span>
+				<span class="val"> &yen;<%=@order.part_pay.to_f%></span>
 			</li>
 			
 			<%if @order.payment == 'bcom'%>

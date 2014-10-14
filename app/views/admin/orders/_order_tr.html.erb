@@ -56,6 +56,7 @@
 	<td><%=order.ship_status_text%></td>
 	<td><%=number_to_currency order.final_amount,:unit=>"&yen;",:precision=>2%></td>
     <td><%=number_to_currency order.commission,:unit=>"&yen;",:precision=>2 if order.desktop_user_id || order.recommend_user%></td>
+    <td><%=number_to_currency order.cost_freight,:unit=>"&yen;",:precision=>2%></td>
 	<td><%=order.ship_name%></td>
 	<td><%=order.ship_addr%></td>
 	<td><%=order.ship_mobile%></td>
