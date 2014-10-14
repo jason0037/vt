@@ -73,12 +73,12 @@
   <div class="am-panel am-panel-default">
     <div class="am-panel-hd">
       <h4 class="am-panel-title" style="color:red;" >
-       <%=I18n.t 'preferential-price'%>：¥<%=@good.default_product.price %>
+       <%=I18n.t 'preferential-price'%>:<span style="float: right;color: red">¥<%=@good.default_product.price %></span>
       </h4>
     </div>
     <div id="do-not-say-1" >
       <div class="am-panel-bd">
-        <%= I18n.t 'original-price'%>:<span  style="text-decoration:line-through"> <%=@good.mktprice %> </span>
+        <%= I18n.t 'original-price'%>:<span  style="float: right;color: red;text-decoration:line-through"> <%=@good.mktprice %> </span>
       </div>
     </div>
   </div>
@@ -86,25 +86,29 @@
   <div class="am-panel am-panel-default">
     <div class="am-panel-hd">
       <h4 class="am-panel-title" >
-        <%=I18n.t 'commission'%> :¥<%=format('%.2f',@good.share*@good.default_product.price) %>
+        <%=I18n.t 'commission'%> :<span style="float: right;color: red">¥<%=format('%.2f',@good.share*@good.default_product.price) %> </span>
       </h4>
     </div>
 
+    <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">
       <div class="am-panel-bd">
-         <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "what_commission"%>
+       <%= I18n.t "what_commission"%>
            <span class="icon-arr"></span>
-         </a>
-            </div>
+
+            </div>  </a>
+
+    <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">
       <div class="am-panel-bd">
-        <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "earn_commission"%>
+        <%= I18n.t "earn_commission"%>
           <span class="icon-arr"></span>
-        </a>
-      </div>
+
+      </div>    </a>
+    <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">
       <div class="am-panel-bd">
-        <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>"><%= I18n.t "get_commission"%>
+      <%= I18n.t "get_commission"%>
           <span class="icon-arr"></span>
-        </a>
-      </div>
+
+      </div> </a>
      </div>
   </div>
 
