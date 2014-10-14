@@ -5,9 +5,9 @@ class Admin::OrdersController < Admin::BaseController
 
 	def index
 		if params[:status].nil?
-			@orders_nw = Ecstore::Order.order("order_id desc")
+			@orders_nw = Ecstore::Order.order("created_at desc")
 		elsif
-			@orders_nw = Ecstore::Order.where(:status=>params[:status]).order("order_id desc")
+			@orders_nw = Ecstore::Order.where(:status=>params[:status]).order("created_at desc")
 		end
 
 		if !params[:pay_status].nil?
