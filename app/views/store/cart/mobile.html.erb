@@ -206,7 +206,9 @@
             var quantitys = qutwo.val();
             var quantity = quantitys * 1 + 1;
             qutwo.val(quantity);
+
                 var url =qutwo.data('url');
+
                 $.ajax(url, {
                     type: "PUT",
                     data: { quantity: quantity },
