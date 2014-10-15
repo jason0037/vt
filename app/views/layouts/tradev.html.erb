@@ -361,27 +361,22 @@
         }
 
         var langeval=$(this).text();
-        if (langeval="en") {
+        if (langeval=="en") {
 
-         $("#locale ").val("zh_cn");
-            var selectval= $("#locale").find("option:selected").val();
+          $("#locale").val("zh_cn");
             if (pathname=="/mgallery") {
                 ne="&locale=zh_cn";
                 var current_url=url+ne;
-                $(this).addClass("hidden");
                 window.location.href=current_url
               }
             else{
-            ne="&locale=zh_cn";  var current_url=pathname+ne;  window.location.href=current_url }
-
-            $(this).addClass("hidden");
-            window.location.href=current_url;
+             ne="?locale=zh_cn";  var current_url=pathname+ne;  window.location.href=current_url }
            }
         else
         {
 
             $("#locale ").val("en");
-            var selectval= $("#locale").find("option:selected").val();
+
             if (pathname=="/mgallery") {
                 ne="&locale=en";
                 var current_url=url+ne;
