@@ -66,6 +66,14 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
+      when 'crab'
+        title="一大波螃蟹正在接近-天山蟹客"
+        desc ="天山蟹客大闸蟹实行人放养的野生自然成长程序，以湖中的水草、生物为食。这里冬季水温较低，螃蟹需要2-3年才可以成长3两重以上的商品蟹。雪水补给的湖泊中还含有千分之五的盐碱，低温高盐环境下养出的螃蟹身体十分结实，肉质也十分细嫩。"
+        pic_url="http://www.trade-v.com/images/a087/crab.jpg"
+        link_url="http://www.trade-v.com/mgallery?name=%E5%A4%A9%E5%B1%B1%E5%A4%A7%E9%97%B8%E8%9F%B9&id=#{id}&supplier_id=#{id}"
+        articles = [generate_article(title, desc, pic_url, link_url)]
+        reply_news_message(articles)
+
       when '大渔'
         title="[大渔]海鲜铁板烧"
         desc =""
@@ -230,6 +238,9 @@ WeixinRailsMiddleware::WeixinController.class_eval do
   def handle_click_event
 
     case @keyword
+      when 'CRAB'
+        @keyword='crab'
+        response_news_message({})
       when 'ON_SALE'
         @keyword='on_sale'
         response_news_message({})
