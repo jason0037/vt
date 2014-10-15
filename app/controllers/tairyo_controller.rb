@@ -1,5 +1,5 @@
 class TairyoController < ApplicationController
-  layout "tairyo_new"
+  layout "tairyo"
 
 
 

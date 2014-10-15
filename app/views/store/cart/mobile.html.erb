@@ -52,7 +52,7 @@
   </div>
 
 
-
+     <%=     %>
 
 
 <div id="cart">
@@ -86,11 +86,12 @@
 
                   </a>
                 </h3>  <% if @supplier.id==78%>
+                        <% unless line_item.good.cat_id ==Ecstore::GoodCat.find_by_cat_name("大闸蟹").cat_id  %>
                  <span>
 
-                    <h4  style="color: #ff0000;text-align: center;padding: 0px"><% I18n.t "h4_1"%><br/><% I18n.t "h4_2"%></h4>
+                    <h4  style="color: #ff0000;text-align: center;padding: 0px"><%= I18n.t "h4_1"%><br/><%=I18n.t "h4_2"%></h4>
 
-                </span>      <%end%>
+                </span>  <%end%>    <%end%>
                 <div class="am-list-item-text">
                   <div class="good_data_num J_pro_num_btn_cart" data-product="68671252" style="border:none;height:33px;">
 

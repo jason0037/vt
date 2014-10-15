@@ -57,7 +57,11 @@
 
 
 <% if @supplier.id==78%>
-    <div class="am-panel-hd" style="text-align: center"><%= I18n.t "h4_1"%><br><%= I18n.t "h4_2"%> </span><%end%>  </div>
+
+      <%unless @cat.id==583 %>
+
+    <div class="am-panel-hd" style="text-align: center"><%= I18n.t "h4_1"%><br><%= I18n.t "h4_2"%> </span>
+     <%end%> <%end%>  </div>
 
 <div id="demo-view" >
 

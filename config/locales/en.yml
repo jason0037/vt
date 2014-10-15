@@ -2,7 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  title: "Wechat Mutual O2O direct sales platform"
+  title: "MaoWei WeChat O2O direct sales Mall"
 
 
 
@@ -11,8 +11,8 @@ en:
 
 
 
-  h4_1: "Only serve  Jiangsu and Zhejiang provinces and the city of Shanghai"
-  h4_2: "And Up to ￥350, the transportation will be  free"
+  h4_1: " We offer a free delivery service within Shanghai for orders totaling 350rmb or more. Some areas will not be covered and an assistant will call to advize."
+  h4_2: "For orders less than 350rmb a minimum charge of 35rmb is made"
 
 
 
@@ -22,7 +22,7 @@ en:
   shopping-basket: "My Shopping Basket"
   commission: "Commission"
   mycommission : "My Commission"
-  commission_account: "Designated  Account "
+  commission_account: "Bank  Account "
   total_commission : "Total Commission"
   withdrawn_commission : "Withdrawn Commission"
   pending_commission : "Pending Commission"
@@ -57,7 +57,7 @@ en:
   set_default : "Set as default"
   yes : "Yes"
   modify : "Modify"
-  new_addr : "Create New Address"
+  new_addr : "Add A New Address"
   use_new_addr : "Use New Address"
   province : "Province"
   city  : "City"
@@ -74,20 +74,20 @@ en:
   login: "Login"
   signup: "Signup"
   personal_center: "Personal Center"
-  sausages : "sausages"
-  hams : "hams"
-  bacons : "bacons"
-  others : "others"
-  preferential-price: "Preferential Price"
+  sausages : "Sausages"
+  hams : "Hams"
+  bacons : "Bacons"
+  others : "Others"
+  preferential-price: "Discount Price"
   original-price : "Original Price"
   introduction : "Introduction"
   specification : "Specification"
-  add-shoppingbasket : "Add to Shopping Basket"
+  add-shoppingbasket : "Add to Shopping Cart"
   orders : "My Orders"
   details : "View Details  "
   amount : "Amount"
   total-price : "Total Price"
-  create-order : "To create an order"
+  create-order : "Check Out"
   save: "save"
 
     ###订单生成页面
@@ -103,15 +103,15 @@ en:
   invoice : "Details of Invoice"
   details_invoice : "please enter the invoice title"
   order_notice : "Dear！"
-  order_notice_one : "! Up to ￥350, the transportation fee will be  free."
-  order_notice_two : "And Cold-Chain Delivery is applied to make sure the products fresh."
-  order_notice_three : "You have shopping full 350 free shipping"
+  order_notice_one : "! Up to ￥350"
+  order_notice_two : "The delivery fee will be free. And cooled delivery to your door.."
+  order_notice_three : "A free delivery service  for your order!"
   order_notice_four : "You have not selected merchandise。"
   order_details_price : "Details of amount"
-  order_goods_price : "Total price for products "
-  express_price : "Transportation Fee"
-  overall : "Overall"
-  confirm_order : "Confirm the order"
+  order_goods_price : "Subtotal "
+  express_price : "Delivery Fee"
+  overall : "Total"
+  confirm_order : "Complete The Order"
 
    ###订单详细页面
   order_details : "Details of orders"
@@ -128,7 +128,7 @@ en:
 
 
  ###订单提交成功页面
-  orders_success_get : "Order has been submitted"
+  orders_success_get : "You Order Has Been Successfully Placed!"
   orders_no_pay : "Order is not paid yet, you can still change the payment method below and  complete this order"
   orders_pay_price : "Total Payment"
   order_status_no : " Be Not paid"

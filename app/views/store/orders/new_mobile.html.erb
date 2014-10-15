@@ -86,7 +86,7 @@
 
       </div>  </a>
     </div>
-
+     <div>
 
     <%=form_for :order,:url=>"#{orders_path}?platform=mobile",:html=>{ :class=>"am-form",:id=>"order_form" } do |f|%>
         <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
@@ -169,21 +169,25 @@
           <div class="am-panel-bd">
             <span class="bg-border"><span class="icon"></span></span>
             <p>&nbsp;<%= I18n.t "order_goods_price"%>：<span class="fr  " id="order_amount" data-amount = "<%=@cart_total%>">¥<%=@cart_total%>&nbsp;</span></p>
-            <p>&nbsp;<%= I18n.t "express_price"%>：  <%if @cart_total >=350 %>
-                  <span class="fr">¥0&nbsp;</span></p>
+            <p>&nbsp;<%= I18n.t "express_price"%>：
 
-                  <p>&nbsp;<%= I18n.t "overall"%>：<span class="fr" style="color: red">¥<%=@cart_total_final-@cart_freight%>&nbsp;</span></p>
-                  <%else%>
+
 
                   <span class="fr">¥<%=@cart_freight%>&nbsp;</span></p>
             <p>&nbsp;<%= I18n.t "overall"%>：<span class="fr" style="color: red">¥<%=@cart_total_final%>&nbsp;</span></p>
-                  <%end%>
+
             <input type="hidden" name="payable" value="">
             <span class="bg-border2"></span>
           </div>
         </div>
+        <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
+            <% if line_item.good.cat_id ==Ecstore::GoodCat.find_by_cat_name("大闸蟹").cat_id  %>
+               <span>aaa</span>
+                <%end%>
+            <%end%>
 
-         <input type="submit" class="am-btn am-btn-warning am-btn-block" value="<%=I18n.t 'confirm_order'%>">
+
+            <input type="submit" class="am-btn am-btn-warning am-btn-block" value="<%=I18n.t 'confirm_order'%>">
         <%#=f.submit I18n.t 'confirm_order',:class=>"am-btn am-btn-warning am-btn-block"%>
 
 

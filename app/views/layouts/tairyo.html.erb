@@ -4,12 +4,25 @@
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <title><%=@supplier.name%>微商城</title>
+  <title>微商城</title>
   <meta content="" name="keywords">
   <meta content="" name="description">
-  <%=stylesheet_link_tag "mobile/layout.min"%>
-  <%=stylesheet_link_tag "mobile/common.min"%>
-  <%= javascript_include_tag "mobile/jquery-2.1.0.min" %>
+  <%= stylesheet_link_tag "amui/amazeui.css"%>
+  <%= stylesheet_link_tag "amui/amazeui.min.css"%>
+  <%= stylesheet_link_tag "amui/amazeui.widgets.css"%>
+  <%= stylesheet_link_tag "amui/amazeui.widgets.min.css"%>
+
+
+  <%= javascript_include_tag "amui/amazeui.widgets.helper.js"%>
+  <%= javascript_include_tag "amui/amazeui.widgets.helper.min.js"%>
+  <%= javascript_include_tag "amui/zepto.min.js"%>
+
+  <%= javascript_include_tag "amui/amazeui.js" %>
+  <%= javascript_include_tag "amui/amazeui.min.js" %>
+  <%= javascript_include_tag "amui/amazeui.widgets.js"%>
+  <%= javascript_include_tag "amui/amazeui.widgets.min.js"%>
+
+  <%= javascript_include_tag "amui/handlebars.min.js"%>
   <%= csrf_meta_tag %>
   <title><%= I18n.t 'base.title' %></title>
   <script>
@@ -17,11 +30,7 @@
   </script>
 </head>
 <body>
-<% form_tag '', :method => 'GET', do %>
-    <%= select_tag 'locale', options_for_select(LANGUAGES, I18n.locale),
-                   :onchange => 'this.form.submit()' %>
-    <%= submit_tag 'submit' %>
-<% end %>
+
 
 <%= yield %>
 
@@ -130,10 +139,10 @@
     var data = {"img":null,"url":current_url,"title":"关注我们，转发朋友，赚佣金啰！<%#=@wechat_share_title%>","desc":null};
     wechatShare(data);
 </script>
-<%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>
-<%= javascript_include_tag "mobile/jquery.vs.mobile-1.0.0.min" %>
-<%= javascript_include_tag "mobile/jquery.vs.mars_wap" %>
-<script src="/assets/mobile/sm.js" type="text/javascript" charset="utf-8"></script>
+<%#= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>
+<%#= javascript_include_tag "mobile/jquery.vs.mobile-1.0.0.min" %>
+<%#= javascript_include_tag "mobile/jquery.vs.mars_wap" %>
+<!--<script src="/assets/mobile/sm.js" type="text/javascript" charset="utf-8"></script>-->
 <script type="text/javascript">
     var _smq = _smq || [];
     _smq.push(['_setAccount', '63e2363', new Date()]);

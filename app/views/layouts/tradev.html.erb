@@ -48,9 +48,7 @@
       .am-navbar-default .am-navbar-nav {
           background-color: #ff0e1a;
       }
-      .hiden{
-          display: none;
-      }
+
   </style>
 </head>
 <body>
@@ -59,7 +57,7 @@
 
   <div class="head_right fr" style="display:none"><a href="brand-search.html"><span class="h_search"></span></a></div>
 </header>
-<form class="am-form change_lange " style="display: none">
+<form class="am-form change_lange " >
   <%= select_tag 'locale', options_for_select(LANGUAGES, I18n.locale)%>
 </form>
 
@@ -99,7 +97,9 @@
         </a>
       </li>
       <li class="am-navbar-labels am-navbar-more " >
-        <a id="showall" ><span class="am-icon-angle-up"></span><span class="am-navbar-label">语言切换</span></a>
+        <a id="showall" ><span class="am-navbar-label"><%=I18n.locale%>
+
+        </span></a>
 
       </li>
 
@@ -346,12 +346,45 @@
 
             $('#aaa').toggle();
 
-        })  })
+        })
 
     $("#showall").click(function(){
+        var pathname = document.location.pathname;
+        var url=document.location.href;
 
 
-        $(".change_lange").toggle();
+        var langeval=$(this).text();
+        if (langeval =="en") {
+
+         $("#locale ").val("zh_cn");
+            var selectval= $("#locale").find("option:selected").val();
+            if (pathname=="/mgallery") {
+                ne="&locale="+selectval;
+                var current_url=url+ne;
+              }
+            else{
+            ne="?locale="+selectval;  var current_url=pathname+ne; }
+
+
+            window.location.href=current_url;
+           }
+        else
+        {
+
+            $("#locale ").val("en");
+            var selectvals= $("#locale").find("option:selected").val();
+            if (pathname=="/mgallery") {
+                ne="&locale="+selectvals;
+                var current_urls=url+ne;
+            }
+            else{
+                ne="?locale="+selectvals;    var current_urls=pathname+ne; }
+              window.location.href=current_urls;
+
+        }
+
+
+
 
     })
     $("#locale").change(function(){
@@ -359,8 +392,10 @@
         if (pathname=="/mgallery") {
             var url=document.location.href
             var selectval= $(this).find("option:selected").val();
+
             ne="&locale="+selectval;
             var current_url=url+ne;
+
             window.location.href=current_url;
 
 
@@ -370,6 +405,6 @@
         }
     })
 
-
+    })
 </script>
 </body></html>
