@@ -117,11 +117,11 @@ en:
   order_details : "Details of orders"
   product_price : "ProductPrice"
   product_amount : "ProductAmount"
-  order_total_price: "TotalPrice"
+  order_total_price: "Subtotal"
   order_num: "Order No."
   order_creat_time : "OrderingTime"
   order_status : " OrderStatus"
-  all_of_order: "Total amount of order"
+  all_of_order: "Total"
   success_pay : "Paid Successfully"
   no_pay : "ToPay"
 
