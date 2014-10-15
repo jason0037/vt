@@ -59,9 +59,6 @@
 
   <div class="head_right fr" style="display:none"><a href="brand-search.html"><span class="h_search"></span></a></div>
 </header>
-<form class="am-form change_lange " >
-  <%= select_tag 'locale', options_for_select(LANGUAGES, I18n.locale)%>
-</form>
 
 <%= yield %>
 
@@ -99,10 +96,13 @@
         </a>
       </li>
       <li class="am-navbar-labels am-navbar-more " >
-        <a id="showall" ><span class="am-navbar-label">
-          <%=I18n.locale%>
-
-         </span></a>
+         <a id="showall" >
+               <%if  I18n.locale.to_s=="zh_cn"%>
+            <span id="lange" class="am-navbar-label">English</span>
+           <%elsif  I18n.locale.to_s =="en"%>
+               <span id="lange" class="am-navbar-label">中文</span>
+               <%end%>
+            </a>
 
       </li>
 
@@ -355,35 +355,31 @@
         var pathname = document.location.pathname;
         var url=document.location.href;
 
-        if (pathname=="/orders/index_mobile"){
-            alert("翻译有问题，我们正在处理")
-            return false;
-        }
 
-        var langeval=$(this).text();
-        if (langeval=="en") {
 
-          $("#locale").val("zh_cn");
-            if (pathname=="/mgallery") {
-                ne="&locale=zh_cn";
+        var langeval=$("#lange").html();
+
+        if (langeval=="English") {
+
+
+            if (pathname=="/mgallery" || pathname=="/vshop/<%=@supplier.id%>/user" ||pathname=="/orders/index_mobile") {
+                ne="&locale=en";
                 var current_url=url+ne;
+                $("#lange").html("中文");
                 window.location.href=current_url
               }
             else{
-             ne="?locale=zh_cn";  var current_url=pathname+ne;  window.location.href=current_url }
+             ne="?locale=en";  var current_url=pathname+ne;  window.location.href=current_url }
            }
         else
         {
-
-            $("#locale ").val("en");
-
-            if (pathname=="/mgallery") {
-                ne="&locale=en";
+          if (pathname=="/mgallery" || pathname=="/vshop/<%=@supplier.id%>/user" ||pathname=="/orders/index_mobile") {
+                ne="&locale=zh_cn";
                 var current_url=url+ne;
                 window.location.href=current_url;
             }
             else{
-                ne="?locale=en";
+                ne="?locale=zh_cn";
                 var current_url=url+ne;
                 $(this).addClass("hidden");
                 window.location.href=current_url;
