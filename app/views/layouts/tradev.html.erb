@@ -352,40 +352,38 @@
         })
 
     $("#showall").click(function(){
-        var pathname = document.location.pathname;
-        var url=document.location.href;
+        pathname = document.location.pathname;
+        url=document.location.href;
+        serach =document.location.search;
+         host=document.location.host;
 
-
-
-        var langeval=$("#lange").html();
+     var langeval=$("#lange").html();
 
         if (langeval=="English") {
 
 
-            if (pathname=="/mgallery" || pathname=="/vshop/<%=@supplier.id%>/user" ||pathname=="/orders/index_mobile") {
-                ne="&locale=en";
+            if (pathname=="/mgallery" || pathname=="/vshop/<%=@supplier.id%>/user" ||pathname=="/orders/index_mobile" ||pathname=="/member_addrs"|| pathname=="/share"||pathname=="/commissions/bank_info") {
+                var ne="&locale=en";
                 var current_url=url+ne;
-                $("#lange").html("中文");
-                window.location.href=current_url
               }
             else{
-             ne="?locale=en";  var current_url=pathname+ne;  window.location.href=current_url }
-           }
+                var ne="?locale=en";  var current_url=pathname+ne;  }
+                 }
         else
         {
-          if (pathname=="/mgallery" || pathname=="/vshop/<%=@supplier.id%>/user" ||pathname=="/orders/index_mobile") {
-                ne="&locale=zh_cn";
+          if (pathname=="/mgallery" || pathname=="/vshop/<%=@supplier.id%>/user" ||pathname=="/orders/index_mobile" ||pathname=="/member_addrs"|| pathname=="/share"||pathname=="/commissions/bank_info") {
+              var  ne="&locale=zh_cn";
                 var current_url=url+ne;
-                window.location.href=current_url;
-            }
+             }
             else{
-                ne="?locale=zh_cn";
+              var  ne="?locale=zh_cn";
                 var current_url=url+ne;
                 $(this).addClass("hidden");
-                window.location.href=current_url;
-           }
-         }
 
+           }
+
+         }
+        window.location.href=current_url;
 
     })
     })
