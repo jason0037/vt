@@ -6,7 +6,7 @@ en:
 
 
 
-  address: "Delivery  Address"
+  address: "DeliveryAddress"
 
 
 
@@ -22,23 +22,23 @@ en:
   shopping-basket: "My Shopping Basket"
   commission: "Commission"
   mycommission : "My Commission"
-  commission_account: "Bank  Account "
-  total_commission : "Total Commission"
-  withdrawn_commission : "Withdrawn Commission"
-  pending_commission : "Pending Commission"
-  latest_commission : "Latest Commission"
+  commission_account: "BankAccount "
+  total_commission : "TotalCommission"
+  withdrawn_commission : "WithdrawnCommission"
+  pending_commission : "PendingCommission"
+  latest_commission : "LatestCommission"
   what_commission : "What’s Commission?"
   earn_commission : "How to earn Commission?"
   get_commission : "How to withdraw Commission?"
-  name : "Your Name"
+  name : "YourName"
   gender: "Gender"
-  bank—information : "Bank Information"
-  bank_name : "Bank Name"
+  bank—information : "BankInformation"
+  bank_name : "BankName"
   branch_name : "The Branch Name"
-  bank_account : "Account Number"
+  bank_account : "AccountNumber"
   notification : "Contact for notification"
   email :   "Email"
-  m_phone: "Mobile Phone"
+  m_phone: "MobilePhone"
   tel: " Telephone"
   express_code : "Postcode"
 
@@ -47,8 +47,8 @@ en:
 
 
      ###地址信息
-  address: "Delivery  Address"
-  delivery_addr : "Delivery Address"
+  address: "DeliveryAddress"
+  delivery_addr : "DeliveryAddress"
   consignee  : "Consignee"
   region  : "Region"
   default : "Default"
@@ -65,7 +65,7 @@ en:
   please : "Please"
   choose : "Choose"
   confirm : "Confirm"
-  address_detail: "Details Address "
+  address_detail: "DetailsAddress "
   male : "Male"
   female : "Female"
 
@@ -73,21 +73,21 @@ en:
   logout: "Logout"
   login: "Login"
   signup: "Signup"
-  personal_center: "Personal Center"
+  personal_center: "PersonalCenter"
   sausages : "Sausages"
   hams : "Hams"
   bacons : "Bacons"
   others : "Others"
-  preferential-price: "Discount Price"
-  original-price : "Original Price"
+  preferential-price: "DiscountPrice"
+  original-price : "OriginalPrice"
   introduction : "Introduction"
   specification : "Specification"
-  add-shoppingbasket : "Add to Shopping Cart"
-  orders : "My Orders"
-  details : "View Details  "
+  add-shoppingbasket : "Add toCart"
+  orders : "MyOrders"
+  details : "ViewDetails  "
   amount : "Amount"
-  total-price : "Total Price"
-  create-order : "Check Out"
+  total-price : "TotalPrice"
+  create-order : "CheckOut"
   save: "save"
 
     ###订单生成页面
@@ -115,31 +115,31 @@ en:
 
    ###订单详细页面
   order_details : "Details of orders"
-  product_price : "Product Price"
-  product_amount : "Product Amount"
-  order_total_price: "Total Price"
+  product_price : "ProductPrice"
+  product_amount : "ProductAmount"
+  order_total_price: "TotalPrice"
   order_num: "Order No."
-  order_creat_time : "Ordering Time"
-  order_status : " Order Status"
+  order_creat_time : "OrderingTime"
+  order_status : " OrderStatus"
   all_of_order: "Total amount of order"
-  success_pay : "Paid successfully"
-  no_pay : "To Pay"
+  success_pay : "Paid Successfully"
+  no_pay : "ToPay"
 
 
 
  ###订单提交成功页面
   orders_success_get : "You Order Has Been Successfully Placed!"
   orders_no_pay : "Order is not paid yet, you can still change the payment method below and  complete this order"
-  orders_pay_price : "Total Payment"
+  orders_pay_price : "TotalPayment"
   order_status_no : " Be Not paid"
-  order_status_yes : "Already paid"
+  order_status_yes : "AlreadyPaid"
   change_pay : "Change"
   pay_options : "Payment Methods"
   pay_showone : "After paying successfully，you can "
-  pay_showtwo : " View Details"
+  pay_showtwo : " ViewDetails"
 
   pay_change_detail : "Change the payment method to:"
-  IPS_Pay : "IPS Pay"
+  IPS_Pay : "IPSPay"
    #COD  : "货到付款"
   #COD_detail : "点击查询货到付款配送区域"
 
