@@ -48,7 +48,9 @@
       .am-navbar-default .am-navbar-nav {
           background-color: #ff0e1a;
       }
-
+    .hidden{
+        display: none;
+    }
   </style>
 </head>
 <body>
@@ -97,9 +99,10 @@
         </a>
       </li>
       <li class="am-navbar-labels am-navbar-more " >
-        <a id="showall" ><span class="am-navbar-label"><%=I18n.locale%>
+        <a id="showall" ><span class="am-navbar-label">
+          <%=I18n.locale%>
 
-        </span></a>
+         </span></a>
 
       </li>
 
@@ -352,59 +355,49 @@
         var pathname = document.location.pathname;
         var url=document.location.href;
 
+        if (pathname=="/orders/index_mobile"){
+            alert("翻译有问题，我们正在处理")
+            return false;
+        }
 
         var langeval=$(this).text();
-        if (langeval =="en") {
+        if (langeval="en") {
 
          $("#locale ").val("zh_cn");
             var selectval= $("#locale").find("option:selected").val();
             if (pathname=="/mgallery") {
-                ne="&locale="+selectval;
+                ne="&locale=zh_cn";
                 var current_url=url+ne;
+                $(this).addClass("hidden");
+                window.location.href=current_url
               }
             else{
-            ne="?locale="+selectval;  var current_url=pathname+ne; }
+            ne="&locale=zh_cn";  var current_url=pathname+ne;  window.location.href=current_url }
 
-
+            $(this).addClass("hidden");
             window.location.href=current_url;
            }
         else
         {
 
             $("#locale ").val("en");
-            var selectvals= $("#locale").find("option:selected").val();
+            var selectval= $("#locale").find("option:selected").val();
             if (pathname=="/mgallery") {
-                ne="&locale="+selectvals;
-                var current_urls=url+ne;
+                ne="&locale=en";
+                var current_url=url+ne;
+                window.location.href=current_url;
             }
             else{
-                ne="?locale="+selectvals;    var current_urls=pathname+ne; }
-              window.location.href=current_urls;
-
-        }
-
-
+                ne="?locale=en";
+                var current_url=url+ne;
+                $(this).addClass("hidden");
+                window.location.href=current_url;
+           }
+         }
 
 
     })
-    $("#locale").change(function(){
-        var pathname = document.location.pathname;
-        if (pathname=="/mgallery") {
-            var url=document.location.href
-            var selectval= $(this).find("option:selected").val();
-
-            ne="&locale="+selectval;
-            var current_url=url+ne;
-
-            window.location.href=current_url;
-
-
-        }
-        else{
-            this.form.submit();
-        }
     })
 
-    })
 </script>
 </body></html>
