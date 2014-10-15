@@ -124,8 +124,8 @@ en:
   all_of_order: "Total"
   success_pay : "Paid Successfully"
   no_pay : "ToPay"
-
-
+  Currently_empty : "Your cart is currently empty."
+  continue_shopping : "Continue Shopping"
 
  ###订单提交成功页面
   orders_success_get : "You Order Has Been Successfully Placed!"
