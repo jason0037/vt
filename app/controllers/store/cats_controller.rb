@@ -22,6 +22,13 @@ class Store::CatsController < ApplicationController
         render :layout=>@supplier.layout
 
 end
+
+      def goods_list
+
+
+
+      end
+
                         #金芭浪团购
       def  show_group
         name= params[:name]

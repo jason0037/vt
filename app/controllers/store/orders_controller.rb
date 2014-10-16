@@ -168,11 +168,13 @@ class Store::OrdersController < ApplicationController
   def create
     addr = Ecstore::MemberAddr.find_by_addr_id(params[:member_addr])
     hour=params["hour"];
-    ship_day= params[:order][:ship_day]
-    if ship_day!=("任意日期")
+    if params[:order][:ship_day]
+       ship_day= params[:order][:ship_day]
+       if ship_day!=("任意日期")
 
-      ship_riqi=Time.parse(ship_day).to_i;       ###大渔饭店订餐日期
-    end
+       ship_riqi=Time.parse(ship_day).to_i;       ###大渔饭店订餐日期
+       end
+     end
     return_url=params[:return_url]
     platform=params["platform"];
     ["name","area","addr","zip","tel","mobile"].each do |key,val|
@@ -368,6 +370,33 @@ class Store::OrdersController < ApplicationController
 
     render :layout => "manco_new"
   end
+
+  def addr_detail
+    @addr = Ecstore::MemberAddr.find(params[:id])
+   supplier_id=params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(supplier_id)
+    @method = :put
+
+
+
+    render :layout=>@supplier.layout
+
+
+  end
+
+ def edit_addr
+   @addr = Ecstore::MemberAddr.find(params[:id])
+   if @addr.update_attributes(params[:addr])
+      respond_to do |format|
+       format.js
+       format.html { redirect_to "/orders/new_mobile?platform=mobile" }
+     end
+   else
+     render 'error.js' #, status: :unprocessable_entity
+   end
+ end
+
+
 
   def new_mobile
 
@@ -620,6 +649,8 @@ class Store::OrdersController < ApplicationController
     supplier_id=params[:supplier_id]
 
     @order =Ecstore::Order.find_by_order_id(params[:id])
+     @delivery=Ecstore::Delivery.find_by_order_id(params[:id])
+
 
 
 

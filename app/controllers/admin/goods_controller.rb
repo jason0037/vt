@@ -40,12 +40,13 @@ module Admin
 
           workbook.add_worksheet(:name => "Product") do |sheet|
 
-          sheet.add_row ['供应商',"类型","商品编号","规格货号","分类","品牌","图片","商品名称","上架", "规格","库存" ,fields[0],fields[1],fields[2],fields[3],fields[4],fields[5]],
+          sheet.add_row ['供应商',"类型","商品编号","规格货号","分类","品牌","图片","商品名称","上架", "规格","商品描述","库存",fields[0],fields[1],fields[2],fields[3],fields[4],fields[5]],
                         :style=>head_cell
 
             row_count=0
 
             goods.each do |good|
+
               supplier=good.supplier_id&&good.supplier.name
               goodsType=good.good_type&&good.good_type.name
               goodsBn=good.bn.to_s
@@ -53,7 +54,8 @@ module Admin
               goodsBrand=good.brand&&good.brand.brand_name
               goodsMt =good.marketable=="true" ? "Y" : "N"
               goodsSpec =good.specs.order("sdb_b2c_specification.spec_id asc").pluck(:spec_name).join("|")
-              sheet.add_row [supplier,goodsType,goodsBn.strip,nil,goodsCat.strip,goodsBrand,nil,good.name.strip,goodsMt,goodsSpec],:style=>goods_cell,:height=> 40
+              goodsDesc=good.desc
+              sheet.add_row [supplier,goodsType,goodsBn.strip,nil,goodsCat.strip,goodsBrand,nil,good.name.strip,goodsMt,goodsSpec,goodsDesc],:style=>goods_cell,:height=> 40
 
               row_count +=1
 
@@ -97,7 +99,7 @@ module Admin
                     v.push(product.mktprice)
                   end
                 end
-                sheet.add_row [nil,nil,productBn,nil,nil,nil,nil,product.name.strip, productMt,spec_values,product.store,v[0],v[1],v[2],v[3],v[4],v[5]],:style=>product_cell
+                sheet.add_row [nil,nil,productBn,nil,nil,nil,nil,product.name.strip, productMt,spec_values,nil,product.store,v[0],v[1],v[2],v[3],v[4],v[5]],:style=>product_cell
               end
 
               sheet.column_widths nil, nil,nil,nil,nil,10

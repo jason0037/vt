@@ -1,41 +1,74 @@
+
+<style>
+    .change_lange,form{
+        display: none;
+    }
+    .block{
+        display: block;
+    }
+    .icon-arr {
+        position: absolute;
+
+        right: 10px;
+        width: 10px;
+        height: 15px;
+        background: url(/assets/icon_order.png) 0 0 no-repeat;
+        background-size: 100px 100px;
+    }
+</style>
+
 <%=javascript_include_tag "area_seletor"%>
 <%=javascript_include_tag "patch/member_addrs"%>
-<div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
-  <div class="am-panel-hd" style="text-align: center"><%= I18n.t "new_addr"%></div>
+
+
+
+<div class="am-panel am-panel-warning" style="text-align: center">
+  <div class="am-panel-hd"><%= I18n.t "address"%></div>
 </div>
+<div class="am-panel am-panel-default addr">
+  <%if @addrs && @addrs.size > 0%>
+      <%@addrs.each  do |addr|%>
+          <a id="addressLink" href="addr_detail?platform=mobile&supplier_id=<%=@supplier.id%>&id=<%=addr.id%>">
+            <div class="am-panel-bd">
+              <span class="text" style="font-size: 20px"><%=addr.name%>  </span>
+              <br/>
+              <span class="text2"><%=addr.display_area%></span>
+              <span class="icon-arr"></span>
+            </div>  </a>
+      <%end%>
+
+      <input id ="newaddr" class="am-btn am-btn-warning am-btn-block" value="<%= I18n.t "use_new_addr"%>"/>
 
 
-<div class="connerdiv">
 
-<div style="display:none">
-<%if @addrs.size>0%>
-    <%@addrs.each_with_index do |addr,index|%>
-        <%if @def_addr == addr%>
-            <label class="radio active">
-              <%=radio_button_tag "member_addr", addr.addr_id,:checked=>true%>
-              <span class="addr-line"><%=addr.addr_line%></span>
-              <%=link_to I18n.t 'modify',edit_member_addr_path(addr),:remote=>true,:class=>"update-link"%>
-            </label>
-        <%else%>
-            <label class="radio">
-              <%=radio_button_tag "member_addr", addr.addr_id%>
-              <span class="addr-line"><%=addr.addr_line%></span>
-              <%=link_to I18n.t 'modify',edit_member_addr_path(addr), :remote=>true, :class=>"update-link"%>
-            </label>
-        <%end%>
-    <%end%>
+      </div>
+  <%else%>
+      <div class="am-panel-bd">
+        <span >您还没有收货地址</span>
+      </div>
+  <%end%>
 
-    <label class="radio">
-      <%=radio_button_tag "member_addr", "new"%>
-      <span><%= I18n.t "use_new_addr"%>+</span>
-    </label>
-<%end%>
+  </div>
 
-</div>
+
+
+
+
+
 
 <%=render :partial=>"patch/member_addrs/form_mobile",:locals=>{ :display=>( @addrs.size == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
- </div>
+
 <script>
+    $(document).ready(function(){
+        $("#newaddr").bind("click",function(){
+            if( $("form").css("display")=="none"){
+                $("form").addClass("block")
+                $(".addr").addClass("change_lange") ;
+            }
+        })
+    })
+
+
     /*  $("#addr_form").removeClass("hide")
 
     $(".addr-list").on "change","input[type='radio']", ->

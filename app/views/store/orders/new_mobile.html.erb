@@ -70,9 +70,9 @@
 
 <%if @line_items.size > 0%>
 
-    <div class="am-panel am-panel-default">
+    <div class="am-panel am-panel-warning">
       <div class="am-panel-hd"><%=I18n.t "details_consignee"%></div>
-      <a id="addressLink" href="/orders/new_mobile_addr?supplier_id=<%=@supplier.id%>">
+      <a id="addressLink" href="/orders/new_mobile_addr?platform=mobile&supplier_id=78">
       <div class="am-panel-bd">
 
 
@@ -91,7 +91,7 @@
     <%=form_for :order,:url=>"#{orders_path}?platform=mobile",:html=>{ :class=>"am-form",:id=>"order_form" } do |f|%>
         <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
 
-        <div class="am-panel am-panel-default" style="display: none" data-collapse="true" data-style="arrow">
+        <div class="am-panel am-panel-warning" style="display: none" data-collapse="true" data-style="arrow">
           <div class="am-panel-hd"><%= I18n.t "delivery_options"%></div>
           <div class="am-panel-bd">
             <div class="in_pay clearfix " style="display: none">
@@ -107,7 +107,7 @@
 
           </div>  </div>
 
-        <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
           <div class="am-panel-hd"><%= I18n.t "delivery_options"%></div>
           <div class="am-panel-bd">
 
@@ -126,8 +126,8 @@
           </div>
         </div>
 
-        <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
-          <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
+          <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
             <div class="am-panel-hd"><%= I18n.t "pay_options"%></div>
             <div class="am-panel-bd">
               <%if @user.advance>0 && @user.advance < @cart_total%>
@@ -146,7 +146,7 @@
           </div>
         </div>
 
-        <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
           <div class="am-panel-hd"><%= I18n.t "invoice"%></div>
           <div class="am-panel-bd">
             <input class="text_input w100" id="order_tax_company" name="order[tax_company]" placeholder="<%=I18n.t "details_invoice"%>" size="30" type="text">
@@ -154,7 +154,7 @@
           </div>
         </div>
         <%if @supplier.id==78 %>
-        <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
           <div class="am-panel-hd"><%= I18n.t "order_notice"%>   <span style="color: #ff0000"><%= I18n.t "order_notice_one"%></span> <br/>
 
               <span><%= I18n.t "order_notice_two"%></span>
@@ -164,7 +164,7 @@
         </div>
         <%end%>
 
-        <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
           <div class="am-panel-hd"><%= I18n.t "order_details_price"%></div>
           <div class="am-panel-bd">
             <span class="bg-border"><span class="icon"></span></span>

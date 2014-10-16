@@ -89,6 +89,8 @@ class Store::GoodsController < ApplicationController
 
   end
 
+
+
  def mproduct
    if params[:id]=="78"
 

@@ -351,6 +351,7 @@ end
       get 'select_gifts',:on=>:collection
       put 'batch',:on=>:collection
       get 'select_all',:on=>:collection
+
       get :toggle_future,:on=>:member
       get :toggle_agent,:on=>:member
       get :toggle_sell,:on=>:member
@@ -542,6 +543,7 @@ end
 
     get 'vgroup'=>"cats#show_group",:as=>"cats",:controller=>"cats"  #金芭浪饭店团购
     get 'mgallery' =>"cats#show_mobile", :as=>"cats",:controller=>"cats"
+    get 'goods_list'=>"cats#goods_list" ,:as=>"cats", :controller=>"goods"
     resources :goods,  :as=>"orders", :controller=>"orders" do
       member do
         get :goods
@@ -582,6 +584,9 @@ end
         get 'index_mobile'
         get 'share_order'   ###推荐订单
         get 'mobile_show'
+        get 'addr_detail'
+        get 'new_mobile_addr'
+        post 'edit_addr'
 
       end
     end

@@ -1,0 +1,93 @@
+
+<style type="text/css">
+    #province,#city,#district{
+        width: 30%;
+    }
+    .change_lange{
+        display: none;
+    }
+</style>
+<%=javascript_include_tag "area_seletor"%>
+<%=javascript_include_tag "patch/member_addrs"%>
+<%=form_for :addr, :url=>  "edit_addr", :html=>{ :class=> " form-horizontal" } do |f|%>
+    <input type="hidden" name="platform" value="<%=params[:platform]%>">
+    <input type="hidden" name="id" value="<%=@addr.id%>">
+    <input name="addr[def_addr]" type="hidden" value="1">
+    <div class="new-addr <%='hide' unless display==true%>" id="addr_form">
+      <div class="am-panel am-panel-default">
+
+        <div class="am-panel am-panel-default">
+
+          <div class="am-input-group">
+            <span class="am-input-group-label"><%= I18n.t "name"%></span>
+            <input class="am-form-field" id="addr_name" name="addr[name]" placeholder="<%=I18n.t "name"%>" value="<%=@addr.name%>" size="30" type="text">
+
+            <%#=f.text_field :name,  :class=>"am-form-field" ,:placeholder=>"收货人姓名"%>
+          </div>
+          <br/>
+          <div class="am-input-group">
+            <span class="am-input-group-label"><%= I18n.t "m_phone"%></span>
+            <input class="am-form-field" id="addr_mobile" name="addr[mobile]" placeholder="<%=I18n.t "m_phone"%>" value="<%=@addr.mobile%>" size="30" type="text">
+
+            <%#=f.text_field :mobile,  :class=>"am-form-field" ,:placeholder=>"手机"%>
+          </div>
+          <br/>
+          <div class="am-input-group">
+            <span class="am-input-group-label"><%= I18n.t "tel"%></span>
+            <input class="am-form-field" id="addr_tel" name="addr[tel]" placeholder="<%=I18n.t "tel"%>"  value="<%=@addr.tel%>" size="30" type="text">
+
+            <%#=f.text_field :tel,  :class=>"am-form-field" ,:placeholder=>"固定电话"%>
+          </div>
+          <br/>
+          <div class="am-input-group">
+            <span class="am-input-group-label"><%= I18n.t "express_code"%></span>
+            <input class="am-form-field" id="addr_zip" name="addr[zip]" placeholder="<%=I18n.t "express_code"%>" value="<%=@addr.zip%>" size="30" type="text">
+            <%#=f.text_field :zip,  :class=>"am-form-field" ,:placeholder=>"邮编"%>
+          </div>
+          <br/>
+          <div class="am-panel-hd">
+            <label for="addr"><%=I18n.t "address"%></label>
+            <%#=f.label :addr, "收货地址：".html_safe%></div>
+          <div class="am-panel-bd">
+            <%=f.text_field :addr,:class=>"span5", :id=>"addr",:class=>"am-form-field"%>
+            <span class="help-inline error"></span>
+          </div>
+        </div>
+
+        <div class="am-panel-hd">
+          <label for="addr_area"><%=I18n.t "area"%></label>
+          <%#=f.label :area, "收货地区：".html_safe%></div>
+        <div class="am-panel-bd">
+          <%=f.select :province,Ecstore::Region.provinces.collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择省" },{ :onchange=>"selectProvince(this,'#city','#district');",:id=>"province" }%>
+          <%if @addr&&@addr.city%>
+              <%=f.select :city,Ecstore::Region.cities_of(@addr.province).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择市"},{ :onchange=>"selectCity(this,'#district');",:id=>"city" }%>
+          <%else%>
+              <%=f.select :city, {}, { :include_blank=>"请选择市" }, { :onchange=>"selectCity(this,'#district');",:id=>"city" }%>
+          <%end%>
+
+          <%unless @addr&&@addr.new_record?%>
+              <%=f.select :district,Ecstore::Region.districts_of(@addr&&@addr.city).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择区/县" },{ :onchange=>"selectDistrict(this);",:id=>"district",:style=>"#{'display:none;' if @addr.district.blank? }" } %>
+          <%else%>
+              <%=f.select :district, {}, { :include_blank=>"请选择区/县" }, { :onchange=>"selectDistrict(this);",:id=>"district" }%>
+          <%end%>
+          <span class="help-inline error"></span>
+        </div>
+      </div>
+
+
+
+
+
+      <div class="control-group">
+        <div class="controls">
+          <%if @method == :put%>
+              <input type="submit" class="am-btn am-btn-warning am-btn-block" value="<%=I18n.t "modify"%>">
+              <%#=f.submit "修 改",:class=>"am-btn am-btn-warning am-btn-block" %>
+          <%else%>
+              <input type="submit" class="am-btn am-btn-warning am-btn-block" value="<%=I18n.t "confirm"%>">
+              <%#=f.submit "确认收货地址",:class=>"am-btn am-btn-warning am-btn-block" %>
+          <%end%>
+        </div>
+      </div>
+    </div>
+<%end%>

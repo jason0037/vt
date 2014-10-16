@@ -63,6 +63,7 @@ zh_cn:
   hams : "火腿"
   bacons : "培根"
   others : "其他"
+  crab : "螃蟹"
   preferential-price: "优惠价"
   original-price : "原价"
   introduction : "商品介绍"
@@ -130,7 +131,8 @@ zh_cn:
   #COD  : "货到付款"
  #COD_detail : "点击查询货到付款配送区域"
 
-
+  delivery_company : "快递公司"
+  tracking_num: "运单号："
 
   pay_over_detail: "正在跳转到微信支付...如果长时间没有反应，请"
 

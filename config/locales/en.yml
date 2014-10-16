@@ -12,7 +12,7 @@ en:
 
 
   h4_1: " A free delivery service within Shanghai for CNY350 or more, less than CNY350 a minimum charge of CNY35 is made"
-  h4_2: "Some areas will not be covered,please check before ordering."
+  h4_2: "Some areas will not be covered,please check carefully before ordering."
 
 
 
@@ -78,6 +78,7 @@ en:
   hams : "Hams"
   bacons : "Bacons"
   others : "Others"
+  crab : "Crab"
   preferential-price: "DiscountPrice"
   original-price : "OriginalPrice"
   introduction : "Introduction"
@@ -143,7 +144,8 @@ en:
    #COD  : "货到付款"
   #COD_detail : "点击查询货到付款配送区域"
 
-
+  delivery_company : "DeliveryCompany"
+  tracking_num: "Tracking No.："
 
   pay_over_detail: "Page is redirecting to WeChat payment… If there is no response for a long time, please"
 
