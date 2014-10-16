@@ -2,7 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  title: "MaoWei WeChat O2O direct sales Mall"
+  title: "TradeV WeChat O2O direct sales Mall"
 
 
 
@@ -19,7 +19,7 @@ en:
 
 
    ###佣金信息
-  shopping-basket: "My Shopping Basket"
+  shopping-basket: "My Shopping Cart"
   commission: "Commission"
   mycommission : "My Commission"
   commission_account: "BankAccount "
@@ -40,7 +40,7 @@ en:
   email :   "Email"
   m_phone: "MobilePhone"
   tel: " Telephone"
-  express_code : "Postcode"
+  express_code : "PostCode"
 
 
 
@@ -145,7 +145,7 @@ en:
 
 
 
-  pay_over_detail: "Page is redirecting to Wechat payment… If there is no response for a long time, please"
+  pay_over_detail: "Page is redirecting to WeChat payment… If there is no response for a long time, please"
 
   pay_over_click : "Click to PAY"
 
