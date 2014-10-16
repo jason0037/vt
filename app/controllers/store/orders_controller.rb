@@ -364,7 +364,7 @@ class Store::OrdersController < ApplicationController
     render :layout=>@supplier.layout
   end
 
-  def new_manco_addr    ###新曾起点地址
+  def new_manco_addr    ###新增起点地址
 
     render :layout => "manco_new"
   end
