@@ -9,6 +9,14 @@
     </div>
 
     <div class="control-group">
+      <%= f.label :freight, "运费", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :freight,:class=>"span4"%>
+         </div>
+    </div>
+
+
+    <div class="control-group">
       <%= f.label :name, "商品名称", :class => "control-label" %>
       <div class="controls">
       		<!-- <span class="plain"><%=@good.name%></span> -->
