@@ -16,28 +16,28 @@
 
         <div class="am-input-group">
           <span class="am-input-group-label"><%= I18n.t "name"%></span>
-          <input class="am-form-field" id="addr_name" name="addr[name]" placeholder="<%=I18n.t "name"%>" size="30" type="text">
+          <input class="am-form-field" id="addr_name" name="addr[name]" placeholder="<%=I18n.t "name"%>" value="<%=@addr.name%>" size="30" type="text">
 
           <%#=f.text_field :name,  :class=>"am-form-field" ,:placeholder=>"收货人姓名"%>
         </div>
         <br/>
         <div class="am-input-group">
           <span class="am-input-group-label"><%= I18n.t "m_phone"%></span>
-          <input class="am-form-field" id="addr_mobile" name="addr[mobile]" placeholder="<%=I18n.t "m_phone"%>" size="30" type="text">
+          <input class="am-form-field" id="addr_mobile" name="addr[mobile]" placeholder="<%=I18n.t "m_phone"%>" value="<%=@addr.mobile%>" size="30" type="text">
 
           <%#=f.text_field :mobile,  :class=>"am-form-field" ,:placeholder=>"手机"%>
         </div>
         <br/>
         <div class="am-input-group">
           <span class="am-input-group-label"><%= I18n.t "tel"%></span>
-          <input class="am-form-field" id="addr_tel" name="addr[tel]" placeholder="<%=I18n.t "tel"%>" size="30" type="text">
+          <input class="am-form-field" id="addr_tel" name="addr[tel]" placeholder="<%=I18n.t "tel"%>"  value="<%=@addr.tel%>" size="30" type="text">
 
           <%#=f.text_field :tel,  :class=>"am-form-field" ,:placeholder=>"固定电话"%>
         </div>
         <br/>
         <div class="am-input-group">
           <span class="am-input-group-label"><%= I18n.t "express_code"%></span>
-          <input class="am-form-field" id="addr_zip" name="addr[zip]" placeholder="<%=I18n.t "express_code"%>" size="30" type="text">
+          <input class="am-form-field" id="addr_zip" name="addr[zip]" placeholder="<%=I18n.t "express_code"%>" value="<%=@addr.zip%>" size="30" type="text">
           <%#=f.text_field :zip,  :class=>"am-form-field" ,:placeholder=>"邮编"%>
         </div>
         <br/>

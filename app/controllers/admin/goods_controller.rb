@@ -19,7 +19,7 @@ module Admin
         end
 
 
-        if params[:good][:select_all].to_i > 0
+        if params[:member][:select_all].to_i > 0
          #找出所有数据
           conditions = "goods_id in ("+params[:all_goods_ids]+")"
         else

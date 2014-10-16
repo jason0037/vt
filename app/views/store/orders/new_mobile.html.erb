@@ -41,9 +41,8 @@
         position: absolute;
         top: 40%;
         right: 10px;
-        width: 10px;
-        height: 15px;
-        background: url(/assets/icon_order.png) 0 0 no-repeat;
+
+
         background-size: 100px 100px;
     }
     .btn-radio {
@@ -82,7 +81,8 @@
           <br/>
 
           <span class="text2">&nbsp;&nbsp;<%=@def_addr.addr%></span>
-          <span class="icon-arr"></span>
+           <span class="icon-arr" >修改</span>
+
 
       </div>  </a>
     </div>
@@ -180,15 +180,10 @@
             <span class="bg-border2"></span>
           </div>
         </div>
-        <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
-            <% if line_item.good.cat_id ==Ecstore::GoodCat.find_by_cat_name("大闸蟹").cat_id  %>
-               <span>aaa</span>
-                <%end%>
-            <%end%>
+
 
 
             <input type="submit" class="am-btn am-btn-warning am-btn-block" value="<%=I18n.t 'confirm_order'%>">
-        <%#=f.submit I18n.t 'confirm_order',:class=>"am-btn am-btn-warning am-btn-block"%>
 
 
 
