@@ -199,7 +199,7 @@ login_name=Ecstore::Account.find(account_id)
 
     find_cart!
     if params[:platform]=='mancoexpress'
-      redirect_to "/cart/manco_express"
+      redirect_to "/cart/manco_express?supplier_id=#{suppliers_id}"
     else
       respond_to  do |format|
      format.js
@@ -208,7 +208,8 @@ login_name=Ecstore::Account.find(account_id)
     end
 
    def manco_express
-      render :layout => "manco_new"
+      @supplier=Ecstore::Supplier.find_by_id(params[:supplier_id])
+     render :layout => @supplier.layout
    end
 
    def manco_add        ###小黑板的购物

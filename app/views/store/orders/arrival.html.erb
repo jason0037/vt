@@ -17,23 +17,19 @@
 </style>
 <header id="am-topbar am-topbar-inverse">
 
-  <div class="am-panel am-panel-primary">
-    <div class="am-panel-hd">收货人地址</div>
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd"style="text-align: center">收货人地址</div>
 
   </div>
 
 </header>
 <div class="href">
-<a id="ahref" href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>" >新增收获人地址 </a>
+<a id="ahref" href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>&supplier_id=<%=@supplier.id%>" >新增收获人地址 </a>
 
          </div>
 
-
-
-
-
   <%= form_for :order, :url=>"ordersnew_manco",:method=>"POST",:html => {:class => "am-form"} do |f| %>
-
+     <input type="hidden" name="supplier_id" value="<%=@supplier.id %>">
     <%=hidden_field_tag "member_departure_id" , @member_departure_id %>
     <table class="am-table am-table-striped am-table-hover">
       <tr>
@@ -51,7 +47,7 @@
                 <td ><%=def_addr.name%></td>
                 <td ><%=def_addr.mobile%></td>
                 <td ><%=def_addr.addr%></td>
-                <td><input type="button"   data-url="/orders/destroyaddr" value="删除" class="am-btn am-btn-primary delete "></td>
+                <td><input type="button"   data-url="/orders/destroyaddr?supplier_id=<%=@supplier.id%>" value="删除" class="am-btn am-btn-primary delete "></td>
               </tr>
 
           <% end %>
@@ -59,7 +55,7 @@
 
 
     </table>
-    <input type="submit" class="am-btn am-btn-primary form-sure" value="确认" >
+    <input type="submit" class="am-btn am-btn-primary am-btn-block form-sure" value="确认" >
 <%end%>
 
 <%= javascript_include_tag "jquery", "jquery_ujs" %>

@@ -33,12 +33,17 @@
       <div class="am-col col-sm-4 am-list-thumb">
 
           <%order.order_items.each_with_index do |order_item,index|%>
+            <% unless @supplier.id.to_s=="98"%>
               <%
                  link_title = order_item.name
                  link_title = "赠品:#{link_title}" if order_item.item_type == 'gift'
               %>
               <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.good%>
+            <%else%>
+                <%=order_item.good.name%>
               <%end%>
+
+        <%end%>
 
       </div>
       <div class="am-col col-sm-8 am-list-main">

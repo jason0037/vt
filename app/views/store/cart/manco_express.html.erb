@@ -5,9 +5,7 @@
     .s_links,.footnav,.copyright{
         display: none;
     }
-    .clearfix .we{
-        float: left;
-    }
+
      .cart_orderlist_info{
        margin: 0;
 
@@ -19,34 +17,70 @@
     #quantity{
         width: 100px;
     }
-    input.textcenter {
-        text-align: center;
-        position: relative;
-        margin: 0 auto;
-        width: 40px;
-        border: solid 1px #ccc;
+.delete{
+         float: right;
+     }
+     input.textcenter {
+         text-align: center;
+         position: relative;
+         margin: 0 auto;
+         width: 40px;
+         border: solid 1px #ccc;
+     }
+    .change_lange{
+        display: none;
     }
-    .delete{
+    .bottomdiv {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #fff;
+        border: #ddd 1px solid;
+        border-top: #fff 1px solid;
+        z-index: 1000000;
+    }
+    .btn_sure {
+        box-shadow: 0 1px 1px rgba(0,0,0,.2);
+        color: #fff;
+        width: 150px;
         float: right;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c9b',endColorstr='#e61f80');
+        background: -ms-linear-gradient(top, #5378f3, #0e90d2);
+        background: -moz-linear-gradient(top, #5378f3, #0e90d2);
+        background: -webkit-gradient(linear,0 0,0 100%,from(#5378f3),to(#0e90d2));
+        border: #0e90d2 1px solid!important;
+        cursor: pointer;
     }
-</style>
-<header id="header" class="header clearfix">
+    .bottomdivsclearfix{
+        display: none;
+    }
+    .btn_cancel, .btn_ensure, .btn_gry, .btn_red, .btn_sure, .btn_unav, .btn_white, .btn_white_order {
+        font-weight: 400;
+        height: 35px;
+        text-align: center;
+        font-size: 16px;
+        line-height: 35px;
+        border-radius: 2px;
+        display: inline-block;
 
-  <div class="head_left fl"><a href="javascript:history.go(-1)"><span class="h_back"></span></a></div>
-  <span class="headtit">万家购物车</span>
-  <div class="head_right fr"><a href="/manco" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
-</header>
+    }
+    .am-tabs-warning{
+        display: none;
+    }
+
+</style>
+
 
 
 <div id="cart">
   <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
       <div class="cartdiv" id="line_<%=line_item.obj_ident%>">
-        <div class="cartlist clearfix">
+        <div class="cartlist clearfix" style="margin-left: 30px">
 
 
-          <div class="cartlistinner clearfix">
+          <div class="cartlistinner clearfix"  >
 
-            <div class="cart_orderlist_info">
+            <div class="cart_orderlist_info" >
 
 
               <div class="goods_Cnum clearfix" id="goods_Cnum">
@@ -59,11 +93,11 @@
 
             </div>
             物流线路:  <span class=""><em style="color: #1b66b7"><%=line_item.good.name%></em></span>  <br/>
-            单价:<span class="c_price">¥<%= format('%.2f',line_item.good.price)%></span>
-            市场价 : <span class="fontstyle">¥<%= format('%.2f',line_item.good.mktprice)%></span>  <br/>
+            单价:<span style="color: red">¥<%= format('%.2f',line_item.good.price)%></span>
+            <span class="fontstyle" style="float: right ;margin-right: 10px"> 市场价 :¥<%= format('%.2f',line_item.good.mktprice)%></span>  <br/>
 
 
-		<span class="delete">
+		<span class="delete" style="margin-right: 10px">
 
            <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile"%>" class="delete" data-method="delete" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
              <img src="/assets/mobile/scan_layer-33.png" width="22" height="22">
@@ -73,9 +107,9 @@
         </div>
         <div class="orderaction clearfix">
 
-          <div class="fl"></div>
 
-          <p class="fr"><span class="c_price line-total"> ¥<%=(line_item.product.price*line_item.quantity)%> </span></p>
+
+          <p class="fr"><span class="c_price line-total" style="margin-left: 30px">该线路总价 ¥<%=(line_item.product.price*line_item.quantity)%> </span></p>
 
           <div class="clear"></div>
 
@@ -84,14 +118,21 @@
   <%end%>
   <div class="bottomdiv clearfix">
     <div class="inner clearfix">
-      <div class="fl">
-        <p class="cart_total modal-footer">总金额：<span class="c_t_price total">¥<%= format('%.2f',@cart_total)%> </span></p>
+      <div class="fl" style="float: left">
+        <p class="cart_total modal-footer" style="color: red">总金额：<span class="c_t_price total">¥<%= format('%.2f',@cart_total)%> </span></p>
       </div>
-      <a href="/orders/departure" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
-        结算
-      <span class="fr cart_time_smb"><span class="clockicon fl"></span>
-        <span class="num_cunt"><span class=":">19</span><span>:</span><span>42</span><span></span></span></span>
-      </a>
+      <%if @line_items[0]== nil%>
+          <a  style="float: right" class="am-btn am-btn-warning" style="margin-left: 30%" href="/vshop/<%=@supplier.id%>">
+            <i class="am-icon-shopping-cart"></i>
+            继续购物
+          </a>
+      <%else%>
+          <a href="/orders/departure?supplier_id=<%=@supplier.id%>" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
+            立即下单
+            <span class="fr cart_time_smb"><span class="clockicon fl"></span>
+        <!--<span class="num_cunt"><span class=":">19</span><span>:</span><span>42</span><span></span></span>--> </span>
+          </a>
+      <%end%>
     </div>
   </div>
 </div>

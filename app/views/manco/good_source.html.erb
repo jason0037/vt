@@ -4,7 +4,9 @@
 
          line-height: 5px;
      }
-
+     .bottomdivsclearfix{
+         display: none;
+     }
     #good_mktprice{
         color: #ff0e1a;
         font-size: 15px;
@@ -36,10 +38,7 @@
         float: right;
         margin-right: 20px;
     }
-    input[type="submit"]{
-        margin-left: 30%;
-        width: 200px;
-    }
+
 </style>
 
 <style type="text/css">
@@ -53,8 +52,8 @@
     .ac_results li a span{float:right;}
     .ac_result_tip{border-bottom:1px dashed #666;padding:3px;}
 </style>
-<div class="am-panel am-panel-primary">
-  <div class="am-panel-hd">发布货源信息</div>
+<div class="am-panel am-panel-default">
+  <div class="am-panel-hd" style="text-align: center">发布货源信息</div>
   <div class="am-panel-bd">
     请注意：发布信息必须属实，并严格遵守万家协议
   </div>
@@ -150,7 +149,7 @@
     <br/>
     <div class="control-group">
       <div class="controls">
-        <%= f.submit '确定', :class => "am-btn am-btn-primary" %>
+        <%= f.submit '确定', :class => "am-btn am-btn-primary am-btn-block" %>
         <!--<#%= link_to '返回', admin_goods_path,:class=>"black_btn" %>-->
       </div>
     </div>

@@ -78,60 +78,34 @@
   </style>
 
 
-  <figure data-am-widget="figure" class="am am-figure am-figure-default am-no-layout am-figure-zoomable" data-am-figure="{  autoZoom: 1000 }">
-    <img src="http://img5.douban.com/lpic/o636459.jpg" data-rel="/assets/tairyo/thumb.jpg" data-rel2="/assets/tairyo/thumb.jpg" alt="春天的花开秋天的风以及冬天的落阳">
-    <img  data-rel="/assets/tairyo/thumb.jpg" />
-    <figcaption class="am-figure-capition-btm">春天的花开秋天的风以及冬天的落阳</figcaption></figure>
+
 
 
   <div id="demo-view" data-backend-compiled="">
     <div data-am-widget="list_news" class="am-list-news am-list-news-default am-no-layout">
       <div class="am-list-news-hd am-cf">
-        <a href="###"><h2>左图 + 摘要</h2><span class="am-list-news-more am-fr">更多 »</span></a></div>
+        <a href="###"><h2>团购</h2><span class="am-list-news-more am-fr">更多 »</span></a></div>
       <div class="am-list-news-bd"><ul class="am-list">
         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-          <div class="am-col col-sm-4 am-list-thumb"><a href="http://www.douban.com/online/11614662/">
-            <img src="http://img5.douban.com/lpic/o636459.jpg" alt="我很囧，你保重....晒晒旅行中的那些囧！"></a></div>
-          <div class="am-col col-sm-8 am-list-main"><h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/">我很囧，你保重....晒晒旅行中的那些囧！</a></h3>
-            <div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div></div></li>
-        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left"><div class="am-col col-sm-4 am-list-thumb"><a href="http://www.douban.com/online/11624755/"><img src="http://img3.douban.com/lpic/o637240.jpg" alt="我最喜欢的一张画"></a></div>
-          <div class="am-col col-sm-8 am-list-main"><h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">我最喜欢的一张画</a></h3><div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，
-          </div></div></li>
-      <li class="am-g am-list-item-desced"><div class="am-col am-list-main"><h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11645411/">“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！</a></h3>
-        <div class="am-list-item-text">还在苦恼圣诞礼物再也玩儿不出新意？快来抢2013最炫彩的跨国圣诞礼物！【参与方式】1.关注“UniqueWay无二之旅”豆瓣品牌小站http://brand.douban.com/uniqueway/2.上传一张**本人**在旅行中色彩最浓郁、最丰富的照片（色彩包含取景地、周边事物、服装饰品、女生彩妆等等，发挥你们无穷的创意想象力哦！^^）一定要有本人出现喔！3. 在照片下方，附上一句旅行宣言作为照片说明。 成功参与活动！* 听他们刚才说，上传照片的次
-        </div></div></li></ul></div></div></div>
+          <div class="am-col col-sm-4 am-list-thumb">
+            <a href="#">
+            <img src="/assets/tairyo/tuan.jpg" alt=""></a></div>
+          <div class="am-col col-sm-8 am-list-main">
+            <div class="am-list-item-text"><a href="#">仅售198元，价值430元双人套餐，根据您的口味调味，厨师为您现场烹饪，视觉与味觉的双重享受！</a></div>
+            <div class="am-list-item-text" style="color: red;float: right">￥77</div></div></li>
+        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+          <div class="am-col col-sm-4 am-list-thumb">
+            <a href="#">
+              <img src="/assets/tairyo/tuan.jpg" alt=""></a></div>
+          <div class="am-col col-sm-8 am-list-main">
+            <div class="am-list-item-text"><a href="#">仅售198元，价值430元双人套餐，根据您的口味调味，厨师为您现场烹饪，视觉与味觉的双重享受！</a></div>
+            <div class="am-list-item-text" style="color: red;float: right">￥77</div></div></li>
+
+      </ul></div></div></div>
 
 
 
-  <header id="header" class="header clearfix">
 
-    <span class="headtit"><%= I18n.t 'headtit.title' %></span>
-    <%if @user%>
-        <div class="head_right fr">
-          <a href="/cart/tairyo_cart" mars_sead="home_head_cart_btn" onclick="setBackAct(&#39;topHeaderCart&#39;)"/>
-          <span class="h_cart"></span>
-          </a>
-        </div>
-        <div class="head_right fr">
-          <a href="/tairyo/user" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot">
-            <span class="h_logn">                </span>
-          </a>
-        </div>
-    <%end%>
-  </header>
-  <div id="headerimg" class="goods_con area_con_grey">
-    <img style="float:none" title="图片" src="/assets/tairyo/thumb.jpg">
-  </div>
-
-  <div class="neck ">
-    <div class="introduces">
-      介绍
-
-    </div>
-    <div class="comment">
-      点评(444)
-    </div>
-  </div>
 
   <div class="introduces_one">
 

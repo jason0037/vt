@@ -367,8 +367,8 @@ class Store::OrdersController < ApplicationController
   end
 
   def new_manco_addr    ###新增起点地址
-
-    render :layout => "manco_new"
+    @supplier = Ecstore::Supplier.find(params[:supplier_id])
+    render :layout=>@supplier.layout
   end
 
   def addr_detail
@@ -433,24 +433,25 @@ class Store::OrdersController < ApplicationController
   end
 
   def departure    ##起点信息
-
+    @supplier=Ecstore::Supplier.find(params[:supplier_id])
     manco_weight =params[:manco_weight]
     @addrs =  @user.member_addrs
     @def_addrs = @addrs.where(:addr_type=>1) || @addrs.first
 
 
-    render :layout => "manco_template"
+    render :layout=>@supplier.layout
   end
 
   def arrival  ###终点信息
-
+    @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @member_departure_id=  params[:member_departure_id]
     @addrs =  @user.member_addrs
     @addrss = @addrs.where(:addr_type=>0)
-    render :layout => "manco_template"
+    render :layout=>@supplier.layout
   end
 
   def new_manco
+
     member_departure_id=  params[:member_departure_id]
     member_arrival_id=  params[:member_arrival_id]
 
@@ -606,6 +607,7 @@ class Store::OrdersController < ApplicationController
   end
 
   def ordersnew_manco
+    @supplier=Ecstore::Supplier.find(params[:supplier_id])
     if (params[:member_departure_id])
       member_departure_id=params[:member_departure_id]
 
@@ -627,7 +629,7 @@ class Store::OrdersController < ApplicationController
     @arrival_addr=Ecstore::MemberAddr.find_by_addr_id(member_arrival_id)
 
 
-    render :layout=>"manco_new"
+    render :layout=>@supplier.layout
 
 
   end
@@ -659,6 +661,45 @@ class Store::OrdersController < ApplicationController
 
 
   end
+
+
+  def edit_manco_addr
+       @way=params[:way]
+       @departure_id=params[:departure_id]
+       @arrival_id =params[:arrival_id]
+        if @way =="departure"
+          @addr=Ecstore::MemberAddr.find(@departure_id)
+        elsif  @way =="arrival"
+            @addr=Ecstore::MemberAddr.find(@arrival_id)
+
+        end
+       @supplier=Ecstore::Supplier.find(params[:supplier_id])
+
+       @action_url="xiugai_addr"
+       @method="post"
+
+
+      render :layout => @supplier.layout
+  end
+
+
+
+
+def xiugai_addr
+  @way=params[:way]
+  @departure_id=params[:departure_id]
+  @arrival_id =params[:arrival_id]
+  @addr = Ecstore::MemberAddr.find(params[:addr][:id])
+  if @addr.update_attributes(params[:addr])
+    respond_to do |format|
+      format.js
+      format.html { redirect_to "/orders/ordersnew_manco?supplier_id=98&member_departure_id=#{@departure_id}&member_arrival_id=#{@arrival_id}&way=#{@way} " }
+    end
+  else
+    render 'error.js' #, status: :unprocessable_entity
+  end
+end
+
 
 
 end

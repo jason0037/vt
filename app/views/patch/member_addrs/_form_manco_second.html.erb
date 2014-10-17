@@ -1,88 +1,119 @@
-<%=javascript_include_tag "area_seletor"%>
-<%=javascript_include_tag "patch/member_addrs"%>
-<style type="text/css">
 
-    .btn_red{
-        background: blue;
-        border: blue;
+<style type="text/css">
+    #province,#city,#district{
+        width: 30%;
     }
-    .footer , .s_links{
+    .change_lange{
         display: none;
     }
+     .bottomdivsclearfix{
+         display: none
+     ;
+     }
 
 </style>
-
-<header id="header" class="header clearfix">
-
-  <div class="head_left fl"><a href="javascript:history.go(-1)"><span class="h_back"></span></a></div>
-  <span class="headtit">选择<em style="color: red">收货</em>人地址</span>
-  <div class="head_right fr"><a href="/manco" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
-</header>
-
-<%=form_for :addr, :url=>@method == :put ? @action_url : "/member_addrs/addship?platform=manco", :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
-       <!--<#%= hidden_field_tag "departureid" ,session[:depar]%>-->
-    <dl class="connerbox">
-      <dd><span class="form_hd">*姓名：</span>
-        <span class="form_td"><%=f.text_field :name, :maxlength=>"50", :class=>"text_input"%></span></dd>
-      <dd><span class="form_hd">*手机：</span>
-        <span class="form_td"> <%=f.text_field :mobile,:class=>"span2",:maxlength=>11,:class=>"text_input"%></span></dd>
-      <dd><span class="form_hd">*省份：</span>
-         <span class="form_td">
-            <%=f.select :province,Ecstore::Region.provinces.collect{|p| [p.local_name,p.region_id] } ,{:include_blank=>"请选择省" },{ :onchange=>"selectProvince(this,'#city','#district');",:id=>"province" ,:class=>"text_select"}%>
-        </span>
-        <span class="i_up_arrow"></span></dd>
-      <dd><span class="form_hd">*城市：</span>
-         <span class="form_td">
-            <%if @addr&&@addr.city%>
-                <%=f.select :city,Ecstore::Region.cities_of(@addr.province).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择市"},{ :onchange=>"selectCity(this,'#district');",:id=>"city" ,:class=>"text_select" }%>
-            <%else%>
-                <%=f.select :city, {}, { :include_blank=>"请选择市" }, { :onchange=>"selectCity(this,'#district');",:id=>"city",:class=>"text_select" }%>
-            <%end%>
-        </span>
-        <span class="i_up_arrow"></span></dd>
-      <dd><span class="form_hd">区县：</span>
-         <span class="form_td">
-            <%unless @addr&&@addr.new_record?%>
-                <%=f.select :district,Ecstore::Region.districts_of(@addr&&@addr.city).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择区/县" },{ :onchange=>"selectDistrict(this);",:id=>"district" ,:class=>"text_select",:style=>"#{'display:none;' if @addr.district.blank? }" } %>
-            <%else%>
-                <%=f.select :district, {}, { :include_blank=>"请选择区/县" }, { :onchange=>"selectDistrict(this);",:id=>"district" }%>
-            <%end%>
-        </span>
-        <span class="i_up_arrow"></span></dd>
-
-      <dd><span class="form_hd">邮编：</span><span class="form_td"><%=f.text_field :zip,:class=>"text_input",:maxlength=>"6"%></span></dd>
-    </dl>
-
-    <dl class="connerbox"><dd><span>详情地址()</span><%=f.text_area :addr,:class=>"span5", :id=>"addr",:class=>"textarea_input textarea_address"%>
-      <span class="help-inline error"></span>
-    </dd></dl>
-    <dl class="connerbox" style="display:none"><dd><span> <%=f.label :def_addr, "设置为默认地址：",:class=>"text_input"%></span>
-      <span class="form_td"> <%#=f.check_box :def_addr, {}, 1, 0 %><input name="addr[def_addr]" type="hidden" value="1" checked="true" /></span>
-    </dd></dl>
-
+<%=form_for :addr, :url=>@method == :put ?@action_url :" /member_addrs/addship?platform=manco&supplier=#{@supplier.id}",  :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
 
     <input name="addr[addr_type]" type="hidden" value="0" >
-    <div class="ui-btn-area">
+    <div class="am-panel am-panel-default">
 
-      <%if @method == :put%>
-          <%=f.submit "修 改",:class=>"btn_red" %>
-      <%else%>
-          <%=f.submit "下一步",:class=>"btn_red sub" %>
-      <%end%>
+      <div class="am-panel am-panel-default">
+
+        <div class="am-input-group">
+          <span class="am-input-group-label">联系人</span>
+          <input class="am-form-field" id="addr_name" name="addr[name]" placeholder="联系人" value="<%=@addr.name%>" size="30" type="text">
+
+          <%#=f.text_field :name,  :class=>"am-form-field" ,:placeholder=>"收货人姓名"%>
+        </div>
+        <br/>
+        <div class="am-input-group">
+          <span class="am-input-group-label">手机</span>
+          <input class="am-form-field" id="addr_mobile" name="addr[mobile]" placeholder="手机" value="<%=@addr.mobile%>" size="30" type="text">
+
+          <%#=f.text_field :mobile,  :class=>"am-form-field" ,:placeholder=>"手机"%>
+        </div>
+        <br/>
+        <div class="am-input-group">
+          <span class="am-input-group-label">固定电话</span>
+          <input class="am-form-field" id="addr_tel" name="addr[tel]" placeholder="固定电话"  value="<%=@addr.tel%>" size="30" type="text">
+
+          <%#=f.text_field :tel,  :class=>"am-form-field" ,:placeholder=>"固定电话"%>
+        </div>
+        <br/>
+        <div class="am-input-group">
+          <span class="am-input-group-label">邮编</span>
+          <input class="am-form-field" id="addr_zip" name="addr[zip]" placeholder="邮编" value="<%=@addr.zip%>" size="30" type="text">
+          <%#=f.text_field :zip,  :class=>"am-form-field" ,:placeholder=>"邮编"%>
+        </div>
+        <br/>
+
+        <div class="am-panel-hd">
+          <label for="addr_area">地址</label>
+          <%#=f.label :area, "收货地区：".html_safe%></div>
+        <div class="am-panel-bd">
+          <%=f.select :province,Ecstore::Region.provinces.collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择省" },{ :onchange=>"selectProvince(this,'#city','#district');",:id=>"province" }%>
+          <%if @addr&&@addr.city%>
+              <%=f.select :city,Ecstore::Region.cities_of(@addr.province).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择市"},{ :onchange=>"selectCity(this,'#district');",:id=>"city" }%>
+          <%else%>
+              <%=f.select :city, {}, { :include_blank=>"请选择市" }, { :onchange=>"selectCity(this,'#district');",:id=>"city" }%>
+          <%end%>
+
+          <%unless @addr&&@addr.new_record?%>
+              <%=f.select :district,Ecstore::Region.districts_of(@addr&&@addr.city).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择区/县" },{ :onchange=>"selectDistrict(this);",:id=>"district",:style=>"#{'display:none;' if @addr.district.blank? }" } %>
+          <%else%>
+              <%=f.select :district, {}, { :include_blank=>"请选择区/县" }, { :onchange=>"selectDistrict(this);",:id=>"district" }%>
+          <%end%>
+          <span class="help-inline error"></span>
+        </div>
+      </div>
+
+
+
+      <div class="am-panel-hd">
+        <label for="addr">详细地址</label>
+        <%#=f.label :addr, "收货地址：".html_safe%></div>
+      <div class="am-panel-bd">
+        <%=f.text_field :addr,:class=>"span5", :id=>"addr",:class=>"am-form-field"%>
+        <span class="help-inline error"></span>
+      </div>
+    </div>
+
+
+
+
+    <div class="am-panel am-panel-default">
+      <div class="am-panel-hd">
+        <label for="addr_def_addr">设置默认:</label>
+        <%#=f.label :def_addr, "设置默认："%>  </div>
+      <div class="am-panel-bd">
+        <%=f.check_box :def_addr, {}, 1, 0 %><span><%=I18n.t "default"%></span>
+        <span class="help-inline error"></span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%if @method == :put%>
+            <input type="submit" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "modify"%>">
+            <%#=f.submit "修 改",:class=>"am-btn am-btn-warning am-btn-block" %>
+        <%else%>
+            <input type="submit" id="sub" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "confirm"%>">
+            <%#=f.submit "确认收货地址",:class=>"am-btn am-btn-warning am-btn-block" %>
+        <%end%>
+      </div>
+    </div>
     </div>
 <%end%>
-</div>
-
 <script type="application/javascript">
     $(document).ready(function(){
-        $(".sub").bind("click",function(){
-            if( $("#addr_name").val()==""||$("#addr_mobile").val()==""||$("#addr").val()=="") {
-                alert("请输入准确的值")
+        $("#sub").bind("click",function(){
+            if( $("#addr_name").val()=="" &&$("#addr_mobile").val()==""||$("#addr").val()=="") {
+                alert("请输入值")
                 return false;
 
             }
             else{
-                $(".form-horizontal").submit()
+                $(".am-form").submit()
 
             }
 

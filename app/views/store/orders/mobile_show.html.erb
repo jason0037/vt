@@ -53,41 +53,6 @@
     .pay_text{
         line-height: 3;
     }
-    .btn-inverse{
-        clear: both;
-        width: 100%;
-        color: #ffffff;
-        background-color: #dd514c;
-
-        background:#dd514c ;
-        display: inline-block;
-        margin-bottom: 0;
-        font-weight: normal;
-        text-align: center;
-        vertical-align: middle;
-        cursor: pointer;
-        background-image: none;
-
-        white-space: nowrap;
-        padding: 0.625em 1em;
-        border-radius: 2px;
-        line-height: 1.2;
-        /* font-size: 1.6rem; */
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        -o-user-select: none;
-        user-select: none;
-        -webkit-transition: width 0.15s;
-        transition: width 0.15s;
-    }
-
-    .btn-inverse:hover{
-        color: #ffffff;
-        background-color: #dd514c;
-        border-color: #ff0e1a;
-        background:#ff0e1a ;
-    }
 
 </style>
 
@@ -141,9 +106,9 @@
         <div class="payment">
           <span class="span">&nbsp; &nbsp; 	<%= I18n.t "pay_options"%>:</span>
           <span class="title" style="color: #0abede">
-            <% if payments[@order.payment][:name] =="微信支付 " %>
+            <% if @order.payment =="wxpay" %>
                 <%=I18n.t "wechat"%>
-                <% elsif payments[@order.payment][:name] =="支付宝手机版" %>
+                <% elsif @order.payment =="alipaywap" %>
                   <%=I18n.t "alipay_mobile"%>
                 <%end%>
             </span>

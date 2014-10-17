@@ -592,6 +592,8 @@ end
         get 'addr_detail'
         get 'new_mobile_addr'
         post 'edit_addr'
+        get 'edit_manco_addr'
+        post 'xiugai_addr'
 
       end
     end
