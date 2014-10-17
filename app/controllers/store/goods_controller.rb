@@ -34,7 +34,7 @@ class Store::GoodsController < ApplicationController
 
      ###万家小黑板
   def mancoproduct
-
+     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
 
     return render "not_find_good",:layout=>"tairyo_new" unless @good
@@ -84,7 +84,7 @@ class Store::GoodsController < ApplicationController
 
 
       end
-    render :layout => "manco_new"
+    render :layout => @supplier.layout
 
 
   end

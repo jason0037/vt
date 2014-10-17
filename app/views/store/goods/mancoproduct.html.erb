@@ -2,15 +2,63 @@
 .s_links,.footnav,.copyright{
       display: none;
   }
+.am-tabs-warning{
+    display: none;
+}
+.bottomdiv {
+       position: fixed;
+       bottom: 0;
+       width: 100%;
+       background: #fff;
+       border: #ddd 1px solid;
+       border-top: #fff 1px solid;
+       z-index: 1000000;
+   }
+.icon-arr {
+    position: absolute;
+
+    right: 10px;
+    width: 10px;
+    height: 15px;
+    background: url(/assets/icon_order.png) 0 0 no-repeat;
+    background-size: 100px 100px;
+}
+.bottomdivsclearfix{
+    display: none;
+}
+.btn_sure {
+    box-shadow: 0 1px 1px rgba(0,0,0,.2);
+    color: #fff;
+    width: 150px;
+    float: right;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c9b',endColorstr='#e61f80');
+    background: -ms-linear-gradient(top,#ff3c9b,#e61f80);
+    background: -moz-linear-gradient(top,#ff3c9b,#e61f80);
+    background: -webkit-gradient(linear,0 0,0 100%,from(#ff3c9b),to(#e61f80));
+    border: #db207b 1px solid!important;
+    cursor: pointer;
+}
+
+.btn_cancel, .btn_ensure, .btn_gry, .btn_red, .btn_sure, .btn_unav, .btn_white, .btn_white_order {
+    font-weight: 400;
+    height: 35px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 35px;
+    border-radius: 2px;
+    display: inline-block;
+
+}
+
+.prf05{
+    float: right;
+    margin: 2px;
+    padding: 5px;
+}
 
 </style>
 
-<header id="header" class="header clearfix">
 
-  <div class="head_left fl"><a href="javascript:history.go(-1)"><span class="h_back"></span></a></div>
-  <span class="headtit">万家车源小黑板</span>
-  <div class="head_right fr"><a href="/manco" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
-</header>
 <div id="demo-view" data-backend-compiled=""><figure data-am-widget="figure" class="am am-figure am-figure-default am-no-layout am-figure-zoomable">
   <img src="/assets/manco/2.jpg" alt="">
   <figcaption class="am-figure-capition-btm"><h2><%=@good.name %></h2></figcaption></figure></div>
@@ -31,8 +79,8 @@
   </div>
 </div>
 
-<div class="">
-  <div class=""><ul><li><b class="">运输线路：</b> <%=@good.name %></li>
+<div class="am-list">
+  <div ><ul class="am-list" ><li><b class="">运输线路：</b> <%=@good.name %></li>
     <br/>
 
     <b class="">本次运输有效期为：</b>   <%=Time.at(@good.downtime).localtime.to_s(:db)%> </li>

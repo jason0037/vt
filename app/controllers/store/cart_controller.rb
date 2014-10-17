@@ -252,15 +252,16 @@ login_name=Ecstore::Account.find(account_id)
 
      find_cart!
      if params[:platform]=='manco'
-       redirect_to "/cart/manco_black_buy"
+       redirect_to "/cart/manco_black_buy?supplier_id=#{suppliers_id}"
      else
-       render "manco_add"
+       render "manco"
      end
    end
 
    def manco_black_buy
+      @supplier=Ecstore::Supplier.find(params[:supplier_id])
+     render :layout => @supplier.layout
 
-   render :layout => "manco_new"
   end
 
   def tairyo_add

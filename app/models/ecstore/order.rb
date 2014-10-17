@@ -88,6 +88,8 @@ class Ecstore::Order < Ecstore::Base
             else
               freight = 35
             end
+          elsif supplier==98
+              freight = 0
           elsif  items_amount<=0.05  #测试商品
             freight = 0
           else
