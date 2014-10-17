@@ -235,7 +235,8 @@ end
 
 
   def show_carblack
-
+    supplier_id = params[:supplier_id]
+    @supplier =Ecstore::Supplier.find(supplier_id)
       id=params[:id]
     @good =Ecstore::Good.paginate :page=>params[:page],        ###分页语句
                                  :per_page => 5,              ###当前只显示一条
@@ -248,10 +249,63 @@ end
 
 
 
+ def departure
+   @way=params[:way]
 
+   supplier_id = params[:supplier_id]
+   @supplier =Ecstore::Supplier.find(supplier_id)
+   if @way =="departure"
+      @addrs =  @user.member_addrs
+      @def_addrs = @addrs.where(:addr_type=>1) || @addrs.first
+   elsif  @way =="arrival"
+     @addrs =  @user.member_addrs
+     @def_addrs = @addrs.where(:addr_type=>0) || @addrs.first
+     end
+ end
 
+def departure_edit
+  supplier_id = params[:supplier_id]
+  @supplier =Ecstore::Supplier.find(supplier_id)
+  @addr = Ecstore::MemberAddr.find( params[:member_departure_id])
+  @action_url="edit_addr"
+  @method="post"
+end
 
+ def edit_addr
+   @way=params[:way]
+   @addr = Ecstore::MemberAddr.find(params[:addr][:id])
+   if @addr.update_attributes(params[:addr])
+     respond_to do |format|
+       format.js
+       format.html { redirect_to "/manco/departure?id=#{params[:addr][:id]}&supplier_id=98&way=#{@way} " }
+     end
+   else
+     render 'error.js' #, status: :unprocessable_entity
+   end
+ end
 
+   def departure_new
+     supplier_id = params[:supplier_id]
+     @supplier =Ecstore::Supplier.find(supplier_id)
+     @addr=Ecstore::MemberAddr.new
+     @action_url="creat_addr"
+     @method="post"
+
+   end
+
+   def creat_addr
+     @way=params[:way]
+     @addr = Ecstore::MemberAddr.new params[:addr].merge!(:member_id=>@user.member_id)
+     @addr = Ecstore::MemberAddr.new(params[:addr])
+     if @addr.save
+       respond_to do |format|
+         format.js
+         format.html { redirect_to "/manco/departure?id=#{params[:addr][:id]}&supplier_id=98&way=#{@way}" }
+       end
+     else
+       render 'error.js' #, status: :unprocessable_entity
+     end
+   end
 
 
   end

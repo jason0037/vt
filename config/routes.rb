@@ -87,6 +87,11 @@ end
     post 'blackgood_add',:on=>:collection
     get 'black_good_index' ,:on=>:collection
     get 'show_carblack',:on=>:collection
+    get 'departure' ,:on=>:collection
+    post 'departure_edit',:on=>:collection
+    post 'edit_addr',:on=>:collection
+    get 'departure_new',:on=>:collection
+    post 'creat_addr',:on=>:collection
   end
 
   get 'wlogin'=>"sessions#new_manco"

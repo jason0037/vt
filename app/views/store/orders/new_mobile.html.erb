@@ -135,11 +135,13 @@
                     <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>>
               <%end%>
               <label class="radio active" style="margin-left: 40px;padding: 2px">
-                <%=f.radio_button :payment, "alipaywap"%><%= I18n.t "alipay_mobile"%>
+                <%=f.radio_button :payment, "alipaywap",:checked=>true %><%= I18n.t "alipay_mobile"%>
               </label>
+              <% unless @supplier==(Ecstore::Supplier.find_by_name("诺狮").id)%>
               <label class="radio active" style="margin-left: 40px;padding: 2px">
-                <%=f.radio_button :payment, "wxpay", :checked=>true %>
+                <%=f.radio_button :payment, "wxpay" %>
                 <%= I18n.t "wechat"%>
+                <%end%>
               </label>
             </div>
             <div class="am-panel-hd"><%= I18n.t "pay_detail"%></div>

@@ -1,0 +1,25 @@
+
+   .am-panel-warning {
+       border-color: #0e90d2;
+       background: #0e90d2;
+       color: #FFFFFF;
+   }
+
+.am-panel-warning>.am-panel-hd {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.15);
+   border-color: #0e90d2;
+}
+
+    .am-panel-warning > .am-panel-hd {
+     color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.15);
+        border-color: #0e90d2;
+}
+
+   .am-btn-warning {
+       color: #fff;
+       background-color: #0e90d2;
+       border-color: #0e90d2;
+
+   }

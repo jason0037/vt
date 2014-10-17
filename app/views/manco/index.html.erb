@@ -1,15 +1,10 @@
 
-<!--[if lte IE 9]>
-<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
-    以获得更好的体验！</p>
-<![endif]-->
-
 <script type="text/x-handlebars-template" id="amz-tpl">
   {{>titlebar header}}
 
   {{>menu menu}}
 
-  {{>slider slider}}
+
 
   {{>list_news list1}}
 
@@ -26,8 +21,7 @@
 <script>window.Zepto || document.write('<script src="/assets/manco/zepto.min.js?1.1.3"><\/script>')</script>
 <script src="/assets/manco/amui.js"></script>
 <script src="/assets/manco/handlebars.min.js"> </script>
-<!--<script src="http://cdn.staticfile.org/handlebars.js/1.3.0/handlebars.min.js-->
-<!--"></script>-->
+
 <script src="/assets/manco/amui.widget.helper.js"></script>
 <script>
     $(function() {
@@ -43,28 +37,8 @@
 
 
 
-                    slider: {
-                        "theme": "a2",
-                        //"sliderConfig": "{\"directionNav\":false}",
-                        "content": [
-                            {
-                                "thumb": "/assets/manco/1.jpg",
-                                "img": "/assets/manco/1.jpg"
-                            },
-                            {
-                                "thumb": "/assets/manco/0.jpg",
-                                "img": "/assets/manco/0.jpg"
-                            },
-                            {
-                                "thumb": "/assets/manco/2.jpg",
-                                "img": "/assets/manco/2.jpg"
-                            },
-                            {
-                                "thumb": "/assets/manco/3.jpg",
-                                "img": "/assets/manco/3.jpg"
-                            }
-                        ]
-                    },
+
+
 
                     list1: {
                         "options": {
@@ -195,25 +169,6 @@
                         }
                     }
 
-//
-//                   footer: {
-//                        "options": {
-//                            "modal": true,
-//                            "techSupportCo": "XXX",
-//                            "techSupportSite": "http://www.yunshipei.com/"
-//                        },
-//                        "content": {
-//                            "owner": "云适配",
-//                            "companyInfo": [
-//                                {
-//                                    "detail": "CopyRight©2013  AllMobilize Inc."
-//                                },
-//                                {
-//                                    "detail": "京ICP备13033158"
-//                                }
-//                            ]
-//                        }
-//                    },
 
 
                 },
@@ -223,7 +178,7 @@
 
         // var reflow = $('body')[0].offsetHeight;
 
-        seajs.use(['slider', 'menu', 'gallery', 'footer', 'navbar'], function(s, m, g, f, n) {
+        seajs.use([ 'menu', 'gallery', 'footer', 'navbar'], function( m, g, f, n) {
             var args = Array.prototype.slice.apply(arguments);
             $.each(args, function(i, m) {
                 m.init && m.init();

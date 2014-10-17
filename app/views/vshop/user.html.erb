@@ -59,12 +59,36 @@
     <div class="am-panel-hd"><%= I18n.t "commission_account"%></div>
     <span class="icon-arr"></span> </a>
 </div>
-<div class="am-panel am-panel-default">
-  <a href="/member_addrs?platform=mobile&supplier_id=<%=@supplier.id%>">
-    <div class="am-panel-hd"><%= I18n.t "address"%></div>
-    <span class="icon-arr"></span> </a>
-</div>
 
+ <%if @supplier.id==(Ecstore::Supplier.find_by_name("万家物流").id)%>
+
+    <div class="am-panel am-panel-default">
+      <a href="/manco/show_carblack?id=<%=@user.member_id%>&supplier_id=<%=@supplier.id%>">
+        <div class="am-panel-hd">我的车源小黑板</div>
+        <span class="icon-arr"></span> </a>
+    </div>
+    <div class="am-panel am-panel-default">
+      <a href="/manco/departure?id=<%=@user.member_id%>&supplier_id=<%=@supplier.id%>&way=departure">
+        <div class="am-panel-hd">寄货人地址</div>
+        <span class="icon-arr"></span> </a>
+    </div>
+    <div class="am-panel am-panel-default">
+      <a href="/manco/departure?id=<%=@user.member_id%>&supplier_id=<%=@supplier.id%>&way=arrival">
+        <div class="am-panel-hd">收货人地址</div>
+        <span class="icon-arr"></span> </a>
+    </div>
+
+
+
+
+<%else%>
+
+    <div class="am-panel am-panel-default">
+      <a href="/member_addrs?platform=mobile&supplier_id=<%=@supplier.id%>">
+        <div class="am-panel-hd"><%= I18n.t "address"%></div>
+        <span class="icon-arr"></span> </a>
+    </div>
+    <%end%>
 <div class="s_links in_user_center">
   <a href="user-fav-product.html" style="display:none">
 
