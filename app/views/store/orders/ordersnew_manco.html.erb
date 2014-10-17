@@ -41,7 +41,9 @@
     <%=hidden_field_tag "member_addr",@departure_addr&&@departure_addr.addr_id%>
     <%=f.hidden_field :supplier_id,:value=>"98"%>
     <%=f.hidden_field :from_addr,:value=>"#{@departure_addr.name},#{@departure_addr.mobile},#{@departure_addr.addr}"%>
-
+       <%=f.hidden_field :ship_name,:value=>"1111"%>
+       <%=f.hidden_field :ship_mobile,:value=>@arrival_addr.mobile%>
+       <%=f.hidden_field :ship_addr,:value=>@arrival_addr.addr%>
 
 
         <div class="am-panel am-panel-default">
@@ -62,6 +64,9 @@
 
           <div class="am-panel am-panel-default">
             <div class="am-panel-hd">收货人信息(目的地)</div>
+            <input type="hidden" name="order[ship_name]" value="<%=@arrival_addr.name%> ">
+            <input type="hidden" name="order[ship_mobile]" value="<%=@arrival_addr.mobile%> ">
+            <input type="hidden" name="order[ship_addr]" value="<%=@arrival_addr.addr%> ">
 
             <a  href="/orders/edit_manco_addr?departure_id=<%=@departure_addr.id%>&arrival_id=<%=@arrival_addr.id%>&platform=mobile&supplier_id=<%=@supplier.id%>&way=arrival">
               <div class="am-panel-bd">

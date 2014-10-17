@@ -198,7 +198,7 @@ end
 
            Ecstore::GoodSpec.where(:product_id=>@product.product_id).delete_all
            spec_value_id= Ecstore::SpecValue.find_by_sql(["select spec_value_id from sdb_b2c_spec_values where spec_value=?and spec_id=?",specname,12])
-           if spec_value_id.nil?
+           unless spec_value_id.nil?
                     Ecstore::SpecValue.new do |sv|
                       sv.spec_id=12
                       sv.spec_value =specname
@@ -241,7 +241,7 @@ end
     @good =Ecstore::Good.paginate :page=>params[:page],        ###分页语句
                                  :per_page => 5,              ###当前只显示一条
                                  :conditions => ["member_id=#{id}"]
-
+     render :layout => @supplier.layout
 
   end
 

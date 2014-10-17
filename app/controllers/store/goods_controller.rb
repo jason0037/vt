@@ -18,9 +18,9 @@ class Store::GoodsController < ApplicationController
   end
 
   def show_goodblack
-
+     @supplier=Ecstore::Supplier.find_by_id(params[:supplier_id])
     @good=Ecstore::BlackGood.where(:id=>params[:id])
-   render :layout => "manco_template"
+   render :layout =>@supplier.layout
   end
 
   def manco_express

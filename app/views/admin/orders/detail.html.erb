@@ -230,6 +230,30 @@
 			</li>
 		</ul>
 	</div>
+      <%if  @order.from_addr%>
+    <div class="detail addr-info" id="addr">
+      <div class="subtitle">
+        <strong>寄货人信息</strong>
+      </div>
+      <ul>
+        <li>
+          <span class="name">寄货人: </span>
+          <span class="val"><%= @order.from_addr.split(",")[0]%></span>
+        </li>
+        <li>
+          <span class="name">寄货地址 : </span>
+          <span class="val"><%= @order.from_addr.split(",")[2]%></span>
+        </li>
+
+        <li>
+          <span class="name">手机号码 : </span>
+          <span class="val"><%= @order.from_addr.split(",")[1]%></span>
+        </li>
+
+
+      </ul>
+    </div>
+      <%end%>
 
 	<div class="detail shipment" id="shipment">
 		<div class="subtitle">
@@ -238,9 +262,14 @@
 		<ul>
 			<li>
 				<span>支付方式 : </span>
-				<span><%=@order.payment_name%></span>
+                <%if @order.payment=="wxpay"%>
+				<span>微信支付</span>
+                 <%elsif @order.payment=="alipaywap"%>
+                  <span>支付宝手机版</span>
+                  <%end%>
 			</li>
-
+                <%if @order.supplier_id==98%>
+              <%else%>
 			<li>
 				<span>配送方式 : </span>
 				<span><%=@order.shipping%></span>
@@ -249,6 +278,7 @@
 				<span>配送时间 : </span>
 				<span><%=@order.ship_time%></span>
 			</li>
+              <%end%>
 		</ul>
 	</div>
 	

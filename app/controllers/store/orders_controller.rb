@@ -167,6 +167,7 @@ class Store::OrdersController < ApplicationController
 
   def create
     addr = Ecstore::MemberAddr.find_by_addr_id(params[:member_addr])
+
     hour=params["hour"];
     if params[:order][:ship_day]
        ship_day= params[:order][:ship_day]
@@ -177,13 +178,19 @@ class Store::OrdersController < ApplicationController
      end
     return_url=params[:return_url]
     platform=params["platform"];
-    ["name","area","addr","zip","tel","mobile"].each do |key,val|
-      params[:order].merge!("ship_#{key}"=>addr.attributes[key])
-    end
+
     supplier_id = @user.account.supplier_id
     if supplier_id == nil
       supplier_id =78
     end
+    unless supplier_id ==98
+      ["name","area","addr","zip","tel","mobile"].each do |key,val|
+        params[:order].merge!("ship_#{key}"=>addr.attributes[key])
+      end
+
+    end
+
+
     params[:order].merge!(:ip=>request.remote_ip)
     params[:order].merge!(:member_id=>@user.member_id)
     params[:order].merge!(:supplier_id=>supplier_id)

@@ -5,7 +5,7 @@
     <%=form_for :delivery, :url=>dodelivery_admin_order_path(@order,:return_url=>@return_url), :html=>{ :class=>"form-horizontal" } do |f|%>
       <%=f.hidden_field :order_id,:value=>@order.order_id%>
       <%=f.hidden_field :member_id,:value=>@order.member_id%>
-      <%=f.hidden_field :op_name,:value=>current_admin.login_name%>
+      <%=f.hidden_field :op_name,:value=>current_admin.login_name if current_admin%>
       <%=f.hidden_field :delivery,:value=>1%>
 
       <div class="control-group">
@@ -28,7 +28,7 @@
           <span class="readonly-field"><%=@order.created_at%></span>
         </div>
       </div>
-
+     <% unless @order.supplier_id==(Ecstore::Supplier.find_by_name("万家物流").id)%>
       <div class="control-group">
         <label class="control-label">物流公司:</label>
         <div class="controls">
@@ -60,7 +60,7 @@
           
         </div>
       </div>
-
+        <%end%>
       <div class="control-group">
           <%=f.label :ship_area, "收货地区:".html_safe,:class=>"control-label"%>
           <div class="controls area">
@@ -83,14 +83,29 @@
           </div>
       </div>
 
-      <div class="control-group ">
-          <%=f.label :ship_addr, "收货地址:".html_safe,:class=>"control-label"%>
-          <div class="controls addr">
-            <%=f.text_field :ship_addr,:class=>"span5"%>
-            <span class="help-inline error"><%=@delivery.errors[:ship_addr].join(",")%></span>
+
+      <% if @order.supplier_id==(Ecstore::Supplier.find_by_name("万家物流").id)%>
+        <div style="border: 1px solid#0000ee">
+          <div class="control-group">
+            <label class="control-label">寄货人:</label>
+            <div class="controls">
+              <span class="readonly-field"><%=@order.from_addr.split(",")[0]%> </span>
+            </div>
           </div>
-      </div>
-      
+          <div class="control-group">
+            <label class="control-label">手机号码:</label>
+            <div class="controls">
+              <span class="readonly-field"><%=@order.from_addr.split(",")[1]%> </span>
+            </div>
+          </div>
+        <div class="control-group">
+          <label class="control-label">寄货人地址:</label>
+          <div class="controls">
+            <span class="readonly-field"><%=@order.from_addr.split(",")[2]%> </span>
+          </div>
+        </div>
+        </div>
+            <%end%>
       <div class="control-group ">
           <%=f.label :ship_zip, "邮编:",:class=>"control-label"%>
           <div class="controls zip">
@@ -114,6 +129,13 @@
             <span class="help-inline error"><%=@delivery.errors[:ship_mobile].join(",")%></span>
           </div>
       </div>
+    <div class="control-group ">
+      <%=f.label :ship_addr, "收货地址:".html_safe,:class=>"control-label"%>
+      <div class="controls addr">
+        <%=f.text_field :ship_addr,:class=>"span5"%>
+        <span class="help-inline error"><%=@delivery.errors[:ship_addr].join(",")%></span>
+      </div>
+    </div>
       <div class="control-group ">
           <%=f.label :ship_tel, "固定电话:",:class=>"control-label"%>
           <div class="controls tel">
