@@ -64,7 +64,7 @@
         <li class="am-nav-header">目录</li>
         <li class="am-menu-nav-channelt">  <a href="/vshop/<%=@supplier.id%>">首页</a> </li>
         <li class="am-menu-nav-channelt"> <a href="/manco/history?supplier_id=<%=@supplier.id%>">万家历史</a></li>
-        <li class="am-menu-nav-channelt"><a href="/manco/main?supplier_id=98">万家详细</a></li>
+        <li class="am-menu-nav-channelt"><a href="/cheuks/cheuks_goods">万家详细</a></li>
 
       </ul>
     </div>
@@ -248,8 +248,7 @@
     var data = {"img":null,"url":current_url,"title":"关注我们，转发朋友，赚佣金啰！<%#=@wechat_share_title%>","desc":null};
     wechatShare(data);
 </script>
-<%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>
-<%= javascript_include_tag "mobile/jquery.vs.mobile-1.0.0.min" %>
+
 <%= javascript_include_tag "mobile/jquery.vs.mars_wap" %>
 <script src="/assets/mobile/sm.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
