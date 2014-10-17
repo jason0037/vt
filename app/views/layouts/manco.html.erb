@@ -52,7 +52,24 @@
     <a href="javascript:history.go(-1)" class="">
       <img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""></a></div>
   <h1 class="am-header-title">万家物流</h1>
-  <div class="am-header-right am-header-nav"><a href="#right-link" class=""><img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 42 26&quot; fill=&quot;%23fff&quot;&gt;&lt;rect width=&quot;4&quot; height=&quot;4&quot;/&gt;&lt;rect x=&quot;8&quot; y=&quot;1&quot; width=&quot;34&quot; height=&quot;2&quot;/&gt;&lt;rect y=&quot;11&quot; width=&quot;4&quot; height=&quot;4&quot;/&gt;&lt;rect x=&quot;8&quot; y=&quot;12&quot; width=&quot;34&quot; height=&quot;2&quot;/&gt;&lt;rect y=&quot;22&quot; width=&quot;4&quot; height=&quot;4&quot;/&gt;&lt;rect x=&quot;8&quot; y=&quot;23&quot; width=&quot;34&quot; height=&quot;2&quot;/&gt;&lt;/svg&gt;" alt=""></a></div></header>
+  <div class="am-header-right am-header-nav">
+
+    <button class="am-btn am-btn-primary" data-am-offcanvas="{target: '#doc-oc-demo2', effect: 'push'}"><span class="am-sr-only">导航切换</span> <span
+    class="am-icon-bars"></span></button></div></header>
+<div class="col-md-3 col-md-pull-9 my-sidebar">
+  <div class="am-offcanvas" id="doc-oc-demo2">
+    <div class=" am-offcanvas-bar am-offcanvas-bar-overlay am-offcanvas-bar-active">
+      <ul class="am-nav am-menu-nav" style="color:red;">
+        <li class="am-parent"><a  style="color:red"><%=@supplier.name%>微商城</a></li>
+        <li class="am-nav-header">目录</li>
+        <li class="am-menu-nav-channelt">  <a href="/vshop/<%=@supplier.id%>">首页</a> </li>
+        <li class="am-menu-nav-channelt"> <a href="/manco/history?supplier_id=<%=@supplier.id%>">万家历史</a></li>
+        <li class="am-menu-nav-channelt"><a href="/manco/main?supplier_id=98">万家详细</a></li>
+
+      </ul>
+    </div>
+  </div>
+</div>
 
 
 
