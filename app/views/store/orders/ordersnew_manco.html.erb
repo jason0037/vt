@@ -91,9 +91,9 @@
                   <%end%>
 
                       <label class="radio active" style="margin-left: 40px;padding: 2px">
-                        <%=f.radio_button :payment, "wxpay" %>
-                        <%= I18n.t "wechat"%>
 
+                        <%= I18n.t "wechat"%>
+                        <input id="order_payment_wxpay" name="order[payment]" type="hidden" value="wxpay">
                   </label>
                 </div>
                 <div class="am-panel-hd"><%= I18n.t "pay_detail"%></div>
