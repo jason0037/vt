@@ -56,14 +56,10 @@
           <%end%>
           <li class="otherpay" mars_sead="checkout_payment_paypal_radio">
             <span class="radio-box"></span>
-            <%=f.radio_button :payment, "alipaywap", %>
-            <span class="payicon zfbapp"></span><p>支付宝手机版</p>
-          </li>
-          <li class="otherpay" mars_sead="checkout_payment_paypal_radio">
-            <span class="radio-box"></span>
-            <%=f.radio_button :payment, "wxpay", %>
+            <%=f.radio_button :payment, "wxpay",:check=>true %>
             <span class="payicon zfbapp"></span><p>微信支付</p>
           </li>
+
         </ul>
       </div>
     </div>
