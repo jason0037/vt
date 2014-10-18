@@ -96,7 +96,7 @@
           <label for="addr_def_addr"><%=I18n.t "set_default"%>:</label>
           <%#=f.label :def_addr, "设置默认："%>  </div>
         <div class="am-panel-bd">
-          <%=f.check_box :def_addr, {}, 1, 0 %><span><%=I18n.t "default"%></span>
+          <input checked="checked" id="addr_def_addr" name="addr[def_addr]" type="checkbox" value="1">设置默认
           <span class="help-inline error"></span>
         </div>
       </div>
