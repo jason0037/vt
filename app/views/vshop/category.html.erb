@@ -19,14 +19,9 @@
     }
 
 </style>
-<header style="text-align: center" >
-  <% if @supplier.id==97%>
-      <span >开业酬宾全场<span style="color: red">8</span>折一个月 </span>
-  <%end%></header>
 
-</span>
-<div class="head_right fr"><a href="/m" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
-</header>
+
+
 <div id="w_container" style="overflow:hidden; position:relative">
 
 <ul class="thumb-mode clearfix" data-thumbcate="list" style="display:none">
@@ -311,11 +306,10 @@
                 <%=good.name%>
               </h1>
               <div class="am-list-item-text">
-                <% if @supplier.id==97%>
-                <strong class="" style="color: red;font-size: 16px">¥<%=good.price%> &nbsp;</strong> <span style="text-decoration:line-through">¥<%=format('%.1f',good.wholesale)%> </span>
-                <%else%>
+
+
                     <strong class="" style="color: red;font-size: 16px">¥<%=good.price%> &nbsp;</strong> <span style="text-decoration:line-through">¥<%=format('%.1f',good.mktprice)%> </span>
-                    <%end%>
+
                     </div>
 
                  <br/>
