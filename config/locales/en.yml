@@ -68,7 +68,7 @@ en:
   address_detail: "DetailsAddress "
   male : "Male"
   female : "Female"
-
+  no_delivery_address : "You delivery address is null"
 
   logout: "Logout"
   login: "Login"

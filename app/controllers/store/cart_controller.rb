@@ -9,6 +9,8 @@ class Store::CartController < ApplicationController
 
   def mobile
     supplier_id=params[:id]
+    good_supplier_id=params[:good_supplier_id]
+
     if  @user
          if supplier_id == nil
         supplier_id=78
@@ -29,7 +31,8 @@ class Store::CartController < ApplicationController
 		customs = params[:product].delete(:customs)
 		quantity = params[:product].delete(:quantity).to_i
 		goods_id = params[:product][:goods_id]
-
+    good_supplier_id=params[:good_supplier_id]
+    @goods_supplier=0
     if quantity.blank? || quantity ==0
       quantity=1
     end
@@ -74,7 +77,7 @@ class Store::CartController < ApplicationController
 			Ecstore::Cart.where(:obj_ident=>@cart.obj_ident,:member_ident=>member_ident).update_all(:quantity=>@cart.quantity+quantity)
 			@cart.quantity = (@cart.quantity+1)
 		end
-		
+
 		# if @product.semi_custom?
 		# 	ident = "#{@user.member_id}#{@product.product_id}#{Time.now.to_i}"
 		# 	customs.each do |cus_val|
@@ -102,7 +105,7 @@ class Store::CartController < ApplicationController
       render "add"
     end
 
-	#rescue 
+	#rescue
 		#render :text=>"add failed"
 	end
 	

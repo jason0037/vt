@@ -48,92 +48,169 @@
     }
 </style>
 <div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
-<div class="am-panel-hd" style="text-align: center"><%= I18n.t "shopping-basket"%></div>
-  </div>
-
-
-     <%=     %>
+  <div class="am-panel-hd" style="text-align: center"><%= I18n.t "shopping-basket"%></div>
+</div>
 
 
 <div id="cart">
   <div class="am-list-news-bd">
+
+
+
+
     <ul class="am-list">
-      <%if @line_items[0]== nil%>
-          <a class="am-btn am-btn-warning" style="margin-left: 30%" href="/vshop/<%=@supplier.id%>">
-            <i class="am-icon-shopping-cart"></i>
-           <%=I18n.t "Currently_empty"%>
-          </a>
-
-    <%else%>
-
 
         <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
 
-          <div style="background: #f0f1ff" id="line_<%=line_item.obj_ident%>">
-            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-              <div class="am-col col-sm-4 am-list-thumb">
-                <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%> class="cart_orderlist_i">
-                <img src="<%=line_item.good.medium_pic%>"
-                     data-original="<%=line_item.good.medium_pic%>"
-                     data-onerror="<%=line_item.good.medium_pic%>"
-                     data-brandlazy="true" style="display: inline;">
-                </a>
-              </div>
-              <div class="am-col col-sm-8 am-list-main">
-                <h3 class="am-list-item-hd">
-                  <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%>">
-                    <p class="cart_g_name"><%=line_item.good.brand.brand_name%>,<%=line_item.product.name%> </p>
 
-                  </a>
-                </h3>  <% if @supplier.id==78%>
-                        <% unless line_item.good.cat_id ==Ecstore::GoodCat.find_by_cat_name("大闸蟹").cat_id  %>
-                 <span>
+            <%if line_item.good.supplier_id==77%>
+
+
+
+                <div style="background: #f0f1ff" id="line_<%=line_item.obj_ident%>">
+                  <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                    <div class="am-col col-sm-4 am-list-thumb">
+                      <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%> class="cart_orderlist_i">
+                      <img src="<%=line_item.good.medium_pic%>"
+                           data-original="<%=line_item.good.medium_pic%>"
+                           data-onerror="<%=line_item.good.medium_pic%>"
+                           data-brandlazy="true" style="display: inline;">
+                      </a>
+                    </div>
+                    <div class="am-col col-sm-8 am-list-main">
+                      <h3 class="am-list-item-hd">
+                        <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%>">
+                          <p class="cart_g_name"><%=line_item.good.brand.brand_name%>,<%=line_item.product.name%> </p>
+
+                        </a>
+                      </h3>
 
                     <h4  style="color: #ff0000;text-align: center;padding: 0px"><%= I18n.t "h4_1"%><br/><%=I18n.t "h4_2"%></h4>
 
-                </span>  <%end%>    <%end%>
-                <div class="am-list-item-text">
-                  <div class="good_data_num J_pro_num_btn_cart" data-product="68671252" style="border:none;height:33px;">
+                </span>
+                      <div class="am-list-item-text">
+                        <div class="good_data_num J_pro_num_btn_cart" data-product="68671252" style="border:none;height:33px;">
 
                      <span class="good_data_num_l J_num_cart_reduce" >
-            	 	<%= I18n.t "amount"%>：
-				 </span>
-            	 <span class="good_data_num_l J_num_cart_reduce" >
-            	 	<a href="javascript:;" class="subtract"  mars_sead="cart_edit_btn" style="font-size: 30px" data_mars="prd_id:26038564">-</a>
-				 </span>
+                <%= I18n.t "amount"%>：
+         </span>
+               <span class="good_data_num_l J_num_cart_reduce" >
+                <a href="javascript:;" class="subtract"  mars_sead="cart_edit_btn" style="font-size: 30px" data_mars="prd_id:26038564">-</a>
+         </span>
 
-                    <em class="good_data_num_m J_num_cart_txt">
-                      <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity good_data_num_m J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
-                    </em>
-				 <span class="good_data_num_r J_num_cart_add" onclick="VsmCart.addNum(this)" >
+                          <em class="good_data_num_m J_num_cart_txt">
+                            <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity good_data_num_m J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
+                          </em>
+         <span class="good_data_num_r J_num_cart_add" onclick="VsmCart.addNum(this)" >
                       <a href="javascript:;" class="addition" mars_sead="cart_edit_btn" style="font-size: 26px"  data_mars="prd_id:26038564">+</a>
-				</span>
-                    <span  style="float: right;color: #ff0000">¥<%= format('%.2f',line_item.good.price)%></span>
+        </span>
+                          <span  style="float: right;color: #ff0000">¥<%= format('%.2f',line_item.good.price)%></span>
 
-                  </div>
-                </div>
+                        </div>
+                      </div>
 
 
-              </div>
+                    </div>
 
-              <div>
+                    <div>
         <span class="delete" style="float: right">
 
            <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile"%>" class="delete" data-method="delete" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
 
              <img src="/assets/mobile/scan_layer-33.png" width="30" height="30">
            </a>
-		</span>
-              </div>
+    </span>
+                    </div>
 
 
-            </li>
-            <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
-          </div>
+                  </li>
+                     </div>
+
+
+
+
+            <%end%>
+
       <%end%>
-      <%end %>
+       <hr>
+
+
+
+
+      <%@line_items.each do |line_item|%>
+          <%if line_item.good.supplier_id==87%>
+         <div style="background: #f0f1ff" id="line_<%=line_item.obj_ident%>">
+                  <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                    <div class="am-col col-sm-4 am-list-thumb">
+                      <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%> class="cart_orderlist_i">
+                      <img src="<%=line_item.good.medium_pic%>"
+                           data-original="<%=line_item.good.medium_pic%>"
+                           data-onerror="<%=line_item.good.medium_pic%>"
+                           data-brandlazy="true" style="display: inline;">
+                      </a>
+                    </div>
+                    <div class="am-col col-sm-8 am-list-main">
+                      <h3 class="am-list-item-hd">
+                        <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%>">
+                          <p class="cart_g_name"><%=line_item.good.brand.brand_name%>,<%=line_item.product.name%> </p>
+
+                        </a>
+                      </h3>
+                      <div class="am-list-item-text">
+                        <div class="good_data_num J_pro_num_btn_cart" data-product="68671252" style="border:none;height:33px;">
+
+                     <span class="good_data_num_l J_num_cart_reduce" >
+                <%= I18n.t "amount"%>：
+         </span>
+               <span class="good_data_num_l J_num_cart_reduce" >
+                <a href="javascript:;" class="subtract"  mars_sead="cart_edit_btn" style="font-size: 30px" data_mars="prd_id:26038564">-</a>
+         </span>
+
+                          <em class="good_data_num_m J_num_cart_txt">
+                            <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity good_data_num_m J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
+                          </em>
+         <span class="good_data_num_r J_num_cart_add" onclick="VsmCart.addNum(this)" >
+                      <a href="javascript:;" class="addition" mars_sead="cart_edit_btn" style="font-size: 26px"  data_mars="prd_id:26038564">+</a>
+        </span>
+                          <span  style="float: right;color: #ff0000">¥<%= format('%.2f',line_item.good.price)%></span>
+
+                        </div>
+                      </div>
+
+
+                    </div>
+
+                    <div>
+        <span class="delete" style="float: right">
+
+           <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile"%>" class="delete" data-method="delete" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
+
+             <img src="/assets/mobile/scan_layer-33.png" width="30" height="30">
+           </a>
+    </span>
+                    </div>
+
+
+                  </li>
+                   </div>
+
+
+
+
+              <%end%>
+        <%end %>
     </ul>
-  </div>
+
+
+
+  </div></div>
+
+
+
+
+</div>
+
+</div>
 
 
 
@@ -145,25 +222,25 @@
 
 
 
-  <div class="bottomdiv clearfix">
-    <div class="inner clearfix">
-      <div class="fl" style="float: left">
-        <p class="cart_total modal-footer" style="color: red"><%= I18n.t "total-price"%>：<span class="c_t_price total">¥<%= format('%.2f',@cart_total)%> </span></p>
-      </div>
-      <%if @line_items[0]== nil%>
-          <a  style="float: right" class="am-btn am-btn-warning" style="margin-left: 30%" href="/vshop/<%=@supplier.id%>">
-            <i class="am-icon-shopping-cart"></i>
-          <%= I18n.t "continue_shopping"%>
-          </a>
-          <%else%>
-      <a href="/orders/new_mobile?supplier_id=<%=@supplier.id%>" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
-        <%=I18n.t  "create-order"%>
-      <span class="fr cart_time_smb"><span class="clockicon fl"></span>
-        <!--<span class="num_cunt"><span class=":">19</span><span>:</span><span>42</span><span></span></span>--> </span>
-      </a>
-          <%end%>
+<div class="bottomdiv clearfix">
+  <div class="inner clearfix">
+    <div class="fl" style="float: left">
+      <p class="cart_total modal-footer" style="color: red"><%= I18n.t "total-price"%>：<span class="c_t_price total">¥<%= format('%.2f',@cart_total)%> </span></p>
     </div>
+    <%if @line_items[0]== nil%>
+        <a  style="float: right" class="am-btn am-btn-warning" style="margin-left: 30%" href="/vshop/<%=@supplier.id%>">
+          <i class="am-icon-shopping-cart"></i>
+          <%= I18n.t "continue_shopping"%>
+        </a>
+    <%else%>
+        <a href="/orders/new_mobile?supplier_id=<%=@supplier.id%>" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
+          <%=I18n.t  "create-order"%>
+          <span class="fr cart_time_smb"><span class="clockicon fl"></span>
+        <!--<span class="num_cunt"><span class=":">19</span><span>:</span><span>42</span><span></span></span>--> </span>
+        </a>
+    <%end%>
   </div>
+</div>
 </div>
 
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
@@ -183,39 +260,39 @@
             });
         });
 
-     $(".subtract").click(function(){
-         var quone= $(this).parents().parents().children(".good_data_num_m").children("#quantity");
-         var quantitys = quone.val();
+        $(".subtract").click(function(){
+            var quone= $(this).parents().parents().children(".good_data_num_m").children("#quantity");
+            var quantitys = quone.val();
 
-               if (quantitys<=1){
-                           alert("亲，不能在减了～") ;return false;
-         }
-        else{
-             var quantity= quantitys-1;
-                   quone.val(quantity) ;
-                   var url = quone.data('url');
-                   $.ajax(url,{
-                       type: "PUT",
-                       data:{ quantity:quantity },
-                       success:function(res){
-                       }
-                   });
-         }
-     });
+            if (quantitys<=1){
+                alert("亲，不能在减了～") ;return false;
+            }
+            else{
+                var quantity= quantitys-1;
+                quone.val(quantity) ;
+                var url = quone.data('url');
+                $.ajax(url,{
+                    type: "PUT",
+                    data:{ quantity:quantity },
+                    success:function(res){
+                    }
+                });
+            }
+        });
         $(".addition").click(function(){
             var qutwo=  $(this).parents().parents().children(".good_data_num_m").children("#quantity");
             var quantitys = qutwo.val();
             var quantity = quantitys * 1 + 1;
             qutwo.val(quantity);
 
-                var url =qutwo.data('url');
+            var url =qutwo.data('url');
 
-                $.ajax(url, {
-                    type: "PUT",
-                    data: { quantity: quantity },
-                    success: function (res) {
-                    }
-                });
+            $.ajax(url, {
+                type: "PUT",
+                data: { quantity: quantity },
+                success: function (res) {
+                }
+            });
 
         });
     });
