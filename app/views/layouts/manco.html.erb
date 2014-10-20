@@ -26,9 +26,10 @@
   <%= javascript_include_tag "amui/amazeui.widgets.min.js"%>
 
   <%= javascript_include_tag "amui/handlebars.min.js"%>
+  <%= javascript_include_tag "manco/iscroll.js"%>
   <%= csrf_meta_tag %>
     <style>
-        .main{position:fixed;top:38px;bottom:38px;width:100%;overflow:scroll;}
+
         .bottomdivsclearfix {
             position: fixed;
             bottom: 0;
@@ -73,9 +74,11 @@
 </div>
 
 
-<article class="main"  >
+<div id="wrapper">
+<div id="scroller">
 <%= yield %>
- </article>
+</div>
+</div>
 
 
 <div class="bottomdivsclearfix">
@@ -271,11 +274,22 @@
         })
     })
        $(document).ready(function(){
+
            $("#fuwu").click(function(){
                $("#aaa").toggle();
            })
        })
 
 </script>
+<script type="text/javascript">
 
+    var myScroll;
+
+    function loaded () {
+        myScroll = new IScroll('#wrapper', { scrollX: true, freeScroll: true });
+    }
+
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+</script>
 </body></html>
