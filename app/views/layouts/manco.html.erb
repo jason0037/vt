@@ -27,7 +27,7 @@
   <%= javascript_include_tag "amui/handlebars.min.js"%>
   <%= csrf_meta_tag %>
     <style>
-
+        .main{position:fixed;top:38px;bottom:38px;width:100%;overflow:scroll;}
         .bottomdivsclearfix {
             position: fixed;
             bottom: 0;
@@ -72,9 +72,9 @@
 </div>
 
 
-
+<article class="main"  >
 <%= yield %>
-
+ </article>
 
 
 <div class="bottomdivsclearfix">
