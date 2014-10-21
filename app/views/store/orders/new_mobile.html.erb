@@ -89,7 +89,7 @@
           <div class="am-panel-bd">
             <span class="bg-border"><span class="icon"></span></span>
            <% @cart_total_by_supplier.each(:as => :hash) do |row|%>
-            <p><%="#{row["supplier_id"]}|#{row["total"]}|#{row["freight"]}"%></p>
+            <p style="color:white"><%="#{row["supplier_id"]}|#{row["total"]}|#{row["freight"]}"%></p>
             <%end%>
             <p>&nbsp;<%= I18n.t "order_goods_price"%>：<span class="fr  " id="order_amount" data-amount = "<%=@cart_total%>">¥<%=@cart_total%>&nbsp;</span></p>
             <p>&nbsp;<%= I18n.t "express_price"%>：
