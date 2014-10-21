@@ -33,6 +33,7 @@ class Store::CartController < ApplicationController
 		goods_id = params[:product][:goods_id]
     good_supplier_id=params[:good_supplier_id]
     @goods_supplier=0
+    @background=["#cde6f3","#e5fdff"]
     if quantity.blank? || quantity ==0
       quantity=1
     end
