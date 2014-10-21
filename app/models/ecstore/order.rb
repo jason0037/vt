@@ -99,19 +99,15 @@ class Ecstore::Order < Ecstore::Base
 #German Sausage
           items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 77}.collect{ |order_item|  order_item.amount }.inject(:+)
          if items_amount_supplier
-          if items_amount_supplier >=350
-            freight += 0
-          else
-            freight += 35
+          if items_amount_supplier <350
+            freight77 = 35
           end
         end
 #诺狮
           items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 97}.collect{ |order_item|  order_item.amount }.inject(:+)
          if items_amount_supplier
-          if items_amount_supplier <=60
-            freight += 0
-          else
-            freight += 10
+          if items_amount_supplier <60
+            freight97 = 6
           end
          end
 =begin
@@ -131,7 +127,7 @@ class Ecstore::Order < Ecstore::Base
            freight += 0
          end
 =end
-          self.cost_freight =  freight
+          self.cost_freight =  freight + freight77 + freight97
          # items_amount = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+).to_f
 
           if  items_amount&&pmts_amount
