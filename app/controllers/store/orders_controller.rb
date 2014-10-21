@@ -414,7 +414,7 @@ class Store::OrdersController < ApplicationController
       supplier_id=78
     end
 
-   sql = "SELECT SUM(price*quantity) AS total,supplier_id,SUM(freight)/count(*) AS freight FROM mdk.sdb_b2c_cart_objects
+   sql = "SELECT SUM(price*quantity) AS total,mdk.sdb_b2c_cart_objects.supplier_id,SUM(freight)/count(*) AS freight FROM mdk.sdb_b2c_cart_objects
 INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING(SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',2),'_',-1) = mdk.sdb_b2c_goods.product_id
 WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}
 GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
