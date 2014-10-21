@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 
     def find_cart!
             if signed_in?
-              @line_items = Ecstore::Cart.where(:member_id=>current_account.account_id)
+              @line_items = Ecstore::Cart.where(:member_id=>current_account.account_id).order("supplier_id DESC")
 
             else
               member_ident = @m_id

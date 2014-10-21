@@ -4,6 +4,8 @@ Modengke::Application.routes.draw do
 
 
 
+
+
   get "rongda/index"
 
 
@@ -293,6 +295,10 @@ end
     resources :tracks do
       get :pages,:on=>:collection
     end
+
+    resources :carts do
+
+    end
     resources :wechat do
       get :menu,:on=>:collection
       get :menu_edit,:on=>:collection
@@ -523,12 +529,12 @@ end
     end
 
     resources :vgoods, :controller=>"virtual_goods",:only=>[:index,:show]
-    post 'cart/tairyo_add'=>"cart#tairyo_add",:as=>:add_to_cart   #团购商品添加购物车
-    post 'cart/add'=>"cart#add",:as=>:add_to_cart
-    post 'cart/manco_add'=>"cart#manco_add" ,:as=>:add_to_cart
-    post 'cart/tairyoall_add'=>"cart#tairyoall_add" ,:as=>:add_to_cart
+    post 'carts/tairyo_add'=>"carts#tairyo_add",:as=>:add_to_cart   #团购商品添加购物车
+    post 'carts/add'=>"carts#add",:as=>:add_to_cart
+    post 'carts/manco_add'=>"carts#manco_add" ,:as=>:add_to_cart
+    post 'carts/tairyoall_add'=>"carts#tairyoall_add" ,:as=>:add_to_cart
 
-    post 'cart/mancoexpress_add'=>"cart#mancoexpress_add",:as=>:add_to_cart
+    post 'carts/mancoexpress_add'=>"carts#mancoexpress_add",:as=>:add_to_cart
 
     resources :cart do
       get 'manco_express'  ,:on=>:collection
@@ -626,7 +632,7 @@ end
       get 'price',:on=>:member
     end
 
-    # post 'cart/add'=>"cart#add",:as=>:add_to_cart
+    # post 'carts/add'=>"carts#add",:as=>:add_to_cart
     resources :cart do
       post 'add',:on=>:collection
     end

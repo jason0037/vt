@@ -69,6 +69,7 @@ class Store::CartController < ApplicationController
 			cart.quantity = quantity
 			cart.time = Time.now.to_i
 			cart.member_id = member_id
+      cart.supplier_id=@good.supplier_id
 		end
 
 		if @cart.new_record?
