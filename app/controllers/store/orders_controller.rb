@@ -422,6 +422,17 @@ class Store::OrdersController < ApplicationController
       @cart_freight = 0
     end
 
+   sql = "SELECT sum(price*quantity),supplier_id,count(*) FROM mdk.sdb_b2c_cart_objects
+INNER JOIN mdk.sdb_b2c_products ON SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',-1) = mdk.sdb_b2c_products.product_id
+where mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}
+group by mdk.sdb_b2c_cart_objects.supplier_id"
+    @cart_total_by_supplier = ActiveRecord::Base.connection.execute(sql)
+=begin
+    results.each(:as => :hash) do |row|
+      value2= "|#{row["value"]}"
+    end
+=end
+
     @cart_total_final = @cart_total+ @cart_freight
     @addrs =  @user.member_addrs
     if @addrs.size==0

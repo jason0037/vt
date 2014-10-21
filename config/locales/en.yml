@@ -94,6 +94,7 @@ en:
     ###订单生成页面
   orders:  "My Orders"
   details_consignee: "Details of Consignee "
+  delivery_time: "Delivery Time"
   delivery_options: "Delivery Options"
   self_options : "Pick up in store"
   express : "Express"

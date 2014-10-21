@@ -58,21 +58,20 @@
 <div id="cart">
   <div class="am-list-news-bd">
 
-    <ul class="am-list">
+
         <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
 
             <%if line_item.supplier_id.to_i !=@goods_supplier%>
                   <%if @goods_supplier!=0%>
-                        </div>
+                        </ul>
                   <%end%>
                   <div><%=line_item.supplier.name%></div>
-                  <div style='background:<%=@bg_color[@i]%>'>
+                  <ul class="am-list">
                   <% @i = (@i-1).abs %>
             <%end%>
-
           <%@goods_supplier = line_item.supplier_id%>
 
-            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" id="line_<%=line_item.obj_ident%>">
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" id="line_<%=line_item.obj_ident%>" style='background:<%=@bg_color[@i]%>'>
               <div class="am-col col-sm-4 am-list-thumb">
                 <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%> class="cart_orderlist_i">
                 <img src="<%=line_item.good.medium_pic%>"
@@ -89,7 +88,7 @@
                   </a>
                 </h3>
 
-                <h4  style="color: #ff0000;text-align: center;padding: 0px"><%= I18n.t "h4_1"%><br/><%=I18n.t "h4_2"%></h4>
+                <h4  style="color: #ff0000;text-align: center;padding: 0px;display:none"><%= I18n.t "h4_1"%><br/><%=I18n.t "h4_2"%></h4>
 
                 </span>
                 <div class="am-list-item-text">
@@ -127,13 +126,7 @@
 
             </li>
 
-         </div>
-
-
-
-
-
-</div>  <%end%>  </ul>
+ <%end%>  </ul>
 
 
 

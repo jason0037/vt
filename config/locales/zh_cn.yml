@@ -79,13 +79,14 @@ zh_cn:
    ###订单生成页面
   orders:  "我的订单"
   details_consignee: "收货人信息"
+  delivery_time: "送货时间"
   delivery_options: "送货方式"
   self_options : "自提"
   express : "快递"
   alipay_mobile : "支付宝手机版"
   alipay : "支付宝"
   wechat : "微信支付"
-  pay_detail: "微信支付需要微信5.0版本以上，并且已经用微信授权登陆"
+  pay_detail: "微信支付需要微信5.0版本以上，并且已经用微信授权登录"
   invoice : "发票信息"
 
   details_invoice : "请输入发票抬头"

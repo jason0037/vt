@@ -17,23 +17,17 @@
     <%=form_for :order,:url=>"#{orders_path}?platform=mobile",:html=>{ :class=>"am-form",:id=>"order_form" } do |f|%>
         <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
 
-        <div class="am-panel am-panel-warning" style="display: none" data-collapse="true" data-style="arrow">
+        <div class="am-panel am-panel-warning" data-collapse="true" data-style="arrow">
           <div class="am-panel-hd"><%= I18n.t "delivery_options"%></div>
           <div class="am-panel-bd">
-            <div class="in_pay clearfix " style="display: none">
+            <div class="in_pay clearfix ">
               <%=f.select :ship_day,ship_day_options%>&nbsp;&nbsp;&nbsp;
               <%=f.text_field :ship_special,:class=>"input-small hide datetime"%>
               <%=f.select :ship_time2,ship_time_options%>
-              <ul style="display:none">
-                <li mars_sead="checkout_receive_anytime_btn"><span class="radio-box radio-selted"></span><input name="transport_day" value="1" type="radio" class="hide" checked="checked"><p>送货时间不限</p></li>
-                <li mars_sead="checkout_receive_weekend_btn"><span class="radio-box "></span><input name="transport_day" value="2" type="radio" class="hide"><p>只双休日/节假日送货(工作日不用送)</p></li>
-                <li mars_sead="checkout_receive_workday_btn"><span class="radio-box "></span><input name="transport_day" value="3" type="radio" class="hide"><p>只工作日(双休日/节假日不用送)</p></li>
-              </ul>
             </div>
-
           </div>  </div>
 
-        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
+        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow" style="display:none">
           <div class="am-panel-hd"><%= I18n.t "delivery_options"%></div>
           <div class="am-panel-bd">
 
@@ -74,7 +68,7 @@
           </div>
         </div>
 
-        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
+        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow" style="display:none">
           <div class="am-panel-hd"><%= I18n.t "invoice"%></div>
           <div class="am-panel-bd">
             <input class="text_input w100" id="order_tax_company" name="order[tax_company]" placeholder="<%=I18n.t "details_invoice"%>" size="30" type="text">
@@ -82,11 +76,9 @@
           </div>
         </div>
         <%if @supplier.id==78 %>
-        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
+        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow" style="display:none">
           <div class="am-panel-hd"><%= I18n.t "order_notice"%>   <span style="color: #ff0000"><%= I18n.t "order_notice_one"%></span> <br/>
-
               <span><%= I18n.t "order_notice_two"%></span>
-
           </div>
           </div>
         </div>
@@ -96,11 +88,11 @@
           <div class="am-panel-hd"><%= I18n.t "order_details_price"%></div>
           <div class="am-panel-bd">
             <span class="bg-border"><span class="icon"></span></span>
+           <% @cart_total_by_supplier.each(:as => :hash) do |row|%>
+            <p><%="#{row["supplier_id"]}|#{row["value"]}"%></p>
+            <%end%>
             <p>&nbsp;<%= I18n.t "order_goods_price"%>：<span class="fr  " id="order_amount" data-amount = "<%=@cart_total%>">¥<%=@cart_total%>&nbsp;</span></p>
             <p>&nbsp;<%= I18n.t "express_price"%>：
-
-
-
                   <span class="fr">¥<%=@cart_freight%>&nbsp;</span></p>
             <p>&nbsp;<%= I18n.t "overall"%>：<span class="fr" style="color: red">¥<%=@cart_total_final%>&nbsp;</span></p>
 
@@ -108,14 +100,7 @@
             <span class="bg-border2"></span>
           </div>
         </div>
-
-
-
             <input type="submit" class="am-btn am-btn-warning am-btn-block" value="<%=I18n.t 'confirm_order'%>">
-
-
-
-
     <%end%>
 <%else%>
     <p><%=I18n.t "order_notice_four"%>。</p>
