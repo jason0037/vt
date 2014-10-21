@@ -423,7 +423,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
     @favorable_terms = 0
 
     @cart_total_by_supplier.each(:as => :hash) do |row|
-      if (row["total"]>=60 && row["supplier_id"]==97) || (row["total"]>=350 &&row["supplier_id"]==78) #|| @cart_total==0.01 #测试商品
+      if (row["total"]>=60 && row["supplier_id"]==97) || (row["total"]>=350 &&row["supplier_id"]==77) #|| @cart_total==0.01 #测试商品
         @favorable_terms -=row["freight"]
       end
       @cart_freight += row["freight"]
