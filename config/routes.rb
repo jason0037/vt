@@ -683,7 +683,7 @@ end
     end
 
     resources :member_addrs do
-
+         get "mobile"  ,:on=>:collection
         get 'new_memberaddr_add' ,:on=>:collection
       get '_form_manco_second' ,:on=>:collection
       post 'addship' ,:on=>:collection
