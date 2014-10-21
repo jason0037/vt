@@ -97,6 +97,7 @@ class Ecstore::Order < Ecstore::Base
           end
 
 #German Sausage
+         freight77 =0
           items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 77}.collect{ |order_item|  order_item.amount }.inject(:+)
          if items_amount_supplier
           if items_amount_supplier <350
@@ -104,6 +105,7 @@ class Ecstore::Order < Ecstore::Base
           end
         end
 #诺狮
+         freight97 = 0
           items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 97}.collect{ |order_item|  order_item.amount }.inject(:+)
          if items_amount_supplier
           if items_amount_supplier <60
