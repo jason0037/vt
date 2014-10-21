@@ -31,20 +31,13 @@ class SessionsController < ApplicationController
     # 大渔饭店
   end
 
-  def new_manco
-    session[:return_url]=params[:return_url]
-    render :layout=>"manco_template"
-  end
 
   def register_tairyo
     render :layout=>"tairyo_new"
     # 大渔饭店
   end
 
-  def register_manco
-    render :layout=>"manco_template"
-    # 大渔饭店
-  end
+
   def register_mobile
     supplier_id =params[:id]
      if params[:supplier_id]
@@ -71,22 +64,7 @@ class SessionsController < ApplicationController
      end
   end
 
-  def create_manco
-    @return_url = params[:return_url]
-    @platform = params[:platform]
-    @account = Ecstore::Account.manco_authenticate(params[:session][:username],params[:session][:password])
 
-    if @account
-      sign_in(@account,params[:remember_me])
-
-
-      render "manco_template"
-
-
-    else
-      render "error"
-    end
-  end
 
   def create
 

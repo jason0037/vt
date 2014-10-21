@@ -62,11 +62,7 @@
 
         <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
 
-
             <%if line_item.good.supplier_id==77%>
-
-
-
                 <div style="background: #f0f1ff" id="line_<%=line_item.obj_ident%>">
                   <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-col col-sm-4 am-list-thumb">
@@ -133,9 +129,6 @@
 
       <%end%>
        <hr>
-
-
-
 
       <%@line_items.each do |line_item|%>
           <%if line_item.good.supplier_id==87%>
