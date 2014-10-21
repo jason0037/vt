@@ -65,8 +65,8 @@
                   <%if @goods_supplier!=0%>
                         </ul>
                   <%end%>
-                  <div><%=line_item.supplier.name%></div>
-                  <ul class="am-list">
+                  <div id="supplier_<%=line_item.supplier_id%>"><%=line_item.supplier.name%></div>
+                  <ul class="am-list" id="supplierid_<%=line_item.supplier_id%>">
                   <% @i = (@i-1).abs %>
             <%end%>
           <%@goods_supplier = line_item.supplier_id%>
@@ -116,7 +116,7 @@
               <div>
         <span class="delete" style="float: right">
 
-           <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile"%>" class="delete" data-method="delete" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
+           <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile&supplier_id=#{line_item.supplier_id}"%>" class="delete" data-method="delete" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
 
              <img src="/assets/mobile/scan_layer-33.png" width="30" height="30">
            </a>
@@ -148,7 +148,7 @@
 
 
 
-
+<div id ="carter">
 <div class="bottomdiv clearfix">
   <div class="inner clearfix">
     <div class="fl" style="float: left">

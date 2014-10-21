@@ -104,12 +104,18 @@ end
   end
 
   def destroy
+    @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @addr = Ecstore::MemberAddr.find(params[:id])
     @addr.destroy
+    if params[:platform]=="mobile"
+
+      redirect_to "/member_addrs/mobile?platform=mobile&supplier_id=#{@supplier.id}"
+   else
+
     redirect_to "/member_addrs?platform=#{params[:platform]}"
   end
 
-
+  end
   def _form_manco_second
     session[:depars]=params[:member_departure_id]  ##有寄货地址 没收货地址的
     @addr = Ecstore::MemberAddr.new

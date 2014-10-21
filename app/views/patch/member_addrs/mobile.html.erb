@@ -21,7 +21,7 @@
 <div class="am-panel am-panel-default">
   <%if @addrs && @addrs.size > 0%>
       <%@addrs.each  do |addr|%>
-          <a id="addressLink" href="/member_addrs/<%=addr.id%>/edit?platform=mobile">
+          <a id="addressLink" href="/member_addrs/<%=addr.id%>/edit?supplier_id=<%=@supplier.id%>&platform=mobile">
             <div class="am-panel-bd">
               <span class="text" style="font-size: 20px"><%=addr.name%>  </span>
               <br/>
