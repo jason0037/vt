@@ -127,21 +127,7 @@ class Ecstore::Order < Ecstore::Base
            freight += 0
          end
 =end
-            sql = "SELECT SUM(price*quantity) AS total,mdk.sdb_b2c_cart_objects.supplier_id,SUM(freight)/count(*) AS freight FROM mdk.sdb_b2c_cart_objects
-INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING_INDEX(SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',2),'_',-1) = mdk.sdb_b2c_goods.goods_id
-WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}
-GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
-          @cart_total_by_supplier = ActiveRecord::Base.connection.execute(sql)
-          @cart_freight = 0
-          @favorable_terms = 0
-
-          @cart_total_by_supplier.each(:as => :hash) do |row|
-            if (row["total"]>=60 && row["supplier_id"]==97) || (row["total"]>=350 &&row["supplier_id"]==77) #|| @cart_total==0.01 #测试商品
-              @favorable_terms -=row["freight"]
-            end
-            @cart_freight += row["freight"]
-          end
-          self.cost_freight = @cart_freight + @favorable_terms# freight
+          self.cost_freight =  freight
          # items_amount = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+).to_f
 
           if  items_amount&&pmts_amount
