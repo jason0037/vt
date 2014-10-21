@@ -1,0 +1,28 @@
+<div>
+  <h4>购物车</h4>
+</div>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>商品供应商</th>
+    <th>商品名</th>
+    <th>用户创建购物车时间</th>
+    <th>用户Id</th>
+    <th>购物数量</th>
+
+  </tr>
+
+  <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
+      <tr>
+        <td><%=line_item.good.supplier_id%></td>
+        <td><%=line_item.product.name%></td>
+        <td><%=Time.at(line_item.time).to_s(:db)%></td>
+        <td><%=line_item.member_id%></td>
+        <td><%=line_item.quantity%></td>
+      </tr>
+  <% end %>
+</table>
+
+<div class="pagination">
+  <%= will_paginate @line_items, :container => false %>
+</div>
