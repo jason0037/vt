@@ -26,15 +26,23 @@ class Patch::MemberAddrsController < ApplicationController
 
     if params[:platform]=="mobile"
       @supplier = Ecstore::Supplier.find(@user.account.supplier_id)
-      @newurl = "new_memberaddr_add?supplier_id=#{@supplier.id}"
-      layout =@supplier.layout
-      render :layout =>layout
+
+     redirect_to "/member_addrs/mobile?supplier_id=#{@supplier.id}"
 
     else
       @newurl = "new"
-    end
-  end
 
+    end
+
+  end
+def mobile
+  @supplier = Ecstore::Supplier.find(params[:supplier_id])
+  @addrs = @user.member_addrs.paginate(:per_page=>10,:page=>params[:page])
+  @newurl = "new_memberaddr_add?supplier_id=#{@supplier.id}"
+
+  render :layout => @supplier.layout
+
+end
 
 
   def edit

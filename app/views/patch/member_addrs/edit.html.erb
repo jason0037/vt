@@ -1,6 +1,12 @@
-<div class="am-panel am-panel-warning" style="text-align: center">
-  <div class="am-panel-hd"><%= I18n.t "address"%></div>
+
 
 </div>
-
+    <%if params[:platform] =="mobile"%>
+    <div class="am-panel am-panel-warning" style="text-align: center">
+      <div class="am-panel-hd"><%= I18n.t "address"%></div>
+    <%=render :partial=>"form_mobile",:locals=>{ :display=>true }%>
+        </div>
+    <%else%>
+     <h4>修改地址</h4>
 <%=render :partial=>"form",:locals=>{ :display=>true }%>
+<%end%>

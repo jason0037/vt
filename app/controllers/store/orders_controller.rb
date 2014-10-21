@@ -351,6 +351,7 @@ class Store::OrdersController < ApplicationController
 
   def new
     # @order = Ecstore::Order.new
+
     @addrs =  @user.member_addrs
     @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
 
@@ -359,6 +360,7 @@ class Store::OrdersController < ApplicationController
       @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
       @coupons = @user.usable_coupons
     end
+
   end
 
   def new_mobile_addr
