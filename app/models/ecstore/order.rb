@@ -109,7 +109,7 @@ class Ecstore::Order < Ecstore::Base
           items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 97}.collect{ |order_item|  order_item.amount }.inject(:+)
          if items_amount_supplier
           if items_amount_supplier <60
-            freight97 = 6
+            freight97 = 10
           end
          end
 =begin
