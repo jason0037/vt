@@ -406,7 +406,6 @@ class Store::OrdersController < ApplicationController
  end
 
 
-
   def new_mobile
 
     supplier_id= @user.account.supplier_id

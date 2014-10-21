@@ -58,30 +58,19 @@
 <div id="cart">
   <div class="am-list-news-bd">
 
-
-
-
-
     <ul class="am-list">
         <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
 
             <%if line_item.supplier_id.to_i !=@goods_supplier%>
-              <%if @goods_supplier!=0%>
-                    </div>
-              <%end%>
-
-                <div style='background: #cde6f3'>
-
-               <%else%>
-
-
-              <div style='background: #e5fdff'>
-
+                  <%if @goods_supplier!=0%>
+                        </div>
+                  <%end%>
+                  <div><%=line_item.supplier.name%></div>
+                  <div style='background:<%=@bg_color[@i]%>'>
+                  <% @i = (@i-1).abs %>
             <%end%>
 
-          <%@goods_supplier=line_item.supplier_id%>
-
-
+          <%@goods_supplier = line_item.supplier_id%>
 
             <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" id="line_<%=line_item.obj_ident%>">
               <div class="am-col col-sm-4 am-list-thumb">
@@ -101,7 +90,7 @@
                 </h3>
 
                 <h4  style="color: #ff0000;text-align: center;padding: 0px"><%= I18n.t "h4_1"%><br/><%=I18n.t "h4_2"%></h4>
-                  <%=line_item.supplier_id%>
+
                 </span>
                 <div class="am-list-item-text">
                   <div class="good_data_num J_pro_num_btn_cart" data-product="68671252" style="border:none;height:33px;">
@@ -123,8 +112,6 @@
 
                   </div>
                 </div>
-
-
               </div>
 
               <div>

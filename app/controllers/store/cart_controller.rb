@@ -9,18 +9,19 @@ class Store::CartController < ApplicationController
 
   def mobile
     supplier_id=params[:id]
-    good_supplier_id=params[:good_supplier_id]
-
+    good_supplier_id = params[:good_supplier_id]
+    @goods_supplier = 0
+    @bg_color = ["#cde6f3","#e5fdff"]
+    @i = 0
     if  @user
          if supplier_id == nil
-        supplier_id=78
-      end
-      @supplier = Ecstore::Supplier.find(supplier_id)
+            supplier_id=78
+         end
+        @supplier = Ecstore::Supplier.find(supplier_id)
          render :layout=>@supplier.layout
-  else
-     redirect_to  "/mlogin?id=#{supplier_id}&platform=mobile&return_url=/cart/mobile?id=#{supplier_id}"
-  end
-
+    else
+       redirect_to  "/mlogin?id=#{supplier_id}&platform=mobile&return_url=/cart/mobile?id=#{supplier_id}"
+    end
 
   end
 
@@ -32,8 +33,7 @@ class Store::CartController < ApplicationController
 		quantity = params[:product].delete(:quantity).to_i
 		goods_id = params[:product][:goods_id]
     good_supplier_id=params[:good_supplier_id]
-    @goods_supplier=0
-    @background=["#cde6f3","#e5fdff"]
+
     if quantity.blank? || quantity ==0
       quantity=1
     end
