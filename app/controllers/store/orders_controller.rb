@@ -421,14 +421,14 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
     @cart_total_by_supplier = ActiveRecord::Base.connection.execute(sql)
     @cart_freight = 0
     @favorable_terms = 0
-begin
+
     @cart_total_by_supplier.each(:as => :hash) do |row|
       if (row[:total]>=60 && row[:supplier.id]==97) || (@cart_total>=350 && @supplier.id==78) || @cart_total==0.01 #测试商品
         @favorable_terms -=row[:freight]
       end
       @cart_freight += row[:freight]
     end
-end
+
 
     @cart_total_final = @cart_total+ @cart_freight + @favorable_terms
     @addrs =  @user.member_addrs
