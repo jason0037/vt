@@ -75,7 +75,7 @@ class Ecstore::Order < Ecstore::Base
 
           order_item =  self.order_items.first
           supplier =order_item.good.supplier_id
-
+          freight = 0
           if supplier==97
             if items_amount>=60 #诺狮满60免运费
               freight =  0
@@ -95,7 +95,39 @@ class Ecstore::Order < Ecstore::Base
           else
             freight = 10
           end
-          sql = "SELECT SUM(price*quantity) AS total,mdk.sdb_b2c_cart_objects.supplier_id,SUM(freight)/count(*) AS freight FROM mdk.sdb_b2c_cart_objects
+
+#German Sausage
+          items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 77}.collect{ |order_item|  order_item.amount }.inject(:+)
+          if items_amount_supplier >=350
+            freight += 0
+          else
+            freight += 35
+          end
+#诺狮
+          items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 97}.collect{ |order_item|  order_item.amount }.inject(:+)
+          if items_amount_supplier <=60
+            freight += 0
+          else
+            freight += 10
+          end
+=begin
+#天山蟹客
+          items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 87}.size
+          if items_amount_supplier >0
+            freight += 0
+          end
+#万家物流
+         items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 98}.size
+         if items_amount_supplier >0
+           freight += 0
+         end
+#金芭浪
+         items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 99}.size
+         if items_amount_supplier >0
+           freight += 0
+         end
+=end
+            sql = "SELECT SUM(price*quantity) AS total,mdk.sdb_b2c_cart_objects.supplier_id,SUM(freight)/count(*) AS freight FROM mdk.sdb_b2c_cart_objects
 INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING_INDEX(SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',2),'_',-1) = mdk.sdb_b2c_goods.goods_id
 WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}
 GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
