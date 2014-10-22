@@ -413,29 +413,24 @@ class Store::OrdersController < ApplicationController
     if supplier_id.nil?
       supplier_id=78
     end
-    @supplier = Ecstore::Supplier.find(supplier_id)
-    if @supplier.id==78
-      @cart_freight=35
-    else
-      @cart_freight = 10
-    end
 
-    if (@cart_total>=60 && @supplier.id==97) || (@cart_total>=350 && @supplier.id==78) || @cart_total==0.01 #测试商品
-      @cart_freight = 0
-    end
-
-   sql = "SELECT sum(price*quantity) as total,supplier_id,count(*) as sum FROM mdk.sdb_b2c_cart_objects
-INNER JOIN mdk.sdb_b2c_products ON SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',-1) = mdk.sdb_b2c_products.product_id
-where mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}
-group by mdk.sdb_b2c_cart_objects.supplier_id"
+   sql = "SELECT SUM(price*quantity) AS total,mdk.sdb_b2c_cart_objects.supplier_id,SUM(freight)/count(*) AS freight FROM mdk.sdb_b2c_cart_objects
+INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING_INDEX(SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',2),'_',-1) = mdk.sdb_b2c_goods.goods_id
+WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}
+GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
     @cart_total_by_supplier = ActiveRecord::Base.connection.execute(sql)
-=begin
-    results.each(:as => :hash) do |row|
-      value2= "|#{row["value"]}"
-    end
-=end
+    @cart_freight = 0
+    @favorable_terms = 0
 
-    @cart_total_final = @cart_total+ @cart_freight
+    @cart_total_by_supplier.each(:as => :hash) do |row|
+      if (row["total"]>=60 && row["supplier_id"]==97) || (row["total"]>=350 &&row["supplier_id"]==77) #|| @cart_total==0.01 #测试商品
+        @favorable_terms -=row["freight"]
+      end
+      @cart_freight += row["freight"]
+    end
+
+
+    @cart_total_final = @cart_total+ @cart_freight + @favorable_terms
     @addrs =  @user.member_addrs
     if @addrs.size==0
       redirect_to "/orders/new_mobile_addr?supplier_id=#{supplier_id}&return_url=%2forders%2fnew_mobile%26supplier_id%3d#{supplier_id}"
@@ -447,6 +442,7 @@ group by mdk.sdb_b2c_cart_objects.supplier_id"
         @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
         @coupons = @user.usable_coupons
       end
+      @supplier = Ecstore::Supplier.find(supplier_id)
       render :layout=>@supplier.layout
     end
   end
