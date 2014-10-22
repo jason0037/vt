@@ -616,9 +616,10 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
   end
 
   def destroyaddr
+
     @addr = Ecstore::MemberAddr.find(params[:addr_idsss])            ### 删除地址
     @addr.destroy
-    redirect_to "/orders/arrival"
+
   end
 
   def ordersnew_manco

@@ -60,7 +60,7 @@
             var addr_idsss=   $(this).parent("td").siblings("td").eq(0).children("input[type='radio']").val();
             var thisTr =  $(this);
             $.ajax( {
-                url: "/orders/destroyaddr",
+                url: "/orders/destroyaddr?supplier_id=#{<%@supplier.id%>}",
                 type: "post",
                 data:{addr_idsss:addr_idsss },
                 success:function(res){

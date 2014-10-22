@@ -8,7 +8,9 @@
     }
 
 </style>
-<%=form_for :addr, :url=>@method == :put ?@action_url :" /member_addrs?return_url=/member_addrs/_form_manco_second",  :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
+<%=javascript_include_tag "area_seletor"%>
+<%=javascript_include_tag "patch/member_addrs"%>
+<%=form_for :addr, :url=>@method == :put ?@action_url :" /member_addrs?return_url=/member_addrs/_form_manco_second?supplier_id=#{@supplier.id}",  :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
 
     <input name="addr[addr_type]" type="hidden" value="1" >
       <div class="am-panel am-panel-default">
@@ -79,7 +81,7 @@
 
       <div class="am-panel am-panel-default">
         <div class="am-panel-hd">
-          <label for="addr_def_addr"><%=I18n.t "set_default"%>:</label>
+          <label for="addr_def_addr"><%=I18n.t "set_default"%><em style="color: #ff0000">(选择设置为当前默认地址)</em>:</label>
           <%#=f.label :def_addr, "设置默认："%>  </div>
         <div class="am-panel-bd">
           <%=f.check_box :def_addr, {}, 1, 0 %><span><%=I18n.t "default"%></span>
