@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
     session[:return_url] =  return_url
 
     res_data= RestClient.get(URI.encode(@oauth2_url))
-    res_data =URI.decode(res_data)
+   # res_data =URI.decode(res_data)
   #  res_data=res_data.split('&').first.sub('res_data=','')
 
     render :text=>"自动登录.......", :layout => @supplier.layout
