@@ -123,7 +123,7 @@ class Store::CartController < ApplicationController
 		_type, goods_id, product_id = params[:id].split('_')
 		@line_items.where(:obj_ident=>params[:id]).delete_all
 		@user.custom_specs.where(:product_id=>product_id).delete_all if signed_in?
-
+    @line_items = Ecstore::Cart.find_by_obj_ident(params[:id])
 		find_cart!
   #  if params[:platform]=='mobile'
   #    return  render :text=>"删除成功"# redirect_to "/cart/mobile"
