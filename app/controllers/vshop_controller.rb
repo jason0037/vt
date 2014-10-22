@@ -4,9 +4,6 @@ class VshopController < ApplicationController
  layout "vshop"
 
 
-
-
-
  def new
     @account = Ecstore::Account.new
   end
