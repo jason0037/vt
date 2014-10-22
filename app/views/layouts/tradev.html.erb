@@ -15,7 +15,7 @@
   <%= stylesheet_link_tag "amui/amazeui.min.css"%>
   <%= stylesheet_link_tag "amui/amazeui.widgets.css"%>
   <%= stylesheet_link_tag "amui/amazeui.widgets.min.css"%>
-  <script src="http://localhost:8080/target/target-script-min.js#anonymous"></script>
+
 
   <%= javascript_include_tag "amui/amazeui.widgets.helper.js"%>
   <%= javascript_include_tag "amui/amazeui.widgets.helper.min.js"%>
@@ -192,8 +192,10 @@
 <div class="footer clearfix">
   <%if @user%>
       <script>
+          <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
           if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-              location.href = "/logout?id=<%=@supplier.id%>&return_url=<%=request.url.sub('http://trade','').force_encoding('UTF-8')%>&platform=mobile"
+              location.href = "/logout?id=<%=@supplier.id%>&platform=mobile&<%=return_url%>"
+
           }
       </script>
   <%end%>

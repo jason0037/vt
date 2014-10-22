@@ -17,8 +17,7 @@ class MancoController < ApplicationController
   def find_manco
     supplier_id = params[:supplier_id]
 
-
-       @supplier =Ecstore::Supplier.find(supplier_id)
+  @supplier =Ecstore::Supplier.find(supplier_id)
 
 
   end
