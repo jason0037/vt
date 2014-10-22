@@ -165,7 +165,7 @@
         <script>
             <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
             if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-                location.href = "/auto_login?id=<%=@supplier.id%><%=return_url%>&platform=mobile&id=<%=@supplier.id%>"
+                location.href ="/auto_login?id=<%=@supplier.id%><%=return_url%>&platform=mobile&supplier_id=<%=@supplier.id%>"
 
             }
         </script>
