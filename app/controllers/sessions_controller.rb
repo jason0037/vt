@@ -21,12 +21,12 @@ class SessionsController < ApplicationController
     redirect_uri="http%3a%2f%2fwww.trade-v.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
 
     @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
-redirect_to  @oauth2_url
+
     return_url  = params[:return_url]
     session[:return_url] =  return_url
-
-    res_data= RestClient.get(URI.encode(@oauth2_url))
-    res_data = res_data.force_encoding('utf-8').encode
+    redirect_to  @oauth2_url
+ #   res_data= RestClient.get(URI.encode(@oauth2_url))
+  #  res_data = res_data.force_encoding('utf-8').encode
   #  res_data=res_data.split('&').first.sub('res_data=','')
 
 #    render :text=>res_data, :layout => @supplier.layout
