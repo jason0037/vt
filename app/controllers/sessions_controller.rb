@@ -1,8 +1,34 @@
 class SessionsController < ApplicationController
+  require 'rest-client'
+
   skip_before_filter :authorize_user!
   layout 'login'
 
   def new
+
+  end
+
+  def auto_login
+    supplier_id = params[:id]
+    if params[:supplier_id]
+      supplier_id  = params[:supplier_id]
+    end
+    @supplier = Ecstore::Supplier.find(supplier_id)
+
+    #redirect_uri = "http://www.trade-v.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
+    #redirect_uri= URI::escape(redirect_uri)
+    redirect_uri="http%3a%2f%2fwww.trade-v.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
+
+    @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+
+    return_url  = params[:return_url]
+    session[:return_url] =  return_url
+
+    res_data= RestClient.get(URI.encode(@oauth2_url))
+    res_data =URI.decode(res_data)
+  #  res_data=res_data.split('&').first.sub('res_data=','')
+
+    render :text=>"自动登录.......", :layout => @supplier.layout
 
   end
 
