@@ -3,7 +3,7 @@
 
     <div class="am-panel am-panel-warning">
       <div class="am-panel-hd"><%=I18n.t "details_consignee"%></div>
-      <a id="addressLink" href="/orders/new_mobile_addr?platform=mobile&supplier_id=78">
+      <a id="addressLink" href="addr_detail?platform=mobile&supplier_id=<%=@supplier.id%>&id=<%=@def_addr.id%>">
       <div class="am-panel-bd">
           <span class="text">&nbsp;&nbsp;<%=@def_addr.name%>  <span class="phone-num" style="margin-left: 30px"><%=@def_addr.mobile%></span></span>
           <br/>
@@ -102,7 +102,8 @@
             <input type="submit" class="am-btn am-btn-warning am-btn-block" value="<%=I18n.t 'confirm_order'%>">
     <%end%>
 <%else%>
-    <p><%=I18n.t "order_notice_four"%>。</p>
+    <p><%=I18n.t "order_notice_four"%>。
+      <a id="addressLink" href="/orders/new_mobile_addr?platform=mobile&supplier_id=78"></a></p>
 
 <%end%>
 <br/>
