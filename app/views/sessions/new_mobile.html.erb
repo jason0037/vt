@@ -13,22 +13,24 @@
     <%=hidden_field_tag :platform,'mobile'%>
     <br/>
 
-    <%if @user%>
-
-      <p>你已经登陆了<a href="/vshop/<%=@supplier.id%>">点击进入首页</a></p>
-
-        <%else%>
 
 
-    <div class="connerdiv" >
-      <a href="<%=@oauth2_url%>">
-        <img src="/assets/vshop/Oauth_button.png"  class="am-img-thumbnail" style="border: 1px solid grey;width:200px;">
-      </a>
-    </div>
-        <div class="connerdiv" >
-          轻轻点击图片进行登陆
-          </div>
-    <br/>
+
+    <!--<div class="connerdiv" >-->
+      <!--<a href="<#%=@oauth2_url%>">-->
+        <!--<img src="/assets/vshop/Oauth_button.png"  class="am-img-thumbnail" style="border: 1px solid grey;width:200px;">-->
+      <!--</a>-->
+    <!--</div>-->
+        <!--<div class="connerdiv" >-->
+          <!--轻轻点击图片进行登陆-->
+          <!--</div>-->
+    <!--<br/>-->
+
+
+
+
+
+
 
     <div class="connerdiv" style="display: none">
 
@@ -76,6 +78,9 @@
       <a href="/users/forgot_password?id=<%=params[:id]%>&platform=mobile" class="fr forgetkey" target="new">忘记密码?</a>
     </div>
 <%end%>
-    <% end%>
+
 <%= javascript_include_tag "login" %>
 
+   <script>
+     window.location.href="<%=params[:return_url]%>";
+   </script>
