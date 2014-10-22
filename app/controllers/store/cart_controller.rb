@@ -9,7 +9,6 @@ class Store::CartController < ApplicationController
 
   def mobile
     supplier_id=params[:id]
-
     good_supplier_id = params[:good_supplier_id]
     @goods_supplier = 0
     @bg_color = ["#cde6f3","#e5fdff"]
@@ -102,7 +101,7 @@ class Store::CartController < ApplicationController
       supplier_id = 78
     end
     if params[:platform]=='mobile'
-      redirect_to "/cart/mobile?id=#{supplier_id}&user_id=#{params[:user_id]}"
+      redirect_to "/cart/mobile?id=#{supplier_id}"
       #render "mobile", :layout=>@supplier.layout
     else
       render "add"
@@ -115,7 +114,7 @@ class Store::CartController < ApplicationController
 	def update
 		quantity = params[:quantity]
 		@line_items.where(:obj_ident=>params[:id]).update_all(:quantity=>quantity)
-		@line_items  = @line_items.where(:obj_ident=>params[:id]).first
+		@line_item  = @line_items.where(:obj_ident=>params[:id]).first
 		find_cart!
 		render "update"
 	end
@@ -124,7 +123,7 @@ class Store::CartController < ApplicationController
 		_type, goods_id, product_id = params[:id].split('_')
 		@line_items.where(:obj_ident=>params[:id]).delete_all
 		@user.custom_specs.where(:product_id=>product_id).delete_all if signed_in?
-    @line_items = Ecstore::Cart.find_by_member_id(params[:user_id]).order("supplier_id")
+
 		find_cart!
   #  if params[:platform]=='mobile'
   #    return  render :text=>"删除成功"# redirect_to "/cart/mobile"
