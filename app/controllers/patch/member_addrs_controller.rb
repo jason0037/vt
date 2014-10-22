@@ -128,13 +128,16 @@ end
 
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @addr = Ecstore::MemberAddr.new params[:addr].merge!(:member_id=>@user.member_id)
+
     if @addr.save
       @arrid=@addr.addr_id
 
       session[:arri]=@arrid
       redirect_to "/orders/ordersnew_manco?supplier_id=#{@supplier.id}"
-    end
-  else "/member_addrs/_form_manco_second?supplier_id=#{@supplier.id}"
+
+    else
+      redirect_to "/member_addrs/_form_manco_second?supplier_id=#{@supplier.id}"
   end
     end
 
+end

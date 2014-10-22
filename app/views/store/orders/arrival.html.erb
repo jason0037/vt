@@ -24,7 +24,7 @@
 
 </header>
 <div class="href">
-<a id="ahref" class="am-btn am-btn-default" href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>&supplier_id=<%=@supplier.id%>" >新增收获人地址 </a>
+<a id="ahref" class="am-btn am-btn-default" href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>&supplier_id=<%=@supplier.id%>" >新增收货人地址 </a>
 
          </div>
 
@@ -65,7 +65,7 @@
        var addr_idsss=   $(this).parent("td").siblings("td").eq(0).children("input[type='radio']").val();
           var thisTr =  $(this);
         $.ajax( {
-               url: "/orders/destroyaddr",
+               url: "/orders/destroyaddr?supplier_id=#{<%@supplier.id%>}",
               type: "post",
               data:{addr_idsss:addr_idsss },
               success:function(res){
