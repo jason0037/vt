@@ -82,5 +82,5 @@
 <%= javascript_include_tag "login" %>
 
    <script>
-     window.location.href="<%=params[:return_url]%>";
+     window.location.href="<%=params[:return_url]%>"+"supplier_id=<%=@supplier.id%>";
    </script>
