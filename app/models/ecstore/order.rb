@@ -71,31 +71,7 @@ class Ecstore::Order < Ecstore::Base
           # =====pmts  amount====
           pmts_amount = self.order_pmts.collect { |order_pmt| order_pmt.pmt_amount }.inject(:+).to_f
 
-          #=========freigh ammount=========
-
-          order_item =  self.order_items.first
-          supplier =order_item.good.supplier_id
-          freight = 0
-          if supplier==97
-            if items_amount>=60 #诺狮满60免运费
-              freight =  0
-            else
-              freight = 6
-            end
-          elsif supplier==77
-            if items_amount>=350 #德国香肠350免运费
-              freight = 0
-            else
-              freight = 35
-            end
-          elsif supplier==98
-              freight = 0
-          elsif  items_amount<=0.05  #测试商品
-            freight = 0
-          else
-            freight = 10
-          end
-
+          #=========freigh ammount========
 #German Sausage
          freight77 =0
           items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 77}.collect{ |order_item|  order_item.amount }.inject(:+)
