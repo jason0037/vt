@@ -43,8 +43,6 @@
 
 <%= yield %>
 
-
-
 <div class="space15"></div>
 
 <div class="s_links"><a href="tel:021-22306630" mars_sead="home_foot_call"><em class="s_tel"></em>咨询电话<span></span><p class="telnum">021-22306630</p></a></div>
@@ -53,11 +51,16 @@
 
 <div class="footer clearfix">
   <div class="footnav clearfix">
+    <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
     <%if @user%>
-        <a href="user.html"><%=@user.account.id%></a>
+        <script>
+            if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
+                location.href = "/auto_login?id=<%=@supplier.id%>&return_url=<%=return_url%>&platform=mobile"
+            }
+        </script>
+        <a href="#"><%=@user.account.id%></a>
         <a href="/logout?id=<%=@supplier.id%>&platform=mobile">退出登录</a>
     <%else%>
-        <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
         <a href="/auto_login?id=<%=@supplier.id%>&platform=mobile&<%=return_url %>" mars_sead="footer-login_btn">登录</a>
         <a href="/mregister?id=<%=@supplier.id%>&platform=mobile&<%=return_url%>">注册</a>
     <%end%>

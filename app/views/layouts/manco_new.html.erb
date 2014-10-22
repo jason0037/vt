@@ -30,6 +30,7 @@
 
 <div class="footer clearfix">
   <div class="footnav clearfix">
+    <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
     <%if @user%>
         <script>
             if ('<%=@user.account.supplier_id %>'!='98'){
@@ -40,7 +41,7 @@
         <a href="/wlogout?platform=manco">退出登录</a>
     <%else%>
 
-        <a href="/mlogin?id=98&platform=mobile&return_url=/manco" mars_sead="footer-login_btn">登录</a>
+        <a href="/auto_login?id=98&platform=mobile&return_url=/manco" mars_sead="footer-login_btn">登录</a>
         <a href="/wregister?platform=manco&return_url=/manco">注册</a>
     <%end%>
     <a href="?t=1#" class="backtop" mars_sead="home_foot_top_btn"></a>

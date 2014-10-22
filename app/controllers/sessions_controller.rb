@@ -25,11 +25,6 @@ class SessionsController < ApplicationController
     return_url  = params[:return_url]
     session[:return_url] =  return_url
     redirect_to  @oauth2_url
- #   res_data= RestClient.get(URI.encode(@oauth2_url))
-  #  res_data = res_data.force_encoding('utf-8').encode
-  #  res_data=res_data.split('&').first.sub('res_data=','')
-
-#    render :text=>res_data, :layout => @supplier.layout
 
   end
 
