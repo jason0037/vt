@@ -165,7 +165,7 @@
     <%if @user%>
         <script>
             if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-                location.href = "/auto_login?id=<%=@supplier.id%>&return_url=<%=return_url%>&platform=mobile"
+                location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
             }
         </script>
     <%end%>
