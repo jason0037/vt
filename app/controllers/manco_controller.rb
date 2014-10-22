@@ -17,7 +17,7 @@ class MancoController < ApplicationController
        @supplier =Ecstore::Supplier.find(supplier_id)
 
      else
-       redirect_to "/mlogin?id=98&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/find_manco?supplier_id=#{supplier_id}"
+       redirect_to "/auto_login?id=98&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/find_manco?supplier_id=#{supplier_id}"
      end
   end
 
@@ -31,7 +31,7 @@ class MancoController < ApplicationController
     account_id=Ecstore::Account.find_by_sql(["select account_id from sdb_pam_account where login_name=?",login_name])
     @member=Ecstore::Member.find_by_sql(["select * from sdb_b2c_members where member_id=?",account_id])
    else
-       redirect_to "/mlogin?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/user?supplier_id=#{supplier_id}"
+       redirect_to "/auto_login?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/user?supplier_id=#{supplier_id}"
    end
 
   end
@@ -56,7 +56,7 @@ class MancoController < ApplicationController
                                 :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
       @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
    else
-     redirect_to "/mlogin?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/black_good_index?supplier_id=#{supplier_id}"
+     redirect_to "/auto_login?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/black_good_index?supplier_id=#{supplier_id}"
    end
 
  end
@@ -88,7 +88,7 @@ class MancoController < ApplicationController
                                    :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
     @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
   else
-  redirect_to "/mlogin?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/black_index?supplier_id=#{supplier_id}"
+  redirect_to "/auto_login?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/black_index?supplier_id=#{supplier_id}"
   end
   end
 
@@ -116,7 +116,7 @@ class MancoController < ApplicationController
    @supplier = Ecstore::Supplier.find(supplier_id)
    if @user
    else
-     redirect_to "/mlogin?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/express?supplier_id=#{supplier_id}"
+     redirect_to "/auto_login?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/express?supplier_id=#{supplier_id}"
    end
 
   end
@@ -151,7 +151,7 @@ class MancoController < ApplicationController
         redirect_to '/profile/mancouser?supplier_id=98'
       end
   else
-    redirect_to "/mlogin?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/blackbord?supplier_id=#{supplier_id}"
+    redirect_to "/auto_login?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/blackbord?supplier_id=#{supplier_id}"
   end
 
 
