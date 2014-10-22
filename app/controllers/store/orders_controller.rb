@@ -134,6 +134,7 @@ class Store::OrdersController < ApplicationController
 
   def index_mobile             ###手机订单
     supplier_id = params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(supplier_id)
     if  @user
       if supplier_id == nil
         supplier_id=78
