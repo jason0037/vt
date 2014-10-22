@@ -135,7 +135,6 @@ class Store::OrdersController < ApplicationController
   def index_mobile             ###手机订单
     supplier_id = params[:supplier_id]
     if  @user
-
       if supplier_id == nil
         supplier_id=78
       end
@@ -146,7 +145,7 @@ class Store::OrdersController < ApplicationController
         render :layout=>@supplier.layout
       end
     else
-      return_url={:return_url => "/goods?platform= #{params["platform"]}&supplier_id=#{supplier_id}"}.to_query
+      return_url={:return_url => "/goods?platform=#{params["platform"]}&supplier_id=#{supplier_id}"}.to_query
       redirect_to "/auto_login?#{return_url}&id=#{supplier_id}"
     end
   end
