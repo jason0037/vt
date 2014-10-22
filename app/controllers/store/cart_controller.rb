@@ -9,7 +9,7 @@ class Store::CartController < ApplicationController
 
   def mobile
     supplier_id=params[:id]
-    @line_items = Ecstore::Cart.find_by_member_id(params[:user_id]).order("supplier_id")
+    @line_items = Ecstore::Cart.find_by_member_id(params[:user_id])
     good_supplier_id = params[:good_supplier_id]
     @goods_supplier = 0
     @bg_color = ["#cde6f3","#e5fdff"]
