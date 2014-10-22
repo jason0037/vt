@@ -170,7 +170,7 @@
           <% if @order.order_status_text=="待付款" %>
               <%#=f.submit I18n.t 'confirm_order',:class=>"btn  btn-inverse" if @order.pay_status == '0' && @order.status == 'active' && @order.payment != 'offline' %>
                <% if @order.pay_status == '0' && @order.status == 'active' && @order.payment != 'offline' %>
-              <input type="submit" class=" btn btn-inverse " value="<%=I18n.t "confirm_order"%>">
+              <input type="submit" class=" btn btn-inverse " value="<%=I18n.t "no_pay"%>">
                   <%end%>
           <% else%>
               <span><%= I18n.t "success_pay"%></span>

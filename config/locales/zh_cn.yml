@@ -100,7 +100,7 @@ zh_cn:
   order_goods_price : "商品金额"
   express_price : "发货运费"
   overall : "待支付总额"
-  confirm_order : "安全结算"
+  confirm_order : "确认订单"
 
   ###订单详细页面
   order_details : "订单详细"
