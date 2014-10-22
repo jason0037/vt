@@ -16,13 +16,11 @@ class MancoController < ApplicationController
 
   def find_manco
     supplier_id = params[:supplier_id]
-     if @user
+
 
        @supplier =Ecstore::Supplier.find(supplier_id)
 
-     else
-       redirect_to "/auto_login?id=98&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/find_manco?supplier_id=#{supplier_id}"
-     end
+
   end
 
   def user
@@ -52,16 +50,13 @@ class MancoController < ApplicationController
 
  def black_good_index     ###货源信息小黑板
    supplier_id = params[:supplier_id]
-   if @user
+
 
      @supplier =Ecstore::Supplier.find(supplier_id)
       @good=Ecstore::BlackGood.paginate :page=>params[:page],        ###分页语句
                                 :per_page =>5,              ###当前只显示一条
                                 :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
       @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
-   else
-     redirect_to "/auto_login?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/black_good_index?supplier_id=#{supplier_id}"
-   end
 
  end
 
@@ -118,10 +113,6 @@ class MancoController < ApplicationController
  def express                 ###运价查询
   supplier_id=params[:supplier_id]
    @supplier = Ecstore::Supplier.find(supplier_id)
-   if @user
-   else
-     redirect_to "/auto_login?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/express?supplier_id=#{supplier_id}"
-   end
 
   end
 
