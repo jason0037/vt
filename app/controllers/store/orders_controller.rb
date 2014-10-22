@@ -20,7 +20,7 @@ class Store::OrdersController < ApplicationController
       return_url={:return_url => "/goods?platform=#{params["platform"]}&supplier_id=#{supplier_id}"}.to_query
       redirect_to "/auto_login?#{return_url}"
     end
-    @supplier = Ecstore::Supplier.find(supplier_id)
+
     render :layout=>@supplier.layout
 
 
