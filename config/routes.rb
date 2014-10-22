@@ -214,7 +214,7 @@ end
 =end
   end
 
-  get 'auto_login'=>"session#auto_login"
+  get 'auto_login'=>"sessions#auto_login"
   get 'login'=>"sessions#new"
   get 'mlogin'=>"sessions#new_mobile"
   get 'mregister'=>"sessions#register_mobile"
