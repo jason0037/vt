@@ -109,7 +109,7 @@ class Ecstore::Order < Ecstore::Base
          # items_amount = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+).to_f
 
           if  items_amount&&pmts_amount
-             self.final_amount = self.total_amount  =  items_amount - pmts_amount + freight +freight77 + freight97
+             self.final_amount = self.total_amount  =  items_amount - pmts_amount + self.cost_freight
           else
           end
        end
