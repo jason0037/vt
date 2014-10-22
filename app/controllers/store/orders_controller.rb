@@ -18,7 +18,7 @@ class Store::OrdersController < ApplicationController
       end
     else
       return_url={:return_url => "/goods?platform= #{params["platform"]}&supplier_id=#{supplier_id}"}.to_query
-      redirect_to "/mlogin?#{return_url}"
+      redirect_to "/auto_login?#{return_url}"
     end
 
     render :layout=>@supplier.layout
@@ -128,7 +128,7 @@ class Store::OrdersController < ApplicationController
       end
     else
       return_url={:return_url => "/goods?platform= #{params["platform"]}&supplier_id=#{supplier_id}"}.to_query
-      redirect_to "/mlogin?#{return_url}&id=#{supplier_id}"
+      redirect_to "/auto_login?#{return_url}&id=#{supplier_id}"
     end
   end
 
@@ -147,7 +147,7 @@ class Store::OrdersController < ApplicationController
       end
     else
       return_url={:return_url => "/goods?platform= #{params["platform"]}&supplier_id=#{supplier_id}"}.to_query
-      redirect_to "/mlogin?#{return_url}&id=#{supplier_id}"
+      redirect_to "/auto_login?#{return_url}&id=#{supplier_id}"
     end
   end
 
@@ -600,7 +600,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
       @suppliers=Ecstore::Supplier.find_by_sql("select * from sdb_imodec_suppliers where name='金芭浪'")
       render :layout => "tairyo_new"
     else
-      redirect_to '/mlogin?id=99&platform=mobile&return_url=/tairyo_order'
+      redirect_to '/auto_login?id=99&platform=mobile&return_url=/tairyo_order'
     end
   end
 

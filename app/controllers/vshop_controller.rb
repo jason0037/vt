@@ -25,7 +25,7 @@ class VshopController < ApplicationController
       @supplier =Ecstore::Supplier.find(params[:id])
       render :layout=>@supplier.layout
     else
-      redirect_to "/mlogin?id=#{params[:id]}&platform=mobile&return_url=/vshop/#{params[:id]}/user?id=#{params[:id]}"
+      redirect_to "/auto_login?id=#{params[:id]}&platform=mobile&return_url=/vshop/#{params[:id]}/user?id=#{params[:id]}"
     end
   end
 

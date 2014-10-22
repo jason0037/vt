@@ -20,7 +20,7 @@ class Store::CartController < ApplicationController
         @supplier = Ecstore::Supplier.find(supplier_id)
          render :layout=>@supplier.layout
     else
-       redirect_to  "/mlogin?id=#{supplier_id}&platform=mobile&return_url=/cart/mobile?id=#{supplier_id}"
+       redirect_to  "/auto_login?id=#{supplier_id}&platform=mobile&return_url=/cart/mobile?id=#{supplier_id}"
     end
 
   end
@@ -151,7 +151,7 @@ login_name=Ecstore::Account.find(account_id)
       redirect_to  '/tairyo_order'
        end
   else
-      redirect_to '/mlogin?id=99&platform=mobile&return_url=/tairyo_order'
+      redirect_to '/auto_login?id=99&platform=mobile&return_url=/tairyo_order'
     end
 
 
