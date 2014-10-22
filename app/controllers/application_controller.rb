@@ -21,9 +21,9 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     if params[:id] =="78"|| params[:supplier_id]=="78"
-    session[:locale] = params[:locale] if params[:locale]
-    I18n.locale = session[:locale] || I18n.default_locale
-    locale_path = "#{LOCALES_DIRECTORY}#{I18n.locale}.yml"
+     session[:locale] = params[:locale] if params[:locale]
+     I18n.locale = session[:locale] || I18n.default_locale
+     locale_path = "#{LOCALES_DIRECTORY}#{I18n.locale}.yml"
     unless I18n.load_path.include? locale_path
       I18n.load_path << locale_path
       I18n.backend.send(:init_translations)

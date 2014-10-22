@@ -96,12 +96,6 @@ end
     post 'creat_addr',:on=>:collection
   end
 
-  get 'wlogin'=>"sessions#new_manco"
-  get 'wregister'=>"sessions#register_manco"
-
-  post 'users/manco' =>"users#manco_user" ,:controller=>"users"
-
-  post 'wlogin'=>"sessions#create_manco"
 
 
   resources :tairyo do                   # #大渔饭店
@@ -117,12 +111,9 @@ end
     get 'showorder' ,:on=>:collection
   end
 
-  # 大渔用户注册登陆
-  get 'tlogin'=>"sessions#new_tairyo"
-  get 'tregister'=>"sessions#register_tairyo"
-  get 'tlogout'=>"sessions#destroy_tairyo"
+
   post 'users/tairyo' =>"users#tairyo_user" ,:controller=>"users"
-  post 'tlogin'=>"sessions#create_tairyo"
+
   #    #优惠卷
   get 'coupon'=>"coupon#index" ,:controller=>"coupons"
   get  'coupon/lingqu'=>"coupon#lingqu",:controller=>"coupons"

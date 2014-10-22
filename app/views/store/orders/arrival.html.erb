@@ -23,11 +23,12 @@
   </div>
 
 </header>
+<% if @addrss.nil?%>
 <div class="href">
 <a id="ahref" class="am-btn am-btn-default" href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>&supplier_id=<%=@supplier.id%>" >新增收货人地址 </a>
 
          </div>
-
+     <%end%>
   <%= form_for :order, :url=>"ordersnew_manco",:method=>"POST",:html => {:class => "am-form"} do |f| %>
      <input type="hidden" name="supplier_id" value="<%=@supplier.id %>">
     <%=hidden_field_tag "member_departure_id" , @member_departure_id %>
@@ -55,7 +56,16 @@
 
 
     </table>
-    <input type="submit" class="am-btn am-btn-primary am-btn-block form-sure" value="确认" >
+    <% unless @addrss[0].nil?%>
+        <input type="submit" class="am-btn am-btn-primary am-btn-block form-sure" value="确认" >
+    <%else%>
+        <div class="href">
+          <a id="ahref" class="am-btn am-btn-default" href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>&supplier_id=<%=@supplier.id%>" >新增收货人地址 </a>
+
+        </div>
+
+
+        <%end%>
 <%end%>
 
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
@@ -70,6 +80,7 @@
               data:{addr_idsss:addr_idsss },
               success:function(res){
                   thisTr.parents("td").parents("tr").remove();
+
               }
       });
 
