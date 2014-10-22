@@ -45,7 +45,11 @@
         display: inline-block;
 
     }
+    #cartform a{
+     margin: 10px;
 
+
+  }
     .prf05{
         float: right;
         margin: 2px;
@@ -127,16 +131,16 @@
         <%= I18n.t "introduction"%>
       </h4>
     </div>
-    <div  >
+
       <div class="am-panel-bd" >
         <%=raw @good.intro.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.intro%>
 
         <%=raw @good.desc.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.desc%>
 
-      </div>
+
     </div>
   </div>
-
+</div>
   <div class="am-panel-group">
     <div class="am-panel am-panel-default">
       <div class="am-panel-hd">
@@ -144,7 +148,7 @@
           <%= I18n.t "specification"%>
         </h4>
       </div>
-      <div  >
+
         <div class="am-panel-bd" >
           <%=form_for :product,:url=>"/cart/add", :html=>{:id=>"cartform"},:remote=>true do |f|%>
               <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
@@ -160,19 +164,19 @@
                       <%=hidden_field_tag "product[specs][]"%>
 
                       <%@good.spec_values.where(:spec_id=>spec.spec_id).uniq.order("p_order asc").each do |spec_value|%>
-                          <span data-size="<%=spec_value.spec_value_id%>" class="choose" data-maxamount="2" data-minamount="1"><%=spec_value.spec_value%></span>
+                          <a  data-size="<%=spec_value.spec_value_id%>" class=" am-btn am-btn-default choose" data-maxamount="2" data-minamount="1"><%=spec_value.spec_value%></a>
 
 
                       <%end%>
-                    </ul>
+
                 <%end%>
             <%end%>
         <%end%>
-      </div>
+
     </div>
   </div>
 </div>
-  </div>
+  <br>
 <script>
 
 </script>
@@ -210,8 +214,14 @@
 
     $(document).ready(function(){
         $('.choose').on("click",function() {
+            if ($(this).hasClass("am-btn-warning")){
+                $(this).removeClass("am-btn-warning");
+            }   else{
+                $(this).addClass("am-btn-warning");
+            }
 
-            $(this).addClass("am-active");
+
+
             $("#product_specs_").val($(this).attr("data-size"));
             //  $(".good_salesize input[name='size']").val("");
 

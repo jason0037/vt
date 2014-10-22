@@ -5,6 +5,10 @@ class MancoController < ApplicationController
   def index
 
   end
+  def map
+    supplier_id=params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(supplier_id)
+  end
   def show
     supplier_id=params[:supplier_id]
     @supplier = Ecstore::Supplier.find(supplier_id)

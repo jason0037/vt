@@ -72,11 +72,13 @@ end
     #万家主页面
     get 'manco_comment'  ,:on=>:collection
     get   'index'  ,:on=>:collection
+    get 'map' ,:on=>:collection
     get  'main' ,:on=>:collection    ###万家介绍
     get  'history' ,:on=>:collection  ####万家历史
     post 'blackboardfind_e',:on=>:collection  ###小黑板中查询运价
     get  'user'   ,:on=>:collection
     #万家快递页面
+
      get 'find_manco',:on=>:collection
     get "black_index"  ,:on=>:collection   ##小黑版首页
     get "express"  ,:on=>:collection
