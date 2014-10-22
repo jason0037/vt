@@ -145,8 +145,8 @@ class Store::OrdersController < ApplicationController
         render :layout=>@supplier.layout
       end
     else
-      return_url={:return_url => "/goods?platform=mobile&supplier_id=#{supplier_id}"}.to_query
-      redirect_to "/auto_login?#{return_url}&id=#{supplier_id}"
+      return_url={:return_url => "/goods?platform=mobile&supplier_id=#{params[:supplier_id]}"}.to_query
+      redirect_to "/auto_login?#{return_url}&id=#{params[:supplier_id]}"
     end
   end
 
