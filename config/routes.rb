@@ -548,7 +548,7 @@ end
 
     get 'vgroup'=>"cats#show_group",:as=>"cats",:controller=>"cats"  #金芭浪饭店团购
     get 'mgallery' =>"cats#show_mobile", :as=>"cats",:controller=>"cats"
-    get 'goods_list'=>"cats#goods_list" ,:as=>"cats", :controller=>"goods"
+    get 'mgoods_list'=>"cats#goods_list" ,:as=>"cats", :controller=>"cats"
     resources :goods,  :as=>"orders", :controller=>"orders" do
       member do
         get :goods

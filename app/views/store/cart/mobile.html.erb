@@ -51,7 +51,9 @@
     }
 </style>
 <div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
-  <div class="am-panel-hd" style="text-align: center"><%= I18n.t "shopping-basket"%></div>
+  <div class="am-panel-hd" style="text-align: center"><%= I18n.t "shopping-basket"%>
+  <a href="/vshop/<%=@supplier.id%>" style="float: right"> <%= I18n.t "continue_shopping"%></a>
+  </div>
 </div>
 
 
@@ -116,7 +118,7 @@
               <div>
         <span class="delete" style="float: right">
 
-           <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile&supplier_id=#{line_item.supplier_id}&user_id=#{@user.member_id}"%>" class="delete" data-method="delete" data-confirm="确定要删除吗？" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
+           <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile&supplier_id=#{line_item.supplier_id}"%>" class="delete" data-method="delete" data-confirm="确定要删除吗？" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
 
              <img src="/assets/mobile/scan_layer-33.png" width="30" height="30">
            </a>

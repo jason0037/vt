@@ -114,7 +114,7 @@ zh_cn:
   success_pay : "您已经成功支付"
   no_pay : "去付款"
   Currently_empty: " 购物车是空的哦～～"
-  continue_shopping: "四处逛逛吧"
+  continue_shopping: "继续购物"
 
 ###订单提交成功页面
   orders_success_get : "订单已经成功提交"
