@@ -363,6 +363,7 @@ class Store::OrdersController < ApplicationController
   end
 
   def new_mobile_addr
+
     supplier_id= @user.account.supplier_id
     if supplier_id==nil
       supplier_id=78
@@ -371,7 +372,11 @@ class Store::OrdersController < ApplicationController
 
     @addrs =  @user.member_addrs
     @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
+    if params[:return_url]
+      @return_url=params[:return_url]
+     end
     render :layout=>@supplier.layout
+
   end
 
   def new_manco_addr    ###新增起点地址
@@ -432,7 +437,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
     @cart_total_final = @cart_total+ @cart_freight + @favorable_terms
     @addrs =  @user.member_addrs
     if @addrs.size==0
-      redirect_to "/orders/new_mobile_addr?supplier_id=#{supplier_id}&return_url=%2forders%2fnew_mobile%26supplier_id%3d#{supplier_id}"
+      redirect_to "/orders/new_mobile_addr?supplier_id=#{supplier_id}&return_url=%2forders%2fnew_mobile?supplier_id%3d#{supplier_id}"
     else
       @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
 

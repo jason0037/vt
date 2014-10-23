@@ -18,7 +18,12 @@
 
 <div class="member_addrs">
   <%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
+     <% if params[:return_url]%>
+          <input type="hidden" name="return_url" value="<%=@return_url%>">
+      <%else%>
+
       <input type="hidden" name="return_url" value="/member_addrs?platform=mobile">
+          <%end%>
       <br/>
       <div class="am-input-group">
         <span class="am-input-group-label"><%=I18n.t "name"%></span>
