@@ -23,12 +23,12 @@ class Patch::ProfilesController < ApplicationController
   end
 
   def mancouser        ###管理万家物流司机注册
-
+    @supplier =Ecstore::Supplier.find(supplier_id)
     account=@user.member_id
     @member=   Ecstore::User.find_by_member_id(account)
 
 
-render :layout => "manco_template"
+render :layout => @supplier.layout
 
   end
 

@@ -50,7 +50,7 @@
       <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
     </a>
 
-    <a href="/orders/goodblack?ship_id=<%=@good[0].ship_id%>" class="am-btn  am-btn-primary sub" >获取货主联系方式</a>
+    <a href="/orders/goodblack?ship_id=<%=@good[0].ship_id%>&supplier_id=<%=@supplier.id%>" class="am-btn  am-btn-primary sub" >获取货主联系方式</a>
 
   </div>
 </div>
@@ -61,11 +61,3 @@
 <%= javascript_include_tag "mobile/all" %>
 <%= javascript_include_tag "mobile/mars_wap" %>
 <%= javascript_include_tag "mobile/page.item.index.min" %>
-<%= stylesheet_link_tag    "manco/amui.all.min.css" %>
-<%= stylesheet_link_tag    "manco/amui.all.css" %>
-
-<%= javascript_include_tag "manco/amui.widget.helper.js" %>
-
-<%= javascript_include_tag "manco/zepto.min.js" %>
-<%= javascript_include_tag "manco/amui.js" %>
-<%= javascript_include_tag "manco/amui.min.js" %>

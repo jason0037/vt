@@ -551,9 +551,9 @@ end
         get :goods
       end
     end
-    get 'tairyo_share' =>"orders#tairyo_share"
+
     get 'share' =>"orders#share"
-    get 'order/black_manco' =>"orders#black_manco"
+
 
     resources :orders, :except=>[:index] do
       member do
@@ -566,7 +566,7 @@ end
       end
 
       collection do
-        get 'goodblack'
+        get 'goodblack'       ###货源小黑板
         post 'destroyaddr'
         get 'check_coupon'
         get  'new_mobile'
