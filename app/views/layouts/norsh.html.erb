@@ -65,6 +65,18 @@
 
 </head>
 <body>
+<div class="footer clearfix" style="display:none">
+  <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+  <%if @user%>
+      <script>
+          if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
+              location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
+          }
+      </script>
+  <%end%>
+  <p class="copyright">Copyright © 2013-2014 trade-v.com <br/>版权所有 上海普慧信息科技有限公司 All rights reserved. <br/>沪ICP备13045311号-1 </p>
+  <p >from=<%=session[:wechat_user]%>|recommend=<%=session[:recommend_user]%></p>
+</div>
 <header data-am-widget="header" class="am-header am-header-warning  am-no-layout"><div class="am-header-left am-header-nav">
   <a href="javascript:history.go(-1)" class=""><img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""></a>
 </div>
