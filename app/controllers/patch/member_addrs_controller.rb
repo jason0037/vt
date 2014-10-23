@@ -104,11 +104,11 @@ end
   end
 
   def destroy
-    @supplier=Ecstore::Supplier.find(params[:supplier_id])
+
     @addr = Ecstore::MemberAddr.find(params[:id])
     @addr.destroy
     if params[:platform]=="mobile"
-
+      @supplier=Ecstore::Supplier.find(params[:supplier_id])
       redirect_to "/member_addrs/mobile?platform=mobile&supplier_id=#{@supplier.id}"
    else
 

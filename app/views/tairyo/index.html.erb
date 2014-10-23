@@ -1,80 +1,9 @@
 
-  <script>
-      var ui = 'touch';
-  </script>
   <style type="text/css">
-      #headerimg{
-          text-align: center;
-      }
-      #headerimg img{
-          width:100%;
-          margin: -8px;
-          height: 30%;
-
-      }
-
-      .neck  {
-          background-color: white;
-          height: 30px;
-
-      }
-      .neck .introduces,.neck .comment{
-          float: left;
-          margin: 5px;
-          padding: 5px;
-          margin-top: 2px;
-          margin-left: 30%;
-          cursor: pointer;
-
-      }
-      .instroduces_index{
-          background-color: white;
-          height: 100px;
-          border:1px solid #ddd
-      }
-      .body_content h2{
-          margin-bottom: 30px;
-          margin-left: 46px;
-      }
-
-
-
-      .body_img img ,#tuan img {
-          width: 100px;
-          height: 100px;
-          margin-left: 0px;
-      }
-      .hidenall{
-          display: none;
-      }
-
-      .instroduces_index .body_img
-      {
-          float: left;
-
-      }
-      #contentse{
-          line-height: 20px;
-      }
-      .salebg3{
-          color: black;
-      }
-      .discouts{
-          margin-top: 30px
-      }
-
-      #contentse span{
-
-          margin-bottom: 50px;
-      }
-
-      #tes{
-          margin-left:89%
-      }
-      .show{
-          background-color: #1b66b7;
-          color: #fffefc;
-      }
+       .bottomdiv{
+           position: fixed;
+           bottom: 0;
+       }
   </style>
 
 
@@ -115,20 +44,17 @@
     <div class="am-list-news-bd">
       <ul class="am-list">
         <li class="am-g am-list-item-desced">
-          <a href="http://www.douban.com/online/11614662/" class="am-list-item-hd">大渔铁板烧是一家主要做日本料理，同时兼做日式铁板烧、日式自助的餐厅。 　</a>
+          <a href="" class="am-list-item-hd">大渔铁板烧是一家主要做日本料理，同时兼做日式铁板烧、日式自助的餐厅。 　</a>
           <div class="am-list-item-text">
             铁板烧是相对平民的日式铁板烧，价格合理；自助，品种丰富，原料新鲜，只要不怕撑破肚皮，可以尽情饕餮。厨师很愿意和客人沟通，经常询问对食物是否有特殊要求；运铲的技艺也相当精湛，尤其烹饪牛排时，火焰腾空的一刹那，让人忍不住鼓掌。环境挺好，设备先进，近距离烧烤也不用担心油烟。
           </div>
         </li>
         <li class="am-g am-list-item-desced">
-          <a href="http://www.douban.com/online/11624755/" class="am-list-item-hd">餐厅特色</a>
+          <a href="#" class="am-list-item-hd">餐厅特色</a>
           <div class="am-list-item-text">
             铁板之所以这样受欢迎，最根本的原因还是它非常符合人们健康饮食的需要。食材新鲜，讲究吃到食材的原味，而且料理中少油少盐，只有中餐用量的三分之一，鲜味完全来自食材本身。调味品少而精，黄油等是用来提香提鲜，没有自己的味道，丝毫不会破坏食物的原味。而且铁板可以很快达到并准确保持在300度以上的高温，食材可以迅速地成熟，最大程度地保留食材的营养，口感也是无法比拟地有汁有味。
            </div>
-    </li>
-        <li class="am-g">
-          <a href="http://www.douban.com/online/11645411/" class="am-list-item-hd">“你的旅行，是什么颜色？” 晒照片，换北欧梦幻极光之旅！</a>
-        </li>
+
       </ul>
     </div>
   </div>
@@ -142,63 +68,16 @@
     <div class="bottomdiv clearfix">
       <div class="inner clearfix">
 
-        <a href="/tairyoall?id=a990000" class="add_to_cart fr btn_sure " id="add_to_cart">饿了吗？需要订餐</a>
+        <a href="/tairyoall?id=a990000" class=" am-btn am-btn-defautl " id="add_to_cart">饿了吗？需要订餐</a>
 
       </div>
     </div>
   </div></div>
 
-  <div class="introduces_two hidenall">
-    <div>
 
 
-      <!--<%#if @comment_a %>-->
-      <!--<%# @comment_a.each do |review| %>-->
-      <!--<div class="area_con_grey">-->
-      <!--<b class="bt_lt_par_t"></b><h3>ddd：</h3>-->
-      <!--<span style="">  <%#= review.content  %>
-        <!--</span>-->
-      <!--<br/>-->
-      <!--<h6><%#= review.created_at  %></h6>-->
-      <!--</div>-->
 
-      <!--<%# end %>-->
-      <!--<%# end %>-->
-      <!--<div class="area_con_grey">-->
-      <!--<b class="bt_lt_par_t"></b><h3>ddd：</h3>-->
-      <!--<span style="">铁板之所以这样受欢迎，最根本的原因还是它非常符合人们健康饮食的需要。食材新鲜，讲究吃到食材的原味，而且料理中少油少盐，只有中餐用量的三分之一，鲜味完全来自食材本身。调味品少而精，黄油等是用来提香提鲜，没有自己的味道，丝毫不会破坏食物的原味。而且铁板可以很快达到并准确保持在300度以上的高温，食材可以迅速地成熟，最大程度地保留食材的营养，口感也是无法比拟地有汁有味。-->
-      <!--</span>-->
-      <!--<br/>-->
-      <!--<h6>2014.6.6 12:30:27</h6>-->
-      <!--</div>-->
 
-      <!--<div class="area_con_grey">-->
-      <!--<b class="bt_lt_par_t"></b><h3>xx：</h3>-->
-      <!--<span style="">有黑虎虾、鳕鱼、挪威三文鱼、日本金枪鱼、日本寿司、日式薄饼、牛排、生食雪龙黑牛、各种日式烤鱼、内蒙羊排王、生蚝、青口贝、扇贝王、吉列虾、天妇罗虾、水果、甜品等近百个品种，酒水有日本清酒、葡萄酒、各式啤酒、饮料及鲜榨果汁。各种口味不错。-->
-      <!--</a>-->
-      <!--</span>-->
-      <!--<br/>-->
-      <!--<h6>2014.6.4 12:30:27</h6>-->
-      <!--</div>-->
-      <!--<div class="area_con_grey">-->
-      <!--<b class="bt_lt_par_t"></b><h3>yy：</h3>-->
-      <!--<span style="">大渔铁板烧杭州银泰店盛装开业啦!各种鱼生海鲜、扒类、蔬菜、饮料酒水，样样让人垂涎欲滴 ...美食的天堂，吃货的福音！欢迎新老顾客前来惠顾！大渔期待您的到来！ 地址：杭州市拱墅区丰潭路380号银泰城3F037铺。-->
-      <!--</a>-->
-      <!--</span>-->
-      <!--<br/>-->
-      <!--<h6>2014.6.2 12:30:27</h6>-->
-      <!--</div>-->
-      <!--<br/>-->
-      <!--<br/>-->
-      <!--<br/>-->
-      <!--<br/>-->
-      <!--<div class="bottomdiv clearfix">-->
-      <!--<div class="inner clearfix">-->
-
-      <!--<a href="comment_t" class="add_to_cart fr btn_sure " id="add_to_cart">我要点评</a>-->
-
-      <!--</div>-->
-      <!--</div>-->
       <!--高速版，加载速度快，使用前需测试页面的兼容性-->
 
       <!--<div id="SOHUCS"></div>-->

@@ -108,12 +108,12 @@
   <%if @user%>
       <script>
           if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-              location.href = "/logout?id=<%=@supplier.id%>&return_url=<%=request.url.sub('http://trade','').force_encoding('UTF-8')%>&platform=mobile"
+              location.href = "/auto_login?id=<%=@supplier.id%>&<%=request.url.sub('http://trade','').force_encoding('UTF-8')%>&platform=mobile"
 
           }
       </script>
       <a href="/vshop/<%=@supplier.id%>/user" style="font-size: 20px; "><%=@user.account.id%></a>
-      <a href="/logout?id=<%=@supplier.id%>&platform=mobile&<%=return_url%>" class="am-btn am-btn-warning " ><%= I18n.t "logout"%></a>
+      <a href="/auto_login?id=<%=@supplier.id%>&platform=mobile&<%=return_url%>" class="am-btn am-btn-warning " ><%= I18n.t "logout"%></a>
   <%else%>
 
       <a href="/mlogin?id=<%=@supplier.id%>&platform=mobile&<%=return_url %>" mars_sead="footer-login_btn"><%= I18n.t "login"%></a>
