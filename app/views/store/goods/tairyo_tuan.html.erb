@@ -1,147 +1,208 @@
-<header id="header" class="header clearfix">
+<style type="text/css">
+    .good_sizechioce li.select {
+        border: 1px solid #f02387;
+        background: url(selected_new.png) no-repeat right bottom #fff;
+        background-size: 15px;
+        color: #f02387;
+        cursor: text;
+    }
+    .icon-arr {
+        position: absolute;
 
-  <div class="head_left fl"><a href="javascript:history.go(-1)"><span class="h_back"></span></a></div>
-  <span class="headtit"><%=@good.name %></span>
-  <div class="head_right fr"><a href="/tairyo" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
-</header>
-<div class="space10"></div>
+        right: 10px;
+        width: 10px;
+        height: 15px;
+        background: url(/assets/icon_order.png) 0 0 no-repeat;
+        background-size: 100px 100px;
+    }
+    .bottomdivsclearfix{
+        display: none;
+    }
 
-<div id="wapModalsbox">
-  <div id="goods_detail" class="aposition">
-    <div id="goods_images" class="carousel" style="overflow: hidden; visibility: visible;">
-      <ul data-cartimg="img" style="list-style: none; margin: 0px; width: 516px; transition: 0ms; -webkit-transition: 0ms; -webkit-transform: translate3d(0px, 0px, 0px);">
-        <li style="width: 258px; display: table-cell; vertical-align: top;"><span>
-              <img src="<%=@good.big_pic%>"
-                   data-original="<%=@good.big_pic%>"
-                   data-onerror="<%=@good.big_pic%>"
-                   alt="" class="smallImg active" mars_sead="product_big_pic">
-            </span></li>
+</style>
+
+<div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
+
+
+
+  <div id="demo-view" >
+    <article data-am-widget="paragraph" class="am-paragraph am-paragraph-default am-no-layout" data-am-paragraph="{ tableScrollable: true, pureview: true }">
+
+    <div data-am-widget="slider" class="am-slider am-slider-default" data-am-slider='{&quot;animation&quot;:&quot;slide&quot;,&quot;slideshow&quot;:false}'>
+      <ul class="am-slides">
+        <li>
+          <img src="/assets/tairyo/thumb.jpg">
+          <div class="am-slider-desc"><%=@good.name %></div>
+        </li>
+        <li>
+          <img src="/assets/tairyo/thumb.jpg">
+          <div class="am-slider-desc"><%=@good.name %></div>
+        </li>
+        <li>
+          <img src="/assets/tairyo/thumb.jpg">
+          <div class="am-slider-desc"><%=@good.name %></div>
+        </li>
+        <li>
+          <img src="/assets/tairyo/thumb.jpg">
+          <div class="am-slider-desc"><%=@good.name %></div>
+        </li>
       </ul>
     </div>
-
-    <div class="goods_info">
-      <%=form_for :product,:url=>"/cart/tairyo_add",:remote=>true do |f|%>
-          <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
-          <%=f.hidden_field :type_id,:value=>@good.type_id%>
-          <%=hidden_field_tag :platform,'tairyo'%>
-          <%=hidden_field_tag :return_url,{:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
-          <h1><%=@good.name %></h1>
-
-          <p class="new_pricediv clearfix">
-            <span class="g_d_price">¥<%=@good.price %></span>
-            <span class="prf05">(<%=format('%.1f', @good.price*10/@good.mktprice)%>折)</span>
-            <span class="fontstyle">¥<%=@good.mktprice %></span>
-          <span class="fr new_re_time bglight" data-saleproduct="true" data-saletime="83552"><span class="clockicon fl"></span>
-          <span class="J-time"><span>10</span><span>天</span><span>23</span><span>时</span><span>11</span><span>分</span><span>40</span><span>.</span><span>7</span><span>秒</span></span></span>
-          </p>
-          <p class="space5"></p>
-          <p class="clear"></p>
-          <div class="good_salesize clearfix">
-            <%if @good.specs.present?%>
-                <%@good.specs.order("spec_id asc").each do |spec|%>
-                    <p class="clearfix">
-                      <span class="tit fl"><%=spec.spec_name%> :</span>
-                    </p>
-                    <%=hidden_field_tag "product[specs][]"%>
-                    <ul class="good_sizechioce clearfix" data-mersale="true">
-                      <%@good.spec_values.where(:spec_id=>spec.spec_id).uniq.order("p_order asc").each do |spec_value|%>
-                          <li data-size="<%=spec_value.spec_value_id%>" class="choose" data-maxamount="2" data-minamount="1"><%=spec_value.spec_value%></li>
-                      <%end%>
-                    </ul>
-                <%end%>
-            <%end%>
-          </div>
+    </article>
 
 
-          <!--<p class="nonsupport"><span></span>特殊商品非质量问题不支持退货</p>-->
-          <ul class="introduce clearfix" style="display:none;">
-            <li><span class="promise_zp"></span>
-              <p>100%正品保证</p>
-            </li>
 
-            <!--<li><span class="golden_sevices"></span><p>金牌客服</p></li>-->
-          </ul>
 
-      <%end%>
+
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd">
+      <h4 class="am-panel-title" style="color:red;" >
+        <%=I18n.t 'preferential-price'%>:<span style="float: right;color: red">¥<%=@good.default_product.price %></span>
+      </h4>
+    </div>
+
+  </div>
+
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd">
+      <h4 class="am-panel-title" >
+        <%=I18n.t 'commission'%> :<span style="float: right;color: red">¥<%=format('%.2f',@good.share*@good.default_product.price) %> </span>
+      </h4>
+    </div>
+
+    <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">
+      <div class="am-panel-bd">
+        <%= I18n.t "what_commission"%>
+        <span class="icon-arr"></span>
+
+      </div>  </a>
+
+    <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">
+      <div class="am-panel-bd">
+        <%= I18n.t "earn_commission"%>
+        <span class="icon-arr"></span>
+
+      </div>    </a>
+    <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">
+      <div class="am-panel-bd">
+        <%= I18n.t "get_commission"%>
+        <span class="icon-arr"></span>
+
+      </div> </a>
+  </div>
+</div>
+
+</div>
+<div class="am-panel-group" >
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd">
+      <h4 class="am-panel-title" style="color:red;" >
+        团购详情
+      </h4>
+    </div>
+
+    <div class="am-panel-bd" >  珍珠斑	1	68元  </div></div>  </div>
+
+
+
+<div class="am-panel-group" >
+<div class="am-panel am-panel-default">
+<div class="am-panel-hd">
+  <h4 class="am-panel-title" style="color:red;" >
+    购买须知
+  </h4>
+</div>
+
+<div class="am-panel-bd" >  无需预约，如遇消费高峰时段您可能需要排队      </div></div>  </div>
+
+
+<div class="am-panel-group" >
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd">
+      <h4 class="am-panel-title" style="color:red;" >
+        产品介绍
+      </h4>
+    </div>
+
+    <div class="am-panel-bd" >
+      <%=raw @good.intro.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.intro%>
+
+      <%=raw @good.desc.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.desc%>
+
+
     </div>
   </div>
 </div>
-<a href="javascript:;" class="btn_more" data-getdetail="more" data-merchandise="normal" style="display: none;"><span class="moreimg"></span>查看商品详情</a>
-<div class="product_detail">
-  <div class="tab_content pro_detail_info"><ul><li><b class="bt_lt_par_t">商品名称：</b> <%=@good.name %></li>
-    <li><b class="bt_lt_par_t"> 团购 介绍     ：</b> <%= @good.brand.brand_name if @good.brand%></li>
-    <li><b class="bt_lt_par_t">分        类：</b> <%=@good.cat.cat_name if @good.cat_id%></li>
-    <li><b class="bt_lt_par_t">规        格：</b> <%=@good.spec_info%></li>
-    <li><b class="bt_lt_par_t">地址：</b> <%=@good.place_info%></li>
-    <li><b class="bt_lt_par_t">剩余量：</b> <%= @good.store%></p></li>
-    <li><b class="bt_lt_par_t">团购 介绍：</b> <%=raw @good.desc%> </li></ul>
-    <br><p class="detail"><%=raw @good.intro.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.intro%></p></div>
-  <div class="loading hide" style="display: none;"><img src="/assets/mobile/loading-big.gif" alt="loading"><span>加载中...</span></div>
+
+
+<div class="am-panel-group" style="display: none">
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd">
+      <h4 class="am-panel-title" style="color:red;" >
+        <%= I18n.t "specification"%>
+      </h4>
+    </div>
+
+    <div class="am-panel-bd" >
+      <%=form_for :product,:url=>"/cart/add", :html=>{:id=>"cartform"},:remote=>true do |f|%>
+          <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
+          <%=f.hidden_field :type_id,:value=>@good.type_id%>
+          <%=hidden_field_tag :supplier_id, @supplier.id%>
+
+          <%=hidden_field_tag :platform,'mobile'%>
+          <%=hidden_field_tag :return_url,{:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+
+          <%if @good.specs.present?%>
+              <%@good.specs.order("spec_id asc").each do |spec|%>
+                  <%= hidden_field_tag  :good_supplier_id,@good.supplier_id%>
+                  <%=hidden_field_tag "product[specs][]"%>
+                  <ul class="good_sizechioce clearfix" data-mersale="true">
+                  <%@good.spec_values.where(:spec_id=>spec.spec_id).uniq.order("p_order asc").each do |spec_value|%>
+                        <li  data-size="<%=spec_value.spec_value_id%>" class=" am-btn am-btn-default choose" data-maxamount="2" data-minamount="1"><%=spec_value.spec_value%></li>
+
+
+                  <%end%>
+                  </ul>
+              <%end%>
+          <%end%>
+      <%end%>
+
+    </div>
+  </div>
 </div>
-<div class="goods_con area_con_grey">
-  <h3 class="title"  >【用户评论】</h3>
-  <div id="SOHUCS"></div>
-  <script>
-      (function(){
-          var appid = 'cyrmTsAaN',
-                  conf = 'prod_5f1b7731ebb677190e934ff7f030c317';
-          var doc = document,
-                  s = doc.createElement('script'),
-                  h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
-          s.type = 'text/javascript';
-          s.charset = 'utf-8';
-          s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
-          h.insertBefore(s,h.firstChild);
-          window.SCS_NO_IFRAME = true;
-      })()
-  </script>
-</div>
-<br/>
-<div class="space15"></div>
+
+
+
+
+<br>
+<script>
+
+</script>
+
+
+
+
 <script type="text/javascript">
     function saveProValue(){
         return {product_id: '26038564',brand_id: '198535'}
     };
 </script>
-<!--<a href="product-198535-26038564-detail.html" class="btn_more"><span class="moreimg"></span>查看更多详情</a>-->
-<!-- <p class="coupontips">有一张满<span class="fontred">300</span>减<span class="fontred">100</span>优惠券可用</p> -->
 
 <div class="bottomdiv clearfix">
   <div class="inner clearfix">
-    <a class="fl cart_time" href="cart.html?rbc=service">
-      <em class="num_cart hide"></em>
-      <span class="carticon fl"></span>
-      <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
+    <%if @user%>
+        <a class="fl cart_time" href="/cart/mobile?id=<%=@supplier.id%>">
+    <%end%>
+    <em class="num_cart hide"></em>
+    <span class="carticon fl"></span>
+    <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
     </a>
-    <%=link_to "立即团购","javascript:void(0);",:class=>"add_to_cart fr btn_sure #{'login' unless signed_in?}" ,:id=>"add_to_cart" %>
-
+    <a href="javascript:void(0);" class="add_to_cart fr btn_sure " id="add_to_cart"><%=I18n.t "add-shoppingbasket"%></a>
   </div>
 </div>
 
-<div class="modal hide" id="Photo-modal" data-moadl="photobox">
-  <div class="modal-body">
-    <a href="javascript:void(0)" class="closeBtn" data-dismiss="closeModal"><span>×</span></a>
-    <div class="modal-message">
-      <div id="Photo-slide">
-        <ul>
-          <li><img src="/assets/mobile/loading_goods.gif"
-                   data-original="<%=@good.big_pic%>"
-                   data-onerror="<%=@good.big_pic%>"
-                   alt="" class="Touch_mer_biglImg"></li>
 
-        </ul>
-        <nav>
-          <ul id="Photo-pagination">
-
-            <em id="sel1" class="on" mars_sead="product_big_pic">1</em>
-
-            <em id="sel2" mars_sead="product_big_pic">2</em>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
-</div>
+<div class="space20"></div>
 
 <%= javascript_include_tag "mobile/swipe.min" %>
 <div class="space20"></div>
@@ -150,7 +211,14 @@
 
     $(document).ready(function(){
         $('.choose').on("click",function() {
-            $(this).addClass("select");
+            if ($(this).hasClass("am-btn-warning")){
+                $(this).removeClass("am-btn-warning");
+            }   else{
+                $(this).addClass("am-btn-warning");
+            }
+
+
+
             $("#product_specs_").val($(this).attr("data-size"));
             //  $(".good_salesize input[name='size']").val("");
 
@@ -170,15 +238,15 @@
             //  }
 
             if($(this).hasClass("login")) {
-                location.href="/tlogin?return_url="+window.location.href;
+                location.href="/mlogin?id=<%=@supplier.id%>&return_url=<%=request.url.sub('http://trade','').force_encoding('UTF-8') %>";
                 //  window.location.href="mlogin?return_url="+window.location.href;
                 return false;
 
             }//
             // $(".size_helper, .semi_custom").popover('hide');
             //$(this).closest("form").submit();
-
-            var formobj=  document.forms[0];
+            var formobj=document.getElementById("cartform");
+            // var formobj=  document.forms[0];
             formobj.submit();
             return false;
         });
@@ -435,8 +503,3 @@
 
 </script>
 
-<%= javascript_include_tag "mobile/all" %>
-<%= javascript_include_tag "mobile/mars_wap" %>
-<div class="space30"></div>
-<div class="space30"></div><div class="space30"></div>
-<%= javascript_include_tag "mobile/page.item.index.min" %>

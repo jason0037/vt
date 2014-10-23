@@ -106,6 +106,7 @@ end
     get   'tuangouxiang'  ,:on=>:collection
     get   'tese'  ,:on=>:collection
     get   'user'  ,:on=>:collection
+    get   'map'  ,:on=>:collection
     get 'tairyo_comment' ,:on=>:collection
     get 'showorder' ,:on=>:collection
   end

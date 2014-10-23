@@ -7,6 +7,7 @@
   <title><%=@supplier.name%>微商城</title>
   <meta content="" name="keywords">
   <meta content="" name="description">
+  <%= stylesheet_link_tag    "tairyo" %>
   <%= stylesheet_link_tag    "amaze/amazeui.basic.css" %>
   <%= stylesheet_link_tag    "amaze/amazeui.basic.min.css" %>
   <%= stylesheet_link_tag    "amaze/amazeui.css" %>
@@ -33,14 +34,38 @@
   </script>
 </head>
 <body>
+<header data-am-widget="header" data-am-widget="header" style="background-color: #ff947e;padding: 7px" class=" am-header-default" >
 
+
+  <!-- 按钮触发器， 需要指定 target -->
+  <button class="am-btn am-btn-tairyo" data-am-offcanvas="{target: '#doc-oc-demo2', effect: 'push'}"><span class="am-sr-only">导航切换</span> <span
+  class="am-icon-bars"></span></button>
+  <span style="margin-left: 35%;color: white;font-size: 20px"> <%=@supplier.name%></span>
+  <button class="am-btn am-btn-tairyo" style="float: right"  data-am-offcanvas="{target: '#doc-oc-demo3'}"><span
+  class="am-icon-search"></span></button>
+  <!-- 侧边栏内容 -->
+  <div class="col-md-3 col-md-pull-9 my-sidebar">
+    <div class="am-offcanvas" id="doc-oc-demo2">
+      <div class=" am-offcanvas-bar am-offcanvas-bar-overlay am-offcanvas-bar-active">
+        <ul class="am-nav am-menu-nav" style="color:red;">
+          <li class="am-parent"><a  style="color:red"><%=@supplier.name%>微商城</a></li>
+          <li class="am-nav-header">目录</li>
+          <li class="am-menu-nav-channelt">  <a href="/vshop/<%=@supplier.id%>">首页</a> </li>
+          <li class="am-menu-nav-channelt">  <a href="/tairyo/map?supplier_id=<%=@supplier.id%>">地图信息</a> </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  </header>
 
 <%= yield %>
 
 
 <div class="bottomdivsclearfix">
 
-  <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout"
+  <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-tairyo am-no-layout"
        id="">
     <ul class="am-navbar-nav am-cf sm-block-grid-4">
       <li>
@@ -51,8 +76,8 @@
         </a>
       </li>
       <li >
-        <a id="showgood" href="###">
-				<span  class="am-icon-dashboard">
+        <a  href="#">
+				<span  class="am-icon-comment ">
 				</span>
 
         </a>

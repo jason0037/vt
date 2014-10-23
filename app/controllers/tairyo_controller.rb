@@ -1,5 +1,5 @@
 class TairyoController < ApplicationController
-  layout "tairyo"
+
 
 
 
@@ -12,8 +12,10 @@ class TairyoController < ApplicationController
    def show
 
    end
-  def car
-
+  def map
+    supplier_id=params[:supplier_id]
+    @supplier=Ecstore::Supplier.find(supplier_id)
+    render :layout => @supplier.layout
   end
   def bus
 
