@@ -84,9 +84,7 @@
     position: relative;
     border-bottom: 1px solid #c8c7cc;
 }
-.am-tabs-warning{
-    display: none;
-}
+
 .am-panel-bd .text {
     display: block;
     font-size: 16px;
