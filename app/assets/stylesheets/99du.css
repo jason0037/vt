@@ -1,3 +1,126 @@
 .am-header-jiu{
     color: #ffffff;   background-color: #7E0001;   border-color:#7E0001;
 }
+
+
+/* /orders/new_mobile */
+
+
+.bottomdivsclearfix{
+    display: none;
+}
+
+.am-panel-bd {
+    padding: 2px;
+    position: relative;
+    border-bottom: 1px solid #c8c7cc;
+}
+.am-tabs-warning{
+    display: none;
+}
+.am-panel-bd .text {
+    display: block;
+    font-size: 16px;
+    color: #333;
+}
+.text2 {
+    display: block;
+    overflow: hidden;
+    color: #666;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+a {
+    color: #000;
+    text-decoration: none;
+
+}
+
+a span{
+    font-size: 20px;
+}
+.icon-arr {
+    position: absolute;
+    top: 40%;
+    right: 10px;
+    background-size: 100px 100px;
+}
+.btn-radio {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    background: url(/assets/icon_order.png) -57px -50px no-repeat;
+    background-size: 100px 100px;
+    vertical-align: -5px;
+}
+.bg-border {
+    display: block;
+    position: relative;
+    height: 2px;
+    background: url(/assets/bg_line2.png) 0 0 repeat-x;
+    background-size: 6px 1px;
+}
+.fr{
+    float: right;
+}
+/*member_addrs/_form_mobile */
+#province,#city,#district{
+    width: 100%;
+    height: 100%;
+}
+#addr{
+    width: 100%;
+    height: 10%;
+}
+/*mproduct */
+.btn_sure {
+    box-shadow: 0 1px 1px rgba(0,0,0,.2);
+    color: #fff;
+    width: 150px;
+    float: right;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c9b',endColorstr='#e61f80');
+    background: -ms-linear-gradient(top,#ff3c9b,#e61f80);
+    background: -moz-linear-gradient(top,#ff3c9b,#e61f80);
+    background: -webkit-gradient(linear,0 0,0 100%,from(#ff3c9b),to(#e61f80));
+    border: #db207b 1px solid!important;
+    cursor: pointer;
+}
+
+.btn_cancel, .btn_ensure, .btn_gry, .btn_red, .btn_sure, .btn_unav, .btn_white, .btn_white_order {
+    font-weight: 400;
+    height: 35px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 35px;
+    border-radius: 2px;
+    display: inline-block;
+
+}
+#cartform a{
+    margin: 10px;
+
+
+}
+.prf05{
+    float: right;
+    margin: 2px;
+    padding: 5px;
+}
+/* cart */
+input.textcenter {
+    text-align: center;
+    position: relative;
+    margin: 0 auto;
+    width: 40px;
+    border: solid 1px #ccc;
+}
+.bottomdiv {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    border: #ddd 1px solid;
+    border-top: #fff 1px solid;
+    z-index: 1000000;
+}
