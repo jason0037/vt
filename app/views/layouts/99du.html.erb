@@ -55,20 +55,14 @@
   <script>
       $(document).ready(function(){
           $("#showgood").click(function(){
-              if($('#am-share-swcw4').is(':hidden')){
-                  $('#am-share-swcw4').show() ;
-              }
-              else{
-                  $('#am-share-swcw4').hide() ;
-              }
-          })
+
+                  $('#good').toggle();
+
+      })
       })
 
+  </script>
 
-  </script>
-  <script type="text/x-handlebars-template" id="amz-tpl">
-    {{>navbar navbar}}
-  </script>
 </head>
 <body>
 <header data-am-widget="header" class="am-header am-header-jiu  am-no-layout"><div class="am-header-left am-header-nav">
@@ -121,7 +115,7 @@
 </div>
 
 <div >
-  <div class="am-share am-modal-actions am-modal-active" id="am-share-swcw4"
+  <div class="am-share am-modal-actions am-modal-active" id="good"
        style="margin-top: -138px;display: none
        ">
 
@@ -159,6 +153,11 @@
   </div>
 </div>
 <br/>
+
+
+
+
+
 
 <script src="/assets/mobile/swipe.min.js" type="text/javascript"></script>
 
