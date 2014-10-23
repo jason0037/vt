@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!--<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />-->
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0 target-densityDpi=device-dpi">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
@@ -11,32 +10,31 @@
   <meta content="" name="description">
   <%= stylesheet_link_tag    "tradev.css" %>
 
-  <%= stylesheet_link_tag "amui/amazeui.css"%>
-  <%= stylesheet_link_tag "amui/amazeui.min.css"%>
-  <%= stylesheet_link_tag "amui/amazeui.widgets.css"%>
-  <%= stylesheet_link_tag "amui/amazeui.widgets.min.css"%>
+  <%= stylesheet_link_tag    "amaze/amazeui.basic.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.basic.min.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.min.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.widgets.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.widgets.min.css" %>
 
 
-  <%= javascript_include_tag "amui/amazeui.widgets.helper.js"%>
-  <%= javascript_include_tag "amui/amazeui.widgets.helper.min.js"%>
-  <%= javascript_include_tag "amui/zepto.min.js"%>
 
-  <%= javascript_include_tag "amui/amazeui.js" %>
-  <%= javascript_include_tag "amui/amazeui.min.js" %>
-  <%= javascript_include_tag "amui/amazeui.widgets.js"%>
-  <%= javascript_include_tag "amui/amazeui.widgets.min.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.helper.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.helper.min.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.min.js"%>
+  <%= javascript_include_tag "amaze/zepto.min.js"%>
+  <%= javascript_include_tag "amaze/amazeui.js" %>
+  <%= javascript_include_tag "amaze/amazeui.min.js" %>
+  <%= javascript_include_tag "amaze/amazeui.basic.js"%>
+  <%= javascript_include_tag "amaze/amazeui.basic.min.js"%>
+  <%= javascript_include_tag "amaze/handlebars.min.js"%>
 
-  <%= javascript_include_tag "amui/handlebars.min.js"%>
 
-  <script>
+<script>
       var ui = 'touch';
   </script>
-
-  <style>
-      .am-icon-user{
-          color: #ffffff;
-          height: 20px;
-      }
+ <style>
       .bottomdivsclearfix {
           position: fixed;
           bottom: 0;
