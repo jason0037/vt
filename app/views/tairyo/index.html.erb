@@ -1,38 +1,18 @@
 
   <style type="text/css">
-       .bottomdiv{
-           position: fixed;
-           bottom: 0;
-       }
+      .bottomdiv {
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          background: #fff;
+          border: #ddd 1px solid;
+          border-top: #fff 1px solid;
+          z-index: 1000000;
+      }
   </style>
 
 
-
-
-
-  <div id="demo-view" data-backend-compiled="">
-    <div data-am-widget="list_news" class="am-list-news am-list-news-default am-no-layout">
-      <div class="am-list-news-hd am-cf">
-        <a href="###"><h2>团购</h2><span class="am-list-news-more am-fr">更多 »</span></a></div>
-      <div class="am-list-news-bd"><ul class="am-list">
-        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-          <div class="am-col col-sm-4 am-list-thumb">
-            <a href="/tproducts?id=a0771011">
-            <img src="/assets/tairyo/tuan.jpg" alt=""></a></div>
-          <div class="am-col col-sm-8 am-list-main">
-            <div class="am-list-item-text"><a href="#">仅售198元，价值430元双人套餐，根据您的口味调味，厨师为您现场烹饪，视觉与味觉的双重享受！</a></div>
-            <div class="am-list-item-text" style="color: red;float: right">￥77</div></div></li>
-        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-          <div class="am-col col-sm-4 am-list-thumb">
-            <a href="/tproducts?id=a0771011">
-              <img src="/assets/tairyo/tuan.jpg" alt=""></a></div>
-          <div class="am-col col-sm-8 am-list-main">
-            <div class="am-list-item-text"><a href="#">仅售198元，价值430元双人套餐，根据您的口味调味，厨师为您现场烹饪，视觉与味觉的双重享受！</a></div>
-            <div class="am-list-item-text" style="color: red;float: right">￥77</div></div></li>
-
-      </ul></div></div></div>
-
-  <div data-am-widget="list_news" class="am-list-news am-list-news-default">
+ <div data-am-widget="list_news" class="am-list-news am-list-news-default">
     <!--列表标题-->
     <div class="am-list-news-hd am-cf">
       <!--带更多链接-->
@@ -60,7 +40,27 @@
   </div>
 
 
+  <div id="demo-view" data-backend-compiled="">
+    <div data-am-widget="list_news" class="am-list-news am-list-news-default am-no-layout">
+      <div class="am-list-news-hd am-cf">
+        <a href="###"><h2>精选团购</h2><span class="am-list-news-more am-fr">更多 »</span></a></div>
+      <div class="am-list-news-bd"><ul class="am-list">
+        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+          <div class="am-col col-sm-4 am-list-thumb">
+            <a href="/tproducts?id=a990001">
+              <img src="/assets/tairyo/tuan.jpg" alt=""></a></div>
+          <div class="am-col col-sm-8 am-list-main">
+            <div class="am-list-item-text"><a href="#">仅售198元，价值430元双人套餐，根据您的口味调味，厨师为您现场烹饪，视觉与味觉的双重享受！</a></div>
+            <div class="am-list-item-text" style="color: red;float: right">￥77</div></div></li>
+        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+          <div class="am-col col-sm-4 am-list-thumb">
+            <a href="/tproducts?id=a990001">
+              <img src="/assets/tairyo/tuan.jpg" alt=""></a></div>
+          <div class="am-col col-sm-8 am-list-main">
+            <div class="am-list-item-text"><a href="#">仅售198元，价值430元双人套餐，根据您的口味调味，厨师为您现场烹饪，视觉与味觉的双重享受！</a></div>
+            <div class="am-list-item-text" style="color: red;float: right">￥77</div></div></li>
 
+      </ul></div></div></div>
 
 
 
@@ -68,7 +68,7 @@
     <div class="bottomdiv clearfix">
       <div class="inner clearfix">
 
-        <a href="/tairyoall?id=a990000" class=" am-btn am-btn-defautl " id="add_to_cart">饿了吗？需要订餐</a>
+        <a href="/tairyoall?id=a990000" style="float: right" class="am-btn am-btn-warning " id="add_to_cart">饿了吗？需要订餐</a>
 
       </div>
     </div>
@@ -78,25 +78,7 @@
 
 
 
-      <!--高速版，加载速度快，使用前需测试页面的兼容性-->
 
-      <!--<div id="SOHUCS"></div>-->
-      <!--<script>-->  <!--
-//        (function(){
-//            var appid = 'cyrmTsAaN',
-//                    conf = 'prod_5f1b7731ebb677190e934ff7f030c317';
-//            var doc = document,
-//                    s = doc.createElement('script'),
-//                    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
-//            s.type = 'text/javascript';
-//            s.charset = 'utf-8';
-//            s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
-//            h.insertBefore(s,h.firstChild);
-//            window.SCS_NO_IFRAME = true;
-//        })()
-    </script>-->
-
-      <!--</div>-->
 
     </div>
   </div>

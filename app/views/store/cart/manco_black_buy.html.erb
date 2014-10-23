@@ -1,128 +1,104 @@
 <style>
-    body{
-        background: #fcfffa;
-    }
-    .s_links,.footnav,.copyright{
-        display: none;
-    }
-
-    .cart_orderlist_info{
-        margin: 0;
-
-    }
-    .cartdiv{
-        line-height: 40px;
-        background-color: #f0f1ff;
-    }
-    #quantity{
-        width: 100px;
-    }
-    .delete{
-        float: right;
-    }
-    input.textcenter {
-        text-align: center;
-        position: relative;
-        margin: 0 auto;
-        width: 40px;
-        border: solid 1px #ccc;
-    }
-    .change_lange{
-        display: none;
-    }
-    .bottomdiv {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        background: #fff;
-        border: #ddd 1px solid;
-        border-top: #fff 1px solid;
-        z-index: 1000000;
-    }
-    .btn_sure {
-        box-shadow: 0 1px 1px rgba(0,0,0,.2);
-        color: #fff;
-        width: 150px;
-        float: right;
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c9b',endColorstr='#e61f80');
-        background: -ms-linear-gradient(top, #5378f3, #0e90d2);
-        background: -moz-linear-gradient(top, #5378f3, #0e90d2);
-        background: -webkit-gradient(linear,0 0,0 100%,from(#5378f3),to(#0e90d2));
-        border: #0e90d2 1px solid!important;
-        cursor: pointer;
-    }
     .bottomdivsclearfix{
         display: none;
     }
-    .btn_cancel, .btn_ensure, .btn_gry, .btn_red, .btn_sure, .btn_unav, .btn_white, .btn_white_order {
-        font-weight: 400;
-        height: 35px;
-        text-align: center;
-        font-size: 16px;
-        line-height: 35px;
-        border-radius: 2px;
-        display: inline-block;
-
-    }
-    .am-tabs-warning{
-        display: none;
-    }
-
 </style>
 
+
 <div id="cart">
-  <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
-      <div class="cartdiv" id="line_<%=line_item.obj_ident%>">
-        <div class="cartlist clearfix">
+  <div class="am-list-news-bd">
 
 
-          <div class="cartlistinner clearfix">
-
-            <div class="cart_orderlist_info">
+    <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
 
 
-              <div class="goods_Cnum clearfix" id="goods_Cnum">
 
-                <span class="we" >请选择货物重量</span>
-                <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity good_data_num_m J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
+            <ul class="am-list" id="supplierid_<%=line_item.supplier_id%>">
+
+
+
+        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" id="line_<%=line_item.obj_ident%>" style='background:#e5fdff'>
+
+          <div class="am-col col-sm-8 am-list-main">
+            <h3 class="am-list-item-hd">
+              <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%>">
+                <p class="cart_g_name">物流线路:  <%=line_item.product.name%> </p>
+
+              </a>
+            </h3>
+
+            </span>
+            <div class="am-list-item-text">
+              <div class="good_data_num J_pro_num_btn_cart" data-product="68671252" style="border:none;height:33px;">
+
+                <span class="we" >货物重量</span>
+               <span class="good_data_num_l J_num_cart_reduce" >
+                <a href="javascript:;" class="subtract"  mars_sead="cart_edit_btn" style="font-size: 30px" data_mars="prd_id:26038564">-</a>
+         </span>
+
+                <em class="good_data_num_m J_num_cart_txt">
+                  <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity good_data_num_m J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
+                </em>
                 <span class="unit">kg</span>
+         <span class="good_data_num_r J_num_cart_add" onclick="VsmCart.addNum(this)" >
+                      <a href="javascript:;" class="addition" mars_sead="cart_edit_btn" style="font-size: 26px"  data_mars="prd_id:26038564">+</a>
+        </span>
 
               </div>
-
             </div>
-            物流线路:  <span class=""><em style="color: #1b66b7"><%=line_item.good.name%></em></span>  <br/>
-            小黑板单价:<span class="c_price">¥<%= line_item.good.price%></span>
-            万家单价 : <span class="fontstyle">¥<%=line_item.good.mktprice%></span>  <br/>
 
 
-		<span class="delete">
-
-           <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile"%>" class="delete" data-method="delete" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
-             <img src="/assets/mobile/scan_layer-33.png" width="22" height="22">
-           </a>
-		</span>
           </div>
-        </div>
-        <div class="orderaction clearfix">
+
+          <div>
+
+
+          </div>
+
+          <div class="orderaction clearfix">
+            <p class="fr"><span class="c_price line-total" style="margin-left: 30px">该线路总价 ¥<%=(line_item.product.price*line_item.quantity)%> </span></p>
+          </div>
+           <span class="delete" style="float: right">
+
+           <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile&supplier_id=#{line_item.supplier_id}"%>" class="delete" data-method="delete" data-confirm="确定要删除吗？" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
+
+             <img src="/assets/mobile/scan_layer-33.png" width="30" height="30">
+           </a>
+    </span>
+        </li>
+
+    <%end%>  </ul>
 
 
 
-          <p class="fr"><span class="c_price line-total" style="margin-left: 30px">该线路总价 ¥<%=(line_item.product.price*line_item.quantity)%> </span></p>
+  </div></div>
 
-          <div class="clear"></div>
 
-        </div>
-      </div>
-  <%end%>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id ="carter">
   <div class="bottomdiv clearfix">
     <div class="inner clearfix">
       <div class="fl" style="float: left">
-        <p class="cart_total modal-footer" style="color: red">总金额：<span class="c_t_price total">¥<%= format('%.2f',@cart_total)%> </span></p>
+        <p class="cart_total modal-footer" style="color: red">总金额:<span class="c_t_price total">¥<%= format('%.2f',@cart_total)%> </span></p>
       </div>
       <%if @line_items[0]== nil%>
-          <a  style="float: right" class="am-btn am-btn-warning" style="margin-left: 30%" href="/vshop/<%=@supplier.id%>">
+          <a  style="float: right" class="fr btn_sure" style="margin-left: 30%" href="/vshop/<%=@supplier.id%>">
             <i class="am-icon-shopping-cart"></i>
-            继续购物
+            继续逛逛
           </a>
       <%else%>
           <a href="/orders/departure?supplier_id=<%=@supplier.id%>" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
@@ -134,6 +110,7 @@
     </div>
   </div>
 </div>
+
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
 <script>
 
@@ -149,6 +126,42 @@
                 success:function(res){
                 }
             });
+        });
+
+        $(".subtract").click(function(){
+            var quone= $(this).parents().parents().children(".good_data_num_m").children("#quantity");
+            var quantitys = quone.val();
+
+            if (quantitys<=1){
+                alert("亲，不能在减了～") ;return false;
+            }
+            else{
+                var quantity= quantitys-1;
+                quone.val(quantity) ;
+                var url = quone.data('url');
+                $.ajax(url,{
+                    type: "PUT",
+                    data:{ quantity:quantity },
+                    success:function(res){
+                    }
+                });
+            }
+        });
+        $(".addition").click(function(){
+            var qutwo=  $(this).parents().parents().children(".good_data_num_m").children("#quantity");
+            var quantitys = qutwo.val();
+            var quantity = quantitys * 1 + 1;
+            qutwo.val(quantity);
+
+            var url =qutwo.data('url');
+
+            $.ajax(url, {
+                type: "PUT",
+                data: { quantity: quantity },
+                success: function (res) {
+                }
+            });
+
         });
     });
 </script>

@@ -7,24 +7,27 @@
   <title><%#=@supplier.name%>微商城</title>
   <meta content="" name="keywords">
   <meta content="" name="description">
-  <%= stylesheet_link_tag "amui/amazeui.css"%>
-  <%= stylesheet_link_tag "amui/amazeui.min.css"%>
-  <%= stylesheet_link_tag "amui/amazeui.widgets.css"%>
-  <%= stylesheet_link_tag "amui/amazeui.widgets.min.css"%>
+  <%= stylesheet_link_tag    "amaze/amazeui.basic.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.basic.min.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.min.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.widgets.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.widgets.min.css" %>
+  <%= stylesheet_link_tag    "amaze/duoshuo.css" %>
 
 
-  <%= javascript_include_tag "amui/amazeui.widgets.helper.js"%>
-  <%= javascript_include_tag "amui/amazeui.widgets.helper.min.js"%>
-  <%= javascript_include_tag "amui/zepto.min.js"%>
+  <%= javascript_include_tag "amaze/zepto.min.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.helper.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.helper.min.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.min.js"%>
+  <%= javascript_include_tag "amaze/amazeui.js" %>
+  <%= javascript_include_tag "amaze/amazeui.min.js" %>
+  <%= javascript_include_tag "amaze/amazeui.basic.js"%>
+  <%= javascript_include_tag "amaze/amazeui.basic.min.js"%>
+  <%= javascript_include_tag "amaze/handlebars.min.js"%>
 
-  <%= javascript_include_tag "amui/amazeui.js" %>
-  <%= javascript_include_tag "amui/amazeui.min.js" %>
-  <%= javascript_include_tag "amui/amazeui.widgets.js"%>
-  <%= javascript_include_tag "amui/amazeui.widgets.min.js"%>
 
-  <%= javascript_include_tag "amui/handlebars.min.js"%>
-  <%= csrf_meta_tag %>
-  <title><%= I18n.t 'base.title' %></title>
   <script>
       var ui = 'touch';
   </script>
@@ -35,6 +38,47 @@
 <%= yield %>
 
 
+<div class="bottomdivsclearfix">
+
+  <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout"
+       id="">
+    <ul class="am-navbar-nav am-cf sm-block-grid-4">
+      <li>
+        <a href="tel:<%=@supplier.tel%>">
+				<span class="am-icon-phone">
+				</span>
+
+        </a>
+      </li>
+      <li >
+        <a id="showgood" href="###">
+				<span  class="am-icon-dashboard">
+				</span>
+
+        </a>
+      </li>
+      <li >
+        <a href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot"">
+				<span class="am-icon-user">
+				</span>
+
+        </a>
+      </li>
+
+      <li >
+        <a href="/cart/mobile?id=<%=@supplier.id%>">
+				<span class="am-icon-shopping-cart">
+				</span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+
+
+
 <div class="space15"></div>
 
 <div class="s_links"><a href="tel:021-54133980" mars_sead="home_foot_call"><em class="s_tel"></em>咨询电话<span></span><p class="telnum">021-22306630</p></a></div>
@@ -43,19 +87,7 @@
 
 <div class="footer clearfix">
   <div class="footnav clearfix">
-    <!--<%#if @user%>-->
-        <!--<script>-->
-            <!--if ('<%#=@user.account.supplier_id %>'!='<%#=@supplier.id%>'){-->
-                <!--location.href = "/logout?id=<%#=@supplier.id%>&platform=mobile"-->
-            <!--}-->
-        <!--</script>-->
-        <!--<a href="user.html">您好！</a>-->
-        <!--<a href="/logout?platform=mobile">退出登录</a>-->
-    <!--<%#else%>-->
 
-        <!--<a href="/auto_login?id=99&platform=mobile&return_url=/tairyo" mars_sead="footer-login_btn">登录</a>-->
-        <!--<a href="/wregister?platform=manco&return_url=/tairyo">注册</a>-->
-    <!--<%#end%>-->
     <a href="?t=1#" class="backtop" mars_sead="home_foot_top_btn"></a>
   </div>
   <p class="copyright">Copyright © 2013-2014 trade-v.com 版权所有 上海普慧信息科技有限公司 All rights reserved. 沪ICP备13045311号-1 </p>

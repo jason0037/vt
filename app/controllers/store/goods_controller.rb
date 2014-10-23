@@ -37,7 +37,7 @@ class Store::GoodsController < ApplicationController
      @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
 
-    return render "not_find_good",:layout=>"tairyo_new" unless @good
+    return render "not_find_good",:layout=>@supplier.layout unless @good
 
     @recommend_user = session[:recommend_user]
 
