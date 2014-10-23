@@ -4,7 +4,7 @@
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <title><%#=@supplier.name%>微商城</title>
+  <title><%=@supplier.name%>微商城</title>
   <meta content="" name="keywords">
   <meta content="" name="description">
   <%= stylesheet_link_tag    "amaze/amazeui.basic.css" %>
@@ -79,9 +79,6 @@
 
 
 
-<div class="space15"></div>
-
-<div class="s_links"><a href="tel:021-54133980" mars_sead="home_foot_call"><em class="s_tel"></em>咨询电话<span></span><p class="telnum">021-22306630</p></a></div>
 
 <script src="/assets/mobile/swipe.min.js" type="text/javascript"></script>
 
@@ -90,7 +87,7 @@
 
     <a href="?t=1#" class="backtop" mars_sead="home_foot_top_btn"></a>
   </div>
-  <p class="copyright">Copyright © 2013-2014 trade-v.com 版权所有 上海普慧信息科技有限公司 All rights reserved. 沪ICP备13045311号-1 </p>
+  <p class="copyright"  style="display:none">Copyright © 2013-2014 trade-v.com 版权所有 上海普慧信息科技有限公司 All rights reserved. 沪ICP备13045311号-1 </p>
   <p style="display:none">from=<%=session[:wechat_user]%>|recommend=<%=session[:recommend_user]%></p>
 </div>
 <div class="space10"></div>
