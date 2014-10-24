@@ -1,7 +1,7 @@
 require 'modec_pay/payment'
 require 'modec_pay/alipay'
 require 'modec_pay/alipaywap'
-require 'modec_pay/bill99'
+#require 'modec_pay/bill99'
 #require 'modec_pay/bcom'
 #require 'modec_pay/icbc'
 require 'modec_pay/offline'
@@ -42,9 +42,9 @@ module ModecPay
           'ips' => ModecPay::Ips,
           'alipay' => ModecPay::Alipay,
           'alipaywap' => ModecPay::Alipaywap,
-				 '99bill' => ModecPay::Bill99,
-				 'bcom' => ModecPay::Bcom,
-				 'icbc' => ModecPay::Icbc,
+				# '99bill' => ModecPay::Bill99,
+				# 'bcom' => ModecPay::Bcom,
+				# 'icbc' => ModecPay::Icbc,
 				 'offline'=> ModecPay::Offline,
 				 'deposit'=> ModecPay::Deposit,
          'wxpay' => ModecPay::Wxpay

@@ -13,11 +13,11 @@ class Ecstore::Payment < Ecstore::Base
 
 	PAYMENTS = {
     :ips => { :pay_name=>'环迅支付', :bank=> '环迅人民币支付', :pay_type=>"online" },
-		:bcom => { :pay_name=>'交通银行', :bank=> '交通银行网上支付', :pay_type=>"online" },
-		:icbc => { :pay_name=>'工商银行', :bank=> '工商银行网上支付', :pay_type=>"online" },
+		#:bcom => { :pay_name=>'交通银行', :bank=> '交通银行网上支付', :pay_type=>"online" },
+		#:icbc => { :pay_name=>'工商银行', :bank=> '工商银行网上支付', :pay_type=>"online" },
 		:deposit => { :pay_name=>'预存款', :bank=> '预存款', :pay_type=>"deposit" },
 		:offline => { :pay_name=>'线下支付', :bank=> '货到付款', :pay_type=>"offline" },
-		:'99bill' => { :pay_name=>'快钱支付', :bank=> '其他银行网上支付', :pay_type=>"online" },
+		#:'99bill' => { :pay_name=>'快钱支付', :bank=> '其他银行网上支付', :pay_type=>"online" },
 		:alipay => { :pay_name=>'支付宝', :bank=> '支付宝', :pay_type=>"online" },
     :alipaywap => { :pay_name=>'支付宝手机版', :bank=> '支付宝手机版', :pay_type=>"online" },
     :wxpay => { :pay_name=>'微信支付', :bank=>'微信支付', :pay_type=>"online"}
