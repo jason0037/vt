@@ -9,7 +9,9 @@
         background: url(/assets/icon_order.png) 0 0 no-repeat;
         background-size: 100px 100px;
     }
-
+    .bottomdivsclearfix{
+        display: none;
+    }
 
 </style>
 
@@ -155,8 +157,7 @@
     <span class="carticon fl"></span>
     <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
     </a>
-    <%#=link_to "加入购物车","javascript:void(0);",:class=>"add_to_cart fr btn_sure #{'login' unless signed_in?}" ,:id=>"add_to_cart" %>
-    <a href="javascript:void(0);" class="add_to_cart fr btn_sure " id="add_to_cart"><%=I18n.t "add-shoppingbasket"%></a>
+     <a href="javascript:void(0);" class="add_to_cart fr btn_sure " id="add_to_cart"><%=I18n.t "add-shoppingbasket"%></a>
   </div>
 </div>
 

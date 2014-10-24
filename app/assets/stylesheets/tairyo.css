@@ -1,75 +1,72 @@
-/**
-*  Tab Theme :warning
- */
-.am-tabs-warningss .am-tabs-nav {
-    background-color: #eeeeee;
+.am-header-jiu{
+    color: #ffffff;   background-color: #ff8400;;   border-color:#ff8400;
 }
-.am-tabs-warningss .am-tabs-nav li {
-    height: 42px;
+.am-navbar-tairyo .am-navbar-nav li a{
+
+    color: #ffffff;   background-color: #ff8400;   border-color:#ff8400;
 }
-.am-tabs-warningss .am-tabs-nav a {
-    color: #222222;
+.am-navbar-tairyo .am-navbar-nav{
+    background-color: #ff8400;!important;
+}
+
+.am-tabs-tairyo .am-tabs-nav {
+    line-height: 40px;
+    background-color: #ff8400;
+}
+.am-tabs-tairyo .am-tabs-nav a {
+    color: #ffffff;
     line-height: 42px;
 }
-.am-tabs-warningss .am-tabs-nav > .am-active {
-    position: relative;
-    background-color: #dc852d;
-    border-bottom: 2px solid #dc852d;
+.am-tabs-tairyo .am-tabs-nav > .am-active a {
+    background-color: #ff8400;
+    color: #ffffff;
 }
-.am-tabs-warningss .am-tabs-nav > .am-active a {
-    line-height: 40px;
-    color: #fcfffa;
+
+.am-btn-tairyo {
+    color: #ffffff;
+    background-color: #ff8400;
+    border-color: #ff8400;
 }
-.am-tabs-warningss .am-tabs-nav > .am-active:after {
-    position: absolute;
-    width: 0;
-    height: 0;
-    bottom: 0px;
-    left: 50%;
-    margin-left: -5px;
-    border: 6px rgba(0, 0, 0, 0) solid;
-    content: "";
-    z-index: 1;
-    border-bottom-color: #dc852d;
+.am-btn-tairyo:hover,
+.am-btn-tairyo:focus,
+.am-btn-tairyo:active,
+.am-btn-tairyo.am-active,
+.am-active .am-dropdown-toggle.am-btn-tairyo {
+    color: #ffffff;
+    background-color: #ff8400;
+    border-color: #ff8400;
 }
-.am-header-warning{
-    color: #ffffff;   background-color: #dc852d;   border-color: #ba7512;
+
+[data-am-widget='tairyo'] {
+    margin: 10px;
 }
-.btn-inverse{
-    clear: both;
+[data-am-widget='tairyo'] .am-tabs-nav {
     width: 100%;
-    color: #ffffff;
-    background-color: #dd514c;
-
-    background:#dd514c ;
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
+    padding: 0;
+    margin: 0;
+    list-style: none;
     text-align: center;
-    vertical-align: middle;
-    cursor: pointer;
-    background-image: none;
-
-    white-space: nowrap;
-    padding: 0.625em 1em;
-    border-radius: 2px;
-    line-height: 1.2;
-    /* font-size: 1.6rem; */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
-    -webkit-transition: width 0.15s;
-    transition: width 0.15s;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: -ms-flex;
+    display: flex;
+}
+[data-am-widget='tairyo'] .am-tabs-nav li {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
 }
 
-.btn-inverse:hover{
-    color: #ffffff;
-    background-color: #dd514c;
-    border-color: #ff0e1a;
-    background:#ff0e1a ;
-}
+
+
+
+
+
+
 
 
 
@@ -78,13 +75,14 @@
 
 
 
-
 .am-panel-bd {
     padding: 2px;
     position: relative;
     border-bottom: 1px solid #c8c7cc;
 }
-
+.am-tabs-warning{
+    display: none;
+}
 .am-panel-bd .text {
     display: block;
     font-size: 16px;
@@ -132,7 +130,14 @@ a span{
     float: right;
 }
 /*member_addrs/_form_mobile */
-
+#province,#city,#district{
+    width: 100%;
+    height: 100%;
+}
+#addr{
+    width: 100%;
+    height: 10%;
+}
 /*mproduct */
 .btn_sure {
     box-shadow: 0 1px 1px rgba(0,0,0,.2);
@@ -140,10 +145,10 @@ a span{
     width: 150px;
     float: right;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c9b',endColorstr='#e61f80');
-    background: -ms-linear-gradient(top,#ff3c9b,#e61f80);
-    background: -moz-linear-gradient(top,#ff3c9b,#e61f80);
-    background: -webkit-gradient(linear,0 0,0 100%,from(#ff3c9b),to(#e61f80));
-    border: #db207b 1px solid!important;
+    background: -ms-linear-gradient(top,#ff8400,#ff8400);
+    background: -moz-linear-gradient(top,#ff947e,#ff947e);
+    background: -webkit-gradient(linear,0 0,0 100%,from(#ffb1ae),to(#ff947e));
+    border: #ff947e 1px solid!important;
     cursor: pointer;
 }
 

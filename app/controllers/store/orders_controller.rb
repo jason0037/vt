@@ -470,13 +470,13 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
   end
 
   def new_manco
-
+    @supplier =Ecstore::Supplier.find(supplier_id)
     member_departure_id=  params[:member_departure_id]
     member_arrival_id=  params[:member_arrival_id]
 
     @departure_addr=Ecstore::MemberAddr.find_by_addr_id(params[:member_departure_id])
 
-    render :layout=>"manco_new"
+    render :layout=>@supplier.layout
 
   end
 
@@ -608,16 +608,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
     end
   end
 
-  def black_manco
-    @username=params[:username]
-    render :layout => "manco_template"
 
-  end
-
-  def express_manco
-
-    render :layout => "manco_template"
-  end
 
   def destroyaddr
 
@@ -661,9 +652,10 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
   end
 
   def goodblack
+    @supplier=Ecstore::Supplier.find(params[:supplier_id])
     ship_id= params[:ship_id]
     @memberes=Ecstore::User.where(:member_id=>ship_id)
-    render :layout => "manco_template"
+    render :layout => @supplier.layout
 
   end
 

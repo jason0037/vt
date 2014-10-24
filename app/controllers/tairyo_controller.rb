@@ -1,9 +1,10 @@
 class TairyoController < ApplicationController
-  layout "tairyo"
+
 
 
 
   def index    #大渔饭店首页
+        @supplier=Ecstore::Supplier.find("99")
 
     @comment_a=Ecstore::Comment.find_by_sql("select * from sdb_imodec_comments where member_id='2459'order by id desc ")
 
@@ -11,8 +12,10 @@ class TairyoController < ApplicationController
    def show
 
    end
-  def car
-
+  def map
+    supplier_id=params[:supplier_id]
+    @supplier=Ecstore::Supplier.find(supplier_id)
+    render :layout => @supplier.layout
   end
   def bus
 

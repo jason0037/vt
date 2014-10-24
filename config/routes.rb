@@ -102,13 +102,11 @@ end
 
   resources :tairyo do                   # #大渔饭店
     get   'index'  ,:on=>:collection
-    get   'bus'  ,:on=>:collection
-    get   'car'  ,:on=>:collection
-    get   'walk'  ,:on=>:collection
     get   'group'  ,:on=>:collection
     get   'tuangouxiang'  ,:on=>:collection
     get   'tese'  ,:on=>:collection
     get   'user'  ,:on=>:collection
+    get   'map'  ,:on=>:collection
     get 'tairyo_comment' ,:on=>:collection
     get 'showorder' ,:on=>:collection
   end
@@ -554,9 +552,9 @@ end
         get :goods
       end
     end
-    get 'tairyo_share' =>"orders#tairyo_share"
+
     get 'share' =>"orders#share"
-    get 'order/black_manco' =>"orders#black_manco"
+
 
     resources :orders, :except=>[:index] do
       member do
@@ -569,7 +567,7 @@ end
       end
 
       collection do
-        get 'goodblack'
+        get 'goodblack'       ###货源小黑板
         post 'destroyaddr'
         get 'check_coupon'
         get  'new_mobile'

@@ -37,7 +37,7 @@ class Store::GoodsController < ApplicationController
      @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
 
-    return render "not_find_good",:layout=>"tairyo_new" unless @good
+    return render "not_find_good",:layout=>@supplier.layout unless @good
 
     @recommend_user = session[:recommend_user]
 
@@ -92,7 +92,7 @@ class Store::GoodsController < ApplicationController
 
 
  def mproduct
-   if params[:id]=="78"
+   if params[:id]=="78" ||params[:supplier_id]=="78"
 
      set_locale
    end
@@ -148,109 +148,29 @@ class Store::GoodsController < ApplicationController
       else
         supplier_id =@good.supplier_id
       end
+   elsif supplier_id =="99"
+     redirect_to "/tproducts?supplier_id=#{supplier_id}&bn=#{params[:id]}"      ###金芭浪团购商品
+   else
+      @supplier  =  Ecstore::Supplier.find(supplier_id)
+     render :layout=>@supplier.layout
+     end
 
-   end
-   @supplier  =  Ecstore::Supplier.find(supplier_id)
-   render :layout=>@supplier.layout
  end
 
 
   def tairyoall
-    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
-
-    return render "not_find_good",:layout=>"tairyo_new" unless @good
-
-    @recommend_user = session[:recommend_user]
-
-    if params[:wechatuser]
-      @recommend_user=params[:wechatuser]
-    end
-    if @recommend_user
-      member_id =-1
-      if signed_in?
-        member_id = @user.member_id
-      end
-      now  = Time.now.to_i
-      Ecstore::RecommendLog.new do |rl|
-        rl.wechat_id = @recommend_user
-        rl.goods_id = @good.goods_id
-        rl.member_id = member_id
-        rl.terminal_info = request.env['HTTP_USER_AGENT']
-        #   rl.remote_ip = request.remote_ip
-        rl.access_time = now
-      end.save
-      session[:recommend_user]=@recommend_user
-      session[:recommend_time] =now
-    end
-
-    tag_name = params[:tag]
-    @tag = Ecstore::TagName.find_by_tag_name(tag_name)
-
-    @cat = @good.cat
-
-    @recommend_goods = []
-    if @cat.goods.size >= 4
-      @recommend_goods =  @cat.goods.where("goods_id <> ?", @good.goods_id).order("goods_id desc").limit(4)
-    else
-      @recommend_goods += @cat.goods.where("goods_id <> ?", @good.goods_id).limit(4).to_a
-      @recommend_goods += @cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-@recommend_goods.size] if @cat.parent_cat && @recommend_goods.size < 4
-      @recommend_goods.compact!
-      if @cat.parent_cat.parent_cat && @recommend_goods.size < 4
-        count = @recommend_goods.size
-        @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
-      end
-    end
-
-    render :layout=>"tairyo_new"
-
+    supplier_id = params[:supplier_id]
+    @supplier  =  Ecstore::Supplier.find(supplier_id)
+    render :layout=>@supplier.layout
   end
-  def tairyo_tuan
-    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
+  def tairyo_tuan                                ###金芭浪团购商品
+     bn= params[:bn]
+    supplier_id = params[:supplier_id]
+     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>bn).first
 
-    return render "not_find_good",:layout=>"tairyo_new" unless @good
-
-    @recommend_user = session[:recommend_user]
-
-    if params[:wechatuser]
-      @recommend_user=params[:wechatuser]
-    end
-    if @recommend_user
-      member_id =-1
-      if signed_in?
-        member_id = @user.member_id
-      end
-      now  = Time.now.to_i
-      Ecstore::RecommendLog.new do |rl|
-        rl.wechat_id = @recommend_user
-        rl.goods_id = @good.goods_id
-        rl.member_id = member_id
-        rl.terminal_info = request.env['HTTP_USER_AGENT']
-        #   rl.remote_ip = request.remote_ip
-        rl.access_time = now
-      end.save
-      session[:recommend_user]=@recommend_user
-      session[:recommend_time] =now
-    end
-
-    tag_name = params[:tag]
-    @tag = Ecstore::TagName.find_by_tag_name(tag_name)
-
-    @cat = @good.cat
-
-    @recommend_goods = []
-    if @cat.goods.size >= 4
-      @recommend_goods =  @cat.goods.where("goods_id <> ?", @good.goods_id).order("goods_id desc").limit(4)
-    else
-      @recommend_goods += @cat.goods.where("goods_id <> ?", @good.goods_id).limit(4).to_a
-      @recommend_goods += @cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-@recommend_goods.size] if @cat.parent_cat && @recommend_goods.size < 4
-      @recommend_goods.compact!
-      if @cat.parent_cat.parent_cat && @recommend_goods.size < 4
-        count = @recommend_goods.size
-        @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
-      end
-    end
-
-    render :layout=>"tairyo_new"
+     return render "not_find_good",:layout=>"new_store" unless @good
+    @supplier  =  Ecstore::Supplier.find(supplier_id)
+    render :layout=>@supplier.layout
 
   end
 

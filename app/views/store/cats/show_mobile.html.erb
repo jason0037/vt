@@ -6,9 +6,7 @@
     .new-mu_l2 {
         _zoom: 1;
     }
-    .bottomdivsclearfix{
-        display: block;!important;
-    }
+
     .new-mu_l2a {
         display: block;
         overflow: hidden;
@@ -32,6 +30,8 @@
         <%= I18n.t "hams"%>
     <%elsif params[:name] =="其他"%>
         <%= I18n.t "others"%>
+    <%elsif params[:name] =="天山大闸蟹"%>
+        <%= I18n.t "crab"%>
       <%else %>
        <%= params[:name]%>
         <%end%>
