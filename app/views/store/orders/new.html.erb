@@ -83,30 +83,12 @@
         <%=f.radio_button :payment, "offline"%> <b>货到付款</b>
         <span class="extra-desc"><%=link_to "点击查询货到付款配送区域","http://www.zjs.com.cn/WS_Business/WS_Bussiness_CityArea.aspx?id=6",:target=>"_blank"%></span>
       </label>
-		<label class="radio" style="display:none">
-			<%=f.radio_button :payment, "bcom",:'data-amount'=>(@cart_total*0.05).round, :id=>"bcom_payment"%> <b>交通银行网上支付</b>
-			<span class="extra-desc">持交通银行卡在线支付可享受订单金额95折优惠</span>
-		</label>
-	 	<label class="radio" style="display:none">
-			<%=f.radio_button :payment, "icbc"%> <b>工商银行网上支付</b>
-			<span class="extra-desc">
-				<input id="installment_on"  type="checkbox" value="1">
-				申请分期付款 (<span class="highlight">申请信用卡分期付款，超低手续费，月还款无压力！</span>) </span>
-				<span id="installment_select" class="hide">
-					请选择适合您的期数:
-				<%=f.select :installment,[3,6,9,12,18,24],{:include_blank=>"请选择"}%>期
-				</span>
-		</label>
+
 		<%if @user.advance >= @cart_total%>
 	 	<label class="radio" >
 			<%=f.radio_button :payment, "deposit"%> <b>预存款</b>
 		</label>
 		<%end%>
-
-	 	<label class="radio" style="display:none">
-			<%=f.radio_button :payment, "99bill"%> <b>其他银行网上支付</b>
-		</label>
-
 	</div>
 
 	<div class="order-items">
