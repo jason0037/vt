@@ -32,19 +32,19 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
         title="二维码"
         desc =""
-        pic_url="http://www.trade-v.com/images/a0#{id}/homepage/getqrcode_h.jpg"
-        link_url="http://www.trade-v.com/images/a0#{id}/homepage/getqrcode.jpg"
+        pic_url="http://vshop.trade-v.com/images/a0#{id}/homepage/getqrcode_h.jpg"
+        link_url="http://vshop.trade-v.com/images/a0#{id}/homepage/getqrcode.jpg"
 
         title1="关于我们"
         desc1 =""
-        pic_url1="http://www.trade-v.com/images/a0#{id}/homepage/logo.jpg"
-        link_url1="http://www.trade-v.com/pages/#{@weixin_public_account.url}_aboutus"
+        pic_url1="http://vshop.trade-v.com/images/a0#{id}/homepage/logo.jpg"
+        link_url1="http://vshop.trade-v.com/pages/#{@weixin_public_account.url}_aboutus"
 
         # redirect_uri="http%3a%2f%2fwww.trade-v.com%2fauth%2fweixin%2fcallback"
 
         title2="微信直通"
         desc2 =""
-        pic_url2="http://www.trade-v.com/assets/vshop/Oauth_s.png"
+        pic_url2="http://vshop.trade-v.com/assets/vshop/Oauth_s.png"
         link_url2= "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&5&redirect_uri=http%3a%2f%2fwww.trade-v.com%2fauth%2fweixin%2f#{id}%2fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
 
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2)]
@@ -53,48 +53,48 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       when '买'
         title="[测试商品]-----------------"
         desc ="测试商品0.01元，佣金3.00元"
-        pic_url="http://www.trade-v.com/images/a072/a0729002_b_1.jpg"
-        link_url="http://www.trade-v.com/mproducts?id=a980000&fp=mproducts&supplier_id=#{id}"
+        pic_url="http://vshop.trade-v.com/images/a072/a0729002_b_1.jpg"
+        link_url="http://vshop.trade-v.com/mproducts?id=a980000&fp=mproducts&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
       when 'on_sale'
         title="法兰克福香肠350克/ Frankfurter Sausages 350g仅售¥40元"
         desc =""
-        pic_url="http://www.trade-v.com/images/a077/a0771030_m.jpg"
-        link_url="http://www.trade-v.com/mproducts?id=a0771030&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
+        pic_url="http://vshop.trade-v.com/images/a077/a0771030_m.jpg"
+        link_url="http://vshop.trade-v.com/mproducts?id=a0771030&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
       when 'crab'
         title="一大波螃蟹正在接近-天山蟹客"
         desc ="天山蟹客大闸蟹实行人放养的野生自然成长程序，以湖中的水草、生物为食。这里冬季水温较低，螃蟹需要2-3年才可以成长3两重以上的商品蟹。雪水补给的湖泊中还含有千分之五的盐碱，低温高盐环境下养出的螃蟹身体十分结实，肉质也十分细嫩。"
-        pic_url="http://www.trade-v.com/images/a087/crap.jpg"
-        link_url="http://www.trade-v.com/mgallery?name=%E5%A4%A9%E5%B1%B1%E5%A4%A7%E9%97%B8%E8%9F%B9&id=#{id}&supplier_id=#{id}"
+        pic_url="http://vshop.trade-v.com/images/a087/crap.jpg"
+        link_url="http://vshop.trade-v.com/mgallery?name=%E5%A4%A9%E5%B1%B1%E5%A4%A7%E9%97%B8%E8%9F%B9&id=#{id}&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
       when '大渔'
         title="[大渔]海鲜铁板烧"
         desc =""
-        pic_url="http://www.trade-v.com/assets/vshop/dayu.jpg"
-        link_url="http://www.trade-v.com/tairyo"
+        pic_url="http://vshop.trade-v.com/assets/vshop/dayu.jpg"
+        link_url="http://vshop.trade-v.com/tairyo"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
       when 'new'
         title="那不勒斯萨拉米香肠200克"
         desc =""
-        pic_url="http://www.trade-v.com/images/a077/a0771043_m.jpg"
-        link_url="http://www.trade-v.com/mproducts?id=a0771043&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
+        pic_url="http://vshop.trade-v.com/images/a077/a0771043_m.jpg"
+        link_url="http://vshop.trade-v.com/mproducts?id=a0771043&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
       when '测试'
         title="[测试商品]-----------------"
         desc ="测试商品0.01元，佣金3.00元"
-        pic_url="http://www.trade-v.com/images/a072/a0729002_b_1.jpg"
-        link_url="http://www.trade-v.com/mproducts?id=a980000&fp=mproducts&supplier_id=#{id}&from=weixin&wechatuser=#{user}"
+        pic_url="http://vshop.trade-v.com/images/a072/a0729002_b_1.jpg"
+        link_url="http://vshop.trade-v.com/mproducts?id=a980000&fp=mproducts&supplier_id=#{id}&from=weixin&wechatuser=#{user}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
@@ -107,23 +107,23 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
         title="您的总佣金收益是: #{share}元"
         desc ="查看佣金详情请点击"
-        pic_url='http://www.trade-v.com/assets/vshop/commission_banner.jpg'
-        link_url="http://www.trade-v.com/share?FromUserName=#{user}&supplier_id=#{id}"
+        pic_url='http://vshop.trade-v.com/assets/vshop/commission_banner.jpg'
+        link_url="http://vshop.trade-v.com/share?FromUserName=#{user}&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
       when 'subscribe'
         title="您好，#{@weixin_public_account.name}欢迎您"
         desc ="#{@weixin_public_account.desc}"
-        pic_url="http://www.trade-v.com/images/a0#{id}/homepage/post.jpg"
-        link_url="http://www.trade-v.com/vshop/#{id}"
+        pic_url="http://vshop.trade-v.com/images/a0#{id}/homepage/post.jpg"
+        link_url="http://vshop.trade-v.com/vshop/#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
       else
         title="您好，我们将尽快回复您的问题"
         desc =""
-        pic_url="http://www.trade-v.com/images/a074/a0741022_m.jpg"
-        link_url="http://www.trade-v.com/mproducts?id=a980000&supplier_id=78&fp=mproducts"
+        pic_url="http://vshop.trade-v.com/images/a074/a0741022_m.jpg"
+        link_url="http://vshop.trade-v.com/mproducts?id=a980000&supplier_id=78&fp=mproducts"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
