@@ -1,5 +1,4 @@
 #encoding:utf-8
-require 'rjb'
 require 'pp'
 
 module ModecPay
