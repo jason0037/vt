@@ -40,12 +40,12 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url1="http://vshop.trade-v.com/images/a0#{id}/homepage/logo.jpg"
         link_url1="http://vshop.trade-v.com/pages/#{@weixin_public_account.url}_aboutus"
 
-        # redirect_uri="http%3a%2f%2fwww.trade-v.com%2fauth%2fweixin%2fcallback"
+        # redirect_uri="http%3a%2f%2fvshop.trade-v.com%2fauth%2fweixin%2fcallback"
 
         title2="微信直通"
         desc2 =""
         pic_url2="http://vshop.trade-v.com/assets/vshop/Oauth_s.png"
-        link_url2= "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&5&redirect_uri=http%3a%2f%2fwww.trade-v.com%2fauth%2fweixin%2f#{id}%2fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+        link_url2= "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&5&redirect_uri=http%3a%2f%2fvshop.trade-v.com%2fauth%2fweixin%2f#{id}%2fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
 
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2)]
         reply_news_message(articles)
