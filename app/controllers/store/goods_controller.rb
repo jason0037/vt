@@ -149,8 +149,12 @@ class Store::GoodsController < ApplicationController
         supplier_id =@good.supplier_id
       end
    elsif supplier_id =="99"
-     redirect_to "/tproducts?supplier_id=#{supplier_id}&bn=#{params[:id]}"      ###金芭浪团购商品
-   else
+     if params[:platform]=="tairyo"
+       redirect_to "/tairyoall?supplier_id=#{supplier_id}&bn=#{params[:id]}"      ###金芭浪饭店订餐
+    else
+       redirect_to "/tproducts?supplier_id=#{supplier_id}&bn=#{params[:id]}"      ###金芭浪团购商品
+      end
+      else
       @supplier  =  Ecstore::Supplier.find(supplier_id)
      render :layout=>@supplier.layout
      end
@@ -160,6 +164,7 @@ class Store::GoodsController < ApplicationController
 
   def tairyoall
     supplier_id = params[:supplier_id]
+    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
     @supplier  =  Ecstore::Supplier.find(supplier_id)
     render :layout=>@supplier.layout
   end

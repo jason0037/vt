@@ -143,3 +143,201 @@
        background: url(/assets/icon_order.png) 0 0 no-repeat;
        background-size: 100px 100px;
    }
+
+ /*main */
+
+   .get {
+       background: #1E5B94;
+       color: #fff;
+       text-align: center;
+       padding: 100px 0;
+   }
+
+   .get-title {
+       font-size: 200%;
+       border: 2px solid #fff;
+       padding: 20px;
+       display: inline-block;
+   }
+
+   .get-btn {
+       background: #fff;
+   }
+
+   .detail {
+       background: #fff;
+   }
+
+
+
+   .detail-h3 {
+       color: #1f8dd6;
+   }
+
+   .detail-p {
+       color: #7f8c8d;
+   }
+
+   .detail-mb {
+       margin-bottom: 30px;
+   }
+
+
+
+   .footer p {
+       color: #7f8c8d;
+       margin: 0;
+       padding: 15px 0;
+       text-align: center;
+       background: #2d3e50;
+   }
+
+ /*时间插件*/
+   #suggest,#suggest2{width:100%}
+   .gray{color:gray;}
+   .ac_results {background:#fff;border:1px solid #7f9db9;z-index: 10000;display: none;}.ac_results ul{margin:0;padding:0;list-style:none;}
+   .ac_results li a{white-space: nowrap;text-decoration:none;display:block;color:#05a;padding:10px 3px;}
+   .ac_results li{border:1px solid #fff; line-height:18px}
+   .ac_over,.ac_results li a:hover {background:#c8e3fc;}
+   .ac_results li a span{float:right;}
+   .ac_result_tip{border-bottom:1px dashed #666;padding:3px;}
+
+  /*  show_Carblack*/
+   @media only screen and (min-width: 1200px) {
+       .blog-g-fixed {
+           max-width: 1200px;
+       }
+   }
+   ul a
+
+   @media only screen and (min-width: 641px) {
+       .blog-sidebar {
+           font-size: 1.4rem;
+       }
+   }
+   .blog-main {
+       padding: 20px 0;
+   }
+   .blog-title {
+       margin: 10px 0 20px 0;
+   }
+   .blog-meta {
+       font-size: 14px;
+       margin: 10px 0 20px 0;
+       color: #222;
+   }
+   .blog-meta a {
+       color: #27ae60;
+   }
+   .blog-pagination a {
+       font-size: 1.4rem;
+   }
+   .blog-team li {
+       padding: 4px;
+   }
+   .blog-team img {
+       margin-bottom: 0;
+   }
+   .blog-footer {
+       padding: 10px 0;
+       text-align: center;
+   }
+   .inner{
+       float: right;
+   }
+   .hour{
+
+
+       line-height: 5px;
+   }
+
+   #good_mktprice{
+       color: #ff0e1a;
+       font-size: 15px;
+   }
+   .am-label{
+       background-color: #15afef;
+       width: 100%;
+       color: #ffffff;
+   }
+   .am-form textarea{
+       width: 80%;
+       height: 100px;
+       margin-left: 45px;
+       border: #15afef solid 1px;  !important;
+   }
+   .am-form input[type="radio"]{
+       padding: 20px;
+   }
+   .radio_inline{
+       float: left;
+       text-align: center;
+       margin-right: 30px;
+       margin-left: 100px;
+   }
+   .control-group_lable{
+       text-align: center;
+   }
+   .black_btn{
+       float: right;
+       margin-right: 20px;
+   }
+ /* find_manco*/
+   body{
+       background-color: #fcfffa;
+   }
+   .out{
+       float: right;
+   }
+   .head-info {
+       margin: 1rem auto;
+       width: 300px;
+       text-align: center;
+   }
+   .header h1 {
+       font-size: 200%;
+       color: #333;
+       margin-top: 30px;
+   }
+   .header p {
+       font-size: 14px;
+   }
+   .am-fl{
+       margin-left: 30%;
+       width: 30%;
+   }
+   .form_hide ,#mancoweight,.button-hide,.kgi{
+       display: none;
+   }
+   .button-am{
+       font-size: 20px    ;
+   }
+   .am-form-group{
+       text-align: center;
+   }
+   .form_show{
+       display: block;
+   }
+
+   .am-form input[type="text"] {
+
+       background-color: #fcfffa;
+
+   }
+   .floatfirst.floatright{
+       float: left;
+
+   }
+   .kginput #mancoweight> input[type=text]{
+       width: 40%;
+   }
+   .kginput #mancoweight,.kginput .kgi{
+       float: left;
+   }
+
+
+    /*addr*/
+   #province,#city,#district{
+       width: 30%;
+   }
+
