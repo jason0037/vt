@@ -124,7 +124,7 @@ class Store::OrdersController < ApplicationController
       @orders =  @user.orders.order("createtime desc")
 
       if params["platform"]=="mobile"
-        render :layout=>@supplier.layout
+        redirect_to "/orders/index_mobile?platform=mobile&supplier_id=#{supplier_id}"
       end
     else
       return_url={:return_url => "/goods?platform=#{params["platform"]}&supplier_id=#{supplier_id}"}.to_query
