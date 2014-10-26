@@ -61,9 +61,14 @@
         <a href="#"><%=@user.account.id%></a>
         <a href="/logout?id=<%=@supplier.id%>&platform=mobile">退出登录</a>
     <%else%>
+        <script>
+            location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
+        </script>
+    <%end%>
+<div style="display:none">
         <a href="/auto_login?id=<%=@supplier.id%>&platform=mobile&<%=return_url %>" mars_sead="footer-login_btn">登录</a>
         <a href="/mregister?id=<%=@supplier.id%>&platform=mobile&<%=return_url%>">注册</a>
-    <%end%>
+ </div>
     <a href="?t=1#" class="backtop" mars_sead="home_foot_top_btn"></a>
   </div>
   <p class="copyright">Copyright © 2013-2014 trade-v.com 版权所有 上海普慧信息科技有限公司 All rights reserved. 沪ICP备13045311号-1 </p>
