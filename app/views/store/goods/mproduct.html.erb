@@ -38,7 +38,7 @@
               <%=@good.name %>
             </div></li>
           <%if @supplier.id=="78" %>
-          <li class="am-active-slide" style="width: 385px; float: left; display: block;"><img src="<%=@good.big_pic.split(",")[1]%>"  data-original="<%=@good.big_pic.split(",")[1]%>"
+          <li class="am-active-slide" style="width: 385px; float: left; display: block;"><img src="<%=@good.big_pic[1]%>"  data-original="<%=@good.big_pic.split(",")[1]%>"
                                                                                               data-onerror="<%=@good.big_pic.split(",")[1]%>"
                                                                                               alt="" draggable="false" />
             <div class="am-slider-desc" style="text-align: center">
