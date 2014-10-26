@@ -20,7 +20,7 @@
 
 <% if @supplier.id==78%>
 
-      <%unless @cat.id==583 %>
+      <%if @cat.parent_id==558 %>
 
     <div class="am-panel-hd" style="text-align: center"><%= I18n.t "h4_1"%><br><%= I18n.t "h4_2"%> </span>
      <%end%> <%end%>  </div>
