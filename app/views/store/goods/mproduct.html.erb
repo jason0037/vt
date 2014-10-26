@@ -25,14 +25,34 @@
     <div class="am-panel-hd" style="text-align: center"><%= I18n.t "h4_1"%><br><%= I18n.t "h4_2"%> </span>
      <%end%> <%end%>  </div>
 
-<div id="demo-view" >
 
-    <img src="<%=@good.big_pic%>"
-         data-original="<%=@good.big_pic%>"
-         data-onerror="<%=@good.big_pic%>"
-         alt="" >
+  <div id="demo-view" data-backend-compiled="">
+    <div data-am-widget="slider" class="am-slider am-slider-default am-no-layout" data-am-slider="{&quot;animation&quot;:&quot;slide&quot;,&quot;slideshow&quot;:false}">
+      <div class="am-viewport" style="overflow: hidden; position: relative;">
+        <ul class="am-slides" style="width: 1200%; -webkit-transition: 0s; transition: 0s; -webkit-transform: translate3d(-770px, 0px, 0px);">
 
-    <div class="am-figure-capition-btm" style="text-align: center"><%=@good.name %></div></div>
+          <li class="am-active-slide" style="width: 385px; float: left; display: block;"><img src="<%=@good.big_pic.split(",")[0]%>"  data-original="<%=@good.big_pic.split(",")[0]%>"
+                                                                                              data-onerror="<%=@good.big_pic.split(",")[0]%>"
+                                                                                              alt="" draggable="false" />
+            <div class="am-slider-desc" style="text-align: center">
+              <%=@good.name %>
+            </div></li>
+          <%if @supplier.id=="78" %>
+          <li class="am-active-slide" style="width: 385px; float: left; display: block;"><img src="<%=@good.big_pic.split(",")[1]%>"  data-original="<%=@good.big_pic.split(",")[1]%>"
+                                                                                              data-onerror="<%=@good.big_pic.split(",")[1]%>"
+                                                                                              alt="" draggable="false" />
+            <div class="am-slider-desc" style="text-align: center">
+              <%=@good.name %>
+            </div></li>
+
+              <%end%>
+        </ul>
+      </div>
+
+
+    </div>
+  </div>
+
 
 
 
