@@ -38,11 +38,11 @@
 
 
     </div>
-  <% @goods.each do |good|%>
-     <%if good.supplier_id==77 %>
+  <% if params[:name]=="培根" ||params[:name]=="香肠"||params[:name] =="火腿"||params[:name] =="其他"%>
+
 
       <h5  style="color: #ff0000;text-align: center;padding: 0px"><%=I18n.t 'h4_1'%><br><%= I18n.t 'h4_2'%></h5>
-     <%end%>
+
   <%end%>
 </div>
 
