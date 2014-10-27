@@ -3,6 +3,26 @@ class Admin::OrdersController < Admin::BaseController
 	before_filter :get_return_url, :only=>[:show,:detail,:pay,:delivery,:reship,:refund]
 	skip_before_filter :verify_authenticity_token,:only=>[:batch]
 
+  def destroy
+    id = params[:id]
+    @order_log = Imodec::OrderLog.where(:rel_id=>id)
+    @order_log.destroy
+    @order_item = Imodec::OrderItem.where(:order_id=>id)
+    @order_item.destroy
+    @order = Imodec::OrderLog.where(:order_id=>id)
+    @order.destroy
+    sql = "delete mdk.sdb_b2c_order_items where order_id =#{params[:id]};"
+    sql = "delete mdk.sdb_b2c_order_log where rel_id = ;"
+    sql = "delete mdk.sdb_b2c_orders where order_id =;"
+
+
+    respond_to do |format|
+      format.html { redirect_to admin_orders_url }
+      format.json { head :no_content }
+      format.js
+    end
+  end
+
 	def index
 		if params[:status].nil?
 			@orders_nw = Ecstore::Order.order("createtime desc")
