@@ -158,7 +158,7 @@
 			<%@order.order_items.each do |order_item|%>
 			<tr>
 				<td><%=order_item.bn%></td>
-				<td><%=order_item.good.sbn%></td>
+				<td><%z=order_item.good.sbn%></td>
 				<td><%=order_item.product.brand.brand_name if order_item.product&&order_item.product.brand%></td>
 				<td>
 					<div>

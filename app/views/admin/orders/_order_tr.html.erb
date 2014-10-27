@@ -65,4 +65,5 @@
 	<td><%=order.ship_mobile%></td>
     <td><%=order.recommend_user%></td>
 </tr>
-<%@total +=order.final_amount*0.1%>
+<%@total_commission +=order.commission%>
+<%@total +=order.final_amount%>

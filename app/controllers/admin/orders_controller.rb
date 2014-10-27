@@ -11,10 +11,6 @@ class Admin::OrdersController < Admin::BaseController
     @order_item.destroy_all
     @order = Ecstore::Order.where(:order_id=>id)
     @order.destroy_all
-    sql = "delete mdk.sdb_b2c_order_items where order_id =#{params[:id]};"
-    sql = "delete mdk.sdb_b2c_order_log where rel_id = ;"
-    sql = "delete mdk.sdb_b2c_orders where order_id =;"
-
 
     respond_to do |format|
       format.html { redirect_to admin_orders_url }
