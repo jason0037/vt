@@ -5,9 +5,12 @@ class Admin::OrdersController < Admin::BaseController
 
   def destroy
     id = params[:id]
-    Ecstore::OrderLog.where(:rel_id=>id).destory_all
-    Ecstore::OrderItem.where(:order_id=>id).destory_all
-    Ecstory::OrderLog.where(:order_id=>id).destory_all
+    @order_log = Ecstore::OrderLog.where(:rel_id=>id)
+    @order_log.destroy_all
+    @order_item = Ecstore::OrderItem.where(:order_id=>id)
+    @order_item.destroy_all
+    @order = Ecstory::OrderLog.where(:order_id=>id)
+    @order.destroy_all
     sql = "delete mdk.sdb_b2c_order_items where order_id =#{params[:id]};"
     sql = "delete mdk.sdb_b2c_order_log where rel_id = ;"
     sql = "delete mdk.sdb_b2c_orders where order_id =;"
