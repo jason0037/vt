@@ -27,26 +27,33 @@
 
     </form>
 
-<%=form_for :product,:url=>"/cart/mancoexpress_add",:method=>"post",:html=>{:class=>"am-form am-form-group form_hide",:id=>"form_second",} do |f|%>
-    <%=hidden_field_tag :goods_id, :id=>"goods_id"%>
+<%=form_for :product,:url=>"/cart/add",:method=>"post",:html=>{:class=>"am-form am-form-group form_hide",:id=>"form_second",} do |f|%>
+    <%=f.hidden_field :goods_id%>
     <%=f.hidden_field :type_id,:id=>"type_id"%>
     <%=hidden_field_tag :platform,'mancoexpress'%>
-    <%=hidden_field_tag :manco_unit_price, :id=>"manco_unit_price"%>
-    <%=f.hidden_field :manco_name_two, :id=>"manco_name_two"%>
-    <%=f.hidden_field :suppliers_id, :id=>"suppliers_id",:value=>"98"%>
-    <table class="am-table .am-table-bd ">
+   <%=hidden_field_tag :supplier_id, @supplier.id%>
+    <%=hidden_field_tag :manco_low%>
+            <%=hidden_field_tag "product[specs][]"%>
+
+
+
+
+
+
+
+    <table class="am-table am-table-bd ">
       <thead>
       <tr>
         <th>始发站-终点站</th>
         <th>运费单价为:</th>
-
+        <th>最低运输价为:</th>
       </tr>
       </thead>
       <tbody>
       <tr>
         <td> <span style="float:left; color: red" id="manco_name_show"></span></td>
         <td><span style="float:left;color: red" id="manco_price_show"></span></td>
-
+        <td><span style="float:left;color: red" id="manco_low_show"></span></td>
       </tr>
 
       </tbody>
@@ -60,12 +67,15 @@
         <th>请填写重量</th>
         <th><%=text_field_tag :mancoweight  %>
         </th>
+        <th style="display: none">
+        </th>
         <th>公斤</th>
 
       </tr>
 
     </table>
     <%= f.submit :class=>"am-btn am-btn-primary am-btn-sm am-fl button-hide" ,:value=>"我要送货"%>
+
     <%end%>
 
 
@@ -100,6 +110,7 @@
                    $(this).css({"display":"none"})
                       $(".am-table").removeClass("form_hide")
 
+
                   }  else{
                       $("#mancoweight").addClass('display','none')  ,
                       $(".button-hide").css('display','none'),
@@ -111,7 +122,15 @@
 
         }   )
         })
+     $(".button-hide").click(function(){
+         var mancoweight=parseFloat($("#mancoweight").val());
+           var manco_price=parseFloat($("#manco_price_show").text());
+            var manco_low=parseFloat($("#manco_low_show").text());
+            if (manco_low>manco_price*mancoweight){
+                $("#manco_low").val(manco_low) ;
+            }
 
+     })
 
 </script>
 

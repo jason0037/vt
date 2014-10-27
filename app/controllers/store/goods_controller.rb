@@ -11,9 +11,8 @@ class Store::GoodsController < ApplicationController
 
      departure=params[:departure]
      arrival=params[:arrival]
-
      good_e=departure+"-"+arrival
-     @goodsname=Ecstore::Good.where(:name=>good_e,:cat_id=>"570")   ####万家线路图对应的类别为570
+     @goodsname=Ecstore::Good.where("name='#{good_e}' AND cat_id='570'").first   ####万家线路图对应的类别为570
 
   end
 
