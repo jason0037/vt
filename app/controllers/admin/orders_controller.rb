@@ -9,7 +9,7 @@ class Admin::OrdersController < Admin::BaseController
     @order_log.destroy_all
     @order_item = Ecstore::OrderItem.where(:order_id=>id)
     @order_item.destroy_all
-    @order = Ecstore::OrderLog.where(:order_id=>id)
+    @order = Ecstore::Order.where(:order_id=>id)
     @order.destroy_all
     sql = "delete mdk.sdb_b2c_order_items where order_id =#{params[:id]};"
     sql = "delete mdk.sdb_b2c_order_log where rel_id = ;"
