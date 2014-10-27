@@ -40,14 +40,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url1="http://vshop.trade-v.com/images/a0#{id}/homepage/logo.jpg"
         link_url1="http://vshop.trade-v.com/pages/#{@weixin_public_account.url}_aboutus"
 
-        # redirect_uri="http%3a%2f%2fvshop.trade-v.com%2fauth%2fweixin%2fcallback"
-
-        title2="微信直通"
-        desc2 =""
-        pic_url2="http://vshop.trade-v.com/assets/vshop/Oauth_s.png"
-        link_url2= "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{appid}&5&redirect_uri=http%3a%2f%2fvshop.trade-v.com%2fauth%2fweixin%2f#{id}%2fcallback&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
-
-        articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2)]
+        articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
         reply_news_message(articles)
 
       when '买'
@@ -70,7 +63,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="一大波螃蟹正在接近-天山蟹客"
         desc ="天山蟹客大闸蟹实行人放养的野生自然成长程序，以湖中的水草、生物为食。这里冬季水温较低，螃蟹需要2-3年才可以成长3两重以上的商品蟹。雪水补给的湖泊中还含有千分之五的盐碱，低温高盐环境下养出的螃蟹身体十分结实，肉质也十分细嫩。"
         pic_url="http://vshop.trade-v.com/images/a087/crap.jpg"
-        link_url="http://vshop.trade-v.com/mgallery?name=%E5%A4%A9%E5%B1%B1%E5%A4%A7%E9%97%B8%E8%9F%B9&id=#{id}&supplier_id=#{id}"
+        link_url="http://vshop.trade-v.com/mgallery?name=%E5%A4%A9%E5%B1%B1%E5%A4%A7%E9%97%B8%E8%9F%B9&id=#{id}&supplier_id=#{id}&from=weixin&wechatuser=#{user}"
         articles = [generate_article(title, desc, pic_url, link_url)]
         reply_news_message(articles)
 
@@ -109,7 +102,13 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         desc ="查看佣金详情请点击"
         pic_url='http://vshop.trade-v.com/assets/vshop/commission_banner.jpg'
         link_url="http://vshop.trade-v.com/share?FromUserName=#{user}&supplier_id=#{id}"
-        articles = [generate_article(title, desc, pic_url, link_url)]
+
+        title1="如何轻松赚佣金"
+        desc1 =""
+        pic_url1="https://mmbiz.qlogo.cn/mmbiz/oMwR6HEEzCy0xJicVicrfc9sEyMlj1M8ytz5UsZFiaF3H28CMq2g0nyiaRyJibjcJic3iaVypnia6vCXKicCQnz3QOGyITA/0"
+        link_url1="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=203023353&idx=1&sn=f9cf0b0b53d70ec67126a6ab93a7ed9a#rd"
+
+        articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
         reply_news_message(articles)
 
       when 'subscribe'
@@ -117,7 +116,13 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         desc ="#{@weixin_public_account.desc}"
         pic_url="http://vshop.trade-v.com/images/a0#{id}/homepage/post.jpg"
         link_url="http://vshop.trade-v.com/vshop/#{id}"
-        articles = [generate_article(title, desc, pic_url, link_url)]
+
+        title1="地道的德国人家族配方，搭配源自于丹麦供应商的有机猪肉，严格遵循德国食品质量标准，配合雅玛多全程冷链配送，保证达到您手中的每一份都是最美味、最具特色、最高标准的正宗德国香肠。"
+        desc1 =""
+        pic_url1="http://vshop.trade-v.com/ckeditor_assets/pictures/1050/content_2.jpg"
+        link_url1="http://vshop.trade-v.com/mproducts?id=a0771034&supplier_id=78&fp=category"
+
+        articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
         reply_news_message(articles)
       else
         title="您好，我们将尽快回复您的问题"

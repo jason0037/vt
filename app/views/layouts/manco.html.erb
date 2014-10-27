@@ -63,6 +63,10 @@
             location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
         }
     </script>
+<%else%>
+    <script>
+        location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
+    </script>
 <%end%>
 <header data-am-widget="header" class="am-header am-header-default am-no-layout">
   <div class="am-header-left am-header-nav">
