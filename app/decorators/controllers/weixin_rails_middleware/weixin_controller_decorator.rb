@@ -116,13 +116,16 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         desc ="#{@weixin_public_account.desc}"
         pic_url="http://vshop.trade-v.com/images/a0#{id}/homepage/post.jpg"
         link_url="http://vshop.trade-v.com/vshop/#{id}"
-
+if id == 78
         title1="地道的德国人家族配方，搭配源自于丹麦供应商的有机猪肉，严格遵循德国食品质量标准，配合雅玛多全程冷链配送，保证达到您手中的每一份都是最美味、最具特色、最高标准的正宗德国香肠。"
         desc1 =""
         pic_url1="http://vshop.trade-v.com/ckeditor_assets/pictures/1050/content_2.jpg"
         link_url1="http://vshop.trade-v.com/mproducts?id=a0771034&supplier_id=78&fp=category"
 
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
+else
+  articles = [generate_article(title, desc, pic_url, link_url)]
+end
         reply_news_message(articles)
       else
         title="您好，我们将尽快回复您的问题"
