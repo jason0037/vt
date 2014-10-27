@@ -236,7 +236,7 @@ end
       now  = Time.now.to_i
       Ecstore::RecommendLog.new do |rl|
         rl.wechat_id = @recommend_user
-        rl.goods_id = @good.goods_id
+      #  rl.goods_id = @good.goods_id
         rl.member_id = member_id
         rl.terminal_info = request.env['HTTP_USER_AGENT']
         #   rl.remote_ip = request.remote_ip
