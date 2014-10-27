@@ -1,64 +1,8 @@
 <style type="text/css">
-    .bottomdivsclearfix{
-        display: none;
-    }
-   #good_mktprice{
-        color: #ff0e1a;
-       font-size: 15px;
-   }
-   .am-label{
-       background-color: #15afef;
-       width: 100%;
-       color: #ffffff;
-   }
-   .am-form textarea{
-       width: 80%;
-       height: 100px;
-       margin-left: 45px;
-
-   }
-   .am-form input[type="radio"]{
-        padding: 20px;
-   }
-     .radio_inline{
-        float: left;
-         text-align: center;
-         margin-right: 30px;
-         margin-left: 100px;
-     }
-   .control-group_lable{
-            text-align: center;
-        }
-    .black_btn
-    {
-     float: right;
-       margin-right: 20px;
-      }
-
-   .btn-submit{
-      width: 100%;
-       padding: 15px;
-       }
-
-  .form_hide{
-         display: none;
-
-     }
-
 
 
 </style>
-<style type="text/css">
 
-    #suggest,#suggest2{width:100%}
-    .gray{color:gray;}
-    .ac_results {background:#fff;border:1px solid #7f9db9;z-index: 10000;display: none;}.ac_results ul{margin:0;padding:0;list-style:none;}
-    .ac_results li a{white-space: nowrap;text-decoration:none;display:block;color:#05a;padding:10px 3px;}
-    .ac_results li{border:1px solid #fff; line-height:18px}
-    .ac_over,.ac_results li a:hover {background:#c8e3fc;}
-    .ac_results li a span{float:right;}
-    .ac_result_tip{border-bottom:1px dashed #666;padding:3px;}
-</style>
 
 <div class="am-panel am-panel-default">
   <div class="am-panel-hd" style="text-align: center">发布车源信息</div>
@@ -162,7 +106,7 @@
     <div class="control-group">
 
       <div class="controls">
-        <%= f.cktext_area :desc,:placeholder=>"运输要求说明", :toolbar => 'Easy',:language=>'zh-cn' %>
+        <%= f.cktext_area :desc,:placeholder=>"运输要求说明" %>
       </div>
     </div>
 
@@ -176,9 +120,9 @@
     <br/>
    <div class="control-group">
       <div class="controls">
-        <input type="button" class="am-btn am-btn-primary btn-submit" value="发布">
+        <input type="button" class="am-btn am-btn-primary am-btn-block" value="发布">
 
-        <!--<#%= link_to '返回', admin_goods_path,:class=>"black_btn" %>-->
+
       </div>
     </div>
          <br/>
@@ -188,13 +132,15 @@
    <script type="application/javascript">
           $(document).ready(function(){
 
-              $("#button").focus(function(){
+              $("#button").click(function(){
                   var departures=$("#departure").val();
                   var  arrivals=$("#arrival").val();
 
-                 if (!departures ||!arrivals)  {alert("请先输入详细的地址在查询"); return false}
-                 $("#mktprice").removeClass("form_hide");
-                  $(this).addClass("form_hide") ;
+                 if (departures=="中文/拼音" ||arrivals=="中文/拼音")  {
+                     alert("请先输入详细的地址在查询"); }
+                  else{
+                    $("#mktprice").removeClass("form_hide");
+                  $(this).css({"display":"none"});
                   $.ajax({
                       url: "/manco/blackboardfind_e",
                       type: "post",
@@ -202,7 +148,7 @@
                       success: function (res) {
 
                       }
-                  })
+                  }) }
               })
 
                $("#good_price").blur(function(){
@@ -416,11 +362,7 @@
     }
 </script>
 <style>
-    body {font-size:12px}
-    td {text-align:center}
-    h1 {font-size:26px;}
-    h4 {font-size:16px;}
-    em {color:#999; margin:0 10px; font-size:11px; display:block}
+
 </style>
 <script>$(function(){
     $("#departure").suggest(citys,{

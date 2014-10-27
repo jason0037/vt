@@ -104,6 +104,7 @@ end
     get   'index'  ,:on=>:collection
     get   'group'  ,:on=>:collection
     get   'tuangouxiang'  ,:on=>:collection
+    get   'comment'  ,:on=>:collection
     get   'tese'  ,:on=>:collection
     get   'user'  ,:on=>:collection
     get   'map'  ,:on=>:collection

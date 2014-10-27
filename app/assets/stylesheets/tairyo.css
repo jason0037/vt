@@ -1,30 +1,30 @@
 .am-header-jiu{
-    color: #ffffff;   background-color: #ff8400;;   border-color:#ff8400;
+    color: #ffffff;   background-color: #990505;;   border-color: #490200;
 }
 .am-navbar-tairyo .am-navbar-nav li a{
 
-    color: #ffffff;   background-color: #ff8400;   border-color:#ff8400;
+    color: #ffffff;   background-color: #990505;   border-color: #490200;
 }
 .am-navbar-tairyo .am-navbar-nav{
-    background-color: #ff8400;!important;
+    background-color: #990505;!important;
 }
 
 .am-tabs-tairyo .am-tabs-nav {
     line-height: 40px;
-    background-color: #ff8400;
+    background-color: #990505;
 }
 .am-tabs-tairyo .am-tabs-nav a {
     color: #ffffff;
     line-height: 42px;
 }
 .am-tabs-tairyo .am-tabs-nav > .am-active a {
-    background-color: #ff8400;
+    background-color: #990505;
     color: #ffffff;
 }
 
 .am-btn-tairyo {
     color: #ffffff;
-    background-color: #ff8400;
+    background-color: #990505;
     border-color: #ff8400;
 }
 .am-btn-tairyo:hover,
@@ -33,7 +33,7 @@
 .am-btn-tairyo.am-active,
 .am-active .am-dropdown-toggle.am-btn-tairyo {
     color: #ffffff;
-    background-color: #ff8400;
+    background-color: #990505;
     border-color: #ff8400;
 }
 
@@ -145,10 +145,10 @@ a span{
     width: 150px;
     float: right;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c9b',endColorstr='#e61f80');
-    background: -ms-linear-gradient(top,#ff8400,#ff8400);
-    background: -moz-linear-gradient(top,#ff947e,#ff947e);
-    background: -webkit-gradient(linear,0 0,0 100%,from(#ffb1ae),to(#ff947e));
-    border: #ff947e 1px solid!important;
+    background: -ms-linear-gradient(top, #990505, #490200);
+    background: -moz-linear-gradient(top,#990505, #490200);
+    background: -webkit-gradient(linear,0 0,0 100%,from(#990505),to(#490200));
+    border: #990505 1px solid!important;
     cursor: pointer;
 }
 

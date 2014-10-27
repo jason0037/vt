@@ -17,6 +17,14 @@ class TairyoController < ApplicationController
     @supplier=Ecstore::Supplier.find(supplier_id)
     render :layout => @supplier.layout
   end
+
+
+  def comment
+    supplier_id=params[:supplier_id]
+    @supplier=Ecstore::Supplier.find(supplier_id)
+    render :layout => @supplier.layout
+  end
+
   def bus
 
   end

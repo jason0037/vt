@@ -11,7 +11,7 @@ en:
 
 
 
-  h4_1: " A free delivery service within Shanghai for CNY350 or more, less than CNY350 a minimum charge of CNY35 is made"
+  h4_1: " A free delivery service within Shanghai for CNY380 or more, less than CNY380 a minimum charge of CNY35 is made"
   h4_2: "Some areas will not be covered,please check carefully before ordering."
 
 
@@ -105,7 +105,7 @@ en:
   invoice : "Details of Invoice"
   details_invoice : "please enter the invoice title"
   order_notice : "Dear！"
-  order_notice_one : "! Up to ￥350"
+  order_notice_one : "! Up to ￥380"
   order_notice_two : "The delivery fee will be free. And cooled delivery to your door.."
   order_notice_three : "A free delivery service  for your order!"
   order_notice_four : "You have not selected merchandise。"

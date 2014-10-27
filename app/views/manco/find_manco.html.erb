@@ -1,76 +1,5 @@
-<%=stylesheet_link_tag "manco/amui.all.min"%>
-<!--<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/1.0.0-beta1/css/amui.all.min.css"/>-->
-<style>
-     body{
-         background-color: #fcfffa;
-     }
-     .out{
-         float: right;
-     }
-    .head-info {
-        margin: 1rem auto;
-        width: 300px;
-        text-align: center;
-      }
-    .header h1 {
-        font-size: 200%;
-        color: #333;
-        margin-top: 30px;
-    }
-    .header p {
-        font-size: 14px;
-    }
-    .am-fl{
-        margin-left: 30%;
-        width: 30%;
-    }
-    .form_hide, #mancoweight,.button-hide,.kgi{
-        display: none;
-       }
-    .button-hide{
-        width: 80%;
-        margin-left: 10%;
-
-    }
 
 
-     .button-am{
-         font-size: 20px  ;
-         margin-left: -50px;
-     }
-    .am-form-group{
-        text-align: center;
-    }
-    .form_show{
-        display: block;
-    }
-
-     .am-form input[type="text"] {
-
-         background-color: #fcfffa;
-  }
-     .kginput #mancoweight,.kginput .kgi{
-         float: left;
-     }
-
-
-
-</style>
-<style type="text/css">
-
-    #suggest,#suggest2{width:100%}
-    .gray{color:gray;}
-    .ac_results {background:#fff;border:1px solid #7f9db9;z-index: 10000;display: none;}.ac_results ul{margin:0;padding:0;list-style:none;}
-    .ac_results li a{white-space: nowrap;text-decoration:none;display:block;color:#05a;padding:10px 3px;}
-    .ac_results li{border:1px solid #fff; line-height:18px}
-    .ac_over,.ac_results li a:hover {background:#c8e3fc;}
-    .ac_results li a span{float:right;}
-    .ac_result_tip{border-bottom:1px dashed #666;padding:3px;}
-</style>
-
-
-
-</header>
 <div class="head-info" >
   <img src="/assets/manco/logo.jpg" alt="..." class="am-img-circle">
   <p>4001-156-561</p>
@@ -168,7 +97,7 @@
                       $("#mancoweight").css('display','block') ,
                               $(".button-hide").css('display','block') ,
                               $(".kgi").css('display','block')
-                   $(this).addClass("button-hide")
+                   $(this).css({"display":"none"})
                       $(".am-table").removeClass("form_hide")
 
                   }  else{
