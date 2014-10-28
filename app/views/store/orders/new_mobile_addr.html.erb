@@ -48,7 +48,7 @@
       </div>
   <%else%>
       <div class="am-panel-bd">
-        <span ><%=I18n.t "no_delivery_address"%></span>
+        <span style="text-align: center"><%=I18n.t "new_addr"%></span>
         <%=render :partial=>"patch/member_addrs/form_mobile",:locals=>{ :display=>( @addrs.size == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
 
       </div>
