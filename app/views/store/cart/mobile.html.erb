@@ -56,9 +56,7 @@
                 <a href="javascript:;" class="subtract"  mars_sead="cart_edit_btn" style="font-size: 30px" data_mars="prd_id:26038564">-</a>
          </span>
 
-                    <em class="good_data_num_m J_num_cart_txt">
-                      <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity good_data_num_m J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
-                    </em>
+
          <span class="good_data_num_r J_num_cart_add" onclick="VsmCart.addNum(this)" >
                       <a href="javascript:;" class="addition" mars_sead="cart_edit_btn" style="font-size: 26px"  data_mars="prd_id:26038564">+</a>
         </span>

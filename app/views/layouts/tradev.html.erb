@@ -207,12 +207,12 @@
               location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
       </script>
   <%end%>
-  <p class="copyright">Copyright © 2013-2014 trade-v.com <br/>版权所有 上海普慧信息科技有限公司 All rights reserved. <br/>沪ICP备13045311号-1 </p>
+  <p class="copyright" style="display: none">Copyright © 2013-2014 trade-v.com <br/>版权所有 上海普慧信息科技有限公司 All rights reserved. <br/>沪ICP备13045311号-1 </p>
   <p style="display:none">from=<%=session[:wechat_user]%>|recommend=<%=session[:recommend_user]%></p>
 </div>
-<!--<div class="space10"></div>-->
+<div class="space10"></div>
 
-<!--<div class="c-bottom"></div>-->
+<div class="c-bottom"></div>
 
 <script type="text/javascript">
     function wechatShare(data) {
