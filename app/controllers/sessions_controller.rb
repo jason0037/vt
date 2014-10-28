@@ -43,7 +43,7 @@ class SessionsController < ApplicationController
      return_url  =params[:return_url]
 
     session[:return_url] =  return_url
-    render :layout => @supplier.layout
+
     # return redirect_to(after_user_sign_in_path) if signed_in?
   end
 

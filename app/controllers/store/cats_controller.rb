@@ -17,7 +17,7 @@ class Store::CatsController < ApplicationController
 
         sql = " bn in (#{goods_ids})"
 
-        @all_goods = Ecstore::Good.where(sql).order("p_order asc")
+        @all_goods = Ecstore::Good.where(sql).order(p_order: :asc,uptime: :desc)
         @goods = @all_goods
         render :layout=>@supplier.layout
 

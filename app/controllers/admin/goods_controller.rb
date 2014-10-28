@@ -55,6 +55,7 @@ module Admin
               goodsMt =good.marketable=="true" ? "Y" : "N"
               goodsSpec =good.specs.order("sdb_b2c_specification.spec_id asc").pluck(:spec_name).join("|")
               goodsDesc=good.desc
+
               sheet.add_row [supplier,goodsType,goodsBn.strip,nil,goodsCat.strip,goodsBrand,nil,good.name.strip,goodsMt,goodsSpec,goodsDesc],:style=>goods_cell,:height=> 40
 
               row_count +=1
@@ -497,6 +498,7 @@ module Admin
                         country.save
                       end
                     end
+                    @good.uptime=Time.now
                     @good.place = row[11]
                     @good.cost = row[13]
                     @good.wholesale = row[14]
