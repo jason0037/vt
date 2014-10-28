@@ -1,5 +1,4 @@
 
-//= require jquery_ujs
 //= require area_seletor
 //= require bootstrap
 
