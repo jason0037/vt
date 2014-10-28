@@ -4,7 +4,9 @@
     .bottomdivsclearfix{
         display: none;
     }
-
+      #province ,#city,#district{
+          width: 100%;
+      }
 </style>
 
 
@@ -53,7 +55,7 @@
             <%=f.text_field :addr,:class=>"span5", :id=>"addr",:class=>"am-form-field"%>
             <span class="help-inline error"></span>
           </div>
-        </div>
+
 
         <div class="am-panel-hd">
           <label for="addr_area"><%=I18n.t "area"%></label>
@@ -103,3 +105,4 @@
       </div>
     </div>
 <%end%>
+</div>
