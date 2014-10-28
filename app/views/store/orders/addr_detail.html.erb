@@ -48,13 +48,6 @@
             <%#=f.text_field :zip,  :class=>"am-form-field" ,:placeholder=>"邮编"%>
           </div>
           <br/>
-          <div class="am-panel-hd">
-            <label for="addr"><%=I18n.t "address"%></label>
-            <%#=f.label :addr, "收货地址：".html_safe%></div>
-          <div class="am-panel-bd">
-            <%=f.text_field :addr,:class=>"span5", :id=>"addr",:class=>"am-form-field"%>
-            <span class="help-inline error"></span>
-          </div>
 
 
         <div class="am-panel-hd">
@@ -86,7 +79,16 @@
           <span class="help-inline error"></span>
                 </div>
         </div>
-      </div>
+
+          <div class="am-panel-hd">
+            <label for="addr"><%=I18n.t "address"%></label>
+            <%#=f.label :addr, "收货地址：".html_safe%></div>
+          <div class="am-panel-bd">
+            <%=f.text_field :addr,:class=>"span5", :id=>"addr",:class=>"am-form-field"%>
+            <span class="help-inline error"></span>
+          </div>
+
+        </div>
 
 
 
