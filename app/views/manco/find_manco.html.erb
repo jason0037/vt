@@ -32,7 +32,7 @@
     <%=f.hidden_field :type_id,:id=>"type_id"%>
     <%=hidden_field_tag :platform,'mancoexpress'%>
    <%=hidden_field_tag :supplier_id, @supplier.id%>
-    <%=hidden_field_tag :manco_low%>
+
             <%=hidden_field_tag "product[specs][]"%>
 
 
@@ -67,7 +67,7 @@
         <th>请填写重量</th>
         <th><%=text_field_tag :mancoweight  %>
         </th>
-        <th style="display: none">
+        <th >
         </th>
         <th>公斤</th>
 
@@ -122,15 +122,6 @@
 
         }   )
         })
-     $(".button-hide").click(function(){
-         var mancoweight=parseFloat($("#mancoweight").val());
-           var manco_price=parseFloat($("#manco_price_show").text());
-            var manco_low=parseFloat($("#manco_low_show").text());
-            if (manco_low>manco_price*mancoweight){
-                $("#manco_low").val(manco_low) ;
-            }
-
-     })
 
 </script>
 

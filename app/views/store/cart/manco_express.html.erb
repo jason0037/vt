@@ -28,7 +28,7 @@
             </div>
             物流线路:  <span class=""><em style="color: #1b66b7"><%=line_item.good.name%></em></span>  <br/>
             单价:<span style="color: red">¥</span><span class="unit_price" style="color: red"><%= format('%.2f',line_item.good.price)%></span>
-            <span class="low_price" style="display: none" ><%= format('%.2f',line_item.good.wholesale)%></span>  <!--万家最低运输价-->
+            最低运输价为：  <span class="low_price"  ><%= format('%.2f',line_item.good.wholesale)%></span>  <!--万家最低运输价-->
 
 		<span class="delete" style="margin-right: 10px">
 
@@ -40,15 +40,13 @@
         </div>
         <div class="orderaction clearfix">
 
-        <p class="fr"><span class="c_price line-total" style="margin-left: 30px">该线路需要支付
-          <%if params[:cart_totals] %>
-                 <span style="color: red">¥<%=params[:cart_totals]%> </span>
-              <%else%>
-          <span style="color: red">¥<%=(line_item.product.price*line_item.quantity)%></span> <%end%></span></p>
+        <p class="fr"><span class="c_price line-total" style="margin-left: 30px">
+
+         当前线路价格(不包涵最低运输价) <span style="color: red">¥<%=(line_item.product.price*line_item.quantity)%></span> <%end%></span></p>
 
             </div>
       </div>
-  <%end%>
+
   <div id ="carter">
   <div class="bottomdiv clearfix">
 
@@ -61,7 +59,7 @@
             继续购物
           </a>
       <%else%>
-          <a href="/orders/departure?supplier_id=<%=@supplier.id%>" data-islogin="true" class="fr btn_sure " id="btn_submit" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
+          <a href="/orders/departure?supplier_id=<%=@supplier.id%>&platform=mancoexpress" data-islogin="true" class="fr btn_sure " id="btn_submit" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
             立即下单
             <span class="fr cart_time_smb"><span class="clockicon fl"></span>
         <!--<span class="num_cunt"><span class=":">19</span><span>:</span><span>42</span><span></span></span>--> </span>
@@ -88,16 +86,7 @@
             });
         });
 
-        $("#btn_submit").click(function(){
-       var low_price=parseFloat($(".low_price").text());
-            var quantity= parseFloat($(".quantity").val());
-            var unit_price=$(".unit_price").text();
 
-           if (low_price>quantity*unit_price){
-               alert("低于最低送货价");
-               return false;
-           }
-        })
 
 
     });

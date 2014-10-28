@@ -88,17 +88,19 @@ class Ecstore::Order < Ecstore::Base
             freight97 = 10
           end
          end
+#万家物流
+          items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 98}.size
+          if items_amount_supplier >0
+            freight += 0
+          end
+
 =begin
 #天山蟹客
           items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 87}.size
           if items_amount_supplier >0
             freight += 0
           end
-#万家物流
-         items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 98}.size
-         if items_amount_supplier >0
-           freight += 0
-         end
+
 #金芭浪
          items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 99}.size
          if items_amount_supplier >0

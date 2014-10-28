@@ -33,7 +33,7 @@ class Store::CartController < ApplicationController
 		quantity = params[:product].delete(:quantity).to_i
 		goods_id = params[:product][:goods_id]
     if quantity.blank? || quantity ==0
-      quantity=1
+       quantity=1
     end
     if params[:supplier_id] =="98" && params[:platform]=="mancoexpress"
        quantity=params[:mancoweight].to_i
@@ -106,11 +106,11 @@ class Store::CartController < ApplicationController
       redirect_to "/cart/mobile?supplier_id=#{supplier_id}"
       #render "mobile", :layout=>@supplier.layout
     elsif params[:platform]=="mancoexpress"
-        cart_totals=params[:manco_low]                 ###万家快递
-      redirect_to "/cart/manco_express?supplier_id=#{supplier_id}&cart_totals=#{cart_totals}"
+                                  ###万家快递
+      redirect_to "/cart/manco_express?supplier_id=#{supplier_id}"
 
-      else
-      render "add"
+    else
+    render "add"
     end
 
 	#rescue

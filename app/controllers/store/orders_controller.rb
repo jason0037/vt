@@ -452,6 +452,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
   end
 
   def departure    ##起点信息
+     @platform=params[:platform]
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     manco_weight =params[:manco_weight]
     @addrs =  @user.member_addrs
@@ -462,6 +463,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
   end
 
   def arrival  ###终点信息
+    @platform=params[:platform]
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @member_departure_id=  params[:member_departure_id]
     @addrs =  @user.member_addrs
@@ -618,6 +620,30 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
   end
 
   def ordersnew_manco
+       platform=params[:platform]
+    sql = "SELECT price*quantity AS total,wholesale FROM mdk.sdb_b2c_cart_objects
+INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING_INDEX(SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',2),'_',-1) = mdk.sdb_b2c_goods.goods_id
+WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
+    @cart_total_by_supplier = ActiveRecord::Base.connection.execute(sql)
+    @cart_totals = 0
+
+
+    @cart_total_by_supplier.each(:as => :hash) do |row|
+      if (row["total"]<row["wholesale"])
+        @cart_totals+= row["wholesale"]
+      else
+        @cart_totals+= row["total"]
+      end
+
+
+    end
+    if platform=="mancoexpress"
+      @cart_total_final = @cart_totals
+    else
+      @cart_total_final = @cart_total
+    end
+
+
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     if (params[:member_departure_id])
       member_departure_id=params[:member_departure_id]

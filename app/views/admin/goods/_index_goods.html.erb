@@ -2,6 +2,7 @@
 <thead>
 	<tr>
 		<th><input type="checkbox" id="select_page_all"></th>
+      <th class="order" data-field="p_order" data-sorter="asc">排序</th>
       <th class="order" data-field="supplier" data-sorter="asc">供应商</th>
 		<th class="order" data-field="brand_id" data-sorter="asc">品牌</th>
 		<th class="td-teg" style="display:none">标签</th>
@@ -35,7 +36,9 @@
 <%if @count > 0%>
 	<%@goods.each do |good|%>
 		<tr>
+
 			<td><%=check_box_tag "batch[goods_ids][]", good.goods_id, false, :id=>"good_#{good.goods_id}",:class=>"good"%></td>
+          <td><%=good.p_order if good.p_order%></td>
             <td><%=good.supplier.name if good.supplier%></td>
 			<td><%=good.brand.brand_name if good.brand%></td>
 
