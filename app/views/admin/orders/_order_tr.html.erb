@@ -33,6 +33,9 @@
 				<li>
 					<%=link_to "订单备注",comment_admin_order_path(order,:page=>params[:page])%>
 				</li>
+                <li>
+                  <%= link_to '删除', admin_order_path(order), method: :delete, data: { confirm: 'Are you sure?' } %>
+                </li>
 				</ul>
 			<%end%>
 	</td>
@@ -62,4 +65,5 @@
 	<td><%=order.ship_mobile%></td>
     <td><%=order.recommend_user%></td>
 </tr>
-<%@total +=order.final_amount*0.1%>
+<%@total_commission +=order.commission%>
+<%@total +=order.final_amount%>

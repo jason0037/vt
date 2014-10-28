@@ -3,6 +3,22 @@ class Admin::OrdersController < Admin::BaseController
 	before_filter :get_return_url, :only=>[:show,:detail,:pay,:delivery,:reship,:refund]
 	skip_before_filter :verify_authenticity_token,:only=>[:batch]
 
+  def destroy
+    id = params[:id]
+    @order_log = Ecstore::OrderLog.where(:rel_id=>id)
+    @order_log.destroy_all
+    @order_item = Ecstore::OrderItem.where(:order_id=>id)
+    @order_item.destroy_all
+    @order = Ecstore::Order.where(:order_id=>id)
+    @order.destroy_all
+
+    respond_to do |format|
+      format.html { redirect_to admin_orders_url }
+      format.json { head :no_content }
+      format.js
+    end
+  end
+
 	def index
 		if params[:status].nil?
 			@orders_nw = Ecstore::Order.order("createtime desc")
