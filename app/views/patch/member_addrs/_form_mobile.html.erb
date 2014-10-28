@@ -13,7 +13,7 @@
 <%=javascript_include_tag "patch/member_addrs"%>
 
 <div class="member_addrs">
-  <%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
+  <%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>FALSE,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
      <% if params[:return_url]%>
           <input type="hidden" name="return_url" value="<%=@return_url%>">
       <%else%>
@@ -21,6 +21,7 @@
       <input type="hidden" name="return_url" value="/member_addrs?platform=mobile">
           <%end%>
       <br/>
+      <input type="hidden" name="platform" value="mobile">
       <div class="am-input-group">
         <span class="am-input-group-label"><%=I18n.t "name"%></span>
         <input class="am-form-field" id="addr_name" name="addr[name]" placeholder="<%=I18n.t "name"%>"value="<%=@addr.name%>">
@@ -61,9 +62,9 @@
         <span class="am-input-group-label"><%= I18n.t "area"%></span>
 
         <%unless @addr&&@addr.new_record?%>
-            <%=f.select :district,Ecstore::Region.districts_of(@addr&&@addr.city).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择" },{ :onchange=>"selectDistrict(this);",:id=>"district" ,:class=>"am-input-group-label",:style=>"#{'display:none;' if @addr.district.blank? }" } %>
+            <%=f.select :district,Ecstore::Region.districts_of(@addr&&@addr.city).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择区/县" },{ :onchange=>"selectDistrict(this);",:id=>"district" ,:class=>"am-input-group-label",:style=>"#{'display:none;' if @addr.district.blank? }" } %>
         <%else%>
-            <%=f.select :district, {}, { :include_blank=>"请选择区ss" }, { :onchange=>"selectDistrict(this);",:id=>"district" }%>
+            <%=f.select :district, {}, { :include_blank=>"请选择区/县" }, { :onchange=>"selectDistrict(this);",:id=>"district" }%>
         <%end%>   </div>
       <br/>
       <div class="am-input-group">
