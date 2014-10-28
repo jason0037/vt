@@ -51,12 +51,9 @@
   <%else%>
       <div class="am-panel-bd">
         <span ><%=I18n.t "no_delivery_address"%></span>
-        <a id ="newaddr" class="am-btn am-btn-warning am-btn-block" >  <%= I18n.t "new_addr"%></a>
+        <%=render :partial=>"patch/member_addrs/form_mobile",:locals=>{ :display=>( @addrs.size == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
 
-
-
-        </a>
-        </div>
+      </div>
         <div>
       </div>
   <%end%>
@@ -69,7 +66,6 @@
 
 
 
-<%=render :partial=>"patch/member_addrs/form_mobile",:locals=>{ :display=>( @addrs.size == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
 
 <script>
     $(document).ready(function(){
