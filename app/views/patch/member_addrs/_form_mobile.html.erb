@@ -61,7 +61,7 @@
         <span class="am-input-group-label"><%= I18n.t "area"%></span>
 
         <%unless @addr&&@addr.new_record?%>
-            <%=f.select :district,Ecstore::Region.districts_of(@addr&&@addr.city).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择区/县" },{ :onchange=>"selectDistrict(this);",:id=>"district" ,:class=>"am-input-group-label",:style=>"#{'display:none;' if @addr.district.blank? }" } %>
+            <%=f.select :district,Ecstore::Region.districts_of(@addr&&@addr.city).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择" },{ :onchange=>"selectDistrict(this);",:id=>"district" ,:class=>"am-input-group-label",:style=>"#{'display:none;' if @addr.district.blank? }" } %>
         <%else%>
             <%=f.select :district, {}, { :include_blank=>"请选择区/县" }, { :onchange=>"selectDistrict(this);",:id=>"district" }%>
         <%end%>   </div>
