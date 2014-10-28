@@ -5,7 +5,7 @@
 </style>
 <div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
   <div class="am-panel-hd" style="text-align: center"><%= I18n.t "shopping-basket"%>
-  <a href="/vshop/<%=@supplier.id%>" style="float: right"> <%= I18n.t "continue_shopping"%></a>
+    <a href="/vshop/<%=@supplier.id%>" style="float: right"> <%= I18n.t "continue_shopping"%></a>
   </div>
 </div>
 
@@ -14,40 +14,40 @@
   <div class="am-list-news-bd">
 
 
-        <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
+    <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
 
-            <%if line_item.supplier_id.to_i !=@goods_supplier%>
-                  <%if @goods_supplier!=0%>
-                        </ul>
-                  <%end%>
-                  <div id="supplier_<%=line_item.supplier_id%>"><%=line_item.supplier.name%></div>
-                  <ul class="am-list" id="supplierid_<%=line_item.supplier_id%>">
-                  <% @i = (@i-1).abs %>
+        <%if line_item.supplier_id.to_i !=@goods_supplier%>
+            <%if @goods_supplier!=0%>
+                </ul>
             <%end%>
-          <%@goods_supplier = line_item.supplier_id%>
+            <div id="supplier_<%=line_item.supplier_id%>"><%=line_item.supplier.name%></div>
+            <ul class="am-list" id="supplierid_<%=line_item.supplier_id%>">
+              <% @i = (@i-1).abs %>
+        <%end%>
+        <%@goods_supplier = line_item.supplier_id%>
 
-            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" id="line_<%=line_item.obj_ident%>" style='background:<%=@bg_color[@i]%>'>
-              <div class="am-col col-sm-4 am-list-thumb">
-                <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%> class="cart_orderlist_i">
-                <img src="<%=line_item.good.medium_pic%>"
-                     data-original="<%=line_item.good.medium_pic%>"
-                     data-onerror="<%=line_item.good.medium_pic%>"
-                     data-brandlazy="true" style="display: inline;">
-                </a>
-              </div>
-              <div class="am-col col-sm-8 am-list-main">
-                <h3 class="am-list-item-hd">
-                  <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%>">
-                    <p class="cart_g_name"><%=line_item.good.brand.brand_name%>,<%=line_item.product.name%> </p>
+        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" id="line_<%=line_item.obj_ident%>" style='background:<%=@bg_color[@i]%>'>
+          <div class="am-col col-sm-4 am-list-thumb">
+            <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%> class="cart_orderlist_i">
+            <img src="<%=line_item.good.medium_pic%>"
+                 data-original="<%=line_item.good.medium_pic%>"
+                 data-onerror="<%=line_item.good.medium_pic%>"
+                 data-brandlazy="true" style="display: inline;">
+            </a>
+          </div>
+          <div class="am-col col-sm-8 am-list-main">
+            <h3 class="am-list-item-hd">
+              <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%>">
+                <p class="cart_g_name"><%=line_item.good.brand.brand_name%>,<%=line_item.product.name%> </p>
 
-                  </a>
-                </h3>
+              </a>
+            </h3>
 
-                <h4  style="color: #ff0000;text-align: center;padding: 0px;display:none"><%= I18n.t "h4_1"%><br/><%=I18n.t "h4_2"%></h4>
+            <h4  style="color: #ff0000;text-align: center;padding: 0px;display:none"><%= I18n.t "h4_1"%><br/><%=I18n.t "h4_2"%></h4>
 
-                </span>
-                <div class="am-list-item-text">
-                  <div class="good_data_num J_pro_num_btn_cart" data-product="68671252" style="border:none;height:33px;">
+            </span>
+            <div class="am-list-item-text">
+              <div class="good_data_num J_pro_num_btn_cart" data-product="68671252" style="border:none;height:33px;">
 
                      <span class="good_data_num_l J_num_cart_reduce" >
                 <%= I18n.t "amount"%>：
@@ -56,17 +56,19 @@
                 <a href="javascript:;" class="subtract"  mars_sead="cart_edit_btn" style="font-size: 30px" data_mars="prd_id:26038564">-</a>
          </span>
 
-
+                <em class="good_data_num_m J_num_cart_txt">
+                  <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity good_data_num_m J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
+                </em>
          <span class="good_data_num_r J_num_cart_add" onclick="VsmCart.addNum(this)" >
                       <a href="javascript:;" class="addition" mars_sead="cart_edit_btn" style="font-size: 26px"  data_mars="prd_id:26038564">+</a>
         </span>
-                    <span  style="float: right;color: #ff0000">¥<%= format('%.2f',line_item.good.price)%></span>
+                <span  style="float: right;color: #ff0000">¥<%= format('%.2f',line_item.good.price)%></span>
 
-                  </div>
-                </div>
               </div>
+            </div>
+          </div>
 
-              <div>
+          <div>
         <span class="delete" style="float: right">
 
            <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile&supplier_id=#{line_item.supplier_id}"%>" class="delete" data-method="delete" data-confirm="确定要删除吗？" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
@@ -74,12 +76,12 @@
              <img src="/assets/mobile/scan_layer-33.png" width="30" height="30">
            </a>
     </span>
-              </div>
+          </div>
 
 
-            </li>
+        </li>
 
- <%end%>  </ul>
+    <%end%>  </ul>
 
 
 
@@ -102,25 +104,25 @@
 
 
 <div id ="carter">
-<div class="bottomdiv clearfix">
-  <div class="inner clearfix">
-    <div class="fl" style="float: left">
-      <p class="cart_total modal-footer" style="color: red"><%= I18n.t "total-price"%>：<span class="c_t_price total">¥<%= format('%.2f',@cart_total)%> </span></p>
-    </div>
-    <%if @line_items[0]== nil%>
-        <a  style="float: right" class="am-btn am-btn-warning" style="margin-left: 30%" href="/vshop/<%=@supplier.id%>">
-          <i class="am-icon-shopping-cart"></i>
-          <%= I18n.t "continue_shopping"%>
-        </a>
-    <%else%>
-        <a href="/orders/new_mobile?supplier_id=<%=@supplier.id%>" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
-          <%=I18n.t  "create-order"%>
-          <span class="fr cart_time_smb"><span class="clockicon fl"></span>
+  <div class="bottomdiv clearfix">
+    <div class="inner clearfix">
+      <div class="fl" style="float: left">
+        <p class="cart_total modal-footer" style="color: red"><%= I18n.t "total-price"%>：<span class="c_t_price total">¥<%= format('%.2f',@cart_total)%> </span></p>
+      </div>
+      <%if @line_items[0]== nil%>
+          <a  style="float: right" class="am-btn am-btn-warning" style="margin-left: 30%" href="/vshop/<%=@supplier.id%>">
+            <i class="am-icon-shopping-cart"></i>
+            <%= I18n.t "continue_shopping"%>
+          </a>
+      <%else%>
+          <a href="/orders/new_mobile?supplier_id=<%=@supplier.id%>" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
+            <%=I18n.t  "create-order"%>
+            <span class="fr cart_time_smb"><span class="clockicon fl"></span>
         <!--<span class="num_cunt"><span class=":">19</span><span>:</span><span>42</span><span></span></span>--> </span>
-        </a>
-    <%end%>
+          </a>
+      <%end%>
+    </div>
   </div>
-</div>
 </div>
 
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
