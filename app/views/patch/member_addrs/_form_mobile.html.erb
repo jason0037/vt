@@ -10,15 +10,30 @@
     .bottomdivsclearfix{
          display: none;
      }
-
+    #_x_ctr_location_box { position:absolute;z-index:1000 ;border: 1px solid #666666; background-color: #FFFFFF; position:absolute; top:0px; left:0px; }
+    #_x_str_location_title { margin-top: 5px; margin-right: 5px; margin-left: 5px; text-align:right; }
+    #_x_str_location_title i { background-image: url('../Images/_x_ctr_location_btnclose.png'); width: 15px; height: 14px; display: block; margin-right: 0px; margin-left: auto; cursor: pointer; }
+    #_x_ctr_location_area { padding: 5px; }
+    #_x_ctr_location_area select {padding: 5px; width: 180px; }
+    #_x_ctr_location_area select[xtype=must] { border: 1px solid #FF0000; padding: 5px; width: 180px; }
+    #_x_ctr_location_button { padding-right: 5px; padding-bottom: 5px; padding-left: 5px; text-align:right; }
+    #_x_ctr_location_button button { border: 1px solid #666666; cursor:pointer; margin-left:10px; }
 
     </style>
 
 
+<script src="http://www.byland-t.com/js_location/Js/_x_ctr_location-1.0.min.js"></script>
+
+  <input type="text" id="txt_area" size="30" />
+
+<script language="javascript" type="text/javascript">
+    $(function () {
+        $("#txt_area").Location({ ValueControlID: "txt_Code", LastSelected: false });
+    });
+</script>
 
 
-<div class="member_addrs">
-  <%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>FALSE,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
+<%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>FALSE,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
      <% if params[:return_url]%>
           <input type="hidden" name="return_url" value="<%=@return_url%>">
       <%else%>
@@ -47,7 +62,7 @@
 
 
       </div>
-      <br/>
+
       <div class="am-input-group">
         <span class="am-input-group-label"><%= I18n.t "express_code"%></span>
         <input class="am-form-field" id="addr_zip" name="addr[zip]" placeholder="<%=I18n.t "express_code"%>" size="30" type="text">
@@ -104,6 +119,7 @@
 
 
    })
+
 
 
 
