@@ -21,18 +21,6 @@
 
     </style>
 
-<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
-<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
-
-<script src="http://www.byland-t.com/js_location/Js/_x_ctr_location-1.0.min.js"></script>
-
-  <input type="text" id="txt_area" size="30" />
-
-<script language="javascript" type="text/javascript">
-    $(function () {
-        $("#txt_area").Location({ ValueControlID: "txt_Code", LastSelected: false });
-    });
-</script>
 
 
 <%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>FALSE,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
