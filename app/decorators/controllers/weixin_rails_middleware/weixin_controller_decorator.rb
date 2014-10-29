@@ -63,9 +63,9 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
       when 'crab'
         title="一大波螃蟹正在接近-天山蟹客"
-        desc ="天山蟹客大闸蟹实行人放养的野生自然成长程序，以湖中的水草、生物为食。这里冬季水温较低，螃蟹需要2-3年才可以成长3两重以上的商品蟹。雪水补给的湖泊中还含有千分之五的盐碱，低温高盐环境下养出的螃蟹身体十分结实，肉质也十分细嫩。"
+        desc ="由于新疆湖面温度已到达零下六度，今年暂停供应天山大闸蟹，同时非常感谢今年亲们的大力支持，明年会推出更多更棒的活动，敬请期待，明年再见！"
         pic_url="http://vshop.trade-v.com/images/a087/crap.jpg"
-        link_url="http://vshop.trade-v.com/mgallery?name=%E5%A4%A9%E5%B1%B1%E5%A4%A7%E9%97%B8%E8%9F%B9&id=#{id}&supplier_id=#{id}&from=weixin&wechatuser=#{user}"
+        link_url=""
         articles = [generate_article(title, desc, pic_url, link_url)]
 
       when 'new'
