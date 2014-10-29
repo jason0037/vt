@@ -8,10 +8,12 @@
 
     <%if params[:platform] =="mobile"%>
     <div class="am-panel am-panel-warning" style="text-align: center">
-      <div class="am-panel-hd"><%= I18n.t "modify"%><%= I18n.t "address"%></div>  </div>
+      <div class="am-panel-hd"><%= I18n.t "modify"%><%= I18n.t "address"%></div>
+   </div>
+
     <%=render :partial=>"form_mobile",:locals=>{ :display=>true }%>
     <%#=link_to "删除",member_addr_path(id:@addr,platform:params[:platform],supplier_id:params[:supplier_id]),:method=>:delete,:class=>"am-btn am-btn-danger am-round ",:confirm=>"确定要删除吗？"%>
-    <a href="/member_addrs/<%=@addr.id%>?platform=mobile&supplier_id=<%=@supplier.id%>" class="am-btn am-btn-danger am-round " style="float: right;width: 30%" data-confirm="确定要删除吗？" data-method="delete" rel="nofollow"><%=I18n.t "delete"%></a>
+   <br> <a href="/member_addrs/<%=@addr.id%>?platform=mobile&supplier_id=<%=@supplier.id%>" class="am-btn am-btn-danger am-round " style="float: right;width: 30%" data-confirm="确定要删除吗？" data-method="delete" rel="nofollow"><%=I18n.t "delete"%></a>
 
 <%else%>
      <h4>修改地址</h4>

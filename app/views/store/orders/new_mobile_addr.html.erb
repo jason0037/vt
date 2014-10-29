@@ -27,7 +27,7 @@
 
 
 
-<div class="am-panel am-panel-warning" style="text-align: center">
+<div class="am-panel am-panel-warning address " style="text-align: center">
   <div class="am-panel-hd"><%= I18n.t "address"%></div>
 </div>
 <div class="am-panel am-panel-default addr">
@@ -42,19 +42,26 @@
               <span class="icon-arr"></span>
             </div>  </a>
       <%end%>
+
+
+
+
+
+
+
+
       <a id ="newaddr" class="am-btn am-btn-warning am-btn-block" >  <%= I18n.t "new_addr"%></a>
 
 
 
-      </div>
+
   <%else%>
-      <div class="am-panel-bd">
-        <span style="text-align: center"><%=I18n.t "new_addr"%></span>
+      <div class="am-panel am-panel-warning" style="text-align: center">
+        <div class="am-panel-hd"><%=I18n.t "new_addr"%></div>
         <%=render :partial=>"patch/member_addrs/form_mobile",:locals=>{ :display=>( @addrs.size == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
 
       </div>
-        <div>
-      </div>
+
   <%end%>
 
   </div>

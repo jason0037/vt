@@ -1,17 +1,4 @@
-<style>
-    .change_lange{
-        display: none;
-    }
-    .icon-arr {
-        position: absolute;
 
-        right: 10px;
-        width: 10px;
-        height: 15px;
-        background: url(/assets/icon_order.png) 0 0 no-repeat;
-        background-size: 100px 100px;
-    }
-</style>
 <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
 <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
 
@@ -22,13 +9,14 @@
   <%if @addrs && @addrs.size > 0%>
       <%@addrs.each  do |addr|%>
           <a id="addressLink" href="/member_addrs/<%=addr.id%>/edit?supplier_id=<%=@supplier.id%>&platform=mobile">
-            <span class="text" style="font-size: 20px"><%=addr.name%>  </span>
-            <span class="text" style="margin-left: 20px"><%=addr.mobile%>  </span>
-            <br/>
-            <span class="text2"><%=addr.addr%></span>
-            <span class="icon-arr"></span>
+            <div class="am-panel-bd">
+              <span class="text">&nbsp;&nbsp;<%=addr.name%>  <span class="phone-num" style="margin-left: 30px"><%=addr.mobile%></span></span>
+              <br/>
+              <span class="text2">&nbsp;&nbsp;<%=addr.addr%></span>
+              <span class="icon-arr" >修改</span>
 
-         </a>
+            </div>  </a>
+
       <%end%>
       </div>
   <%else%>
