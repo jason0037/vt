@@ -8,9 +8,19 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     case @keyword
       when '地址'
         render xml: send("response_location_message", {})
+      when '01'
+        render xml: send("response_news_message", {})
+      when '02'
+        render xml: send("response_news_message", {})
+      when '03'
+        render xml: send("response_news_message", {})
+      when '测试'
+        render xml: send("response_news_message", {})
+      when '买'
+        render xml: send("response_news_message", {})
+      
       else
-        render xml: send("response_news_message",{})
-       # render xml: send("response_#{@weixin_message.MsgType}_message", {})
+       render xml: send("response_#{@weixin_message.MsgType}_message", {})
     end
 
   end
@@ -57,12 +67,6 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url="http://vshop.trade-v.com/images/a087/crap.jpg"
         link_url="http://vshop.trade-v.com/mgallery?name=%E5%A4%A9%E5%B1%B1%E5%A4%A7%E9%97%B8%E8%9F%B9&id=#{id}&supplier_id=#{id}&from=weixin&wechatuser=#{user}"
         articles = [generate_article(title, desc, pic_url, link_url)]
-      when '大渔'
-        title="[大渔]海鲜铁板烧"
-        desc =""
-        pic_url="http://vshop.trade-v.com/assets/vshop/dayu.jpg"
-        link_url="http://vshop.trade-v.com/tairyo"
-        articles = [generate_article(title, desc, pic_url, link_url)]
 
       when 'new'
         title="那不勒斯萨拉米香肠200克"
@@ -102,12 +106,12 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url="http://vshop.trade-v.com/images/a0#{id}/homepage/post.jpg"
         link_url="http://vshop.trade-v.com/vshop/#{id}"
         if id == 78
-                title1="地道的德国人家族配方，搭配源自于丹麦供应商的有机猪肉，严格遵循德国食品质量标准，配合雅玛多全程冷链配送，保证达到您手中的每一份都是最美味、最具特色、最高标准的正宗德国香肠。"
-                desc1 =""
-                pic_url1="http://vshop.trade-v.com/ckeditor_assets/pictures/1050/content_2.jpg"
-                link_url1="http://vshop.trade-v.com/mproducts?id=a0771034&supplier_id=78&fp=category"
+          title1="地道的德国人家族配方，搭配源自于丹麦供应商的有机猪肉，严格遵循德国食品质量标准，配合雅玛多全程冷链配送，保证达到您手中的每一份都是最美味、最具特色、最高标准的正宗德国香肠。"
+          desc1 =""
+          pic_url1="http://vshop.trade-v.com/ckeditor_assets/pictures/1050/content_2.jpg"
+          link_url1="http://vshop.trade-v.com/mproducts?id=a0771034&supplier_id=78&fp=category"
 
-                articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
+          articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
         else
           articles = [generate_article(title, desc, pic_url, link_url)]
         end
@@ -153,18 +157,8 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
   def response_text_message(options={})
     #reply_text_message("Your Message: #{@keyword}")
-    case @keyword
-      when 'share'
-      share = 0
-        @order = Ecstore::Order.where(:wechat_recommend=>@weixin_message.FromUserName).select("SUM(final_amount)*0.01 as share").group(:wechat_recommend).first
-        if @order
-          share =@order.share.round(2)
-        end
-        message="您好！,您可以领取的佣金是：￥#{share}元"
-      else
-        message="您好！#{@weixin_public_account.name}欢迎您！"
-    end
 
+    message="您好！#{@weixin_public_account.name}欢迎您！"
     reply_text_message(message)
   end
 
@@ -177,7 +171,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     @ly    = @weixin_message.Location_Y
     @scale = @weixin_message.Scale
     @label = @weixin_message.Label
- #   reply_text_message("您现在的位置是: #{@lx}, #{@ly}, #{@scale}, #{@label}")
+    #   reply_text_message("您现在的位置是: #{@lx}, #{@ly}, #{@scale}, #{@label}")
   end
 
   # <PicUrl><![CDATA[this is a url]]></PicUrl>
@@ -215,7 +209,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     @media_id = @weixin_message.MediaId # 可以调用多媒体文件下载接口拉取数据。
     # 视频消息缩略图的媒体id，可以调用多媒体文件下载接口拉取数据。
     @thumb_media_id = @weixin_message.ThumbMediaId
-  #  reply_text_message("回复视频信息")
+    #  reply_text_message("回复视频信息")
   end
 
   def response_event_message(options={})
@@ -230,7 +224,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
   def handle_subscribe_event
     if @keyword.present?
       # 扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送
-    #  return reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
+      #  return reply_text_message("扫描带参数二维码事件: 1. 用户未关注时，进行关注后的事件推送, keyword: #{@keyword}")
     end
     reply_text_message("感谢您关注#{@weixin_public_account.name}")
     @keyword = "subscribe"
@@ -244,14 +238,14 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
   # 扫描带参数二维码事件: 2. 用户已关注时的事件推送
   def handle_scan_event
-   # reply_text_message("扫描带参数二维码事件: 2. 用户已关注时的事件推送, keyword: #{@keyword}")
+    # reply_text_message("扫描带参数二维码事件: 2. 用户已关注时的事件推送, keyword: #{@keyword}")
   end
 
   def handle_location_event # 上报地理位置事件
     @lat = @weixin_message.Latitude
     @lgt = @weixin_message.Longitude
     @precision = @weixin_message.Precision
-   # reply_text_message("Your Location: #{@lat}, #{@lgt}, #{@precision}")
+    # reply_text_message("Your Location: #{@lat}, #{@lgt}, #{@precision}")
   end
 
   # 点击菜单拉取消息时的事件推送
@@ -274,14 +268,14 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         @keyword='授权'
         response_news_message({})
       else
-       # reply_text_message("你点击了: #{@keyword}")
+        # reply_text_message("你点击了: #{@keyword}")
     end
   end
 
   # 点击菜单跳转链接时的事件推送
   def handle_view_event
     Rails.logger.info("你点击了: #{@keyword}")
-  #  reply_text_message("你点击了: #{@keyword}")
+    #  reply_text_message("你点击了: #{@keyword}")
     session[:wechat_user]= @weixin_message.FromUserName
   end
 
