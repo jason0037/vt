@@ -6,16 +6,11 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
   def reply
     case @keyword
-      when '买'
-        render xml: send("response_news_message",{})
-      when '测试'
-        render xml: send("response_news_message",{})
       when '地址'
         render xml: send("response_location_message", {})
-      when '大渔'
-        render xml: send("response_news_message",{})
       else
-        render xml: send("response_#{@weixin_message.MsgType}_message", {})
+        render xml: send("response_news_message",{})
+       # render xml: send("response_#{@weixin_message.MsgType}_message", {})
     end
 
   end
@@ -41,7 +36,6 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         link_url1="http://vshop.trade-v.com/pages/#{@weixin_public_account.url}_aboutus"
 
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
-        reply_news_message(articles)
 
       when '买'
         title="[测试商品]-----------------"
@@ -49,7 +43,6 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url="http://vshop.trade-v.com/images/a072/a0729002_b_1.jpg"
         link_url="http://vshop.trade-v.com/mproducts?id=a980000&fp=mproducts&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
-        reply_news_message(articles)
 
       when 'on_sale'
         title="法兰克福香肠350克/ Frankfurter Sausages 350g仅售¥40元"
@@ -57,7 +50,6 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url="http://vshop.trade-v.com/images/a077/a0771030_m.jpg"
         link_url="http://vshop.trade-v.com/mproducts?id=a0771030&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
-        reply_news_message(articles)
 
       when 'crab'
         title="一大波螃蟹正在接近-天山蟹客"
@@ -65,15 +57,12 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url="http://vshop.trade-v.com/images/a087/crap.jpg"
         link_url="http://vshop.trade-v.com/mgallery?name=%E5%A4%A9%E5%B1%B1%E5%A4%A7%E9%97%B8%E8%9F%B9&id=#{id}&supplier_id=#{id}&from=weixin&wechatuser=#{user}"
         articles = [generate_article(title, desc, pic_url, link_url)]
-        reply_news_message(articles)
-
       when '大渔'
         title="[大渔]海鲜铁板烧"
         desc =""
         pic_url="http://vshop.trade-v.com/assets/vshop/dayu.jpg"
         link_url="http://vshop.trade-v.com/tairyo"
         articles = [generate_article(title, desc, pic_url, link_url)]
-        reply_news_message(articles)
 
       when 'new'
         title="那不勒斯萨拉米香肠200克"
@@ -81,7 +70,6 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url="http://vshop.trade-v.com/images/a077/a0771043_m.jpg"
         link_url="http://vshop.trade-v.com/mproducts?id=a0771043&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
-        reply_news_message(articles)
 
       when '测试'
         title="[测试商品]-----------------"
@@ -89,7 +77,6 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url="http://vshop.trade-v.com/images/a072/a0729002_b_1.jpg"
         link_url="http://vshop.trade-v.com/mproducts?id=a980000&fp=mproducts&supplier_id=#{id}&from=weixin&wechatuser=#{user}"
         articles = [generate_article(title, desc, pic_url, link_url)]
-        reply_news_message(articles)
 
       when 'share'
         share = 0
@@ -109,34 +96,59 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         link_url1="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=203023353&idx=1&sn=f9cf0b0b53d70ec67126a6ab93a7ed9a#rd"
 
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
-        reply_news_message(articles)
-
       when 'subscribe'
         title="您好，#{@weixin_public_account.name}欢迎您"
         desc ="#{@weixin_public_account.desc}"
         pic_url="http://vshop.trade-v.com/images/a0#{id}/homepage/post.jpg"
         link_url="http://vshop.trade-v.com/vshop/#{id}"
-if id == 78
-        title1="地道的德国人家族配方，搭配源自于丹麦供应商的有机猪肉，严格遵循德国食品质量标准，配合雅玛多全程冷链配送，保证达到您手中的每一份都是最美味、最具特色、最高标准的正宗德国香肠。"
-        desc1 =""
-        pic_url1="http://vshop.trade-v.com/ckeditor_assets/pictures/1050/content_2.jpg"
-        link_url1="http://vshop.trade-v.com/mproducts?id=a0771034&supplier_id=78&fp=category"
+        if id == 78
+                title1="地道的德国人家族配方，搭配源自于丹麦供应商的有机猪肉，严格遵循德国食品质量标准，配合雅玛多全程冷链配送，保证达到您手中的每一份都是最美味、最具特色、最高标准的正宗德国香肠。"
+                desc1 =""
+                pic_url1="http://vshop.trade-v.com/ckeditor_assets/pictures/1050/content_2.jpg"
+                link_url1="http://vshop.trade-v.com/mproducts?id=a0771034&supplier_id=78&fp=category"
 
-        articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
-else
-  articles = [generate_article(title, desc, pic_url, link_url)]
-end
-        reply_news_message(articles)
+                articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
+        else
+          articles = [generate_article(title, desc, pic_url, link_url)]
+        end
+      when '01'
+        if id ==97
+          title="诺狮产品店长推荐"
+          desc =""
+          pic_url="http://vshop.trade-v.com/images/a0#{id}/homepage/post.jpg"
+          link_url="http://vshop.trade-v.com/vshop/#{id}"
+          articles = [generate_article(title, desc, pic_url, link_url)]
+        end
+      when '02'
+        if id ==97
+          title="领取分享谢礼"
+          desc =""
+          pic_url="https://mmbiz.qlogo.cn/mmbiz/oMwR6HEEzCy0xJicVicrfc9sEyMlj1M8ytz5UsZFiaF3H28CMq2g0nyiaRyJibjcJic3iaVypnia6vCXKicCQnz3QOGyITA/0"
+          link_url="http://mp.weixin.qq.com/s?__biz=MzA3NzQ0MjMzNQ==&mid=200440674&idx=1&sn=891b3876611926ba115678e685983ba3#rd"
+          articles = [generate_article(title, desc, pic_url, link_url)]
+        end
+      when '03'
+        if id ==97
+          title="了解诺狮品牌故事"
+          desc =""
+          pic_url="http://vshop.trade-v.com/images/a0#{id}/homepage/logo.jpg"
+          link_url="http://vshop.trade-v.com/pages/norsh_brand"
+          articles = [generate_article(title, desc, pic_url, link_url)]
+        end
       else
+        if id ==97
+          desc ="回复01—进入“诺狮产品店长推荐”；回复02—领取分享谢礼；回复03—了解诺狮品牌故事"
+        else
+          desc =""
+        end
         title="您好，我们将尽快回复您的问题"
-        desc =""
-        pic_url="http://vshop.trade-v.com/images/a074/a0741022_m.jpg"
-        link_url="http://vshop.trade-v.com/mproducts?id=a980000&supplier_id=78&fp=mproducts"
+        pic_url="http://vshop.trade-v.com/images/a0#{id}/homepage/logo.jpg"
+        link_url="http://vshop.trade-v.com/vshop/#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
-        reply_news_message(articles)
-
     end
-
+    if articles
+      reply_news_message(articles)
+    end
   end
 
   def response_text_message(options={})
