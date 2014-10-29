@@ -11,7 +11,10 @@
   <div class="am-panel-hd"><%= I18n.t "modify"%><%= I18n.t "address"%></div>
 </div>
 <%#=javascript_include_tag "patch/member_addrs"%>
-
+<div class="am-input-group">
+  <span class="importstart">* </span>
+  <span > <%=I18n.t "importstart"%></span>
+</div>
 <%=form_for :addr, :url=>  "edit_addr", :html=>{ :class=> " form-horizontal" } do |f|%>
     <input type="hidden" name="platform" value="<%=params[:platform]%>">
     <input type="hidden" name="id" value="<%=@addr.id%>">

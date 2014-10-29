@@ -52,7 +52,7 @@ zh_cn:
   male : "男"
   female : "女"
   no_delivery_address : "您还没有收货地址"
-
+  importstart: "是必须填写的"
 
 
   logout: "退出"

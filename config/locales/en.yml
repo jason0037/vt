@@ -69,6 +69,8 @@ en:
   male : "Male"
   female : "Female"
   no_delivery_address : "You need to add a delivery address"
+  importstart: "are required items, please fill in."
+
 
   logout: "Logout"
   login: "Login"
