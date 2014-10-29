@@ -18,6 +18,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         render xml: send("response_news_message", {})
       when '买'
         render xml: send("response_news_message", {})
+      
       else
        render xml: send("response_#{@weixin_message.MsgType}_message", {})
     end
