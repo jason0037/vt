@@ -30,17 +30,38 @@
 
   </div>
 
-  <br/>
+   <br/>
   <div class="am-input-group am-input-group-lg">
-    <span class="am-input-group-label">发车时间</span>
-    <input type="text" name="arrival"placeholder="请选择发车时间" class="am-form-field floatright" value="">
-
+    <span class="am-input-group-label">重量</span>
+    <input type="number" name="weight"placeholder="请输入物品重量" class="am-form-field floatright"  value="">
+    <span class="am-input-group-label">kg</span>
   </div>
   <div class="am-input-group am-input-group-lg">
-    <span class="am-input-group-label">到达时间</span>
-    <input type="text" name="arrival"placeholder="请选择到达时间" class="am-form-field floatright"  value="">
+    <span class="am-input-group-label">体积</span>
+    <input type="number" name="volue"placeholder="请输入物品体积(200公斤/方)" class="am-form-field floatright"  value="">
+    <span class="am-input-group-label">立方米</span>
+  </div>
+  </br>
+  <div class="am-input-group am-input-group-lg">
+    <label class="am-input-group-label" style="border-right: 1px solid #000000">
+      <input type="radio"  value="" name="docInlineRadio"> 门对门
+    </label>
+    <label class="am-input-group-label">
+      <input type="radio" name="docInlineRadio"> 自提
+    </label>
 
   </div>
+  <!--<br/>-->
+  <!--<div class="am-input-group am-input-group-lg">-->
+    <!--<span class="am-input-group-label">发车时间</span>-->
+    <!--<input type="text" name="arrival"placeholder="请选择发车时间" class="am-form-field floatright" value="">-->
+
+  <!--</div>-->
+  <!--<div class="am-input-group am-input-group-lg">-->
+    <!--<span class="am-input-group-label">到达时间</span>-->
+    <!--<input type="text" name="arrival"placeholder="请选择到达时间" class="am-form-field floatright"  value="">-->
+
+  <!--</div>-->
 
   <br/>
   <div class="am-input-group am-input-group-lg">
@@ -111,7 +132,22 @@
 <br/><br/>
 <br/>
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
+
+
+
 <script type="application/javascript">
+
+  $(document).ready(function () {
+     $(input[type="radio"]).click(function(){
+         $(this).parent("laber").css("background","blue");
+     })
+  })
+
+
+
+
+
+
 
     $("#serach").bind("click",function(){
         var departure=    $("#departure").val();

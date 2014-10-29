@@ -7,9 +7,14 @@
 
 </style>
 
-
-<%=javascript_include_tag "patch/member_addrs"%>
-
+<div class="am-panel am-panel-warning" style="text-align: center">
+  <div class="am-panel-hd"><%= I18n.t "modify"%><%= I18n.t "address"%></div>
+</div>
+<%#=javascript_include_tag "patch/member_addrs"%>
+<div class="am-input-group">
+  <span class="importstart">* </span>
+  <span > <%=I18n.t "importstart"%></span>
+</div>
 <%=form_for :addr, :url=>  "edit_addr", :html=>{ :class=> " form-horizontal" } do |f|%>
     <input type="hidden" name="platform" value="<%=params[:platform]%>">
     <input type="hidden" name="id" value="<%=@addr.id%>">
@@ -20,14 +25,14 @@
         <div class="am-panel am-panel-default">
 
           <div class="am-input-group">
-            <span class="am-input-group-label"><%= I18n.t "name"%></span>
+            <span class="am-input-group-label"><%= I18n.t "name"%><span class="importstart">*</span></span>
             <input class="am-form-field" id="addr_name" name="addr[name]" placeholder="<%=I18n.t "name"%>" value="<%=@addr.name%>" size="30" type="text">
 
             <%#=f.text_field :name,  :class=>"am-form-field" ,:placeholder=>"收货人姓名"%>
           </div>
           <br/>
           <div class="am-input-group">
-            <span class="am-input-group-label"><%= I18n.t "m_phone"%></span>
+            <span class="am-input-group-label"><%= I18n.t "m_phone"%><span class="importstart">*</span></span>
             <input class="am-form-field" id="addr_mobile" name="addr[mobile]" placeholder="<%=I18n.t "m_phone"%>" value="<%=@addr.mobile%>" size="30" type="text">
 
             <%#=f.text_field :mobile,  :class=>"am-form-field" ,:placeholder=>"手机"%>
@@ -45,13 +50,7 @@
             <input class="am-form-field" id="addr_zip" name="addr[zip]" placeholder="<%=I18n.t "express_code"%>" value="<%=@addr.zip%>" size="30" type="text">
             <%#=f.text_field :zip,  :class=>"am-form-field" ,:placeholder=>"邮编"%>
           </div>
-          <br/>
-
-
-        <div class="am-panel-hd">
-          <label for="addr_area"><%=I18n.t "area"%></label>
-          <%#=f.label :area, "收货地区：".html_safe%></div>
-          <div class="controls" style="display:none">
+            <div class="controls" style="display:none">
             <select id="province" name="addr[province]">
               <option value="21" selected="selected">上海</option>
             </select>
@@ -63,21 +62,19 @@
             </select>
           </div>
 
-          <span class="help-inline error"></span>
-                </div>
-        </div>
 
-          <div class="am-panel-hd">
-            <label for="addr"><%=I18n.t "address"%></label>
-            <%#=f.label :addr, "收货地址：".html_safe%></div>
-          <div class="am-panel-bd">
-            <%=f.text_field :addr,:class=>"span5", :id=>"addr",:class=>"am-form-field"%>
+            <br/>
+
+          <div class="am-input-group">
+
+            <span class="am-input-group-label"><%= I18n.t "address_detail"%><span class="importstart">*</span></span>
+              <%=f.text_field :addr, :id=>"addr",:class=>"am-form-field"%>
             <span class="help-inline error"></span>
-          </div>
+
 
         </div>
-
-
+         </div>
+      </div>
 
 
 

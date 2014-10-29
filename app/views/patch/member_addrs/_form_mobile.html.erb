@@ -7,13 +7,16 @@
         width: 100%;
         height: 10%;
     }
-    .bottomdivsclearfix{
+    .bottomdivsclearfix,.address{
          display: none;
      }
 
 
     </style>
-
+<div class="am-input-group">
+<span class="importstart">* </span>
+<span > <%=I18n.t "importstart"%></span>
+</div>
 
 <%#=javascript_include_tag "patch/member_addrs"%>
 
@@ -28,14 +31,14 @@
       <br/>
       <input type="hidden" name="platform" value="mobile">
       <div class="am-input-group">
-        <span class="am-input-group-label"><%=I18n.t "name"%></span>
+        <span class="am-input-group-label"><%=I18n.t "name"%><span class="importstart">*</span></span>
         <input class="am-form-field" id="addr_name" name="addr[name]" placeholder="<%=I18n.t "name"%>"value="<%=@addr.name%>">
 
 
       </div>
       <br/>
       <div class="am-input-group">
-        <span class="am-input-group-label"><%=I18n.t "m_phone"%></i></span>
+        <span class="am-input-group-label"><%=I18n.t "m_phone"%><span class="importstart">*</span></span>
         <input class="am-form-field" id="addr_mobile" name="addr[mobile]" placeholder="<%=I18n.t "m_phone"%>" value="<%=@addr.mobile%>">
 
 
@@ -47,7 +50,7 @@
 
 
       </div>
-      <br/>
+
       <div class="controls" style="display:none">
         <select id="province" name="addr[province]">
           <option value="21" selected="selected">上海</option>
@@ -66,10 +69,10 @@
 
       </div>
       <br/>
-      <div class="">
-        <span class=""><%= I18n.t "address_detail"%></span>
+      <div class="am-input-group">
+        <span class="am-input-group-label"><%= I18n.t "address_detail"%><span class="importstart">*</span></span>
 
-        <%=f.text_area :addr, :id=>"addr", :cols=>"0",:rows=>"0"%>
+        <%=f.text_field :addr, :id=>"addr", :cols=>"0",:rows=>"0",:class=>"am-form-field"%>
         <span class="help-inline error"></span>
       </div>
 
@@ -89,6 +92,7 @@
 
   <%end%>
 </div>
+
   <script>
    $(".am-btn-block").click(function(){
        var mobile=$("#addr_mobile").val()
