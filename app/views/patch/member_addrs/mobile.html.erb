@@ -22,12 +22,13 @@
   <%if @addrs && @addrs.size > 0%>
       <%@addrs.each  do |addr|%>
           <a id="addressLink" href="/member_addrs/<%=addr.id%>/edit?supplier_id=<%=@supplier.id%>&platform=mobile">
-            <div class="am-panel-bd">
-              <span class="text" style="font-size: 20px"><%=addr.name%>  </span>
-              <br/>
-              <span class="text2"><%=addr.display_area%></span>
-              <span class="icon-arr"></span>
-            </div>  </a>
+            <span class="text" style="font-size: 20px"><%=addr.name%>  </span>
+            <span class="text" style="margin-left: 20px"><%=addr.mobile%>  </span>
+            <br/>
+            <span class="text2"><%=addr.addr%></span>
+            <span class="icon-arr"></span>
+
+         </a>
       <%end%>
       </div>
   <%else%>

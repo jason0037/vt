@@ -36,8 +36,9 @@
           <a id="addressLink" href="addr_detail?platform=mobile&supplier_id=<%=@supplier.id%>&id=<%=addr.id%>">
             <div class="am-panel-bd">
               <span class="text" style="font-size: 20px"><%=addr.name%>  </span>
+              <span class="text" style="margin-left: 20px"><%=addr.mobile%>  </span>
               <br/>
-              <span class="text2"><%=addr.display_area%></span>
+              <span class="text2"><%=addr.area%></span>
               <span class="icon-arr"></span>
             </div>  </a>
       <%end%>
