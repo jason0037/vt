@@ -65,7 +65,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="一大波螃蟹正在接近-天山蟹客"
         desc ="由于新疆湖面温度已到达零下六度，今年暂停供应天山大闸蟹，同时非常感谢今年亲们的大力支持，明年会推出更多更棒的活动，敬请期待，明年再见！"
         pic_url="http://vshop.trade-v.com/images/a087/crap.jpg"
-        link_url=""
+        link_url="http://vshop.trade-v.com/mgallery?name=%E5%A4%A9%E5%B1%B1%E5%A4%A7%E9%97%B8%E8%9F%B9&id=#{id}&supplier_id=#{id}&from=weixin&wechatuser=#{user}"
         articles = [generate_article(title, desc, pic_url, link_url)]
 
       when 'new'

@@ -94,7 +94,7 @@ class MancoController < ApplicationController
     departure= params[:departure]
     arrival= params[:arrival]
     goodsname=departure+"-"+arrival;
-    @goods=Ecstore::Good.where(:name=>goodsname,:cat_id=>"570")   ####万家线路图对应的类别为570
+    @goods=Ecstore::Good.where(:name=>goodsname,:cat_id=>"570").first   ####万家线路图对应的类别为570
 
 
   end
@@ -109,7 +109,7 @@ class MancoController < ApplicationController
     @supplier = Ecstore::Supplier.find(supplier_id)
   end
 
- def express                 ###运价查询
+ def express                 ###落地配服务
   supplier_id=params[:supplier_id]
    @supplier = Ecstore::Supplier.find(supplier_id)
 
@@ -239,7 +239,12 @@ end
 
   end
 
+   def  mancoluodipei
+     departure= params[:departure]
+     arrival= params[:arrival]
+     goodsname=departure+"-"+arrival;
 
+   end
 
 
 

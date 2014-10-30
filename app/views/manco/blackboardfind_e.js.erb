@@ -1,2 +1,14 @@
-$("#good_mktprice").val('<%=@goods[0].price%>');
-$("#good_name").val('<%=@goods[0].name%>');
+//小黑板中运价查询
+$("#good_mktprice").val('<%=@goods.price%>');
+$("#good_name").val('<%=@goods.name%>');
+
+
+// 运价查询
+$("#manco_name_show").html('<%=@goods.name%>')
+$("#product_goods_id").val('<%=@goods.goods_id%>')
+$("#manco_unit_price").val('<%=@goods.price%>')
+$("#manco_price_show").html('<%=@goods.price%>'+"元/公斤")
+$("#manco_low_show").html('<%=@goods.wholesale%>'+"元")
+$("#type_id").val('<%=@goods.type_id%>')
+$("#form_second").removeClass("form_hide")
+$("#form_first").addClass("form_hide")

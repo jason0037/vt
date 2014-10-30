@@ -7,14 +7,7 @@ class Store::GoodsController < ApplicationController
   skip_before_filter :find_path_seo, :find_cart!, :only=>[:newest]
   before_filter :find_tags, :only=>[:cheuksgroup,:newest]
 
-  def find_manco_good_first
 
-     departure=params[:departure]
-     arrival=params[:arrival]
-     good_e=departure+"-"+arrival
-     @goodsname=Ecstore::Good.where("name='#{good_e}' AND cat_id='570'").first   ####万家线路图对应的类别为570
-
-  end
 
   def show_goodblack
      @supplier=Ecstore::Supplier.find_by_id(params[:supplier_id])

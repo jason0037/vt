@@ -75,7 +75,7 @@ end
     get 'map' ,:on=>:collection
     get  'main' ,:on=>:collection    ###万家介绍
     get  'history' ,:on=>:collection  ####万家历史
-    post 'blackboardfind_e',:on=>:collection  ###小黑板中查询运价
+    post 'blackboardfind_e',:on=>:collection  ###查询运价
     get  'user'   ,:on=>:collection
     #万家快递页面
 
@@ -501,7 +501,7 @@ end
     get 'tairyoall'=>"goods#tairyoall",  :as=>"goods" ,:controller=>"goods"         ###金芭浪直接订单
     get 'tproducts' =>"goods#tairyo_tuan", :as=>"goods" ,:controller=>"goods"
     post'manco/serach_goods_manco'=>"goods#serach_goods_manco",:controller=>"goods"
-    post 'manco/find_manco_good_first'=>"goods#find_manco_good_first",:controller=>"goods"    #通过AJAX查询出来价钱
+
     post 'goods/manco_express'=>"goods#manco_express",:controller=>"goods"    #通过AJAX查询出来价钱
     resources :products, :as=>"goods", :controller=>"goods" do
       # get 'newin',:on=>:collection
