@@ -284,6 +284,18 @@
     <%useraccount=@user.account.login_name%>
     <%end%>
     var current_url = document.location.href;
+     var imgs=null;
+     var descs=null;
+
+
+
+
+    if (document.location.pathname=="/vshop/97"){
+
+        imgs="http://vshop.trade-v.com/images/a097/yagao.png"
+
+        descs="全球首款天然去糖牙膏-为宝宝挑选最好的";
+    }
     //去除上一个推荐者的链接
     num_index_of = current_url.indexOf("&from=weixin&wechatuser=");
     if (num_index_of >0){
@@ -291,7 +303,7 @@
     }
     current_url += "&from=weixin&wechatuser=<%=useraccount%>";
     // alert(current_url);
-    var data = {"img":null,"url":current_url,"title":"关注我们，转发朋友，赚佣金啰！<%#=@wechat_share_title%>","desc":null};
+    var data = {"img":imgs,"url":current_url,"title":"关注我们，转发朋友，享受优质生活！<%#=@wechat_share_title%>","desc":descs};
     wechatShare(data);
 </script>
 <%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>
