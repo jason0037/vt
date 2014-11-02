@@ -296,9 +296,8 @@
     <%end%>
     var current_url = document.location.href;
     //去除上一个推荐者的链接
-
-
-
+    var imgs=null
+    var descs=null
 
 
     if (document.location.href.indexOf('order')>0){
@@ -314,6 +313,12 @@
         }
 
     }
+    if (document.location.search=="?name=%E9%A6%99%E8%82%A0&id=78"){
+
+         imgs="/images/a077/xiangchang.png"
+
+        descs="正宗德国香肠 美味无法抵抗";
+    }
 
     num_index_of = current_url.indexOf("&from=weixin&wechatuser=");
     if (num_index_of >0){
@@ -321,7 +326,8 @@
     }
     current_url += "&from=weixin&wechatuser=<%=useraccount%>";
     // alert(current_url);
-    var data = {"img":null,"url":current_url,"title":"关注贸威，转发朋友，享受优质生活！<%#=@wechat_share_title%>","desc":null};
+
+    var data = {"img":imgs,"url":current_url,"title":"关注贸威，转发朋友，享受优质生活！<%#=@wechat_share_title%>","desc":descs};
     wechatShare(data);
 </script>
 <%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>

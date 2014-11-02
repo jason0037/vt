@@ -13,156 +13,81 @@
     <input type="text" name="departure" class="am-form-field floatright" placeholder="请输入出发城市:" id="departure" value="">
     <div id='suggest' class="am-input-group-lg"></div>
   </div>
-  <div class="am-input-group am-input-group-lg">
-    <span class="am-input-group-label">装货地址</span>
-    <input type="text" name="departure" class="am-form-field floatright" placeholder="请输入装货地址(选填):"  value="">
 
-  </div>
    <br/>
   <div class="am-input-group am-input-group-lg">
   <span class="am-input-group-label">目的城市</span>
   <input type="text" name="arrival"placeholder="请输入目的城市" class="am-form-field floatright" id="arrival" value="">
   <div id='suggest2' class="am-input-group-lg"> </div>
 </div>
-  <div class="am-input-group am-input-group-lg">
-    <span class="am-input-group-label">卸货城市</span>
-   <input type="text" name="arrival"placeholder="请输入卸货城市" class="am-form-field floatright"  value="">
 
-  </div>
 
    <br/>
-  <div class="am-input-group am-input-group-lg">
-    <span class="am-input-group-label">重量</span>
-    <input type="number" name="weight" min="0"placeholder="请输入物品重量" class="am-form-field floatright"  value="">
-    <span class="am-input-group-label">kg</span>
-  </div>
-  <div class="am-input-group am-input-group-lg">
-    <span class="am-input-group-label">体积</span>
-    <input type="number" name="volue" min="0"placeholder="请输入物品体积(200公斤/方)" class="am-form-field floatright"  value="">
-    <span class="am-input-group-label">立方米</span>
-  </div>
-  </br>
+
   <div class="am-input-group am-input-group-lg">
     <span class="am-input-group-label">派送方式&nbsp;&nbsp;</span>
     <label class="am-input-group-label" >
-
-
-      <input type="radio" name="8">门对门
+     <input type="radio"  name="distribution" value="586">门对门
     </label>
-    <label class="am-input-group-label" >
- <input type="radio" name="7">自提
+    <label class="am-input-group-label"  >
+ <input type="radio"  name="distribution" value="587">自提
   </label>
 
   </div>
-  <br>
-  <div class="am-input-group am-input-group-lg">
-    <span class="am-input-group-label">签单返回</span>
-    <label class="am-input-group-label" >
- <input type="radio" name="6" value="">&nbsp;是
-    </label> <label class="am-input-group-label" >
-   <input type="radio" name="5">&nbsp;否
-  </label>
-   </div>
 
-  <br>
-  <div class="am-input-group am-input-group-lg">
-    <span class="am-input-group-label">结算方式</span>
-    <label class="am-input-group-label" >
-      <input type="radio" name="4" value="">&nbsp;现金
-    </label> <label class="am-input-group-label" >
-    <input type="radio" name="3">&nbsp;到付
-  </label>
-  </div>
-  <br>
-  <div class="am-input-group am-input-group-lg">
-    <span class="am-input-group-label">开票</span>
-    <select name="" class="am-input-group-label">
-      <option value=""> 请选择发票 </option>
-      <option value="">运费发票 </option>
-      <option value=""> 服务费发票 </option>
-      <option value=""> 自带发票 </option>
-    </select>
-  </div>
+      <br>
 
-  <br>
-  <div class="am-input-group am-input-group-lg">
-    <span class="am-input-group-label">进仓服务费</span>
-    <label class="am-input-group-label" >
-      <input type="radio" name="2" value="">&nbsp;是
-    </label> <label class="am-input-group-label" >
-    <input type="radio" name="1">&nbsp;否
-  </label>
-  </div>
-  <!--<br/>-->
-  <!--<div class="am-input-group am-input-group-lg">-->
-    <!--<span class="am-input-group-label">发车时间</span>-->
-    <!--<input type="text" name="arrival"placeholder="请选择发车时间" class="am-form-field floatright" value="">-->
-
-  <!--</div>-->
-  <!--<div class="am-input-group am-input-group-lg">-->
-    <!--<span class="am-input-group-label">到达时间</span>-->
-    <!--<input type="text" name="arrival"placeholder="请选择到达时间" class="am-form-field floatright"  value="">-->
-
-  <!--</div>-->
-
-  <br/>
-  <div class="am-input-group am-input-group-lg">
-    <span class="am-input-group-label">备注</span>
-    <input type="text" name="arrival"placeholder="输入50字以内(选填)" class="am-form-field floatright"  value="">
-
-  </div>
-  <br/>
   <div class="am-cf">
-    <input type="button" id="serach" data-url="/manco/find_manco_good_first" name="" value="发送" class="am-btn am-btn-primary am-btn-sm am-fl">
+    <input type="button" id="serach" data-url="/manco/mancoluodipei" name="" value="发送" class="am-btn am-btn-primary am-btn-sm am-fl">
 
   </div>
+
 
 </form>
 
-<%=form_for :product,:url=>"/cart/mancoexpress_add",:method=>"post",:html=>{:class=>"am-form am-form-group form_hide",:id=>"form_second",} do |f|%>
-    <%=hidden_field_tag :goods_id, :id=>"goods_id"%>
-    <%=f.hidden_field :type_id,:id=>"type_id"%>
-    <%=hidden_field_tag :platform,'mancoexpress'%>
-    <%=hidden_field_tag :manco_unit_price, :id=>"manco_total_price"%>
-    <%=f.hidden_field :manco_name_two, :id=>"manco_name_two"%>
-    <%=f.hidden_field :suppliers_id, :id=>"suppliers_id",:value=>"98"%>
-   <table class="am-table">
-    <thead>
-    <tr>
-      <th>始发站-终点站</th>
-      <th>运费单价为:</th>
-
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td> <span style="text-align: center ;color: red" id="manco_name_show"></span></td>
-      <td><span style="text-align: center;color: red" id="manco_price_show"></span></td>
-
-    </tr>
-       </tbody>
-     </table>
-
-
-
-
-
-
-    <a href="#" class="am-badge am-badge-primary button-am" >我要送货 </a>   <br/>  <br/><br/>
-
-    <table class="am-table form_hide">
-
-      <tr>
-        <th>请填写重量</th>
-        <th><%=number_field_tag :mancoweight  %>
-        </th>
-        <th>公斤</th>
-
-      </tr>
-
-    </table>
-      <%= f.submit :class=>"am-btn am-btn-primary am-btn-sm am-fl button-hide" ,:value=>"送货"%>
+<%=form_for :product,:url=>"/cart/add",:method=>"post",:html=>{:class=>"am-form am-form-group form_hide",:id=>"form_second",} do |f|%>
+    <%=hidden_field_tag :cat_id, :id=>"cat_id"%>
+    <%=f.hidden_field :goods_id%>
+    <%=hidden_field_tag "product[specs][]"%>
+    <%=hidden_field_tag :platform, :id=>"platform"%>
+    <%=hidden_field_tag :supplier_id, @supplier.id%>
+    <%=hidden_field_tag :mancoweight,:id=>"mancoweight" %>
+    <div class="am-input-group am-input-group-lg" >
+      <span class="am-input-group-label" >线路</span>
+      <span class="am-input-group-label" id="good_name"></span>
     </div>
+    </br>
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">单价</span>
+      <span class="am-input-group-label" style="color: red" id="unit_price"></span>
+    </div>
+    </br>
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">最低配送价</span>
+      <span class="am-input-group-label" style="color: red" id="low_price"></span>
+    </div>
+    </br>
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">派送方式为:</span>
+      <span class="am-input-group-label" id="distribution"></span>
+    </div>
+    </br>
+
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">重量</span>
+      <input type="number" id="weight" min="0"placeholder="请输入物品重量" class="am-form-field floatright"  value="">
+      <span class="am-input-group-label">kg</span>
+    </div>
+    <br>
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">体积</span>
+      <input type="number" id="volue"  min="0"placeholder="请输入物品体积(200公斤/方)" class="am-form-field floatright"  value="">
+      <span class="am-input-group-label">立方米</span>
+    </div>
+    </br>
+
+      <%= f.submit :class=>"am-btn am-btn-primary am-btn-sm  button-am" ,:value=>"送货"%>
+
 
 <%end%>
 
@@ -178,47 +103,37 @@
 
 
 <script type="application/javascript">
-
-
-
-
-
-
-
-
+    var mancoweight;
     $("#serach").bind("click",function(){
-        var departure=    $("#departure").val();
-        var arrival=    $("#arrival").val();
 
 
+        var departure=$("#departure").val();
+        var arrival=$("#arrival").val();
+        var distribution=$("input[name='distribution']:checked").val();
         var url = $(this).data('url');
         $.ajax(url,{
             type: "post",
-            data:{ departure:departure ,arrival:arrival},
+            data:{ departure:departure ,arrival:arrival,distribution:distribution},
             success:function(res){
 
             }
         })
+    })
+
 
         $(".button-am").bind("click",function() {
-            if($("#mancoweight").css('display','none')) {
-                $("#mancoweight").css('display','block') ,
-                        $(".button-hide").css('display','block') ,
-                        $(".kgi").css('display','block'),
-                        $(".am-table").removeClass("form_hide"),
-                $(this).addClass("button-hide")
+         var weight=$("#weight").val();
+         var volue=$("#volue").val();
+         if(weight&&volue){
+              if(weight>=volue*200){mancoweight=weight}
+              else{mancoweight=volue*200}
+
+         }  else{
+             alert("参数不够");
+         }
+           $("#mancoweight").val(mancoweight);
 
 
-            }  else{
-                $("#mancoweight").addClass('display','none')  ,
-                        $(".button-hide").css('display','none'),
-                        $(".kgi").css('display','none') ,
-                        $(".am-table").addClass("form_hide")
-                ,$(this).removeClass("button-hide")
-            }
-
-
-        }   )
     })
 
 

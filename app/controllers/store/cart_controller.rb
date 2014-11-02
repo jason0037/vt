@@ -35,7 +35,7 @@ class Store::CartController < ApplicationController
     if quantity.blank? || quantity ==0
        quantity=1
     end
-    if params[:supplier_id] =="98" && params[:platform]=="mancoexpress"
+    if params[:supplier_id] =="98"
        quantity=params[:mancoweight].to_i
 
     end
@@ -108,6 +108,9 @@ class Store::CartController < ApplicationController
     elsif params[:platform]=="mancoexpress"
                                   ###万家快递
       redirect_to "/cart/manco_express?supplier_id=#{supplier_id}"
+    elsif params[:platform]
+      ###万家门对门
+      redirect_to "/orders/departure?supplier_id=#{supplier_id}&platform=#{params[:platform]}"
 
     else
     render "add"
@@ -116,7 +119,14 @@ class Store::CartController < ApplicationController
 	#rescue
 		#render :text=>"add failed"
 	end
-	
+
+  def distribution_manco
+    @cats=Ecstore::GoodCat.where(:cat_id=>params[:cat_id]).first
+    @supplier=Ecstore::Supplier.find_by_id(params[:supplier_id])
+    render :layout => @supplier.layout
+  end
+
+
 	def update
 		quantity = params[:quantity]
 		@line_items.where(:obj_ident=>params[:id]).update_all(:quantity=>quantity)

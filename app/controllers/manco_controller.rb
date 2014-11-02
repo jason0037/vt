@@ -242,8 +242,10 @@ end
    def  mancoluodipei
      departure= params[:departure]
      arrival= params[:arrival]
-     goodsname=departure+"-"+arrival;
-
+     distribution=params[:distribution]
+      goods=departure+"-"+arrival;
+     @goods=Ecstore::Good.where(:cat_id=>distribution,:name=>goods).first
+     @catname=Ecstore::GoodCat.where(:cat_id=>distribution).first
    end
 
 

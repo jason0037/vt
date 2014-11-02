@@ -164,6 +164,9 @@ class Store::OrdersController < ApplicationController
     end
   end
 
+
+
+
   def create
     addr = Ecstore::MemberAddr.find_by_addr_id(params[:member_addr])
 
@@ -227,7 +230,11 @@ class Store::OrdersController < ApplicationController
         order_item.type_id = good.type_id
         order_item.nums = line_item.quantity.to_i
         order_item.item_type = "product"
-        order_item.amount = order_item.price * order_item.nums
+         if params[:cart_total_final]
+         order_item.amount = params[:cart_total_final]
+         else
+          order_item.price * order_item.nums
+         end
 
         product_attr = {}
         # product.spec_desc["spec_value"].each  do |spec_id,spec_value|
@@ -320,7 +327,9 @@ class Store::OrdersController < ApplicationController
       if return_url.nil?
         if platform=="mobile"
           redirect_to "/orders/mobile_show?id=#{@order.order_id}&supplier_id=#{supplier_id}"
-        else
+        elsif platform=="wuliu"
+          redirect_to "/orders/wuliu_show?id=#{@order.order_id}&supplier_id=#{supplier_id}"
+        elsif
           redirect_to "#{order_path(@order)}?platform=#{platform}&supplier_id=#{supplier_id}"
         end
       else
@@ -468,19 +477,15 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
     @member_departure_id=  params[:member_departure_id]
     @addrs =  @user.member_addrs
     @addrss = @addrs.where(:addr_type=>0)
+    if @platform=="door"
+    @action_url="/orders/manco_detail"
+    elsif
+      @action_url="new_manco  "
+    end
     render :layout=>@supplier.layout
   end
 
-  def new_manco
-    @supplier =Ecstore::Supplier.find(supplier_id)
-    member_departure_id=  params[:member_departure_id]
-    member_arrival_id=  params[:member_arrival_id]
 
-    @departure_addr=Ecstore::MemberAddr.find_by_addr_id(params[:member_departure_id])
-
-    render :layout=>@supplier.layout
-
-  end
 
   def new_tairyo
     if @pmtable
@@ -619,25 +624,79 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
 
   end
 
-  def ordersnew_manco
-       platform=params[:platform]
-    sql = "SELECT price*quantity AS total,wholesale FROM mdk.sdb_b2c_cart_objects
-INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING_INDEX(SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',2),'_',-1) = mdk.sdb_b2c_goods.goods_id
-WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
-    @cart_total_by_supplier = ActiveRecord::Base.connection.execute(sql)
-    @cart_totals = 0
 
 
-    @cart_total_by_supplier.each(:as => :hash) do |row|
-      if (row["total"]<row["wholesale"])
-        @cart_totals+= row["wholesale"]
+  def manco_detail               ###万家服务选项
+    @platform=params[:platform]
+    @supplier=Ecstore::Supplier.find(params[:supplier_id])
+    if (params[:member_departure_id])
+      member_departure_id=params[:member_departure_id]
+
+    else
+      if session[:depar].nil?
+        member_departure_id=session[:depars]  #有寄货地址 没收货地址的
       else
-        @cart_totals+= row["total"]
+        member_departure_id=session[:depar]   #@addr.addr_id
       end
 
-
     end
-    if platform=="mancoexpress"
+    if(params[:member_arrival_id])
+      member_arrival_id=params[:member_arrival_id]
+
+    else
+      member_arrival_id=session[:arri]
+    end
+    @departure_addr=Ecstore::MemberAddr.find_by_addr_id(member_departure_id)
+    @arrival_addr=Ecstore::MemberAddr.find_by_addr_id(member_arrival_id)
+
+   render :layout => @supplier.layout
+  end
+
+
+
+
+  def new_manco
+       platform=params[:platform]
+       bill=params[:bill]                   ###签单返回
+       invoice=params[:invoice]             ######发票服务 1:运费发票 2: 服务费发票  3:自带发票
+       warehouse=params[:warehouse]         ###进仓服务费 1: +150
+       platform=params[:platform]
+       sql = "SELECT price*quantity AS total,wholesale FROM mdk.sdb_b2c_cart_objects
+INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING_INDEX(SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',2),'_',-1) = mdk.sdb_b2c_goods.goods_id
+WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
+       @cart_total_by_supplier = ActiveRecord::Base.connection.execute(sql)
+       @cart_totals = 0
+       @serverbill=0
+       @serverinvoice=0
+       @serverwarehouse=0
+       @cart_total_by_supplier.each(:as => :hash) do |row|
+         if (row["total"]<row["wholesale"])
+           @cart_totals+= row["wholesale"]
+         else
+           @cart_totals+= row["total"]
+         end
+         if bill=="1"
+           @cart_totals=@cart_totals+5
+           @serverbill+=1
+         end
+         if invoice=="1"
+           @cart_totals=@cart_totals*1.11
+           @serverinvoice+=1
+         elsif invoice=="2"
+           @cart_totals=@cart_totals*1.08
+           @serverinvoice+=2
+         elsif invoice=="3"
+           @cart_totals=@cart_totals*1.01
+           @serverinvoice+=3
+         end
+         if warehouse=="1"
+           @cart_totals=@cart_totals+150
+           @serverwarehouse+=1
+         end
+       end
+
+
+    if platform=="mancoexpress"|| platform=="door"
       @cart_total_final = @cart_totals
     else
       @cart_total_final = @cart_total
@@ -664,12 +723,19 @@ WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
     end
     @departure_addr=Ecstore::MemberAddr.find_by_addr_id(member_departure_id)
     @arrival_addr=Ecstore::MemberAddr.find_by_addr_id(member_arrival_id)
+    render :layout=>@supplier.layout
+   end
+
+  def wuliu_show
+    supplier_id=params[:supplier_id]
+    @order = Ecstore::Order.find_by_order_id(params[:id])
+    @supplier = Ecstore::Supplier.find(supplier_id)
 
 
     render :layout=>@supplier.layout
-
-
   end
+
+
 
   def serach_order
     departure= params[:departure]

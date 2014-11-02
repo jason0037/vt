@@ -78,7 +78,7 @@ end
     post 'blackboardfind_e',:on=>:collection  ###查询运价
     get  'user'   ,:on=>:collection
     #万家快递页面
-
+    post 'mancoluodipei',:on=>:collection
      get 'find_manco',:on=>:collection
     get "black_index"  ,:on=>:collection   ##小黑版首页
     get "express"  ,:on=>:collection
@@ -527,10 +527,11 @@ end
     post 'cart/manco_add'=>"cart#manco_add" ,:as=>:add_to_cart
     post 'cart/tairyoall_add'=>"cart#tairyoall_add" ,:as=>:add_to_cart
 
-    post 'cart/mancoexpress_add'=>"cart#mancoexpress_add",:as=>:add_to_cart
+
 
     resources :cart do
       get 'manco_express'  ,:on=>:collection
+      get 'distribution_manco',:on=>:collection
       post 'add',:on=>:collection
       get 'show_tairyo',:on=>:collection   ###直接下单购物车
       get 'mobile', :on=>:collection
@@ -573,13 +574,11 @@ end
         get 'check_coupon'
         get  'new_mobile'
         get  'new_tairyo'
-        get 'new_manco'
+
         post 'new_manco'
         get 'new_mobile_addr'
         get 'new_manco_addr'
-        post 'ordersnew_manco'
-        get 'ordersnew_manco'
-        get 'departure'
+       get 'departure'
         post 'arrival'
         get 'arrival'
         get 'mancoder_show'   ###显示万家当前用户的所有订单
@@ -588,12 +587,13 @@ end
         get 'index_mobile'
         get 'share_order'   ###推荐订单
         get 'mobile_show'
+        get 'wuliu_show'    ###万家订单页面
         get 'addr_detail'
         get 'new_mobile_addr'
         post 'edit_addr'
         get 'edit_manco_addr'
         post 'xiugai_addr'
-
+        post 'manco_detail'
       end
     end
 

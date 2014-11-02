@@ -29,7 +29,7 @@
 
          </div>
      <%end%>
-  <%= form_for :order, :url=>"ordersnew_manco",:method=>"POST",:html => {:class => "am-form"} do |f| %>
+  <%= form_for :order, :url=>@action_url,:method=>"POST",:html => {:class => "am-form"} do |f| %>
      <input type="hidden" name="supplier_id" value="<%=@supplier.id %>">
     <input type="hidden" name="platform"value="<%=@platform%>">
     <%=hidden_field_tag "member_departure_id" , @member_departure_id %>

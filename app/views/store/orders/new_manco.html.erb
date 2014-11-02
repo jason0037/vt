@@ -1,113 +1,168 @@
-<%=javascript_include_tag "area_seletor"%>
-<%=javascript_include_tag "patch/member_addrs"%>
-<header id="header" class="header clearfix">
+   <style>
 
-  <div class="head_left fl"><a href="/cart/mobile"><span class="h_back"></span></a></div>
-  <span class="headtit">信息</span>
-  <div class="head_right fr"><a href="/m" mars_sead="nav_home_btn"><span class="h_home"></span></a></div>
+       .am-panel-bd {
+           padding: 2px;
+           position: relative;
+           border-bottom: 1px solid #c8c7cc;
+       }
+
+       .am-panel-bd .text {
+           display: block;
+           font-size: 16px;
+           color: #333;
+       }
+     .bottomdivsclearfix{
+         display: none;
+     }
+
+       ul li {
+           list-style: none;
+       }
+       a span{
+           font-size: 20px;
+       }
+       .icon-arr {
+           position: absolute;
+           top: 40%;
+           right: 10px;
+          background-size: 100px 100px;
+       }
+
+   </style>
+<header id="am-topbar am-topbar-inverse">
+
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd" style="text-align: center">万家订单详细</div>
+  </div>
 </header>
-<%if @line_items.size > 0%>
-    <div class="space10"></div>
-    <div data-formorder="checkoutForm">
-      <div class="userdiv">
-        <div class="checktit font14"><span class="receive_info"></span>收货信息</div>
-        <div class="checkcon clearfix">
-          <a href="/orders/new_manco_addr" title="新增地址">
-
-          </a>
-
-            </div>
-        <div class="checktit font14">
-        <span class="receive_info"></span>货信息</div>
-      <div class="checkcon clearfix">
-        <a href="/orders/new_mobile_addr" title="新增地址">
-          <%@def_addrs.each do |def_addr|%>
-              <p><%=def_addr.name%>:<%=def_addr.mobile%></p>
-              <p class="space10"></p>
-              <p class="check_addr"><%=def_addr.addr%></p>
-
-              <span class="check_arrow"></span>
-          <%end%>
-        </a>
-
-      </div>
-       <%end%>
+<%=form_for :order,:url=>"#{orders_path}?platform=wuliu",:html=>{ :class=>"am-form",:id=>"order_form" } do |f|%>
+    <%=hidden_field_tag "member_addr",@departure_addr&&@departure_addr.addr_id%>
+    <%=f.hidden_field :supplier_id,:value=>"98"%>
+    <%=f.hidden_field :from_addr,:value=>"#{@departure_addr.name},#{@departure_addr.mobile},#{@departure_addr.addr}"%>
+       <%=f.hidden_field :ship_name,:value=>"1111"%>
+       <%=f.hidden_field :ship_mobile,:value=>@arrival_addr.mobile%>
+       <%=f.hidden_field :ship_addr,:value=>@arrival_addr.addr%>
 
 
+        <div class="am-panel am-panel-default">
+          <div class="am-panel-hd">寄货人信息(始发地)</div>
+
+          <a  href="/orders/edit_manco_addr?departure_id=<%=@departure_addr.id%>&arrival_id=<%=@arrival_addr.id%>&platform=mobile&supplier_id=<%=@supplier.id%>&way=departure">
+            <div class="am-panel-bd">
+         <span class="text">&nbsp;&nbsp;<%=@departure_addr.name%>  <span class="phone-num" style="margin-left: 30px"> <%=@departure_addr.mobile%></span></span>
+              <br/>
+
+              <span class="text2">&nbsp;&nbsp;<%=@departure_addr.addr%></span>
+              <span class="icon-arr" >修改</span>
 
 
+            </div>  </a>
+        </div>
+        <div>
+
+          <div class="am-panel am-panel-default">
+            <div class="am-panel-hd">收货人信息(目的地)</div>
+            <input type="hidden" name="order[ship_name]" value="<%=@arrival_addr.name%> ">
+            <input type="hidden" name="order[ship_mobile]" value="<%=@arrival_addr.mobile%> ">
+            <input type="hidden" name="order[ship_addr]" value="<%=@arrival_addr.addr%> ">
+
+            <a  href="/orders/edit_manco_addr?departure_id=<%=@departure_addr.id%>&arrival_id=<%=@arrival_addr.id%>&platform=mobile&supplier_id=<%=@supplier.id%>&way=arrival">
+              <div class="am-panel-bd">
+                <span class="text">&nbsp;&nbsp;<%=@arrival_addr.name%>  <span class="phone-num" style="margin-left: 30px"> <%=@arrival_addr.mobile%></span></span>
+                <br/>
+
+                <span class="text2">&nbsp;&nbsp;<%=@arrival_addr.addr%></span>
+                <span class="icon-arr" >修改</span>
 
 
-
-
-<%=form_for :order,:url=>"#{orders_path}?platform=manco",:html=>{ :class=>"form-horizontal",:id=>"order_form" } do |f|%>
-    <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
-
-    <div class="userdiv" id="order_payway" data-cartforms="payway">
-      <div class="checktit clearfix"><span class="pay_way"></span>支付方式</div>
-      <div class="in_pay">
-        <ul>
-          <%if @user.advance>0 && @user.advance < @cart_total%>
-              <li class="otherpay" mars_sead="checkout_payment_paypal_radio">
-                <span class="radio-box"></span>
-                <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>
-                <span class="payicon zfbapp"></span><p>预存款先支付</p>
-              </li>
-          <%end%>
-          <li class="otherpay" mars_sead="checkout_payment_paypal_radio">
-            <span class="radio-box"></span>
-            <%=f.radio_button :payment, "wxpay",:check=>true %>
-            <span class="payicon zfbapp"></span><p>微信支付</p>
-          </li>
-
-        </ul>
-      </div>
-    </div>
-    <div data-cartforms="time" data-collapse="true">
-      <div class="userdiv">
-        <div class="checktit clearfix"><span class="pay_way"></span>货物信息</div>
-        <div class="in_pay">
-          <span class="text">货物重量</span>
-          <%=f.text_field :weight,:value=>session[:manco_weight]%>kg;
-          <br/>
-          <%=f.label :memo, "备注：",:class=>"control-label"%>
-          <div class="controls">
-            <%=f.text_area :memo,:rows=>8%>
+              </div>  </a>
           </div>
-        </div>
+          <div>
+
+
+              <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+                <div class="am-panel-hd"><%= I18n.t "pay_options"%></div>
+                <div class="am-panel-bd">
+                  <%if @user.advance>0 && @user.advance < @cart_total%>
+                      <label class="radio active" style="margin-left: 40px;padding: 2px">
+                        <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>>
+                  <%end%>
+
+                      <label class="radio active" style="margin-left: 40px;padding: 2px">
+
+                        <%= I18n.t "wechat"%>
+                        <input id="order_payment_wxpay" name="order[payment]" type="hidden" value="wxpay">
+                  </label>
+                </div>
+                <div class="am-panel-hd"><%= I18n.t "pay_detail"%></div>
+              </div>
+
+            <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+              <div class="am-panel-hd">附加服务</div>
+              <div class="am-panel-bd">签单返回:
+                <% if @serverbill==1 %>
+                 是 +5
+                <%else%>
+                 否
+                <%end%>
+              </div>
+              <div class="am-panel-bd">开票:
+                <% if @serverinvoice ==0%>
+                    没有发票
+                <%elsif @serverinvoice ==1%>
+                    运费发票(按照总运费的11%收取)
+                <%elsif @serverinvoice ==2%>
+                    服务费发票 (按照总运费的8%收取)
+                <%elsif @serverinvoice ==3%>
+                    自带发票（按照总运费的1%）
+                <%end%>
+                    </div>
+              <div class="am-panel-bd">进仓服务费:
+              <%if @serverwarehouse==1%>
+                    是（150元/票)
+                 <%else%>
+                  没有进仓服务费
+                  <%end%>
+                    </div>
+
+              <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+                <div class="am-panel-hd">货物备注</div>
+                <div class="am-panel-bd"> <%=f.text_area :memo, :rows=>8%> </div>
+                 </div>
+
+            <div class="am-panel am-panel-warning" style="display: none" data-collapse="true" data-style="arrow">
+              <div class="am-panel-hd"><%= I18n.t "delivery_options"%></div>
+              <div class="am-panel-bd">
+                <div class="in_pay clearfix " style="display: none">
+                  <%=f.select :ship_day,ship_day_options%>&nbsp;&nbsp;&nbsp;
+                  <%=f.text_field :ship_special,:class=>"input-small hide datetime"%>
+                  <%=f.select :ship_time2,ship_time_options%>
+                  <ul style="display:none">
+                    <li mars_sead="checkout_receive_anytime_btn"><span class="radio-box radio-selted"></span><input name="transport_day" value="1" type="radio" class="hide" checked="checked"><p>送货时间不限</p></li>
+                    <li mars_sead="checkout_receive_weekend_btn"><span class="radio-box "></span><input name="transport_day" value="2" type="radio" class="hide"><p>只双休日/节假日送货(工作日不用送)</p></li>
+                    <li mars_sead="checkout_receive_workday_btn"><span class="radio-box "></span><input name="transport_day" value="3" type="radio" class="hide"><p>只工作日(双休日/节假日不用送)</p></li>
+                  </ul>
+                </div>
+
+              </div>  </div>
+
+
+            <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+              <div class="am-panel-hd">运输金额</div>
+              <div class="am-panel-bd">
+                <span class="bg-border"><span class="icon"></span></span>
+                <p>&nbsp;金额：<span class="fr  " style="float: right" id="order_amount" data-amount = "<%=@cart_total_final%>">¥<%=@cart_total_final%>&nbsp;</span></p>
+                   <p>&nbsp;待支付总额：<span class="fr"  style="color: red;float: right">¥<%=@cart_total_final %>&nbsp;</span></p>
+                <%=hidden_field_tag :cart_total_final ,@cart_total_final%>
+                  <span class="bg-border2"></span>
+               </div>
+               </div>
+
+
       </div>
     </div>
-    <div class="userdiv">
-      <div class="checktit clearfix"><span class="pay_sum"></span>运输金额</div>
-      <div class="checkcon clearfix" id="order-m-list">
 
-        <div class="sumtotal clearfix">
-          <p>商品金额：<span class="fr money sum" id="order_amount" data-amount = "<%=@cart_total!=0 ? @cart_total: session[:manco_price]%>">¥:<%=@cart_total!=0 ? @cart_total: session[:manco_price]%> </span></p>
-
-          <p>待支付总额：<span class="fr">¥ : <%=@cart_total!=0 ? @cart_total :session[:manco_price]    %></span></p>
-        </div>
-
-      </div>
-    </div>
-
-
-
-    <div class="left">
-      <div class="memo">
-        <div class="control-group">
-
-        </div>
-      </div>
-    </div>
-
-    <div class="bottomdiv clearfix">
-      <div class="cover_load_img w38" id="CoverloadImg"></div>
-      <div class="inner clearfix">
-        <div class="fl">
-          <p class="cart_total">总金额：<span class="c_t_price">¥<%= @cart_total !=0 ?@cart_total :session[:manco_price]%></span></p>
-
-        </div>
-        <%=f.submit "安 全 结 算",:class=>"fr btn_sure"%>
+        <%=f.submit "安 全 结 算",:class=>"am-btn am-btn-primary am-btn-block"%>
         <div mars_sead="checkout_submit_btn" class="fr btn_sure" data-orderfrom="true" data-countorder="true" data-ordertime="988" style="display:none">
           提交
 
@@ -115,15 +170,8 @@
       </div>
     </div>
     </div>
-    <div class="space10"></div>
-    <script type="text/javascript">
-        $(function() {
-            $("#reddot").on("click", function() {
-                Cookie.Set("WAP[redDot]", 'fd73928d4dea11aa0cbba3c2cb6b9afe', 7, "trade-v.com", "/")
-            });
-        });
-    </script>
-    <div class="space30"></div><div class="space30"></div>
+
+
     <style type="text/css">
         .footer{
             display:none;
@@ -198,25 +246,5 @@
       </div>
     </div>
 <%end%>
-  <!--<#%=render :partial=>"patch/member_addrs/form_manco_first",:locals=>{ :display=>( @addrss== 0 ), :@addr=>Ecstore::MemberAddr.new }%>-->
-      </div>
-</div>
-<script>
-//      $("#addr_form").removeClass("hide")
-//
-//     $(".addr-list").on "change","input[type='radio']",
-//     $(".addr-list .active").removeClass("active").find("form").remove()
-//     $(this).parent(".radio").addClass("active")
-//
-//
-//     if $(this).val() == 'new',
-//     $("#addr_form").removeClass("hide")
-//     $("#member_addr").val ''
-//     else
-//     $("#addr_form").addClass("hide")
-//     $("#member_addr").val $(this).val()
-//
-//     $(document).on "focus", ".new-addr input[type='text'], .new-addr select"
-//     $(this).nextAll(".help-inline").empty();
 
-</script>
+<%=javascript_include_tag "store/tairyo_order"%>

@@ -30,11 +30,10 @@
 <%=form_for :product,:url=>"/cart/add",:method=>"post",:html=>{:class=>"am-form am-form-group form_hide",:id=>"form_second",} do |f|%>
     <%=f.hidden_field :goods_id%>
     <%=f.hidden_field :type_id,:id=>"type_id"%>
-    <%=hidden_field_tag :platform,'mancoexpress'%>
+
    <%=hidden_field_tag :supplier_id, @supplier.id%>
-
-            <%=hidden_field_tag "product[specs][]"%>
-
+    <%=hidden_field_tag "product[specs][]"%>
+   <%=hidden_field_tag :platform,"mancoexpress"%>
 
 
 

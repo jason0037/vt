@@ -20,16 +20,16 @@
               <div class="goods_Cnum clearfix" id="goods_Cnum">
 
                 <span class="we" >货物重量</span>
-                    <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity good_data_num_m J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
-                     <span class="unit">kg</span>
+                <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity good_data_num_m J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
+                <span class="unit">kg</span>
 
-                </div>
+              </div>
 
             </div>
-            物流线路:  <span class="" style="color: #1b66b7"><%=line_item.good.name%></span>  <br/>
+            物流线路:  <span class=""><em style="color: #1b66b7"><%=line_item.good.name%></em></span>  <br/>
             单价:<span style="color: red">¥</span><span class="unit_price" style="color: red"><%= format('%.2f',line_item.good.price)%></span>
-            最低运输价为：  <span class="low_price"  ><%= format('%.2f',line_item.good.wholesale)%></span>  <!--万家最低运输价-->  <br/>
-            该服务为<span class="" style="color: #1b66b7"><%=Ecstore::GoodCat.find_by_cat_id(line_item.good.cat_id).cat_name%></span>
+            最低运输价为：  <span class="low_price"  ><%= format('%.2f',line_item.good.wholesale)%></span>  <!--万家最低运输价-->
+
 		<span class="delete" style="margin-right: 10px">
 
            <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile"%>" class="delete" data-method="delete" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
@@ -40,15 +40,15 @@
         </div>
         <div class="orderaction clearfix">
 
-        <p class="fr"><span class="c_price line-total" style="margin-left: 30px">
+          <p class="fr"><span class="c_price line-total" style="margin-left: 30px">
 
          当前线路价格(不包涵最低运输价) <span style="color: red">¥<%=(line_item.product.price*line_item.quantity)%></span> </span></p>
 
-            </div>
+        </div>
       </div>
-    <%end%>
+  <%end%>
   <div id ="carter">
-  <div class="bottomdiv clearfix">
+    <div class="bottomdiv clearfix">
 
       <div  style="float: left">
         <p class="cart_total modal-footer" style="color: red">总金额：<span class="c_t_price total">¥<%= format('%.2f',@cart_total)%> </span></p>
@@ -66,9 +66,9 @@
           </a>
       <%end%>
 
+    </div>
   </div>
 </div>
-  </div>
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
 <script>
 
