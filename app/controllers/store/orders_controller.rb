@@ -230,10 +230,10 @@ class Store::OrdersController < ApplicationController
         order_item.type_id = good.type_id
         order_item.nums = line_item.quantity.to_i
         order_item.item_type = "product"
-         if params[:cart_total_final]
-         order_item.amount = params[:cart_total_final]
+         if params[:cart_total_final].nil?
+         order_item.amount = order_item.price * order_item.nums
          else
-          order_item.price * order_item.nums
+           order_item.amount =  params[:cart_total_final]
          end
 
         product_attr = {}
@@ -477,7 +477,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
     @member_departure_id=  params[:member_departure_id]
     @addrs =  @user.member_addrs
     @addrss = @addrs.where(:addr_type=>0)
-    if @platform=="door"
+    if @platform=="door"||@platform=="self"
     @action_url="/orders/manco_detail"
     elsif
       @action_url="new_manco  "

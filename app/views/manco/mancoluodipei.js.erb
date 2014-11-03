@@ -9,6 +9,6 @@ $("#form_second").removeClass("form_hide")
 $("#form_first").addClass("form_hide")
 <%if @catname.cat_name=="门对门" %>
   $("#platform").val('door')
-<%else%>
+<%elsif @catname.cat_name=="自提"%>
 $("#platform").val('self')
 <%end%>
