@@ -61,36 +61,39 @@
   <!--</div>-->
 </div>
 
-<div class="am-panel am-panel-default">
-  <div class="am-panel-hd">
-    <h4 class="am-panel-title" >
-      <%=I18n.t 'commission'%> :<span style="float: right;color: red">¥<%=format('%.2f',@good.share*@good.default_product.price) %> </span>
-    </h4>
-  </div>
+<!--<div class="am-panel am-panel-default">-->
+  <!--<div class="am-panel-hd">-->
+    <!--<h4 class="am-panel-title" >-->
+      <%#=I18n.t 'commission'%> :
+  <!--<span style="float: right;color: red">¥-->
+<%#=format('%.2f',@good.share*@good.default_product.price) %>
+<!--</span>-->
+    <!--</h4>-->
+  <!--</div>-->
 
-  <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">
-    <div class="am-panel-bd">
-      <%= I18n.t "what_commission"%>
-      <span class="icon-arr"></span>
+  <!--<a href="/pages/yongjin?supplier_id=<%#=@supplier.id%>">-->
+    <!--<div class="am-panel-bd">-->
+      <!--<%=# I18n.t "what_commission"%>-->
+      <!--<span class="icon-arr"></span>-->
 
-    </div>  </a>
+    <!--</div>  </a>-->
 
-  <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">
-    <div class="am-panel-bd">
-      <%= I18n.t "earn_commission"%>
-      <span class="icon-arr"></span>
+  <!--<a href="/pages/yongjin?supplier_id=<%#=@supplier.id%>">-->
+    <!--<div class="am-panel-bd">-->
+      <!--<%=# I18n.t "earn_commission"%>-->
+      <!--<span class="icon-arr"></span>-->
 
-    </div>    </a>
-  <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">
-    <div class="am-panel-bd">
-      <%= I18n.t "get_commission"%>
-      <span class="icon-arr"></span>
+    <!--</div>    </a>-->
+  <!--<a href="/pages/yongjin?supplier_id=<%#=@supplier.id%>">-->
+    <!--<div class="am-panel-bd">-->
+      <!--<%=# I18n.t "get_commission"%>-->
+      <!--<span class="icon-arr"></span>-->
 
-    </div> </a>
-</div>
-</div>
+    <!--</div> </a>-->
+<!--</div>-->
+<!--</div>-->
 
-</div>
+<!--</div>-->
 
 
 <div class="am-panel-group" id="accordion">

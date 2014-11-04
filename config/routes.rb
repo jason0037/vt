@@ -86,6 +86,7 @@ end
     get "blackbord",:on=>:collection
     post "blackbord_add" ,:on=>:collection
     get "follow",:on=>:collection    ###快递跟踪
+    post "follow",:on=>:collection    ###快递跟踪
     get 'user',:on=>:collection
     get 'good_source', :on=>:collection  ###货源信息
     post 'blackgood_add',:on=>:collection

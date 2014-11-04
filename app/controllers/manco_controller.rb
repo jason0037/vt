@@ -1,4 +1,8 @@
 #encoding:utf-8
+require 'rubygems'
+require 'net/http'
+require 'nokogiri'
+require 'open-uri'
 class MancoController < ApplicationController
 
   layout "manco"
@@ -119,9 +123,24 @@ class MancoController < ApplicationController
 
     @supplier_id=params[:supplier_id]
     @supplier = Ecstore::Supplier.find(@supplier_id)
+    orderBarcode= params[:orderBarcode]
 
-   end
+    url = URI.parse('http://101.226.243.46:8090/getOrder_Ysls')
 
+    Net::HTTP.start(url.host, url.port) do |http|
+      req = Net::HTTP::Post.new(url.path)
+      req.set_form_data({ 'companyId' => '20837', 'orderBarcode' => '32000000524172' })
+
+     @content=  http.request(req).body.force_encoding("UTF-8").to_json
+
+
+
+
+
+    end
+
+
+  end
 
   def new
     @good  =  Ecstore::Good.new
