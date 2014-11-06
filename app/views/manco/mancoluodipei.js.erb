@@ -4,7 +4,7 @@ $("#good_name").html('<%=@goods.name%>')
 $("#product_goods_id").val('<%=@goods.goods_id%>')
  $("#unit_price").html('<%=@goods.price%>'+"元/公斤")
 
-$("#low_price").html("最低配送价"+'<%=@goods.wholesale%>' +" 元"+"(最低重量大约为:"+parseInt( parseFloat(<%=@goods.wholesale%>)/parseFloat(<%=@goods.price%>) )+"公斤)"  );
+$("#low_price").html("最低配送价"+'<%=@goods.wholesale%>' +" 元"+"(重量大约为:"+parseInt( parseFloat(<%=@goods.wholesale%>)/parseFloat(<%=@goods.price%>) )+"公斤)"  );
 $("#distribution").html('<%=@catname.cat_name%>')
 $("#cat_id").val('<%=@goods.cat_id%>')
 $("#form_second").removeClass("form_hide")
