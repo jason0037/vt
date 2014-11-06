@@ -15,18 +15,7 @@
          display: none;
      }
 
-       ul li {
-           list-style: none;
-       }
-       a span{
-           font-size: 20px;
-       }
-       .icon-arr {
-           position: absolute;
-           top: 40%;
-           right: 10px;
-          background-size: 100px 100px;
-       }
+
 
    </style>
 <header id="am-topbar am-topbar-inverse">
@@ -47,7 +36,7 @@
         <div class="am-panel am-panel-default">
           <div class="am-panel-hd">寄货人信息(始发地)</div>
 
-          <a  href="/orders/edit_manco_addr?departure_id=<%=@departure_addr.id%>&arrival_id=<%=@arrival_addr.id%>&platform=mobile&supplier_id=<%=@supplier.id%>&way=departure">
+          <a  href="/orders/edit_manco_addr?departure_id=<%=@departure_addr.id%>&bill=<%=@bill%>&invoice=<%=@invoice%>&warehouse=<%=@warehouse%>&arrival_id=<%=@arrival_addr.id%>&platform=mobile&supplier_id=<%=@supplier.id%>&way=departure">
             <div class="am-panel-bd">
          <span class="text">&nbsp;&nbsp;<%=@departure_addr.name%>  <span class="phone-num" style="margin-left: 30px"> <%=@departure_addr.mobile%></span></span>
               <br/>
@@ -66,7 +55,7 @@
             <input type="hidden" name="order[ship_mobile]" value="<%=@arrival_addr.mobile%> ">
             <input type="hidden" name="order[ship_addr]" value="<%=@arrival_addr.addr%> ">
 
-            <a  href="/orders/edit_manco_addr?departure_id=<%=@departure_addr.id%>&arrival_id=<%=@arrival_addr.id%>&platform=mobile&supplier_id=<%=@supplier.id%>&way=arrival">
+            <a  href="/orders/edit_manco_addr?departure_id=<%=@departure_addr.id%>&arrival_id=<%=@arrival_addr.id%>&bill=<%=@bill%>&invoice=<%=@invoice%>&warehouse=<%=@warehouse%>&platform=mobile&supplier_id=<%=@supplier.id%>&way=arrival">
               <div class="am-panel-bd">
                 <span class="text">&nbsp;&nbsp;<%=@arrival_addr.name%>  <span class="phone-num" style="margin-left: 30px"> <%=@arrival_addr.mobile%></span></span>
                 <br/>
@@ -81,7 +70,7 @@
 
 
               <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
-                <div class="am-panel-hd"><%= I18n.t "pay_options"%></div>
+                <div class="am-panel-hd">支付方式</div>
                 <div class="am-panel-bd">
                   <%if @user.advance>0 && @user.advance < @cart_total%>
                       <label class="radio active" style="margin-left: 40px;padding: 2px">
@@ -90,35 +79,40 @@
 
                       <label class="radio active" style="margin-left: 40px;padding: 2px">
 
-                        <%= I18n.t "wechat"%>
+                        微信支付
                         <input id="order_payment_wxpay" name="order[payment]" type="hidden" value="wxpay">
                   </label>
                 </div>
-                <div class="am-panel-hd"><%= I18n.t "pay_detail"%></div>
+                <div class="am-panel-hd">微信支付需要微信5.0版本以上，并且已经用微信授权登录</div>
               </div>
-
+            <%=f.hidden_field :serverbill ,:value=>@bill %>
+            <%=f.hidden_field :serverinvoice ,:value=>@invoice %>
+            <%=f.hidden_field :serverwarehouse ,:value=>@warehouse %>
             <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
               <div class="am-panel-hd">附加服务</div>
               <div class="am-panel-bd">签单返回:
-                <% if @serverbill==1 %>
+
+                <% if @bill==1 %>
                  是 +5
                 <%else%>
                  否
                 <%end%>
               </div>
               <div class="am-panel-bd">开票:
-                <% if @serverinvoice ==0%>
+                <%=f.hidden_field :serverinvoice ,:value=>@invoice %>
+                <% if @invoice ==0%>
                     没有发票
-                <%elsif @serverinvoice ==1%>
+                <%elsif @invoice ==1%>
                     运费发票(按照总运费的11%收取)
-                <%elsif @serverinvoice ==2%>
+                <%elsif @invoice ==2%>
                     服务费发票 (按照总运费的8%收取)
-                <%elsif @serverinvoice ==3%>
+                <%elsif @invoice ==3%>
                     自带发票（按照总运费的1%）
                 <%end%>
                     </div>
               <div class="am-panel-bd">进仓服务费:
-              <%if @serverwarehouse==1%>
+                <%=f.hidden_field :serverwarehouse ,:value=>@warehouse %>
+              <%if @warehouse==1%>
                     是（150元/票)
                  <%else%>
                   没有进仓服务费

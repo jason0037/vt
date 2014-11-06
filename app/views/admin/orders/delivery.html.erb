@@ -15,7 +15,7 @@
         </div>
       </div>
 
-      <div class="control-group">
+    <div class="control-group">
         <label class="control-label">会员:</label>
         <div class="controls">
          	<span class="readonly-field"><%=@order.user.login_name if @order.user%></span>
@@ -32,9 +32,11 @@
       <div class="control-group">
         <label class="control-label">物流公司:</label>
         <div class="controls">
+
          	<%=f.select :logi_id,Ecstore::Dlycorp.order("ordernum asc").all.collect{|c| [c.name,c.corp_id]},{:include_blank=>"请选择"},{:class=>"span2"}%>
             <%=f.hidden_field :logi_name%>
             <span class="help-inline error"><%=@delivery.errors[:logi_id].join(",")%></span>
+
         </div>
       </div>
 
@@ -60,13 +62,13 @@
           
         </div>
       </div>
-        <%end%>
+
       <div class="control-group">
           <%=f.label :ship_area, "收货地区:".html_safe,:class=>"control-label"%>
           <div class="controls area">
 
             <%=f.select :province,options_from_collection_for_select(Ecstore::Region.provinces,:region_id,:local_name,@order.province),{:include_blank=>"请选择省" },{ :onchange=>"selectProvince(this,'#city','#district');",:id=>"province",:class=>"span2" }%>
-            
+
             <%if @order&&@order.city%>
                 <%=f.select :city,options_from_collection_for_select(Ecstore::Region.cities_of(@order.province),:region_id,:local_name,@order.city),{:include_blank=>"请选择市"},{ :onchange=>"selectCity(this,'#district');",:id=>"city",:class=>"span2" }%>
             <%else%>
@@ -82,11 +84,26 @@
              <span class="help-inline error"><%=@delivery.errors[:ship_area].join(",")%></span>
           </div>
       </div>
-
+    <%end%>
 
       <% if @order.supplier_id==(Ecstore::Supplier.find_by_name("万家物流").id)%>
-        <div style="border: 1px solid#0000ee">
-          <div class="control-group">
+        <div class="controls" style="display:none">
+          <select id="province" name="delivery[province]">
+            <option value="21" selected="selected">上海</option>
+          </select>
+          <select class="am-input-group-label" id="city" name="delivery[city]">
+            <option value="1" selected="selected">上海</option>
+          </select>
+          <select id="district" name="delivery[district]" onchange="selectDistrict(this);">
+            <option value="1" selected="selected">静安区</option>
+          </select>
+          <%=f.hidden_field :logi_id,:value=>"-1"%>
+          <%=f.hidden_field :logi_name%>
+          <%=f.number_field :money,:value=>0,:class=>"input-small"%>
+          <%=f.radio_button :is_protect,'false',:checked=>true%>
+        </div>
+
+        <div class="control-group">
             <label class="control-label">寄货人:</label>
             <div class="controls">
               <span class="readonly-field"><%=@order.from_addr.split(",")[0]%> </span>
@@ -104,6 +121,29 @@
             <span class="readonly-field"><%=@order.from_addr.split(",")[2]%> </span>
           </div>
         </div>
+        <div class="control-group">
+          <label class="control-label">签单返回:</label>
+          <div class="controls">
+            <span class="readonly-field"style="color: red"><%=@order.serverbill_text%></span>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">发票类型:</label>
+          <div class="controls">
+            <span class="readonly-field" style="color: red"><%=@order.serverinvoice_text%></span>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">进仓服务费:</label>
+          <div class="controls">
+            <span class="readonly-field"style="color: red"><%=@order.serverwarehouse_text%></span>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label">物流单号:</label>
+          <div class="controls">
+            <%=f.text_field :logi_no%>
+          </div>
         </div>
             <%end%>
       <div class="control-group ">

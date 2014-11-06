@@ -23,12 +23,12 @@
   </div>
 
 </header>
-<% if @addrss.nil?%>
+
 <div class="href">
 <a id="ahref" class="am-btn am-btn-default" href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>&supplier_id=<%=@supplier.id%>" >新增收货人地址 </a>
 
          </div>
-     <%end%>
+
   <%= form_for :order, :url=>@action_url,:method=>"POST",:html => {:class => "am-form"} do |f| %>
      <input type="hidden" name="supplier_id" value="<%=@supplier.id %>">
     <input type="hidden" name="platform"value="<%=@platform%>">

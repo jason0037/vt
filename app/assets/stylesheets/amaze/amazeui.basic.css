@@ -1,4 +1,4 @@
-/*! Amaze UI v1.0.0-rc1 | by Amaze UI Team | (c) 2014 AllMobilize, Inc. | Licensed under MIT | 2014-10-20T09:10:29 UTC */
+/*! Amaze UI v1.0.1 | by Amaze UI Team | (c) 2014 AllMobilize, Inc. | Licensed under MIT | 2014-10-28T03:10:02 UTC */
 /**
   * 1. Allow margin
   * 2. Prevent inherit font style
@@ -3281,6 +3281,7 @@ fieldset[disabled] .am-checkbox-inline {
   background-color: #ffffff;
   border-color: #dddddd;
   cursor: not-allowed;
+  pointer-events: none;
 }
 .am-pagination .am-pagination-prev {
   float: left;
@@ -8323,7 +8324,7 @@ ul.am-dropdown-content > .am-disabled > a:focus {
   max-width: 100%;
   max-height: 100%;
   opacity: 0;
-  z-index: 2;
+  z-index: 200;
   -webkit-user-drag: none;
   user-drag: none;
   -webkit-transition: opacity 0.15s linear;

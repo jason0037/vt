@@ -55,7 +55,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         articles = [generate_article(title, desc, pic_url, link_url)]
 
       when 'on_sale'
-        title="法兰克福香肠350克/ Frankfurter Sausages 350g仅售¥40元"
+        title="法兰克福香肠350克/ Frankfurter Sausages 350g仅售¥44元"
         desc =""
         pic_url="http://vshop.trade-v.com/images/a077/a0771030_m.jpg"
         link_url="http://vshop.trade-v.com/mproducts?id=a0771030&from=weixin&wechatuser=#{user}&supplier_id=#{id}"

@@ -1,4 +1,4 @@
-class CreateConfigs < ActiveRecord::Migration
+ class CreateConfigs < ActiveRecord::Migration
   def up
   	create_table :sdb_imodec_configs,:options=>"ENGINE=MyISAM DEFAULT CHARSET=utf8" do |t|
   		t.string :name

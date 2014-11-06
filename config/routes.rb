@@ -575,7 +575,7 @@ end
         get 'check_coupon'
         get  'new_mobile'
         get  'new_tairyo'
-
+        get 'new_manco'
         post 'new_manco'
         get 'new_mobile_addr'
         get 'new_manco_addr'
@@ -585,6 +585,7 @@ end
         get 'mancoder_show'   ###显示万家当前用户的所有订单
         get 'tairyo_order'
         get 'mobile_show_order'
+        get 'wuliu_show_order'
         get 'index_mobile'
         get 'share_order'   ###推荐订单
         get 'mobile_show'

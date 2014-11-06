@@ -666,9 +666,9 @@ INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING_INDEX(SUBSTRING_INDEX(mdk.sdb_b2c_cart
 WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
        @cart_total_by_supplier = ActiveRecord::Base.connection.execute(sql)
        @cart_totals = 0
-       @serverbill=0
-       @serverinvoice=0
-       @serverwarehouse=0
+       @bill=0
+       @invoice=0
+       @warehouse=0
        @cart_total_by_supplier.each(:as => :hash) do |row|
          if (row["total"]<row["wholesale"])
            @cart_totals+= row["wholesale"]
@@ -677,21 +677,21 @@ WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
          end
          if bill=="1"
            @cart_totals=@cart_totals+5
-           @serverbill+=1
+           @bill+=1
          end
          if invoice=="1"
            @cart_totals=@cart_totals*1.11
-           @serverinvoice+=1
+           @invoice+=1
          elsif invoice=="2"
            @cart_totals=@cart_totals*1.08
-           @serverinvoice+=2
+           @invoice+=2
          elsif invoice=="3"
            @cart_totals=@cart_totals*1.01
-           @serverinvoice+=3
+           @invoice+=3
          end
          if warehouse=="1"
            @cart_totals=@cart_totals+150
-           @serverwarehouse+=1
+           @warehouse+=1
          end
        end
 
@@ -753,21 +753,25 @@ WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
 
   def mobile_show_order
     supplier_id=params[:supplier_id]
-
     @order =Ecstore::Order.find_by_order_id(params[:id])
-     @delivery=Ecstore::Delivery.find_by_order_id(params[:id])
-
-
-
-
+    @delivery=Ecstore::Delivery.find_by_order_id(params[:id])
     @supplier  =  Ecstore::Supplier.find(supplier_id)
+
     render :layout=>@supplier.layout
-
-
   end
 
+  def wuliu_show_order
+    supplier_id=params[:supplier_id]
+    @order =Ecstore::Order.find_by_order_id(params[:id])
+    @delivery=Ecstore::Delivery.find_by_order_id(params[:id])
+    @supplier  =  Ecstore::Supplier.find(supplier_id)
+    render :layout=>@supplier.layout
+  end
 
   def edit_manco_addr
+    @bill=params[:bill]                   ###签单返回
+    @invoice=params[:invoice]             ######发票服务 1:运费发票 2: 服务费发票  3:自带发票
+    @warehouse=params[:warehouse]
        @way=params[:way]
        @departure_id=params[:departure_id]
        @arrival_id =params[:arrival_id]
@@ -790,6 +794,9 @@ WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
 
 
 def xiugai_addr
+  @bill=params[:bill]                   ###签单返回
+  @invoice=params[:invoice]             ######发票服务 1:运费发票 2: 服务费发票  3:自带发票
+  @warehouse=params[:warehouse]
   @way=params[:way]
   @departure_id=params[:departure_id]
   @arrival_id =params[:arrival_id]
@@ -797,7 +804,7 @@ def xiugai_addr
   if @addr.update_attributes(params[:addr])
     respond_to do |format|
       format.js
-      format.html { redirect_to "/orders/ordersnew_manco?supplier_id=98&member_departure_id=#{@departure_id}&member_arrival_id=#{@arrival_id}&way=#{@way} " }
+      format.html { redirect_to "/orders/new_manco?supplier_id=98&bill=#{@bill}&invoice=#{@invoice}&warehouse=#{@warehouse}&member_departure_id=#{@departure_id}&member_arrival_id=#{@arrival_id}&way=#{@way} " }
     end
   else
     render 'error.js' #, status: :unprocessable_entity

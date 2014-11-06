@@ -51,8 +51,14 @@
 
            ￥<%=order.final_amount%>
          <span style="float: right">
+           <%if @supplier.id.to_s=="98"%>
+             <a href="/orders/wuliu_show_order?id=<%=order.order_id%>&supplier_id=<%=@supplier.id%>" target="_blank"><%= I18n.t "details"%></a>
+
+               <%else%>
               <a href="/orders/mobile_show_order?id=<%=order.order_id%>&supplier_id=<%=@supplier.id%>" target="_blank"><%= I18n.t "details"%></a>
-           <%#=link_to "查看详细","/orders/norsh_show_order?id=#{order.order_id}",:target=>"_blank"%></span>
+
+               <%end%>
+         </span>
 
         </h3>
 

@@ -1,3 +1,5 @@
+<%unless  @goods.nil?%>
+
 $("#good_name").html('<%=@goods.name%>')
 $("#product_goods_id").val('<%=@goods.goods_id%>')
  $("#unit_price").html('<%=@goods.price%>'+"元/公斤")
@@ -11,4 +13,8 @@ $("#form_first").addClass("form_hide")
   $("#platform").val('door')
 <%elsif @catname.cat_name=="自提"%>
 $("#platform").val('self')
+<%end%>
+   <%else%>
+$("#notice").html('<%=@goodes%>')
+$("#notice").removeClass("form_hide")
 <%end%>

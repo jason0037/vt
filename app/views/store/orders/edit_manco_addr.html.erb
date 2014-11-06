@@ -16,6 +16,9 @@
     <input type="hidden" name="way" value="<%=params[:way]%>">
     <input name="arrival_id" type="hidden" value="<%=@arrival_id%>" >
     <input name="departure_id" type="hidden" value="<%=@departure_id%>" >
+    <input name="bill"  type="hidden" value="<%=@bill%>">
+    <input name="invoice" type="hidden"  value="<%=@invoice%>">
+    <input name="warehouse" type="hidden"  value="<%=@warehouse%>">
     <% if params[:way]=="departure"%>
         <input name="addr[addr_type]" type="hidden" value="1" >
 

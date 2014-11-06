@@ -17,7 +17,7 @@ class Ecstore::Order < Ecstore::Base
   self.accessible_all_columns
 
   attr_accessor :ship_day,:ship_special,:ship_time2
-  attr_accessible :order_id,:ship_day, :ship_special,:from_addr, :ship_time2, :coupon, :coupon_no,:province,:city,:district,:weight,:recommend_user
+  attr_accessible :order_id,:ship_day,:serverbill,:serverinvoice,:serverwarehouse,:ship_special,:from_addr, :ship_time2, :coupon, :coupon_no,:province,:city,:district,:weight,:recommend_user
 
   include Ecstore::AddressFields
 
@@ -239,7 +239,7 @@ class Ecstore::Order < Ecstore::Base
 
 
   def products_total
-    self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+).to_f
+    self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:*).to_f
   end
 
   def pmts_total
@@ -274,11 +274,30 @@ class Ecstore::Order < Ecstore::Base
   end
 
   def status_text
-    return '活动订单 ' if status == 'active'
+      return '活动订单 ' if status == 'active'
     return '已作废' if status == 'dead'
     return '已完成' if status == 'finish'
   end
+  #serverinvoice 发票信息 0：没有发票 ，1： 运费发票(按照总运费的11%收取) 2： 服务费发票 (按照总运费的8%收取) 3：  自带发票（按照总运费的1%）
+  #进仓服务费 0 没有，1：（150元/票)
+  #serverbill 签单返回 0：没有 1：5元
 
+  def serverinvoice_text
+       return  '未选择发票' if serverinvoice=='0'
+       return  '运费发票(总运费的11%)' if serverinvoice=='1'
+       return  '服务费发票 (总运费的8%)' if serverinvoice=='2'
+       return  '自带发票(总运费的1%)' if serverinvoice=='3'
+   end
+
+  def serverbill_text
+    return  '未选择签单返回' if serverbill=='0'
+    return  '5元/票(签单返回)' if serverbill=='1'
+  end
+
+  def serverwarehouse_text
+    return  '未选择进仓' if serverwarehouse=='0'
+    return  '进仓服务费（150元/票)' if serverwarehouse=='1'
+  end
 
   def pay_status_text
     return '未付款' if pay_status == '0'

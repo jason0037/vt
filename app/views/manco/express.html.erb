@@ -8,6 +8,8 @@
 
 <form method="post" id="form_first" class="am-form am-form-group ">
   <span class="am-badge am-badge-primary" >请输入准确的信息:</span>
+  <div  id="notice" style="color: red">
+  </div>
   <div class="am-input-group am-input-group-lg">
     <span class="am-input-group-label">出发城市</span>
     <input type="text" name="departure" class="am-form-field floatright" placeholder="请输入出发城市:" id="departure" value="">
@@ -39,7 +41,7 @@
       <br>
 
   <div class="am-cf">
-    <input type="button" id="serach" data-url="/manco/mancoluodipei" name="" value="发送" class="am-btn am-btn-primary am-btn-sm am-fl">
+    <input type="button" id="serach" data-url="/manco/mancoluodipei" name="" value="下一步" class="am-btn am-btn-primary am-btn-block ">
 
   </div>
 
@@ -58,6 +60,7 @@
       <span class="am-input-group-label" id="good_name"></span>
     </div>
     </br>
+
     <div class="am-input-group am-input-group-lg">
       <span class="am-input-group-label">单价</span>
       <span class="am-input-group-label" style="color: red" id="unit_price"></span>
@@ -87,7 +90,7 @@
     </div>
     </br>
 
-      <%= f.submit :class=>"am-btn am-btn-primary am-btn-sm  button-am" ,:value=>"送货"%>
+      <%= f.submit :class=>"am-btn am-btn-primary am-btn-block  button-am" ,:value=>"下一步"%>
 
 
 <%end%>
@@ -105,6 +108,16 @@
 
 <script type="application/javascript">
     var mancoweight;
+    $("#departure").focus(function(){
+        $("#notice").addClass("form_hide");
+    })
+
+    $("#arrival").focus(function(){
+        $("#notice").addClass("form_hide");
+    })
+
+
+
     $("#serach").bind("click",function(){
 
 
@@ -112,13 +125,17 @@
         var arrival=$("#arrival").val();
         var distribution=$("input[name='distribution']:checked").val();
         var url = $(this).data('url');
+        if(arrival&&departure&&distribution) {
+
         $.ajax(url,{
             type: "post",
             data:{ departure:departure ,arrival:arrival,distribution:distribution},
             success:function(res){
-
             }
-        })
+        }) }
+        else{
+            alert("数据不够详细,无法查询");
+        }
     })
 
 
@@ -130,7 +147,7 @@
               else{mancoweight=volue*200}
 
          }  else{
-             alert("参数不够");
+             alert("数据不够详细,无法查询");
          }
            $("#mancoweight").val(mancoweight);
 

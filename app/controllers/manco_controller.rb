@@ -120,28 +120,21 @@ class MancoController < ApplicationController
   end
 
   def follow       ###快递跟踪
-
+    @title=["  ","操作时间","操作网点","环节:","操作人:","单证号:","司机:","车牌号:","联系电话:","件数:","体积(m3):","重量:","备注:"]
     @supplier_id=params[:supplier_id]
     @supplier = Ecstore::Supplier.find(@supplier_id)
-    orderBarcode= params[:orderBarcode]
-
+    @orderBarcode= params[:orderBarcode]
+    @count=0
     url = URI.parse('http://101.226.243.46:8090/getOrder_Ysls')
 
     Net::HTTP.start(url.host, url.port) do |http|
       req = Net::HTTP::Post.new(url.path)
-      req.set_form_data({ 'companyId' => '20837', 'orderBarcode' => '32000000524172' })
+      req.set_form_data({ 'companyId' => '20837', 'orderBarcode' => @orderBarcode })
 
-     @content=  http.request(req).body.force_encoding("UTF-8").to_json
-
-
-
-
-
-    end
-
+      @h_table= Nokogiri::HTML(http.request(req).body.force_encoding("UTF-8")).css("div")
 
   end
-
+  end
   def new
     @good  =  Ecstore::Good.new
 
@@ -258,12 +251,16 @@ end
 
   end
 
-   def  mancoluodipei
+   def mancoluodipei
      departure= params[:departure]
      arrival= params[:arrival]
      distribution=params[:distribution]
       goods=departure+"-"+arrival;
      @goods=Ecstore::Good.where(:cat_id=>distribution,:name=>goods).first
+      if @goos.nil?
+         @goodes="没有找到该商品"
+
+      end
      @catname=Ecstore::GoodCat.where(:cat_id=>distribution).first
    end
 
