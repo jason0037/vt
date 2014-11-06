@@ -63,6 +63,7 @@ end
   end
 
   def create
+
     @addr = Ecstore::MemberAddr.new params[:addr].merge!(:member_id=>@user.member_id)
 
     return_url= params[:return_url]
@@ -125,7 +126,8 @@ end
     render :layout => @supplier.layout
   end
   def addship
-
+   @platform=params[:platform]
+   return_url=params[:return_url]
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @addr = Ecstore::MemberAddr.new params[:addr].merge!(:member_id=>@user.member_id)
 
@@ -133,11 +135,14 @@ end
       @arrid=@addr.addr_id
 
       session[:arri]=@arrid
-      redirect_to "/orders/ordersnew_manco?supplier_id=#{@supplier.id}"
+      if return_url
+        redirect_to return_url
 
-    else
-      redirect_to "/member_addrs/_form_manco_second?supplier_id=#{@supplier.id}"
-  end
+      else  redirect_to "/orders/new_manco?supplier_id=#{@supplier.id}&platform=#{@platform}"
+     end
+    else redirect_to "/member_addrs/_form_manco_second?supplier_id=#{@supplier.id}&platform=#{@platform}"
+
+   end
     end
 
 end

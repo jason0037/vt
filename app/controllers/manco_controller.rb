@@ -257,8 +257,8 @@ end
      distribution=params[:distribution]
       goods=departure+"-"+arrival;
      @goods=Ecstore::Good.where(:cat_id=>distribution,:name=>goods).first
-      if @goos.nil?
-         @goodes="没有找到该商品"
+      if @goods.nil?
+         @goodes="亲！万家物流暂时还没有开通该线路哦!"
 
       end
      @catname=Ecstore::GoodCat.where(:cat_id=>distribution).first

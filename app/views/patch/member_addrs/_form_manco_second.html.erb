@@ -17,8 +17,8 @@
 <div class="am-panel am-panel-default">
   <div class="am-panel-hd" style="text-align: center">新增收货人地址</div>
 </div>
-<%=form_for :addr, :url=>@method == :put ?@action_url :" /member_addrs/addship?platform=manco&supplier_id=#{@supplier.id}",  :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
-
+<%=form_for :addr, :url=>@method == :put ?@action_url :" /member_addrs/addship?platform=#{params[:platform]}&supplier_id=#{@supplier.id}",  :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
+    <input name="return_url" type="hidden" value="<%="/orders/arrival?platform=#{params[:platform]}&supplier_id=#{@supplier.id}&member_departure_id=#{params[:member_departure_id]}"%>" >
     <input name="addr[addr_type]" type="hidden" value="0" >
     <div class="am-panel am-panel-default">
 

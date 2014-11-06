@@ -10,8 +10,8 @@
 </style>
 <%=javascript_include_tag "area_seletor"%>
 <%=javascript_include_tag "patch/member_addrs"%>
-<%=form_for :addr, :url=>@method == :put ?@action_url :" /member_addrs?return_url=/member_addrs/_form_manco_second?supplier_id=#{@supplier.id}",  :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
-
+<%=form_for :addr, :url=>@method == :put ?@action_url :" /member_addrs",  :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
+     <input name="return_url" type="hidden"value="<%="/orders/departure?platform=#{params[:platform]}&supplier_id=98"%>">
     <input name="addr[addr_type]" type="hidden" value="1" >
       <div class="am-panel am-panel-default">
 
