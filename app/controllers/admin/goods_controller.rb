@@ -509,6 +509,11 @@ module Admin
                     @good.desc = row[19]
                     @good.place_info = row[20]
                     @good.spec_info = row[21]
+                    if row[26].nil?
+                      @good.freight = 10
+                    else
+                    @good.freight = row[26]
+                    end
                     #@good.intro = row[23]
                     if row[22] == "是"
                         @good.sell = 'true'
