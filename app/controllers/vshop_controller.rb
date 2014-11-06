@@ -314,7 +314,7 @@ end
 
       @order = @payment.pay_bill.order
       @order.update_attributes(:pay_status=>'1')
-      return redirect_to "/orders/norsh_show_order?id=#{@order.order_id}"
+      return redirect_to "/orders/mobile_show_order?id=#{@order.order_id}"
     end
     #========================
 
