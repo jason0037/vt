@@ -102,7 +102,10 @@ class MancoController < ApplicationController
     arrival= params[:arrival]
     goodsname=departure+"-"+arrival;
     @goods=Ecstore::Good.where(:name=>goodsname,:cat_id=>"570").first   ####万家线路图对应的类别为570
+    if @goods.nil?
+      @goodes="亲！万家物流暂时还没有开通该线路哦!"
 
+    end
 
   end
 

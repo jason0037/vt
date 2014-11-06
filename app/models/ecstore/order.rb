@@ -239,7 +239,7 @@ class Ecstore::Order < Ecstore::Base
 
 
   def products_total
-    self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:*).to_f
+    self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+).to_f
   end
 
   def pmts_total

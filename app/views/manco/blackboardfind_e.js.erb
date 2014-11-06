@@ -1,4 +1,5 @@
-//小黑板中运价查询
+
+<%unless  @goods.nil?%>//小黑板中运价查询
 $("#good_mktprice").val('<%=@goods.price%>');
 $("#good_name").val('<%=@goods.name%>');
 
@@ -12,3 +13,8 @@ $("#manco_low_show").html('<%=@goods.wholesale%>'+"元")
 $("#type_id").val('<%=@goods.type_id%>')
 $("#form_second").removeClass("form_hide")
 $("#form_first").addClass("form_hide")
+<%else%>
+$("#notice").html('<%=@goodes%>')
+$("#notice").removeClass("form_hide")
+
+<%end%>
