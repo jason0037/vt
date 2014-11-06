@@ -696,7 +696,7 @@ WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
        end
 
 
-    if platform=="mancoexpress"|| platform=="door"
+    if platform=="mancoexpress"|| platform=="door"|| platform=="self"
       @cart_total_final = @cart_totals
     else
       @cart_total_final = @cart_total
