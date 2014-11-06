@@ -675,26 +675,26 @@ WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
          else
            @cart_totals+= row["total"]
          end
-         if bill=="1"
-           @cart_totals=@cart_totals+5
-           @bill+=1
-         end
-         if invoice=="1"
-           @cart_totals=@cart_totals*1.11
-           @invoice+=1
-         elsif invoice=="2"
-           @cart_totals=@cart_totals*1.08
-           @invoice+=2
-         elsif invoice=="3"
-           @cart_totals=@cart_totals*1.01
-           @invoice+=3
-         end
-         if warehouse=="1"
-           @cart_totals=@cart_totals+150
-           @warehouse+=1
-         end
-       end
 
+       end
+       if bill=="1"
+         @cart_totals=@cart_totals+5
+         @bill+=1
+       end
+       if invoice=="1"
+         @cart_totals=@cart_totals*1.11
+         @invoice+=1
+       elsif invoice=="2"
+         @cart_totals=@cart_totals*1.08
+         @invoice+=2
+       elsif invoice=="3"
+         @cart_totals=@cart_totals*1.01
+         @invoice+=3
+       end
+       if warehouse=="1"
+         @cart_totals=@cart_totals+150
+         @warehouse+=1
+       end
 
     if platform=="mancoexpress"|| platform=="door"|| platform=="self"
       @cart_total_final = @cart_totals
