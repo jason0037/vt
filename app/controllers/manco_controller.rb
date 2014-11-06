@@ -19,6 +19,7 @@ class MancoController < ApplicationController
   end
 
   def find_manco
+    @line_items.delete_all
     supplier_id = params[:supplier_id]
 
   @supplier =Ecstore::Supplier.find(supplier_id)
@@ -51,7 +52,8 @@ class MancoController < ApplicationController
 
   end
 
- def black_good_index     ###货源信息小黑板
+ def black_good_index
+   @line_items.delete_all     ###货源信息小黑板
    supplier_id = params[:supplier_id]
 
 
@@ -78,6 +80,7 @@ class MancoController < ApplicationController
     redirect_to "/manco/black_good_index?supplier_id=98"
   end
   def black_index
+    @line_items.delete_all
     supplier_id = params[:supplier_id]
   if @user
 
@@ -113,7 +116,8 @@ class MancoController < ApplicationController
     @supplier = Ecstore::Supplier.find(supplier_id)
   end
 
- def express                 ###落地配服务
+ def express
+   @line_items.delete_all ###落地配服务
   supplier_id=params[:supplier_id]
    @supplier = Ecstore::Supplier.find(supplier_id)
 
