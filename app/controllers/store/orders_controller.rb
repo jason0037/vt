@@ -652,7 +652,13 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
    render :layout => @supplier.layout
   end
 
+ def manco_card
+   @supplier = Ecstore::Supplier.find(params[:supplier_id])
 
+
+   render :layout=>@supplier.layout
+
+ end
 
 
   def new_manco

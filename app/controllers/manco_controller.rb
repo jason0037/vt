@@ -19,11 +19,15 @@ class MancoController < ApplicationController
   end
 
   def find_manco
+    if @user
     @line_items.delete_all
     supplier_id = params[:supplier_id]
 
   @supplier =Ecstore::Supplier.find(supplier_id)
-
+    else
+    return_url={:return_url => "/manco/find_manco?supplier_id=#{supplier_id}"}.to_query
+    redirect_to "/auto_login?#{return_url}&id=#{supplier_id}"
+    end
 
   end
 
@@ -53,6 +57,9 @@ class MancoController < ApplicationController
   end
 
  def black_good_index
+   if @user
+
+
    @line_items.delete_all     ###货源信息小黑板
    supplier_id = params[:supplier_id]
 
@@ -62,7 +69,10 @@ class MancoController < ApplicationController
                                 :per_page =>5,              ###当前只显示一条
                                 :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
       @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
-
+   else
+     return_url={:return_url => "/manco/black_good_index?supplier_id=#{supplier_id}"}.to_query
+     redirect_to "/auto_login?#{return_url}&id=#{supplier_id}"
+   end
  end
 
   def blackgood_add
@@ -80,9 +90,10 @@ class MancoController < ApplicationController
     redirect_to "/manco/black_good_index?supplier_id=98"
   end
   def black_index
+    if @user
     @line_items.delete_all
     supplier_id = params[:supplier_id]
-  if @user
+
 
     @supplier =Ecstore::Supplier.find(supplier_id)
 
@@ -110,8 +121,15 @@ class MancoController < ApplicationController
   end
 
   def main
+    if @user
+
+      @line_items.delete_all
     supplier_id=params[:supplier_id]
     @supplier = Ecstore::Supplier.find(supplier_id)
+    else
+      return_url={:return_url => "/manco/main?supplier_id=#{supplier_id}"}.to_query
+      redirect_to "/auto_login?#{return_url}&id=#{supplier_id}"
+    end
   end
 
   def history
@@ -120,13 +138,18 @@ class MancoController < ApplicationController
   end
 
  def express
+   if @user
    @line_items.delete_all ###落地配服务
   supplier_id=params[:supplier_id]
    @supplier = Ecstore::Supplier.find(supplier_id)
-
+ else
+   return_url={:return_url => "/manco/express?supplier_id=#{supplier_id}"}.to_query
+   redirect_to "/auto_login?#{return_url}&id=#{supplier_id}"
+ end
   end
 
   def follow       ###快递跟踪
+    if @user
     @title=["  ","操作时间","操作网点","环节:","操作人:","单证号:","司机:","车牌号:","联系电话:","件数:","体积(m3):","重量:","备注:"]
     @supplier_id=params[:supplier_id]
     @supplier = Ecstore::Supplier.find(@supplier_id)
@@ -140,7 +163,11 @@ class MancoController < ApplicationController
 
       @h_table= Nokogiri::HTML(http.request(req).body.force_encoding("UTF-8")).css("div")
 
-  end
+    end
+    else
+      return_url={:return_url => "/manco/follow?supplier_id=#{supplier_id}"}.to_query
+      redirect_to "/auto_login?#{return_url}&id=#{supplier_id}"
+      end
   end
   def new
     @good  =  Ecstore::Good.new
@@ -331,8 +358,30 @@ end
      end
    end
 
+   def cart_goods ###万家预充值
 
-  end
+       @supplier=Ecstore::Supplier.find(params[:supplier_id])
+       @cart_name=Ecstore::Good.where(:cat_id=>"588")###万家物流充值卡cat_id＝588
+        good_name= params[:cart_name]
+       if good_name
+         @good=Ecstore::Good.find_by_name(good_name)
+
+       end
+
+
+      render layout: @supplier.layout
+   end
+
+def cart_goodes
+  good_name= params[:cart_name]
+
+    @good=Ecstore::Good.find_by_name(good_name)
+
+
+end
+
+
+end
 
 
 

@@ -7,7 +7,12 @@ class Store::GoodsController < ApplicationController
   skip_before_filter :find_path_seo, :find_cart!, :only=>[:newest]
   before_filter :find_tags, :only=>[:cheuksgroup,:newest]
 
-
+  def manco_cart
+      @line_items.delete_all
+    @good = Ecstore::Good.find_by_name(params[:cart_name])
+    @supplier=Ecstore::Supplier.find(params[:supplier_id])
+    render layout: @supplier.layout
+  end
 
   def show_goodblack
      @supplier=Ecstore::Supplier.find_by_id(params[:supplier_id])

@@ -97,6 +97,8 @@ end
     post 'edit_addr',:on=>:collection
     get 'departure_new',:on=>:collection
     post 'creat_addr',:on=>:collection
+    get 'cart_goods',:on=>:collection
+
   end
 
 
@@ -496,7 +498,7 @@ end
 
     get 'search' => "search#index", :as=> :search
     get 'mproducts' =>"goods#mproduct", :as=>"goods" ,:controller=>"goods"
-
+    post '/goods/manco_cart'=>"goods#manco_cart",  :controller=>"goods"
     get 'show_goodblack' =>  "goods#show_goodblack",  :as=>"goods" ,:controller=>"goods"   ###货源信息
     get 'mancoproduct' =>"goods#mancoproduct",  :as=>"goods" ,:controller=>"goods"
     get 'tairyoall'=>"goods#tairyoall",  :as=>"goods" ,:controller=>"goods"         ###金芭浪直接订单
@@ -596,6 +598,7 @@ end
         get 'edit_manco_addr'
         post 'xiugai_addr'
         post 'manco_detail'
+        get 'manco_card'
       end
     end
 

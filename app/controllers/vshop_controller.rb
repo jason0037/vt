@@ -270,7 +270,7 @@ end
       @modec_pay = ModecPay.new adapter do |pay|
         if adapter=='wxpay'
           pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
-          pay.notify_url = "#{site}/vshop/78/paynotifyurl?payment_id=#{@payment.payment_id}"
+          pay.notify_url = "#{site}/vshop/78/paynotifyurl?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}"
         else
           pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
           pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"
@@ -309,12 +309,13 @@ end
   def paynotifyurl
     #========================
     if params[:temp]=="solution"
+      supplier_id=params[:supplier_id]
       @payment = Ecstore::Payment.find(params[:payment_id])
       return redirect_to detail_order_path(@payment.pay_bill.order) if @payment&&@payment.paid?
 
       @order = @payment.pay_bill.order
       @order.update_attributes(:pay_status=>'1')
-      return redirect_to "/orders/mobile_show_order?id=#{@order.order_id}"
+      return redirect_to "/orders/mobile_show_order?id=#{@order.order_id}&supplier_id=#{supplier_id}"
     end
     #========================
 

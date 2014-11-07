@@ -17,32 +17,7 @@
 
 </style>
 
-<% if @supplier.id==78%>
 
-    <%if @cat.parent_id==558 %>
-        <div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
-
-          <div class="am-panel-hd" style="text-align: center"><%= I18n.t "h4_1"%><br><%= I18n.t "h4_2"%> </span>
-          </div>
-    <%end%> <%end%>
-<div data-am-widget="slider" class="am-slider am-slider-default am-no-layout" data-am-slider="{&quot;animation&quot;:&quot;slide&quot;,&quot;slideshow&quot;:false}">
-  <div class="am-viewport" style="overflow: hidden; position: relative;">
-    <ul class="am-slides" style="width: 1200%; -webkit-transition: 0s; transition: 0s; -webkit-transform: translate3d(-770px, 0px, 0px);">
-      <%for value in 0..(@good.big_pic.split(",").length-1)%>
-          <li style="width: 385px; float: left; display: block;"><img src="<%=@good.big_pic.split(",")[value]%>"  data-original="<%=@good.big_pic.split(",")[value]%>"
-                                                                      data-onerror="<%=@good.big_pic.split(",")[value]%>"
-                                                                      alt="" draggable="false" />
-            <div class="am-slider-desc" style="text-align: center">
-              <%=@good.name %>
-            </div></li>
-
-      <%end%>
-    </ul>
-  </div>
-
-
-
-</div>
 
 
 
@@ -50,52 +25,33 @@
 <div class="am-panel am-panel-default">
   <div class="am-panel-hd">
     <h4 class="am-panel-title" style="color:red;" >
-      <%=I18n.t 'preferential-price'%>:<span style="float: right;color: red">¥<%=@good.default_product.price %></span>
+     充值金额为:<span style="float: right;color: red">¥<%=@good.default_product.price %></span>
     </h4>
   </div>
-  <!--<div id="do-not-say-1" >-->
-  <!--<div class="am-panel-bd">-->
-  <%#= I18n.t 'original-price'%>
-  <!--:<span  style="float: right;color: red;text-decoration:line-through"> <%#=@good.mktprice %> </span>-->
-  <!--</div>-->
-  <!--</div>-->
+
 </div>
 
 
-
-
-<div class="am-panel-group" id="accordion">
-  <div class="am-panel am-panel-default">
-    <div class="am-panel-hd">
-      <h4 class="am-panel-title" style="color:red;" >
-        <%= I18n.t "introduction"%>
-      </h4>
-    </div>
-
-    <div class="am-panel-bd" >
-      <%=raw @good.intro.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.intro%>
-
-      <%=raw @good.desc.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.desc%>
-
-
-    </div>
+<div class="am-panel am-panel-default">
+  <div class="am-panel-hd">
+    <h4 class="am-panel-title" style="color:red;" >
+      实际充值:<span style="float: right;color: red">¥<%=@good.mktprice %></span>
+    </h4>
   </div>
-</div>
-<div class="am-panel-group">
-  <div class="am-panel am-panel-default">
-    <div class="am-panel-hd">
-      <h4 class="am-panel-title" style="color:red;" >
-        <%= I18n.t "specification"%>
-      </h4>
-    </div>
 
-    <div class="am-panel-bd" >
+</div>
+
+
+
+
+
+
       <%=form_for :product,:url=>"/cart/add", :html=>{:id=>"cartform"},:remote=>true do |f|%>
           <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
           <%=f.hidden_field :type_id,:value=>@good.type_id%>
           <%=hidden_field_tag :supplier_id, @supplier.id%>
 
-          <%=hidden_field_tag :platform,'mobile'%>
+          <%=hidden_field_tag :platform,'manco_card'%>
           <%=hidden_field_tag :return_url,{:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
 
           <%if @good.specs.present?%>
@@ -103,20 +59,16 @@
                   <%= hidden_field_tag  :good_supplier_id,@good.supplier_id%>
                   <%=hidden_field_tag "product[specs][]"%>
 
-                  <%@good.spec_values.where(:spec_id=>spec.spec_id).uniq.order("p_order asc").each do |spec_value|%>
-                      <a  data-size="<%=spec_value.spec_value_id%>" class=" am-btn am-btn-default choose" data-maxamount="2" data-minamount="1"><%=spec_value.spec_value%></a>
 
-
-                  <%end%>
 
               <%end%>
           <%end%>
       <%end%>
 
-    </div>
-  </div>
-</div>
+
 <br>
+
+<a href="javascript:void(0);" class="add_to_cart fr btn_sure " id="add_to_cart">确认充值</a>
 <script>
 
 </script>
@@ -124,24 +76,8 @@
 
 
 
-<script type="text/javascript">
-    function saveProValue(){
-        return {product_id: '26038564',brand_id: '198535'}
-    };
-</script>
 
-<div class="bottomdiv clearfix">
-  <div class="inner clearfix">
-    <%if @user%>
-        <a class="fl cart_time" href="/cart/mobile?id=<%=@supplier.id%>">
-    <%end%>
-    <em class="num_cart hide"></em>
-    <span class="carticon fl"></span>
-    <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
-    </a>
-    <a href="javascript:void(0);" class="add_to_cart fr btn_sure " id="add_to_cart"><%=I18n.t "add-shoppingbasket"%></a>
-  </div>
-</div>
+
 
 
 

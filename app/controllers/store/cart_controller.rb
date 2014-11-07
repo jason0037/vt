@@ -35,7 +35,7 @@ class Store::CartController < ApplicationController
     if quantity.blank? || quantity ==0
        quantity=1
     end
-    if params[:supplier_id] =="98"
+    if params[:supplier_id] =="98" && params[:mancoweight]
        quantity=params[:mancoweight].to_i
 
     end
@@ -108,6 +108,10 @@ class Store::CartController < ApplicationController
     elsif params[:platform]=="mancoexpress"
                                   ###万家快递
       redirect_to "/cart/manco_express?supplier_id=#{supplier_id}"
+    elsif params[:platform]=="manco_card"
+      ###万家充值
+      redirect_to "/orders/manco_card?supplier_id=#{supplier_id}"
+
     elsif params[:platform]
       ###万家门对门
       redirect_to "/orders/departure?supplier_id=#{supplier_id}&platform=#{params[:platform]}"

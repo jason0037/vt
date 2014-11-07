@@ -93,7 +93,9 @@
             </div>
 
         </div>
-
+      <label class="radio" style="display:none">
+        <%=f.radio_button :pay_app_id, "wxpay", { :checked=>(@order.payment == 'wxpay') }%> <b>其他银行网上支付</b>
+      </label>
        <hr>
         <div class="actions">
           <div class="list_status">
