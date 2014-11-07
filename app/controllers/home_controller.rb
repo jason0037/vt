@@ -5,8 +5,7 @@ class HomeController < ApplicationController
 	layout 'standard'
 
 	def index
-    redirect_to '/vshop/78'
-		# @title = "摩登客—全球设计品牌精品第e站,都市时尚女性个性首选"
+		@title = "trade-V 跨境贸易直通车"
 		@home = Ecstore::Home.where(:supplier_id=>nil).last
 		if signed_in?
 		   redirect_to params[:return_url] if params[:return_url].present?
