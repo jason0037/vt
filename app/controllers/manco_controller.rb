@@ -5,7 +5,7 @@ require 'nokogiri'
 require 'open-uri'
 class MancoController < ApplicationController
 
-  layout "manco"
+
   def index
 
   end
@@ -373,11 +373,18 @@ end
    end
 
 def cart_goodes
+
   good_name= params[:cart_name]
 
     @good=Ecstore::Good.find_by_name(good_name)
 
 
+end
+
+ def advance
+   @supplier=Ecstore::Supplier.find(params[:supplier_id])
+   @advance_cart=Ecstore::MemberAdvance.find_by_member_id(params[:id])
+   render layout: @supplier.layout
 end
 
 

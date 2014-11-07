@@ -98,6 +98,7 @@ end
     get 'departure_new',:on=>:collection
     post 'creat_addr',:on=>:collection
     get 'cart_goods',:on=>:collection
+    get 'advance',:on=>:collection
 
   end
 
@@ -599,6 +600,7 @@ end
         post 'xiugai_addr'
         post 'manco_detail'
         get 'manco_card'
+        get 'advance'   ##预付款信息
       end
     end
 

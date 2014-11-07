@@ -1,10 +1,10 @@
 #encoding:utf-8
 class VshopController < ApplicationController
   skip_before_filter :set_locale
- layout "vshop"
+  layout "vshop"
 
 
- def new
+  def new
     @account = Ecstore::Account.new
   end
 
@@ -18,7 +18,7 @@ class VshopController < ApplicationController
 
   def user
 
-      set_locale
+    set_locale
 
     if @user
 
@@ -116,19 +116,19 @@ class VshopController < ApplicationController
       if @supplier.id ==Ecstore::Supplier.find_by_name("万家物流").id
         if params[:name]=="货源"
           @goodes=Ecstore::BlackGood.paginate :page=>params[:page],        ###分页语句
-                                            :per_page =>20,              ###当前只显示一条
-                                            :conditions => ["cat_id=571"]
+                                              :per_page =>20,              ###当前只显示一条
+                                              :conditions => ["cat_id=571"]
         else
-            cat_id=params[:cat_id]
-              if cat_id.nil?
-              cat_id=570
-              end
-        @goods = @goods.paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC',:conditions => ["cat_id=#{cat_id}"])
-       end
-      else
-         @goods = @goods.paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC')   #分页
-
+          cat_id=params[:cat_id]
+          if cat_id.nil?
+            cat_id=570
           end
+          @goods = @goods.paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC',:conditions => ["cat_id=#{cat_id}"])
+        end
+      else
+        @goods = @goods.paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC')   #分页
+
+      end
 
       @count = @goods.count
 
@@ -143,12 +143,12 @@ class VshopController < ApplicationController
     redirect_to "/vshop/goods"
   end
 
-def destory
+  def destory
     @good=Ecstore::Good.find(params[:id])
     @good.destroy
     redirect_to "/vshop/goods"
 
-end
+  end
 
 
 
@@ -201,9 +201,9 @@ end
   #get /vhsop/id 显示微店铺首页
   def show
 
-     if params[:id]=="78"
-          set_locale
-     end
+    if params[:id]=="78"
+      set_locale
+    end
 
 
     @supplier_id=params[:id]
@@ -236,7 +236,7 @@ end
       now  = Time.now.to_i
       Ecstore::RecommendLog.new do |rl|
         rl.wechat_id = @recommend_user
-      #  rl.goods_id = @good.goods_id
+        #  rl.goods_id = @good.goods_id
         rl.member_id = member_id
         rl.terminal_info = request.env['HTTP_USER_AGENT']
         #   rl.remote_ip = request.remote_ip
