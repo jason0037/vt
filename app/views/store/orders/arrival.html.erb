@@ -21,7 +21,7 @@
 
       <ul class="am-list am-list-striped ">
 
-
+        <%if @addrss.size>0%>
             <%@addrss.each do |def_addr|%>
                 <li style="padding: 15px" class="li_addr">
                   <%=radio_button_tag "member_arrival_id",def_addr.addr_id ,:checked=>true ,:class=>"am-badge-danger"%>
@@ -35,14 +35,19 @@
 
 
             <% end %>
+            <%else%>
+            <a id="ahref" class="am-btn am-btn-success " style="width:50%;float: left" href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>&supplier_id=<%=@supplier.id%>&platform=<%=params[:platform]%>" title="">新增寄货人地址 </a>
+
+
+      <%end%>
 
       </ul>
     <div class="bottomdiv clearfix"  >
 
       <a id="ahref" class="am-btn am-btn-success " style="width:50%;float: left" href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>&supplier_id=<%=@supplier.id%>&platform=<%=params[:platform]%>" title="">新增寄货人地址 </a>
-
+      <%if @addrss.size>0%>
       <input type="submit" class="  am-btn am-btn-primary  " style=" width:50%;float: right" value="确认选择" >
-
+      <% end %>
     </div>
 
     <%end%>
