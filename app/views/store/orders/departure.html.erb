@@ -22,7 +22,7 @@
 
     <ul class="am-list am-list-striped ">
 
-
+      <%if @def_addrs.size>0%>
           <%@def_addrs.each do |def_addr|%>
         <li style="padding: 15px" class="li_addr">
           <%=radio_button_tag "member_departure_id",def_addr.addr_id ,:checked=>true ,:class=>"am-badge-danger"%>
@@ -36,9 +36,10 @@
 
 
           <% end %>
-
-
-    </ul>
+      <%else%>
+          <a id="ahref" class="am-btn am-btn-success " style="width:50%;float: left" href="/orders/new_manco_addr?supplier_id=<%=@supplier.id%>&platform=<%=params[:platform]%>" title="">新增寄货人地址 </a>
+        <%end%>
+          </ul>
 
 
 
@@ -47,11 +48,9 @@
 <div class="bottomdiv clearfix"  >
 
   <a id="ahref" class="am-btn am-btn-success " style="width:50%;float: left" href="/orders/new_manco_addr?supplier_id=<%=@supplier.id%>&platform=<%=params[:platform]%>" title="">新增寄货人地址 </a>
-  <%if @addrs.size>0%>
+  <%if @def_addrs.size>0%>
   <input type="submit" class="  am-btn am-btn-primary  " style=" width:50%;float: right" value="确认选择" >
-     <%else%>
-      <input type="submit" class="  am-btn am-btn-primary  " disabled style=" width:50%;float: right" value="确认选择" >
-      <%end%>
+    <%end%>
   </div>
   </form>
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
