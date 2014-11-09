@@ -86,7 +86,11 @@ class Store::GoodsController < ApplicationController
 
   end
 
+   def list_goods
+     @supplier  =  Ecstore::Supplier.find(params[:supplier_id])
+     render :layout => @supplier.layout
 
+   end
 
  def mproduct
    if params[:id]=="78" ||params[:supplier_id]=="78"
