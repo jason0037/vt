@@ -18,31 +18,33 @@
 </style>
 
 <div class="am-panel am-panel-default "style="margin: 0px;padding: 0px">
-  <div class="am-panel-hd"  style="text-align: center;padding: 10px">欢迎来到名优特产</div>
+  <div class="am-panel-hd"  style="text-align: center;padding: 10px">欢迎来到世界美食</div>
 </div>
 
 
 
 <div class="am-panel am-panel-default">
-  <a href="/mgallery?name=卓玛泉饮用水&id=78">
-    <div class="am-panel-hd">卓玛泉</div>
+  <a href="/mgallery?name=香肠&id=<%=@supplier.id%>">
+    <div class="am-panel-hd"><%= I18n.t 'sausages' %></div>
     <span class="icon-arr"></span> </a>
 </div>
 <div class="am-panel am-panel-default">
-  <a href="/mgallery?name=铁棍山药&id=78">
-    <div class="am-panel-hd">铁棍山药</div>
-    <span class="icon-arr"></span> </a>
-</div>
-<div class="am-panel am-panel-default">
-  <a href="/mgallery?name=崇明菜园子&id=78">
-    <div class="am-panel-hd">崇明菜园子</div>
-    <span class="icon-arr"></span> </a>
-</div>
-<div class="am-panel am-panel-default">
-  <a href="/mgallery?name=东北大米&id=78">
-    <div class="am-panel-hd">稻梦大米</div>
+  <a href="/mgallery?name=火腿&id=<%=@supplier.id%>">
+    <div class="am-panel-hd"><%= I18n.t 'hams' %></div>
     <span class="icon-arr"></span> </a>
 </div>
 
+<div class="am-panel am-panel-default">
+  <a href="/mgallery?name=培根&id=<%=@supplier.id%>">
+    <div class="am-panel-hd"><%= I18n.t 'bacons' %></div>
+    <span class="icon-arr"></span> </a>
+</div>
+
+
+<div class="am-panel am-panel-default">
+  <a href="/mgallery?name=其它&id=<%=@supplier.id%>">
+    <div class="am-panel-hd"><%= I18n.t 'others' %></div>
+    <span class="icon-arr"></span> </a>
+</div>
 
 
