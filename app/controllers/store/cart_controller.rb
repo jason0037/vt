@@ -105,9 +105,7 @@ class Store::CartController < ApplicationController
     if params[:platform]=="mobile"
       redirect_to "/cart/mobile?supplier_id=#{supplier_id}"
       #render "mobile", :layout=>@supplier.layout
-    elsif params[:platform]=="mancoexpress"
-                                  ###万家快递
-      redirect_to "/cart/manco_express?supplier_id=#{supplier_id}"
+
     elsif params[:platform]=="manco_card"
       ###万家充值
       redirect_to "/orders/manco_card?supplier_id=#{supplier_id}"
