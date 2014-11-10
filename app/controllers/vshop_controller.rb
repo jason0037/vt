@@ -317,7 +317,7 @@ class VshopController < ApplicationController
       @order.update_attributes(:pay_status=>'1')
 
       @order.order_items.each do |order_item|
-          if  order_item.good.cat_id=="600"
+          if  order_item.good.cat_id==600
               member_id=order_item.member_id
               @member = Ecstore::Member.find(member_id)
                if @member.advance
@@ -339,6 +339,7 @@ class VshopController < ApplicationController
                                             :message=>"万家预充值:#{order_item.good.name}",
                                             :mtime=>Time.now.to_i,
                                             :memo=>"用户本人操作",
+                                            :order_id=>@order.order_id,
                                             :import_money=>order_item.good.mktprice,
                                             :explode_money=>0,
                                             :member_advance=>(advance),
