@@ -51,6 +51,10 @@
     .hidden{
         display: none;
     }
+      .am-navbar-nav li a{
+        color: #ffffff;
+    }
+
   </style>
 </head>
 <body>
@@ -69,14 +73,14 @@
 <%end%>
 <%= yield %>
 
-<div class="bottomdivsclearfix">
+<div class="bottomdivsclearfix"  style=" filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9">
 
-  <div data-am-widget="navbar"  class="am-navbar am-cf  am-no-layout"
+  <div data-am-widget="navbar"  style=" background-color:#FF8000; "class="am-navbar am-cf  am-no-layout"
        id="">
-    <ul class="am-navbar-nav am-cf sm-block-grid-4">
+    <ul class="am-navbar-nav am-cf sm-block-grid-4" style="color: #ffffff">
 
       <li >
-        <a class="am-btn  am-btn-danger" id="showgood" href="###">
+        <a class="am-btn  " id="showgood" href="###">
 				<span  class="">点我有惊喜
 				</span>
 
@@ -84,7 +88,7 @@
       </li>
 
       <li >
-        <a  class="am-btn  am-btn-danger" href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot"">
+        <a  class="am-btn  " href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot"">
 				<span class="am-icon-user">
 				</span>
 
@@ -92,12 +96,12 @@
       </li>
 
       <li >
-        <a  class="am-btn  am-btn-danger" href="/cart/mobile?id=<%=@supplier.id%>">
+        <a  class="am-btn  " href="/cart/mobile?id=<%=@supplier.id%>">
 				<span class="am-icon-shopping-cart"></span>
         </a>
       </li>
       <li class="am-navbar-labels am-navbar-more " >
-         <a class="am-btn  am-btn-danger" id="showall" >
+         <a class="am-btn  " id="showall" >
                <%if  I18n.locale.to_s=="zh_cn"%>
             <span id="lange" class="am-navbar-label">English</span>
            <%elsif  I18n.locale.to_s =="en"%>
@@ -117,7 +121,7 @@
        style="margin-top: -138px;display: none
        ">
 
-    <ul style="clear: both" class="am-share-sns sm-block-grid-4">
+    <ul style="clear: both" class="am-share-sns sm-block-grid-2">
       <li style="clear: both">
 
         <a href="/list_goods_one?supplier_id=<%=@supplier.id%>" >
