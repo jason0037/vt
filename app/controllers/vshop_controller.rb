@@ -320,13 +320,14 @@ class VshopController < ApplicationController
           if  order_item.good.cat_id==600
               member_id=@order.member_id
               @member = Ecstore::Member.find(member_id)
+              @users = Ecstore::User.find(member_id)
                if @member.advance
-              advance=@member.advance+order_item.good.mktprice
+               advance=@member.advance+order_item.good.mktprice
                else
                  advance=order_item.good.mktprice
                end
 
-              advances = @member.member_advances.order("log_id asc").last
+              advances =  @users.member_advances.order("log_id asc").last
               if advances
                 shop_advance = advances.shop_advance
               else
