@@ -318,7 +318,7 @@ class VshopController < ApplicationController
 
       @order.order_items.each do |order_item|
           if  order_item.good.cat_id==600
-              member_id=order_item.member_id
+              member_id=@order.member_id
               @member = Ecstore::Member.find(member_id)
                if @member.advance
               advance=@member.advance+order_item.good.mktprice
