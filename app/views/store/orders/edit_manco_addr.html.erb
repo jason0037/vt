@@ -1,8 +1,6 @@
 
 <style type="text/css">
-    #province,#city,#district{
-        width: 30%;
-    }
+
     .change_lange,.bottomdivsclearfix{
         display: none;
     }
@@ -12,7 +10,7 @@
 
 <%=javascript_include_tag "patch/member_addrs"%>
 
-<%=form_for :addr, :url=>@action_url,:method=>@method, :html=>{ :class=> " form-horizontal" } do |f|%>
+<%=form_for :addr, :url=>@action_url,:method=>@method, :html=>{ :class=> "form " } do |f|%>
     <input type="hidden" id="addr_name" name="addr[id]"  value="<%=@addr.id%>" >
     <input type="hidden" name="way" value="<%=params[:way]%>">
     <input name="arrival_id" type="hidden" value="<%=@arrival_id%>" >
@@ -83,6 +81,20 @@
         </div>
       </div>
 
+        <!--<div class="controls" style="display:none">-->
+          <!--<select id="province" name="addr[province]">-->
+            <!--<option value="21" selected="selected">上海</option>-->
+          <!--</select>-->
+          <!--<select class="am-input-group-label" id="city" name="addr[city]">-->
+            <!--<option value="1" selected="selected">上海</option>-->
+          <!--</select>-->
+          <!--<select id="district" name="addr[district]" onchange="selectDistrict(this);">-->
+            <!--<option value="1" selected="selected">静安区</option>-->
+          <!--</select>-->
+        <!--</div>-->
+
+
+
 
         <div class="am-panel-hd">
           <label for="addr"><%=I18n.t "address"%></label>
@@ -108,13 +120,30 @@
       <div class="control-group">
         <div class="controls">
           <%if @method == :put%>
-              <input type="submit" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "modify"%>">
+              <input type="submit" id="sub" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "modify"%>">
               <%#=f.submit "修 改",:class=>"am-btn am-btn-warning am-btn-block" %>
           <%else%>
-              <input type="submit" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "confirm"%>">
+              <input type="submit" id="sub" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "confirm"%>">
               <%#=f.submit "确认收货地址",:class=>"am-btn am-btn-warning am-btn-block" %>
           <%end%>
         </div>
       </div>
     </div>
 <%end%>
+<script type="application/javascript">
+    $(document).ready(function(){
+        $("#sub").bind("click",function(){
+            if( $("#addr_name").val()=="" &&$("#addr_mobile").val()==""||$("#addr").val()=="") {
+                alert("请完善联系人信息")
+                return false;
+
+            }
+            else{
+                $(".form").submit()
+
+            }
+
+        })
+    })
+
+</script>

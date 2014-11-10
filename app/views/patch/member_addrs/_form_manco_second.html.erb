@@ -1,8 +1,6 @@
 
 <style type="text/css">
-    #province,#city,#district{
-        width: 30%;
-    }
+
     .change_lange{
         display: none;
     }
@@ -71,6 +69,17 @@
           <span class="help-inline error"></span>
         </div>
       </div>
+      <!--<div class="controls" style="display:none">-->
+        <!--<select id="province" name="addr[province]">-->
+          <!--<option value="21" selected="selected">上海</option>-->
+        <!--</select>-->
+        <!--<select class="am-input-group-label" id="city" name="addr[city]">-->
+          <!--<option value="1" selected="selected">上海</option>-->
+        <!--</select>-->
+        <!--<select id="district" name="addr[district]" onchange="selectDistrict(this);">-->
+          <!--<option value="1" selected="selected">静安区</option>-->
+        <!--</select>-->
+      <!--</div>-->
 
 
 
@@ -113,7 +122,7 @@
     $(document).ready(function(){
         $("#sub").bind("click",function(){
             if( $("#addr_name").val()=="" &&$("#addr_mobile").val()==""||$("#addr").val()=="") {
-                alert("请输入值")
+                alert("请完善联系人信息")
                 return false;
 
             }

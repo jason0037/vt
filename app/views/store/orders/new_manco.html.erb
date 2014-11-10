@@ -74,7 +74,7 @@
                 <div class="am-panel-bd">
                   <%if @user.advance>0 && @user.advance < @cart_total%>
                       <label class="radio active" style="margin-left: 40px;padding: 2px">
-                        <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>>
+                        <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>
                   <%end%>
 
                       <label class="radio active" style="margin-left: 40px;padding: 2px">
