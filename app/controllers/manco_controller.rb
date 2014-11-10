@@ -383,7 +383,8 @@ end
 
  def advance
    @supplier=Ecstore::Supplier.find(params[:supplier_id])
-   @advance_cart=Ecstore::MemberAdvance.find_by_member_id(params[:id])
+   @user=Ecstore::User.find(params[:user_id])
+   @advances = @user.member_advances.paginate(:page=>params[:page],:per_page=>10)
    render layout: @supplier.layout
 end
 

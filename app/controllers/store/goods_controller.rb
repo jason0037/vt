@@ -123,10 +123,38 @@ class Store::GoodsController < ApplicationController
 
 
   def list_goods
-     @supplier  =  Ecstore::Supplier.find(params[:supplier_id])
-     render :layout => @supplier.layout
+    @supplier = Ecstore::Supplier.find(params[:supplier_id])
+    @goods_zmq =  Ecstore::Good.where(:supplier_id=>"104")
+   @goods_tiegun=Ecstore::Good.where(:supplier_id=>"106")
+   @goods_cmcyz=Ecstore::Good.where(:supplier_id=>"105")
+  @goods_dmdm =Ecstore::Good.where(:supplier_id=>"108")
+    @recommend_user = session[:recommend_user]
 
-   end
+    if @recommend_user==nil &&  params[:wechatuser]
+      @recommend_user = params[:wechatuser]
+    end
+    if @recommend_user
+      member_id =-1
+      if signed_in?
+        member_id = @user.member_id
+      end
+      now  = Time.now.to_i
+      Ecstore::RecommendLog.new do |rl|
+        rl.wechat_id = @recommend_user
+        #  rl.goods_id = @good.goods_id
+        rl.member_id = member_id
+        rl.terminal_info = request.env['HTTP_USER_AGENT']
+        #   rl.remote_ip = request.remote_ip
+        rl.access_time = now
+      end.save
+      session[:recommend_user]=@recommend_user
+      session[:recommend_time] =now
+    end
+
+    render :layout=>@supplier.layout
+  end
+
+
 
  def mproduct
    if params[:id]=="78" ||params[:supplier_id]=="78"

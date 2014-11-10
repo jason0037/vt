@@ -46,7 +46,11 @@
     <span class="icon-arr"></span> </a>
 </div>
  <%if @supplier.id==(Ecstore::Supplier.find_by_name("万家物流").id)%>
-
+    <div class="am-panel am-panel-default">
+      <a href="/manco/advance?user_id=<%=@user.member_id%>&supplier_id=<%=@supplier.id%>">
+        <div class="am-panel-hd">我的预存款</div>
+        <span class="icon-arr"></span> </a>
+    </div>
 
     <div class="am-panel am-panel-default">
       <a href="/manco/show_carblack?id=<%=@user.member_id%>&supplier_id=<%=@supplier.id%>">
