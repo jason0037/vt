@@ -109,6 +109,7 @@ class MancoController < ApplicationController
   end
 
   def blackboardfind_e
+    @line_items.delete_all
     departure= params[:departure]
     arrival= params[:arrival]
     goodsname=departure+"-"+arrival;
@@ -286,6 +287,7 @@ end
   end
 
    def mancoluodipei
+     @line_items.delete_all
      departure= params[:departure]
      arrival= params[:arrival]
      distribution=params[:distribution]
@@ -359,7 +361,7 @@ end
    end
 
    def cart_goods ###万家预充值
-
+       @line_items.delete_all
        @supplier=Ecstore::Supplier.find(params[:supplier_id])
        @cart_name=Ecstore::Good.where(:cat_id=>"600")###万家物流充值卡cat_id＝588
         good_name= params[:cart_name]
