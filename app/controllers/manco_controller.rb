@@ -361,7 +361,7 @@ end
    def cart_goods ###万家预充值
 
        @supplier=Ecstore::Supplier.find(params[:supplier_id])
-       @cart_name=Ecstore::Good.where(:cat_id=>"588")###万家物流充值卡cat_id＝588
+       @cart_name=Ecstore::Good.where(:cat_id=>"600")###万家物流充值卡cat_id＝588
         good_name= params[:cart_name]
        if good_name
          @good=Ecstore::Good.find_by_name(good_name)
