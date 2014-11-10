@@ -8,6 +8,12 @@ module ModecPay
     @@partner_key  = 'fe699e8e82144ddba567bcfcf441ece0'
     @@partnerid ='1221177901'
 
+    @@appid_manco = 'wx6b00b26294111729'
+    @@mch_id_manco = '10016674'
+    @@partner_key_manco  = 'b97e61c87088d969b34534541ac98753'
+    @@partnerid_manco ='1220984601'
+
+
     @@sub_mch_id=''
     @@device_info=''
 
@@ -21,8 +27,7 @@ module ModecPay
       self.sorter = Proc.new { |key,val| key }
       self.filter = Proc.new { |key,val| key.present? }
 
-      self.fields['appid'] = @@appid
-      self.fields['mch_id'] = @@mch_id
+
      # self.fields['sub_mch_id'] = @@sub_mch_id
     #  self.fields['device_info']= @@device_info
 
@@ -66,6 +71,17 @@ module ModecPay
       self.fields['openid'] = val #微信用户号
     end
 
+    def supplier_id=(val)
+      self.fields['supplier_id']=val
+      if self.fields['supplier_id']==98
+        self.fields['appid'] = @@appid_manco
+        self.fields['mch_id'] = @@mch_id_manco
+      else
+        self.fields['appid'] = @@appid
+        self.fields['mch_id'] = @@mch_id
+      end
+    end
+
     def pay_id=(val)
       self.fields['out_trade_no'] = val #订单号 string(32)
     end
@@ -93,6 +109,12 @@ module ModecPay
 
     class <<  self
       def verify_sign(params)
+        if self.fields['supplier_id']==98
+          partner_key= @@partner_key_manco
+        else
+          partner_key = @@partner_key
+        end
+
         sign = params['sign']
 
         #	_sorted_hash = Hash.send :[],  params.select{ |key,val| val.present? && key != 'sign' && key != 'sign_type' }.sort_by{ |key,val|  key }
@@ -100,7 +122,7 @@ module ModecPay
         #unsign = _sorted_hash.collect do |key,val| 	"#{key}=#{val}" end.join("&") + @@private_key #self.private_key
 
         unsign_hash =Hash.send :[],  params.select{ |key,val| val.present? && key != 'sign' && key != 'sign_type' }
-        unsign = unsign_hash.collect do |key,val| 	"#{key}=#{val}" end.join("&") + "&key=#{@@partner_key}"
+        unsign = unsign_hash.collect do |key,val| 	"#{key}=#{val}" end.join("&") + "&key=#{partner_key}"
         Digest::MD5.hexdigest(unsign) == sign
       end
 
@@ -154,9 +176,14 @@ module ModecPay
     private
 
     def make_sign
+      if self.fields['supplier_id']==98
+        partner_key= @@partner_key_manco
+      else
+        partner_key = @@partner_key
+      end
       return '' if self.fields.blank?
       _sorted = Hash.send :[],  self.fields.select{ |key,val|  val.present? }.sort_by{ |key,val|  key }
-      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{@@partner_key}"
+      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{partner_key}"
       self.fields['sign']  = Digest::MD5.hexdigest(unsign).upcase
     end
 
@@ -168,6 +195,11 @@ module ModecPay
     end
 
     def make_pay_sign
+      if self.fields['supplier_id']==98
+        partner_key= @@partner_key_manco
+      else
+        partner_key = @@partner_key
+      end
       return '' if self.fields.blank?
       unsorted={"appId" => self.fields["appid"],
                 "nonceStr" => self.fields["nonce_str"],
@@ -176,7 +208,7 @@ module ModecPay
                 "signType" => self.fields['sign_type']
       }
       _sorted = Hash.send :[],  unsorted.select{ |key,val|  val.present? && key != 'sign_Type'}.sort_by{ |key,val|  key }
-      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{@@partner_key}"
+      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{partner_key}"
       self.fields['pay_sign'] = Digest::MD5.hexdigest(unsign).upcase
     end
 

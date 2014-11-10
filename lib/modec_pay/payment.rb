@@ -172,7 +172,7 @@ module ModecPay
 
 
                   if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-                    window.location ="/vshop/78/paynotifyurl?temp=solution&payment_id=#{self.fields['out_trade_no']}";
+                    window.location ="/vshop/#{self.fields['supplier_id']}/paynotifyurl?temp=solution&payment_id=#{self.fields['out_trade_no']}";
                   }
                     else{alert('支付未成功');
                   //  window.location ="/orders/mobile_show?id=20141003100859&supplier_id=97";
