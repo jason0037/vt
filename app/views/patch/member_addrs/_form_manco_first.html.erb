@@ -103,10 +103,10 @@
       <div class="control-group">
         <div class="controls">
           <%if @method == :put%>
-              <input type="submit" id="sub" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "modify"%>">
+              <input type="button" id="sub" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "modify"%>">
               <%#=f.submit "修 改",:class=>"am-btn am-btn-warning am-btn-block" %>
           <%else%>
-              <input type="submit" id="sub" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "confirm"%>">
+              <input type="button" id="sub" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "confirm"%>">
               <%#=f.submit "确认收货地址",:class=>"am-btn am-btn-warning am-btn-block" %>
           <%end%>
         </div>
