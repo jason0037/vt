@@ -27,6 +27,8 @@ module ModecPay
       self.sorter = Proc.new { |key,val| key }
       self.filter = Proc.new { |key,val| key.present? }
 
+      self.fields['appid'] = @@appid
+      self.fields['mch_id'] = @@mch_id
 
      # self.fields['sub_mch_id'] = @@sub_mch_id
     #  self.fields['device_info']= @@device_info
@@ -59,6 +61,15 @@ module ModecPay
    #   self.fields['return_url'] = val
    # end
 
+    def supplier_id=(val)
+      self.fields['supplier_id']=val
+
+      if self.fields['supplier_id']==98
+        self.fields['appid'] = @@appid_manco
+        self.fields['mch_id'] = @@mch_id_manco
+      end
+    end
+
     def spbill_create_ip=(val)
       self.fields['spbill_create_ip'] = val #订单生成的机器IP string(16)
     end
@@ -69,17 +80,6 @@ module ModecPay
 
     def openid=(val)
       self.fields['openid'] = val #微信用户号
-    end
-
-    def supplier_id=(val)
-      self.fields['supplier_id']=val
-      if self.fields['supplier_id']==98
-        self.fields['appid'] = @@appid_manco
-        self.fields['mch_id'] = @@mch_id_manco
-      else
-        self.fields['appid'] = @@appid
-        self.fields['mch_id'] = @@mch_id
-      end
     end
 
     def pay_id=(val)
@@ -121,7 +121,7 @@ module ModecPay
 
         #unsign = _sorted_hash.collect do |key,val| 	"#{key}=#{val}" end.join("&") + @@private_key #self.private_key
 
-        unsign_hash =Hash.send :[],  params.select{ |key,val| val.present? && key != 'sign' && key != 'sign_type' }
+        unsign_hash = Hash.send :[],  params.select{ |key,val| val.present? && key != 'sign' && key != 'sign_type' }
         unsign = unsign_hash.collect do |key,val| 	"#{key}=#{val}" end.join("&") + "&key=#{partner_key}"
         Digest::MD5.hexdigest(unsign) == sign
       end
