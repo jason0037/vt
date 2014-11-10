@@ -77,15 +77,7 @@
 
       <li >
         <a class="am-btn  am-btn-danger" id="showgood" href="###">
-				<span  class="am-icon-dashboard">
-				</span>
-
-        </a>
-      </li>
-
-      <li>
-        <a  class="am-btn  am-btn-danger" href="tel:<%=@supplier.tel%>">
-				<span class="am-icon-phone">
+				<span  class="">点我有惊喜
 				</span>
 
         </a>
@@ -128,12 +120,12 @@
     <ul style="clear: both" class="am-share-sns sm-block-grid-4">
       <li style="clear: both">
 
-        <a href="/mgallery?name=香肠&id=<%=@supplier.id%>"
-        >
+        <a href="/list_goods_one?supplier_id=<%=@supplier.id%>" >
+
           <i class="am-icon-star">
           </i>
 				<span>
-                  <%= I18n.t 'sausages' %>
+                  去世界美食
 
 				</span>
         </a>
@@ -141,33 +133,12 @@
 
 
       <li>
-        <a href="/mgallery?name=火腿&id=<%=@supplier.id%>"
+        <a href="/list_goods?supplier_id=<%=@supplier.id%>"
         >
           <i class="am-icon-star">
           </i>
 				<span>
-					<%= I18n.t 'hams' %>
-				</span>
-        </a>
-      </li>
-      <li>
-        <a href="/mgallery?name=培根&id=<%=@supplier.id%>"
-        >
-          <i class="am-icon-star">
-          </i>
-				<span>
-                   <%= I18n.t 'bacons' %>
-				</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="/mgallery?name=其它&id=<%=@supplier.id%>"
-        >
-          <i class="am-icon-star">
-          </i>
-				<span>
-					<%= I18n.t 'others' %>
+					 去名优特产
 				</span>
         </a>
       </li>
