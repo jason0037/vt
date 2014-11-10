@@ -315,6 +315,39 @@ class VshopController < ApplicationController
 
       @order = @payment.pay_bill.order
       @order.update_attributes(:pay_status=>'1')
+
+      @order.order_items.each do |order_item|
+          if  order_item.good.cat_id=="600"
+              member_id=order_item.member_id
+              @member = Ecstore::Member.find(member_id)
+               if @member.advance
+              advance=@member.advance+order_item.good.mktprice
+               else
+                 advance=order_item.good.mktprice
+               end
+
+              advances = @member.member_advances.order("log_id asc").last
+              if advances
+                shop_advance = advances.shop_advance
+              else
+                shop_advance =@member.advance
+              end
+              shop_advance += order_item.good.mktprice
+              @member.update_attribute(:advance,advance)
+              Ecstore::MemberAdvance.create(:member_id=>member_id,
+                                            :money=>order_item.good.mktprice,
+                                            :message=>"万家预充值:#{order_item.good.name}",
+                                            :mtime=>Time.now.to_i,
+                                            :memo=>"用户本人操作",
+                                            :import_money=>order_item.good.mktprice,
+                                            :explode_money=>0,
+                                            :member_advance=>(advance),
+                                            :shop_advance=>shop_advance,
+                                            :disabled=>'false')
+          end
+      end
+
+
       return redirect_to "/orders/mobile_show_order?id=#{@order.order_id}&supplier_id=#{params[:id]}"
     end
     #========================
