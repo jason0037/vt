@@ -87,10 +87,40 @@ class Store::GoodsController < ApplicationController
   end
 
   def list_goods_one
-    @supplier  =  Ecstore::Supplier.find(params[:supplier_id])
-    render :layout => @supplier.layout
+    @goods =  Ecstore::Good.where(:supplier_id=>"77")
+    if params[:cat_id]
+      @goods =  Ecstore::Good.where(:supplier_id=>"77",:cat_id=>params[:cat_id])
+    end
+    @supplier = Ecstore::Supplier.find(params[:supplier_id])
+    @goods_tigun=Ecstore::Good.where(:supplier_id=>"106")
+    @goods_caiyuan=Ecstore::Good.where(:supplier_id=>"105")
+    @recommend_user = session[:recommend_user]
 
+    if @recommend_user==nil &&  params[:wechatuser]
+      @recommend_user = params[:wechatuser]
+    end
+    if @recommend_user
+      member_id =-1
+      if signed_in?
+        member_id = @user.member_id
+      end
+      now  = Time.now.to_i
+      Ecstore::RecommendLog.new do |rl|
+        rl.wechat_id = @recommend_user
+        #  rl.goods_id = @good.goods_id
+        rl.member_id = member_id
+        rl.terminal_info = request.env['HTTP_USER_AGENT']
+        #   rl.remote_ip = request.remote_ip
+        rl.access_time = now
+      end.save
+      session[:recommend_user]=@recommend_user
+      session[:recommend_time] =now
+    end
+
+    render :layout=>@supplier.layout
   end
+
+
 
   def list_goods
      @supplier  =  Ecstore::Supplier.find(params[:supplier_id])
