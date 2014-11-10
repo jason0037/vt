@@ -14,7 +14,7 @@
     <th>电话</th>
     <th>url</th>
     <th>状态</th>
-
+    <th>类型</th>
     <th>操作</th>
   </tr>
 
@@ -28,6 +28,7 @@
     <td><%=supplier.tel%></td>
     <td><%=supplier.url%></td>
     <td> <%= link_to '修改', "/admin/suppliers/update_state?supplier_id=#{supplier.id}&user_id=#{supplier.member_id}"%></td>
+    <td><%=@account.account_type if @ac%></td>
 
     <td>
         <%= link_to '编辑', edit_admin_supplier_path(supplier) %>

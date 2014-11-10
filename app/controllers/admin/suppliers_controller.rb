@@ -4,6 +4,7 @@ class Admin::SuppliersController < ApplicationController
 
 	def index
 		@suppliers = Ecstore::Supplier.paginate(:page => params[:page], :per_page => 20).order("status DESC,created_at DESC")
+    @account=Ecstore::Account.find(2495)
 	end
 
 
