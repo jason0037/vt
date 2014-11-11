@@ -8,7 +8,7 @@
 </style>
 
 
-<%=javascript_include_tag "patch/member_addrs"%>
+
 
 <%=form_for :addr, :url=>@action_url,:method=>@method, :html=>{ :class=> "form " } do |f|%>
     <input type="hidden" id="addr_name" name="addr[id]"  value="<%=@addr.id%>" >
@@ -61,37 +61,18 @@
           <br/>
 
 
-                 <div class="am-panel-hd">
-          <label for="addr_area">地区</label>
-          <%#=f.label :area, "收货：".html_safe%></div>
-        <div class="am-panel-bd">
-          <%=f.select :province,Ecstore::Region.provinces.collect{|p| [p.local_name,p.region_id] },{:include_blank=>"省" },{ :onchange=>"selectProvince(this,'#city','#district');",:id=>"province" }%>
-          <%if @addr&&@addr.city%>
-              <%=f.select :city,Ecstore::Region.cities_of(@addr.province).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"市"},{ :onchange=>"selectCity(this,'#district');",:id=>"city" }%>
-          <%else%>
-              <%=f.select :city, {}, { :include_blank=>"市" }, { :onchange=>"selectCity(this,'#district');",:id=>"city" }%>
-          <%end%>
 
-          <%unless @addr&&@addr.new_record?%>
-              <%=f.select :district,Ecstore::Region.districts_of(@addr&&@addr.city).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"/县" },{ :onchange=>"selectDistrict(this);",:id=>"district",:style=>"#{'display:none;' if @addr.district.blank? }" } %>
-          <%else%>
-              <%=f.select :district, {}, { :include_blank=>"区/县" }, { :onchange=>"selectDistrict(this);",:id=>"district" }%>
-          <%end%>
-          <span class="help-inline error"></span>
+        <div class="controls" style="display:none">
+          <select id="province" name="addr[province]">
+            <option value="21" selected="selected">上海</option>
+          </select>
+          <select class="am-input-group-label" id="city" name="addr[city]">
+            <option value="1" selected="selected">上海</option>
+          </select>
+          <select id="district" name="addr[district]" onchange="selectDistrict(this);">
+            <option value="1" selected="selected">静安区</option>
+          </select>
         </div>
-      </div>
-
-        <!--<div class="controls" style="display:none">-->
-          <!--<select id="province" name="addr[province]">-->
-            <!--<option value="21" selected="selected">上海</option>-->
-          <!--</select>-->
-          <!--<select class="am-input-group-label" id="city" name="addr[city]">-->
-            <!--<option value="1" selected="selected">上海</option>-->
-          <!--</select>-->
-          <!--<select id="district" name="addr[district]" onchange="selectDistrict(this);">-->
-            <!--<option value="1" selected="selected">静安区</option>-->
-          <!--</select>-->
-        <!--</div>-->
 
 
 

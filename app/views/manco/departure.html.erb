@@ -4,14 +4,10 @@
         text-align: center;
         padding: 10px;
     }
-    #ahref{
-        font-size: 20px;
-        color: red;
-
-
-    }
 
 </style>
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
 <header id="am-topbar am-topbar-inverse">
 
   <div class="am-panel am-panel-primary">
@@ -22,63 +18,77 @@
         <%end%>
   </div>
 </header>
-<div class="href">
-  <a id="ahref" href="/manco/departure_new?supplier_id=98&way=<%=@way%>">新增
-    <%if @way =="departure"%>
-        寄货人地址
-    <%elsif @way =="arrival"%>
-       收货人地址
-    <%end%>
-  </a>
-</div>
+
 <form action="departure_edit" class="am-form" method="post">
-  <table class="am-table am-table-striped am-table-hover">
-    <input type="hidden" name="supplier_id" value="<%=@supplier.id%>"/>
-    <input type="hidden" name="way" value="<%=@way%>"/>
-    <tr>
-      <td>&nbsp;</td>
-      <td >姓名</td>
-      <td >手机</td>
-      <td >联系电话</td>
-      <td>删除</td>
-    </tr>
-    <%if @addrs.size>0%>
+
+  <input type="hidden" name="supplier_id"value="<%=@supplier.id%>">
+  <input type="hidden" name="way" value="<%=@way%>"/>
+
+
+  <ul class="am-list am-list-striped ">
+
+    <%if @def_addrs.size>0%>
         <%@def_addrs.each do |def_addr|%>
-            <tr>
-              <td><%=radio_button_tag "member_departure_id",def_addr.addr_id ,:checked=>true%></td>
-              <td ><%=def_addr.name%></td>
-              <td ><%=def_addr.mobile%></td>
-              <td ><%=def_addr.addr%></td>
-              <td><input type="button"   data-url="/orders/destroyaddr" value="删除" class="am-btn am-btn-primary delete "></td>
+            <li style="padding: 15px" class="li_addr">
+              <%=radio_button_tag "member_departure_id",def_addr.addr_id ,:checked=>true ,:class=>"am-badge-danger"%>
+              <span >&nbsp;&nbsp;<%=def_addr.name%>  <span  style="margin-left: 30px"> <%=def_addr.mobile%></span></span>
+              <br/>
 
-            </tr>
+              <span >&nbsp;&nbsp;<%=def_addr.addr%></span>
+              <span class="am-badge am-badge-danger delete" style="cursor:pointer " data-confirm="确定要删除吗？"data-method="delete" >删除</span>
 
+            </li>
+
+            <input type="submit" class="am-btn am-btn-primary am-btn-block"  value="修改" >
         <% end %>
+    <%else%>
+        <a id="ahref" class="am-btn am-btn-primary am-btn-block" href="/manco/departure_new?supplier_id=98&way=<%=@way%>">新增
+          <%if @way =="departure"%>
+              寄货人地址
+          <%elsif @way =="arrival"%>
+              收货人地址
+          <%end%> </a>
     <%end%>
+  </ul>
 
 
-  </table>
-  <input type="submit" class="am-btn am-btn-primary " style="width: 100%" value="修改" >
+
+
+
+
+
+
+
+
+
+
+
 </form>
 <br/>
 <br/>
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
+
 <script type="application/javascript">
     $(document).ready(function(){
         $(".delete").bind("click",function(){
-            var addr_idsss=   $(this).parent("td").siblings("td").eq(0).children("input[type='radio']").val();
+            var addr_idsss=   $(this).parent("li").children("input[type='radio']").val();
             var thisTr =  $(this);
             $.ajax( {
-                url: "/orders/destroyaddr",
+                url: "/orders/destroyaddr?supplier_id=#{<%@supplier.id%>}",
                 type: "post",
                 data:{addr_idsss:addr_idsss },
                 success:function(res){
-                    thisTr.parents("td").parents("tr").remove();
+
+                    thisTr.parents("li").remove();
+
                 }
             });
 
         })
+        $(".li_addr").bind("click",function(){
+            $(this).children("input[type='radio']").attr("checked",'true');
 
+        })
 
     })
 
