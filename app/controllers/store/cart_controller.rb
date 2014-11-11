@@ -183,57 +183,7 @@ login_name=Ecstore::Account.find(account_id)
      render :layout => @supplier.layout
    end
 
-   def manco_add        ###小黑板的购物
-     suppliers_id=params[:product][:suppliers_id]
-     specs = params[:product].delete(:specs)
-     customs = params[:product].delete(:customs)
-     quantity = params[:product].delete(:quantity).to_i
-     if quantity.blank? || quantity ==0
-       quantity=1
-     end
-     goods_id = params[:product][:goods_id]
 
-     @good=Ecstore::Good.find(goods_id)
-     @product = @good.products.first
-#
-     if signed_in?
-       member_id = @user.member_id
-       member_ident = Digest::MD5.hexdigest(@user.member_id.to_s)
-     else
-       member_id = -1
-       member_ident = @m_id
-     end
-
-     @cart = Ecstore::Cart.where(:obj_ident=>"goods_#{goods_id}_#{@product.product_id}",
-                                 :member_ident=>member_ident).first_or_initialize do |cart|
-       cart.obj_type = "goods"
-       cart.quantity = quantity
-       cart.time = Time.now.to_i
-       cart.member_id = member_id
-     end
-
-     if @cart.new_record?
-       @cart.save
-     else
-       Ecstore::Cart.where(:obj_ident=>@cart.obj_ident,:member_ident=>member_ident).update_all(:quantity=>@cart.quantity+quantity)
-       @cart.quantity = (@cart.quantity+1)
-     end
-
-
-
-     find_cart!
-     if params[:platform]=='manco'
-       redirect_to "/cart/manco_black_buy?supplier_id=#{suppliers_id}"
-     else
-       render "manco"
-     end
-   end
-
-   def manco_black_buy
-      @supplier=Ecstore::Supplier.find(params[:supplier_id])
-     render :layout => @supplier.layout
-
-  end
 
   def tairyo_add
 
