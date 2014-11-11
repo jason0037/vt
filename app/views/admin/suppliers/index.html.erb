@@ -6,7 +6,7 @@
 
 <table class="table table-bordered table-hover">
   <tr>
-    <th>修改权限(shopadmin->member)</th>
+    <!--<th>修改权限(shopadmin->member)</th>-->
     <th>名字</th>
     <th>logo</th>
     <th>UserID</th>
@@ -21,7 +21,7 @@
 
 <% @suppliers.each do |supplier| %>
   <tr>
-    <td> <%= link_to '修改', "/admin/suppliers/update_state?supplier_id=#{supplier.id}&user_id=#{supplier.member_id}"%></td>
+    <!--<td > <%#= link_to '修改', "/admin/suppliers/update_state?supplier_id=#{supplier.id}&user_id=#{supplier.member_id}"%></td>-->
 
     <td><%=supplier.name%></td>
     <td><img src="<%=supplier.logo%>" style="width:200px"></td>

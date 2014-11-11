@@ -18,7 +18,12 @@
         <%end%>
   </div>
 </header>
-
+<a id="ahref" class="am-btn am-btn-primary am-btn-block" href="/manco/departure_new?supplier_id=98&way=<%=@way%>">新增
+  <%if @way =="departure"%>
+      寄货人地址
+  <%elsif @way =="arrival"%>
+      收货人地址
+  <%end%> </a>
 <form action="departure_edit" class="am-form" method="post">
 
   <input type="hidden" name="supplier_id"value="<%=@supplier.id%>">
@@ -39,8 +44,9 @@
 
             </li>
 
-            <input type="submit" class="am-btn am-btn-primary am-btn-block"  value="修改" >
+
         <% end %>
+        <input type="submit" class="am-btn am-btn-primary am-btn-block"  value="修改" >
     <%else%>
         <a id="ahref" class="am-btn am-btn-primary am-btn-block" href="/manco/departure_new?supplier_id=98&way=<%=@way%>">新增
           <%if @way =="departure"%>
@@ -73,13 +79,15 @@
         $(".delete").bind("click",function(){
             var addr_idsss=   $(this).parent("li").children("input[type='radio']").val();
             var thisTr =  $(this);
+
             $.ajax( {
                 url: "/orders/destroyaddr?supplier_id=#{<%@supplier.id%>}",
                 type: "post",
                 data:{addr_idsss:addr_idsss },
                 success:function(res){
 
-                    thisTr.parents("li").remove();
+                 thisTr.parents("li").remove();
+
 
                 }
             });
