@@ -5,7 +5,7 @@ require 'nokogiri'
 require 'open-uri'
 class MancoController < ApplicationController
 
-
+  layout "manco"
   def index
 
   end
