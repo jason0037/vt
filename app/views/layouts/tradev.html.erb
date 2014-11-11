@@ -80,7 +80,7 @@
     <ul class="am-navbar-nav am-cf sm-block-grid-4" style="color: #ffffff">
 
       <li >
-        <a class="am-btn  " id="showgood" href="###">
+        <a  id="showgood" href="###">
 				<span  class="">点我惊喜
 				</span>
 
@@ -88,7 +88,7 @@
       </li>
 
       <li >
-        <a  class="am-btn  " href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot"">
+        <a   href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot"">
 				<span class="am-icon-user">
 				</span>
 
@@ -101,7 +101,7 @@
         </a>
       </li>
       <li class="am-navbar-labels am-navbar-more " >
-         <a class="am-btn  " id="showall" >
+         <a  id="showall" >
                <%if  I18n.locale.to_s=="zh_cn"%>
             <span id="lange" class="am-navbar-label">English</span>
            <%elsif  I18n.locale.to_s =="en"%>
@@ -124,9 +124,9 @@
     <ul style="clear: both" class="am-share-sns sm-block-grid-2">
       <li style="clear: both">
 
-        <a href="/list_goods_one?supplier_id=<%=@supplier.id%>" >
+        <a href="/world_food?supplier_id=<%=@supplier.id%>" >
 
-          <i class="am-icon-star">
+          <i class="am-icon-hand-o-right">
           </i>
 				<span>
                   去世界美食
@@ -137,9 +137,8 @@
 
 
       <li>
-        <a href="/list_goods?supplier_id=<%=@supplier.id%>"
-        >
-          <i class="am-icon-star">
+        <a href="/quality_products?supplier_id=<%=@supplier.id%>">
+          <i class="am-icon-hand-o-right">
           </i>
 				<span>
 					 去名优特产
@@ -313,9 +312,8 @@
     wechatShare(data);
 </script>
 <%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>
-<%#= javascript_include_tag "mobile/jquery.vs.mobile-1.0.0.min" %>
-<%= javascript_include_tag "mobile/jquery.vs.mars_wap" %>
-<script src="/assets/mobile/sm.js" type="text/javascript" charset="utf-8"></script>
+
+
 <script type="text/javascript">
     var _smq = _smq || [];
     _smq.push(['_setAccount', '63e2363', new Date()]);

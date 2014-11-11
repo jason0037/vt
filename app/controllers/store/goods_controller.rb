@@ -86,14 +86,13 @@ class Store::GoodsController < ApplicationController
 
   end
 
-  def list_goods_one
+  def world_food
     @goods =  Ecstore::Good.where(:supplier_id=>"77")
     if params[:cat_id]
       @goods =  Ecstore::Good.where(:supplier_id=>"77",:cat_id=>params[:cat_id])
     end
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
-    @goods_tigun=Ecstore::Good.where(:supplier_id=>"106")
-    @goods_caiyuan=Ecstore::Good.where(:supplier_id=>"105")
+
     @recommend_user = session[:recommend_user]
 
     if @recommend_user==nil &&  params[:wechatuser]
@@ -122,7 +121,7 @@ class Store::GoodsController < ApplicationController
 
 
 
-  def list_goods
+  def quality_products
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
     @goods_zmq =  Ecstore::Good.where(:supplier_id=>"104")
    @goods_tiegun=Ecstore::Good.where(:supplier_id=>"106")

@@ -498,8 +498,8 @@ end
   scope :module => "store" do
 
     get 'search' => "search#index", :as=> :search
-    get 'list_goods' =>"goods#list_goods", :as=>"goods" ,:controller=>"goods"
-    get 'list_goods_one' =>"goods#list_goods_one", :as=>"goods" ,:controller=>"goods"
+    get 'quality_products' =>"goods#quality_products", :as=>"goods" ,:controller=>"goods"
+    get 'world_food' =>"goods#world_food", :as=>"goods" ,:controller=>"goods"
     get 'mproducts' =>"goods#mproduct", :as=>"goods" ,:controller=>"goods"
     post '/goods/manco_cart'=>"goods#manco_cart",  :controller=>"goods"
     get 'show_goodblack' =>  "goods#show_goodblack",  :as=>"goods" ,:controller=>"goods"   ###货源信息
