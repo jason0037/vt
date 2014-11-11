@@ -25,8 +25,8 @@ class MancoController < ApplicationController
 
   @supplier =Ecstore::Supplier.find(supplier_id)
     else
-    return_url={:return_url => "/manco/find_manco?supplier_id=#{supplier_id}"}.to_query
-    redirect_to "/auto_login?#{return_url}&id=#{supplier_id}"
+
+    redirect_to "/auto_login?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/find_manco?supplier_id=#{supplier_id}"
     end
 
   end
@@ -70,8 +70,9 @@ class MancoController < ApplicationController
                                 :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
       @good =@good.where("downtime>UNIX_TIMESTAMP(now()) ")
    else
-     return_url={:return_url => "/manco/black_good_index?supplier_id=#{supplier_id}"}.to_query
-     redirect_to "/auto_login?#{return_url}&id=#{supplier_id}"
+
+
+     redirect_to "/auto_login?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/black_good_index?supplier_id=#{supplier_id}"
    end
  end
 
@@ -128,8 +129,8 @@ class MancoController < ApplicationController
     supplier_id=params[:supplier_id]
     @supplier = Ecstore::Supplier.find(supplier_id)
     else
-      return_url={:return_url => "/manco/main?supplier_id=#{supplier_id}"}.to_query
-      redirect_to "/auto_login?#{return_url}&id=#{supplier_id}"
+
+      redirect_to "/auto_login?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/main?supplier_id=#{supplier_id}"
     end
   end
 
@@ -144,8 +145,9 @@ class MancoController < ApplicationController
   supplier_id=params[:supplier_id]
    @supplier = Ecstore::Supplier.find(supplier_id)
  else
-   return_url={:return_url => "/manco/express?supplier_id=#{supplier_id}"}.to_query
-   redirect_to "/auto_login?#{return_url}&id=#{supplier_id}"
+
+   redirect_to "/auto_login?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/express?supplier_id=#{supplier_id}"
+
  end
   end
 
@@ -166,8 +168,8 @@ class MancoController < ApplicationController
 
     end
     else
-      return_url={:return_url => "/manco/follow?supplier_id=#{supplier_id}"}.to_query
-      redirect_to "/auto_login?#{return_url}&id=#{supplier_id}"
+      return_url={:return_url => "/manco/follow?supplier_id=#{@supplier_id}"}.to_query
+      redirect_to "/auto_login?#{return_url}&id=#{@supplier_id}"
       end
   end
   def new

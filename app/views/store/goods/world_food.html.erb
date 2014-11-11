@@ -3,9 +3,11 @@
     .am-btn-catid{
         font-size: 15px;
       margin-left: 30px;
-
+       color: #ffffff;
     }
-
+  .line_a{
+      background-color: #ff0000;
+  }
 
 </style>
 
@@ -17,7 +19,7 @@
 
     <div class="am-panel-hd" style="background-color: #FF8000;"> <span style="font-size: 20px; text-align: center">德国香肠</span><br>
 
-      <a class=" am-btn-catid " href="/world_food?supplier_id=<%=@supplier.id%>&cat_id=<%=Ecstore::GoodCat.find_by_cat_name("香肠").cat_id%>">|&nbsp;香肠</a>
+      <a class=" am-btn-catid  " href="/world_food?supplier_id=<%=@supplier.id%>&cat_id=<%=Ecstore::GoodCat.find_by_cat_name("香肠").cat_id%>">|&nbsp;香肠</a>
       <a class="am-btn-catid " href="/world_food?supplier_id=<%=@supplier.id%>&cat_id=<%=Ecstore::GoodCat.find_by_cat_name("火腿").cat_id%>">|&nbsp;火腿</a>
       <a class="am-btn-catid" href="/world_food?supplier_id=<%=@supplier.id%>&cat_id=<%=Ecstore::GoodCat.find_by_cat_name("培根").cat_id%>">|&nbsp;培根</a>
   <a class="am-btn-catid" href="/world_food?supplier_id=<%=@supplier.id%>&cat_id=<%=Ecstore::GoodCat.find_by_cat_name("其它").cat_id%>">|&nbsp;其它</a></div>
@@ -33,7 +35,7 @@
            <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
            </div>
               <div class="am-col col-sm-8 am-list-main">
-                <span class="am-list-item-hd">
+                <span class="am-list-item-hd" style="font-size: 10px">
                   <%=good.name%>
                 </span>
                 <div class="am-list-item-text"> <strong class="" style="color: red;font-size: 16px ;float: right" >¥<%=good.price%> &nbsp;</strong>   </div>
@@ -45,3 +47,10 @@
       <%end%>
     </ul>
   </div>
+  <script>
+    $(".am-btn-catid").bind("click",function(){
+        $(this).addClass("line_a") ;
+    })
+
+
+  </script>
