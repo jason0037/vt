@@ -99,7 +99,8 @@ end
     post 'creat_addr',:on=>:collection
     get 'cart_goods',:on=>:collection
     get 'advance',:on=>:collection
-
+    get 'choose_express',:on=>:collection
+    get 'local_express',:on=>:collection
   end
 
 

@@ -77,7 +77,7 @@
   <div class="am-offcanvas" id="doc-oc-demo2">
     <div class=" am-offcanvas-bar am-offcanvas-bar-overlay am-offcanvas-bar-active">
       <ul class="am-nav am-menu-nav" style="color:red;">
-        <li class="am-parent"><a  style="color:red"><%=@supplier.name%>微商城</a></li>
+        <li class="am-parent am-active"><a  style="color:red"><%=@supplier.name%>微商城</a></li>
         <li class="am-nav-header">目录</li>
         <li class="am-menu-nav-channelt">  <a href="/vshop/<%=@supplier.id%>">首页</a> </li>
         <li class="am-menu-nav-channelt"> <a href="/manco/history?supplier_id=<%=@supplier.id%>">万家历史</a></li>
@@ -96,6 +96,16 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
 <div class="bottomdivsclearfix">
 
   <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout"
@@ -103,21 +113,9 @@
     <ul class="am-navbar-nav am-cf sm-block-grid-4">
 
       <li>
-        <a class="am-btn  am-btn-primary" id ="fuwu">
-				<span class="">万家服务
-				</span>
-
-        </a>
+        <a class="am-btn  am-btn-primary"  data-am-modal="{target: '#mancoserver'}">万家服务</a>
       </li>
-      <li>
-        <a class="am-btn  am-btn-primary" href="tel:021-56065566">
-				<span class="am-icon-phone">
-				</span>
-
-        </a>
-      </li>
-
-      <li >
+       <li >
         <a class="am-btn  am-btn-primary" href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot"">
 				<span class="am-icon-user">
 				</span>
@@ -132,12 +130,11 @@
 </div>
 
 
-  <div class="am-share am-modal-actions am-modal-active" id="aaa"
-       style="margin-top: -138px;display: none">
-
-    <ul  class="am-share-sns sm-block-grid-1">
+<div class="am-modal-actions" id="mancoserver">
+  <div class="am-modal-actions-group">
+    <ul class="am-list">
       <li >
-      <a class="am-btn  am-btn-primary" href="/manco/express?supplier_id=98"><span>落地配服务</span> </a>
+        <a class="am-btn  am-btn-primary" href="/manco/choose_express?supplier_id=98"><span>落地配服务</span> </a>
       </li>
 
 
@@ -151,15 +148,16 @@
       <li >
         <a class="am-btn  am-btn-primary" href="/manco/black_index?supplier_id=98"><span>车源小黑板</span> </a>
       </li>
-     </ul>
-    <div class="am-share-footer">
-      <button class="am-btn am-btn-default am-btn-block" data-am-share-close="">
-        关闭
-      </button>
-    </div>
+    </ul>
   </div>
+   </div>
 
-<br/>
+
+
+
+
+
+
 
 
 
@@ -247,8 +245,7 @@
     wechatShare(data);
 </script>
 
-<%= javascript_include_tag "mobile/jquery.vs.mars_wap" %>
-<script src="/assets/mobile/sm.js" type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript">
     var _smq = _smq || [];
     _smq.push(['_setAccount', '63e2363', new Date()]);
@@ -267,12 +264,7 @@
             (dom.index > 0 && dom.index < 31) && _smq.push(['pageview','/brandlist', dom.index.toString()]);
         })
     })
-       $(document).ready(function(){
 
-           $("#fuwu").click(function(){
-               $("#aaa").toggle();
-           })
-       })
 
 </script>
 

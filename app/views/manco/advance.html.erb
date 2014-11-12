@@ -12,7 +12,7 @@
 
       <%@advances.each  do |advance|%>
           <tr>
-            <td style="width: 20%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><%=advance.logged_at%>sssssssssssssss</td>
+            <td style="width: 20%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><%=advance.logged_at%></td>
             <td><%=advance.message%></td>
             <td>&yen;<%=advance.import_money.to_i%></td>
             <td>&yen;<%=advance.explode_money.to_i%></td>

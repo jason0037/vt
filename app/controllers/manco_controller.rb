@@ -139,9 +139,34 @@ class MancoController < ApplicationController
     @supplier = Ecstore::Supplier.find(supplier_id)
   end
 
+  def choose_express
+    if @user
+      @line_items.delete_all ###落地配服务
+      supplier_id=params[:supplier_id]
+      @supplier = Ecstore::Supplier.find(supplier_id)
+    else
+
+      redirect_to "/auto_login?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/express?supplier_id=#{supplier_id}"
+
+    end
+  end
+
+  def local_express
+    if @user
+      @line_items.delete_all ###本地落地配服务
+      supplier_id=params[:supplier_id]
+      @supplier = Ecstore::Supplier.find(supplier_id)
+    else
+
+      redirect_to "/auto_login?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/express?supplier_id=#{supplier_id}"
+
+    end
+  end
+
+
  def express
    if @user
-   @line_items.delete_all ###落地配服务
+   @line_items.delete_all ###同业落地配服务
   supplier_id=params[:supplier_id]
    @supplier = Ecstore::Supplier.find(supplier_id)
  else

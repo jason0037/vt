@@ -25,15 +25,27 @@
       <div >
         <span class="span"> &nbsp; &nbsp; 订单编号:</span> <span style="float: right">  <%=@order.order_id%> &nbsp; &nbsp;    </span>
       </div>
-
-
+        <% if order_item.good.cat_id==Ecstore::GoodCat.find_by_cat_name("万家预充值卡").cat_id%>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+          <div >
+            <span class="span"> &nbsp; &nbsp; 充值卡:</span> <span style="float: right">  <%= order_item.name%> &nbsp; &nbsp;    </span>
+          </div>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+          <div >
+            <span class="span"> &nbsp; &nbsp; 充值金额:</span> <span style="float: right"> &yen; <%= format('%.2f',order_item.price * order_item.nums) if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%> &nbsp; &nbsp;    </span>
+          </div>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+          <div >
+            <span class="span"> &nbsp; &nbsp; 实际充值:</span> <span style="float: right"> &yen; <%=order_item.good.mktprice%>&nbsp; &nbsp;    </span>
+          </div>
+             <%else%>
       <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
       <div >
         <span class="span"> &nbsp; &nbsp; 路线:</span> <span style="float: right">  <%= order_item.name%> &nbsp; &nbsp;    </span>
       </div>
       <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
       <div class="">
-        <span class="span"> &nbsp; &nbsp;物品重量：</span>     <span style="float: right">   <%=order_item.nums.to_i%>kg &nbsp; &nbsp;    </span>
+        <span class="span"> &nbsp; &nbsp;折算重量：</span>     <span style="float: right">   <%=order_item.nums.to_i%>kg &nbsp; &nbsp;    </span>
       </div>
       <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
       <div >
@@ -70,6 +82,7 @@
       <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
   <%end%>
 
+  <%end%>
 
 
 
