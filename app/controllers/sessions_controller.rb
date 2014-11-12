@@ -83,8 +83,10 @@ class SessionsController < ApplicationController
   	  @account = Ecstore::Account.user_authenticate_mobile(params[:session][:username],params[:session][:password],@supplier_id)
     elsif @platform == 'vshop'
       @account = Ecstore::Account.admin_authenticate(params[:session][:username],params[:session][:password])
+    else
+      @account = Ecstore::Account.user_authenticate(params[:session][:username],params[:session][:password])
     end
-      if @account
+    if @account
   		sign_in(@account,params[:remember_me])
              #update cart
              # @line_items.update_all(:member_id=>@account.account_id,
