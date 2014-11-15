@@ -38,8 +38,24 @@
           <div >
             <span class="span"> &nbsp; &nbsp; 实际充值:</span> <span style="float: right"> &yen; <%=order_item.good.mktprice%>&nbsp; &nbsp;    </span>
           </div>
-             <%else%>
-      <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+             <%elsif order_item.good.cat_id==Ecstore::GoodCat.find_by_cat_name("本地门对门").cat_id ||order_item.good.cat_id==Ecstore::GoodCat.find_by_cat_name("本地自提").cat_id%>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+          <div >
+            <span class="span"> &nbsp; &nbsp; 路线:</span> <span style="float: right">  <%= order_item.name%> &nbsp; &nbsp;    </span>
+          </div>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+          <div class="">
+            <span class="span"> &nbsp; &nbsp;折算重量：</span>     <span style="float: right">   <%=order_item.nums.to_i%>kg &nbsp; &nbsp;    </span>
+          </div>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+          <div >
+            <span class="span"> &nbsp; &nbsp;重量*单价为：</span>       <span style="float: right">    &yen; <%= format('%.2f',order_item.price * order_item.nums) if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
+            &nbsp; &nbsp;            </span>
+          </div>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+
+          <%else%>
+
       <div >
         <span class="span"> &nbsp; &nbsp; 路线:</span> <span style="float: right">  <%= order_item.name%> &nbsp; &nbsp;    </span>
       </div>
@@ -82,6 +98,15 @@
       <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
   <%end%>
 
+      <%if (order_item.price * order_item.nums).to_f <= (order_item.good.wholesale)%>
+          <div >
+           <span style="color: #ff0000;margin-left: 15px">当前货物运输价未达到最低送货价，最低20元/票</span>
+
+          </div>
+
+      <%end%>
+
+
   <%end%>
 
 
@@ -104,6 +129,8 @@
               <%end%> &nbsp; &nbsp;     </span>
 
     </div>
+
+
   <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
   <div >
     <span class="span"> &nbsp; &nbsp;订单总金额：</span> <span style="float: right" >  <%= format('%.2f',@order.total_amount)%> &nbsp; &nbsp;     </span>

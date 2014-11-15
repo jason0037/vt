@@ -2,42 +2,41 @@
 
 
 <div class="head-info" >
-  <img src="/assets/manco/logo.jpg" alt="..." class="am-img-circle">
-  <span>同业供配</span>
+  <img src="/assets/manco/logo.jpg" alt="logo" class="am-img-circle">
+  <span>本地派送</span>
 </div>
 
 <form method="post" id="form_first" class="am-form am-form-group ">
-  <span class="am-badge am-badge-primary" >请输入准确的信息:</span>
-  <div  id="notice" style="color: red">
-  </div>
-  <div class="am-input-group am-input-group-lg">
-    <span class="am-input-group-label">请选择城市</span>
-    <input type="text" name="departure" class="am-form-field floatright" placeholder="请输入城市:" id="departure" value="">
-    <div id='suggest' class="am-input-group-lg"></div>
-  </div>
-
-  <br/>
+  <span class="am-badge am-badge-primary" >派送方式:</span>
 
 
 
-  <br/>  <div class="am-input-group am-input-group-lg">
-  <span class="am-input-group-label">派送方式&nbsp;&nbsp;</span>
-</div>
 
-  <div class="am-input-group am-input-group-lg">
-    <label class="am-input-group-label" >
-      <input type="radio"  name="distribution" value="586">门对门
-    </label>
-    <label class="am-input-group-label"  >
-      <input type="radio"  name="distribution" value="587">自提
-    </label>
 
-  </div>
+  <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+  <ul class="am-navbar-nav am-cf sm-block-grid-2">
 
-  <br>
+    <li class=" am-btn am-btn-primary am-btn-block am-animation-slide-left">
+
+      <input  type="radio"  name="distribution" value="l_door">门对门
+    </li>
+    <li class=" am-btn am-btn-secondary am-btn-block am-animation-slide-right" style="margin-top: 0px">
+
+      <input type="radio"  name="distribution" value="l_self">自提
+    </li>
+
+
+
+  </ul>
+
+
+
+
+
+  <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
 
   <div class="am-cf">
-    <input type="button" id="serach" data-url="/manco" name="" value="下一步" class="am-btn am-btn-primary am-btn-block ">
+    <input type="button" id="serach" data-url="/manco/l_express"  value="下一步" class="am-btn am-btn-primary am-btn-block ">
 
   </div>
 
@@ -48,14 +47,10 @@
     <%=hidden_field_tag :cat_id%>
     <%=f.hidden_field :goods_id%>
     <%=hidden_field_tag "product[specs][]"%>
-    <%=hidden_field_tag :platform%>
+    <%=hidden_field_tag :platform,"manco_local"%>
     <%=hidden_field_tag :supplier_id, @supplier.id%>
-    <%=hidden_field_tag :mancoweight %>
-    <div class="am-input-group am-input-group-lg" >
-      <span class="am-input-group-label" >线路</span>
-      <span class="am-input-group-label" id="good_name"></span>
-    </div>
-    </br>
+    <%=hidden_field_tag :mancoweight%>
+
 
     <div class="am-input-group am-input-group-lg">
       <span class="am-input-group-label">单价</span>
@@ -79,12 +74,6 @@
       <span class="am-input-group-label">kg</span>
     </div>
     <br>
-    <div class="am-input-group am-input-group-lg">
-      <span class="am-input-group-label">体积</span>
-      <input type="number" id="volue"  min="0"placeholder="请输入物品体积(200公斤/方)" class="am-form-field floatright"  value="">
-      <span class="am-input-group-label">立方米</span>
-    </div>
-    </br>
 
     <%= f.submit :class=>"am-btn am-btn-primary am-btn-block  button-am" ,:value=>"下一步"%>
 
@@ -117,15 +106,13 @@
     $("#serach").bind("click",function(){
 
 
-        var departure=$("#departure").val();
-        var arrival=$("#arrival").val();
         var distribution=$("input[name='distribution']:checked").val();
         var url = $(this).data('url');
-        if(arrival&&departure&&distribution) {
+        if(distribution) {
 
             $.ajax(url,{
                 type: "post",
-                data:{ departure:departure ,arrival:arrival,distribution:distribution},
+                data:{ distribution:distribution},
                 success:function(res){
                 }
             }) }
@@ -134,19 +121,17 @@
         }
     })
 
-
     $(".button-am").bind("click",function() {
-        var weight=$("#weight").val();
-        var volue=$("#volue").val();
-        if(weight&&volue){
-            if(weight>=volue*200){mancoweight=weight}
-            else{mancoweight=volue*200}
-
-        }
 
 
-        $("#mancoweight").val(mancoweight);
 
+        $("#mancoweight").val($("#weight").val());
+
+
+    })
+
+    $(".am-btn-block").bind("click",function(){
+        $(this).children("input[type='radio']").attr("checked",'true');
 
     })
 

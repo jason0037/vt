@@ -389,6 +389,7 @@ class Store::OrdersController < ApplicationController
   end
 
   def new_manco_addr    ###新增起点地址
+
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
     render :layout=>@supplier.layout
   end
@@ -461,6 +462,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
   end
 
   def departure    ##起点信息
+
      @platform=params[:platform]
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     manco_weight =params[:manco_weight]
@@ -472,12 +474,13 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
   end
 
   def arrival  ###终点信息
+    session[:arrivals]=params[:xiehuo]
     @platform=params[:platform]
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @member_departure_id=  params[:member_departure_id]
     @addrs =  @user.member_addrs
     @addrss = @addrs.where(:addr_type=>0)
-    if @platform=="door"||@platform=="self"
+    if @platform=="door"||@platform=="self" ||@platform=="manco_local"||@platform=="mancoexpress"
     @action_url="/orders/manco_detail"
     elsif
       @action_url="new_manco  "
@@ -667,22 +670,34 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
        invoice=params[:invoice]             ######发票服务 1:运费发票 2: 服务费发票  3:自带发票
        warehouse=params[:warehouse]         ###进仓服务费 1: +150
        platform=params[:platform]
-       sql = "SELECT price*quantity AS total,wholesale FROM mdk.sdb_b2c_cart_objects
-INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING_INDEX(SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',2),'_',-1) = mdk.sdb_b2c_goods.goods_id
-WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
-       @cart_total_by_supplier = ActiveRecord::Base.connection.execute(sql)
        @cart_totals = 0
        @bill=0
        @invoice=0
        @warehouse=0
-       @cart_total_by_supplier.each(:as => :hash) do |row|
-         if (row["total"]<row["wholesale"])
-           @cart_totals+= row["wholesale"]
-         else
-           @cart_totals+= row["total"]
-         end
+       @line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|
+          if line_item.good.cat_id=="604"
+            @cart_totals=line_item.good.wholesale
 
-       end
+
+            else
+              sql = "SELECT price*quantity AS total,wholesale FROM mdk.sdb_b2c_cart_objects
+INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING_INDEX(SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',2),'_',-1) = mdk.sdb_b2c_goods.goods_id
+WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
+              @cart_total_by_supplier = ActiveRecord::Base.connection.execute(sql)
+               @cart_total_by_supplier.each(:as => :hash) do |row|
+                   if (row["total"]<row["wholesale"])
+                    @cart_totals+= row["wholesale"]
+                  else
+                    @cart_totals+= row["total"]
+                  end
+                                     end
+            end
+
+                    end
+
+
+
+
        if bill=="1"
          @cart_totals=@cart_totals+5
          @bill+=1
@@ -702,7 +717,7 @@ WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
          @warehouse+=1
        end
 
-    if platform=="mancoexpress"|| platform=="door"|| platform=="self"
+    if platform=="mancoexpress"|| platform=="door"|| platform=="self"  ||platform=="manco_local"
       @cart_total_final = @cart_totals
     else
       @cart_total_final = @cart_total

@@ -9,9 +9,12 @@
 
 </style>
 
+
 <%=form_for :addr, :url=>@method == :put ?@action_url :" /member_addrs",  :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
      <input name="return_url" type="hidden"value="<%="/orders/departure?platform=#{params[:platform]}&supplier_id=98"%>">
     <input name="addr[addr_type]" type="hidden" value="1" >
+    <input name="goods_id" type="hidden" value="<%=params[:goods_id]%>">
+
       <div class="am-panel am-panel-default">
 
         <div class="am-panel am-panel-default">
@@ -63,7 +66,11 @@
             <label for="addr">详细地址</label>
             <%#=f.label :addr, "收货地址：".html_safe%></div>
           <div class="am-panel-bd">
-            <%=f.text_field :addr,:class=>"span5", :id=>"addr",:class=>"am-form-field"%>
+            <% if session[:zhuanghuo]%>
+            <%=f.text_field :addr,:class=>"span5", :id=>"addr",:class=>"am-form-field", :value => session[:zhuanghuo]%>
+                <%else%>
+                <%=f.text_field :addr,:class=>"span5", :id=>"addr",:class=>"am-form-field"%>
+                <%end%>
             <span class="help-inline error"></span>
           </div>
         </div>
@@ -75,7 +82,7 @@
         <div class="am-panel-hd">
           <label for="addr_def_addr"><%=I18n.t "set_default"%><em style="color: #ff0000">(选择设置为当前默认地址)</em>:</label>
           <%#=f.label :def_addr, "设置默认："%>  </div>
-        <div class="am-panel-bd">
+        <div class="am-panel-bd" id="choose_default">
           <%=f.check_box :def_addr, {}, 1, 0 %><span><%=I18n.t "default"%></span>
           <span class="help-inline error"></span>
         </div>
@@ -96,6 +103,13 @@
 <%end%>
 <script type="application/javascript">
     $(document).ready(function(){
+        $("#choose_default").bind("click",function(){
+                var dd=$("#chufadizi").val() ;
+            var cityarrer=choosecity(dd);
+
+            checkbox($("#addr_def_addr"));
+        })
+
         $("#sub").bind("click",function(){
             if( $("#addr_name").val()=="" &&$("#addr_mobile").val()==""||$("#addr").val()=="") {
                 alert("请完善联系人信息")
@@ -108,6 +122,9 @@
             }
 
         })
+
+
+
     })
 
 </script>

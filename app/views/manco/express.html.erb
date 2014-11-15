@@ -11,14 +11,14 @@
   <div  id="notice" style="color: red">
   </div>
   <div class="am-input-group am-input-group-lg">
-    <span class="am-input-group-label">出发城市</span>
+    <span class="am-input-group-label">出发地</span>
     <input type="text" name="departure" class="am-form-field floatright" placeholder="请输入出发城市:" id="departure" value="">
     <div id='suggest' class="am-input-group-lg"></div>
   </div>
 
    <br/>
   <div class="am-input-group am-input-group-lg">
-  <span class="am-input-group-label">目的城市</span>
+  <span class="am-input-group-label">到达地</span>
   <input type="text" name="arrival"placeholder="请输入目的城市" class="am-form-field floatright" id="arrival" value="">
   <div id='suggest2' class="am-input-group-lg"> </div>
 </div>
@@ -27,18 +27,25 @@
    <br/>  <div class="am-input-group am-input-group-lg">
   <span class="am-input-group-label">派送方式&nbsp;&nbsp;</span>
     </div>
+  <br/>
+  <ul class="am-navbar-nav am-cf sm-block-grid-2">
 
-  <div class="am-input-group am-input-group-lg">
-    <label class="am-input-group-label" >
-     <input type="radio"  name="distribution" value="586">门对门
-    </label>
-    <label class="am-input-group-label"  >
- <input type="radio"  name="distribution" value="587">自提
-  </label>
+    <li class=" am-btn am-btn-primary am-btn-block am-animation-slide-left">
 
-  </div>
+      <input  type="radio"  name="distribution" value="586">门对门
+    </li>
+    <li class=" am-btn am-btn-secondary am-btn-block am-animation-slide-right" style="margin-top: 0px">
 
-      <br>
+      <input type="radio"  name="distribution" value="587">自提
+    </li>
+
+
+
+  </ul>
+
+
+
+  <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
 
   <div class="am-cf">
     <input type="button" id="serach" data-url="/manco/mancoluodipei" name="" value="下一步" class="am-btn am-btn-primary am-btn-block ">
@@ -55,12 +62,15 @@
     <%=hidden_field_tag :platform%>
     <%=hidden_field_tag :supplier_id, @supplier.id%>
     <%=hidden_field_tag :mancoweight%>
+    <%=hidden_field_tag :zhuanghuo%>
+    <%=hidden_field_tag :xiehuo%>
+
     <div class="am-input-group am-input-group-lg" >
       <span class="am-input-group-label" >线路</span>
       <span class="am-input-group-label" id="good_name"></span>
     </div>
     </br>
-
+      <span  id="aaa"></span>
     <div class="am-input-group am-input-group-lg">
       <span class="am-input-group-label">单价</span>
       <span class="am-input-group-label" style="color: red" id="unit_price"></span>
@@ -154,6 +164,10 @@
 
     })
 
+    $(".am-btn-block").bind("click",function(){
+        $(this).children("input[type='radio']").attr("checked",'true');
+
+    })
 
 </script>
 

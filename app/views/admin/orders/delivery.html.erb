@@ -102,7 +102,7 @@
           <%=f.number_field :money,:value=>0,:class=>"input-small"%>
           <%=f.radio_button :is_protect,'false',:checked=>true%>
         </div>
-
+         <%if @order.from_addr%>
         <div class="control-group">
             <label class="control-label">寄货人:</label>
             <div class="controls">
@@ -121,6 +121,7 @@
             <span class="readonly-field"><%=@order.from_addr.split(",")[2]%> </span>
           </div>
         </div>
+            <%end%>
         <div class="control-group">
           <label class="control-label">签单返回:</label>
           <div class="controls">

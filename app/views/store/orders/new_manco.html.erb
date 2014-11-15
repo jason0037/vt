@@ -25,38 +25,40 @@
   </div>
 </header>
 <%=form_for :order,:url=>"#{orders_path}?platform=wuliu",:html=>{ :class=>"am-form",:id=>"order_form" } do |f|%>
-    <%=hidden_field_tag "member_addr",@departure_addr&&@departure_addr.addr_id%>
+
     <%=f.hidden_field :supplier_id,:value=>"98"%>
-    <%=f.hidden_field :from_addr,:value=>"#{@departure_addr.name},#{@departure_addr.mobile},#{@departure_addr.addr}"%>
        <%=f.hidden_field :ship_name,:value=>"1111"%>
        <%=f.hidden_field :ship_mobile,:value=>@arrival_addr.mobile%>
        <%=f.hidden_field :ship_addr,:value=>@arrival_addr.addr%>
-
-
-        <div class="am-panel am-panel-default">
-          <div class="am-panel-hd">寄货人信息(始发地)</div>
-
-          <a  href="/orders/edit_manco_addr?departure_id=<%=@departure_addr.id%>&bill=<%=@bill%>&invoice=<%=@invoice%>&warehouse=<%=@warehouse%>&arrival_id=<%=@arrival_addr.id%>&platform=mobile&supplier_id=<%=@supplier.id%>&way=departure">
+       <%unless @departure_addr.nil? %>
+    <%=f.hidden_field :from_addr,:value=>"#{@departure_addr.name},#{@departure_addr.mobile},#{@departure_addr.addr}"%>
+     <%=hidden_field_tag "member_addr",@departure_addr&&@departure_addr.addr_id%>
+       <div class="am-panel am-panel-default">
+          <div class="am-panel-hd">装货人信息(始发地)</div>
+            <a  href="/orders/edit_manco_addr?departure_id=<%=@departure_addr.id%>&bill=<%=@bill%>&invoice=<%=@invoice%>&warehouse=<%=@warehouse%>&arrival_id=<%=@arrival_addr.id%>&platform=mobile&supplier_id=<%=@supplier.id%>&way=departure">
             <div class="am-panel-bd">
-         <span class="text">&nbsp;&nbsp;<%=@departure_addr.name%>  <span class="phone-num" style="margin-left: 30px"> <%=@departure_addr.mobile%></span></span>
+              <span class="text">&nbsp;&nbsp;<%=@departure_addr.name%>  <span class="phone-num" style="margin-left: 30px"> <%=@departure_addr.mobile%></span></span>
               <br/>
 
               <span class="text2">&nbsp;&nbsp;<%=@departure_addr.addr%></span>
               <span class="icon-arr" >修改</span>
-
-
-            </div>  </a>
+         </div>  </a>
         </div>
         <div>
-
+        <%else%>
+           <%=hidden_field_tag "member_addr",@arrival_addr&&@arrival_addr.addr_id%>
+           <%end%>
           <div class="am-panel am-panel-default">
-            <div class="am-panel-hd">收货人信息(目的地)</div>
+            <div class="am-panel-hd">卸货人信息(目的地)</div>
             <input type="hidden" name="order[ship_name]" value="<%=@arrival_addr.name%> ">
             <input type="hidden" name="order[ship_mobile]" value="<%=@arrival_addr.mobile%> ">
             <input type="hidden" name="order[ship_addr]" value="<%=@arrival_addr.addr%> ">
-
-            <a  href="/orders/edit_manco_addr?departure_id=<%=@departure_addr.id%>&arrival_id=<%=@arrival_addr.id%>&bill=<%=@bill%>&invoice=<%=@invoice%>&warehouse=<%=@warehouse%>&platform=mobile&supplier_id=<%=@supplier.id%>&way=arrival">
-              <div class="am-panel-bd">
+            <%unless @departure_addr.nil? %>
+            <a  href="/orders/edit_manco_addr?departure_id=<%=@arrival_addr.id%>&arrival_id=<%=@arrival_addr.id%>&bill=<%=@bill%>&invoice=<%=@invoice%>&warehouse=<%=@warehouse%>&platform=mobile&supplier_id=<%=@supplier.id%>&way=arrival">
+            <%else%>
+                <a  href="/orders/edit_manco_addr?departure_id=nil&arrival_id=<%=@arrival_addr.id%>&bill=<%=@bill%>&invoice=<%=@invoice%>&warehouse=<%=@warehouse%>&platform=mobile&supplier_id=<%=@supplier.id%>&way=arrival">
+                 <%end%>
+                <div class="am-panel-bd">
                 <span class="text">&nbsp;&nbsp;<%=@arrival_addr.name%>  <span class="phone-num" style="margin-left: 30px"> <%=@arrival_addr.mobile%></span></span>
                 <br/>
 
@@ -64,24 +66,23 @@
                 <span class="icon-arr" >修改</span>
 
 
-              </div>  </a>
+              </div>  </a> </a>
           </div>
           <div>
-
-
-              <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+        <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
                 <div class="am-panel-hd">支付方式</div>
                 <div class="am-panel-bd">
-                  <%if @user.advance>0 && @user.advance < @cart_total%>
+                  <%if @user.advance>0 && @user.advance > @cart_total%>
                       <label class="radio active" style="margin-left: 40px;padding: 2px">
                         <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>
-                  <%end%>
+                  <%else%>
 
                       <label class="radio active" style="margin-left: 40px;padding: 2px">
 
                         微信支付
                         <input id="order_payment_wxpay" name="order[payment]" type="hidden" value="wxpay">
                   </label>
+                      <%end%>
                 </div>
                 <div class="am-panel-hd">微信支付需要微信5.0版本以上，并且已经用微信授权登录</div>
               </div>
@@ -93,29 +94,29 @@
               <div class="am-panel-bd">签单返回:
 
                 <% if @bill==1 %>
-                 是 +5
+                 <span class="fr"  style="color: red;float: right">  是 +5元&nbsp;  </span>
                 <%else%>
-                 否
+                <span class="fr"  style="color: red;float: right">   否  &nbsp;</span>
                 <%end%>
               </div>
               <div class="am-panel-bd">开票:
                 <%=f.hidden_field :serverinvoice ,:value=>@invoice %>
                 <% if @invoice ==0%>
-                    没有发票
+                 <span class="fr"  style="color: red;float: right">     没有发票   &nbsp; </span>
                 <%elsif @invoice ==1%>
-                    运费发票(按照总运费的11%收取)
+                  <span class="fr"  style="color: red;float: right">    运费发票(按照总运费的11%收取) &nbsp;&nbsp; </span>
                 <%elsif @invoice ==2%>
-                    服务费发票 (按照总运费的8%收取)
+               <span class="fr"  style="color: red;float: right">       服务费发票 (按照总运费的8%收取)&nbsp;</span>
                 <%elsif @invoice ==3%>
-                    自带发票（按照总运费的1%）
+                <span class="fr"  style="color: red;float: right">      自带发票（按照总运费的1%）&nbsp; </span>
                 <%end%>
                     </div>
               <div class="am-panel-bd">进仓服务费:
                 <%=f.hidden_field :serverwarehouse ,:value=>@warehouse %>
               <%if @warehouse==1%>
-                    是（150元/票)
+                 <span class="fr"  style="color: red;float: right">     是（150元/票)&nbsp; </span>
                  <%else%>
-                  没有进仓服务费
+                <span class="fr"  style="color: red;float: right">  没有进仓服务费&nbsp; </span>
                   <%end%>
                     </div>
 
@@ -241,4 +242,3 @@
     </div>
 <%end%>
 
-<%=javascript_include_tag "store/tairyo_order"%>

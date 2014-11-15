@@ -92,7 +92,7 @@
         <div class="am-panel-hd">
           <label for="addr_def_addr"><%=I18n.t "set_default"%>:</label>
           <%#=f.label :def_addr, "设置默认："%>  </div>
-        <div class="am-panel-bd">
+        <div class="am-panel-bd" id="choose_default">
           <input checked="checked" id="addr_def_addr" name="addr[def_addr]" type="checkbox" value="1">设置默认
           <span class="help-inline error"></span>
         </div>
@@ -110,9 +110,15 @@
         </div>
       </div>
     </div>
+       </div>
+
 <%end%>
 <script type="application/javascript">
     $(document).ready(function(){
+        $("#choose_default").bind("click",function(){
+            checkbox($("#addr_def_addr"));
+    })
+
         $("#sub").bind("click",function(){
             if( $("#addr_name").val()=="" &&$("#addr_mobile").val()==""||$("#addr").val()=="") {
                 alert("请完善联系人信息")

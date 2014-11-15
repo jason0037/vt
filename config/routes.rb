@@ -101,6 +101,8 @@ end
     get 'advance',:on=>:collection
     get 'choose_express',:on=>:collection
     get 'local_express',:on=>:collection
+    post 'l_express',:on=>:collection
+    get 'city',:on=>:collection
   end
 
 

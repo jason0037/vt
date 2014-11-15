@@ -9,6 +9,10 @@ class MancoController < ApplicationController
   def index
 
   end
+  def city
+    supplier_id=params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(supplier_id)
+  end
   def map
     supplier_id=params[:supplier_id]
     @supplier = Ecstore::Supplier.find(supplier_id)
@@ -111,9 +115,9 @@ class MancoController < ApplicationController
 
   def blackboardfind_e
     @line_items.delete_all
-    departure= params[:departure]
-    arrival= params[:arrival]
-    goodsname=departure+"-"+arrival;
+    @departure= params[:departure]
+    @arrival= params[:arrival]
+    goodsname=@departure+"-"+@arrival;
     @goods=Ecstore::Good.where(:name=>goodsname,:cat_id=>"570").first   ####万家线路图对应的类别为570
     if @goods.nil?
       @goodes="亲！万家物流暂时还没有开通该线路哦!"
@@ -163,6 +167,19 @@ class MancoController < ApplicationController
     end
   end
 
+
+  def l_express
+    distribution=params[:distribution]
+    if distribution=="l_self"
+      @dis="本地自提"
+    elsif distribution=="l_door"
+      @dis="本地门对门"
+     end
+    @line_items.delete_all ###本地落地配服务
+    @goods=Ecstore::Good.find_by_cat_id(Ecstore::GoodCat.find_by_cat_name(@dis).cat_id)
+
+
+  end
 
  def express
    if @user
@@ -315,10 +332,10 @@ end
 
    def mancoluodipei
      @line_items.delete_all
-     departure= params[:departure]
-     arrival= params[:arrival]
+     @departure= params[:departure]
+     @arrival= params[:arrival]
      distribution=params[:distribution]
-      goods=departure+"-"+arrival;
+      goods=@departure+"-"+@arrival;
      @goods=Ecstore::Good.where(:cat_id=>distribution,:name=>goods).first
       if @goods.nil?
          @goodes="亲！万家物流暂时还没有开通该线路哦!"

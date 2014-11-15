@@ -10,19 +10,19 @@
 <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
 <header id="am-topbar am-topbar-inverse">
 
-  <div class="am-panel am-panel-primary">
+  <div class="am-panel am-panel-default">
     <%if @way =="departure"%>
-     <div class="am-panel-hd">寄货人地址</div>
+     <div class="am-panel-hd">装货人地址</div>
     <%elsif @way =="arrival"%>
-        <div class="am-panel-hd">收货人地址</div>
+        <div class="am-panel-hd">卸货人地址</div>
         <%end%>
   </div>
 </header>
 <a id="ahref" class="am-btn am-btn-primary am-btn-block" href="/manco/departure_new?supplier_id=98&way=<%=@way%>">新增
   <%if @way =="departure"%>
-      寄货人地址
+      装货人地址
   <%elsif @way =="arrival"%>
-      收货人地址
+      卸货人地址
   <%end%> </a>
 <form action="departure_edit" class="am-form" method="post">
 
@@ -48,7 +48,7 @@
         <% end %>
         <input type="submit" class="am-btn am-btn-primary am-btn-block"  value="修改" >
     <%else%>
-        <a id="ahref" class="am-btn am-btn-primary am-btn-block" href="/manco/departure_new?supplier_id=98&way=<%=@way%>">新增
+        <a id="ahref" class="am-btn am-btn-primary am-btn-block" href="/manco/departure_new?supplier_id=98&way=<%=@way%>&good_id=<%=@good.good_id%>">新增
           <%if @way =="departure"%>
               寄货人地址
           <%elsif @way =="arrival"%>
@@ -73,7 +73,7 @@
 <br/>
 <br/>
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
-
+ <%=javascript_include_tag "manco/city.js"%>
 <script type="application/javascript">
     $(document).ready(function(){
         $(".delete").bind("click",function(){
@@ -97,6 +97,11 @@
             $(this).children("input[type='radio']").attr("checked",'true');
 
         })
+
+
+
+
+
 
     })
 

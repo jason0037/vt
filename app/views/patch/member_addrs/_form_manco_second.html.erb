@@ -1,4 +1,3 @@
-
 <style type="text/css">
 
     .change_lange{
@@ -11,43 +10,55 @@
 </style>
 
 <div class="am-panel am-panel-default">
-  <div class="am-panel-hd" style="text-align: center">新增收货人地址</div>
+  <div class="am-panel-hd" style="text-align: center">新增卸货地址</div>
 </div>
 <%=form_for :addr, :url=>@method == :put ?@action_url :" /member_addrs/addship?platform=#{params[:platform]}&supplier_id=#{@supplier.id}",  :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
     <input name="return_url" type="hidden" value="<%="/orders/arrival?platform=#{params[:platform]}&supplier_id=#{@supplier.id}&member_departure_id=#{params[:member_departure_id]}"%>" >
     <input name="addr[addr_type]" type="hidden" value="0" >
-    <div class="am-panel am-panel-default">
+    <%if params[:platform]=="manco_local"%>
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">供配地址</span>
+      <input type="text" name="arrival"placeholder="请输入您本地供配城市" class="am-form-field floatright" id="arrival" value="">
+      <div id='suggest2' class="am-input-group-lg"> </div>
+    </div>
 
+      <%end%>
+    <br/>
       <div class="am-panel am-panel-default">
 
         <div class="am-input-group">
           <span class="am-input-group-label">联系人</span>
           <input class="am-form-field" id="addr_name" name="addr[name]" placeholder="联系人" value="<%=@addr.name%>" size="30" type="text">
 
-          <%#=f.text_field :name,  :class=>"am-form-field" ,:placeholder=>"收货人姓名"%>
+
         </div>
         <br/>
         <div class="am-input-group">
           <span class="am-input-group-label">手机</span>
           <input class="am-form-field" id="addr_mobile" name="addr[mobile]" placeholder="手机" value="<%=@addr.mobile%>" size="30" type="text">
 
-          <%#=f.text_field :mobile,  :class=>"am-form-field" ,:placeholder=>"手机"%>
+
         </div>
         <br/>
         <div class="am-input-group">
           <span class="am-input-group-label">固定电话</span>
           <input class="am-form-field" id="addr_tel" name="addr[tel]" placeholder="固定电话"  value="<%=@addr.tel%>" size="30" type="text">
 
-          <%#=f.text_field :tel,  :class=>"am-form-field" ,:placeholder=>"固定电话"%>
+
         </div>
         <br/>
         <div class="am-input-group">
           <span class="am-input-group-label">邮编</span>
           <input class="am-form-field" id="addr_zip" name="addr[zip]" placeholder="邮编" value="<%=@addr.zip%>" size="30" type="text">
-          <%#=f.text_field :zip,  :class=>"am-form-field" ,:placeholder=>"邮编"%>
+
         </div>
         <br/>
+      <%if params[:platform]=="manco_local"%>
 
+
+
+
+            <%end%>
 
       <div class="controls" style="display:none">
         <select id="province" name="addr[province]">
@@ -65,9 +76,13 @@
 
       <div class="am-panel-hd">
         <label for="addr">详细地址</label>
-        <%#=f.label :addr, "收货地址：".html_safe%></div>
+        </div>
       <div class="am-panel-bd">
-        <%=f.text_field :addr,:class=>"span5", :id=>"addr",:class=>"am-form-field"%>
+        <%if  session[:arrivals]%>
+            <%=f.text_field :addr,:class=>"span5", :id=>"addr",:class=>"am-form-field", :value =>  session[:arrivals]%>
+        <%else%>
+            <%=f.text_field :addr,:class=>"span5", :id=>"addr",:class=>"am-form-field"%>
+        <%end%>
         <span class="help-inline error"></span>
       </div>
     </div>
@@ -75,10 +90,10 @@
 
 
 
-    <div class="am-panel am-panel-default">
+    <div class="am-panel am-panel-default " id="choose_default">
       <div class="am-panel-hd">
         <label for="addr_def_addr">设置默认<em style="color: #ff0000">(选择设置为当前默认地址)</em>:</label>
-        <%#=f.label :def_addr, "设置默认："%>  </div>
+        </div>
       <div class="am-panel-bd">
         <%=f.check_box :def_addr, {}, 1, 0 %><span><%=I18n.t "default"%></span>
         <span class="help-inline error"></span>
@@ -89,17 +104,41 @@
       <div class="controls">
         <%if @method == :put%>
             <input type="button" id="sub" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "modify"%>">
-            <%#=f.submit "修 改",:class=>"am-btn am-btn-warning am-btn-block" %>
+
         <%else%>
             <input type="button" id="sub" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "confirm"%>">
-            <%#=f.submit "确认收货地址",:class=>"am-btn am-btn-warning am-btn-block" %>
+
         <%end%>
       </div>
     </div>
     </div>
 <%end%>
+<%if params[:platform]=="manco_local"%>
+    <script>$(function(){
+
+        $("#arrival").suggest(citys,{
+            hot_list:commoncitys,
+            attachObject:"#suggest2"
+        });
+
+    });</script>
+
+    <script type="text/javascript" src="/assets/manco/zepto.min.js"></script>
+    <script type="text/javascript" src="/assets/manco/aircity.js"></script>
+    <script type="text/javascript" src="/assets/manco/j.suggest.js"></script>
+
+
+
+
+<%end%>
+
 <script type="application/javascript">
     $(document).ready(function(){
+        $("#choose_default").bind("click",function(){
+
+            checkbox($("#addr_def_addr"));
+        })
+
         $("#sub").bind("click",function(){
             if( $("#addr_name").val()=="" &&$("#addr_mobile").val()==""||$("#addr").val()=="") {
                 alert("请完善联系人信息")
@@ -112,6 +151,7 @@
             }
 
         })
+
     })
 
 </script>

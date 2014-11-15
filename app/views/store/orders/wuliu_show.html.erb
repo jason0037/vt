@@ -89,12 +89,16 @@
         <span id="pmts_total" class="hide" data-amount="<%=@order.pmts_total%>"></span>
         <div class="detail" >
           <span class="span">&nbsp; &nbsp; 支付方式:</span> <span style=" color: #ed145b;" class="ovalue">
-         <% if @order.payment =="wxpay" %>  微信支付<%end%> </span>
+         <% if @order.payment =="wxpay" %>微信支付<%else%>预支付<%end%> </span>
             </div>
 
         </div>
       <label class="radio" style="display:none">
-        <%=f.radio_button :pay_app_id, "wxpay", { :checked=>(@order.payment == 'wxpay') }%> <b>其他银行网上支付</b>
+        <%if @order.payment == 'wxpay' %>
+        <%=f.radio_button :pay_app_id, "wxpay", { :checked=>(@order.payment == 'wxpay') }%>
+
+            <%end%>
+            <b>其他银行网上支付</b>
       </label>
        <hr>
         <div class="actions">

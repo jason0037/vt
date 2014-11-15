@@ -8,7 +8,7 @@
 <header id="am-topbar am-topbar-inverse">
 
   <div class="am-panel am-panel-default">
-    <div class="am-panel-hd"style="text-align: center"><span style="color: #ff0000">寄</span>货人地址</div>
+    <div class="am-panel-hd"style="text-align: center"><span style="color: #ff0000">装</span>货人地址</div>
 
   </div>
 
@@ -18,6 +18,7 @@
   <form action="arrival" class="am-form" method="post">
     <input type="hidden" name="supplier_id"value="<%=@supplier.id%>">
     <input type="hidden" name="platform"value="<%=@platform%>">
+    <input type="hidden" name="xiehuo"value="<%=session[:xiehuo]%>">
 
 
     <ul class="am-list am-list-striped ">
@@ -36,38 +37,39 @@
 
 
           <% end %>
-      <%else%>
-          <a id="ahref" class="am-btn am-btn-success "  href="/orders/new_manco_addr?supplier_id=<%=@supplier.id%>&platform=<%=params[:platform]%>" title="">新增寄货人地址 </a>
+
         <%end%>
           </ul>
 
-
-
-
-
 <div class="bottomdiv clearfix"  >
-
-  <a id="ahref" class="am-btn am-btn-success " style="width:50%;float: left" href="/orders/new_manco_addr?supplier_id=<%=@supplier.id%>&platform=<%=params[:platform]%>" title="">新增寄货人地址 </a>
   <%if @def_addrs.size>0%>
+  <a id="ahref" class="am-btn am-btn-success " style="width:50%;float: left" href="/orders/new_manco_addr?supplier_id=<%=@supplier.id%>&platform=<%=params[:platform]%>" >新增装货地址 </a>
+
   <input type="submit" class="  am-btn am-btn-primary  " style=" width:50%;float: right" value="确认选择" >
-    <%end%>
-  </div>
+    <%else%>
+      <a id="ahref" class="am-btn am-btn-success " style="float: left" href="/orders/new_manco_addr?supplier_id=<%=@supplier.id%>&platform=<%=params[:platform]%>" title="">新增装货地址 </a>
+      <%end%>
+      </div>
   </form>
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
 <script type="application/javascript">
     $(document).ready(function(){
         $(".delete").bind("click",function(){
-            var addr_idsss=   $(this).parent("li").children("input[type='radio']").val();
-            var thisTr =  $(this);
-            $.ajax( {
-                url: "/orders/destroyaddr?supplier_id=#{<%@supplier.id%>}",
-                type: "post",
-                data:{addr_idsss:addr_idsss },
-                success:function(res){
-                    thisTr.parents("li").remove();
-                }
-            });
-
+            var r=confirm("确认删除？")
+            if (r==true) {
+                var addr_idsss = $(this).parent("li").children("input[type='radio']").val();
+                var thisTr = $(this);
+                $.ajax({
+                    url: "/orders/destroyaddr?supplier_id=#{<%@supplier.id%>}",
+                    type: "post",
+                    data: {addr_idsss: addr_idsss },
+                    success: function (res) {
+                        thisTr.parents("li").remove();
+                        $("input[type='submit']").remove();
+                        $(".am-btn-success").css("width","100%");
+                    }
+                });
+            }
         })
     $(".li_addr").bind("click",function(){
        $(this).children("input[type='radio']").attr("checked",'true');

@@ -2,7 +2,10 @@
 <%unless  @goods.nil?%>//小黑板中运价查询
 $("#good_mktprice").val('<%=@goods.price%>');
 $("#good_name").val('<%=@goods.name%>');
-
+var depar=  choosecity('<%=@departure%>') ;
+var arrer=  choosecity('<%=@arrival%>') ;
+$("#zhuanghuo").val(depar);
+$("#xiehuo").val(arrer);
 
 // 运价查询
 $("#manco_name_show").html('<%=@goods.name%>')

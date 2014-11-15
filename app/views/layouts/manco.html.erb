@@ -8,8 +8,6 @@
   <title><%=@supplier.name%>微商城</title>
   <meta content="" name="keywords">
   <meta content="" name="description">
-
-
   <%= stylesheet_link_tag    "amaze/amazeui.basic.css" %>
   <%= stylesheet_link_tag    "amaze/amazeui.basic.min.css" %>
   <%= stylesheet_link_tag    "amaze/amazeui.css" %>
@@ -30,10 +28,9 @@
   <%= javascript_include_tag "amaze/amazeui.basic.js"%>
   <%= javascript_include_tag "amaze/amazeui.basic.min.js"%>
   <%= javascript_include_tag "amaze/handlebars.min.js"%>
+  <%= javascript_include_tag "manco/app.js"%>
+  <%= javascript_include_tag "manco/city.js"%>
 
-
-
-  <%= javascript_include_tag "manco/iscroll.js"%>
   <%= csrf_meta_tag %>
     <style>
 
@@ -90,20 +87,7 @@
   </div>
 </div>
 
-
-
 <%= yield %>
-
-
-
-
-
-
-
-
-
-
-
 
 
 <div class="bottomdivsclearfix">
@@ -116,18 +100,17 @@
         <a class="am-btn  am-btn-primary"  data-am-modal="{target: '#mancoserver'}">万家服务</a>
       </li>
        <li >
-        <a class="am-btn  am-btn-primary" href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>" onclick="setBackAct(&#39;topHeaderUserHome&#39;);" id="reddot"">
+        <a class="am-btn  am-btn-primary" href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>" >
 				<span class="am-icon-user">
-				</span>
+				</span>  </a>
 
-        </a>
+
       </li>
-
-
-
     </ul>
-  </div>
+ </div>
 </div>
+
+
 
 
 <div class="am-modal-actions" id="mancoserver">

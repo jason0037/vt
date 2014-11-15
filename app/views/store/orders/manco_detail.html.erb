@@ -36,8 +36,9 @@
   </div>
 </header>
 <form method="post" action="/orders/new_manco" class="am-form">
-
+     <%unless @departure_addr.nil? %>
   <input type="hidden" name="member_departure_id" value="<%=@departure_addr.id%>">
+      <%end%>
   <input type="hidden" name="member_arrival_id" value="<%=@arrival_addr.id%>">
   <input type="hidden" name="platform" value="<%=@platform%>">
   <input type="hidden" name="supplier_id" value="<%=@supplier.id%>">
