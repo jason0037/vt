@@ -168,6 +168,7 @@ class Store::OrdersController < ApplicationController
 
 
   def create
+
     addr = Ecstore::MemberAddr.find_by_addr_id(params[:member_addr])
 
     hour=params["hour"];
@@ -421,7 +422,9 @@ class Store::OrdersController < ApplicationController
 
 
   def new_mobile
-
+    session[:arrivals]=nil
+    session[:zhuanghuo] =nil
+    session[:xiehuo] =nil
     supplier_id= @user.account.supplier_id
 
     if supplier_id.nil?

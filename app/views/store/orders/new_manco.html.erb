@@ -72,16 +72,23 @@
         <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
                 <div class="am-panel-hd">支付方式</div>
                 <div class="am-panel-bd">
-                  <%if @user.advance>0 && @user.advance > @cart_total%>
+                  <%if @user.advance>0 && @user.advance <@cart_total_final%>
                       <label class="radio active" style="margin-left: 40px;padding: 2px">
                         <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>
-                  <%else%>
 
-                      <label class="radio active" style="margin-left: 40px;padding: 2px">
-
-                        微信支付
+                      <label class="radio active" style="margin-left: 40px;padding: 2px"> 微信支付
                         <input id="order_payment_wxpay" name="order[payment]" type="hidden" value="wxpay">
-                  </label>
+                      </label>
+                  <%elsif @user.advance>0 && @user.advance >@cart_total_final %>
+
+                      <label class="radio active" style="margin-left: 40px;padding: 2px"> 预存款支付
+                        <input id="order_payment_deposit" name="order[payment]" type="hidden" value="deposit">
+                      </label>
+                      <%else%>
+
+                      <label class="radio active" style="margin-left: 40px;padding: 2px"> 微信支付
+                        <input id="order_payment_wxpay" name="order[payment]" type="hidden" value="wxpay">
+                      </label>
                       <%end%>
                 </div>
                 <div class="am-panel-hd">微信支付需要微信5.0版本以上，并且已经用微信授权登录</div>

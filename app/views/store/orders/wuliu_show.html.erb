@@ -97,7 +97,9 @@
         <%if @order.payment == 'wxpay' %>
         <%=f.radio_button :pay_app_id, "wxpay", { :checked=>(@order.payment == 'wxpay') }%>
 
-            <%end%>
+            <%elsif @order.payment == 'deposit'%>
+            <%=f.radio_button :pay_app_id, "deposit", { :checked=>(@order.payment == 'deposit') }%>
+               <%end%>
             <b>其他银行网上支付</b>
       </label>
        <hr>
