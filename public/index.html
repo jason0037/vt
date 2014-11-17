@@ -1,6 +1,7 @@
-﻿<!doctype html>
-<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
-<html class="no-js" lang="en" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="zh" > <![endif]-->
+<html class="no-js" lang="zh" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,32 +9,99 @@
     <meta name="description" content="上海卓仕工业品有限公司,一站式工业品网上订购平台,工业品,物流设备,动力工具、搬运车、堆高车、叉车、高空作业平台!" />
     <meta name="author" content="Cheuks MRO Co.,Ltd. " />
     <meta name="copyright" content="Copyright © 2009-2014 Cheuks MRO Co.,Ltd. 卓展集团版权所有" />
-    <link rel="stylesheet" href="css/app.css" />
-    <link rel="stylesheet" href="css/custom.css"/>
+    <link rel="stylesheet" href="stylesheets/app.css" />
+    <link rel="stylesheet" href="stylesheets/foundation-icons.css" />
+
     <script src="js/foundation.min.js"></script>
 </head>
 <body>
+ <!-- OFF CANVAS SECTIONS WRAPPING THE MAIN CONTENT -->
+ <div class="off-canvas-wrap" data-offcanvas>
+  <div class="inner-wrap">
+  <div class="fixed  show-for-small-only">
+    <nav class="tab-bar bg-primary">
+      <section class="left-small">
+        <a class="left-off-canvas-toggle menu-icon" href="#" title="产品分类"><span></span></a>
+      </section>
+
+      <section class="middle tab-bar-section">
+        <h1 class="title"><a href="/"><img src="img/cheuks_logo.png"></a></h1>
+      </section>
+
+      <section class="right-small">
+        <a class="right-off-canvas-toggle menu-icon" href="#" title="服务导航"><span></span></a>
+      </section>
+    </nav>
+    </div>
+    <aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        <li><label>产品分类</label></li>
+        <li><a href="#">新品闪购</a></li>
+        <li><a href="#">明星产品</a></li>
+                <li><a href="#">热卖产品</a></li>
+                <li><a href="#">堆高车</a></li>
+              <li><a href="#">叉车</a></li>
+              <li><a href="#">牵引车</a></li>
+              <li><a href="#">高空平台</a></li>
+              <li><a href="#">工业平台</a></li>
+              <li><a href="#">气动液压</a></li>
+              <li><a href="#">手动工具</a></li>
+              <li><a href="#">动力工具</a></li>
+              <li><a href="#">搬运车</a></li>
+              <li><a href="#">堆高车</a></li>
+      </ul>
+    </aside>
+
+    <aside class="right-off-canvas-menu">
+      <ul class="off-canvas-list">
+        <li><label>服务导航</label></li>
+        <li><a href="/login">[请登录]</a></li>
+        <li><a href="/login">[免费注册]</a></li>
+        <li><a href="#"><i class="fi-marker"></i>上海[更换]</a></li> 
+        <li><a href="#">用户中心</a></li> 
+                <li class="divider"></li>
+                <li><a href="#">我的订单</a></li>
+                <li class="divider"></li>
+                <li><a href="#">供应商加盟</a></li>
+                <li class="divider"></li>
+                <li class="has-dropdown">
+                    <a href="#">客服中心</a>
+                    <ul class="dropdown">
+                        <li><label>技术中心</label></li>                        
+                    </ul>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#">网站导航</a>                    
+                </li>  
+      </ul>
+    </aside>
+
+
+ <!-- MAIN SECTION -->
+<section class="main-section">
 <!--顶部导航-->
+<div class="contain-to-grid sticky show-for-medium-up">
     <nav class="top-bar" data-topbar>
         <ul class="title-area">
 
             <li class="name">
-                <h1>
+                <h1 style="display:none">
                     <a href="#">
                         您好，欢迎登录卓仕工业品！
                     </a>
                 </h1>
             </li>
-            <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+            <li class="toggle-topbar menu-icon"><a href="#" title="服务导航"><span></span></a></li>
         </ul>
 
         <section class="top-bar-section">
 
             <ul class="left">
                 <li class="divider"></li>
-                <li><a href="#">[请登录]</a></li>
-                <li><a href="#">[免费注册]</a></li>
-                <li><a href="#"><img src="img/cheuks_map_point.png">上海[更换]</a></li>   
+                <li><a href="/login">[请登录]</a></li>
+                <li><a href="/login">[免费注册]</a></li>
+                <li><a href="#"><i class="fi-marker"></i>上海[更换]</a></li>   
             </ul>
 
 
@@ -57,16 +125,17 @@
             </ul>
         </section>
     </nav>
-
+</div>
+<header>
 <!--Logo & 搜索框-->
-    <div class="row bg-color-red">
-        <div class="large-4 columns">
+    <div class="row hidden-for-small-only">
+        <div class="large-4 medium-6 columns">
             <h1><img src="img/cheuks_logo.png"></h1>
         </div>
-        <div class="large-6 large-offset-2 columns right  padding-top-20">
+        <div class="large-6 large-offset-2 medium-6 columns right  padding-top-20">
             <form>
                 <div class="row collapse">
-                    <div class="large-8 large-offset-2 small-8 columns">
+                    <div class="large-6 large-offset-4 small-8 columns">
                         <input type="text" />
                     </div>
                     <div class="large-2 small-4 columns">
@@ -77,87 +146,324 @@
         </div>
     </div>
 <!--顶部菜单-->
-    <div class="row bg-color-red hide-for-small-only">
+    <div class="row" >
         <div class="large-9 columns">
-            <ul class="button-group left">
+            <ul class="button-group left hidden-for-small-only"  style="height:2.6em;">
                 <li>
-                    <a href="#" class="button active low_button">
+                    <a href="#" class="button radius low_button">
                         产品列表<span style="font-size:.3em;padding-left:1em;">List</span>
                     </a>
                 </li>
-                <li><a href="#" class="button active low_button">首页</a></li>
-                <li><a href="#" class="button low_button">新品闪购</a></li>
-                <li><a href="#" class="button low_button">明星产品</a></li>
-                <li><a href="#" class="button low_button">热卖产品</a></li>
-            </ul>
+                <li><a href="#" class="button radius low_button">首页</a></li>
+                <li><a href="#" class="button radius low_button">新品闪购</a></li>
+                <li><a href="#" class="button radius low_button">明星产品</a></li>
+                <li><a href="#" class="button radius low_button">热卖产品</a></li>
+            </ul>            
         </div>
         <div class="large-3 columns">
-            <h4 style="color:brown">Liftin' Your Future<span></span></h4>
+            <h5 style="color:brown">Liftin' Your Future<span></span></h5>
+        </div>
+    </div>  
+    <div class="row show-for-small-only">
+        <div class="columns small-12">
+        <div class="icon-bar four-up">
+              <a class="item "><label>产品列表</label></a>
+              <a class="item active"><label>新品闪购</label></a>
+              <a class="item"><label>明星产品</label></a>
+              <a class="item"><label>热卖产品</label></a>
+            </div>
         </div>
     </div>
-<!--侧边菜单&滑动大图&登录&新闻-->
-    <div class="row">
-        <div class="large-2 columns large-left panel">
-            <ul class="side-nav">
-              <li><a href="#">搬运车</a></li>
-              <li><a href="#">堆高车</a></li>
-              <li><a href="#">叉车</a></li>
-              <li><a href="#">牵引车</a></li>
-              <li><a href="#">高空平台</a></li>
-              <li><a href="#">工业平台</a></li>
-              <li><a href="#">气动液压</a></li>
-              <li><a href="#">手动工具</a></li>
-              <li><a href="#">动力工具</a></li>
-            </ul>
-        </div>
+</header> <!-- END HEADER -->
 
-        <div class="large-7 columns">
+   
+
+
+<!--侧边菜单&滑动大图&登录&新闻-->
+    <div class="row" >    
+        <div class="large-2 medium-3 columns show-for-medium-up category-nav">
+            <ul class="no-bullet">
+              <li><a href="#" class="button secondary expand radius split a">搬运车<span data-dropdown="drop1"></span></a><br>
+                <ul id="drop1" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"><ul class="no-bullet large-block-grid-5 small-block-grid-1 ">
+                        <li><a href="#">手动搬运车</a></li>
+                        <li><a href="#">0.3吨手动搬运车</a></li>
+                        <li><a href="#">0.8吨手动搬运车</a></li>
+                        <li><a href="#">1.0吨手动搬运车</a></li>
+                        <li><a href="#">1.5吨手动搬运车</a></li>
+                        <li><a href="#">1.68吨手动搬运车</a></li>
+                        <li><a href="#">.8吨手动搬运车</a></li>
+                        <li><a href="#">12.0吨手动搬运车</a></li>
+                        <li><a href="#">2.5吨手动搬运车</a></li>
+                        <li><a href="#">2.6吨手动搬运车</a></li>
+                        <li><a href="#">3.0吨手动搬运车</a></li>
+                        <li><a href="#">3.5吨手动搬运车</a></li>
+                        <li><a href="#">4.0吨手动搬运车</a></li>
+                        <li><a href="#">5.0吨手动搬运车</a></li>
+                      </ul>
+                  </li>
+                  <li><ul class="no-bullet">
+                        <li><a href="#">半电动搬运车</a></li>
+                        <li> 0.3吨手动搬运车</li>
+                        <li>0.8吨手动搬运车</li>
+                        <li>1.0吨手动搬运车</li>
+                        <li>1.5吨手动搬运车</li>
+                        <li> 1.68吨手动搬运车</li>
+                        <li>.8吨手动搬运车</li>
+                        <li>12.0吨手动搬运车</li>
+                        <li>2.5吨手动搬运车</li>
+                        <li>2.6吨手动搬运车</li>
+                        <li>3.0吨手动搬运车</li>
+                        <li>3.5吨手动搬运车</li>
+                        <li>4.0吨手动搬运车</li>
+                        <li>5.0吨手动搬运车</li>
+                      </ul>
+                  </li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">堆高车<span data-dropdown="drop2"></span></a><br>
+                <ul id="drop2" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              
+              <li><a href="#" class="button secondary expand radius split a">叉车<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">牵引车<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">高空平台<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">工业平台<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">气动液压<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">手动工具<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">动力工具<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">电机电器<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">测试仪器<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">叉车属具<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">工业衡器<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">专业搬运工具<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">托盘类<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              </ul>
+              <ul  class="no-bullet" id="more-category-nav">
+              <li ><a href="#" class="button expand radius split a"><i class="fi-list-bullet"></i>&nbsp;更多</a></li>
+              <li><a href="#" class="button secondary expand radius split a">机床钻床<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">汽车尾板<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">装卸平台<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">工业机器人<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">梯子<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">未分类<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">洗地机<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">脚轮<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">工位装备<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split s">劳保、安防、标识<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">立体车库<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+              <li><a href="#" class="button secondary expand radius split a">包装捆绑<span data-dropdown="drop"></span></a><br>
+                <ul id="drop" class="f-dropdown" data-dropdown-content>
+                  <li class="f-dropdown-wide"></li>
+                  <li></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </li>
+            </ul>            
+        </div>          
+        <div class="large-7 medium-5 columns">
             <ul data-orbit>
                 <li><img src="img/20140625143419235_indexbanner.jpg"></li>
-                <li><img src="img/20130812111618208_indexbanner.png"></li>
-                <li><img src="img/20130812111443224_indexbanner.png"></li>
-                <li><img src="img/20130812101214604_indexbanner.png"></li>
+                <li><img src="img/20130812111618208_indexbanner.jpg"></li>
+                <li><img src="img/20130812111443224_indexbanner.jpg"></li>
+                <li><img src="img/20130812101214604_indexbanner.jpg"></li>
                 <li><img src="img/20130809134144933_indexbanner.jpg"></li>
             </ul>
             <div class="row">
-                <ul class="small-block-grid-3 clearing-thumbs">
-                    <li><a href="#"><img src="img/product_top3.jpg"></a></li>
-                    <li><a href="#"><img src="img/product_top3.jpg"></a></li>
-                    <li><a href="#"><img src="img/product_top3.jpg"></a></li>
+                <ul class="large-block-grid-4 small-block-grid-2 clearing-thumbs">
+                    <li><a href="#" class="th"><img src="img/product_top3.jpg" ></a></li>
+                    <li><a href="#" class="th"><img src="img/product_top3.jpg" ></a></li>
+                    <li><a href="#" class="th"><img src="img/product_top3.jpg"></a></li>
+                    <li><a href="#" class="th"><img src="img/product_top3.jpg"></a></li>
                 </ul>
             </div>
-        </div>
+        </div>         
+        <div class="large-3 medium-4 columns">
+            <div class="row">
+                <div class="columns large-12 medium-12 small-6 panel center">
+                    <ul class="button-group">
+                    <li>
+                        <a href="/login" class="button radius">登录</a>
+                    </li>
+                    <li><a href="/login" class="button radius">注册</a></li>
+                    </ul>
+                    <div class="center">
+                        <img src="img/cheuks_chengnuo_icon.png">
+                    </div>
+                </div>  
+                <div class="columns large-12 medium-12 small-6 panel">
+                    <h5>商城动态</h5>
+                    <ul class="no-bullet">
+                        <li><a href="#">物流机器人产业大时代已经...</a></li>
+                        <li><a href="#">直流与交流控制系统电动叉...</a></li>
+                        <li><a href="#">卓仕液压搬运车产品获得“...</a></li>
+                        <li><a href="#">汇卓参展第15届上海国际...</a></li>
+                        <li><a href="#">卓仕学院成立与发展</a></li>
+                        <li><a href="#">第九届广州叉车展卓仕成果...</a></li>
+                    </ul>
+                </div>        
+                <div class="columsn large-12 panel">
+                    <img src="img/info_right_pic3.jpg">
+                </div>               
                 
-        <div class="large-3 columns">
-            <div class="panel">
-                <ul class="button-group center">
-                <li>
-                    <a href="/login" class="button small radius">登录</a>
-                </li>
-                <li><a href="/login" class="button small radius">注册</a></li>
-                </ul>
-                <div class="center">
-                    <img src="img/cheuks_chengnuo_icon.png">
-                </div>
-            </div>          
-            <div class="panel">
-                <h5>商城动态</h5>
-                <ul class="nobullet">
-                    <li><a href="#">卓仕目前能够提供两条</a></li>
-                    <li><a href="#">卓仕目前能够提供两条</a></li>
-                    <li><a href="#">卓仕目前能够提供两条</a></li>
-                    <li><a href="#">卓仕目前能够提供两条</a></li>
-                    <li><a href="#">卓仕目前能够提供两条</a></li>
-                </ul>
-            </div>
-            <div class="panel">
-                <img src="img/info_right_pic3.jpg">
             </div>
         </div>
+        
+        
     </div>
 
 
 <!--今日推荐-->
+
     <div class="row">
         <div class="large-12 columns">
         <ul class="clearing-thumbs large-block-grid-5">
@@ -248,8 +554,8 @@
         </ul>
     </div>
 
-    <!--产品列表-->
-    <div class="row">
+    <!--产品列表 -->
+     <div class="row">
         <div class="large-12 columns">
             <h4><span>1</span>F 搬运车</h4>
         </div>
@@ -399,14 +705,22 @@
         </ul>
         </div>
     </div>
- 
+
+
+                </section> <!-- END SECTION.MAIN-SECTION -->
+
+            <!-- CLOSE THE OFF-CANVAS MENU -->
+            <a class="exit-off-canvas"></a>
+
+            </div>
+        </div> <!-- END OFF CANVAS -->
 
 <!--页尾信息-->
 
             <hr />
     <footer class="row">
         <div class=larg-12 columns>
-        <ul class="large-block-grid-5">
+        <ul class="large-block-grid-5 small-block-grid-2">
         <li>
             <ul class="no-bullet">
                 <li><h5>关于我们</h5></li>
@@ -459,7 +773,8 @@
     </footer>
 
     <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
+    <script src="js/vendor/fastclick.js"></script>
+    <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script>
       $(document).foundation({
           orbit: {

@@ -1,0 +1,142 @@
+
+@charset "utf-8";
+/* custom CSS Document */
+body {
+//  background-color: #f1f1f1;
+}
+
+a{color:#333;}
+
+.full-wdith {
+  min-width: 100%;
+}
+
+header {
+  background-color:lighten($primary-color, 10%);
+}
+
+.full-width {
+  background-color:lighten($primary-color, 10%);
+  min-height: 175px;
+  border:3px solid black;
+  width:100%;
+}
+.category-nav{padding-left:0px }
+
+.category-nav .a{
+  font-size:1em;  
+  text-align:left;
+  margin:1px 1px 0px 2px;
+  width:10.6em;
+  line-height:0.45em;
+  padding:0.9em 0em;
+  }
+
+  .category-nav .s{
+  margin:1px 1px 0px 2px;
+  width:14.2em;
+  line-height:0.45em;
+  padding:1em 0em;
+  font-size:0.7em;
+  text-align:left
+  }
+
+
+
+#more-category-nav{
+  height: 2.3rem;
+  overflow: hidden;
+  -webkit-transition-property: height, background-color;
+  -webkit-transition-duration: .7s; 
+  -webkit-transition-timing-function: ease-in;
+  -webkit-transition-delay:.5s;
+}
+
+#more-category-nav:hover {
+  height: 29.5rem;
+  overflow: hidden;
+   -webkit-transition-property: height, background-color; 
+   -webkit-transition-duration: .7s; 
+   -webkit-transition-timing-function: ease-in;
+   -webkit-transition-delay:.5s;
+}
+
+
+.bg-primary{background-color:$primary-color;}
+
+.padding-right-0{padding-right:0px;}
+
+
+.bg-color-red{background-color:lighten($primary-color, 10%);}
+
+.padding-top-20{padding-top:emCalc(30);}
+
+.low_button {padding:0.5em 1.8em 0.5em 1.8em;}
+
+
+.products-horisontal-100w{
+width:100% ;
+border:1px solid gray;
+}
+
+.f-dropdown-wide{width:900px; font-size:0.4rem;}
+
+.th-round{-moz-border-radius: 35px;
+border-radius: 35px;}
+
+
+
+.item-wrapper {
+  padding: 20px;
+  border: 2px solid #efefef;
+  border-radius: 7px;
+  margin-top: 40px;
+  
+  &:hover {
+    .img-wrapper {
+      img { -webkit-filter: grayscale(0); }
+      
+      .add-to-cart { bottom: 0; }
+    }
+  }
+}
+
+.img-wrapper {
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+
+  .add-to-cart {
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    background-color: #333;
+    padding: 16px 8px;
+    bottom: -50px;
+    position: absolute;
+    z-index: 2;
+    color: #fff;
+    margin: 0 auto;
+    border: none;
+    box-shadow: none;
+
+    &:hover { background-color: $primary-color; }
+  }
+
+  img {
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    -webkit-filter: grayscale(1);
+    width: 100%;
+  }
+}  
+
+h3 { font-size: 22px; }
+h5 { font-weight: bold; }
+
+p {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 0;
+}
+              
+   
