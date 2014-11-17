@@ -16,26 +16,26 @@ module SessionsHelper
 	end
 
 	def sign_in(account,remember_me = nil)
-	   current_account = account
-         cookies.signed[:_auth_ext] =  account.auth_ext.id if account.auth_ext
-         account.user.increment!(:login_count)  if  account.user &&  !account.user.new_record?
-         #cookie for ecstore
-         expires = nil
-         expires = 1.week.from_now if remember_me == "1"
-         if Rails.env == "production"
-	         cookies[:MEMBER] = {:value=>account.gen_secret_string_for_cookie,:expires=>expires,:domain=>'.trade-v.com'}
-	         cookies[:loginName] = {:value=>account.login_name,:expires=>expires,:domain=>'.trade-v.com'}
-	         cookies[:UNAME] = {:value=>account.login_name,:expires=>expires,:domain=>'.trade-v.com'}
-	         cookies[:MLV] = {:value=>account.user.member_lv_id,:expires=>expires,:domain=>'.trade-v.com'}
-	         cookies[:CUR] = {:value=>account.user.cur,:expires=>expires,:domain=>'.trade-v.com'}
-	         cookies[:LANG] = {:value=>account.user.lang,:expires=>expires,:domain=>'.trade-v.com'}
-	       else
-	   	     cookies[:MEMBER] = {:value=>account.gen_secret_string_for_cookie,:expires=>expires}
-	         cookies[:loginName] = {:value=>account.login_name,:expires=>expires}
-	         cookies[:UNAME] = {:value=>account.login_name,:expires=>expires}
-	         cookies[:MLV] = {:value=>account.user.member_lv_id,:expires=>expires}
-	         cookies[:CUR] = {:value=>account.user.cur,:expires=>expires}
-	         cookies[:LANG] = {:value=>account.user.lang,:expires=>expires}
+	    current_account = account
+      #  cookies.signed[:_auth_ext] =  account.auth_ext.id if account.auth_ext
+        account.user.increment!(:login_count)  if  account.user &&  !account.user.new_record?
+        #cookie for ecstore
+        expires = nil
+        expires = 1.week.from_now if remember_me == "1"
+        if Rails.env == "production"
+	        cookies[:MEMBER] = {:value=>account.gen_secret_string_for_cookie,:expires=>expires,:domain=>'.cheuks.com'}
+	        cookies[:loginName] = {:value=>account.login_name,:expires=>expires,:domain=>'.cheuks.com'}
+	        cookies[:UNAME] = {:value=>account.login_name,:expires=>expires,:domain=>'.cheuks.com'}
+	        cookies[:MLV] = {:value=>account.user.member_lv_id,:expires=>expires,:domain=>'.cheuks.com'}
+	        cookies[:CUR] = {:value=>account.user.cur,:expires=>expires,:domain=>'.cheuks.com'}
+	        cookies[:LANG] = {:value=>account.user.lang,:expires=>expires,:domain=>'.cheuks.com'}
+	    else
+	   	    cookies[:MEMBER] = {:value=>account.gen_secret_string_for_cookie,:expires=>expires}
+	        cookies[:loginName] = {:value=>account.login_name,:expires=>expires}
+	        cookies[:UNAME] = {:value=>account.login_name,:expires=>expires}
+	        cookies[:MLV] = {:value=>account.user.member_lv_id,:expires=>expires}
+	        cookies[:CUR] = {:value=>account.user.cur,:expires=>expires}
+	        cookies[:LANG] = {:value=>account.user.lang,:expires=>expires}
 	   end
 	end
 
@@ -43,7 +43,7 @@ module SessionsHelper
 		current_account = nil
 		[:MEMBER,:loginName,:UNAME,:MLV,:CUR,:LANG].each do |e|
 			if Rails.env == "production"
-				cookies.delete(e.to_s,:domain=>".trade-v.com")
+				cookies.delete(e.to_s,:domain=>".cheuks.com")
 			else
 				cookies.delete(e.to_s)
 			end
@@ -55,17 +55,17 @@ module SessionsHelper
 	end
 
 	def login_path
-		subdomain = "trade-v"
+		subdomain = "cheuks"
   		subdomain = "www" if Rails.env == "production"
   		return_url = request.url
   		return_url = request.env["HTTP_REFERER"] if request.xhr?
 
   		
 
-    cookies[:unlogin_url] = {:value=>return_url,:domain=>".trade-v.com"}
+    cookies[:unlogin_url] = {:value=>return_url,:domain=>".cheuks.com"}
 
     #"http://#{subdomain}.#{request.domain}/passport-login.html"
-    "http://www.trade-v.com/"
+    "http://www.cheuks.com/"
 	end
 
 	def goto_login_path
@@ -77,13 +77,13 @@ module SessionsHelper
 	end
 
 	def site_path
-		return "http://www.trade-v.com/" if Rails.env == "development"
-		"http://www.trade-v.com/"
+		return "http://www.cheuks.com/" if Rails.env == "development"
+		"http://www.cheuks.com/"
 	end
 
 	def site
-		return "http://www.trade-v.com" if Rails.env == "development"
-		"http://www.trade-v.com"
+		return "http://www.cheuks.com" if Rails.env == "development"
+		"http://www.cheuks.com"
 	end
 
 

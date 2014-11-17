@@ -4,7 +4,6 @@
 	<%= stylesheet_link_tag "store/cats" %>
 	<%= javascript_include_tag "store/tree_menu" %>
 <%end%>
-<%if signed_in?%>
 <%=render "store/shared/cat_position"%>
 
 <div class="products clearfix">
@@ -15,4 +14,3 @@
 		<%=render "store/goods/list_goods"%>
 	</div>
 </div>
-<%end%>

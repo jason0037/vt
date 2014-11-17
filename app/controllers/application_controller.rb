@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
   include Breadcrumb
-  
-  
+
 
   layout "survey"
 
@@ -13,8 +12,6 @@ class ApplicationController < ActionController::Base
   before_filter :find_user,:find_session_id,:find_cart!
   before_filter :find_path_seo
   before_filter :set_locale
-
-
 
 
   require "pp"

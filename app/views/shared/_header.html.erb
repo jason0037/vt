@@ -1,59 +1,65 @@
+<div id="topmenu" class="navbar  navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner-tophead">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <div class="nav-collapse collapse">
+        <ul class ="nav-tophead">
+          <%if @user%>
+              <li  class="wide-li">
+                <div style="display: block;" id="member_bar_253" class="bar">
+                您好，
+            <span class="login_name" id="uname_253">
+              <%=truncate2(@user.account.login_name,:length=>5)%>
+            </span>
+                  欢迎登录卓仕工业品！
+                  <a class="loggedin" href="/logout">退出</a>
+                </div>
+              </li>
 
+          <%else%>
+              <li class="wide-li">
+                <a class="loggedin login girl_head" href="javascript:void(0);">[请登录]</a>
+                <a class="loggedin login" href="javascript:void(0);" id="reg">[免费注册]</a>
+              </li>
+          <%end%>
+          <li class="wide-li">
+            <a href="#"><img src="/assets/cheuks_map_point.png">上海 <span style="color:red">[更换]</span></a>
+          </li>
+        </ul>
+      </div>
+      <div class="right-menu">
+        <ul class="nav-tophead">
+          <li><a href="/member">用户中心</a></li>
+          <li><a href="/member/orders">我的订单</a></li>
+          <li><a href="#">供应商加盟</a></li>
+          <li><a href="#">客服中心</a></li>
+          <li><a href="#">网站导航</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
 <div id="header">
   <div class="container">
-    <div id="imodec_logo">
-      <a href="/"><img alt="贸威" src="/assets/store/logo_big.png"></a>
-    </div>
-    <div id="imodec_slogan">
-      <img alt="跨境贸易，一键直达" src="/assets/store/slogan.png">
+    <div id="logo">
+      <a href="/"><img alt="卓展" src="/assets/cheuks_logo.png"></a>
     </div>
 
     <div id="account">
       <div id="search_wrapper">
         <div id="search_bar">
           <form accept-charset="UTF-8" action="/search" method="get">
-            <input id="search_input" name="q" placeholder="请输入搜索关键字" value="<%= controller_name=="search" ? params[:q] : Ecstore::Config.get(:search_key)%>">
+            <input id="search_input" name="q" placeholder="请输入搜索关键字" value="<%#= controller_name=="search" ? params[:q] : Ecstore::Config.get(:search_key)%>">
             <button id="search_btn" type="submit">搜索</button>
           </form>
         </div>
-        <a href="http://weibo.com/u/3938541241" target="_blank" id="weibo"></a>
-        <!-- <a href="http://www.TRADE-V.com/vip" target="_blank" id="vipcard"></a> -->
+        <!--  <a href="http://weibo.com/u/3938541241" target="_blank" id="weibo"></a>
+         <a href="http://www.TRADE-V.com/vip" target="_blank" id="vipcard"></a> -->
       </div>
-
-
-      <ul id="login_tools" class="clearfix">
-        <li><div id="tel">021-22306630</div></li>
-
-        <li>
-          <!-- <div id="support">
-            <script language="javascript" src="http://kf1.learnsaas.com/chat/chatClient/textButton.js?companyID=18880&configID=42678&codeType=custom" ></script>
-          </div> -->
-        </li>
-
-        <li>
-            <a id="cart_link" href="#" class="cart-link <%='login' unless signed_in?%>">
-              购物袋
-              <span class="cart-number">(<%=@cart_total_quantity%>)</span></a>
-        </li>
-
-        <%if @user%>
-        <li>
-          <div style="display: block;" id="member_bar_253" class="bar">
-            <span class="login_name" id="uname_253">
-              <%=truncate2(@user.account.login_name,:length=>5)%>
-            </span>
-            <a class="loggedin" href="/member">我的贸威</a>
-            <a class="loggedin" href="/logout">退出</a>
-          </div>
-        </li>
-        
-        <%else%>
-        <li>
-            <a class="loggedin login girl_head" href="javascript:void(0);">登录</a>
-            <a class="loggedin login" href="javascript:void(0);" id="reg">注册</a>
-        </li>
-        <%end%>    
-      </ul>
     </div>
 
   </div>

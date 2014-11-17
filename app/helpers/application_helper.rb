@@ -73,15 +73,15 @@ module ApplicationHelper
       end
 
       def page_title
-        (content_for :title).present? ? (content_for :title) : 'trade-V 跨境贸易直通车'
+        (content_for :title).present? ? (content_for :title) : "Cheuk`s 卓展"
       end
 
       def meta_keywords
-        (content_for :keywords).present? ? (content_for :keywords) : '时尚服饰,设计师服装,时尚女性服饰,女装,配饰'
+        (content_for :keywords).present? ? (content_for :keywords) : '工业,物流,设备'
       end
 
       def meta_description
-        (content_for :description).present? ? (content_for :description) : 'trade-V 跨境贸易直通车.'
+        (content_for :description).present? ? (content_for :description) : "Cheuk`s 卓展"
       end
 
   def token_fieldes

@@ -1,13 +1,18 @@
+
 #topmenu {
   position: relative;
   // top: 100px;
 }
+
+#topmenu .navbar-inner-tophead{background:#333333;}
+
 #topmenu .navbar-inner {
-  background-image: url(/assets/store/menu_item_bg.png);
+  background:#FE1301;
+  //background-image: url(/assets/store/menu_item_bg.png);
   border: none;
 }
 #topmenu .container {
-  width: 950px;
+  width: 971px;
   margin: 0 auto;
 }
 #topmenu.navbar .navbar-inner {
@@ -15,6 +20,35 @@
 }
 #topmenu.navbar .nav {
   margin: 0;
+}
+#topmenu.navbar .nav-tophead {
+  margin: 0;
+}
+#topmenu.navbar .nav-tophead > li {
+  float:left;
+  color:#B3B2B2;
+  width: 75px;
+  font-size:12px;
+}
+
+#topmenu.navbar .nav-tophead > li > a {
+  float: none;
+  padding: 7px 0 7px 0;
+  color:#B3B2B2;
+  line-height: 18px;
+  text-decoration: none;
+  text-align: center;
+  /*font-weight: bold;*/
+  font-family: 'SimSun', 'Hiragino Sans GB', 'Microsoft YaHei', serif;
+}
+#topmenu.navbar .nav-tophead > li > a:hover {
+  color: #ffffff;
+}
+ .right-menu{
+  float:right;
+}
+#topmenu.navbar .nav-tophead .wide-li{
+  width:130px;
 }
 #topmenu.navbar .nav > li {
   float: left;

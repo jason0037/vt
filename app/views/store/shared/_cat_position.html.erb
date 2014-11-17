@@ -2,8 +2,9 @@
   <div class="container">
     <div class="current_pos">当前位置 ：</div>
     <ul class="breadcrumb">
-      <li><a href="http://www.TRADE-V.com">首页</a> <span class="divider">/</span></li>
-        <%@cat.cat_paths.each_with_index do |cat,index|%>
+      <li><a href="/">首页</a> <span class="divider">/</span></li>
+        <%if @cat
+           @cat.cat_paths.each_with_index do |cat,index|%>
             <%if index != @cat.cat_paths.size - 1%>
               <li>
                 <%=link_to cat.cat_name,"#{cat_path(cat)}?gtype=#{params[:gtype]}",:target=>"_blank" if cat%>
@@ -15,6 +16,7 @@
               </li>
             <%end%>
 
+        <%end%>
         <%end%>
     </ul>
    </div>

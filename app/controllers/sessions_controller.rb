@@ -14,11 +14,14 @@ class SessionsController < ApplicationController
     if params[:supplier_id]
       supplier_id  = params[:supplier_id]
     end
+    if supplier_id.nil?
+      supplier_id=1
+    end
     @supplier = Ecstore::Supplier.find(supplier_id)
 
-    #redirect_uri = "http://vshop.trade-v.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
+    #redirect_uri = "http://weishop.cheuks.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
     #redirect_uri= URI::escape(redirect_uri)
-    redirect_uri="http%3a%2f%2fvshop.trade-v.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
+    redirect_uri="http%3a%2f%2fweishop.cheuks.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
 
     @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
 
@@ -35,9 +38,9 @@ class SessionsController < ApplicationController
     end
     @supplier = Ecstore::Supplier.find(supplier_id)
 
-    #redirect_uri = "http://vshop.trade-v.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
+    #redirect_uri = "http://weishop.cheuks.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
     #redirect_uri= URI::escape(redirect_uri)
-    redirect_uri="http%3a%2f%2fvshop.trade-v.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
+    redirect_uri="http%3a%2f%2fweishop.cheuks.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
 
     @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
      return_url  =params[:return_url]
@@ -63,7 +66,7 @@ class SessionsController < ApplicationController
 
 
   def create
-
+    @supplier_id =1
      if params[:supplier_id]
        @supplier_id= params[:supplier_id]
 
@@ -83,19 +86,25 @@ class SessionsController < ApplicationController
   	  @account = Ecstore::Account.user_authenticate_mobile(params[:session][:username],params[:session][:password],@supplier_id)
     elsif @platform == 'vshop'
       @account = Ecstore::Account.admin_authenticate(params[:session][:username],params[:session][:password])
+    else
+      @account = Ecstore::Account.user_authenticate(params[:session][:username],params[:session][:password])
     end
-      if @account
+
+    if @account
+  #   return render js: "$('#login_msg').text('#{@account.login_name}').addClass('error').fadeOut(300).fadeIn(300);"
   		sign_in(@account,params[:remember_me])
+
              #update cart
              # @line_items.update_all(:member_id=>@account.account_id,
              #                                       :member_ident=>Digest::MD5.hexdigest(@account.account_id.to_s))
-
+  
   		render "create"
   	else
 
   		render "error"
       #  render js: '$("#login_msg").text("帐号或密码错误!").addClass("error").fadeOut(300).fadeIn(300);'
   	end
+   
   end
 
   def destroy

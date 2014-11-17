@@ -1,12 +1,8 @@
-
-
-
-
 a { color: #525252; text-decoration: none;}
 a:hover { color: #f60; text-decoration: underline; }
-#banner {position:relative; width:1004px; height:390px; overflow:hidden;text-align:left; }
-#banner_list .mi img {border:0px; width:1004px; height:390px;}
-#banner_bg {position:absolute; bottom:0;background-color:#000;height:30px;filter: Alpha(Opacity=30);opacity:0.3;z-index:100;cursor:pointer; width:1000px; display:none; }
+#banner {position:relative; width:583px; height:305px; overflow:hidden;text-align:left; }
+#banner_list .mi img {border:0px; width:583px; height:305px;}
+#banner_bg {position:absolute; bottom:0;background-color:#000;height:30px;filter: Alpha(Opacity=30);opacity:0.3;z-index:100;cursor:pointer; width:971px; display:none; }
 #banner_info{position:absolute; bottom:0; left:5px;height:22px;color:#fff;z-index:101;cursor:pointer}
 #banner_text {position:absolute;width:120px;z-index:102; right:3px; bottom:3px;}
 #banner ul {position:absolute;list-style-type:none; z-index:102;margin:0; padding:0; bottom:105px; right:5px;}
@@ -16,11 +12,11 @@ a:hover { color: #f60; text-decoration: underline; }
 #banner_list .bitem .bannerad img{height:100px;width:197px; border:none;}
 #banner_list .bitem .bannerad span{display: inline;float: left; margin: 0;padding: 0;}
 
-.notice{height:18px; line-height:18px;overflow:hidden; position:relative; margin:2px auto 10px auto; width:1190px;}
+.notice{height:18px; line-height:18px;overflow:hidden; position:relative; margin:2px auto 10px auto; width:971px;}
 .notice span{ color:Red; position:absolute;}
 
-.i_banner{width:1004px;height:390px;float:right;}
-.i_banner .i_slider{width:1004px;height:390px;float:left;}
+.i_banner{width:794px;height:466px;float:right;}
+.i_banner .i_slider{width:583px;height:305px;float:left;}
 .i_banner .i_right{width:207px;float:left;margin-left:10px;}
 .i_right .tit{width:202px;height:29px; border-bottom:1px solid #d3d3d3;color:#eb562e;font-weight:bold;line-height:29px;padding-left:5px;}
 .i_right .i_trends ul{line-height:21px;margin-top:5px;margin-left:5px;}
@@ -32,7 +28,7 @@ a:hover { color: #f60; text-decoration: underline; }
 .top_tab{clear:both;}
 .top_tab .i_p_left{float:left;overflow:hidden;width:175px;height:250px; position:relative;}
 .i_p_left .qiang_p{float:left;overflow:hidden;}
-.top_tab .i_p_left ul{overflow:hidden;width:1000px;position:absolute;float:left;left:0px;}
+.top_tab .i_p_left ul{overflow:hidden;width:971px;position:absolute;float:left;left:0px;}
 .top_tab .i_p_left ul li{width:175px;height:250px;float:left;}
 .top_tab .i_qiang{width:173px;border:1px solid #e5e5e5;border-bottom:none;height:212px;text-align:center;}
 .top_tab .i_qiang .i_tit{color:#da533d;padding-top:10px;font-weight:bold;padding-left:20px;text-align:left;}
@@ -62,7 +58,7 @@ a:hover { color: #f60; text-decoration: underline; }
 .tab_ad img{margin-left:6px;display:inline-block;float:left;}
 
 
-.main_list{width:1190px;margin-top:12px;float:left;clear:both;}
+.main_list{width:971px;margin-top:12px;float:left;clear:both;}
 .main_list .tit{height:30px;clear:both;}
 .main_list .tit .i_floor{display:inline-block;float:left;}
 .main_list .tit ul{float:right;height:10px;padding:10px 0px;}

@@ -14,14 +14,23 @@ class Patch::MembersController < ApplicationController
 
 
 	def show
+    if @user
 		@orders = @user.orders.limit(5)
 		@unpay_count = @user.orders.where(:pay_status=>'0',:status=>'active').size
 		add_breadcrumb("我的贸威")
+    else
+      redirect_to "/login"
+    end
 	end
 
 	def orders
+    if @user
 		@orders = @user.orders.paginate(:page=>params[:page],:per_page=>10)
 		add_breadcrumb("我的订单")
+    else
+      redirect_to "/login"
+    end
+
 	end
 
 	def coupons
