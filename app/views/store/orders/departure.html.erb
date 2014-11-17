@@ -19,7 +19,7 @@
     <input type="hidden" name="supplier_id"value="<%=@supplier.id%>">
     <input type="hidden" name="platform"value="<%=@platform%>">
     <input type="hidden" name="xiehuo"value="<%=session[:xiehuo]%>">
-
+     <span class="bottomdivsclearfix xiehuo"><%=session[:zhuanghuo]%></span>
 
     <ul class="am-list am-list-striped ">
 
@@ -30,7 +30,7 @@
           <span >&nbsp;&nbsp;<%=def_addr.name%>  <span  style="margin-left: 30px"> <%=def_addr.mobile%></span></span>
           <br/>
 
-          <span >&nbsp;&nbsp;<%=def_addr.addr%></span>
+          <span  class="addr" style="margin-left: 30px"><%=def_addr.addr%></span>
           <span class="am-badge am-badge-danger delete" style="cursor:pointer " >删除</span>
 
        </li>
@@ -75,6 +75,8 @@
        $(this).children("input[type='radio']").attr("checked",'true');
 
     })
+
+
 
     })
 

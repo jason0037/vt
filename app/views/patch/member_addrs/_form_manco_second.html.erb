@@ -15,14 +15,7 @@
 <%=form_for :addr, :url=>@method == :put ?@action_url :" /member_addrs/addship?platform=#{params[:platform]}&supplier_id=#{@supplier.id}",  :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
     <input name="return_url" type="hidden" value="<%="/orders/arrival?platform=#{params[:platform]}&supplier_id=#{@supplier.id}&member_departure_id=#{params[:member_departure_id]}"%>" >
     <input name="addr[addr_type]" type="hidden" value="0" >
-    <%if params[:platform]=="manco_local"%>
-    <div class="am-input-group am-input-group-lg">
-      <span class="am-input-group-label">供配地址</span>
-      <input type="text" name="arrival"placeholder="请输入您本地供配城市" class="am-form-field floatright" id="arrival" value="">
-      <div id='suggest2' class="am-input-group-lg"> </div>
-    </div>
 
-      <%end%>
     <br/>
       <div class="am-panel am-panel-default">
 
@@ -113,24 +106,7 @@
     </div>
     </div>
 <%end%>
-<%if params[:platform]=="manco_local"%>
-    <script>$(function(){
 
-        $("#arrival").suggest(citys,{
-            hot_list:commoncitys,
-            attachObject:"#suggest2"
-        });
-
-    });</script>
-
-
-    <script type="text/javascript" src="/assets/manco/aircity.js"></script>
-    <script type="text/javascript" src="/assets/manco/j.suggest.js"></script>
-
-
-
-
-<%end%>
 
 <script type="application/javascript">
     $(document).ready(function(){
