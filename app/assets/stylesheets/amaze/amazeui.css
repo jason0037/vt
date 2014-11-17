@@ -1,4 +1,4 @@
-/*! Amaze UI v1.0.1 | by Amaze UI Team | (c) 2014 AllMobilize, Inc. | Licensed under MIT | 2014-10-28T03:10:02 UTC */
+/*! Amaze UI v1.0.1 | by Amaze UI Team | (c) 2014 AllMobilize, Inc. | Licensed under MIT | 2014-11-07T07:11:14 UTC */
 /**
   * 1. Allow margin
   * 2. Prevent inherit font style
@@ -4270,10 +4270,10 @@ a.am-close:hover {
 }
 /* Component
 ============================================================================= */
-[class*='am-icon-'] {
+[class*="am-icon-"] {
   display: inline-block;
 }
-[class*='am-icon-']:before {
+[class*="am-icon-"]:before {
   display: inline-block;
   /* 1 */
   font-family: "FontAwesome";
@@ -4288,6 +4288,7 @@ a.am-close:hover {
   -webkit-font-smoothing: antialiased;
   /* 5 */
   -moz-osx-font-smoothing: grayscale;
+  font-family: "FontAwesome" !important;
 }
 .am-icon-border {
   padding: .2em .25em .15em;
@@ -7027,7 +7028,7 @@ a.am-thumbnail.active {
   font-size: 3.2rem;
 }
 .am-text-xxxl {
-  font-size: 3.2rem;
+  font-size: 4.2rem;
 }
 .am-ellipsis,
 .am-text-truncate {
