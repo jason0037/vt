@@ -244,6 +244,4 @@
 			return this;
 			
 		};
-		
-
 	})(jQuery);
