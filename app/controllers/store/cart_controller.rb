@@ -107,7 +107,7 @@ class Store::CartController < ApplicationController
       session[:xiehuo] =params[:xiehuo]
 
     end
-    if params[:platform]=="mobile" && supplier_id=="98"
+    if params[:platform]=="mobile"
       redirect_to "/cart/mobile?supplier_id=#{supplier_id}"
       #render "mobile", :layout=>@supplier.layout
 
