@@ -13,7 +13,6 @@ module ModecPay
     @@partner_key_manco  = 'b97e61c87088d969b34534541ac98753'
     @@partnerid_manco ='1220984601'
 
-
     @@sub_mch_id=''
     @@device_info=''
 
@@ -29,31 +28,28 @@ module ModecPay
 
       self.fields['appid'] = @@appid
       self.fields['mch_id'] = @@mch_id
-
+=begin
      # self.fields['sub_mch_id'] = @@sub_mch_id
-    #  self.fields['device_info']= @@device_info
+     # self.fields['device_info']= @@device_info
 
      # self.fields['attach'] = 'trade-v' #附加数据原样返回
 
      # self.fields['time_start'] = '' #订单生成时间 yyyyMMddHHmmss string(14)，否
      # self.fields['time_expire'] = '' #交易结束时间时间 yyyyMMddHHmmss string（14），否
      # self.fields['goods_tag'] = '' #商品标记，不能随便填 String（32），否
+     # self.fields['transport_fee'] = '' #物流费用，string，单位为分。如果有值，必须保证 transport_fee+product_fee=total_fee；否
+     # self.fields['product_fee'] = '' #物流费用，string，单位为分。如果有值，必须保证 transport_fee+product_fee=total_fee；否
 
+     # self.fields['bank_type'] = 'WX'
+     # self.fields['partner'] = @@partnerid  #商户号 partnerId;
+
+     # self.fields['fee_type'] ='1' #支持币种，1 ：人民币 ，目前只支持人民币
+     # self.fields['input_charset'] ='UTF-8' #传入参数字符编码，取值范围 “GBK”，“UTF-8”]
+=end
       self.fields['trade_type'] = 'JSAPI' #JSAPI, NATIVE, APP
       self.fields['openid'] = '' #用户的openid, trade_type为JSAPP时，必传，否
       self.fields['nonce_str'] =  Digest::MD5.hexdigest(rand(1000).to_s) #随机串,不长于32位
       self.fields['products_id'] = '' #trade_type为NATIVE时，需要，此id为二维码中包含的商品ID
-
-
-      #     self.fields['transport_fee'] = '' #物流费用，string，单位为分。如果有值，必须保证 transport_fee+product_fee=total_fee；否
-      #     self.fields['product_fee'] = '' #物流费用，string，单位为分。如果有值，必须保证 transport_fee+product_fee=total_fee；否
-
- #     self.fields['bank_type'] = 'WX'
-  #    self.fields['partner'] = @@partnerid  #商户号 partnerId;
-
-
- #     self.fields['fee_type'] ='1' #支持币种，1 ：人民币 ，目前只支持人民币
- #     self.fields['input_charset'] ='UTF-8' #传入参数字符编码，取值范围 “GBK”，“UTF-8”]
 
     end
 
@@ -64,7 +60,7 @@ module ModecPay
     def supplier_id=(val)
       self.fields['supplier_id']=val
 
-      if self.fields['supplier_id']==98
+      if self.fields['supplier_id']=='98'
         self.fields['appid'] = @@appid_manco
         self.fields['mch_id'] = @@mch_id_manco
       end

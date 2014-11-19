@@ -270,7 +270,7 @@ class VshopController < ApplicationController
       @modec_pay = ModecPay.new adapter do |pay|
         if adapter=='wxpay'
           pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
-          pay.notify_url = "#{site}/vshop/78/paynotifyurl?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}"
+          pay.notify_url = "#{site}/vshop/#{supplier_id}/paynotifyurl?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}"
         else
           pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
           pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"

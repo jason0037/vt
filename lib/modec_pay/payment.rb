@@ -108,7 +108,7 @@ module ModecPay
       _filter = proc { true }  unless _filter
 
       form_inputs = self.fields.select(&_filter).collect do |key,val|
-        "<input type='hidden' name='#{key}' value='#{val}' />"
+        "<div style='display:none'>#{key}:<input name='#{key}' value='#{val}' style='width:500px' /><br/></div>"
       end.join(" ")
 
       <<-FORM
@@ -129,7 +129,7 @@ module ModecPay
           <span style="color: #0abede">正在跳转到到微信支付...<br/>如果长时间没有反应，请</span>
         </h2>
       </div>
-        <form accept-charset="#{self.charset}" action="/vshop/78/payments?id=#{self.pay_id}" method="post" id="pay_form">
+        <form accept-charset="#{self.charset}" action="/vshop/#{self.fields['supplier_id']}/payments?id=#{self.pay_id}" method="post" id="pay_form">
           #{form_inputs}
 
         </form>
