@@ -30,17 +30,9 @@
 
     <%=f.hidden_field :ship_name,:value=>"1111"%>
 
-
-
-
-
-    <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+<div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
       <div class="am-panel-hd">支付方式</div>
       <div class="am-panel-bd">
-        <%if @user.advance>0 && @user.advance < @cart_total%>
-            <label class="radio active" style="margin-left: 40px;padding: 2px">
-              <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>>
-        <%end%>
 
         <label class="radio active" style="margin-left: 40px;padding: 2px">
 
