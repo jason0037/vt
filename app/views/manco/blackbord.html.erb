@@ -133,6 +133,12 @@
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
    <script type="application/javascript">
           $(document).ready(function(){
+              $("#departure").focus(function(){
+                  blurall();
+              })
+              $("#arrival").focus(function(){
+                  blurall();
+              })
 
               $("#button").click(function(){
                   var departures=$("#departure").val();
@@ -153,7 +159,7 @@
                   }) }
               })
 
-               $("#good_price").blur(function(){
+               $("#good_price").focus(function(){
                var    departure=$("#departure").val();
                 var   arrival=$("#arrival").val();
                    if (!departure ||!arrival)  {alert("请先输入详细的地址在查询"); return false}
@@ -175,6 +181,15 @@
 
                    }
                })
+
+           function blurall(){
+
+                   $("#mktprice").addClass("form_hide");
+                   $("#button").css({"display":"block"});
+
+
+           }
+
 
            $(".btn-submit").click(function(){
 
