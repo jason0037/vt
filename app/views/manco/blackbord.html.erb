@@ -133,6 +133,12 @@
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
    <script type="application/javascript">
           $(document).ready(function(){
+              $("#departure").blur(function(){
+                  blurall();
+              })
+              $("#arrival").blur(function(){
+                  blurall();
+              })
 
               $("#button").click(function(){
                   var departures=$("#departure").val();
@@ -175,6 +181,15 @@
 
                    }
                })
+
+           function blurall(){
+
+                   $("#mktprice").addClass("form_hide");
+                   $("#button").css({"display":"block"});
+
+
+           }
+
 
            $(".btn-submit").click(function(){
 
