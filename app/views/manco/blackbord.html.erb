@@ -133,10 +133,10 @@
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
    <script type="application/javascript">
           $(document).ready(function(){
-              $("#departure").blur(function(){
+              $("#departure").focus(function(){
                   blurall();
               })
-              $("#arrival").blur(function(){
+              $("#arrival").focus(function(){
                   blurall();
               })
 
@@ -159,7 +159,7 @@
                   }) }
               })
 
-               $("#good_price").blur(function(){
+               $("#good_price").focus(function(){
                var    departure=$("#departure").val();
                 var   arrival=$("#arrival").val();
                    if (!departure ||!arrival)  {alert("请先输入详细的地址在查询"); return false}
