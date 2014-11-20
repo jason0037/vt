@@ -28,11 +28,9 @@ class Store::CartController < ApplicationController
 	
 	def add
 		# parse params
-<<<<<<< HEAD
-    if params[:platform]="manco_card"
-=======
+
     if params[:platform]=="manco_card"
->>>>>>> d209690d423174d3dd1530231e3f4b8a480114c7
+
        @line_items.delete_all
     end
 
@@ -133,7 +131,7 @@ class Store::CartController < ApplicationController
       url="/orders/departure?supplier_id=#{supplier_id}&platform=#{params[:platform]}"
       redirect_to url
     else
-       render :text =>params[:platform]
+       render "add"
     end
 
 	#rescue
