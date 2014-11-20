@@ -113,8 +113,8 @@ class SessionsController < ApplicationController
          redirect_to "/mlogin?id=#{params[:id]}&supplier_id=#{params[:id]}&return_url=#{return_url}"
 
 
-      elsif
-        redirect_to "/vshop"
+      elsif params[:platform]=="vshop"
+           redirect_to "/vshop"
       else
 
         redirect_to "/"

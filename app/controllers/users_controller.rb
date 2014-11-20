@@ -50,6 +50,7 @@ class UsersController < ApplicationController
 
   def create
     supplier_id = params[:supplier_id]
+
   	now  = Time.now
 	  @account = Ecstore::Account.new(params[:user]) do |ac|
   		ac.account_type ="member"

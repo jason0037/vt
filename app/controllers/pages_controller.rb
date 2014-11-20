@@ -38,7 +38,7 @@ class PagesController < ApplicationController
        return render :layout=>@supplier.layout
     elsif params[:platform] =='vshop'
       render :layout=>'vshop'
-    elsif params[:platfom]='mobile'
+    elsif params[:platfom]=='mobile'
       render :layout=>'mobile_new'
     else
 
