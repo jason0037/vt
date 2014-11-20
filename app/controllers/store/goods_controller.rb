@@ -127,6 +127,7 @@ class Store::GoodsController < ApplicationController
    @goods_tiegun=Ecstore::Good.where(:supplier_id=>"106")
    @goods_cmcyz=Ecstore::Good.where(:supplier_id=>"105")
   @goods_dmdm =Ecstore::Good.where(:supplier_id=>"108")
+   @goods_tsdzx=Ecstore::Good.where(:supplier_id=>"87")
     @recommend_user = session[:recommend_user]
 
     if @recommend_user==nil &&  params[:wechatuser]
