@@ -28,7 +28,7 @@ class Store::CartController < ApplicationController
 	
 	def add
 		# parse params
-    if params[:platform]="manco_card"
+    if params[:platform]=="manco_card"
        @line_items.delete_all
     end
 
@@ -112,7 +112,7 @@ class Store::CartController < ApplicationController
 
     end
 
-    if params[:platform]=="mobile"||supplier_id=="78"
+    if params[:platform]=="mobile"
     redirect_to "/cart/mobile?supplier_id=#{supplier_id}"
       #render "mobile", :layout=>@supplier.layout
 
