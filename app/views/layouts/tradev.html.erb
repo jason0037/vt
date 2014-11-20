@@ -19,16 +19,18 @@
 
 
   <%= javascript_include_tag "amaze/zepto.min.js"%>
-
+  <%= javascript_include_tag "amaze/amazeui.widgets.helper.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.helper.min.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.min.js"%>
 
   <%= javascript_include_tag "amaze/amazeui.js" %>
-
-
+  <%= javascript_include_tag "amaze/amazeui.min.js" %>
+  <%= javascript_include_tag "amaze/amazeui.basic.js"%>
+  <%= javascript_include_tag "amaze/amazeui.basic.min.js"%>
   <%= javascript_include_tag "amaze/handlebars.min.js"%>
 
 
-  <script src="http://amazeui.org/js/ZeroClipboard.min.js"></script>
-  <script src="http://amazeui.org/js/main.js"></script>
 <script>
       var ui = 'touch';
   </script>
@@ -178,10 +180,11 @@
   <p class="copyright" style="display: none">Copyright © 2013-2014 trade-v.com <br/>版权所有 上海普慧信息科技有限公司 All rights reserved. <br/>沪ICP备13045311号-1 </p>
   <p style="display:none">from=<%=session[:wechat_user]%>|recommend=<%=session[:recommend_user]%></p>
 </div>
+<div class="space10"></div>
 
+<div class="c-bottom"></div>
 
 <script type="text/javascript">
-
     function wechatShare(data) {
         // If no data is defined, just fallback to wechat's default behaviour.
         if (!data) {
