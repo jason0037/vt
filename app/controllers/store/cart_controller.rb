@@ -112,7 +112,7 @@ class Store::CartController < ApplicationController
 
     end
 
-    if params[:platform]=="mobile"
+    if params[:platform]=="mobile"||supplier_id=="78"
     redirect_to "/cart/mobile?supplier_id=#{supplier_id}"
       #render "mobile", :layout=>@supplier.layout
 
