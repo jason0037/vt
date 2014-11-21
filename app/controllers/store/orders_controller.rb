@@ -678,11 +678,9 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
        @invoice=0
        @warehouse=0
        @line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|
-          if line_item.good.cat_id=="604"
+          if line_item.good.cat_id==604
             @cart_totals=line_item.good.wholesale
-
-
-            else
+          else
               sql = "SELECT price*quantity AS total,wholesale FROM mdk.sdb_b2c_cart_objects
 INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING_INDEX(SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',2),'_',-1) = mdk.sdb_b2c_goods.goods_id
 WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"

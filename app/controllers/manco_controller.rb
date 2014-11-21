@@ -23,11 +23,9 @@ class MancoController < ApplicationController
   end
 
   def find_manco
-    if @user
-    @line_items.delete_all
     supplier_id = params[:supplier_id]
-
-  @supplier =Ecstore::Supplier.find(supplier_id)
+    if @user
+    @supplier =Ecstore::Supplier.find(supplier_id)
     else
 
     redirect_to "/auto_login?id=#{supplier_id}&supplier_id=#{supplier_id}&platform=mobile&return_url=/manco/find_manco?supplier_id=#{supplier_id}"
@@ -61,14 +59,9 @@ class MancoController < ApplicationController
   end
 
  def black_good_index
-   if @user
-
-
-   @line_items.delete_all     ###货源信息小黑板
    supplier_id = params[:supplier_id]
-
-
-     @supplier =Ecstore::Supplier.find(supplier_id)
+   if @user
+   @supplier =Ecstore::Supplier.find(supplier_id)
       @good=Ecstore::BlackGood.paginate :page=>params[:page],        ###分页语句
                                 :per_page =>5,              ###当前只显示一条
                                 :conditions => ["cat_id=571"]    ####小黑板对应的类别为571
@@ -95,11 +88,8 @@ class MancoController < ApplicationController
     redirect_to "/manco/black_good_index?supplier_id=98"
   end
   def black_index
-    if @user
-    @line_items.delete_all
     supplier_id = params[:supplier_id]
-
-
+    if @user
     @supplier =Ecstore::Supplier.find(supplier_id)
 
     account=@user.member_id
@@ -114,7 +104,7 @@ class MancoController < ApplicationController
   end
 
   def blackboardfind_e
-    @line_items.delete_all
+
     @departure= params[:departure]
     @arrival= params[:arrival]
     goodsname=@departure+"-"+@arrival;
@@ -127,10 +117,9 @@ class MancoController < ApplicationController
   end
 
   def main
-    if @user
 
-      @line_items.delete_all
     supplier_id=params[:supplier_id]
+    if @user
     @supplier = Ecstore::Supplier.find(supplier_id)
     else
 
@@ -144,9 +133,10 @@ class MancoController < ApplicationController
   end
 
   def choose_express
+    supplier_id=params[:supplier_id]
     if @user
-      @line_items.delete_all ###落地配服务
-      supplier_id=params[:supplier_id]
+
+
       @supplier = Ecstore::Supplier.find(supplier_id)
     else
 
@@ -156,9 +146,10 @@ class MancoController < ApplicationController
   end
 
   def local_express
+    supplier_id=params[:supplier_id]
     if @user
       @line_items.delete_all ###本地落地配服务
-      supplier_id=params[:supplier_id]
+
       @supplier = Ecstore::Supplier.find(supplier_id)
     else
 
@@ -182,9 +173,10 @@ class MancoController < ApplicationController
   end
 
  def express
+   supplier_id=params[:supplier_id]
    if @user
    @line_items.delete_all ###同业落地配服务
-  supplier_id=params[:supplier_id]
+
    @supplier = Ecstore::Supplier.find(supplier_id)
  else
 
@@ -331,7 +323,7 @@ end
   end
 
    def mancoluodipei
-     @line_items.delete_all
+
      @departure= params[:departure]
      @arrival= params[:arrival]
      distribution=params[:distribution]
@@ -405,7 +397,7 @@ end
    end
 
    def cart_goods ###万家预充值
-       @line_items.delete_all
+
        @supplier=Ecstore::Supplier.find(params[:supplier_id])
        @cart_name=Ecstore::Good.where(:cat_id=>"600")###万家物流充值卡cat_id＝588
         good_name= params[:cart_name]

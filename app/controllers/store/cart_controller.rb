@@ -29,7 +29,7 @@ class Store::CartController < ApplicationController
 	def add
 		# parse params
 
-    if params[:platform]=="manco_card"
+    if params[:supplier_id] =="98"
 
        @line_items.delete_all
     end

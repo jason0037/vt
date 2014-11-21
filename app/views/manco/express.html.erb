@@ -99,8 +99,8 @@
       <span class="am-input-group-label">立方米</span>
     </div>
     </br>
+           <input type="button" class="am-btn am-btn-primary am-btn-block  button-am" value="下一步">
 
-      <%= f.submit :class=>"am-btn am-btn-primary am-btn-block  button-am" ,:value=>"下一步"%>
 
 
 <%end%>
@@ -117,7 +117,7 @@
 
 
 <script type="application/javascript">
-    var mancoweight;
+    var mancoweight ;
     $("#departure").focus(function(){
         $("#notice").addClass("form_hide");
     })
@@ -157,10 +157,14 @@
               else{mancoweight=volue*200}
 
          }
-
-
+          if(!volue&&weight){
+              mancoweight=$("#weight").val();
+             }
+            if(!volue&&!weight){
+               alert("至少需要输入物品重量");return false;
+            }
            $("#mancoweight").val(mancoweight);
-
+         $("#form_second").submit();
 
     })
 
