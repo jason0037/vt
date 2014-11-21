@@ -45,14 +45,19 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url1="http://vshop.trade-v.com/images/a0#{id}/homepage/logo.jpg"
         link_url1="http://vshop.trade-v.com/pages/#{@weixin_public_account.url}_aboutus"
 
-        if id==98
 
-        title2="技术支持"
-        desc2 ="——————贸威O2O微信直销商场"
-        pic_url2="http://vshop.trade-v.com/images/a078/homepage/logo.jpg"
-        link_url2="http://vshop.trade-v.com/world_food?supplier_id=78"
+        if id==98
+          title2="技术支持"
+          desc2 ="来自贸威O2O微信直销商场"
+          pic_url2="http://vshop.trade-v.com/images/a078/homepage/logo.jpg"
+          link_url2="http://vshop.trade-v.com/world_food?supplier_id=78"
+          articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2)]
+
+        else
+          articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
+
+
         end
-        articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2)]
 
       when '买'
         title="[测试商品]-----------------"
