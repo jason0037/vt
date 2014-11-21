@@ -45,6 +45,12 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url1="http://vshop.trade-v.com/images/a0#{id}/homepage/logo.jpg"
         link_url1="http://vshop.trade-v.com/pages/#{@weixin_public_account.url}_aboutus"
 
+        if id==98
+        title1="技术支持"
+        desc1 ="——————贸威O2O微信直销商场"
+        pic_url1="http://vshop.trade-v.com/images/a078/homepage/logo.jpg"
+        link_url1="http://vshop.trade-v.com/world_food?supplier_id=78"
+        end
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
 
       when '买'
