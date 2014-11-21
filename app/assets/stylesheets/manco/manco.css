@@ -1,4 +1,6 @@
-
+.am-titlebar-title{
+    width: 100px;
+}
    .am-panel-warning {
        border-color: #0e90d2;
        background: #0e90d2;
