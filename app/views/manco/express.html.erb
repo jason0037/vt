@@ -163,6 +163,9 @@
             if(!volue&&!weight){
                alert("至少需要输入物品重量");return false;
             }
+            if (!weight&&volue){
+                mancoweight=volue*200;
+            }
            $("#mancoweight").val(mancoweight);
          $("#form_second").submit();
 
