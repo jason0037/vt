@@ -52,7 +52,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url2="http://vshop.trade-v.com/images/a078/homepage/logo.jpg"
         link_url2="http://vshop.trade-v.com/world_food?supplier_id=78"
         end
-        articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1,title2, desc2, pic_url2, link_url2)]
+        articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2)]
 
       when '买'
         title="[测试商品]-----------------"
