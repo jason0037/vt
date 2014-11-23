@@ -38,12 +38,12 @@ noscript { position: absolute; top: 30px; margin: 0px auto; width: 100%; text-al
 .mt7{ margin-top:7px;}
 
 
-#body { margin: 0px auto; width: 971px; background: #fff;}
+#body { margin: 0px auto; width: 1190px; background: #fff;}
 
-#main { width:971px; background: #fff;}
-.pagewidth{width:971px;}
-.mainwidth { width: 971px; margin-bottom: 15px; }
-.maxwidth{ width:971px; margin-bottom:15px;}
+#main { width:1190px; background: #fff;}
+.pagewidth{width:1190px;}
+.mainwidth { width: 1190px; margin-bottom: 15px; }
+.maxwidth{ width:1190px; margin-bottom:15px;}
 
 .pubbtn{background:url(/skin/df3/images/buttons.gif?123); display:block; border:none; cursor:pointer;}
 .pubbtn2{background:url(/skin/df3/images/buttons2.gif); display:block; border:none; cursor:pointer;}
@@ -440,7 +440,7 @@ a.bfd_img_tag:hover{background:url(http://static.baifendian.com/themes/logo/bfd_
 
 /*base site style begin****/
 ul,ol{margin:0;padding:0;list-style:none;}
-.main{width:971px;margin:0 auto;}
+.main{width:1190px;margin:0 auto;}
 a{text-decoration:none;color:#434343;}
 img{border:none;}
 /****base site style end****/
@@ -495,7 +495,7 @@ img{border:none;}
 /*#endregion */
 
 /*base header begin*/
-.topheader{width:971px;margin:0 auto;}
+.topheader{width:1190px;margin:0 auto;}
 .topheader .top{height:18px;line-height:18px;text-align:center;padding:6px 0px;z-index:1000;}
 .topheader .login {height:18px;float:left;}
 .topheader .login li{float:left;line-height:25px;}

@@ -117,17 +117,17 @@
 				</td>
 				<td>
                   <%if cookies[:MLV] == "10"%>
-                    <%=number_to_currency line_item.product.bulk,:unit=>"&yen;",:precision=>2%>
+                   &yen<%=number_to_currency line_item.product.bulk,:unit=>"",:precision=>2%>
                   <%else%>
-                      <%=number_to_currency line_item.product.price,:unit=>"&yen;",:precision=>2%>
+                    &yen<%=number_to_currency line_item.product.price,:unit=>"",:precision=>2%>
                   <%end%>
                 </td>
 				<td><%=line_item.quantity%></td>
 				<td>
                   <%if cookies[:MLV] == "10"%>
-					   <%=number_to_currency line_item.line_total_bulk,:unit=>"&yen;",:precision=>2%>
+					&yen<%=number_to_currency line_item.line_total_bulk,:unit=>"",:precision=>2%>
                   <%else%>
-                      <%=number_to_currency line_item.line_total,:unit=>"&yen;",:precision=>2%>
+                    &yen<%=number_to_currency line_item.line_total,:unit=>"",:precision=>2%>
                   <%end%>
 				</td>
 				</tr>

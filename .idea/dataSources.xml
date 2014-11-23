@@ -18,6 +18,7 @@
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/blog_test</jdbc-url>
       <user-name>root</user-name>
+      <user-password>df9bdf98df99df9edf9fdf9c</user-password>
       <libraries>
         <library>
           <url>file://</url>
@@ -27,7 +28,7 @@
     <data-source source="LOCAL" name="Rails vt: production" uuid="dff563a4-c134-4acc-8a1a-9cf4499e44cd">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1/blog_development</jdbc-url>
+      <jdbc-url>jdbc:mysql://127.0.0.1/blog_production</jdbc-url>
       <user-name>root</user-name>
       <user-password>df9bdf98df99df9edf9fdf9c</user-password>
       <libraries>

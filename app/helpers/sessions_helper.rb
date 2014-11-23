@@ -82,8 +82,8 @@ module SessionsHelper
 	end
 
 	def site
-		return "http://www.cheuks.com" if Rails.env == "development"
-		"http://www.cheuks.com"
+		return "http://weishop.cheuks.com" if Rails.env == "development"
+		"http://weishop.cheuks.com"
 	end
 
 

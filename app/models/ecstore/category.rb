@@ -40,7 +40,8 @@ class Ecstore::Category < Ecstore::Base
   			raise "Field `#{key}`  is existence" unless Ecstore::Good.attribute_names.include?(key.to_s)
   		end if conditions.present?
 
-  		if self.categories.blank?
+  	#	if self.categories.blank? #目前没有用到最后一级分类
+      if self.code.length == 8 #第三级分类
   			@all_goods += self.goods.where(conditions).order("d_order desc").to_a 
   		else
   			self.categories.each { |cat| @all_goods += cat.all_goods(conditions) }

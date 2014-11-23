@@ -33,23 +33,65 @@
    <br/>
   <div class="am-input-group am-input-group-lg">
     <span class="am-input-group-label">重量</span>
-    <input type="number" name="weight"placeholder="请输入物品重量" class="am-form-field floatright"  value="">
+    <input type="number" name="weight" min="0"placeholder="请输入物品重量" class="am-form-field floatright"  value="">
     <span class="am-input-group-label">kg</span>
   </div>
   <div class="am-input-group am-input-group-lg">
     <span class="am-input-group-label">体积</span>
-    <input type="number" name="volue"placeholder="请输入物品体积(200公斤/方)" class="am-form-field floatright"  value="">
+    <input type="number" name="volue" min="0"placeholder="请输入物品体积(200公斤/方)" class="am-form-field floatright"  value="">
     <span class="am-input-group-label">立方米</span>
   </div>
   </br>
   <div class="am-input-group am-input-group-lg">
-    <label class="am-input-group-label" style="border-right: 1px solid #000000">
-      <input type="radio"  value="" name="docInlineRadio"> 门对门
-    </label>
-    <label class="am-input-group-label">
-      <input type="radio" name="docInlineRadio"> 自提
-    </label>
+    <span class="am-input-group-label">派送方式&nbsp;&nbsp;</span>
+    <label class="am-input-group-label" >
 
+
+      <input type="radio" name="docInlineRadio">门对门
+    </label>
+    <label class="am-input-group-label" >
+ <input type="radio" name="docInlineRadio">自提
+  </label>
+
+  </div>
+  <br>
+  <div class="am-input-group am-input-group-lg">
+    <span class="am-input-group-label">签单返回</span>
+    <label class="am-input-group-label" >
+ <input type="radio" name="docInlineRadio" value="">&nbsp;是
+    </label> <label class="am-input-group-label" >
+   <input type="radio" name="docInlineRadio">&nbsp;否
+  </label>
+   </div>
+
+  <br>
+  <div class="am-input-group am-input-group-lg">
+    <span class="am-input-group-label">结算方式</span>
+    <label class="am-input-group-label" >
+      <input type="radio" name="docInlineRadio" value="">&nbsp;现金
+    </label> <label class="am-input-group-label" >
+    <input type="radio" name="docInlineRadio">&nbsp;到付
+  </label>
+  </div>
+  <br>
+  <div class="am-input-group am-input-group-lg">
+    <span class="am-input-group-label">开票</span>
+    <select name="" class="am-input-group-label">
+      <option value=""> 请选择发票 </option>
+      <option value="">运费发票 </option>
+      <option value=""> 服务费发票 </option>
+      <option value=""> 自带发票 </option>
+    </select>
+  </div>
+
+  <br>
+  <div class="am-input-group am-input-group-lg">
+    <span class="am-input-group-label">进仓服务费</span>
+    <label class="am-input-group-label" >
+      <input type="radio" name="docInlineRadio" value="">&nbsp;是
+    </label> <label class="am-input-group-label" >
+    <input type="radio" name="docInlineRadio">&nbsp;否
+  </label>
   </div>
   <!--<br/>-->
   <!--<div class="am-input-group am-input-group-lg">-->
@@ -137,11 +179,6 @@
 
 <script type="application/javascript">
 
-  $(document).ready(function () {
-     $(input[type="radio"]).click(function(){
-         $(this).parent("laber").css("background","blue");
-     })
-  })
 
 
 

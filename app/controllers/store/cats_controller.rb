@@ -1,6 +1,7 @@
+#encoding:utf-8
 class Store::CatsController < ApplicationController
 	# layout 'magazine'
-      layout 'standard'
+    layout 'standard'
   	before_filter :require_top_cats
 
   def show_mobile
@@ -21,7 +22,7 @@ class Store::CatsController < ApplicationController
         @goods = @goods.order("p_order asc,uptime desc")
         render :layout=>@supplier.layout
 
-end
+  end
 
       def goods_list
         @cat = Ecstore::Category.find_by_cat_id("")
@@ -62,27 +63,10 @@ end
         # end
 
       end
-end
 
-
-                        #金芭浪团购
-      def  show_group
-        name= params[:name]
-
-        goods_ids =""
-        sql = "select replace(replace(replace(field_vals,'---\n- ',''''),'- ',','''),'\n','''') as goods_ids FROM mdk.sdb_imodec_promotions where name='#{name}'"
-        results = ActiveRecord::Base.connection.execute(sql)
-        results.each(:as => :hash) do |row|
-          goods_ids= row["goods_ids"]
-        end
-
-        sql = " bn in (#{goods_ids})"
-        @all_goods = Ecstore::Good.where(sql)
-        @goods = @all_goods
-        render :layout=>'tairyo_new'
-      end
 
       def show
+
   	      @cat = Ecstore::Category.find_by_cat_id(params[:id])
           case params[:gtype]
             when "2"
@@ -92,6 +76,7 @@ end
             else
               @all_goods = @cat.all_goods(:sell=>"true")
           end
+         @all_goods = @cat.all_goods
 
       		order = params[:order]
 
@@ -102,7 +87,7 @@ end
     	  	end
               
              page  =  (params[:page] || 1).to_i
-             per_page = 18
+             per_page = 20
 
              if params[:brand].to_i > 0
                   @all_goods.select! {|g| g.brand_id == params[:brand].to_i }
@@ -138,3 +123,4 @@ end
 
       end
 
+end

@@ -241,7 +241,7 @@
               <a href="#">用户购物车</a>
               <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
                 <li>
-                  <%=link_to "贸威购物车", admin_carts_path if current_admin.has_right_of("promotions","index")%>
+                  <%=link_to "查看用户购物车", admin_carts_path if current_admin.has_right_of("promotions","index")%>
 
                 </li>
               </ul>

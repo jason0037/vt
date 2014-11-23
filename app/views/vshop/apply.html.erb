@@ -76,31 +76,33 @@
       <DIV class="step_panel">
       <DIV class="app_create_box platform">
           <%=form_for :supplier,:class=>"form", :url =>@action_url, :method=>@method do |f|%>
+          <!-- 
               <DIV class="frm_control_group">
-                <%= f.label :weixin_name, '公众服务号名称', :class => "frm_label" %>
+                <%#= f.label :weixin_name, '公众服务号名称', :class => "frm_label" %>
                 <DIV class="frm_controls">
               <SPAN class="frm_input_box">
-              <%= f.text_field :weixin_name ,:class=>'frm_input',:maxlenth=>'40'%>
+              <%#= f.text_field :weixin_name ,:class=>'frm_input',:maxlenth=>'40'%>
               </SPAN>
                 </DIV>
                 <P>你需要通过微信公众帐号（必须是已被微信认证的），请填写相关微信公众帐号。</P>
               </DIV>
               <DIV class="frm_control_group">
-                <%= f.label :weixin_account, '服务号登录账号', :class => "frm_label" %>
+                <%#= f.label :weixin_account, '服务号登录账号', :class => "frm_label" %>
                 <DIV class="frm_controls">
               <SPAN class="frm_input_box">
-              <%= f.text_field :weixin_account ,:class=>'frm_input',:maxlenth=>'40'%>
+              <%#= f.text_field :weixin_account ,:class=>'frm_input',:maxlenth=>'40'%>
               </SPAN>
                 </DIV>
               </DIV>
               <DIV class="frm_control_group">
-                <%= f.label :weixin_password, '服务号登录密码', :class => "frm_label" %>
+                <%#= f.label :weixin_password, '服务号登录密码', :class => "frm_label" %>
                 <DIV class="frm_controls">
               <SPAN class="frm_input_box">
-              <%= f.text_field :weixin_password ,:class=>'frm_input',:maxlenth=>'40'%>
+              <%#= f.text_field :weixin_password ,:class=>'frm_input',:maxlenth=>'40'%>
               </SPAN>
                 </DIV>
               </DIV>
+            -->
               <DIV class="frm_control_group">
                 <%= f.label :vmanager, '微店运营者姓名', :class => "frm_label" %>
                 <DIV class="frm_controls">

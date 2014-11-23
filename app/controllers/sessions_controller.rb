@@ -93,12 +93,16 @@ class SessionsController < ApplicationController
     if @account
   #   return render js: "$('#login_msg').text('#{@account.login_name}').addClass('error').fadeOut(300).fadeIn(300);"
   		sign_in(@account,params[:remember_me])
-
+      if params[:return_url]
+         
+         redirect_to params[:return_url]
              #update cart
              # @line_items.update_all(:member_id=>@account.account_id,
              #                                       :member_ident=>Digest::MD5.hexdigest(@account.account_id.to_s))
-  
-  		render "create"
+      else 
+          
+  		    render "create"
+       end   
   	else
 
   		render "error"
@@ -120,10 +124,13 @@ class SessionsController < ApplicationController
          redirect_to "/mlogin?id=#{params[:id]}&supplier_id=#{params[:id]}&return_url=#{return_url}"
 
 
-      elsif
-        redirect_to "/vshop"
-      else
+      elsif params[:platform]=="vshop"
+           redirect_to "/vshop"
+     
+      elsif params[:return_url]
+          redirect_to  params[:return_url]
 
+      else
         redirect_to "/"
       end
 

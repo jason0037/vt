@@ -7,88 +7,6 @@ class Store::GoodsController < ApplicationController
   skip_before_filter :find_path_seo, :find_cart!, :only=>[:newest]
   before_filter :find_tags, :only=>[:cheuksgroup,:newest]
 
-  def find_manco_good_first
-
-     departure=params[:departure]
-     arrival=params[:arrival]
-     good_e=departure+"-"+arrival
-     @goodsname=Ecstore::Good.where("name='#{good_e}' AND cat_id='570'").first   ####万家线路图对应的类别为570
-
-  end
-
-  def show_goodblack
-     @supplier=Ecstore::Supplier.find_by_id(params[:supplier_id])
-    @good=Ecstore::BlackGood.where(:id=>params[:id])
-   render :layout =>@supplier.layout
-  end
-
-  def manco_express
-    goods_id= params[:goods_id]     ##商品名称
-    @manco_unit_price =params[:manco_unit_price]
-    manco_weight=params[:manco_weight]
-
-    @good=Ecstore::Good.find_by_goods_id(goods_id)
-
-  end
-
-     ###万家小黑板
-  def mancoproduct
-     @supplier=Ecstore::Supplier.find(params[:supplier_id])
-    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
-
-    return render "not_find_good",:layout=>@supplier.layout unless @good
-
-    @recommend_user = session[:recommend_user]
-
-    if params[:wechatuser]
-      @recommend_user=params[:wechatuser]
-    end
-    if @recommend_user
-      member_id =-1
-      if signed_in?
-        member_id = @user.member_id
-      end
-      now  = Time.now.to_i
-      Ecstore::RecommendLog.new do |rl|
-        rl.wechat_id = @recommend_user
-        rl.goods_id = @good.goods_id
-        rl.member_id = member_id
-        rl.terminal_info = request.env['HTTP_USER_AGENT']
-        #   rl.remote_ip = request.remote_ip
-        rl.access_time = now
-      end.save
-      session[:recommend_user]=@recommend_user
-      session[:recommend_time] =now
-    end
-
-    tag_name = params[:tag]
-    @tag = Ecstore::TagName.find_by_tag_name(tag_name)
-
-    @cat = @good.cat
-
-    @recommend_goods = []
-    if @cat.goods.size >= 4
-      @recommend_goods =  @cat.goods.where("goods_id <> ?", @good.goods_id).order("goods_id desc").limit(4)
-    else
-      @recommend_goods += @cat.goods.where("goods_id <> ?", @good.goods_id).limit(4).to_a
-      @recommend_goods += @cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-@recommend_goods.size] if @cat.parent_cat && @recommend_goods.size < 4
-      @recommend_goods.compact!
-      if @cat.parent_cat.parent_cat && @recommend_goods.size < 4
-        count = @recommend_goods.size
-        @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
-      end
-
-
-
-
-
-      end
-    render :layout => @supplier.layout
-
-
-  end
-
-
 
  def mproduct
    if params[:id]=="78" ||params[:supplier_id]=="78"
@@ -161,23 +79,6 @@ class Store::GoodsController < ApplicationController
  end
 
 
-  def tairyoall
-    supplier_id = params[:supplier_id]
-    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
-    @supplier  =  Ecstore::Supplier.find(supplier_id)
-    render :layout=>@supplier.layout
-  end
-  def tairyo_tuan                                ###金芭浪团购商品
-     bn= params[:bn]
-    supplier_id = params[:supplier_id]
-     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>bn).first
-
-     return render "not_find_good",:layout=>"new_store" unless @good
-    @supplier  =  Ecstore::Supplier.find(supplier_id)
-    render :layout=>@supplier.layout
-
-  end
-
   def show
     @wechat_user=params[:wechatuser]
 
@@ -204,24 +105,12 @@ class Store::GoodsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render :layout=>"new_store" }
+     format.html { render :layout=>"new_store" }
+     # format.html { render :layout=>"standard" }
       format.mobile { render :layout=>nil }
     end
   end
- def tairyo_show
-   tag_name  = params[:tag]
-   @tag = Ecstore::Teg.find_by_tag_name(tag_name)
-   if @tag
-     order = params[:order]
-     order_string = "goods_id desc"
-     if order.present?
-       order_string = order.split("-").join(" ")
-     end
-     @goods = @tag.goods.order(order_string).paginate(:page=>params[:page], :per_page=>18)
-   else
-     redirect_to  newest_goods_url
-   end
- end
+
   def index
       tag_name  = params[:tag]
       @tag = Ecstore::Teg.find_by_tag_name(tag_name)
@@ -293,7 +182,6 @@ class Store::GoodsController < ApplicationController
     @tags = Ecstore::TagName.where('tag_name rlike ?','z[0-9]{4}').order("tag_id desc").select { |t| t&&t.tag_ext&&!t.tag_ext.disabled }.paginate(params[:page]||1,9)
     render :layout=>'standard'
   end
-
 
 
   def fav

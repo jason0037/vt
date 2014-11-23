@@ -1,6 +1,7 @@
 #encoding:utf-8
 class HomeController < ApplicationController
   before_filter :find_user
+  before_filter :require_top_cats
 	# layout 'magazine'
 	layout 'standard'
 
@@ -8,9 +9,9 @@ class HomeController < ApplicationController
 
 		@title = "卓展集团--工业成品专家"
 		@home = Ecstore::Home.where(:supplier_id=>nil).last
-		if signed_in?
-		   redirect_to params[:return_url] if params[:return_url].present?
-		end
+	#	if signed_in?
+	#	   redirect_to params[:return_url] if params[:return_url].present?
+	#	end
 	end
 
 	def blank
@@ -23,7 +24,7 @@ class HomeController < ApplicationController
 	end
 	
 	def subscription_success
-		@title = "卓展集团--工业成品专家"
+		@title = "trade-V 跨境贸易直通车"
 	end
 
 end

@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
   include Breadcrumb
-
+  
+  
 
   layout "survey"
 
@@ -12,6 +13,8 @@ class ApplicationController < ActionController::Base
   before_filter :find_user,:find_session_id,:find_cart!
   before_filter :find_path_seo
   before_filter :set_locale
+
+
 
 
   require "pp"
@@ -85,7 +88,7 @@ class ApplicationController < ActionController::Base
 
     # find categories
     def require_top_cats
-      @top_cats = Ecstore::Category.where(:parent_id=>0).where('sell=true or future=true or agent=true').where("cat_name not in (?)",['时装周预售','VIP卡']).order("p_order asc")
+      @top_cats = Ecstore::Category.where(:parent_id=>0).where('sell=true or future=true or agent=true').order("p_order asc")
     end
 
     def find_path_seo

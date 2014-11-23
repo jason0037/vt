@@ -21,6 +21,47 @@ header {
   border:3px solid black;
   width:100%;
 }
+
+
+// Navigation Bar with Dropdown
+ .navstyle ul li a{margin-bottom:0px;}
+$button-bg: $primary-color;//#eb974e;
+nav {
+  h2 {
+    font-weight: 300;
+    color: #5c6d7e;
+  }
+  .button {
+    border:0;
+    background: $button-bg;
+   // @include box-shadow(0);
+    -webkit-box-shadow: 0;
+      -moz-box-shadow: 0;
+      box-shadow: 0;
+    color: rgba(255,255,255,.8);
+
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+   // @include box-shadow(0px 0.1em 0px #a74d46);
+    -webkit-box-shadow: 0px 0.1em 0px #a74d46;
+      -moz-box-shadow: 0px 0.1em 0px #a74d46;
+      box-shadow: 0px 0.1em 0px #a74d46;
+    &:hover {
+      background: darken($button-bg,5%);
+      color: rgba(255,255,255,1);
+    }
+    &:active {
+  //    @include box-shadow(0px 0.1em 0px #a74d46);
+   -webkit-box-shadow: 0px 0.1em 0px #a74d46;
+      -moz-box-shadow: 0px 0.1em 0px #a74d46;
+      box-shadow: 0px 0.1em 0px #a74d46;
+      background: darken($button-bg,8%);
+    }
+    }
+  }
+
+
+
 .category-nav{padding-left:0px }
 
 .category-nav .a{
@@ -41,7 +82,10 @@ header {
   text-align:left
   }
 
-
+#news li{full-width:100%;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis; 
+  text-overflow : clip ellipsis
+}
 
 #more-category-nav{
   height: 2.3rem;
@@ -61,6 +105,23 @@ header {
    -webkit-transition-delay:.5s;
 }
 
+.more-product-info{
+  height: 2.3rem;
+  overflow: hidden;
+  -webkit-transition-property: height, background-color;
+  -webkit-transition-duration: .7s; 
+  -webkit-transition-timing-function: ease-in;
+  -webkit-transition-delay:.5s;
+}
+
+.more-product-info:hover {
+  height: 8rem;
+  overflow: hidden;
+   -webkit-transition-property: height, background-color; 
+   -webkit-transition-duration: .7s; 
+   -webkit-transition-timing-function: ease-in;
+   -webkit-transition-delay:.5s;
+}
 
 .bg-primary{background-color:$primary-color;}
 
@@ -71,13 +132,6 @@ header {
 
 .padding-top-20{padding-top:emCalc(30);}
 
-.low_button {padding:0.5em 1.8em 0.5em 1.8em;}
-
-
-.products-horisontal-100w{
-width:100% ;
-border:1px solid gray;
-}
 
 .f-dropdown-wide{width:900px; font-size:0.4rem;}
 
@@ -125,7 +179,7 @@ border-radius: 35px;}
   img {
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    -webkit-filter: grayscale(1);
+    // -webkit-filter: grayscale(1);
     width: 100%;
   }
 }  

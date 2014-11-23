@@ -335,11 +335,6 @@ end
     end
 
     resources :goods do
-       get "black_good"   , :on=>:collection
-      put "black_good_edit" , :on=>:collection
-      get "black_good_new" , :on=>:collection
-       post "black_good_new" , :on=>:collection
-      get "tairyo_show",  :on=>:collection
       post "export", :on=>:collection
       post "import", :on=>:collection
       post "remove_spec_item",:on=>:member
@@ -495,14 +490,7 @@ end
 
     get 'search' => "search#index", :as=> :search
     get 'mproducts' =>"goods#mproduct", :as=>"goods" ,:controller=>"goods"
-
-    get 'show_goodblack' =>  "goods#show_goodblack",  :as=>"goods" ,:controller=>"goods"   ###货源信息
-    get 'mancoproduct' =>"goods#mancoproduct",  :as=>"goods" ,:controller=>"goods"
-    get 'tairyoall'=>"goods#tairyoall",  :as=>"goods" ,:controller=>"goods"         ###金芭浪直接订单
-    get 'tproducts' =>"goods#tairyo_tuan", :as=>"goods" ,:controller=>"goods"
-    post'manco/serach_goods_manco'=>"goods#serach_goods_manco",:controller=>"goods"
-    post 'manco/find_manco_good_first'=>"goods#find_manco_good_first",:controller=>"goods"    #通过AJAX查询出来价钱
-    post 'goods/manco_express'=>"goods#manco_express",:controller=>"goods"    #通过AJAX查询出来价钱
+  
     resources :products, :as=>"goods", :controller=>"goods" do
       # get 'newin',:on=>:collection
       get 'newest',:on=>:collection
@@ -522,7 +510,6 @@ end
     end
 
     resources :vgoods, :controller=>"virtual_goods",:only=>[:index,:show]
-    post 'cart/tairyo_add'=>"cart#tairyo_add",:as=>:add_to_cart   #团购商品添加购物车
     post 'cart/add'=>"cart#add",:as=>:add_to_cart
     post 'cart/manco_add'=>"cart#manco_add" ,:as=>:add_to_cart
     post 'cart/tairyoall_add'=>"cart#tairyoall_add" ,:as=>:add_to_cart
@@ -530,13 +517,9 @@ end
     post 'cart/mancoexpress_add'=>"cart#mancoexpress_add",:as=>:add_to_cart
 
     resources :cart do
-      get 'manco_express'  ,:on=>:collection
       post 'add',:on=>:collection
       get 'show_tairyo',:on=>:collection   ###直接下单购物车
       get 'mobile', :on=>:collection
-      get 'tairyo_cart',:on=>:collection   ##小头像上的查看订单
-      post 'tairyo', :on=>:collection      #大渔订餐 不是团购
-      get 'jinbalang',:on=>:collection
       get 'manco_black_buy',:on=>:collection
     end
     resources :brands,:only=>[:index,:show]
@@ -545,7 +528,6 @@ end
     resources :country, :as=>"countries", :controller=>"countries"
     resources :gallery, :as=>"cats", :controller=>"cats"
 
-    get 'vgroup'=>"cats#show_group",:as=>"cats",:controller=>"cats"  #金芭浪饭店团购
     get 'mgallery' =>"cats#show_mobile", :as=>"cats",:controller=>"cats"
     get 'mgoods_list'=>"cats#goods_list" ,:as=>"cats", :controller=>"cats"
     resources :goods,  :as=>"orders", :controller=>"orders" do

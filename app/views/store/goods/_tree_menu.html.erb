@@ -1,26 +1,28 @@
-<div class="tree-menu" id="cats_tree">
-	<%@top_cats.each_with_index do |top_cat,index|%>
-		<div class="title-level1">
-			<%=link_to top_cat.cat_name, "#"%>
-		</div>
-		<ul class="items-level1 folded <%='expand' if @cat.present? ? @cat.cat_paths.include?(top_cat) : index == 0%>">
-			<%top_cat.categories.order("p_order asc").each do |scat|%>
-				<%if scat.all_goods.size > 0%>
-					<li class="item-level1">
-						<div class="title-level2"><%=link_to scat.cat_name,cat_path(scat,:gtype=>params[:gtype])%></div>
-						<%if scat.categories.present?%>
-							<ul class="items-level2">
-							<%scat.categories.each do |tcat|%>
-								<%if tcat.all_goods.size>0%>
-								<li class="item-level2"><%=link_to tcat.cat_name,cat_path(tcat,:gtype=>params[:gtype])%></li>
-								<%end%>
-							<%end%>
-							</ul>
+<ul class="no-bullet">
+  <%@top_cats.each_with_index do |top_cat,index|%>
+    <li><a href="<%=cat_path(top_cat,:gtype=>params[:gtype])%>" class="button secondary expand radius split">
+		<%=top_cat.cat_name%><span data-dropdown="drop<%=top_cat.cat_id%>"></span></a><br/>
+		<ul id="drop<%=top_cat.cat_id%>" class="f-dropdown" data-dropdown-content> 
+		  <%top_cat.categories.order("p_order asc").each do |scat|%>
+			<%if scat.all_goods.size > 0%>	
+			  <li class="f-dropdown-wide">
+		        <ul class="no-bullet"> 
+		          <li><%=link_to scat.cat_name,cat_path(scat,:gtype=>params[:gtype])%>
+					<%if scat.categories.present?%>
+					  <ul class="no-bullet">
+						<%scat.categories.each do |tcat|%>
+						  <%if tcat.all_goods.size>0%>
+							<li><%=link_to tcat.cat_name,cat_path(tcat,:gtype=>params[:gtype])%></li>
+						  <%end%>
 						<%end%>
-					</li>
-				<%end%>
+					  </ul>
+					<%end%>
+				  </li>
+				</ul>
+			  </li>
 			<%end%>
+		  <%end%>
 		</ul>
+	  </li>
 	<%end%>
-
-</div>
+</ul>

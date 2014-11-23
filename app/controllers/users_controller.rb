@@ -6,70 +6,37 @@ class UsersController < ApplicationController
   layout "simple"
 
   def new
-  	@account = Ecstore::Account.new
+    @account = Ecstore::Account.new
   end
-  def manco_user
-    now  = Time.now
-    @account = Ecstore::Account.new(params[:user]) do |ac|
-      ac.account_type ="manco"
-      ac.createtime = now.to_i
-      ac.user.member_lv_id = 1
-      ac.user.cur = "CNY"
-      ac.user.reg_ip = request.remote_ip
-      ac.user.regtime = now.to_i
-    end
+  
 
-    if @account.save
-      sign_in(@account)
-      @return_url=params[:return_url]
-      render "create"
-    else
-      render "error"
-    end
-  end
-
-  def tairyo_user
-    now  = Time.now
-    @account = Ecstore::Account.new(params[:user]) do |ac|
-      ac.account_type ="tairyo"
-      ac.createtime = now.to_i
-      ac.user.member_lv_id = 1
-      ac.user.cur = "CNY"
-      ac.user.reg_ip = request.remote_ip
-      ac.user.regtime = now.to_i
-    end
-
-    if @account.save
-      sign_in(@account)
-      @return_url=params[:return_url]
-      render "create"
-    else
-      render "error"
-    end
-  end
-
+  
   def create
-    supplier_id = params[:supplier_id]
-    supplier_id = 1
-  	now  = Time.now
-	  @account = Ecstore::Account.new(params[:user]) do |ac|
-  		ac.account_type ="member"
-  		ac.createtime = now.to_i
-  		ac.user.member_lv_id = 1
-  		ac.user.cur = "CNY"
-  		ac.user.reg_ip = request.remote_ip
-  		ac.user.regtime = now.to_i
+    if  params[:supplier_id]
+      supplier_id = params[:supplier_id]
+    else
+      supplier_id=1
+    end
+    now  = Time.now
+     @account = Ecstore::Account.new(params[:user]) do |ac|
+      ac.account_type ="member"
+      ac.createtime = now.to_i
+      ac.user.member_lv_id = 1
+      ac.user.cur = "CNY"
+      ac.user.reg_ip = request.remote_ip
+      ac.user.regtime = now.to_i
       ac.supplier_id = supplier_id
-  	end
+    end
 
-	  if @account.save
+    if @account.save
       sign_in(@account)
       @return_url=params[:return_url]
-      render "create"
+     redirect_to "/"
     else
       render "error"
     end
   end
+  
 
   def search
       @title = "找回密码"

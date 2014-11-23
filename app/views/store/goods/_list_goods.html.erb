@@ -32,7 +32,6 @@
 
 <ul class="list clearfix" id="goods">
 	<%@goods.each do |good|%>
-		<%if good.price!=0 || cookies[:MLV] == "10" %>
 	<li>
 		<div class="good-pic good-<%=good.goods_id%>">
 			<%=link_to good_path(good.bn), :target=>"_blank" do %>
@@ -92,7 +91,6 @@
 		</div>
 	</li>
 
-	<%end%>
 	<%end if @goods%>
 </ul>
 <div class="clearfix"></div>

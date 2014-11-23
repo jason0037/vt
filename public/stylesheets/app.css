@@ -159,7 +159,7 @@ select {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 75rem;
+  max-width: 95%;
 }
 /* line 172, ../bower_components/foundation/scss/foundation/components/_global.scss */
 .row:before, .row:after {
@@ -10398,7 +10398,7 @@ select {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 75rem;
+  max-width: 95%;
 }
 /* line 172, ../bower_components/foundation/scss/foundation/components/_global.scss */
 .row:before, .row:after {
@@ -11884,7 +11884,7 @@ select {
   /* line 167, ../bower_components/foundation/scss/foundation/components/_reveal.scss */
   .reveal-modal, dialog {
     width: 80%;
-    max-width: 75rem;
+    max-width: 95%;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -11912,7 +11912,7 @@ select {
   /* line 182, ../bower_components/foundation/scss/foundation/components/_reveal.scss */
   .reveal-modal.tiny, dialog.tiny {
     width: 30%;
-    max-width: 75rem;
+    max-width: 95%;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -11922,7 +11922,7 @@ select {
   /* line 183, ../bower_components/foundation/scss/foundation/components/_reveal.scss */
   .reveal-modal.small, dialog.small {
     width: 40%;
-    max-width: 75rem;
+    max-width: 95%;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -11932,7 +11932,7 @@ select {
   /* line 184, ../bower_components/foundation/scss/foundation/components/_reveal.scss */
   .reveal-modal.medium, dialog.medium {
     width: 60%;
-    max-width: 75rem;
+    max-width: 95%;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -11942,7 +11942,7 @@ select {
   /* line 185, ../bower_components/foundation/scss/foundation/components/_reveal.scss */
   .reveal-modal.large, dialog.large {
     width: 70%;
-    max-width: 75rem;
+    max-width: 95%;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -11952,7 +11952,7 @@ select {
   /* line 186, ../bower_components/foundation/scss/foundation/components/_reveal.scss */
   .reveal-modal.xlarge, dialog.xlarge {
     width: 95%;
-    max-width: 75rem;
+    max-width: 95%;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -11972,7 +11972,7 @@ select {
   /* line 187, ../bower_components/foundation/scss/foundation/components/_reveal.scss */
   .reveal-modal.full, dialog.full {
     width: 100vw;
-    max-width: 75rem;
+    max-width: 95%;
     left: 0;
     right: 0;
     margin: 0 auto;
@@ -14226,7 +14226,7 @@ select {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 75rem;
+  max-width: 95%;
 }
 /* line 172, ../bower_components/foundation/scss/foundation/components/_global.scss */
 .row:before, .row:after {
@@ -16536,7 +16536,7 @@ select {
   margin-right: auto;
   margin-top: 0;
   margin-bottom: 0;
-  max-width: 75rem;
+  max-width: 95%;
 }
 /* line 172, ../bower_components/foundation/scss/foundation/components/_global.scss */
 .row:before, .row:after {
@@ -20125,7 +20125,7 @@ meta.foundation-mq-topbar {
 
   /* line 469, ../bower_components/foundation/scss/foundation/components/_top-bar.scss */
   .contain-to-grid .top-bar {
-    max-width: 75rem;
+    max-width: 95%;
     margin: 0 auto;
     margin-bottom: 0;
   }
@@ -23430,36 +23430,130 @@ header {
 .full-width {
   background-color: #f52d24;
   min-height: 175px;
-  border: 3px solid black;
   width: 100%;
 }
 
-/* line 24, ../scss/_custom.scss */
-.category-nav {
-  padding-left: 0px;
+/* line 27, ../scss/_custom.scss */
+.navstyle ul li a {
+  margin-bottom: 0px;
 }
 
-/* line 26, ../scss/_custom.scss */
-.category-nav .a {
+/* line 30, ../scss/_custom.scss */
+nav h2 {
+  font-weight: 300;
+  color: #5c6d7e;
+}
+/* line 34, ../scss/_custom.scss */
+nav .button {
+  border: 0;
+  background: #dc130a;
+  -webkit-box-shadow: 0;
+  -moz-box-shadow: 0;
+  box-shadow: 0;
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  -webkit-box-shadow: 0px 0.1em 0px #a74d46;
+  -moz-box-shadow: 0px 0.1em 0px #a74d46;
+  box-shadow: 0px 0.1em 0px #a74d46;
+}
+/* line 49, ../scss/_custom.scss */
+nav .button:hover {
+  background: #c41109;
+  color: white;
+}
+/* line 53, ../scss/_custom.scss */
+nav .button:active {
+  -webkit-box-shadow: 0px 0.1em 0px #a74d46;
+  -moz-box-shadow: 0px 0.1em 0px #a74d46;
+  box-shadow: 0px 0.1em 0px #a74d46;
+  background: #b51008;
+}
+
+/* line 65, ../scss/_custom.scss */
+.category-nav {
+  padding-left: 0.1em;
+}
+
+/* line 67, ../scss/_custom.scss */
+.category-nav a {
   font-size: 1em;
   text-align: left;
-  margin: 1px 1px 0px 2px;
-  width: 10.6em;
+  margin: 0.1em;
   line-height: 0.45em;
   padding: 0.9em 0em;
+  background-color: #F0F0F0;
+  color: #333;
 }
 
-/* line 35, ../scss/_custom.scss */
+/* line 77, ../scss/_custom.scss */
 .category-nav .s {
-  margin: 1px 1px 0px 2px;
-  width: 14.2em;
+  margin: 0.1em;
   line-height: 0.45em;
   padding: 1em 0em;
   font-size: 0.7em;
   text-align: left;
 }
 
-/* line 46, ../scss/_custom.scss */
+/*homepage login & register*/
+/* line 86, ../scss/_custom.scss */
+.wrapper {
+  overflow: hidden;
+  display: inline-block;
+  border: 2px solid #dc130a;
+  border-radius: 999px;
+  text-align: center;
+  width: 100%;
+  background: #fff;
+  margin-top: 50px;
+}
+/* line 96, ../scss/_custom.scss */
+.wrapper:hover {
+  border: none;
+  background-color: #dc130a;
+  transition: background-color 0.3s ease;
+}
+/* line 101, ../scss/_custom.scss */
+.wrapper:hover .inside {
+  display: block;
+  font-size: 16px;
+  padding: 22px;
+  float: left;
+}
+/* line 107, ../scss/_custom.scss */
+.wrapper:hover .inside:hover {
+  transition: background-color 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+/* line 113, ../scss/_custom.scss */
+.wrapper:hover label {
+  display: none;
+}
+/* line 115, ../scss/_custom.scss */
+.wrapper .inside {
+  display: none;
+  color: #fff;
+  width: 50%;
+  z-index: 9999;
+}
+/* line 122, ../scss/_custom.scss */
+.wrapper label {
+  padding: 16px;
+  color: #dc130a;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* line 130, ../scss/_custom.scss */
+#news li {
+  full-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-overflow: clip ellipsis;
+}
+
+/* line 135, ../scss/_custom.scss */
 #more-category-nav {
   height: 2.3rem;
   overflow: hidden;
@@ -23469,7 +23563,7 @@ header {
   -webkit-transition-delay: .5s;
 }
 
-/* line 55, ../scss/_custom.scss */
+/* line 144, ../scss/_custom.scss */
 #more-category-nav:hover {
   height: 29.5rem;
   overflow: hidden;
@@ -23479,72 +23573,81 @@ header {
   -webkit-transition-delay: .5s;
 }
 
-/* line 65, ../scss/_custom.scss */
+/* line 153, ../scss/_custom.scss */
+.more-product-info {
+  height: 2.3rem;
+  overflow: hidden;
+  -webkit-transition-property: height, background-color;
+  -webkit-transition-duration: .7s;
+  -webkit-transition-timing-function: ease-in;
+  -webkit-transition-delay: .5s;
+}
+
+/* line 162, ../scss/_custom.scss */
+.more-product-info:hover {
+  height: 8rem;
+  overflow: hidden;
+  -webkit-transition-property: height, background-color;
+  -webkit-transition-duration: .7s;
+  -webkit-transition-timing-function: ease-in;
+  -webkit-transition-delay: .5s;
+}
+
+/* line 171, ../scss/_custom.scss */
 .bg-primary {
   background-color: #dc130a;
 }
 
-/* line 67, ../scss/_custom.scss */
+/* line 173, ../scss/_custom.scss */
 .padding-right-0 {
   padding-right: 0px;
 }
 
-/* line 70, ../scss/_custom.scss */
+/* line 176, ../scss/_custom.scss */
 .bg-color-red {
   background-color: #f52d24;
 }
 
-/* line 72, ../scss/_custom.scss */
+/* line 178, ../scss/_custom.scss */
 .padding-top-20 {
   padding-top: 1.875rem;
 }
 
-/* line 74, ../scss/_custom.scss */
-.low_button {
-  padding: 0.5em 1.8em 0.5em 1.8em;
-}
-
-/* line 77, ../scss/_custom.scss */
-.products-horisontal-100w {
-  width: 100%;
-  border: 1px solid gray;
-}
-
-/* line 82, ../scss/_custom.scss */
+/* line 181, ../scss/_custom.scss */
 .f-dropdown-wide {
   width: 900px;
   font-size: 0.4rem;
 }
 
-/* line 84, ../scss/_custom.scss */
+/* line 183, ../scss/_custom.scss */
 .th-round {
   -moz-border-radius: 35px;
   border-radius: 35px;
 }
 
-/* line 89, ../scss/_custom.scss */
+/* line 188, ../scss/_custom.scss */
 .item-wrapper {
-  padding: 20px;
+  padding: 0.1em;
   border: 2px solid #efefef;
   border-radius: 7px;
-  margin-top: 40px;
+  margin-top: .1em;
 }
-/* line 97, ../scss/_custom.scss */
+/* line 196, ../scss/_custom.scss */
 .item-wrapper:hover .img-wrapper img {
   -webkit-filter: grayscale(0);
 }
-/* line 99, ../scss/_custom.scss */
+/* line 198, ../scss/_custom.scss */
 .item-wrapper:hover .img-wrapper .add-to-cart {
   bottom: 0;
 }
 
-/* line 104, ../scss/_custom.scss */
+/* line 203, ../scss/_custom.scss */
 .img-wrapper {
   margin-bottom: 20px;
   position: relative;
   overflow: hidden;
 }
-/* line 109, ../scss/_custom.scss */
+/* line 208, ../scss/_custom.scss */
 .img-wrapper .add-to-cart {
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
@@ -23558,31 +23661,135 @@ header {
   border: none;
   box-shadow: none;
 }
-/* line 122, ../scss/_custom.scss */
+/* line 221, ../scss/_custom.scss */
 .img-wrapper .add-to-cart:hover {
   background-color: #dc130a;
 }
-/* line 125, ../scss/_custom.scss */
+/* line 224, ../scss/_custom.scss */
 .img-wrapper img {
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  -webkit-filter: grayscale(1);
   width: 100%;
 }
 
-/* line 133, ../scss/_custom.scss */
+/* line 232, ../scss/_custom.scss */
 h3 {
   font-size: 22px;
 }
 
-/* line 134, ../scss/_custom.scss */
+/* line 233, ../scss/_custom.scss */
 h5 {
   font-weight: bold;
 }
 
-/* line 136, ../scss/_custom.scss */
+/* line 235, ../scss/_custom.scss */
 p {
   color: #888;
   font-size: 13px;
   margin-bottom: 0;
+}
+
+/* line 242, ../scss/_custom.scss */
+.center.row {
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  max-width: 500px;
+}
+
+/* line 250, ../scss/_custom.scss */
+.signup-panel {
+  padding: 15px;
+}
+
+/* line 254, ../scss/_custom.scss */
+.signup-panel i {
+  font-size: 30px;
+  line-height: 50px;
+  color: #999;
+}
+
+/* line 260, ../scss/_custom.scss */
+.signup-panel form input, .signup-panel form span {
+  height: 50px;
+}
+
+/* line 264, ../scss/_custom.scss */
+.signup-panel .welcome {
+  font-size: 26px;
+  text-align: center;
+  margin-left: 0;
+}
+
+/* line 270, ../scss/_custom.scss */
+.signup-panel .button {
+  margin-left: 35%;
+}
+
+/* line 274, ../scss/_custom.scss */
+section.active {
+  padding-top: 75px !important;
+}
+
+/* line 278, ../scss/_custom.scss */
+p.title {
+  border-bottom: 1px solid #cccccc !important;
+}
+
+/* line 282, ../scss/_custom.scss */
+.content {
+  height: 450px;
+}
+
+/* Input focus box changes on click 
+
+input[type="text"]:focus {
+  background-color: #000;
+} */
+/* line 293, ../scss/_custom.scss */
+.full-width-foot {
+  max-width: 1400px;
+}
+
+/* line 301, ../scss/_custom.scss */
+.footer {
+  background-color: #f52d24;
+  text-align: center;
+  color: #fff;
+}
+/* line 306, ../scss/_custom.scss */
+.footer i {
+  font-size: 100px;
+}
+
+/* line 312, ../scss/_custom.scss */
+.footer h4 {
+  color: #fff;
+  font-size: 1em;
+  font-weight: 400;
+  margin-top: 2.5rem;
+  margin-bottom: 10px;
+}
+/* line 319, ../scss/_custom.scss */
+.footer p, .footer a {
+  font-weight: 300;
+  font-size: .8em;
+  color: #fff;
+}
+
+@media only screen and (min-width: 40.063em) {
+  /* line 328, ../scss/_custom.scss */
+  .footer .footer_li:nth-child(n+2) {
+    border-left: 1px solid #b3b3b3;
+    min-height: 280px;
+  }
+}
+/* line 335, ../scss/_custom.scss */
+.footer-links {
+  list-style-type: none;
+}
+/* line 337, ../scss/_custom.scss */
+.footer-links li {
+  margin-top: 0;
 }

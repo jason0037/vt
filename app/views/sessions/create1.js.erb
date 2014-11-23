@@ -1,0 +1,11 @@
+//alert('platform:<%=params[:platform]%>;return_url:<%=@return_url%>:supplier_id:<%=@supplier_id%>');
+alert('<%=@account.login_name%>');
+window.location.href ='/vshop/<%=@supplier_id%>';
+
+if ('<%=@platform%>'=='mobile'){
+    window.location.href='<%=@return_url%>';
+}
+else{
+    window.parent.location.replace('<%=@return_url%>');
+}
+
