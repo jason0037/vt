@@ -18,6 +18,9 @@
     <meta name="copyright" content="Copyright © 2009-2014 Cheuks MRO Co.,Ltd. 卓展集团版权所有" />
     <link rel="stylesheet" href="http://weishop.cheuks.com/stylesheets/app.css" />
     <link rel="stylesheet" href="http://weishop.cheuks.com/stylesheets/foundation-icons.css" />
+
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+
     <%=stylesheet_link_tag "standard"%>
  
     <%= yield :head%>
@@ -133,7 +136,7 @@
                 <li class="divider"></li>
                 <li><a href="/member/orders">我的订单</a></li>
                 <li class="divider"></li>
-                <li><a href="vshop">供应商加盟</a></li>
+                <li><a href="/vshop">供应商加盟</a></li>
                 <li class="divider"></li>
                 <li class="has-dropdown">
                     <a href="#">客服中心</a>
@@ -355,9 +358,7 @@
   <%=render "shared/iframe_cart" if signed_in?%>
     <hr /><footer class="footer">
   <div class="row full-width-footer">
-    <div class="large-12 columns">      
-      <ul class="large-block-grid-6">
-        <li>
+    <div class="large-2 small-4 columns">     
           <i class="fi-home"></i>
            <h4>关于我们</h4>
           <ul class="footer-links">
@@ -366,8 +367,8 @@
             <li><a href="/pages/yxwl">&nbsp;</a></li>
              <li><a href="/pages/yxwl">&nbsp;</a></li>
           </ul>
-        </li>
-        <li>
+        </div>
+      <div class="large-2 small-4 columns">     
           <i class="fi-results-demographics"></i>
            <h4>购物指南</h4>
           <ul class="footer-links">
@@ -376,8 +377,8 @@
                 <li><a href="#">常见问题</a></li>
                 <li><a href="#">联系客服</a></li>
           </ul>
-        </li>
-        <li>
+        </div>
+      <div class="large-2 small-4 columns">     
           <i class="fi-social-dropbox"></i>
            <h4>配送方式</h4>
           <ul class="footer-links">
@@ -387,8 +388,8 @@
                  <li><a href="#">&nbsp;</a></li>
          
           </ul>
-        </li>
-        <li>
+         </div>
+      <div class="large-2 small-4 columns">     
           <i class="fi-dollar"></i>
            <h4>支付方式</h4>
           <ul class="footer-links">
@@ -397,8 +398,8 @@
                 <li><a href="/pages/hdfk">款到发货</a></li>
                 <li><a href="/pages/hdfk">货到付款</a></li>
           </ul>
-        </li>
-        <li>
+         </div>
+      <div class="large-2 small-4 columns">     
           <i class="fi-shield"></i>
            <h4>售后服务</h4>
           <ul class="footer-links">
@@ -407,12 +408,13 @@
                 <li><a href="/pages/thlc">退款说明</a></li>
                 <li><a href="/pages/hhlc">返修申请</a></li>
           </ul>
+         </div>
+      <div class="large-2 small-4 columns">     
+      <i class="fi-photo"></i>
+           <h4>关注我们</h4>
+    <a href="th"><img src="/images/a01/homepage/getqrcode.jpg"></a>
         </li>
-   <li>
-          <i class="fi-photo"></i>
-          <img src="/images/a01/homepage/getqrcode.jpg">
-        </li>
-      <ul>
+     </div>
     </div>
     
   </div>

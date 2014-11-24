@@ -1,0 +1,56 @@
+
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="zh" > <![endif]-->
+<html class="no-js" lang="zh" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+<head>
+    <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="keywords" content="<%=meta_keywords%>" />
+  <meta name="description" content="<%=meta_description%>" />
+      <link rel="stylesheet" href="http://weishop.cheuks.com/stylesheets/app.css" />
+    <link rel="stylesheet" href="http://weishop.cheuks.com/stylesheets/foundation-icons.css" />
+
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+  <%= stylesheet_link_tag    "bootstrap", :media => "all" %>
+  <%= stylesheet_link_tag    "store/base", :media => "all" %>
+  <%= stylesheet_link_tag    "store/new_screen", :media => "all" %>
+  <%= stylesheet_link_tag    "store/#{controller_name}",:media=>"all"%>
+  <%= javascript_include_tag "store/new_base" %>
+  <%= javascript_include_tag "store/new_#{controller_name}" %>
+
+  <%=render "shared/baidu" if Rails.env == "production"%>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="preloader"></div>
+  <%if @wechat_user.blank?%>
+      <% # render "store/shared/new_header" %>
+      <% # render "store/shared/new_topmenu" %>
+
+      <%= render "shared/header" %>
+      <%= render "shared/top_menu" %>
+
+      <%= render "store/shared/position" if @cat%>
+      <% # render "store/shared/mini_items" %>
+  <%end%>
+
+  <%= yield %>
+  <%if @wechat_user.blank?%>
+  <% if %w(index newest).include?(action_name) && controller_name == "goods" %>
+    <% # render "store/shared/new_more_arrivals" %>
+  <% end %>
+
+  <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+
+  <% #render "store/shared/footer" %>
+  <%= render "shared/common_footer" %>
+
+  <%=render "shared/iframe_cart" if signed_in?%>
+
+  <%=render "shared/iframe_login" unless signed_in?%>
+
+  <%end%>
+  <%= javascript_include_tag "google-analytics" if Rails.env == "production" %>
+
+</body>
+</html>

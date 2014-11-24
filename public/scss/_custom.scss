@@ -18,7 +18,7 @@ header {
 .full-width {
   background-color:lighten($primary-color, 10%);
   min-height: 175px;
-  border:3px solid black;
+ // border:3px solid black;
   width:100%;
 }
 
@@ -62,25 +62,70 @@ nav {
 
 
 
-.category-nav{padding-left:0px }
+.category-nav{padding-left:0.1em; }
 
-.category-nav .a{
+.category-nav a{
   font-size:1em;  
   text-align:left;
-  margin:1px 1px 0px 2px;
-  width:10.6em;
+  margin:0.1em;
   line-height:0.45em;
   padding:0.9em 0em;
+  background-color: #F0F0F0;
+  color:#333;
   }
 
   .category-nav .s{
-  margin:1px 1px 0px 2px;
-  width:14.2em;
+  margin:0.1em;
   line-height:0.45em;
   padding:1em 0em;
   font-size:0.7em;
   text-align:left
   }
+
+  /*homepage login & register*/
+.wrapper {
+  overflow: hidden;
+  display: inline-block;
+  border: 2px solid $primary-color;
+  border-radius: 999px;
+  text-align: center;
+  width: 100%;
+  background: #fff;
+  margin-top: 50px;
+
+  &:hover {
+    border: none;
+    background-color: $primary-color;
+    transition: background-color 0.3s ease;
+    
+    .inside { 
+      display: block;
+      font-size: 16px; 
+      padding: 22px;
+      float: left;
+
+      &:hover {
+        transition: background-color 0.3s ease;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    label { display: none; }
+  }
+  .inside {
+    display: none;
+    color: #fff;
+    width: 50%;
+    z-index: 9999;
+  }
+
+  label {
+    padding: 16px;
+    color: $primary-color;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}              
 
 #news li{full-width:100%;white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis; 
@@ -141,10 +186,10 @@ border-radius: 35px;}
 
 
 .item-wrapper {
-  padding: 20px;
+  padding: 0.1em;
   border: 2px solid #efefef;
   border-radius: 7px;
-  margin-top: 40px;
+  margin-top: .1em;
   
   &:hover {
     .img-wrapper {
@@ -194,3 +239,102 @@ p {
 }
               
    
+   .center.row {
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  max-width: 500px;
+}
+
+.signup-panel {
+  padding: 15px;
+}
+
+.signup-panel i {
+  font-size: 30px;
+  line-height: 50px;
+  color: #999;
+}
+
+.signup-panel form input, .signup-panel form span {
+  height: 50px;
+}
+
+.signup-panel .welcome {
+  font-size: 26px;
+  text-align: center;
+  margin-left: 0;
+}
+
+.signup-panel .button {
+  margin-left: 35%;
+}
+
+section.active {
+  padding-top: 75px !important;
+}
+
+p.title {
+  border-bottom: 1px solid #cccccc !important;
+}
+
+.content{
+  height: 450px;
+}
+
+/* Input focus box changes on click 
+
+input[type="text"]:focus {
+  background-color: #000;
+} */
+
+
+.full-width-foot {
+  max-width: 1400px;
+}
+
+$text-color: #fff;
+
+// footer CSS
+
+.footer {
+  background-color: lighten($primary-color, 10%);
+ // padding: 2rem 4rem;
+  text-align: center;
+  color: $text-color;
+  i {
+    font-size: 100px;
+  }
+}
+
+.footer {
+  h4 {
+    color: $text-color;
+    font-size: 1em;
+    font-weight: 400;
+    margin-top: 2.5rem;
+    margin-bottom: 10px;
+  }
+  p, a {
+    font-weight: 300; 
+    font-size: .8em;
+    color: $text-color;
+  }
+}
+
+@media only screen and (min-width: 40.063em) {
+.footer {
+  .footer_li:nth-child(n+2) {
+    border-left: 1px solid scale-color($text-color, $lightness: -30%);
+    min-height: 280px;
+  }
+ }
+}
+
+.footer-links {
+  list-style-type: none;
+  li {
+    margin-top: 0;
+  }
+}              

@@ -1,31 +1,10 @@
 #encoding:utf-8
 class Store::OrdersController < ApplicationController
 
-  layout 'order'
-
-  def mancoder_show
-    supplier_id = @user.account.supplier_id
-    if  @user
-
-      if supplier_id == nil
-        supplier_id=78
-      end
-      @supplier = Ecstore::Supplier.find(supplier_id)
-      @orders =  @user.orders.order("createtime desc")
-
-      if params["platform"]=="mobile"
-        render :layout=>@supplier.layout
-      end
-    else
-      return_url={:return_url => "/goods?platform=#{params["platform"]}&supplier_id=#{supplier_id}"}.to_query
-      redirect_to "/auto_login?#{return_url}"
-    end
-
-    render :layout=>@supplier.layout
+ # layout 'order'
+   layout 'standard'
 
 
-
-  end
 
   def share_order
     supplier_id =params[:supplier_id]
