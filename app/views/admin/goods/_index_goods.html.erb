@@ -12,11 +12,11 @@
       <%if current_admin.has_right_of("goods","edit")%>
           <th class="order" data-field="cost" data-sorter="asc">进货价</th>
       <%end%>
-      <%if current_admin.has_right_of("orders","delivery")%>
+      <%if current_admin.has_right_of("orders","delivery") && 1=0%> #暂时卓展不用显示
           <th class="order" data-field="bulk" data-sorter="asc">渠道价</th>
           <th class="order" data-field="promotion" data-sorter="asc">渠道零售价</th>
       <%end%>
-        <th class="order" data-field="wholesale" data-sorter="asc">批发价</th>
+        <th class="order" data-field="wholesale" data-sorter="asc" style="display:none">批发价</th>
 		<th class="order" data-field="price" data-sorter="asc">会员价</th>
         <th class="order" data-field="mktprice" data-sorter="asc">市场价</th>
       <%if current_admin.has_right_of("members","index")%>
