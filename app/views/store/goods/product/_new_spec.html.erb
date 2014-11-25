@@ -10,7 +10,7 @@
                 <%#if spec.spec_type=="image"%>
                   <%#=link_to "","#", :class=>"spec-value image", :style=>"background:url(#{good.custom_picture(spec_value.abbr)}) center no-repeat;", :data=>{:value=>spec_value.spec_value_id,:images=>good.pictures(:large,spec_value.abbr).join(" ")},:title=>spec_value.spec_value%>
                 <%#else%>
-                  <%=link_to spec_value.spec_value, "#", :class=>"spec-value text",:data=>{:value=>spec_value.spec_value_id},:title=>spec_value.spec_value%>
+                  <%=link_to spec_value.spec_value, "#", :class=>"spec-values text medium  small round  secondary button",:style=>"color:white",:data=>{:value=>spec_value.spec_value_id},:title=>spec_value.spec_value%>
                 <%#end%>
                 </li>
              <%end%>

@@ -81,13 +81,17 @@ module SessionsHelper
 		"http://www.cheuks.com/"
 	end
 
-	def site
-		return "http://weishop.cheuks.com" if Rails.env == "development"
-		"http://weishop.cheuks.com"
-	end
+	# def site
+	# 	return "http://weishop.cheuks.com" if Rails.env == "development"
+	# 	"http://weishop.cheuks.com"
+	# end
+  def site
+  	return "http://0.0.0.0:3000" if Rails.env == "development"
+  	"http://0.0.0.0:3000"
+  end
 
 
-	private 
+  private
 
 	  def authorize_user!
 

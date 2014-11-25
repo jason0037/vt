@@ -1,34 +1,40 @@
 <%if @recommend_goods.size > 0%>
-<div id="reco_goods">
-        <h3>推荐商品</h3>
-        <ul class="clearfix">
-          <%@recommend_goods.each do |good|%>
-          <li>
-            <div class="good-pic">
-                <%=link_to good_path(good.bn,:tag=>@tag&&@tag.tag_name) do %>
-                    <%=image_tag good.rec_image,:size=>"190x268",:alt=>good.name%>
-                <%end%>
-            </div>
-            <div class="good-info">
-              <div class="brand"><%=good.brand.brand_name if good.brand%></div>
-              <div class="name">
-                  <a href="/products/<%=good.bn%>" target="_blank"><%=good.name%></a>
-              </div>
-              <div class="prices">
+    <div id="today_recommend" class="row">
+<div class="large-10 medium-9 columns">
+
+<ul class="clearing-thumbs large-block-grid-3 small-12">
+  <%@recommend_goods.each do |good|%>
+<li>
+  <div class="good-pic good-4162">
+    <%=link_to good_path(good.bn,:tag=>@tag&&@tag.tag_name) do %>
+        <%=image_tag good.rec_image,:size=>"190x268",:alt=>good.name%>
+    <%end%>		</div>
+  <div class="good-info">
+    <div class="brand">
+      <%=good.brand.brand_name if good.brand%></div>
+    <div class="name">
+      <a href="/products/<%=good.bn%>" target="_blank"><%=good.name%></a>
+    </div>
+    <div class="prices">
                 <span>
-                  会员价: 
+                  会员价:
                   <%if signed_in?%>
                     &yen;<%=good.price%>
                   <%else%>
                     <a href="javascript:void(0)" class="login">[会员专享]</a>
                   <%end%>
                 </span>
-                <span class="mtkprice">市场价: &yen;<%=good.mktprice%></span>
-              </div>
+      <span class="mtkprice">市场价: &yen;<%=good.mktprice%></span>
+    </div>
 
-            </div>
-          </li>
-          <%end%>
-        </ul>
-</div>
-<%end%>
+  </div>
+
+</li> <%end%>
+
+
+</ul>
+
+
+
+</div>    </div> </div>  <%end%>
+

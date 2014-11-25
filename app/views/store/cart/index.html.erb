@@ -4,19 +4,10 @@
         <h3 id="myModalLabel">我的购物袋</h3>
       </div>
       <div class="modal-body">
-        <table class="cart_table">
-          <tr>
-            <th style="text-align: left; padding-left: 16px;">商品名称</th>
-            <th>单价</th>
-            <th>数量</th>
-            <th>金额小计</th>
-            <!-- <th>积分</th> -->
-            <!-- <th>剩余时间</th> -->
-            <th style="width: 100px;">操作</th>
-          </tr>
+
           <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
-          <tr id='line_<%=line_item.obj_ident%>'>
-            <td>
+        <p id='line_<%=line_item.obj_ident%>'>
+
               <div class="product_img">
                 <%#if line_item.good.default_image&&line_item.product.list_pictures.first.blank?%>
                     <%=link_to good_path(line_item.good.bn),:target=>"_blank" do%>
@@ -43,42 +34,35 @@
                     <%end%>
                 </div>
               </div>
-            </td>
-            <td>
+
+
               <% if cookies[:MLV] == "10" %>
                   ￥<%= format('%.2f',line_item.product.bulk)%>
               <%else%>
                   ￥<%= format('%.2f',line_item.product.price)%>
               <%end%>
-              <%#if line_item.product.full_custom?%>
-                <!-- (<span class="red">定金</span>) -->
-              <%#end%>
-            </td>
-            <td>
-              <%#if line_item.product.semi_custom?%>
-                <%#=text_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity",:readonly=>true,:title=>"半定制不可直接修改数量"%>
-              <%#else%>
+
                 <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
-              <%#end%>
-            </td>
-            <td class="line-total">
+
+
+            <p class="line-total">
               <% if cookies[:MLV] == "10" %>
                   ￥<%=(line_item.product.bulk*line_item.quantity)%>
               <%else%>
                   ￥<%=(line_item.product.price*line_item.quantity)%>
               <%end%>
-            </td>
-            
+            </p>
+
             <!-- <td><span class="left_time">1天5小时30分</span></td> -->
-            <td>
+            <p>
               <%=link_to "取消收藏",unfav_good_path(line_item.good,:rel=>"line_#{line_item.obj_ident}"),:class=>"favorite",:remote=>true,:method=>:put if line_item.good.favorited_by?(@user)%>
               <%=link_to "收藏",fav_good_path(line_item.good,:rel=>"line_#{line_item.obj_ident}"),:class=>"favorite",:remote=>true,:method=>:put unless line_item.good.favorited_by?(@user)%>
               <br />
               <%=link_to "删除",cart_path(line_item.obj_ident),:class=>"delete",:remote=>true,:method=>:delete%>
-            </td>
-          </tr>
+            </p>
+
           <%end if @line_items%>
-        </table>
+
       </div>
       <div class="modal-footer clearfix">
         <span>总金额 : </span>
