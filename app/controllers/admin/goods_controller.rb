@@ -441,129 +441,114 @@ module Admin
         sheet = book.worksheet(0)
         spec_id = ""
 
-        supplier =sheet[0,1]
-        #supplierT = Ecstore::Supplier.unscoped.find_by_name(supplier)
-        supplierT = Ecstore::Supplier.where(:name=>supplier).first
-        if !supplierT.blank?
-          supplier = supplierT.id
-        else
-          supplier=0
-        end
+        supplier_id = 1
+        goods_type_id = 1       
+        brand_id =1
+        #ERP分类编码  ERP产品编号 产品型号 规格参数 产品规格  单位  库存数量  交期  状态  市场价 促销价 产品介绍    自由项1/颜色 自由项2/轮子 自由项3/钢印 自由项4/钢印
 
-        good_type = Ecstore::GoodType.find_by_name(sheet[1,1])
         @good = Ecstore::Good.new
         sheet.each_with_index do |row,i|
             #if i>4 && !row[1].blank? && !row[0].blank?
-            if i>3
+            if i>0
                 pp "spec info ......"
                 pp row[20]
-                if row[4].nil?
-                  render :text=>"Line: #{i}"
+
+                if row[1].nil?
+                  render :text=>"第: #{i+1}个产品没有ERP编号"
                   return
                 else
-                  bn = row[4].strip
+                  bn = row[1].strip
                 end
 
-                if !row[0].blank? #品类为空的为商品
-                    pp "staring...."
-                    @new_good = Ecstore::Good.find_by_bn(bn)
-                    if @new_good&&@new_good.persisted?
-                        @good = @new_good
-                    else
-                        @good = Ecstore::Good.new
-                        @good.bn = bn
-                    end
-                    @good.type_id = good_type.type_id
-                    @good.supplier_id = supplier
-                    cat_arr = row[0].split("->")
-                    cat_deep = cat_arr.length - 1
-                    good_cat = Ecstore::GoodCat.find_by_cat_name(cat_arr[cat_deep])
-                    @good.cat_id = good_cat.cat_id
-
-                    @good.medium_pic = row[2]
-                    @good.big_pic = row[3]
-                    brand = Ecstore::Brand.unscoped.find_by_brand_name(row[1])
-                    if !brand.blank?
-                        @good.brand_id = brand.brand_id
-                    end
-                    @good.name = row[6]
-                    @good.unit = row[8]
-                    @good.store = row[10]
-                    country_name =row[11]
-                    if !country_name.blank?
-                      result = Ecstore::Country.find_by_country_name(country_name)
-                      if result.blank?
-                        country = Ecstore::Country.new
-                        country.country_name = country_name
-                        country.save
-                      end
-                    end
-                    @good.uptime=Time.now
-                    @good.place = row[11]
-                    @good.cost = row[13]
-                    @good.wholesale = row[14]
-                    @good.bulk = row[15]
-                    @good.promotion=row[16]
-                    @good.price = row[17]
-                    @good.mktprice = row[18]
-                    @good.desc = row[19]
-                    @good.place_info = row[20]
-                    @good.spec_info = row[21]
-                    #@good.intro = row[23]
-                    if row[22] == "是"
-                        @good.sell = 'true'
-                    else
-                        @good.sell = 'false'
-                    end
-                    if row[23] == "是"
-                        @good.agent = 'true'
-                    else
-                        @good.agent = 'false'
-                    end
-                    if row[24] == "是"
-                        @good.future = 'true'
-                    else
-                        @good.future = 'false'
-                    end
-                    if row[12] == "上架"
-                        @good.marketable = 'true'
-                    else
-                        @good.marketable = 'false'
-                    end
-                    spec_id = Ecstore::Spec.where(:spec_name=>row[7]).first.spec_id
-                    @good.save!
+                #保存goods信息---------------------------
+                pp "staring...."
+                @new_good = Ecstore::Good.find_by_bn(bn)
+                if @new_good&&@new_good.persisted?
+                    @good = @new_good
                 else
-                    pp "here...."
-                    @new_product = Ecstore::Product.find_by_bn(bn)
-                    if !@new_product.nil? && @new_product.persisted?
-                        @product = @new_product
-                    else
-                        @product = Ecstore::Product.new
-                        @product.bn = bn
-                    end
-                    @product.barcode = row[5]
-                    @product.goods_id = @good.goods_id
-                    @product.name = row[6]
-                    @product.store_time = row[9]
-                    @product.store = row[10]
-                    @product.cost= row[13]
-                    @product.wholesale = row[14]
-                    @product.bulk = row[15]
-                    @product.promotion=row[16]
-                    @product.price = row[17]
-                    @product.mktprice = row[18]
-
-                    @product.save!
-                    Ecstore::GoodSpec.where(:product_id=>@product.product_id).delete_all
-                    sp_val_id = Ecstore::SpecValue.where(:spec_value=>row[7],:spec_id=>spec_id).first.spec_value_id
-                    Ecstore::GoodSpec.new do |gs|
-                        gs.type_id =  @good.type_id
-                        gs.spec_id = spec_id
-                        gs.spec_value_id = sp_val_id
-                        gs.goods_id = @good.goods_id
-                        gs.product_id = @product.product_id
-                    end.save
+                    @good = Ecstore::Good.new                    
                 end
+
+                @good.bn = bn
+                @good.medium_pic = "/images/a01/#{bn}_m.jpg"
+                @good.big_pic = "/images/a01/#{bn}_b.jpg"
+                @good.type_id = goods_type_id
+                @good.supplier_id = supplier_id
+                @good.brand_id = brand_id
+                @good.country = country_id
+                
+
+                if row[1].nil?
+                  render :text=>"第: #{i+1}个产品没有ERP分类编号"
+                  return
+                else
+                  cat_code = row[1].strip
+                  goods_cat = Ecstore::GoodCat.find_by_cat_code(cat_code)
+                  @good.cat_id = goods_cat.cat_id
+                end
+
+                if row[2].nil?
+                  render :text=>"第: #{i+1}个产品没有产品名称"
+                  return
+                else
+                   @good.name = row[2]
+                end          
+
+                @good.model = row[3]
+                @good.size_description = row[4]
+                @good.size = row[5]
+                @good.unin = row[6]                               
+                @good.store = row[7]  
+                @good.deleverytime = row[8]
+                status = row [9]
+                if status =='1'
+                  @good.sell = 'true'
+                  @good.marketable = 'true'
+                else
+                  @good.sell = 'false'
+                  @good.marketable = 'false'
+                end
+                @good.mktprice = row[10]                 
+                @good.price = row[11] 
+                @good.desc = row[12]
+
+                @good.uptime=Time.now                   
+               
+               # spec_id = Ecstore::Spec.where(:spec_name=>row[7]).first.spec_id
+                @good.save!
+
+                #保存 Products信息--------------------------------------------
+                pp "here...."
+                @new_product = Ecstore::Product.find_by_bn(bn)
+                if !@new_product.nil? && @new_product.persisted?
+                    @product = @new_product
+                else
+                    @product = Ecstore::Product.new
+                    @product.bn = bn
+                end
+                #@product.barcode = row[5]
+                @product.goods_id = @good.goods_id
+                @product.name = @good.name
+                @product.store_time = row[9]
+                @product.store = row[10]
+                @product.cost= row[13]
+                @product.wholesale = row[14]
+                @product.bulk = row[15]
+                @product.promotion=row[16]
+                @product.price = row[17]
+                @product.mktprice = row[18]
+                @product.save!
+
+                #插入GoodSpec
+                Ecstore::GoodSpec.where(:product_id=>@product.product_id).delete_all
+                sp_val_id = Ecstore::SpecValue.where(:spec_value=>row[7],:spec_id=>spec_id).first.spec_value_id
+                Ecstore::GoodSpec.new do |gs|
+                    gs.type_id =  @good.type_id
+                    gs.spec_id = spec_id
+                    gs.spec_value_id = sp_val_id
+                    gs.goods_id = @good.goods_id
+                    gs.product_id = @product.product_id
+                end.save
             end
         end
 
