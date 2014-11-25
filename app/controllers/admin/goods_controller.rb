@@ -499,7 +499,7 @@ module Admin
                 @good.size = row[5]
                 @good.unin = row[6]                               
                 @good.store = row[7]  
-                @good.deleverytime = row[8]
+                @good.delivery_time = row[8]
                 status = row [9]
                 if status =='1'
                   @good.sell = 'true'
@@ -512,11 +512,12 @@ module Admin
                 @good.price = row[11] 
                 @good.desc = row[12]
 
+
                 @good.uptime=Time.now                   
                
                # spec_id = Ecstore::Spec.where(:spec_name=>row[7]).first.spec_id
                 @good.save!
-
+=begin
                 #保存 Products信息--------------------------------------------
                 pp "here...."
                 @new_product = Ecstore::Product.find_by_bn(bn)
@@ -549,6 +550,7 @@ module Admin
                     gs.goods_id = @good.goods_id
                     gs.product_id = @product.product_id
                 end.save
+=end
             end
         end
 
