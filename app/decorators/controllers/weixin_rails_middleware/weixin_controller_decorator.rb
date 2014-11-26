@@ -47,7 +47,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
 
         if id==98
-          title2="技术支持--来自贸威O2O微信直销商场"
+          title2="技术支持--贸威O2O微信直销商城"
           desc2 =""
           pic_url2="http://vshop.trade-v.com/images/a078/homepage/logo.jpg"
           link_url2="http://vshop.trade-v.com/world_food?supplier_id=78"
