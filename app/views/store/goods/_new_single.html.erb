@@ -22,16 +22,13 @@
           <%if good.has_cols? %>
             <span class="price">套装价
             <span class="georgia">
-              <% if signed_in? %>
-
-                      ￥<%=good.default_product.price if good.default_product%>&nbsp;&nbsp;&nbsp;
-
-              <% else %>
-                <a href="javascript:void(0)" class="login" style="font-size:14px;color:#D30000;">[会员专享]</a>
+              <% if signed_in? %>  ￥<%=good.default_product.price if good.default_product%>&nbsp;&nbsp;&nbsp;
+               <% else %>
+                <a href="#" class="small round button" data-reveal-id="login_iframe" style="font-size:14px;color:#D30000;">[会员专享]</a>
               <%end%>
             </span>
           </span>
-              <span class="market_price">立省<span class="georgia">￥<%=good.savings.to_i%></span>&nbsp;</span>
+           <span class="market_price">立省<span class="georgia">￥<%=good.savings.to_i%></span>&nbsp;</span>
           <%else%>
         <span class="price"><%#=good.default_product&&good.default_product.full_custom? ? "定金" : "会员价"%>
           <span class="georgia">
@@ -43,11 +40,11 @@
               <span class="market_price">市场价<span class="georgia">￥<%=good.default_product.mktprice if good.default_product%></span>&nbsp;</span>
 
           <%end%>
-          <span class="product_id">［商品号<%=good.bn%>]</span>
+          <p class="product_id">［商品号<%=good.bn%>]</p>
 
         </h3>
 
-        <div class="spec">
+        <div class="spec" style="display: none">
           <%=render :partial=>"store/goods/product/new_spec",:locals=>{ :good=>good }%>
         </div>
 
@@ -70,10 +67,10 @@
           <%end%>
 
           <%if signed_in?%>
-              <%=link_to "已收藏",unfav_good_path(good,:rel=>"good_#{good.goods_id}"),:class=>"add_to_favorites button",:remote=>true,:method=>:put,:confirm=>"是否取消收藏?" if good.favorited_by?(@user)%>
-              <%=link_to "加入我的收藏夹",fav_good_path(good,:rel=>"good_#{good.goods_id}"),:class=>"button",:remote=>true,:method=>:put unless good.favorited_by?(@user)%>
+              <%=link_to "已收藏",unfav_good_path(good,:rel=>"good_#{good.goods_id}"),:class=>"add_to_favorites small button",:remote=>true,:method=>:put,:confirm=>"是否取消收藏?" if good.favorited_by?(@user)%>
+              <%=link_to "加入我的收藏夹",fav_good_path(good,:rel=>"good_#{good.goods_id}"),:class=>" small button",:remote=>true,:method=>:put unless good.favorited_by?(@user)%>
           <%else%>
-              <a href="javascript:void(0);" class="add_to_favorites login">加入我的收藏夹</a>
+              <a href="javascript:void(0);" class="add_to_favorites  small button"data-reveal-id="login_iframe" >加入我的收藏夹</a>
           <%end%>
 
         </div>
