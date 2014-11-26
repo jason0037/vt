@@ -19,7 +19,7 @@
       <%=form_for :product,:url=>"/cart/add",:remote=>true do |f|%>
           <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
           <%=f.hidden_field :type_id,:value=>@good.type_id%>
-          <%=hidden_field_tag :platform,'manco'%>
+          <%=hidden_field_tag :platform,'mancoblack_cart'%>
 
          <input type="hidden" name="supplier_id" value="98">
           <%=hidden_field_tag "product[specs][]"%>
