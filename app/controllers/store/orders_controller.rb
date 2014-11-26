@@ -669,6 +669,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
 
   def new_manco
        platform=params[:platform]
+
        bill=params[:bill]                   ###签单返回
        invoice=params[:invoice]             ######发票服务 1:运费发票 2: 服务费发票  3:自带发票
        warehouse=params[:warehouse]         ###进仓服务费 1: +150
@@ -677,6 +678,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
        @bill=0
        @invoice=0
        @warehouse=0
+        unless params =="mancoblack_cart"
        @line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|
           if line_item.good.cat_id==604
             @cart_totals=line_item.good.wholesale
@@ -691,8 +693,12 @@ WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
                   else
                     @cart_totals+= row["total"]
                   end
-                                     end
-            end
+               end
+
+
+
+          end
+         end
 
                     end
 
