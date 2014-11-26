@@ -10,6 +10,14 @@
     </div>
 
     <div class="control-group">
+      <%= f.label :spec_name_en, "规格英文名称*", :class => "control-label" %>
+      <div class="controls">
+          <%=f.text_field :spec_name_en%>
+          <span class="help-inline error"><%=@spec.errors[:spec_name_en].join(",")%> </span>
+      </div>
+    </div>
+
+    <div class="control-group">
       <%= f.label :spec_memo, "规格备注 ", :class => "control-label" %>
       <div class="controls">
           <%=f.text_field :spec_memo%>
@@ -23,7 +31,7 @@
       </div>
     </div>
 
-   <!--  <div class="control-group">
+   <div class="control-group">
       <%= f.label :spec_type, "显示类型 ", :class => "control-label" %>
       <div class="controls">
           <label class="radio inline"><%=f.radio_button :spec_type, 'text'%>文字</label>
@@ -37,7 +45,7 @@
            <label class="radio inline"><%=f.radio_button :spec_show_type, 'flat'%>平铺</label>
            <label class="radio inline"><%=f.radio_button :spec_show_type, 'select'%>下拉</label>
       </div>
-    </div> -->
+    </div>
 
 
     <div class="control-group">

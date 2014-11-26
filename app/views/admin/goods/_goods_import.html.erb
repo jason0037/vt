@@ -1,0 +1,30 @@
+<div style="border:1px solid #e3e3e3">
+	<dl>
+		<dt>已经有产品导入模板,直接导入</dt>
+		<dd>
+			<%=form_for :good,:url=>import_admin_goods_path,:html => {:multipart => true} ,:method=>:post do |f|%>
+		      <%= file_field :good, :file, :id=>'csvfile',:accept => "application/msexcel",:class=>"batch" %>
+		      <%= f.submit 'EXCEL批量导入商品', :class => "btn btn-primary" %>
+		    <%end%>
+		</dd>
+		<dt>下载产品导入模板</dt>
+		<dd>
+			<h1>新建产品导入模板</h1>
+			  <label for="goods_cat">请选择分类：</label>
+			  <select name="goods_cat" id="goods_cat">
+			  	<option value=""></option>
+			  </select>
+			  <a href="#">新增分类</a>
+
+			  <div>
+			  	<h1>XXX分类自定义参数</h1>
+			  	<div></div>
+			  	<a href="#">分类自定义参数管理</a>
+			  	<a href="#">新增参数</a>
+			  </div>
+			  <a href="#">下载模板</a>
+		</dd>
+	</dl>
+	
+</div>
+  

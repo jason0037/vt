@@ -9,6 +9,7 @@ class Ecstore::Spec < Ecstore::Base
 	accepts_nested_attributes_for :spec_values, allow_destroy: true
 
 	self.accessible_all_columns
+	attr_accessible :spec_name_en
 
 	validates_presence_of :spec_name, :message=>"规格名称不能为空"
 

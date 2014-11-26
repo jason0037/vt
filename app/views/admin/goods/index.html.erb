@@ -1,11 +1,7 @@
 
 <%=render "goods_filters"%>
-<div class="btn-group">
-  <%=form_for :good,:url=>import_admin_goods_path,:html => {:multipart => true} ,:method=>:post do |f|%>
-      <%= file_field :good, :file, :id=>'csvfile',:accept => "application/msexcel",:class=>"batch" %>
-      <%= f.submit 'EXCEL批量导入商品', :class => "btn btn-primary" %>
-  <%end%>
-</div>
+	<a href="#" class="button">批量导入商品</a>
+	<%=render "goods_import"%>
 <div>
 	<p>
 		<div id="batch_inputs" class="hide"></div>

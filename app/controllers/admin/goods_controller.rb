@@ -475,15 +475,14 @@ module Admin
                 @good.type_id = goods_type_id
                 @good.supplier_id = supplier_id
                 @good.brand_id = brand_id
-                @good.country = country_id
                 
 
                 if row[1].nil?
                   render :text=>"第: #{i+1}个产品没有ERP分类编号"
                   return
                 else
-                  cat_code = row[1].strip
-                  goods_cat = Ecstore::GoodCat.find_by_cat_code(cat_code)
+                  cat_code = row[0]
+                  goods_cat = Ecstore::GoodCat.find_by_code(cat_code)
                   @good.cat_id = goods_cat.cat_id
                 end
 
@@ -497,7 +496,7 @@ module Admin
                 @good.model = row[3]
                 @good.size_description = row[4]
                 @good.size = row[5]
-                @good.unin = row[6]                               
+                @good.unit = row[6]                               
                 @good.store = row[7]  
                 @good.delivery_time = row[8]
                 status = row [9]
