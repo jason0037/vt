@@ -1,10 +1,13 @@
+  <div style="text-align: center">
 <%if @line_items.size > 0%>
-	<div class="section addr">
+    <div class="row">
+    <div class="large-12 columns" style="text-align: center">
 		<h5>
 			收货地址 
 			<span class="required">*</span>
 		</h5>
-      <div class="checkcon clearfix">
+        <div class="row">
+
 		<%if @addrs.size>0%>
 			<%@addrs.each_with_index do |addr,index|%>
 				<%if @def_addr == addr%>
@@ -21,8 +24,8 @@
 					</label>
 				<%end%>
 			<%end%>
-
-			<label class="radio">
+             </div>
+			<label class="radio" style="float: left">
 				<%=radio_button_tag "member_addr", "new"%>
 				<span>使用新地址+</span>
 			</label>
@@ -30,33 +33,41 @@
 
 		</div>
 
-		<%=render :partial=>"patch/member_addrs/form",:locals=>{ :display=>( @addrs.size == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
+		<%#=render :partial=>"patch/member_addrs/form",:locals=>{ :display=>( @addrs.size == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
 
     </div>
-
+    <div class="row">
+    <div class="large-12 columns" >
 	<%=form_for :order,:url=>orders_path,:html=>{ :class=>"form-horizontal",:id=>"order_form" } do |f|%>
 		<%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
 
-	<div class="section shipment">
-		<h5>配送方式</h5>
-      <label class="radio active">
+        <div class="row">
+          <div class="large-4 medium-4 columns">
+            <h5>配送方式</h5>
+                 </div>
+
+          <div class="row">
+          <div class="large-12 columns">
         <%=f.radio_button :shipping_id, 0%><span class="addr-line">自提</span>
-      </label>
-		<label class="radio">
+     </div></div>
+          <div class="row">
+          <div class="large-12 columns">
 			<%=f.radio_button :shipping_id, 1, :checked=>true%> 快递
 			<span class="extra-info">+ ￥10</span>
-		</label>
-		<div class="control-group">
+          </div></div>
+          <div class="row">
+            <div class="large-12 columns">
 		    <%=f.label :ship_time, "收货时间：",:class=>"control-label"%>
-		    <div class="controls">
+
 		      <%=f.select :ship_day,ship_day_options%>
 		      <%=f.text_field :ship_special,:class=>"input-small hide datetime"%>
 		      <%=f.select :ship_time2,ship_time_options%>
-		    </div>
+
 		</div>
 	</div>
+          <div class="row">
+            <div class="large-12 columns payment" id="payments">
 
-	<div class="section payment" id="payments">
 		<h5>支付方式</h5>
       <% if cookies[:MLV] == "10" %>
           <label class="radio">
@@ -89,7 +100,7 @@
 			<%=f.radio_button :payment, "deposit"%> <b>预存款</b>
 		</label>
 		<%end%>
-	</div>
+	</div>    </div>
 
 	<div class="order-items">
 		<table class="table">
