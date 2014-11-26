@@ -678,7 +678,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
        @bill=0
        @invoice=0
        @warehouse=0
-        unless params =="mancoblack_cart"
+        unless platform =="mancoblack_cart"
        @line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|
           if line_item.good.cat_id==604
             @cart_totals=line_item.good.wholesale
