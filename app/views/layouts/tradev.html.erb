@@ -75,8 +75,8 @@
 
       <li> <a class="am-btn  "  data-am-modal="{target: '#trade_server'}">|贸威特色|</a></li>
       <li><a class="am-btn"href="/cart/mobile?id=<%=@supplier.id%>">|购物车|</a></li>
-      <li ><a href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>">|个人中心|</a></li>
-      <li> <a id="showall" >
+      <li ><a class="am-btn " href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>">|个人中心|</a></li>
+      <li> <a  class="am-btn " id="showall" >
        <%if  I18n.locale.to_s=="zh_cn"%>
               <span id="lange" class="am-navbar-label">|English|</span>
           <%elsif  I18n.locale.to_s =="en"%>
@@ -92,7 +92,7 @@
   <div class="am-modal-actions-group">
     <ul class="am-list">
       <li>
-        <a href="/quality_products?supplier_id=<%=@supplier.id%>"><i class="am-icon-hand-o-right"> </i><span> 去名优特产</span> </a>
+        <a href="/quality_products?supplier_id=<%=@supplier.id%>"><i class="am-icon-hand-o-right"> </i><span>去名优特产</span> </a>
        </li>
  <li><a href="/world_food?supplier_id=<%=@supplier.id%>" ><i class="am-icon-hand-o-right"> </i><span>去世界美食</span> </a>
       </li>

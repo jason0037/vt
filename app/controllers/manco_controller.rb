@@ -141,7 +141,7 @@ class MancoController < ApplicationController
 
 
   def choose_express
-    @manco_title="请选择落地配模式"
+    @manco_title="落地配模式"
     supplier_id=params[:supplier_id]
     if @user
 
@@ -184,7 +184,7 @@ class MancoController < ApplicationController
   end
 
  def express
-   @manco_title="同业供配服务"
+   @manco_title="同业供配"
    supplier_id=params[:supplier_id]
    if @user
    @line_items.delete_all ###同业落地配服务
@@ -208,7 +208,7 @@ class MancoController < ApplicationController
 
 
   def blackbord
-    @manco_title="发布车源信息"
+    @manco_title="车源信息"
     supplier_id = params[:supplier_id]
     if @user
 
@@ -226,7 +226,7 @@ class MancoController < ApplicationController
 end
 
   def blackbord_add
-    @manco_title="发布小黑板商品"
+    @manco_title="发布车源信息"
     hour=params[:hour]
     @good = Ecstore::Good.new(params[:good]) do |ac|
             ac.bn="a098"+Time.now.strftime('%Y%m%d%H%M%S')
@@ -304,7 +304,7 @@ end
 
 
   def show_carblack
-    @manco_title="我的车源小黑板"
+    @manco_title="车源小黑板"
     supplier_id = params[:supplier_id]
     @supplier =Ecstore::Supplier.find(supplier_id)
       id=params[:id]
