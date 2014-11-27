@@ -390,12 +390,13 @@ class Store::OrdersController < ApplicationController
   end
 
   def new_manco_addr    ###新增起点地址
-
+      @manco_title="新增装货地址"
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
     render :layout=>@supplier.layout
   end
 
   def addr_detail
+    @manco_title="地址信息"
     @addr = Ecstore::MemberAddr.find(params[:id])
    supplier_id=params[:supplier_id]
     @supplier = Ecstore::Supplier.find(supplier_id)
@@ -465,7 +466,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
   end
 
   def departure    ##起点信息
-
+    @manco_title="装货地址"
      @platform=params[:platform]
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     manco_weight =params[:manco_weight]
@@ -477,6 +478,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
   end
 
   def arrival  ###终点信息
+    @manco_title="卸货地址"
     session[:arrivals]=params[:xiehuo]
     @platform=params[:platform]
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
@@ -523,7 +525,9 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
         end
       end
     end
-
+       if @supplier.id==98
+          @manco_title="我的佣金"
+       end
     render :layout=>@supplier.layout
 
   end
@@ -632,7 +636,8 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
 
 
 
-  def manco_detail               ###万家服务选项
+  def manco_detail
+    @manco_title="附加服务选项"
     @platform=params[:platform]
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     if (params[:member_departure_id])
@@ -659,6 +664,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
   end
 
  def manco_card
+   @manco_title="预付充值订单"
    @supplier = Ecstore::Supplier.find(params[:supplier_id])
 
 
@@ -668,6 +674,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
 
 
   def new_manco
+    @manco_title="物流订单详细"
        platform=params[:platform]
 
        bill=params[:bill]                   ###签单返回
@@ -805,9 +812,10 @@ WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
        @arrival_id =params[:arrival_id]
         if @way =="departure"
           @addr=Ecstore::MemberAddr.find(@departure_id)
+          @manco_title="修改装货地址"
         elsif  @way =="arrival"
             @addr=Ecstore::MemberAddr.find(@arrival_id)
-
+            @manco_title="修改卸货地址"
         end
        @supplier=Ecstore::Supplier.find(params[:supplier_id])
 

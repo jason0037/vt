@@ -29,12 +29,7 @@
     }
 
 </style>
-<header id="am-topbar am-topbar-inverse">
 
-  <div class="am-panel am-panel-default">
-    <div class="am-panel-hd" style="text-align: center">万家附加服务费</div>
-  </div>
-</header>
 <form method="post" action="/orders/new_manco" class="am-form">
      <%unless @departure_addr.nil? %>
   <input type="hidden" name="member_departure_id" value="<%=@departure_addr.id%>">

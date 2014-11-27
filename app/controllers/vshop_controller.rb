@@ -23,6 +23,9 @@ class VshopController < ApplicationController
     if @user
 
       @supplier =Ecstore::Supplier.find(params[:id])
+      if @supplier.id==98
+         @manco_title="个人中心"
+      end
       render :layout=>@supplier.layout
     else
       redirect_to "/auto_login?id=#{params[:id]}&platform=mobile&return_url=/vshop/#{params[:id]}/user?id=#{params[:id]}"

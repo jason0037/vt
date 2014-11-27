@@ -18,12 +18,7 @@
 
 
 </style>
-<header id="am-topbar am-topbar-inverse">
-
-  <div class="am-panel am-panel-default">
-    <div class="am-panel-hd" style="text-align: center">万家订单详细</div>
-  </div>
-</header>
+<br>
 <%=form_for :order,:url=>"#{orders_path}?platform=wuliu",:html=>{ :class=>"am-form",:id=>"order_form" } do |f|%>
 
     <%=f.hidden_field :supplier_id,:value=>"98"%>

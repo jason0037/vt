@@ -8,22 +8,14 @@
 </style>
 <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
 <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
-<header id="am-topbar am-topbar-inverse">
-
-  <div class="am-panel am-panel-default">
-    <%if @way =="departure"%>
-     <div class="am-panel-hd">装货人地址</div>
-    <%elsif @way =="arrival"%>
-        <div class="am-panel-hd">卸货人地址</div>
-        <%end%>
-  </div>
-</header>
-<a id="ahref" class="am-btn am-btn-primary am-btn-block" href="/manco/departure_new?supplier_id=98&way=<%=@way%>">新增
+        <hr>
+<a id="ahref" class="am-btn am-btn-danger" href="/manco/departure_new?supplier_id=98&way=<%=@way%>">新增
   <%if @way =="departure"%>
       装货人地址
   <%elsif @way =="arrival"%>
       卸货人地址
   <%end%> </a>
+<hr>
 <form action="departure_edit" class="am-form" method="post">
 
   <input type="hidden" name="supplier_id"value="<%=@supplier.id%>">

@@ -1,13 +1,3 @@
 
 
-<header id="am-topbar am-topbar-inverse">
-
-  <div class="am-panel am-panel-primary">
-    <%if @way =="departure"%>
-        <div class="am-panel-hd">装货人地址</div>
-    <%elsif @way =="arrival"%>
-        <div class="am-panel-hd">卸货人地址</div>
-    <%end%>
-  </div>
-</header>
 <%=render :partial=>"addr_form",:locals=>{ :display=>true }%>

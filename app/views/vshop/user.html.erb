@@ -16,11 +16,11 @@
         }
 
 </style>
-
+            <%unless @supplier.id==98%>
 <div class="am-panel am-panel-default "style="margin: 0px;padding: 0px">
   <div class="am-panel-hd"  style="text-align: center;padding: 10px"><%= I18n.t "personal_center"%></div>
 </div>
-
+       <%end%>
 
 <div class="userdiv" style="display:none">
   <ul class="orderList clearfix">
@@ -29,7 +29,7 @@
     <li><a href="user-order-list-more.html" class=""><span class="all_orders"></span><p>更多订单</p></a></li>
   </ul>
 </div>
-
+  <hr>
 <div class="am-panel am-panel-default">
   <a href="/share?supplier_id=<%=@supplier.id%>">
     <div class="am-panel-hd"><%= I18n.t "commission"%></div>

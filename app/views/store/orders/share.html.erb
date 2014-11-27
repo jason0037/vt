@@ -4,11 +4,12 @@
   }
 
 </style>
+<%unless @supplier.id==98%>
 <div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
   <div class="am-panel-hd"  style="text-align: center;padding: 10px"><%= I18n.t "mycommission"%></div>
 </div>
+      <%else%><hr><%end%>
 
-<div class="space10"></div>
 
 <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
   <div class="am-panel-hd"><%= I18n.t "total_commission"%> <span style="float: right">¥<%=@share%></span></div>

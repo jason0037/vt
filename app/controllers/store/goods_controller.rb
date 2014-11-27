@@ -9,12 +9,14 @@ class Store::GoodsController < ApplicationController
 
   def manco_cart
       @line_items.delete_all
+      @manco_title="预付充值"
     @good = Ecstore::Good.find_by_name(params[:cart_name])
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     render layout: @supplier.layout
   end
 
   def show_goodblack
+    @manco_title="货源小黑板"
      @supplier=Ecstore::Supplier.find_by_id(params[:supplier_id])
     @good=Ecstore::BlackGood.where(:id=>params[:id])
    render :layout =>@supplier.layout
@@ -31,6 +33,7 @@ class Store::GoodsController < ApplicationController
 
      ###万家小黑板
   def mancoproduct
+    @manco_title="车源小黑板"
      @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
 

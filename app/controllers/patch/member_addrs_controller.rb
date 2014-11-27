@@ -118,6 +118,7 @@ end
 
   end
   def _form_manco_second
+    @manco_title="新增卸货地址"
     session[:depars]=params[:member_departure_id]  ##有寄货地址 没收货地址的
     @addr = Ecstore::MemberAddr.new
     @supplier=Ecstore::Supplier.find(params[:supplier_id])

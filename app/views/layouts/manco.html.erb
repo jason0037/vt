@@ -5,7 +5,7 @@
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <title><%=@supplier.name%>微商城</title>
+  <title><%=@supplier.name%>微服务平台</title>
   <meta content="" name="keywords">
   <meta content="" name="description">
   <%= stylesheet_link_tag    "amaze/amazeui.basic.css" %>
@@ -66,7 +66,9 @@
   <div class="am-header-left am-header-nav">
     <a href="javascript:history.go(-1)" class="">
       <img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""></a></div>
-  <h1 class="am-header-title">万家物流</h1>
+  <h1 class="am-header-title"><%unless @manco_title.nil?%><%=@manco_title%><%else%>万家物流微服务平台<%end%></h1>
+
+
   <div class="am-header-right am-header-nav">
 
     <button class="am-btn am-btn-primary" data-am-offcanvas="{target: '#doc-oc-demo2', effect: 'push'}"><span class="am-sr-only">导航切换</span> <span
@@ -75,7 +77,7 @@
   <div class="am-offcanvas" id="doc-oc-demo2">
     <div class=" am-offcanvas-bar am-offcanvas-bar-overlay am-offcanvas-bar-active">
       <ul class="am-nav am-menu-nav" style="color:red;">
-        <li class="am-parent am-active"><a  style="color:red"><%=@supplier.name%>微商城</a></li>
+        <li class="am-parent am-active"><a  style="color:red"><%=@supplier.name%>微服务平台</a></li>
         <li class="am-nav-header">目录</li>
         <li class="am-menu-nav-channelt">  <a href="/vshop/<%=@supplier.id%>">首页</a> </li>
         <li class="am-menu-nav-channelt"> <a href="/manco/history?supplier_id=<%=@supplier.id%>">万家历程</a></li>
@@ -101,9 +103,8 @@
         <a class="am-btn  am-btn-primary"  data-am-modal="{target: '#mancoserver'}">万家服务</a>
       </li>
        <li >
-        <a class="am-btn  am-btn-primary" href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>" >
-				<span class="am-icon-user">
-				</span>  </a>
+        <a class="am-btn  am-btn-primary" href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>" >个人中心</a>
+
 
 
       </li>
