@@ -225,6 +225,9 @@ module Admin
             render :layout=>"dialog"
        end
 
+      def cate_temp_download
+      end
+
       def search
             @template =  params[:template] || "index_goods"
             @view =  params[:view] || "index"

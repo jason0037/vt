@@ -31,7 +31,7 @@
       </div>
     </div>
 
-   <div class="control-group">
+   <div class="control-group" style="display:none">
       <%= f.label :spec_type, "显示类型 ", :class => "control-label" %>
       <div class="controls">
           <label class="radio inline"><%=f.radio_button :spec_type, 'text'%>文字</label>
@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <div class="control-group">
+    <div class="control-group"  style="display:none">
       <%= f.label :spec_show_type, "显示方式 ", :class => "control-label" %>
       <div class="controls">
            <label class="radio inline"><%=f.radio_button :spec_show_type, 'flat'%>平铺</label>
@@ -48,7 +48,7 @@
     </div>
 
 
-    <div class="control-group">
+    <div class="control-group"  style="display:none">
         <label class="control-label">规格值</label>
         <div class="controls">
             <ul class="value-list" id="value_list">
@@ -77,7 +77,7 @@
 
             </ul>
 
-            <div><%=link_to "+添加规格值","#",:id=>"add_value"%></div>
+            <div style="display:none"><%=link_to "+添加规格值","#",:id=>"add_value"%></div>
         </div>
     </div>
 

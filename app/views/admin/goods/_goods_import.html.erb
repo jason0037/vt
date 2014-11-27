@@ -1,4 +1,13 @@
-<div style="border:1px solid #e3e3e3">
+<style>
+	#import_goods{text-align:center; border:1px solid #e3e3e3;float:left; position: relative;margin:0px 20px;padding:5px;min-height:80px;min-width:500px;}
+
+	dl{width:300px;margin:auto;}
+	dd{margin:0; padding :1em;}
+	dt{cursor:pointer; line-height:2em;background: #e3e3e3; border-bottom:1px solid #c5c5c5; border-top: 1px solid white;}
+</style>
+
+<div id ="import_goods">		
+	<p id ="import_button" class="btn btn-success">批量导入商品</p>	
 	<dl>
 		<dt>已经有产品导入模板,直接导入</dt>
 		<dd>
@@ -9,8 +18,21 @@
 		</dd>
 		<dt>下载产品导入模板</dt>
 		<dd>
-			<h1>新建产品导入模板</h1>
 			  <label for="goods_cat">请选择分类：</label>
+			  <%=form_for :ad, :url=>cate_temp_download_admin_goods_path,:method=>:get,:remote=>true,:html=>{:id=>"cate_temp_download"} do |f|%>
+				<%=hidden_field_tag :view,@view%>
+				<%=hidden_field_tag :template,@template%>
+		
+		<div class="filter-item">
+			<span>品牌: </span>
+			<%=f.select :brand, Ecstore::Brand.all.collect {|brand| [brand.brand_name, brand.brand_id] },:include_blank=>"请选择" %>
+		</div>
+
+		<div class="filter-item">
+			<span>分类: </span>
+			<%=f.select :cat, Ecstore::Category.all.collect {|cat| [cat.full_path_name, cat.cat_id] },{:include_blank=>"请选择"},{:class=>"span3"} %>
+		</div>
+
 			  <select name="goods_cat" id="goods_cat">
 			  	<option value=""></option>
 			  </select>
@@ -23,8 +45,39 @@
 			  	<a href="#">新增参数</a>
 			  </div>
 			  <a href="#">下载模板</a>
+			<%end%>
 		</dd>
+		<dt id="import_cancel">取消</dt>
 	</dl>
 	
 </div>
-  
+<script>
+	(function(){
+		var dl = $('dl');
+		dl.hide();
+		var dd =$('dd');
+		dd.hide();
+		var p = $('p#import_button');
+		var cancel = $('dt#import_cancel');
+
+		p.on('click',function(){
+			console.log("import");
+			dl.show();
+			p.hide();
+		});
+		$('dt').on('click',function(){
+			console.log('showdd');
+			$(this).next().siblings('dd').hide();
+			$(this).next().show();
+		});
+		
+
+		cancel.on('click',function(){
+			dl.hide();
+			p.show();
+		});
+	//	dl.toggle();
+	// dl.slideDown();
+
+	})();
+</script>
