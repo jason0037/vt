@@ -71,16 +71,16 @@
 
   <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout"
        id="">
-    <ul class="am-navbar-nav am-cf sm-block-grid-4">
+    <ul class="am-navbar-nav am-cf sm-block-grid-3">
 
       <li> <a class="am-btn  "  data-am-modal="{target: '#trade_server'}">|贸威特色|</a></li>
       <li><a class="am-btn"href="/cart/mobile?id=<%=@supplier.id%>">|购物车|</a></li>
       <li ><a class="am-btn " href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>">|个人中心|</a></li>
       <li> <a  class="am-btn " id="showall" >
        <%if  I18n.locale.to_s=="zh_cn"%>
-              <span id="lange" class="am-navbar-label">|English|</span>
+              <span id="lange" class="am-navbar-label">English</span>
           <%elsif  I18n.locale.to_s =="en"%>
-              <span id="lange" class="am-navbar-label">|中文切换|</span>
+              <span id="lange" class="am-navbar-label">中文切换</span>
           <%end%>
         </a></li>
 
