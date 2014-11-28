@@ -82,10 +82,10 @@
       <br/>
       <div class="ui-btn-area">
         <%if @method == :put%>
-            <input type="submit" class="am-btn am-btn-warning am-btn-block "  value="<%=I18n.t "confirm"%>">
+            <input type="button" class="am-btn am-btn-warning am-btn-block "  value="<%=I18n.t "confirm"%>">
 
         <%else%>
-            <input type="submit" class="am-btn  am-btn-warning am-btn-block  "   value="<%=I18n.t "confirm"%>">
+            <input type="button" class="am-btn  am-btn-warning am-btn-block  "   value="<%=I18n.t "confirm"%>">
 
         <%end%>
       </div>
@@ -103,12 +103,15 @@
 
            return false;
        }
-       if(mobile.length!=11)
+       else if(mobile.length!=11)
        {
            alert('请输入有效的手机号码！');
 
            return false;
        }
+     else{
+         $(".form-horizontal").submit();
+     }  
    })
 
 
