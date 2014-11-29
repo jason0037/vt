@@ -1,2 +1,1 @@
-console.log('goods_cate_specs');
-$("#goods_cate_specs").html('<%=escape_javascript(render @cate_specs)%>').attr("data-url",'<%=request.fullpath.html_safe%>');
+$("#goods_cate_specs").html('<%= escape_javascript render("cate_specs").html_safe%>');

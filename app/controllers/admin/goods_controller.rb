@@ -226,34 +226,44 @@ module Admin
        end
 
       def cate_temp_download
-        cat_id = params[:cat]
+        cat_id = params[:cat_id]
+       
+        category = Ecstore::Category.find_by_cat_id(cat_id)
 
-        # goods = Ecstore::GoodCat.where(conditions).includes(:good_type,:brand,:cat,:products)
+        cate_specs=['产品/规格','产品名称',"产品型号","规格参数","产品规格","单位","产品简介","ERP产品编号","条码", "库存数量","交期","状态","市场价","促销价"]
+
+        if category.type_id
+          cate_type_specs = Ecstore::GoodTypeSpec.where(:type_id=>category.type_id)
+          cate_type_specs.each do |spec|
+            cate_specs << spec.spec.spec_name
+          end
+        end
 
         package = Axlsx::Package.new
         workbook = package.workbook
         workbook.styles do |s|
-          head_cell = s.add_style  :b=>true, :sz => 10, :alignment => { :horizontal => :center,
-                                                                        :vertical => :center}
-          goods_cell = s.add_style :b=>true,:bg_color=>"FFFACD", :sz => 10, :alignment => {:vertical => :center}
+          head_cell = s.add_style  :b=>true, :sz => 10, :alignment => { :horizontal => :center,:vertical => :center}
+          goods_cell = s.add_style :fg_color=>"FF0000",:bg_color=>"FFFACD", :sz => 10, :alignment => {:vertical => :center}
           product_cell =  s.add_style  :sz => 9
 
           workbook.add_worksheet(:name => "cate_temple#{cat_id}") do |sheet|
-
-            sheet.add_row ['产品名称',"ERP分类编码","产品型号","规格参数","产品规格","单位","产品简介","ERP产品编号","条码", "库存数量","交期","状态","市场价","促销价"],
-                        :style=>head_cell
+            sheet.add_row ["",category.cat_name,"#{category.code}","#{cat_id}"],:style=>head_cell
+            sheet.add_row cate_specs,:style=>head_cell
+            sheet.add_row ["产品信息"],:style=>goods_cell
+            sheet.add_row ["规格信息"],:style=>product_cell
           end
 
         end
-        send_data package.to_stream.read,:filename=>"cate_temple#{cat_id}.xlsx"        
+        send_data package.to_stream.read,:filename=>"category_template_#{cat_id}.xlsx"        
       end
 
       def goods_cate_specs
-        @cate_spes=params[:cat]
+        cat_id=params[:good][:cat]
 
-        respond_to do |format|
-            format.js            
-        end
+        @category = Ecstore::Category.find_by_cat_id(cat_id)
+        # if @category.type_id
+          @cate_type_specs = Ecstore::GoodTypeSpec.where(:type_id=>@category.type_id)
+        # end
       end
 
       def search
@@ -433,7 +443,7 @@ module Admin
                 end
             end
             if @good.save
-                @spec_items = Ecorstore::SpecItem.all
+                @spec_items = Ecstore::SpecItem.all
                 @updated = true
                 render "update"
             end
@@ -449,24 +459,32 @@ module Admin
         supplier_id = 1
         goods_type_id = 1       
         brand_id =1
-        #ERP分类编码  ERP产品编号 产品型号 规格参数 产品规格  单位  库存数量  交期  状态  市场价 促销价 产品介绍    自由项1/颜色 自由项2/轮子 自由项3/钢印 自由项4/钢印
-
+        cat_id = 0
+        #   DF系列  1001010101  177                   
         @good = Ecstore::Good.new
         sheet.each_with_index do |row,i|
             #if i>4 && !row[1].blank? && !row[0].blank?
-            if i>0
-                pp "spec info ......"
-                pp row[20]
-
-                if row[1].nil?
-                  render :text=>"第: #{i+1}个产品没有ERP编号"
+            if i == 0
+               if row[2].nil? || row[3].nil?
+                  render :text=>"导入模板格式错误"
                   return
                 else
-                  bn = row[1].strip
+                  cat_code = row[2]
+                  cat_id = row[3].to_s.strip.to_i
                 end
-
+              
+            elsif i ==1
+              #标题行，跳过
+              next
+            elsif row[0]=='产品信息'               
                 #保存goods信息---------------------------
                 pp "staring...."
+                 if row[7].nil?
+                  render :text=>"第: #{i+1}个产品没有ERP产品编号"
+                  return
+                else
+                  bn = row[7].to_s.strip.to_i
+                end
                 @new_good = Ecstore::Good.find_by_bn(bn)
                 if @new_good&&@new_good.persisted?
                     @good = @new_good
@@ -480,49 +498,35 @@ module Admin
                 @good.type_id = goods_type_id
                 @good.supplier_id = supplier_id
                 @good.brand_id = brand_id
-                
-
+                @good.sell = 'true'
+                @good.marketable = 'true'
+ #   产品/规格 产品名称  产品型号  规格参数  产品规格  单位  产品简介  ERP产品编号 条码  库存数量  交期  状态  市场价 促销价  自由项...
                 if row[1].nil?
-                  render :text=>"第: #{i+1}个产品没有ERP分类编号"
-                  return
-                else
-                  cat_code = row[0]
-                  goods_cat = Ecstore::GoodCat.find_by_code(cat_code)
-                  @good.cat_id = goods_cat.cat_id
-                end
-
-                if row[2].nil?
                   render :text=>"第: #{i+1}个产品没有产品名称"
                   return
                 else
-                   @good.name = row[2]
-                end          
+                   @good.name = row[1]
+                end   
 
-                @good.model = row[3]
-                @good.size_description = row[4]
-                @good.size = row[5]
-                @good.unit = row[6]                               
-                @good.store = row[7]  
-                @good.delivery_time = row[8]
-                status = row [9]
-                if status =='1'
-                  @good.sell = 'true'
-                  @good.marketable = 'true'
+                if row[2].nil?
+                  render :text=>"第: #{i+1}个产品没有产品型号"
+                  return
                 else
-                  @good.sell = 'false'
-                  @good.marketable = 'false'
-                end
-                @good.mktprice = row[10]                 
-                @good.price = row[11] 
-                @good.desc = row[12]
+                  @good.model = row[2]                 
+                end                   
 
+                @good.cat_id = cat_id
+                @good.size_description = row[3]
+                @good.size = row[4]
+                @good.unit = row[5]                   
+                @good.desc = row[6] 
 
                 @good.uptime=Time.now                   
                
                # spec_id = Ecstore::Spec.where(:spec_name=>row[7]).first.spec_id
                 @good.save!
-=begin
-                #保存 Products信息--------------------------------------------
+              elsif  row[0]=='规格信息'                    
+                #保存 Products信息--------------------------------------------条码  库存数量  交期  状态  市场价 促销价  自由项...
                 pp "here...."
                 @new_product = Ecstore::Product.find_by_bn(bn)
                 if !@new_product.nil? && @new_product.persisted?
@@ -531,19 +535,15 @@ module Admin
                     @product = Ecstore::Product.new
                     @product.bn = bn
                 end
-                #@product.barcode = row[5]
+                @product.barcode = row[8]
                 @product.goods_id = @good.goods_id
                 @product.name = @good.name
-                @product.store_time = row[9]
-                @product.store = row[10]
-                @product.cost= row[13]
-                @product.wholesale = row[14]
-                @product.bulk = row[15]
-                @product.promotion=row[16]
-                @product.price = row[17]
-                @product.mktprice = row[18]
+                @product.store_time = row[10]
+                @product.store = row[9]
+                @product.price = row[12]
+                @product.mktprice = row[11]
                 @product.save!
-
+=begin
                 #插入GoodSpec
                 Ecstore::GoodSpec.where(:product_id=>@product.product_id).delete_all
                 sp_val_id = Ecstore::SpecValue.where(:spec_value=>row[7],:spec_id=>spec_id).first.spec_value_id

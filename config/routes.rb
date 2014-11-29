@@ -3,9 +3,6 @@ require 'httpclient'
 Modengke::Application.routes.draw do
 
 
-
-
-
   get "rongda/index"
 
 
