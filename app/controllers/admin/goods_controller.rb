@@ -226,6 +226,34 @@ module Admin
        end
 
       def cate_temp_download
+        cat_id = params[:cat]
+
+        # goods = Ecstore::GoodCat.where(conditions).includes(:good_type,:brand,:cat,:products)
+
+        package = Axlsx::Package.new
+        workbook = package.workbook
+        workbook.styles do |s|
+          head_cell = s.add_style  :b=>true, :sz => 10, :alignment => { :horizontal => :center,
+                                                                        :vertical => :center}
+          goods_cell = s.add_style :b=>true,:bg_color=>"FFFACD", :sz => 10, :alignment => {:vertical => :center}
+          product_cell =  s.add_style  :sz => 9
+
+          workbook.add_worksheet(:name => "cate_temple#{cat_id}") do |sheet|
+
+            sheet.add_row ['产品名称',"ERP分类编码","产品型号","规格参数","产品规格","单位","产品简介","ERP产品编号","条码", "库存数量","交期","状态","市场价","促销价"],
+                        :style=>head_cell
+          end
+
+        end
+        send_data package.to_stream.read,:filename=>"cate_temple#{cat_id}.xlsx"        
+      end
+
+      def goods_cate_specs
+        @cate_spes=params[:cat]
+
+        respond_to do |format|
+            format.js            
+        end
       end
 
       def search
@@ -307,32 +335,6 @@ module Admin
                 format.js
             end
       end
-
-   def black_good
-     @good =  Ecstore::BlackGood.find(params[:id])
-     @action_url ="black_good_edit?id=#{params[:id]}"
-   end
-
-      def black_good_new
-        @blackgood=Ecstore::BlackGood.new(params[:black_good]) do |sv|
-
-          sv.uptime=Time.now
-        #  sv.downtime=Time.parse(params[:black_good][:downtime]).to_i+(hour.to_i)*3600
-
-        end.save
-
-
-
-      end
-
-   def black_good_edit
-     @good =  Ecstore::BlackGood.find(params[:id])
-     @good.update_attributes(params[:black_good])
-     @action_url ="black_good/#{params[:id]}/edit"
-
-   end
-
-
 
 
    def edit
