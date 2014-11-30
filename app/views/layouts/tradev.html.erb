@@ -16,7 +16,7 @@
   <%= stylesheet_link_tag    "amaze/amazeui.widgets.css" %>
   <%= stylesheet_link_tag    "amaze/amazeui.widgets.min.css" %>
 
-   <%= javascript_include_tag "amaze/zepto.min.js"%>
+  <%= javascript_include_tag "amaze/zepto.min.js"%>
   <%= javascript_include_tag "amaze/amazeui.widgets.helper.js"%>
   <%= javascript_include_tag "amaze/amazeui.widgets.helper.min.js"%>
   <%= javascript_include_tag "amaze/amazeui.widgets.js"%>
@@ -28,10 +28,10 @@
   <%= javascript_include_tag "amaze/handlebars.min.js"%>
 
 
-<script>
+  <script>
       var ui = 'touch';
   </script>
- <style>
+  <style>
 
 
       .bottomdivsclearfix {
@@ -47,12 +47,12 @@
       .am-navbar-default .am-navbar-nav {
           background-color: #FF8000;
       }
-    .hidden{
-        display: none;
-    }
+      .hidden{
+          display: none;
+      }
       .am-navbar-nav li a{
-        color: #ffffff;
-    }
+          color: #ffffff;
+      }
 
   </style>
 </head>
@@ -73,16 +73,16 @@
        id="">
     <ul class="am-navbar-nav am-cf sm-block-grid-3">
 
-      <li> <a class="am-btn  "  data-am-modal="{target: '#trade_server'}">|贸威特色|</a></li>
-      <li><a class="am-btn"href="/cart/mobile?id=<%=@supplier.id%>">|购物车|</a></li>
-      <li ><a class="am-btn " href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>">|个人中心|</a></li>
+      <li> <a class="am-btn  "  data-am-modal="{target: '#trade_server'}"><span  class="am-navbar-label">|贸威特色|</span></a></li>
+      <li><a class="am-btn"href="/cart/mobile?id=<%=@supplier.id%>"><span  class="am-navbar-label">|购物车|</span></a></li>
+      <li ><a class="am-btn " href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>"><span  class="am-navbar-label">|个人中心|</span></a></li>
       <li> <a  class="am-btn " id="showall" >
-       <%if  I18n.locale.to_s=="zh_cn"%>
-              <span id="lange" class="am-navbar-label">English</span>
-          <%elsif  I18n.locale.to_s =="en"%>
-              <span id="lange" class="am-navbar-label">中文切换</span>
-          <%end%>
-        </a></li>
+        <%if  I18n.locale.to_s=="zh_cn"%>
+            <span id="lange" class="am-navbar-label">|English</span>
+        <%elsif  I18n.locale.to_s =="en"%>
+            <span id="lange" class="am-navbar-label">|中文切换</span>
+        <%end%>
+      </a></li>
 
     </ul>
   </div>
@@ -93,8 +93,8 @@
     <ul class="am-list">
       <li>
         <a href="/quality_products?supplier_id=<%=@supplier.id%>"><i class="am-icon-hand-o-right"> </i><span>去名优特产</span> </a>
-       </li>
- <li><a href="/world_food?supplier_id=<%=@supplier.id%>" ><i class="am-icon-hand-o-right"> </i><span>去世界美食</span> </a>
+      </li>
+      <li><a href="/world_food?supplier_id=<%=@supplier.id%>" ><i class="am-icon-hand-o-right"> </i><span>去世界美食</span> </a>
       </li>
 
 
@@ -116,7 +116,7 @@
       </script>
   <%else%>
       <script>
-              location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
+          location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
       </script>
   <%end%>
   <p class="copyright" style="display: none">Copyright © 2013-2014 trade-v.com <br/>版权所有 上海普慧信息科技有限公司 All rights reserved. <br/>沪ICP备13045311号-1 </p>
@@ -228,7 +228,7 @@
     }
     if (document.location.search=="?name=%E9%A6%99%E8%82%A0&id=78"){
 
-         imgs="http://vshop.trade-v.com/images/a077/xiangchang.png"
+        imgs="http://vshop.trade-v.com/images/a077/xiangchang.png"
 
         descs="德国老祖母级香肠，原汁原味，来自德国的美味！";
     }
@@ -289,13 +289,13 @@
 
         })
 
-    $("#showall").click(function() {
-        pathname = document.location.pathname;
-        url = document.location.href;
-        serach = document.location.search;
-        host = document.location.host;
+        $("#showall").click(function() {
+            pathname = document.location.pathname;
+            url = document.location.href;
+            serach = document.location.search;
+            host = document.location.host;
 
-        var langeval = $("#lange").html();
+            var langeval = $("#lange").html();
 
 
 
@@ -330,7 +330,7 @@
 
 //替换myUrl中的同名参数值
             function replaceUrlParams(myUrl, newParams) {
-              for (var x in newParams) {
+                for (var x in newParams) {
                     var hasInMyUrlParams = false;
                     for (var y in myUrl.params) {
                         if (x.toLowerCase() == y.toLowerCase()) {
@@ -365,17 +365,17 @@
             urlsss=document.location.href
             var myURL = parseURL(urlsss);
 
-        if (langeval == "English") {
-            var _newUrl = replaceUrlParams(myURL, {locale: "en"}); }
-          else{
+            if (langeval == "|English") {
+                var _newUrl = replaceUrlParams(myURL, {locale: "en"}); }
+            else{
                 var _newUrl = replaceUrlParams(myURL, {locale: "zh_cn"});
             }
-       window.location.href=_newUrl;
+            window.location.href=_newUrl;
 
 
 
 
-    })
+        })
 
     })
 
