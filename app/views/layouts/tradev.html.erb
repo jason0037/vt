@@ -73,14 +73,14 @@
        id="">
     <ul class="am-navbar-nav am-cf sm-block-grid-3">
 
-      <li> <a class="am-btn  "  data-am-modal="{target: '#trade_server'}"><span  class="am-navbar-label">|贸威特色|</span></a></li>
-      <li><a class="am-btn"href="/cart/mobile?id=<%=@supplier.id%>"><span  class="am-navbar-label">|购物车|</span></a></li>
-      <li ><a class="am-btn " href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>"><span  class="am-navbar-label">|个人中心|</span></a></li>
-      <li> <a  class="am-btn " id="showall" >
+      <li> <a class=" "  data-am-modal="{target: '#trade_server'}"><span  class="am-navbar-label">|贸威特色|</span></a></li>
+      <li><a class=""href="/cart/mobile?id=<%=@supplier.id%>"><span  class="am-navbar-label">|购物车|</span></a></li>
+      <li ><a class=" " href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>"><span  class="am-navbar-label">|个人中心|</span></a></li>
+      <li> <a  class=" " id="showall" >
         <%if  I18n.locale.to_s=="zh_cn"%>
-            <span id="lange" class="am-navbar-label">|English</span>
+            <span id="lange" class="">English</span>
         <%elsif  I18n.locale.to_s =="en"%>
-            <span id="lange" class="am-navbar-label">|中文切换</span>
+            <span id="lange" class="">中文切换</span>
         <%end%>
       </a></li>
 
@@ -92,11 +92,12 @@
   <div class="am-modal-actions-group">
     <ul class="am-list">
       <li>
-        <a href="/quality_products?supplier_id=<%=@supplier.id%>"><i class="am-icon-hand-o-right"> </i><span>去名优特产</span> </a>
+        <a href="/quality_products?supplier_id=<%=@supplier.id%>"><i class="am-icon-hand-o-right"> </i><span>生态农产馆</span> </a>
       </li>
-      <li><a href="/world_food?supplier_id=<%=@supplier.id%>" ><i class="am-icon-hand-o-right"> </i><span>去世界美食</span> </a>
+      <li><a href="/world_food?supplier_id=<%=@supplier.id%>" ><i class="am-icon-hand-o-right"> </i><span>德国香肠馆</span> </a>
       </li>
-
+      <li><a href="/prime_beef?supplier_id=<%=@supplier.id%>" ><i class="am-icon-hand-o-right"> </i><span>顶级牛肉馆</span> </a>
+      </li>
 
       <br>
       <br>
