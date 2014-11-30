@@ -3,9 +3,6 @@ require 'httpclient'
 Modengke::Application.routes.draw do
 
 
-
-
-
   get "rongda/index"
 
 
@@ -350,6 +347,8 @@ end
       get 'select_gifts',:on=>:collection
       put 'batch',:on=>:collection
       get 'select_all',:on=>:collection
+      get 'cate_temp_download', :on=>:collection
+      get 'goods_cate_specs', :on=>:collection
 
       get :toggle_future,:on=>:member
       get :toggle_agent,:on=>:member

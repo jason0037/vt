@@ -50,6 +50,25 @@
         </div>
 
 
+<<<<<<< HEAD
+    <div class="actions clearfix">
+      <%if @good.marketable == "true"%>
+            <div id="cart_msg"></div>
+            <%=link_to "加入购物车","javascript:void(0);",
+                       :class=>"add_to_cart #{'sold-out' if good.store.to_i == 0 } #{'data-reveal-id="login_iframe"' unless signed_in?} #{'buy-cols' if good.has_cols? } button",
+                       :id=>"add_to_cart"%>
+      <%else%>
+            <%=image_tag  "/assets/store/not_marketing.png", :class=>"not-marketing"%>
+      <%end%>
+
+      <%if signed_in?%>
+      <%=link_to "已收藏",unfav_good_path(good,:rel=>"good_#{good.goods_id}"),:class=>"add_to_favorites",:remote=>true,:method=>:put,:confirm=>"是否取消收藏?" if good.favorited_by?(@user)%>
+      <%=link_to "加入我的收藏夹",fav_good_path(good,:rel=>"good_#{good.goods_id}"),:class=>"add_to_favorites",:remote=>true,:method=>:put unless good.favorited_by?(@user)%>
+      <%else%>
+        <a href="javascript:void(0);" class="add_to_favorites login">加入我的收藏夹</a>
+      <%end%>
+=======
+>>>>>>> 8f2b4487111cedf4a1e2590adb77cc96bf9dc232
 
 
 

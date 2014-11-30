@@ -8,7 +8,10 @@ class Ecstore::Spec < Ecstore::Base
 	has_many :spec_values,:foreign_key=>"spec_id", :class_name=>"Ecstore::SpecValue"
 	accepts_nested_attributes_for :spec_values, allow_destroy: true
 
+	has_many :spec_ids,:foreign_key=>"spec_id",:class_name=>"Ecstore::GoodTypeSpec"
+
 	self.accessible_all_columns
+	attr_accessible :spec_name_en
 
 	validates_presence_of :spec_name, :message=>"规格名称不能为空"
 
