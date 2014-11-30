@@ -1,4 +1,66 @@
+<style>
+    .good_name{
+        overflow:hidden;
+        text-overflow:ellipsis;
+        -o-text-overflow:ellipsis;
+        white-space:nowrap;
 
+    }
+</style>
+<div class="row" >
+  <div class="large-2 medium-3 columns show-for-medium-up category-nav">
+    <%=render "patch/shared/menu"%>
+  </div>
+
+
+
+  <div class="large-10 medium-9 columns">
+   <h5> 最近订单 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%=link_to "所有订单>>",orders_member_path,:class=>"all-orders"%> </h5>
+
+    <%if @orders&&@orders.count > 0%>
+        <%@orders.each  do |order|%>
+            <div class="row support panel">
+              <div class="small-6 columns"><%if order.status == 'active' && order.pay_status=='0'%>
+                    <%=link_to "等待付款",detail_order_path(order),:target=>"_blank",:style=>"font-size:18px;color:red"%>
+                <%elsif order.status == 'finish' && order.pay_status=='1'%>
+                    <%=link_to "完成",detail_order_path(order),:target=>"_blank",:style=>"font-size:18px;color:black"%>
+                <%end%></div>
+              <div class="small-6 columns"> 订单号: <%=link_to order.order_id, order_path(order),:target=>"_blank"%></div>
+            </div>
+            <div class="row support panel">  <img style="width: 15%" src="http://weishop.cheuks.com/images/a01/a014182_m.jpg">  </div>
+
+            <div class="row support panel">
+              <div class="small-6 columns"><h5>需支付:&yen;<%=order.final_amount.to_i%> </h5></div>
+              <div class="small-6 columns" ><%=link_to "去付款",order_path(order),:target=>"_blank",:class=>"small button" if order.status == 'active' && order.pay_status=='0'%> </div>
+            </div>
+
+
+
+            <br><br>
+        <%end%>
+
+
+    <%else%>
+        <div class="large-12 medium-12 small-12 columns good_name">
+          <span>没有符合条件的订单</span>
+        </div>
+
+
+    <%end%>
+  </div>
+
+
+
+
+
+    <div class="row  ">
+      <div class="small-6 "><%=@user.login_name%>,欢迎您！</div>
+      <div class="small-6 " >  </div> </div>
+    <div class="row  panel">
+      <div class="small-6 columns">会员等级</div>
+      <div class="small-6 columns" > <%=@user.member_lv.name%> </div>
+
+    </div>
 
 <div class="section member-info clearfix">
 	
@@ -57,44 +119,11 @@
 <%end%>
 </div>
 <div class="title">
-	最近订单
-	<%=link_to "所有订单>>",orders_member_path,:class=>"all-orders"%>
-</div>
-<table class="table table-striped" id="order_list">
-	<tr>
-		<th>订单号</th>
-		<th>订单商品</th>
-		
-		<th>下单时间</th>
-		<th>订单金额</th>
-		<th>订单状态</th>
-		<th>操作</th>
-	</tr>
-	
-	<%@orders.each  do |order|%>
-	<tr>
-		<td><%=link_to order.order_id, order_path(order)%></td>
-		<td>
-			<%order.order_items.each_with_index do |order_item,index|%>
-				<%
-					link_title = order_item.name
-					link_title = "赠品:#{link_title}" if order_item.item_type == 'gift'
-				%>
-				<%=link_to good_path(order_item.good.bn),:title=>link_title,:target=>"_blank",:class=>"thumb-link" do %>
-					<%=image_tag order_item.good.medium_pic,:class=>"thumb",:alt=>order_item.name if order_item.item_type == 'product'%>
-					<%=image_tag order_item.product.gift_image_url,:class=>"thumb",:alt=>order_item.name if order_item.item_type == 'gift'%>
-				<%end%>
 
-			<%end%>
-		</td>
-		
-		<td><%=order.created_at%></td>
-		<td>&yen;<%=order.final_amount.to_i%></td>
-		<td><%=order.status_text%></td>
-		<td>
-			<div><%=link_to "查看",detail_order_path(order),:target=>"_blank"%></div>
-			<div><%=link_to "去付款",order_path(order),:target=>"_blank" if order.status == 'active' && order.pay_status=='0'%></div>
-		</td>
-	</tr>
-	<%end%>
-</table>
+</div>
+
+
+
+
+
+ </div>

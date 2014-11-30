@@ -1,3 +1,4 @@
+<style>.hidden{display: none}</style>
 <div class="row">
   <div class="large-8 medium-8 columns">
 
@@ -50,16 +51,24 @@
 
 
 
-        <div class="actions clearfix">
+
+
+
+
+
+
+          <div class="wrapper">
           <%if @good.marketable == "true"%>
               <div id="cart_msg"></div>
+
+                <label id ="lable">加入购物车&nbsp;|&nbsp;加入收藏夹</label>
               <% unless signed_in?%>
 
-                  <a href="#" class="small round button" data-reveal-id="login_iframe" >加入购物车</a>
+                  <a href="#" class="inside" data-reveal-id="login_iframe" >加入购物车</a>
 
               <%else%>
                   <%=link_to "加入购物车","javascript:void(0);",
-                             :class=>"add_to_cart #{'sold-out' if good.store.to_i == 0 }  #{'buy-cols' if good.has_cols? } small round button",
+                             :class=>"add_to_cart #{'sold-out' if good.store.to_i == 0 }  #{'buy-cols' if good.has_cols? } inside",
                              :id=>"add_to_cart"%>
               <%end%>
           <%else%>
@@ -67,12 +76,14 @@
           <%end%>
 
           <%if signed_in?%>
-              <%=link_to "已收藏",unfav_good_path(good,:rel=>"good_#{good.goods_id}"),:class=>"add_to_favorites small button",:remote=>true,:method=>:put,:confirm=>"是否取消收藏?" if good.favorited_by?(@user)%>
-              <%=link_to "加入我的收藏夹",fav_good_path(good,:rel=>"good_#{good.goods_id}"),:class=>" small button",:remote=>true,:method=>:put unless good.favorited_by?(@user)%>
+              <%=link_to "已收藏",unfav_good_path(@good,:rel=>"good_#{good.goods_id}"),:id=>"add_to_favorite",:class=>"add_to_favorites  hidden",:remote=>true,:method=>:put %>
+              <%=link_to "加入我的收藏夹",fav_good_path(@good,:rel=>"good_#{good.goods_id}"),:id=>"favorite",:class=>" inside",:remote=>true,:method=>:put%>
           <%else%>
-              <a href="javascript:void(0);" class="add_to_favorites  small button"data-reveal-id="login_iframe" >加入我的收藏夹</a>
+              <a href="javascript:void(0);" class="add_to_favorites  inside"data-reveal-id="login_iframe" >加入收藏夹</a>
           <%end%>
 
+
+          </div>
         </div>
 
         <!--<div class="more">-->
@@ -85,3 +96,9 @@
 
   </div>
 </div>
+ <script>
+   window.onload=function(){
+
+   }
+
+ </script>

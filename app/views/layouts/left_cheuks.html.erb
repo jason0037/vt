@@ -1,0 +1,417 @@
+<!doctype html>
+<!--[if IE 9]><html class="lt-ie10" lang="zh" > <![endif]-->
+<html class="no-js" lang="zh" data-useragent="Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>上海卓仕工业品有限公司,一站式工业品网上订购平台,工业品,物流设备,动力工具、搬运车、堆高车、叉车、高空作业平台!</title>
+  <meta name="description" content="上海卓仕工业品有限公司,一站式工业品网上订购平台,工业品,物流设备,动力工具、搬运车、堆高车、叉车、高空作业平台!" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+  <title><%=page_title%></title>
+  <meta name="keywords" content="<%=meta_keywords%>" />
+  <meta name="description" content="<%=meta_description%>" />
+
+  <meta name="author" content="Cheuks MRO Co.,Ltd. " />
+
+  <meta name="copyright" content="Copyright © 2009-2014 Cheuks MRO Co.,Ltd. 卓展集团版权所有" />
+  <%= stylesheet_link_tag "app" %>
+  <%= stylesheet_link_tag "foundation-icons" %>
+  <script src="/bower_components/modernizr/modernizr.js"></script>
+
+  <%=stylesheet_link_tag "standard"%>
+
+  <%= yield :head%>
+
+
+</head>
+
+
+<%#=render "shared/baidu" if Rails.env == "production"%>
+<%= csrf_meta_tags %>
+</head>
+
+<body>
+
+<!-- OFF CANVAS SECTIONS WRAPPING THE MAIN CONTENT -->
+<div class="off-canvas-wrap" data-offcanvas>
+  <div class="inner-wrap">
+    <div class="fixed  show-for-small-only">
+      <nav class="tab-bar bg-primary">
+        <section class="left-small">
+          <a class="left-off-canvas-toggle menu-icon" href="#" title="产品分类"><span></span></a>
+        </section>
+
+        <section class="middle tab-bar-section">
+          <h1 class="title"><a href="/"><img src="http://weishop.cheuks.com/img/cheuks_logo.png"></a></h1>
+        </section>
+
+        <section class="right-small">
+          <a class="right-off-canvas-toggle menu-icon" href="#" title="服务导航"><span></span></a>
+        </section>
+      </nav>
+    </div>
+
+    <!-- MAIN SECTION -->
+    <section class="main-section">
+      <!--顶部导航-->
+      <div class="contain-to-grid sticky show-for-medium-up">
+        <nav class="top-bar" data-topbar>
+          <ul class="title-area">
+
+            <li class="name">
+              <h1 style="display:none">
+                <a href="#">
+                  您好，欢迎登录卓仕工业品！
+                </a>
+              </h1>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href="#" title="服务导航"><span></span></a></li>
+          </ul>
+
+          <section class="top-bar-section">
+
+            <ul class="left">
+              <li class="divider"></li>
+              <% if @user%>
+                  <li><a href="#">欢迎您<%=@user.login_name%></a></li>
+                  <li><a href="/logout?platform=/vshop" >退出登录</a></li>
+              <%else%>
+                  <li><a href="#" data-reveal-id="login_iframe">[请登录]</a></li>
+
+                  <li><a href="#" data-reveal-id="register_iframe">[注册账号]</a></li>
+
+              <%end%>
+              <li><a href="#"><i class="fi-marker"></i>上海[更换]</a></li>
+            </ul>
+
+
+            <ul class="right">
+              <li><a href="/member">用户中心</a></li>
+              <li class="divider"></li>
+              <li><a href="/member/orders">我的订单</a></li>
+              <li class="divider"></li>
+              <li><a href="/vshop">供应商加盟</a></li>
+              <li class="divider"></li>
+              <li class="has-dropdown">
+                <a href="#">客服中心</a>
+                <ul class="dropdown">
+                  <li><label>技术中心</label></li>
+                </ul>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">网站导航</a>
+              </li>
+            </ul>
+          </section>
+        </nav>
+      </div>
+      <header>
+        <!--Logo & 搜索框-->
+        <div class="row hidden-for-small-only">
+          <div class="large-4 medium-6 columns">
+            <h1><img src="http://weishop.cheuks.com/img/cheuks_logo.png"></h1>
+          </div>
+          <div class="large-6 large-offset-2 medium-6 columns right  padding-top-20">
+            <form>
+              <div class="row  " >
+                <div class="large-6 large-offset-4 small-8 columns">
+                  <input type="text" />
+                </div>
+                <div class="large-2 small-4 columns">
+                  <a href="#" class="postfix button expand">Search</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!--顶部菜单-->
+        <nav class="row navstyle">
+          <div class="large-3 columns small-12 large-push-9">
+            <h5 style="color:brown;text-align:center" style="margin-bottom:0px;">Liftin' Your Future<span></span></h5>
+          </div>
+          <div class="large-7 columns small-12 large-pull-1">
+            <ul class="button-group radius even-4">
+              <li ><a class="button" href="/">首页</a></li>
+              <li><a class="button" href="/gallery/28">新品闪购</a></li>
+              <li><a class="button" href="/gallery/27">明星产品</a></li>
+              <li><a class="button" href="/gallery/29">热卖产品</a></li>
+            </ul>
+          </div>
+          <div class="large-2 columns show-for-medium-up large-pull-10">
+            <ul class="no-bullet radius"  style="margin-bottom:0.2em">
+              <li><a class="button expand" href="/gallery/14">产品列表<span style="font-size:.3em;padding-left:1em;">List</span></a></li>
+            </ul>
+          </div>
+        </nav>
+      </header> <!-- END HEADER -->
+
+    </section>
+  </div>
+</div>
+
+
+
+<%=yield :notice%>
+<%#= render "shared/header" %>
+<%#if controller_name!='home'%>
+<%#= render "shared/top_menu" %>
+<%= yield :cover %>
+
+<!-- <div id= "main" class="<%=controller_name%> <%=action_name%> clearfix">
+  <%#end%> -->
+<%= yield%>
+<%#if controller_name!='home'%>
+<!-- </div> -->
+<%#end%>
+<%#=render "shared/common_footer"%>
+
+<div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+
+<%#=render "shared/iframe_cart" if signed_in?%>
+<%#=render "shared/iframe_login" unless signed_in?%>
+<%#= javascript_include_tag "google-analytics" if Rails.env == "production"%>
+
+<!-- 登录  --!>
+<div id="login_iframe" class="reveal-modal remove-whitespace" data-reveal="">
+  <dl class="tabs" data-tab>
+     <dd class="active"><a href="#signup" data-reveal-id="register_iframe">注册</a></dd>
+    </dl>
+           <div class="signup-panel">
+                    <p class="welcome">欢迎您回来!</p>
+                 <%=form_for :session,:url=>"/login"  do |f|%>
+
+
+              <%=hidden_field_tag :return_url,request.url.sub('http://trade','').force_encoding('UTF-8')%>
+              <div id="login_msg"></div>
+
+    <div class="small-8 columns">
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">用户名</label>
+        </div>
+        <div class="small-9 columns">
+            <%=f.text_field :username,:placeholder=>"已认证手机号/用户名/邮箱"%>
+         </div>
+      </div>
+    </div>
+
+    <div class="small-8 columns">
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">密码</label>
+        </div>
+        <div class="small-9 columns">
+            <%=f.password_field :password, :placeholder=>"密码",:class=>"new-input"%>
+         </div>
+      </div>
+    </div>
+
+     <div class="small-8 columns">
+             <div class="row">
+               <div class="small-9 columns">
+                <%=f.submit "登 录",:class=>"button alert",:style=>"margin-left:-50%;width:100%"%>
+                </div>
+
+                  </div>
+        </div>
+        <%end%>
+         <a class="close-reveal-modal">×</a>
+    </div>
+  </div>
+
+</div>
+
+<div id="register_iframe" class="reveal-modal remove-whitespace" data-reveal="">
+    <div class="signup-panel">
+      <p class="welcome" style="margin-left:-30px">您好，欢迎注册卓展!</p>
+     <%=form_for :user,:url=>users_path,:html=>{:id=>"register_form"} do |f|%>
+
+      <%=hidden_field_tag :return_url,request.url.sub('http://trade','').force_encoding('UTF-8')%>
+        <%=hidden_field_tag :platform,'vshop'%>
+     <div class="connerdiv">
+
+      <div class="small-8 columns">
+        <div class="row">
+
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">用户名</label>
+        </div>
+        <div class="small-9 columns">
+            <%=f.text_field :login_name,:class=>"am-form-field",:placeholder=>"用户名"%>
+        <div class="help-block" rel="user_login_name"></div>
+         </div>
+ </div> </div>
+
+    <div class="small-8 columns">
+        <div class="row">
+
+        <div class="small-3 columns">
+          <label for="right-label" class="right inline">密码</label>
+        </div>
+        <div class="small-9 columns">
+          <%=f.password_field :login_password,:class=>"am-form-field",:placeholder=>"密码"%>
+        <div class="help-block" rel="user_login_password"></div>
+         </div>
+ </div> </div>
+
+
+      <div class="small-8 columns">
+     <div class="row">
+      <div class="small-3 columns">
+          <label for="right-label" class="right inline">确认密码</label>
+        </div>
+        <div class="small-9 columns">
+           <%=f.password_field :login_password_confirmation,:class=>"am-form-field",:placeholder=>"确认密码"%>
+        <div class="help-block" rel="user_login_password_confirmation"></div>
+     </div></div></div>
+
+   <div class="small-8 columns">
+     <div class="row">
+  <div class="small-3 columns">
+          <label for="right-label" class="right inline">邮箱</label>
+        </div>
+        <div class="small-9 columns">
+       <%=f.text_field :email,:class=>"am-form-field",:placeholder=>"邮箱"%>
+        <div class="help-block" rel="user_email"></div>
+     </div></div></div>
+
+ <div class="small-8 columns">
+     <div class="row">
+ <div class="small-3 columns">
+          <label for="right-label" class="right inline">手机号码</label>
+        </div>
+        <div class="small-9 columns">
+      <%=f.text_field :mobile,:class=>"am-form-field",:placeholder=>"手机号码"%>
+        <div class="help-block" rel="user_mobile"></div>
+     </div></div></div>
+
+<div style="display:none">
+        <input type="checkbox" checked="checked" value="agree" name="user[license]" id="license" class="x-input required" autocomplete="off">
+        <label for="license" class="checkbox_label" id="i_agree">&nbsp;我已阅读并同意：</label><a href="#%>" target="_top"  id="reg_term">会员注册协议</a>
+        <span id="and">和</span><a href="#" id="privacy" target="_top">隐私保护政策</a>
+        <div class="help-block" rel="user_license"></div></div>
+
+    <div class="small-8 columns">
+     <div class="row">
+ <%=f.submit "注 册",:class=>"button alert" ,:style=>"margin-left:20px;width:100%"%>
+   <a href="#"  data-reveal-id="login_iframe" class="">已有账号，去登录&gt;&gt;</a>
+      </div></div></div>
+
+</div>
+
+<script src="/assets/bootstrap-transition.js?body=1" type="text/javascript"></script>
+<script src="/assets/bootstrap-carousel.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_placeholder_min.js?body=1" type="text/javascript"></script>
+<script src="/assets/login.js?body=1" type="text/javascript"></script>
+
+<%end%>
+
+
+  <a class="close-reveal-modal">×</a>
+</div></div>
+</div>
+<!--页尾信息-->
+<%=render "shared/iframe_cart" if signed_in?%>
+<hr />
+<footer class="footer">
+  <div class="row full-width-footer">
+    <div class="large-2 small-4 columns">
+      <i class="fi-home"></i>
+      <h4>关于我们</h4>
+      <ul class="footer-links">
+        <li><a href="/pages/gywm">公司简介</a></li>
+        <li><a href="/pages/yxwl">营销网络</a></li>
+        <li><a href="/pages/yxwl">&nbsp;</a></li>
+        <li><a href="/pages/yxwl">&nbsp;</a></li>
+      </ul>
+    </div>
+    <div class="large-2 small-4 columns">
+      <i class="fi-results-demographics"></i>
+      <h4>购物指南</h4>
+      <ul class="footer-links">
+        <li><a href="#">购物流程</a></li>
+        <li><a href="#">会员介绍</a></li>
+        <li><a href="#">常见问题</a></li>
+        <li><a href="#">联系客服</a></li>
+      </ul>
+    </div>
+    <div class="large-2 small-4 columns">
+      <i class="fi-social-dropbox"></i>
+      <h4>配送方式</h4>
+      <ul class="footer-links">
+        <li><a href="/pages/smzt">上门自提</a></li>
+        <li><a href="/pages/kdsh">快递运输</a></li>
+        <li><a href="#">特快专递（EMS）</a></li>
+        <li><a href="#">&nbsp;</a></li>
+
+      </ul>
+    </div>
+    <div class="large-2 small-4 columns">
+      <i class="fi-dollar"></i>
+      <h4>支付方式</h4>
+      <ul class="footer-links">
+        <li><a href="/pages/zxzf">在线支付</a></li>
+        <li><a href="/pages/yjsh">邮局汇款</a></li>
+        <li><a href="/pages/hdfk">款到发货</a></li>
+        <li><a href="/pages/hdfk">货到付款</a></li>
+      </ul>
+    </div>
+    <div class="large-2 small-4 columns">
+      <i class="fi-shield"></i>
+      <h4>售后服务</h4>
+      <ul class="footer-links">
+        <li><a href="/pages/shzc">退换货政策</a></li>
+        <li><a href="/pages/hhlc">退换货流程</a></li>
+        <li><a href="/pages/thlc">退款说明</a></li>
+        <li><a href="/pages/hhlc">返修申请</a></li>
+      </ul>
+    </div>
+    <div class="large-2 small-4 columns">
+      <i class="fi-photo"></i>
+      <h4>关注我们</h4>
+      <a href="th"><img src="/images/a01/homepage/getqrcode.jpg"></a>
+      </li>
+    </div>
+  </div>
+
+  </div>
+  <div class="row full-width" style="background-color:#FFF">
+    <div class="large-12 columns text-center">
+      <img src="/img/foot_bottom.jpg">
+    </div>
+  </div>
+</footer>
+
+<%=javascript_include_tag "vendor/jquery"%>
+<%=javascript_include_tag "vendor/fastclick"%>
+<script src="bower_components/foundation/js/foundation.min.js"></script>
+
+<%#=javascript_include_tag "standard"%>
+
+
+<script>
+    $(document).foundation({
+        orbit: {
+            animation: 'fade',
+            timer_speed: 2000,
+            pause_on_hover: true
+        }
+    });
+</script>
+</body>
+
+
+
+
+
+
+
+
+
+<div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+
+
+</body>
+</html>
