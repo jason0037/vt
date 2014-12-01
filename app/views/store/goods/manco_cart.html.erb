@@ -1,0 +1,382 @@
+<style type="text/css">
+    .am-direction-nav{
+        display: none;
+    }
+    .icon-arr {
+        position: absolute;
+
+        right: 10px;
+        width: 10px;
+        height: 15px;
+        background: url(/assets/icon_order.png) 0 0 no-repeat;
+        background-size: 100px 100px;
+    }
+    .bottomdivsclearfix{
+        display: none;
+    }
+
+</style>
+
+
+
+
+
+
+<div class="am-panel am-panel-default">
+  <div class="am-panel-hd">
+    <h4 class="am-panel-title" style="color:red;" >
+     充值金额为:<span style="float: right;color: red">¥<%=@good.default_product.price %></span>
+    </h4>
+  </div>
+
+</div>
+
+
+<div class="am-panel am-panel-default">
+  <div class="am-panel-hd">
+    <h4 class="am-panel-title" style="color:red;" >
+      实际充值:<span style="float: right;color: red">¥<%=@good.mktprice %></span>
+    </h4>
+  </div>
+
+</div>
+
+
+
+
+
+
+      <%=form_for :product,:url=>"/cart/add", :html=>{:id=>"cartform"},:remote=>true do |f|%>
+          <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
+          <%=f.hidden_field :type_id,:value=>@good.type_id%>
+          <%=hidden_field_tag :supplier_id, @supplier.id%>
+
+          <%=hidden_field_tag :platform,'manco_card'%>
+          <%=hidden_field_tag :return_url,{:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+
+          <%if @good.specs.present?%>
+              <%@good.specs.order("spec_id asc").each do |spec|%>
+                  <%= hidden_field_tag  :good_supplier_id,@good.supplier_id%>
+                  <%=hidden_field_tag "product[specs][]"%>
+
+
+
+              <%end%>
+          <%end%>
+      <%end%>
+
+
+<br>
+
+<a href="javascript:void(0);" class="add_to_cart fr btn_sure " id="add_to_cart">确认充值</a>
+<script>
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $('.choose').on("click",function() {
+            if ($(this).hasClass("am-btn-warning")){
+                $(this).removeClass("am-btn-warning");
+            }   else{
+                $(this).addClass("am-btn-warning");
+            }
+
+
+
+            $("#product_specs_").val($(this).attr("data-size"));
+            //  $(".good_salesize input[name='size']").val("");
+
+        });
+
+        $('#add_to_cart').on("click",function(){
+
+            if($(this).hasClass("sold-out")){
+                alert("该商品已经售完!");
+                return false;
+            }
+
+            // var spec_type_size =  $("#specs_container").attr("spec-type-size")*1;
+            //  if($("#specs_container input:hidden[value!='']").length != spec_type_size){
+            //    $("#cart_msg").text("请您选择您要购买的商品信息 ! ");
+            //    return false;
+            //  }
+
+            if($(this).hasClass("login")) {
+                location.href="/mlogin?id=<%=@supplier.id%>&return_url=<%=request.url.sub('http://trade','').force_encoding('UTF-8') %>";
+                //  window.location.href="mlogin?return_url="+window.location.href;
+                return false;
+
+            }//
+            // $(".size_helper, .semi_custom").popover('hide');
+            //$(this).closest("form").submit();
+
+            var formobj=document.getElementById("cartform");
+
+            // var formobj=  document.forms[0];
+            formobj.submit();
+            return false;
+        });
+        $(".custom-save").live("click",function(){
+            var data = { custom_values:[] },spec_item_id,value;
+
+            var url = $(this).data("url"),method = $(this).data("method");
+
+            $(this).closest("div.popover-content").find("ul.good_spec_items li").each(function(){
+                spec_item_id = $(this).find("[name='product[customs][][spec_item_id]']").val();
+                value = $(this).find("[name='product[customs][][value]']").val();
+                data.custom_values.push({spec_item_id:spec_item_id,value:value});
+            });
+            var self = this;
+            $.ajax(url,{
+                type:method,
+                data:data,
+                success:function(res){
+                    $(self).closest("td").find(".semi_custom").popover('hide');
+                }
+            });
+        });
+
+        var deadline = parseInt($("#clock").attr("deadline"),10);
+        $('div#clock').countdown(deadline, function(event) {
+            $this = $(this);
+            switch(event.type) {
+                case "seconds":
+                case "minutes":
+                case "hours":
+                case "days":
+                    $this.find('span#'+event.type).html(event.value);
+                    break;
+                case "finished":
+                    $this.fadeTo('slow', .5);
+                    break;
+            }
+        });
+
+
+        $("#product").on("click",'.cs_helper',function(){
+            var chat = $("#live800iconlink").attr("onclick");
+            if(!!!chat) return;
+            var link = chat.match(/'([^']+)'/)[1];
+            window.open(link);
+        });
+
+        $(".products_nav .prev_item").bind("click",function(){
+            var curItem = $("#products .products_nav li a.selected").parent("li");
+            var prevItem = curItem.prev();
+            if(prevItem.hasClass("first")) return;
+            prevItem.find("a").trigger("click");
+        });
+
+        $(".products_nav .next_item").bind("click",function(){
+            var curItem = $("#products .products_nav li a.selected").parent("li");
+            var next_item = curItem.next();
+            if(next_item.hasClass("last")) return;
+            next_item.find("a").trigger("click");
+        });
+
+        $("#products .products_nav li a.product_link").bind('click',function(){
+
+            $("#products .products_nav li a").removeClass("selected");
+            $(this).addClass("selected");
+
+            $("#products .single-loader").show();
+            return true;
+        });
+
+        $("#specs_container").on("click",".spec-value",function(){
+            $("#cart_msg").empty();
+
+            if($(this).hasClass("image") && $("#specs_container .spec-value[data-images]").length > 1){
+                var images = $(this).data("images").split(/\s+/);
+                var jcarouselList = $(this).closest(".product_container").find("ul.jcarousel-list li.jcarousel-item");
+                if(jcarouselList.length>0){
+                    for(var i = 0; i < images.length; i++){
+                        $(jcarouselList[i]).find("img").attr("src",images[i]+"?t="+(new Date).getTime());
+                        $(jcarouselList[i]).find("a").attr("href",images[i]);
+                    }
+                }
+                var verticalList = $(this).closest(".product_container").find("ul.vertical li");
+                if(verticalList.length>0){
+                    for(var i = 0; i < images.length; i++){
+                        $(verticalList[i]).find("img").attr("src",images[i]+"?t="+(new Date).getTime());
+                    }
+                }
+                $(".zoomWindow").each(function(){
+                    cls = $(this).attr("id").split("_")[0];
+                    console.log(cls);
+                    bigImg = $("."+cls).attr("href");
+                    $(this).find("img").attr("src",bigImg);
+                });
+            }
+
+            $(this).closest('.spec-item').find(":hidden").val($(this).data("value"));
+            $(this).closest('.spec-values').find(".spec-value").removeClass("selected");
+            $(this).addClass("selected");
+            var spec_values = []
+            var $specs = $("#specs_container");
+            $specs.find("input[name='product[specs][]']").each(function(){
+                var tmp = $(this).val();
+                if(tmp.length>0){
+                    spec_values.push(tmp);
+                }
+            });
+
+            var url = $specs.attr("property-url");
+            var spec_type_size = $specs.attr("spec-type-size")*1;
+            if(spec_values.length ==  spec_type_size){
+                $.get(url,{spec_values: spec_values}, function(res){
+                    $("#product_store").text(res.store);
+                    $("#product_price").text(res.price);
+
+                    $("#store").empty();
+                    if(res.store>0){
+                        $("#add_to_cart").removeClass("sold-out");
+                        for(var i=1;i <= res.store; i++){
+                            $("#store").append('<option value="'+i+'">'+i+'</option>');
+                        }
+                    }else{
+                        // no store
+                        $("#store").append('<option value="'+0+'">'+0+'</option>');
+                        $("#add_to_cart").addClass("sold-out");
+                    }
+                });
+            }
+            return false;
+        });
+
+
+    });
+
+
+
+    var filterSize='0';
+
+    function saveProValue(){
+        return {product_id: '26038564',brand_id: '198535'}
+    };
+    function updateStock(itemId, is_old) {
+        if (!itemId) {
+            return;
+        }
+
+        var stockUrl = "http://stock.vipshop.com/detail/?merchandiseId=" + itemId;
+        if (is_old) {
+            stockUrl = stockUrl + "&id_old=" + is_old;
+        }
+
+        $.ajax({
+            url: stockUrl,
+            dataType: "jsonp",
+            jsonpCallback: "handleStock"
+        });
+    }
+    function handleStock(data) {
+        if (!data || !data.items || data.items.length == 0) {
+            return;
+        }
+
+        // update size list
+        var sizes = data.items;
+        var $sizeList = $("ul.good_sizechioce");
+        $sizeList.empty();
+        var html = "";
+        for (var i = 0; i < sizes.length; i++) {
+            var size = sizes[i];
+
+            // stock available
+            if (isSizeStockAvailable(size)) {
+                html = html + getSizeAvailableText(size);
+            }
+            // stock not available
+            else {
+                html = html + getSizeNotAvailableText(size);
+            }
+        }
+        $sizeList.html(html);
+        // update size selection
+        $(".good_salesize input[name='size']").val("");
+        var $chooses = $("ul.good_sizechioce .choose");
+        if ($chooses.length == 1) {
+            $chooses.addClass("select");
+            $(".good_salesize input[name='size']").val($chooses.attr("data-size"));
+        }
+        else
+        {
+            $chooses.each(
+                    function(){
+                        var $c=$(this);
+                        if($c.text()==filterSize)
+                        {
+                            $c.addClass("select");
+                            $(".good_salesize input[name='size']").val($c.attr("data-size"));
+                            return false;
+                        }
+                    }
+            );
+        }
+        // update UI
+        if (isItemStockAvailable(sizes)) {
+            $("div.good_salesize").css("display", "block");
+            $("#goods_images .seldout").remove();
+            $(".bottomdiv .fr").removeClass("btn_unav").addClass("btn_sure").attr("data-animate", "true").attr("data-addjump", "1").attr("data-addcart", "true");
+        }
+        else {
+            $("div.good_salesize").css("display", "none");
+            if ($("#goods_images .seldout").length == 0) {
+                $("#goods_images").append("<div class=\"seldout clearfix\"> <span></span> </div>");
+            }
+            $(".bottomdiv .fr").removeClass("btn_sure").addClass("btn_unav").removeAttr("data-animate").removeAttr("data-addjump").removeAttr("data-addcart")
+        }
+    }
+    function getSizeAvailableText(size) {
+        var array = new Array();
+        array.push("<li data-size=\"");
+        array.push(size.id);
+        array.push("\" class=\"choose\" data-maxamount=\"");
+        array.push(size.max);
+        array.push("\" data-minamount=\"");
+        array.push(size.min);
+        array.push("\">");
+        array.push(size.name);
+        array.push("</li>");
+        return array.join("");
+    }
+    function getSizeNotAvailableText(size) {
+        return "<li data-size=\"\" class=\"none\">" + size.name + "</li>";
+    }
+    function isSizeStockAvailable(size) {
+        return size.stock > 0;
+    }
+    function isItemStockAvailable(sizes) {
+        var result = false;
+        for (var i = 0; i < sizes.length; i++) {
+            if (sizes[i].stock > 0) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+    $(function() {
+        // TODO pass in the right argument (is_old)
+        updateStock("26038564", "0");
+        // Leverage browser's back button for backward navigation.
+        $(".head_left a").on("click", function() {
+            history.back();
+            return false;
+        });
+    });
+
+</script>
+

@@ -16,12 +16,13 @@
 
 
     <div class="goods_info">
-      <%=form_for :product,:url=>"/cart/manco_add",:remote=>true do |f|%>
+      <%=form_for :product,:url=>"/cart/add",:remote=>true do |f|%>
           <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
           <%=f.hidden_field :type_id,:value=>@good.type_id%>
-          <%=hidden_field_tag :platform,'manco'%>
-          <%=f.hidden_field :suppliers_id, :id=>"suppliers_id",:value=>"98"%>
+          <%=hidden_field_tag :platform,'mancoblack_cart'%>
 
+         <input type="hidden" name="supplier_id" value="98">
+          <%=hidden_field_tag "product[specs][]"%>
       <%end%>
     </div>
   </div>
@@ -36,9 +37,9 @@
     <br/>
     <li><b class="">本次运输简介：</b> <%=raw @good.desc%> </li></ul>
     <br><p class="detail"><%=raw @good.intro.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.intro%></p></div>
-   <span class="fr new_re_time bglight" data-saleproduct="true" data-saletime="83552">
 
-  <!--<span class="clockicon fl"></span><span class="J-time"><span>00</span><span>天</span><span>23</span><span>时</span><span>11</span><span>分</span><span>40</span><span>.</span><span>7</span><span>秒</span></span>-->
+
+
 </span>
 </div>
 
@@ -52,7 +53,7 @@
       <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
     </a>
 
-    <%=link_to "下一步","javascript:void(0);",:class=>"add_to_cart fr btn_sure #{'login' unless signed_in?}" ,:id=>"add_to_cart" %>
+    <%=link_to "下一步","javascript:void(0);",:class=>"add_to_cart fr btn_sure " ,:id=>"add_to_cart" %>
 
   </div>
 </div>
@@ -100,14 +101,6 @@
             //    return false;
             //  }
 
-            if($(this).hasClass("login")) {
-                location.href="/mlogin?return_url=<%=request.url.sub('http://trade','').force_encoding('UTF-8') %>";
-                //  window.location.href="mlogin?return_url="+window.location.href;
-                return false;
-
-            }//
-            // $(".size_helper, .semi_custom").popover('hide');
-            //$(this).closest("form").submit();
 
             var formobj=  document.forms[0];
             formobj.submit();

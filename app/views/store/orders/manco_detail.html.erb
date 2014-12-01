@@ -1,0 +1,86 @@
+<style>
+
+    .am-panel-bd {
+        padding: 2px;
+        position: relative;
+        border-bottom: 1px solid #c8c7cc;
+    }
+
+    .am-panel-bd .text {
+        display: block;
+        font-size: 16px;
+        color: #333;
+    }
+    .bottomdivsclearfix{
+        display: none;
+    }
+
+    ul li {
+        list-style: none;
+    }
+    a span{
+        font-size: 20px;
+    }
+    .icon-arr {
+        position: absolute;
+        top: 40%;
+        right: 10px;
+        background-size: 100px 100px;
+    }
+
+</style>
+
+<form method="post" action="/orders/new_manco" class="am-form">
+     <%unless @departure_addr.nil? %>
+  <input type="hidden" name="member_departure_id" value="<%=@departure_addr.id%>">
+      <%end%>
+  <input type="hidden" name="member_arrival_id" value="<%=@arrival_addr.id%>">
+  <input type="hidden" name="platform" value="<%=@platform%>">
+  <input type="hidden" name="supplier_id" value="<%=@supplier.id%>">
+
+
+
+  <div class="am-input-group am-input-group-lg">
+          <span class="am-input-group-label">签单返回</span>
+          <span class="am-input-group-label"> <input type="radio" name="bill" value="1" > 是</span>
+          <span class="am-input-group-label">  <input type="radio" name="bill" value="0" >否</span>
+        </div>
+        <br>
+
+        <div class="am-input-group am-input-group-lg">
+          <span class="am-input-group-label">发票</span>
+          <select  class="am-input-group-label" name="invoice">
+            <option name="请选择发票信息" value="0">请选择发票信息</option>
+            <option name="运费发票" value="1">运费发票</option>
+            <option name="服务费发票" value="2">服务费发票</option>
+            <option name="自带发票" value="3">自带发票</option>
+          </select>
+        </div>
+        <br>
+
+        <div class="am-input-group am-input-group-lg">
+          <span class="am-input-group-label">进仓服务费</span>
+          <span class="am-input-group-label"> <input type="radio" name="warehouse" value="1" > 是</span>
+          <span class="am-input-group-label">  <input type="radio" name="warehouse" value="2"  >否</span>
+        </div>
+        <br>
+
+
+
+
+
+
+
+
+
+
+    <input type="submit" class="am-btn am-btn-primary am-btn-block" value="下一步">
+
+
+
+
+
+
+
+ </form>
+<%=javascript_include_tag "store/tairyo_order"%>

@@ -249,7 +249,9 @@ module Admin
       else
         @goods = Ecstore::Good.order(@order)
       end
-      #	@goods = @goods.includes(:cat,:brand,:good_type,:tegs,:supplier)
+
+      # @goods = @goods.includes(:cat,:brand,:good_type,:tegs,:supplier)
+
 
       if marketable.present?
         @goods =  @goods.where(:marketable=>marketable)

@@ -23,7 +23,9 @@ class Patch::ProfilesController < ApplicationController
       add_breadcrumb("编辑个人信息")
   end
 
-  def mancouser        ###管理万家物流司机注册
+  def mancouser
+     @manco_title="司机信息"       ###管理万家物流司机注册
+     supplier_id=params[:supplier_id]
     @supplier =Ecstore::Supplier.find(supplier_id)
     account=@user.member_id
     @member=   Ecstore::User.find_by_member_id(account)

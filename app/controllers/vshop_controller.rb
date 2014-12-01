@@ -1,10 +1,10 @@
 #encoding:utf-8
 class VshopController < ApplicationController
   skip_before_filter :set_locale
- layout "vshop"
+  layout "vshop"
 
 
- def new
+  def new
     @account = Ecstore::Account.new
   end
 
@@ -18,11 +18,14 @@ class VshopController < ApplicationController
 
   def user
 
-      set_locale
+    set_locale
 
     if @user
 
       @supplier =Ecstore::Supplier.find(params[:id])
+      if @supplier.id==98
+         @manco_title="个人中心"
+      end
       render :layout=>@supplier.layout
     else
       redirect_to "/auto_login?id=#{params[:id]}&platform=mobile&return_url=/vshop/#{params[:id]}/user?id=#{params[:id]}"
@@ -116,19 +119,19 @@ class VshopController < ApplicationController
       if @supplier.id ==Ecstore::Supplier.find_by_name("万家物流").id
         if params[:name]=="货源"
           @goodes=Ecstore::BlackGood.paginate :page=>params[:page],        ###分页语句
-                                            :per_page =>20,              ###当前只显示一条
-                                            :conditions => ["cat_id=571"]
+                                              :per_page =>20,              ###当前只显示一条
+                                              :conditions => ["cat_id=571"]
         else
-            cat_id=params[:cat_id]
-              if cat_id.nil?
-              cat_id=570
-              end
-        @goods = @goods.paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC',:conditions => ["cat_id=#{cat_id}"])
-       end
-      else
-         @goods = @goods.paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC')   #分页
-
+          cat_id=params[:cat_id]
+          if cat_id.nil?
+            cat_id=570
           end
+          @goods = @goods.paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC',:conditions => ["cat_id=#{cat_id}"])
+        end
+      else
+        @goods = @goods.paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC')   #分页
+
+      end
 
       @count = @goods.count
 
@@ -143,12 +146,12 @@ class VshopController < ApplicationController
     redirect_to "/vshop/goods"
   end
 
-def destory
+  def destory
     @good=Ecstore::Good.find(params[:id])
     @good.destroy
     redirect_to "/vshop/goods"
 
-end
+  end
 
 
 
@@ -201,9 +204,9 @@ end
   #get /vhsop/id 显示微店铺首页
   def show
 
-     if params[:id]=="78"
-          set_locale
-     end
+    if params[:id]=="78"
+      set_locale
+    end
 
 
     @supplier_id=params[:id]
@@ -236,7 +239,7 @@ end
       now  = Time.now.to_i
       Ecstore::RecommendLog.new do |rl|
         rl.wechat_id = @recommend_user
-      #  rl.goods_id = @good.goods_id
+        #  rl.goods_id = @good.goods_id
         rl.member_id = member_id
         rl.terminal_info = request.env['HTTP_USER_AGENT']
         #   rl.remote_ip = request.remote_ip
@@ -270,7 +273,7 @@ end
       @modec_pay = ModecPay.new adapter do |pay|
         if adapter=='wxpay'
           pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
-          pay.notify_url = "#{site}/vshop/78/paynotifyurl?payment_id=#{@payment.payment_id}"
+          pay.notify_url = "#{site}/vshop/#{supplier_id}/paynotifyurl?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}"
         else
           pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
           pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"
@@ -309,12 +312,48 @@ end
   def paynotifyurl
     #========================
     if params[:temp]=="solution"
+
       @payment = Ecstore::Payment.find(params[:payment_id])
       return redirect_to detail_order_path(@payment.pay_bill.order) if @payment&&@payment.paid?
 
       @order = @payment.pay_bill.order
       @order.update_attributes(:pay_status=>'1')
-      return redirect_to "/orders/norsh_show_order?id=#{@order.order_id}"
+
+      @order.order_items.each do |order_item|
+          if  order_item.good.cat_id==600
+              member_id=@order.member_id
+              @member = Ecstore::Member.find(member_id)
+              @users = Ecstore::User.find(member_id)
+               if @member.advance
+               advance=@member.advance+order_item.good.mktprice
+               else
+                 advance=order_item.good.mktprice
+               end
+
+              advances =  @users.member_advances.order("log_id asc").last
+              if advances
+                shop_advance = advances.shop_advance
+              else
+                shop_advance =@member.advance
+              end
+              shop_advance += order_item.good.mktprice
+              @member.update_attribute(:advance,advance)
+              Ecstore::MemberAdvance.create(:member_id=>member_id,
+                                            :money=>order_item.good.mktprice,
+                                            :message=>"万家预充值:#{order_item.good.name}",
+                                            :mtime=>Time.now.to_i,
+                                            :memo=>"用户本人操作",
+                                            :order_id=>@order.order_id,
+                                            :import_money=>order_item.good.mktprice,
+                                            :explode_money=>0,
+                                            :member_advance=>(advance),
+                                            :shop_advance=>shop_advance,
+                                            :disabled=>'false')
+          end
+      end
+
+
+      return redirect_to "/orders/mobile_show_order?id=#{@order.order_id}&supplier_id=#{params[:id]}"
     end
     #========================
 

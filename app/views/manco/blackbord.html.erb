@@ -1,5 +1,7 @@
 <style type="text/css">
-
+  .bottomdivsclearfix{
+      display: none;
+  }
 
 </style>
 
@@ -36,14 +38,14 @@
     </div>
 
     <div class="am-input-group am-input-group-lg">
-      <span class="am-input-group-label">起点站</span>
-      <input type="text" class="am-form-field" name="departure" id="departure" placeholder="起点站">
+      <span class="am-input-group-label">出发地</span>
+      <input type="text" class="am-form-field" name="departure" id="departure" placeholder="出发地">
       <div id='suggest' class="am-input-group-lg"></div>
     </div>
     <br/>
     <div class="am-input-group am-input-group-lg">
-      <span class="am-input-group-label">终点站</span>
-      <input type="text" class="am-form-field" name="arrival" id="arrival" placeholder="终点站">
+      <span class="am-input-group-label">到达地</span>
+      <input type="text" class="am-form-field" name="arrival" id="arrival" placeholder="到达地">
       <div id='suggest2' class="am-input-group-lg"></div>
     </div>
      <br/>
@@ -120,7 +122,7 @@
     <br/>
    <div class="control-group">
       <div class="controls">
-        <input type="button" class="am-btn am-btn-primary am-btn-block" value="发布">
+        <input type="button" class="am-btn am-btn-primary btn-submit am-btn-block" value="发布">
 
 
       </div>
@@ -131,6 +133,12 @@
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
    <script type="application/javascript">
           $(document).ready(function(){
+              $("#departure").focus(function(){
+                  blurall();
+              })
+              $("#arrival").focus(function(){
+                  blurall();
+              })
 
               $("#button").click(function(){
                   var departures=$("#departure").val();
@@ -173,6 +181,15 @@
 
                    }
                })
+
+           function blurall(){
+
+                   $("#mktprice").addClass("form_hide");
+                   $("#button").css({"display":"block"});
+
+
+           }
+
 
            $(".btn-submit").click(function(){
 

@@ -1,0 +1,161 @@
+<style>
+
+    .am-panel-bd {
+        padding: 2px;
+        position: relative;
+        border-bottom: 1px solid #c8c7cc;
+    }
+
+    .am-panel-bd .text {
+        display: block;
+        font-size: 16px;
+        color: #333;
+    }
+    .bottomdivsclearfix{
+        display: none;
+    }
+
+
+
+</style>
+<br>
+<%=form_for :order,:url=>"#{orders_path}?platform=wuliu",:html=>{ :class=>"am-form",:id=>"order_form" } do |f|%>
+
+    <%=f.hidden_field :supplier_id,:value=>"98"%>
+
+    <%=f.hidden_field :ship_name,:value=>"1111"%>
+
+<div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+      <div class="am-panel-hd">支付方式</div>
+      <div class="am-panel-bd">
+
+        <label class="radio active" style="margin-left: 40px;padding: 2px">
+
+          微信支付
+          <input id="order_payment_wxpay" name="order[payment]" type="hidden" value="wxpay">
+        </label>
+      </div>
+      <div class="am-panel-hd">微信支付需要微信5.0版本以上，并且已经用微信授权登录</div>
+    </div>
+
+
+          <div class="am-panel am-panel-warning" style="display: none" data-collapse="true" data-style="arrow">
+            <div class="am-panel-hd"><%= I18n.t "delivery_options"%></div>
+            <div class="am-panel-bd">
+              <div class="in_pay clearfix " style="display: none">
+                <%=f.select :ship_day,ship_day_options%>&nbsp;&nbsp;&nbsp;
+                <%=f.text_field :ship_special,:class=>"input-small hide datetime"%>
+                <%=f.select :ship_time2,ship_time_options%>
+                <ul style="display:none">
+                  <li mars_sead="checkout_receive_anytime_btn"><span class="radio-box radio-selted"></span><input name="transport_day" value="1" type="radio" class="hide" checked="checked"><p>送货时间不限</p></li>
+                  <li mars_sead="checkout_receive_weekend_btn"><span class="radio-box "></span><input name="transport_day" value="2" type="radio" class="hide"><p>只双休日/节假日送货(工作日不用送)</p></li>
+                  <li mars_sead="checkout_receive_workday_btn"><span class="radio-box "></span><input name="transport_day" value="3" type="radio" class="hide"><p>只工作日(双休日/节假日不用送)</p></li>
+                </ul>
+              </div>
+
+            </div>  </div>
+
+
+          <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+            <div class="am-panel-hd">运输金额</div>
+            <div class="am-panel-bd">
+              <span class="bg-border"><span class="icon"></span></span>
+              <p>&nbsp;金额：<span class="fr  " style="float: right" id="order_amount" data-amount = "<%=@cart_total%>">¥<%=@cart_total%>&nbsp;</span></p>
+              <p>&nbsp;待支付总额：<span class="fr"  style="color: red;float: right">¥<%=@cart_total %>&nbsp;</span></p>
+
+              <span class="bg-border2"></span>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <%=f.submit "安 全 结 算",:class=>"am-btn am-btn-primary am-btn-block"%>
+      <div mars_sead="checkout_submit_btn" class="fr btn_sure" data-orderfrom="true" data-countorder="true" data-ordertime="988" style="display:none">
+        提交
+
+      </div>
+    </div>
+    </div>
+    </div>
+
+
+
+
+<style type="text/css">
+    .footer{
+        display:none;
+    }
+</style>
+<%=javascript_include_tag "store/orders"%>
+<div style="display:none">
+  <%if @pmtable%>
+      <div class="section promotions">
+        <h5>优惠: </h5>
+        <%=render "promotions"%>
+        <%=render "coupons"%>
+      </div>
+  <%end%>
+
+  <div class="section checkout clearfix">
+    <h5>结算信息</h5>
+
+    <div class="right">
+      <div class="tax" id="order_tax">
+        <div class="item">
+          <span class="text">需要发票：</span>
+          <span class="money">(税金:0%)<%=f.check_box :is_tax, {}, 'true','false'%></span>
+        </div>
+
+        <div class="item hide tax-input">
+          <span class="text">发票抬头：</span>
+          <span class="money"><%=f.text_field :tax_company,:class=>"tax-owner"%></span>
+        </div>
+      </div>
+      <div class="cost" id="order_cost">
+        <div class="item">
+          <span class="text">商品总额：</span>
+          <span class="rmb-symbol">￥</span>
+
+        </div>
+
+        <%if @order_promotions.present? || @goods_promotions.present? %>
+            <div class="item">
+              <span class="text">优惠：</span>
+              <span class="rmb-symbol">￥</span>
+              <span class="money" data-amount="0" id="pmt_amount"></span>
+            </div>
+        <%end%>
+
+
+        <div class="item hide">
+          <span class="text">优惠券：</span>
+          <span class="rmb-symbol">￥</span>
+					<span class="money" data-amount="0" id="coupon_amount">
+						 -0
+					</span>
+        </div>
+
+        <div class="item">
+          <span class="text">订单总金额：</span>
+          <span class="rmb-symbol">￥</span>
+          <span class="money" id="final_amount"></span>
+        </div>
+
+      </div>
+      <div class="total" id="order_bill">
+        <div class="item">
+          <span class="text">支付金额：</span>
+          <span id ="money_total_ex"class="rmb-symbol">￥</span>
+          <span class="money final" id="pay_amount"></span>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<%end%>
+
+<%=javascript_include_tag "store/tairyo_order"%>

@@ -1,7 +1,11 @@
+<style>
+ .bottomdivsclearfix{
+      display: none;
+  }
+
+</style>
 
 
-<%=javascript_include_tag "area_seletor"%>
-<%=javascript_include_tag "patch/member_addrs"%>
 
 <%=form_for :addr, :url=>@action_url,:method=>@method, :html=>{ :class=> " form-horizontal" } do |f|%>
     <input type="hidden" id="addr_name" name="addr[id]"  value="<%=@addr.id%>" >
@@ -46,29 +50,22 @@
           </div>
           <br/>
 
+          <div class="controls" style="display:none">
+            <select id="province" name="addr[province]">
+              <option value="21" selected="selected">上海</option>
+            </select>
+            <select class="am-input-group-label" id="city" name="addr[city]">
+              <option value="1" selected="selected">上海</option>
+            </select>
+            <select id="district" name="addr[district]" onchange="selectDistrict(this);">
+              <option value="1" selected="selected">静安区</option>
+            </select>
+          </div>
+
+
+
 
           <div class="am-panel-hd">
-            <label for="addr_area">地区</label>
-            <%#=f.label :area, "收货：".html_safe%></div>
-          <div class="am-panel-bd">
-            <%=f.select :province,Ecstore::Region.provinces.collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择省" },{ :onchange=>"selectProvince(this,'#city','#district');",:id=>"province" }%>
-            <%if @addr&&@addr.city%>
-                <%=f.select :city,Ecstore::Region.cities_of(@addr.province).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择市"},{ :onchange=>"selectCity(this,'#district');",:id=>"city" }%>
-            <%else%>
-                <%=f.select :city, {}, { :include_blank=>"请选择市" }, { :onchange=>"selectCity(this,'#district');",:id=>"city" }%>
-            <%end%>
-
-            <%unless @addr&&@addr.new_record?%>
-                <%=f.select :district,Ecstore::Region.districts_of(@addr&&@addr.city).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择区/县" },{ :onchange=>"selectDistrict(this);",:id=>"district",:style=>"#{'display:none;' if @addr.district.blank? }" } %>
-            <%else%>
-                <%=f.select :district, {}, { :include_blank=>"请选择区/县" }, { :onchange=>"selectDistrict(this);",:id=>"district" }%>
-            <%end%>
-            <span class="help-inline error"></span>
-          </div>
-        </div>
-
-
-        <div class="am-panel-hd">
             <label for="addr"><%=I18n.t "address"%></label>
             <%#=f.label :addr, "收货地址：".html_safe%></div>
           <div class="am-panel-bd">
@@ -92,13 +89,30 @@
       <div class="control-group">
         <div class="controls">
           <%if @method == :put%>
-              <input type="submit" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "modify"%>">
+              <input type="button" id="sub" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "modify"%>">
               <%#=f.submit "修 改",:class=>"am-btn am-btn-warning am-btn-block" %>
           <%else%>
-              <input type="submit" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "confirm"%>">
+              <input type="button" id="sub" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "confirm"%>">
               <%#=f.submit "确认收货地址",:class=>"am-btn am-btn-warning am-btn-block" %>
           <%end%>
         </div>
       </div>
     </div>
 <%end%>
+<script type="application/javascript">
+    $(document).ready(function(){
+        $("#sub").bind("click",function(){
+            if( $("#addr_name").val()=="" &&$("#addr_mobile").val()==""||$("#addr").val()=="") {
+                alert("请完善联系人信息")
+                return false;
+
+            }
+            else{
+                $(".form-horizontal").submit()
+
+            }
+
+        })
+    })
+
+</script>

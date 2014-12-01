@@ -1,0 +1,82 @@
+<style type="text/css">
+
+    .bottomdivsclearfix{
+        display: none;
+    }
+
+</style>
+    <br>
+<br>
+
+
+    <div class="am-panel-group">
+      <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+          <h4 class="am-panel-title" style="color:red;" >
+            充值金额
+          </h4>
+        </div>
+
+        <div class="am-panel-bd" >
+          <%@cart_name.each do |card| %>
+              <span class="am-btn am-btn-default  choose"><%=card.name %></span>
+
+
+          <%end%>
+
+
+        </div>
+
+</div>
+
+    </div>
+<form method="post" id="form" action="/goods/manco_cart">
+  <input type="hidden" name="supplier_id" value="98">
+<input type="hidden" name="cart_name" id="cart_name">
+<input type="button" id="add_to_cart" data-url="/manco/cart_goodes" class="am-btn am-btn-warning am-btn-block"value="立即充值">
+
+
+      </form>
+
+
+
+
+
+
+      <script type="text/javascript">
+
+          $(document).ready(function(){
+              $('.choose').on("click",function() {
+                  if ($(this).hasClass("am-btn-warning")){
+
+                      $(this).parent().children("span").removeClass("am-btn-warning");
+                  }   else{
+                      $(this).parent().children("span").removeClass("am-btn-warning");
+                      $(this).addClass("am-btn-warning");
+                  }})
+              $('#add_to_cart').on("click",function(){
+                 var cart_name=$(".am-btn-warning").html();
+                 if (!cart_name){
+                     alert("请选择充值金额");
+
+
+                 }
+                  else{
+                     $("#cart_name").val(cart_name);
+                    $("#form").submit();
+                 }
+
+
+
+
+
+              });
+
+          }  )
+
+</script>
+
+
+
+
+

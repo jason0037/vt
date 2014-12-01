@@ -1,0 +1,16 @@
+
+$("#product_goods_id").val('<%=@goods.goods_id%>')
+<%unless  @goods.price==0%>
+$("#unit_price").html('<%=@goods.price%>'+"元/公斤")
+$("#low_price").html("最低配送价"+'<%=@goods.wholesale%>' +" 元"+"(重量大约为:"+parseInt( parseFloat(<%=@goods.wholesale%>)/parseFloat(<%=@goods.price%>) )+"公斤)"  );
+
+
+<%else%>
+$("#unit_price").parent("div").children().first().html("最低20元起送")
+
+<%end%>
+$("#distribution").html('<%=@dis%>')
+$("#cat_id").val('<%=Ecstore::GoodCat.find_by_cat_name(@dis).cat_id%>')
+$("#form_second").removeClass("form_hide")
+$("#form_first").addClass("form_hide")
+$(".bottomdivsclearfix").addClass("form_hide")

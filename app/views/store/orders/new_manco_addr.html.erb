@@ -6,7 +6,5 @@
   }
 
 </style>
-<div class="am-panel am-panel-default">
-  <div class="am-panel-hd" style="text-align: center">新增寄货人地址</div>
-</div>
+
 <%=render :partial=>"patch/member_addrs/form_manco_first",:locals=>{ :display=>( @addrss== 0 ), :@addr=>Ecstore::MemberAddr.new }%>

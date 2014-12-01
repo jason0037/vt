@@ -81,6 +81,7 @@ module SessionsHelper
 		"http://www.cheuks.com/"
 	end
 
+<<<<<<< HEAD
 	# def site
 	# 	return "http://weishop.cheuks.com" if Rails.env == "development"
 	# 	"http://weishop.cheuks.com"
@@ -89,6 +90,12 @@ module SessionsHelper
   	return "http://0.0.0.0:3000" if Rails.env == "development"
   	"http://0.0.0.0:3000"
   end
+=======
+	def site
+		return "http://vshop.trade-v.com" if Rails.env == "development"
+		"http://vshop.trade-v.com"
+	end
+>>>>>>> ac7a11c99b63f765418f1f482927c49f2ee63e9e
 
 
   private

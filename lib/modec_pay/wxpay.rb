@@ -8,6 +8,11 @@ module ModecPay
     @@partner_key  = 'fe699e8e82144ddba567bcfcf441ece0'
     @@partnerid ='1221177901'
 
+    @@appid_manco = 'wx6b00b26294111729'
+    @@mch_id_manco = '10016674'
+    @@partner_key_manco  = 'b97e61c87088d969b34534541ac98753'
+    @@partnerid_manco ='1220984601'
+
     @@sub_mch_id=''
     @@device_info=''
 
@@ -23,36 +28,43 @@ module ModecPay
 
       self.fields['appid'] = @@appid
       self.fields['mch_id'] = @@mch_id
+=begin
      # self.fields['sub_mch_id'] = @@sub_mch_id
-    #  self.fields['device_info']= @@device_info
+     # self.fields['device_info']= @@device_info
 
      # self.fields['attach'] = 'trade-v' #附加数据原样返回
 
      # self.fields['time_start'] = '' #订单生成时间 yyyyMMddHHmmss string(14)，否
      # self.fields['time_expire'] = '' #交易结束时间时间 yyyyMMddHHmmss string（14），否
      # self.fields['goods_tag'] = '' #商品标记，不能随便填 String（32），否
+     # self.fields['transport_fee'] = '' #物流费用，string，单位为分。如果有值，必须保证 transport_fee+product_fee=total_fee；否
+     # self.fields['product_fee'] = '' #物流费用，string，单位为分。如果有值，必须保证 transport_fee+product_fee=total_fee；否
 
+     # self.fields['bank_type'] = 'WX'
+     # self.fields['partner'] = @@partnerid  #商户号 partnerId;
+
+     # self.fields['fee_type'] ='1' #支持币种，1 ：人民币 ，目前只支持人民币
+     # self.fields['input_charset'] ='UTF-8' #传入参数字符编码，取值范围 “GBK”，“UTF-8”]
+=end
       self.fields['trade_type'] = 'JSAPI' #JSAPI, NATIVE, APP
       self.fields['openid'] = '' #用户的openid, trade_type为JSAPP时，必传，否
       self.fields['nonce_str'] =  Digest::MD5.hexdigest(rand(1000).to_s) #随机串,不长于32位
       self.fields['products_id'] = '' #trade_type为NATIVE时，需要，此id为二维码中包含的商品ID
-
-
-      #     self.fields['transport_fee'] = '' #物流费用，string，单位为分。如果有值，必须保证 transport_fee+product_fee=total_fee；否
-      #     self.fields['product_fee'] = '' #物流费用，string，单位为分。如果有值，必须保证 transport_fee+product_fee=total_fee；否
-
- #     self.fields['bank_type'] = 'WX'
-  #    self.fields['partner'] = @@partnerid  #商户号 partnerId;
-
-
- #     self.fields['fee_type'] ='1' #支持币种，1 ：人民币 ，目前只支持人民币
- #     self.fields['input_charset'] ='UTF-8' #传入参数字符编码，取值范围 “GBK”，“UTF-8”]
 
     end
 
    # def return_url=(val)
    #   self.fields['return_url'] = val
    # end
+
+    def supplier_id=(val)
+      self.fields['supplier_id']=val
+
+      if self.fields['supplier_id']=='98'
+        self.fields['appid'] = @@appid_manco
+        self.fields['mch_id'] = @@mch_id_manco
+      end
+    end
 
     def spbill_create_ip=(val)
       self.fields['spbill_create_ip'] = val #订单生成的机器IP string(16)
@@ -93,14 +105,20 @@ module ModecPay
 
     class <<  self
       def verify_sign(params)
+        if self.fields['supplier_id']==98
+          partner_key= @@partner_key_manco
+        else
+          partner_key = @@partner_key
+        end
+
         sign = params['sign']
 
         #	_sorted_hash = Hash.send :[],  params.select{ |key,val| val.present? && key != 'sign' && key != 'sign_type' }.sort_by{ |key,val|  key }
 
         #unsign = _sorted_hash.collect do |key,val| 	"#{key}=#{val}" end.join("&") + @@private_key #self.private_key
 
-        unsign_hash =Hash.send :[],  params.select{ |key,val| val.present? && key != 'sign' && key != 'sign_type' }
-        unsign = unsign_hash.collect do |key,val| 	"#{key}=#{val}" end.join("&") + "&key=#{@@partner_key}"
+        unsign_hash = Hash.send :[],  params.select{ |key,val| val.present? && key != 'sign' && key != 'sign_type' }
+        unsign = unsign_hash.collect do |key,val| 	"#{key}=#{val}" end.join("&") + "&key=#{partner_key}"
         Digest::MD5.hexdigest(unsign) == sign
       end
 
@@ -154,9 +172,14 @@ module ModecPay
     private
 
     def make_sign
+      if self.fields['supplier_id']==98
+        partner_key= @@partner_key_manco
+      else
+        partner_key = @@partner_key
+      end
       return '' if self.fields.blank?
       _sorted = Hash.send :[],  self.fields.select{ |key,val|  val.present? }.sort_by{ |key,val|  key }
-      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{@@partner_key}"
+      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{partner_key}"
       self.fields['sign']  = Digest::MD5.hexdigest(unsign).upcase
     end
 
@@ -168,6 +191,11 @@ module ModecPay
     end
 
     def make_pay_sign
+      if self.fields['supplier_id']==98
+        partner_key= @@partner_key_manco
+      else
+        partner_key = @@partner_key
+      end
       return '' if self.fields.blank?
       unsorted={"appId" => self.fields["appid"],
                 "nonceStr" => self.fields["nonce_str"],
@@ -176,7 +204,7 @@ module ModecPay
                 "signType" => self.fields['sign_type']
       }
       _sorted = Hash.send :[],  unsorted.select{ |key,val|  val.present? && key != 'sign_Type'}.sort_by{ |key,val|  key }
-      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{@@partner_key}"
+      unsign = _sorted.collect{ |key,val| "#{key}=#{val}" }.join("&") + "&key=#{partner_key}"
       self.fields['pay_sign'] = Digest::MD5.hexdigest(unsign).upcase
     end
 

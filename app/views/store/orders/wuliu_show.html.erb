@@ -1,0 +1,124 @@
+<style type="text/css">
+
+    .status_text {
+        font-family: "微软雅黑","宋体";
+        display: inline-block;
+        font-weight: normal;
+
+        margin-left: 10%;
+        line-height: 65px;
+        line-height: 1.5;
+        text-align: left;
+        font-size: 24px;
+        color: #ed145b;
+    }
+    .blue .pay_icon, .list_status .green .pay_icon {
+        background-position: 0 -160px;
+        width: 24px;
+        height: 24px;
+    }
+
+    .pay_success {
+        width: 65px;
+        height: 65px;
+        background-position: 0 0px;
+    }
+    .pay_icon {
+        display: block;
+        _display: inline;
+        float: left;
+        background: url(/assets/payment_status_icons.jpg) top left no-repeat;
+    }
+    .detail{
+        border: 1px;
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #f0f1ff;
+    }
+    .ovalue{
+        margin-left: 50%;
+
+    }
+    .pay_text{
+        line-height: 3;
+    }
+    .bottomdivsclearfix{
+        display: none;
+    }
+
+</style>
+
+<div class="">
+  <%=form_for :payment,:url=>payments_path(:order_id=>@order.order_id,:supplier_id=>@supplier.id),:method=>'post',:html=>{ :target=>"_blank" } do |f|%>
+      <%=f.hidden_field :currency, :value=>"CNY" %>
+      <br/>
+      <div class="status_text">
+        <span class="pay_icon pay_success "></span>
+        <span class="pay_text">订单已经成功提交</span>
+      </div>
+
+
+      <div class="list_status">
+   <h2 class="blue" >
+          <span class="pay_icon"></span>
+          <span style="color: #0abede">以下订单尚未成功支付，请您尽快完成支付！</span>
+   </h2></div>
+
+
+ <div class="showall">
+        <div  class="detail" >
+          <span class="span">	&nbsp; &nbsp; 订单编号:</span> <span style="margin-left: 40%" ><%=@order.order_id%></span>
+        </div>
+
+        <div class="detail" >
+          <span class="span">	&nbsp; &nbsp; 支付金额:</span> <span id="final_pay" class="ovalue">￥<%=@order.final_amount%>
+           </span> </div>
+
+
+        <span id="products_total" data-amount="<%=@order.products_total%>" style="display: none"></span>
+         <div class="detail" >
+          <span class="span">&nbsp; &nbsp; 订单状态:</span> <span style=" color: #ed145b;" class="ovalue">
+         <% if @order.order_status_text =="待付款" %>
+            <%=I18n.t "order_status_no"%>
+         <%else%>
+          <%=I18n.t "order_status_yes"%></span>
+              <%end%>
+          </div>
+
+
+        <span id="pmts_total" class="hide" data-amount="<%=@order.pmts_total%>"></span>
+        <div class="detail" >
+          <span class="span">&nbsp; &nbsp; 支付方式:</span> <span style=" color: #ed145b;" class="ovalue">
+         <% if @order.payment =="wxpay" %>微信支付<%else%>预支付<%end%> </span>
+            </div>
+
+        </div>
+      <label class="radio" style="display:none">
+        <%if @order.payment == 'wxpay' %>
+        <%=f.radio_button :pay_app_id, "wxpay", { :checked=>(@order.payment == 'wxpay') }%>
+
+            <%elsif @order.payment == 'deposit'%>
+            <%=f.radio_button :pay_app_id, "deposit", { :checked=>(@order.payment == 'deposit') }%>
+               <%end%>
+            <b>其他银行网上支付</b>
+      </label>
+       <hr>
+        <div class="actions">
+          <div class="list_status">
+          <h2 class="blue" style="color: #0abede">
+              <span class="pay_icon"></span>
+              <span ><%= I18n.t "pay_showone"%><a href="/orders/wuliu_show_order?id=<%=@order.order_id%>&supplier_id=<%=@supplier.id%>"><%= I18n.t "order_details"%></a> <%= I18n.t "pay_showtwo"%></span>
+            </h2>
+          </div>
+          <br>
+          <% if @order.order_status_text=="待付款" %>
+
+              <% if @order.pay_status == '0' && @order.status == 'active' && @order.payment != 'offline' %>
+                  <input type="submit" class=" btn btn-inverse " value="<%=I18n.t "no_pay"%>">
+              <%end%>
+          <% else%>
+              <span><%= I18n.t "success_pay"%></span>
+          <% end %>
+        </div>
+  <%end%>
+  </div>

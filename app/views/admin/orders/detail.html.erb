@@ -268,8 +268,8 @@
                   <span>支付宝手机版</span>
                   <%end%>
 			</li>
-                <%if @order.supplier_id==98%>
-              <%else%>
+                <%unless @order.supplier_id==98%>
+
 			<li>
 				<span>配送方式 : </span>
 				<span><%=@order.shipping%></span>
@@ -486,6 +486,7 @@
 			<strong>结算信息</strong>
 		</div>
 		<ul>
+          <%unless @order.supplier_id==98%>
 			<li>
 				<span class="name">商品总额 : </span>
 				<span class="val"> &yen;<%=@order.products_total.to_f%></span>
@@ -509,8 +510,37 @@
 				<span class="name">-支付优惠 : </span>
 				<span class="val"> &yen;<%=@order.bcom_discount%></span>
 			</li>
-			<%end%>
+              <%end%>
+           <%else%>
+                  <li>
+                    <%@order.order_items.each do |order_item|%>
+                    <span class="name">金额小计 : </span>
+                    <span class="val"> &yen;<%=(order_item.price * order_item.nums).to_i if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%></span>
+                         <%end%>
+                        </li>
 
+                  <li>
+                    <span class="name">+签单返回 : </span>
+                    <span > &yen;<%=@order.serverbill_text%></span>
+                  </li>
+                <li>
+                <span class="name">+进仓服务费 : </span>
+                <span > <%=@order.serverwarehouse_text%></span>
+               </li>
+              <li>
+                <span class="name">+发票 : </span>
+                <span > <%=@order.serverinvoice_text%></span>
+              </li>
+                  <li>
+                    <span class="name">-优惠 : </span>
+                    <span class="val"> &yen;<%=@order.pmts_total.to_f%></span>
+                  </li>
+                  <li>
+                    <span class="name">-余额 : </span>
+                    <span class="val"> &yen;<%=@order.part_pay.to_f%></span>
+                  </li>
+
+          <%end%>
 			<li class="pay-amount">
 				<span class="name">应付金额 : </span>
 				<span class="val"> &yen;<%=@order.final_pay%></span>

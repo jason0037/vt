@@ -1,0 +1,151 @@
+
+
+
+<div class="head-info" >
+  <img src="/assets/manco/logo.jpg" alt="logo" class="am-img-circle">
+
+</div>
+
+<form method="post" id="form_first" class="am-form am-form-group ">
+  <span class="am-badge am-badge-primary" >派送方式:</span>
+  <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+  <ul class="am-navbar-nav am-cf sm-block-grid-2">
+
+    <li class=" am-btn am-btn-primary am-btn-block am-animation-slide-left">
+
+      <input  type="radio"  name="distribution" value="l_door">门对门
+    </li>
+    <li class=" am-btn am-btn-secondary am-btn-block am-animation-slide-right" style="margin-top: 0px">
+
+      <input type="radio"  name="distribution" value="l_self">自提
+    </li>
+
+
+
+  </ul>
+
+
+
+
+
+  <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+
+  <div class="am-cf">
+    <input type="button" id="serach" data-url="/manco/l_express"  value="下一步" class="am-btn am-btn-primary am-btn-block ">
+
+  </div>
+
+
+</form>
+
+<%=form_for :product,:url=>"/cart/add",:method=>"post",:html=>{:class=>"am-form am-form-group form_hide",:id=>"form_second",} do |f|%>
+    <%=hidden_field_tag :cat_id%>
+    <%=f.hidden_field :goods_id%>
+    <%=hidden_field_tag "product[specs][]"%>
+    <%=hidden_field_tag :platform,"manco_local"%>
+    <%=hidden_field_tag :supplier_id, @supplier.id%>
+    <%=hidden_field_tag :mancoweight%>
+
+
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">单价</span>
+      <span class="am-input-group-label" style="color: red" id="unit_price"></span>
+    </div>
+    </br>
+    <div class="am-input-group am-input-group-lg">
+
+      <span class="am-input-group-label" style="color: red" id="low_price"></span>
+    </div>
+    </br>
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">派送方式为:</span>
+      <span class="am-input-group-label" id="distribution"></span>
+    </div>
+    </br>
+
+    <div class="am-input-group am-input-group-lg">
+      <span class="am-input-group-label">重量</span>
+      <input type="number" id="weight" min="0"placeholder="请输入物品重量" class="am-form-field floatright"  value="">
+      <span class="am-input-group-label">kg</span>
+    </div>
+    <br>
+
+    <%= f.submit :class=>"am-btn am-btn-primary am-btn-block  button-am" ,:value=>"下一步"%>
+
+
+<%end%>
+
+
+</div>
+
+
+<br/>
+<br/><br/>
+<br/>
+<%= javascript_include_tag "jquery", "jquery_ujs" %>
+
+
+
+<script type="application/javascript">
+    var mancoweight;
+    $("#departure").focus(function(){
+        $("#notice").addClass("form_hide");
+    })
+
+    $("#arrival").focus(function(){
+        $("#notice").addClass("form_hide");
+    })
+
+
+
+    $("#serach").bind("click",function(){
+
+
+        var distribution=$("input[name='distribution']:checked").val();
+        var url = $(this).data('url');
+        if(distribution) {
+
+            $.ajax(url,{
+                type: "post",
+                data:{ distribution:distribution},
+                success:function(res){
+                }
+            }) }
+        else{
+            alert("请选择配送方式");;return false;
+        }
+    })
+
+    $(".button-am").bind("click",function() {
+
+
+
+        $("#mancoweight").val($("#weight").val());
+
+
+    })
+
+    $(".am-btn-block").bind("click",function(){
+        $(this).children("input[type='radio']").attr("checked",'true');
+
+    })
+
+
+</script>
+
+
+<script>$(function(){
+    $("#departure").suggest(citys,{
+        hot_list:commoncitys,
+        attachObject:'#suggest'
+    });
+    $("#arrival").suggest(citys,{
+        hot_list:commoncitys,
+        attachObject:"#suggest2"
+    });
+
+});</script>
+
+
+<script type="text/javascript" src="/assets/manco/aircity.js"></script>
+<script type="text/javascript" src="/assets/manco/j.suggest.js"></script>

@@ -1,0 +1,153 @@
+
+<style type="text/css">
+
+
+    .span  {
+        color: #dd514c;
+    }
+    .ahref{
+        width: 100%;
+
+    }
+    .bottomdivsclearfix{
+        display: none;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="am-panel am-panel-default">
+  <div class="am-panel-hd" style="text-align: center" ><%= I18n.t "order_details"%></div>
+  <%@order.order_items.each do |order_item|%>
+
+
+      <div >
+        <span class="span"> &nbsp; &nbsp; 订单编号:</span> <span style="float: right">  <%=@order.order_id%> &nbsp; &nbsp;    </span>
+      </div>
+        <% if order_item.good.cat_id==Ecstore::GoodCat.find_by_cat_name("万家预充值卡").cat_id%>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+          <div >
+            <span class="span"> &nbsp; &nbsp; 充值卡:</span> <span style="float: right">  <%= order_item.name%> &nbsp; &nbsp;    </span>
+          </div>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+          <div >
+            <span class="span"> &nbsp; &nbsp; 充值金额:</span> <span style="float: right"> &yen; <%= format('%.2f',order_item.price * order_item.nums) if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%> &nbsp; &nbsp;    </span>
+          </div>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+          <div >
+            <span class="span"> &nbsp; &nbsp; 实际充值:</span> <span style="float: right"> &yen; <%=order_item.good.mktprice%>&nbsp; &nbsp;    </span>
+          </div>
+             <%elsif order_item.good.cat_id==Ecstore::GoodCat.find_by_cat_name("本地门对门").cat_id ||order_item.good.cat_id==Ecstore::GoodCat.find_by_cat_name("本地自提").cat_id%>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+          <div >
+            <span class="span"> &nbsp; &nbsp; 路线:</span> <span style="float: right">  <%= order_item.name%> &nbsp; &nbsp;    </span>
+          </div>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+          <div class="">
+            <span class="span"> &nbsp; &nbsp;折算重量：</span>     <span style="float: right">   <%=order_item.nums.to_i%>kg &nbsp; &nbsp;    </span>
+          </div>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+          <div >
+            <span class="span"> &nbsp; &nbsp;重量*单价为：</span>       <span style="float: right">    &yen; <%= format('%.2f',order_item.price * order_item.nums) if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
+            &nbsp; &nbsp;            </span>
+          </div>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+
+          <%else%>
+
+      <div >
+        <span class="span"> &nbsp; &nbsp; 路线:</span> <span style="float: right">  <%= order_item.name%> &nbsp; &nbsp;    </span>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+      <div class="">
+        <span class="span"> &nbsp; &nbsp;折算重量：</span>     <span style="float: right">   <%=order_item.nums.to_i%>kg &nbsp; &nbsp;    </span>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+      <div >
+        <span class="span"> &nbsp; &nbsp;金额小计(不包涵服务费)：</span>       <span style="float: right">    &yen; <%= format('%.2f',order_item.price * order_item.nums) if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
+        &nbsp; &nbsp;            </span>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+
+      <div >
+        <span class="span"> &nbsp; &nbsp;签单返回：</span>       <span style="float: right">    <%= @order.serverbill_text%>
+        &nbsp; &nbsp;            </span>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+
+      <div >
+        <span class="span"> &nbsp; &nbsp;开票：</span>       <span style="float: right">    <%= @order.serverinvoice_text%>
+        &nbsp; &nbsp;            </span>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+
+      <div >
+        <span class="span"> &nbsp; &nbsp;进仓服务费：</span>       <span style="float: right">    <%= @order.serverwarehouse_text%>
+        &nbsp; &nbsp;            </span>
+      </div>
+
+
+<%end%>
+
+      <% if @delivery%>
+          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+          <div class="">
+            <span class="span"> &nbsp; &nbsp;运单号：</span>     <span style="float: right">   <%=@delivery.logi_no%> &nbsp; &nbsp;    </span>
+          </div>
+      <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
+  <%end%>
+
+      <%if (order_item.price * order_item.nums).to_f <= (order_item.good.wholesale)%>
+          <div >
+           <span style="color: #ff0000;margin-left: 15px">当前货物运输价未达到最低送货价，最低20元/票</span>
+
+          </div>
+
+      <%end%>
+
+
+  <%end%>
+
+
+
+
+
+
+  <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
+
+  <div >
+    <span class="span"> &nbsp; &nbsp;下单时间：</span> <span style="float: right">  <%=@order.created_at%> &nbsp; &nbsp;     </span>
+  </div>
+  <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
+
+  <div >
+    <span class="span"> &nbsp; &nbsp;订单状态：</span> <span style="float: right;color: red" >   <% if @order.order_status_text =="待付款" %>
+          待付款
+         <%else%>
+         已付款</span>
+              <%end%> &nbsp; &nbsp;     </span>
+
+    </div>
+
+
+  <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
+  <div >
+    <span class="span"> &nbsp; &nbsp;订单总金额：</span> <span style="float: right" >  <%= format('%.2f',@order.total_amount)%> &nbsp; &nbsp;     </span>
+
+  </div>
+  <br/>
+
+
+  <% if @order.order_status_text=="待付款" %>
+
+          <a class="ahref am-btn  am-btn-danger " href="/orders/wuliu_show?id=<%=@order.order_id%>&supplier_id=<%=@order.supplier_id%>" class="btn btn-inverse"><%= I18n.t "no_pay"%></a>
+
+
+  <% else%>
+
+          <span>您已经成功支付了</span>
+     <% end %>
+</div>
+
+

@@ -72,10 +72,10 @@ end
     get 'map' ,:on=>:collection
     get  'main' ,:on=>:collection    ###万家介绍
     get  'history' ,:on=>:collection  ####万家历史
-    post 'blackboardfind_e',:on=>:collection  ###小黑板中查询运价
+    post 'blackboardfind_e',:on=>:collection  ###查询运价
     get  'user'   ,:on=>:collection
     #万家快递页面
-
+    post 'mancoluodipei',:on=>:collection
      get 'find_manco',:on=>:collection
     get "black_index"  ,:on=>:collection   ##小黑版首页
     get "express"  ,:on=>:collection
@@ -83,6 +83,7 @@ end
     get "blackbord",:on=>:collection
     post "blackbord_add" ,:on=>:collection
     get "follow",:on=>:collection    ###快递跟踪
+    post "follow",:on=>:collection    ###快递跟踪
     get 'user',:on=>:collection
     get 'good_source', :on=>:collection  ###货源信息
     post 'blackgood_add',:on=>:collection
@@ -93,6 +94,12 @@ end
     post 'edit_addr',:on=>:collection
     get 'departure_new',:on=>:collection
     post 'creat_addr',:on=>:collection
+    get 'cart_goods',:on=>:collection
+    get 'advance',:on=>:collection
+    get 'choose_express',:on=>:collection
+    get 'local_express',:on=>:collection
+    post 'l_express',:on=>:collection
+    get 'city',:on=>:collection
   end
 
 
@@ -488,8 +495,22 @@ end
   scope :module => "store" do
 
     get 'search' => "search#index", :as=> :search
+    get  'prime_beef'  =>"goods#prime_beef", :as=>"goods" ,:controller=>"goods"
+    get 'quality_products' =>"goods#quality_products", :as=>"goods" ,:controller=>"goods"
+    get 'world_food' =>"goods#world_food", :as=>"goods" ,:controller=>"goods"
     get 'mproducts' =>"goods#mproduct", :as=>"goods" ,:controller=>"goods"
+<<<<<<< HEAD
   
+=======
+    post '/goods/manco_cart'=>"goods#manco_cart",  :controller=>"goods"
+    get 'show_goodblack' =>  "goods#show_goodblack",  :as=>"goods" ,:controller=>"goods"   ###货源信息
+    get 'mancoproduct' =>"goods#mancoproduct",  :as=>"goods" ,:controller=>"goods"
+    get 'tairyoall'=>"goods#tairyoall",  :as=>"goods" ,:controller=>"goods"         ###金芭浪直接订单
+    get 'tproducts' =>"goods#tairyo_tuan", :as=>"goods" ,:controller=>"goods"
+    post'manco/serach_goods_manco'=>"goods#serach_goods_manco",:controller=>"goods"
+
+    post 'goods/manco_express'=>"goods#manco_express",:controller=>"goods"    #通过AJAX查询出来价钱
+>>>>>>> ac7a11c99b63f765418f1f482927c49f2ee63e9e
     resources :products, :as=>"goods", :controller=>"goods" do
       # get 'newin',:on=>:collection
       get 'newest',:on=>:collection
@@ -513,9 +534,14 @@ end
     post 'cart/manco_add'=>"cart#manco_add" ,:as=>:add_to_cart
     post 'cart/tairyoall_add'=>"cart#tairyoall_add" ,:as=>:add_to_cart
 
-    post 'cart/mancoexpress_add'=>"cart#mancoexpress_add",:as=>:add_to_cart
+
 
     resources :cart do
+<<<<<<< HEAD
+=======
+      get 'manco_express'  ,:on=>:collection
+      get 'distribution_manco',:on=>:collection
+>>>>>>> ac7a11c99b63f765418f1f482927c49f2ee63e9e
       post 'add',:on=>:collection
       get 'show_tairyo',:on=>:collection   ###直接下单购物车
       get 'mobile', :on=>:collection
@@ -558,23 +584,25 @@ end
         post 'new_manco'
         get 'new_mobile_addr'
         get 'new_manco_addr'
-        post 'ordersnew_manco'
-        get 'ordersnew_manco'
-        get 'departure'
+       get 'departure'
         post 'arrival'
         get 'arrival'
         get 'mancoder_show'   ###显示万家当前用户的所有订单
         get 'tairyo_order'
         get 'mobile_show_order'
+        get 'wuliu_show_order'
         get 'index_mobile'
         get 'share_order'   ###推荐订单
         get 'mobile_show'
+        get 'wuliu_show'    ###万家订单页面
         get 'addr_detail'
         get 'new_mobile_addr'
         post 'edit_addr'
         get 'edit_manco_addr'
         post 'xiugai_addr'
-
+        post 'manco_detail'
+        get 'manco_card'
+        get 'advance'   ##预付款信息
       end
     end
 

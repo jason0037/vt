@@ -1,0 +1,28 @@
+<div class="val">您当前的预存款余额为 : <span>&yen;<%=@user.advance.to_i%></span></div>
+<br>
+<%  if @advances && @advances.size > 0%>
+    <table class="am-table" >
+      <tr>
+        <th>时间</th>
+        <th>事件</th>
+        <th>存入金额</th>
+        <th>支出金额</th>
+        <th>当前余额</th>
+      </tr>
+
+      <%@advances.each  do |advance|%>
+          <tr>
+            <td style="width: 20%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><%=advance.logged_at%></td>
+            <td><%=advance.message%></td>
+            <td>&yen;<%=advance.import_money.to_i%></td>
+            <td>&yen;<%=advance.explode_money.to_i%></td>
+            <td><b>&yen;<%=advance.member_advance.to_i%></b></td>
+          </tr>
+      <%end%>
+    </table>
+    <div class="pagination">
+      <%=will_paginate @advances,:container=>false if @user_coupons%>
+    </div>
+<%else%>
+    <div class="no-record">暂无记录</div>
+<%end%>

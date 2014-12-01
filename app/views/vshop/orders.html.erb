@@ -82,7 +82,7 @@
               <ul class="dropdown-menu">
                 <!-- <li><%=link_to "编辑",edit_admin_order_path(order),:target=>"_blank" if order.status == 'active'%></li> -->
 
-                <li>
+                    <li>
                   <%=link_to "支付",pay_admin_order_path(order,:page=>params[:page]) if order.pay_status == '0'%>
 
                   <%link_to "支付",pay_admin_order_path(order,:page=>params[:page]),:data=>{:target=>"#ajax_modal",:remote=>pay_admin_order_path(order) },:class=>"remote-modal" if order.pay_status == '0'%>
@@ -90,7 +90,7 @@
 
                 <li><%=link_to "退款", refund_admin_order_path(order,:page=>params[:page]) unless %w(0 5).include?(order.pay_status)%></li>
 
-                <li><%=link_to "发货",delivery_admin_order_path(order,:page=>params[:page]) if ['0','2'].include?(order.ship_status)%></li>
+                <li><%=link_to "发货",delivery_admin_order_path(order,:page=>params[:page],:supplier_id=>order.supplier_id) if ['0','2'].include?(order.ship_status)%></li>
 
                 <li>
                   <%=link_to "退货",reship_admin_order_path(order,:page=>params[:page]) if !['0','4'].include?(order.ship_status)%>
@@ -110,11 +110,20 @@
     <%end%>
     <td>
       <%order.tegs.each do |teg|%>
+
 			<span class="teg" style="background-color:<%=teg.tag_bgcolor%>;color:<%=teg.tag_fgcolor%>">
 				<%=teg.tag_name%>
 			</span>
       <%end%>
     </td>
+
+          <% if order.status_text =="已完成"%>
+  <td>
+
+        &nbsp;
+
+    </td>
+          <%end%>
     <td><%=order.user.member_id if order.user%></td>
     <td><%=order.created_at%></td>
     <td><%=order.status_text%></td>

@@ -18,7 +18,6 @@ gem 'faraday'
 gem "geocoder"
 gem 'spreadsheet'
 #gem 'weibo_2' #,:git=>"https://github.com/simsicon/weibo_2.git"
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -31,7 +30,11 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 
 end
+<<<<<<< HEAD
  gem "iconv"
+=======
+  gem 'iconv'
+>>>>>>> ac7a11c99b63f765418f1f482927c49f2ee63e9e
 gem  'sitemap_generator'
 
 gem 'jquery-rails',  '~> 2.1.4'

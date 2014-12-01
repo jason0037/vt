@@ -16,11 +16,11 @@
         }
 
 </style>
-
+            <%unless @supplier.id==98%>
 <div class="am-panel am-panel-default "style="margin: 0px;padding: 0px">
   <div class="am-panel-hd"  style="text-align: center;padding: 10px"><%= I18n.t "personal_center"%></div>
 </div>
-
+       <%end%>
 
 <div class="userdiv" style="display:none">
   <ul class="orderList clearfix">
@@ -29,7 +29,7 @@
     <li><a href="user-order-list-more.html" class=""><span class="all_orders"></span><p>更多订单</p></a></li>
   </ul>
 </div>
-
+  <hr>
 <div class="am-panel am-panel-default">
   <a href="/share?supplier_id=<%=@supplier.id%>">
     <div class="am-panel-hd"><%= I18n.t "commission"%></div>
@@ -47,8 +47,8 @@
 </div>
  <%if @supplier.id==(Ecstore::Supplier.find_by_name("万家物流").id)%>
     <div class="am-panel am-panel-default">
-      <a href="/cart/manco_express?supplier_id=<%=@supplier.id%>">
-        <div class="am-panel-hd"><%= I18n.t "shopping-basket"%></div>
+      <a href="/manco/advance?user_id=<%=@user.member_id%>&supplier_id=<%=@supplier.id%>">
+        <div class="am-panel-hd">我的预存款</div>
         <span class="icon-arr"></span> </a>
     </div>
 
@@ -57,14 +57,15 @@
         <div class="am-panel-hd">我的车源小黑板</div>
         <span class="icon-arr"></span> </a>
     </div>
+
     <div class="am-panel am-panel-default">
       <a href="/manco/departure?id=<%=@user.member_id%>&supplier_id=<%=@supplier.id%>&way=departure">
-        <div class="am-panel-hd">寄货人地址</div>
+        <div class="am-panel-hd">装货地址</div>
         <span class="icon-arr"></span> </a>
     </div>
     <div class="am-panel am-panel-default">
       <a href="/manco/departure?id=<%=@user.member_id%>&supplier_id=<%=@supplier.id%>&way=arrival">
-        <div class="am-panel-hd">收货人地址</div>
+        <div class="am-panel-hd">卸货地址</div>
         <span class="icon-arr"></span> </a>
     </div>
 
