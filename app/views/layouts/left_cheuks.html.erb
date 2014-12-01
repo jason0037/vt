@@ -33,7 +33,8 @@
 
 <body>
 
-<!-- OFF CANVAS SECTIONS WRAPPING THE MAIN CONTENT -->
+
+ <!-- OFF CANVAS SECTIONS WRAPPING THE MAIN CONTENT -->
 <div class="off-canvas-wrap" data-offcanvas>
   <div class="inner-wrap">
     <div class="fixed  show-for-small-only">
@@ -151,9 +152,15 @@
   </div>
 </div>
 
+ <div class="row" >
+ <div class="large-2 medium-3 columns show-for-medium-up category-nav">
+   <%=render "patch/shared/menu"%>
 
+   </div>
 
-<%=yield :notice%>
+   <div class="large-10 medium-9 columns ">
+
+   <%=yield :notice%>
 <%#= render "shared/header" %>
 <%#if controller_name!='home'%>
 <%#= render "shared/top_menu" %>
@@ -166,7 +173,7 @@
 <!-- </div> -->
 <%#end%>
 <%#=render "shared/common_footer"%>
-
+ </div></div>
 <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
 
 <%#=render "shared/iframe_cart" if signed_in?%>

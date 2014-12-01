@@ -1,55 +1,37 @@
+<ul class="no-bullet">
+      <li>交易管理</li>
+      <li>  <%=link_to "我的订单",orders_member_path,:class=>"button secondary expand radius split"%>  <span data-dropdown="drop1"></span>
+ </li>
+  <li><%=link_to "我的优惠券",coupons_member_path, :class=>"button secondary expand radius split" %> <span data-dropdown="drop1"></span> </li>
 
-<ul class="nav nav-list">
-  <li class="nav-header">交易管理</li>
+  <% if cookies[:MLV] == "10" %>
+       <li>  <%=link_to "我的商品",goods_member_path , :class=>"button secondary expand radius split"%></li>
+      <%end%>
+  <li>	<%=link_to "我的VIP卡",cards_path(tab: "bought") ,:class=>"button secondary expand radius split"%></li>
+    <li>	<%=link_to "我的预存款",advance_member_path  ,:class=>"button secondary expand radius split"%></li>
+ </ul>
+ <hr>
 
-  <li class="<%='active' if action_name == "orders"%>">
-  	<%=link_to "我的订单",orders_member_path%>
+<ul class="no-bullet">
+  <li>个人信息管理</li>
+  <li>  <%=link_to "个人信息",profile_path,:class=>"button secondary expand radius split"%>  <span data-dropdown="drop1"></span>
   </li>
-  <li class="<%='active' if action_name == "coupons"%>">
-  	<%=link_to "我的优惠券",coupons_member_path%>
-  </li>
-<% if cookies[:MLV] == "10" %>
-  <li class="<%='active' if action_name == "goods"%>">
-    <%=link_to "我的商品",goods_member_path%>
-  </li>
-<%end%>
-  <li class="<%='active' if controller_name == "cards"%>">
-  	<%=link_to "我的VIP卡",cards_path(tab: "bought")%>
-  </li>
-  <li class="<%='active' if action_name == "advance"%>">
-  	<%=link_to "我的预存款",advance_member_path%>
-  </li>
+  <li> <%=link_to "账户安全",validation_path, :class=>"button secondary expand radius split" %> <span data-dropdown="drop1"></span> </li>
 
+ <li>  <%=link_to "修改密码",password_profile_path, :class=>"button secondary expand radius split"%></li>
+
+  <li>  <%=link_to "收货地址",member_addrs_path,:class=>"button secondary expand radius split"%></li>
+  <li>	 <%=link_to "我的收藏",favorites_member_path ,:class=>"button secondary expand radius split"%></li>
 </ul>
+<hr>
 
-<ul class="nav nav-list">
-  <li class="nav-header">个人信息管理</li>
-
-  <li class="<%='active' if controller_name == 'profiles' && %w(show edit).include?(action_name) %>">
-    <%=link_to "个人信息",profile_path%>
+<ul class="no-bullet">
+  <li>售后服务</li>
+  <li>   <%=link_to "申请售后服务",instruction_aftersales_path,:class=>"button secondary expand radius split"%>  <span data-dropdown="drop1"></span>
   </li>
+ </ul>
 
-  <li class="<%='active' if controller_name == 'validations' %>">
-    <%=link_to "账户安全",validation_path%>
-  </li>
 
-  <li class="<%='active' if controller_name == 'profiles' && action_name == 'password'%>">
-    <%=link_to "修改密码",password_profile_path%>
-  </li>
-  
-  <li class="<%='active' if controller_name == 'member_addrs'%>">
-    <%=link_to "收货地址",member_addrs_path%>
-  </li>
 
-  <li class="<%='active' if action_name == 'favorites'%>">
-    <%=link_to "我的收藏",favorites_member_path%>
-  </li>
 
-</ul>
 
-<ul class="nav nav-list">
-  <li class="nav-header">售后服务</li>
-  <li class="<%='active' if controller_name == 'aftersales'%>">
-    <%=link_to "申请售后服务",instruction_aftersales_path%>
-  </li>
-</ul>

@@ -1,7 +1,7 @@
 #encoding:utf-8
 class Patch::AftersalesController < ApplicationController
-	layout 'patch'
-	
+	#layout 'patch'
+  layout 'left_cheuks'
 	before_filter do
 		clear_breadcrumbs
 		add_breadcrumb("我的贸威",:member_path)

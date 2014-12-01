@@ -3,7 +3,8 @@ class Patch::ProfilesController < ApplicationController
   # skip_before_filter :authorize_user!
   before_filter :find_user
 
-  layout "patch"
+  #layout "patch"
+  layout 'left_cheuks'
 
   before_filter do
     clear_breadcrumbs

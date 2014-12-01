@@ -7,15 +7,62 @@
 
     }
 </style>
-<div class="row" >
-  <div class="large-2 medium-3 columns show-for-medium-up category-nav">
-    <%=render "patch/shared/menu"%>
-  </div>
 
 
 
   <div class="large-10 medium-9 columns">
-   <h5> 最近订单 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%=link_to "所有订单>>",orders_member_path,:class=>"all-orders"%> </h5>
+
+    <div class="row  ">
+      <div class="small-6 "><%=@user.login_name%>,欢迎您！</div>
+      <div class="small-6 " >  </div> </div>
+    <div class="row  ">
+      <div class="small-6 columns">会员等级</div>
+      <div class="small-6 columns" > <%=@user.member_lv.name%> </div>
+      <% @user.hasrole.each  do |hasrole|%>
+          <% if hasrole.role_id==17%>
+              <span class="lv">| 导购员</span>
+          <% end%>
+          <% if hasrole.role_id==18%>
+              <span class="lv">| 供应商</span>
+          <% end%>
+      <%end%>
+      <% if @user.member_lv.id==10%>
+          <span class="lv">| 渠道商</span>
+      <% end%>
+      <p class="validation">
+			<span class="email">
+				邮箱认证：
+              <%if @user.email_validated?%>
+					<span class="validated">邮箱已认证</span>
+				<%else%>
+					<%=link_to "邮箱未认证",email_validation_path%>
+				<%end%>
+			</span>
+			<span class="mobile">
+				手机认证：
+              <%if @user.sms_validated?%>
+					<span class="validated">手机已认证</span>
+				<%else%>
+					<%=link_to "手机未认证",mobile_validation_path%>
+				<%end%>
+			</span>
+
+      </p>
+
+
+        <p>
+			<span class="notify">
+				<%=link_to  "待付款订单(#{@unpay_count})",orders_member_path(:pay_status=>'0',:status=>'active')%>
+			</span>
+          <span>预存款: <span class="currency">&yen; <%=@user.advance%></span></span>
+        </p>
+      </div>
+    </div>
+
+       <hr>
+
+
+    <h5> 最近订单 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%=link_to "所有订单>>",orders_member_path,:class=>"all-orders"%> </h5>
 
     <%if @orders&&@orders.count > 0%>
         <%@orders.each  do |order|%>
@@ -52,63 +99,6 @@
 
 
 
-
-    <div class="row  ">
-      <div class="small-6 "><%=@user.login_name%>,欢迎您！</div>
-      <div class="small-6 " >  </div> </div>
-    <div class="row  panel">
-      <div class="small-6 columns">会员等级</div>
-      <div class="small-6 columns" > <%=@user.member_lv.name%> </div>
-
-    </div>
-
-<div class="section member-info clearfix">
-	
-	<div class="basic">
-		<p class="welcome">
-			<b><%=@user.login_name%></b> ，欢迎您！
-			<span class="lv">
-				会员等级：<%=@user.member_lv.name%>
-			</span>&nbsp;
-          <% @user.hasrole.each  do |hasrole|%>
-              <% if hasrole.role_id==17%>
-                <span class="lv">| 导购员</span>
-              <% end%>
-              <% if hasrole.role_id==18%>
-                  <span class="lv">| 供应商</span>
-              <% end%>
-          <%end%>
-          <% if @user.member_lv.id==10%>
-              <span class="lv">| 渠道商</span>
-          <% end%>
-		</p>
-		<p class="validation">
-			<span class="email">
-				邮箱认证：
-				<%if @user.email_validated?%>
-					<span class="validated">邮箱已认证</span>
-				<%else%>
-					<%=link_to "邮箱未认证",email_validation_path%>
-				<%end%>
-			</span>
-			<span class="mobile">
-				手机认证：
-				<%if @user.sms_validated?%>
-					<span class="validated">手机已认证</span>
-				<%else%>
-					<%=link_to "手机未认证",mobile_validation_path%>
-				<%end%>
-			</span>
-			
-		</p>
-		<p>
-			<span class="notify">
-				<%=link_to  "待付款订单(#{@unpay_count})",orders_member_path(:pay_status=>'0',:status=>'active')%>
-			</span>
-			<span>预存款: <span class="currency">&yen; <%=@user.advance%></span></span>
-		</p>
-	</div>
-</div>
 
 <br>
 <div class="title">

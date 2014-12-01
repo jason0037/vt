@@ -2,13 +2,13 @@
 require 'sms'
 require 'securerandom'
 class Patch::ValidationsController < ApplicationController
-	layout 'patch'
-
+	#layout 'patch'
+  layout 'left_cheuks'
 
 
 	before_filter do
 		clear_breadcrumbs
-		add_breadcrumb("我的摩登客",:member_path)
+		add_breadcrumb("我的卓展",:member_path)
 	end
 
 	def show
@@ -80,9 +80,9 @@ class Patch::ValidationsController < ApplicationController
 			if user.email_code == token
 				user.update_attribute :email_code, nil
 				user.update_attribute :email_validate, 'true'
-				render :inline=>"<p>邮箱验证成功</p>", :layout=>"standard"
+				render :inline=>"<p>邮箱验证成功</p>", :layout=>"left_cheuks"
 			else
-				render :inline=>"<p>邮箱验证失败</p>", :layout=>"standard"
+				render :inline=>"<p>邮箱验证失败</p>", :layout=>"left_cheuks"
 			end
 		else
 			redirect_to root_path
