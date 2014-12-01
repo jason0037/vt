@@ -21,6 +21,7 @@ Modengke::Application.routes.draw do
       end
     end
 
+
     resource :technicals  do
       collection do
         get 'index'
@@ -32,6 +33,7 @@ Modengke::Application.routes.draw do
         get 'use_detail'
       end
     end
+
 
     resource :rongdas do
       collection do
@@ -432,7 +434,9 @@ Modengke::Application.routes.draw do
   scope :module => "store" do
 
     get 'search' => "search#index", :as=> :search
+
     get 'mproducts' =>"goods#mproduct", :as=>"goods" ,:controller=>"goods"
+
 
     resources :products, :as=>"goods", :controller=>"goods" do
       # get 'newin',:on=>:collection
@@ -458,6 +462,7 @@ Modengke::Application.routes.draw do
 
 
     resources :cart do
+
       post 'add',:on=>:collection
 
       get 'mobile', :on=>:collection
@@ -500,23 +505,25 @@ Modengke::Application.routes.draw do
         post 'new_manco'
         get 'new_mobile_addr'
         get 'new_manco_addr'
-        post 'ordersnew_manco'
-        get 'ordersnew_manco'
-        get 'departure'
+       get 'departure'
         post 'arrival'
         get 'arrival'
 
 
         get 'mobile_show_order'
+        get 'wuliu_show_order'
         get 'index_mobile'
         get 'share_order'   ###推荐订单
         get 'mobile_show'
+        get 'wuliu_show'    ###万家订单页面
         get 'addr_detail'
         get 'new_mobile_addr'
         post 'edit_addr'
         get 'edit_manco_addr'
         post 'xiugai_addr'
-
+        post 'manco_detail'
+        get 'manco_card'
+        get 'advance'   ##预付款信息
       end
     end
 

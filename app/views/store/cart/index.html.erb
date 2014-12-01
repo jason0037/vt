@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-<style xmlns="http://www.w3.org/1999/html">
+
+<style>
     .good_name{
       overflow:hidden;
       text-overflow:ellipsis;
@@ -13,98 +13,7 @@
     width: 100%;
     background: #ffffff;
     z-index: 1000000;
-=======
-<div id="cart" class="modal clearfix" >
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">我的购物袋</h3>
-      </div>
-      <div class="modal-body">
-        <table class="cart_table">
-          <tr>
-            <th style="text-align: left; padding-left: 16px;">商品名称</th>
-            <th>单价</th>
-            <th>数量</th>
-            <th>金额小计</th>
-            <!-- <th>积分</th> -->
-            <!-- <th>剩余时间</th> -->
-            <th style="width: 100px;">操作</th>
-          </tr>
-          <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
-          <tr id='line_<%=line_item.obj_ident%>'>
-            <td>
-              <div class="product_img">
-                <%#if line_item.good.default_image&&line_item.product.list_pictures.first.blank?%>
-                    <%=link_to good_path(line_item.good.bn),:target=>"_blank" do%>
-                        <%=image_tag line_item.good.medium_pic,:size=>"50x50"%>
-                    <%end%>
-                <%#else%>
-<!--                     <%=link_to good_path(line_item.good.bn),:target=>"_blank" do%>
-                      <%=image_tag line_item.product.list_pictures.first,:size=>"50x50"%>
-                    <%end%> -->
-                <%#end%>
-              </div>
-              <div class="goodinfo">
-                <h3>
-                  <%if line_item.good.default_image&&line_item.product.list_pictures.first.blank?%>
-                    <%=link_to line_item.product.name,"/product-"+line_item.good.goods_id.to_s+".html",:target=>"_blank"%>
-                  <%else%>
-                    <%=link_to line_item.product.name,good_path(line_item.good.bn),:target=>"_blank"%>
-                  <%end%>
-                </h3>
-                <span><%=line_item.product.spec_info%></span>
-                <div class="cus-text">
-                    <%line_item.product.custom_spec_values_of(@user).each_with_index do |cus,idx|%>
-                      <%=idx+1%> : <%=cus%> <br />
-                    <%end%>
-                </div>
-              </div>
-            </td>
-            <td>
-              <% if cookies[:MLV] == "10" %>
-                  ￥<%= format('%.2f',line_item.product.bulk)%>
-              <%else%>
-                  ￥<%= format('%.2f',line_item.product.price)%>
-              <%end%>
-              <%#if line_item.product.full_custom?%>
-                <!-- (<span class="red">定金</span>) -->
-              <%#end%>
-            </td>
-            <td>
-              <%#if line_item.product.semi_custom?%>
-                <%#=text_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity",:readonly=>true,:title=>"半定制不可直接修改数量"%>
-              <%#else%>
-                <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
-              <%#end%>
-            </td>
-            <td class="line-total">
-              <% if cookies[:MLV] == "10" %>
-                  ￥<%=(line_item.product.bulk*line_item.quantity)%>
-              <%else%>
-                  ￥<%=(line_item.product.price*line_item.quantity)%>
-              <%end%>
-            </td>
-            
-            <!-- <td><span class="left_time">1天5小时30分</span></td> -->
-            <td>
-              <%=link_to "取消收藏",unfav_good_path(line_item.good,:rel=>"line_#{line_item.obj_ident}"),:class=>"favorite",:remote=>true,:method=>:put if line_item.good.favorited_by?(@user)%>
-              <%=link_to "收藏",fav_good_path(line_item.good,:rel=>"line_#{line_item.obj_ident}"),:class=>"favorite",:remote=>true,:method=>:put unless line_item.good.favorited_by?(@user)%>
-              <br />
-              <%=link_to "删除",cart_path(line_item.obj_ident),:class=>"delete",:remote=>true,:method=>:delete%>
-            </td>
-          </tr>
-          <%end if @line_items%>
-        </table>
-      </div>
-      <div class="modal-footer clearfix">
-        <span>总金额 : </span>
-        <span class="total">￥<%= format('%.2f',@cart_total)%></span>
-        <a href="<%=site%>/orders/new" class="black_btn" target="_top">安全结算</a>
 
-        <a href="#" class="continue" data-dismiss="modal" aria-hidden="true">继续购物</a>
-      </div>
-</div>
->>>>>>> ac7a11c99b63f765418f1f482927c49f2ee63e9e
 
 } .panel.callout {
       border-style: solid;
@@ -180,9 +89,13 @@
 
 
 
- <hr>
+
+
+
+       <hr>
 
     <%end%>
+   <br><br> <br><br><br>
    <div class=" clearfix">
      <div class="large-4 medium-4 small-4 columns">
        <div class="callout panel">

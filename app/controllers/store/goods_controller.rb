@@ -7,6 +7,192 @@ class Store::GoodsController < ApplicationController
   skip_before_filter :find_path_seo, :find_cart!, :only=>[:newest]
   before_filter :find_tags, :only=>[:cheuksgroup,:newest]
 
+<<<<<<< HEAD
+=======
+  def manco_cart
+      @line_items.delete_all
+      @manco_title="预付充值"
+    @good = Ecstore::Good.find_by_name(params[:cart_name])
+    @supplier=Ecstore::Supplier.find(params[:supplier_id])
+    render layout: @supplier.layout
+  end
+
+  def show_goodblack
+    @manco_title="货源小黑板"
+     @supplier=Ecstore::Supplier.find_by_id(params[:supplier_id])
+    @good=Ecstore::BlackGood.where(:id=>params[:id])
+   render :layout =>@supplier.layout
+  end
+
+  def manco_express
+    goods_id= params[:goods_id]     ##商品名称
+    @manco_unit_price =params[:manco_unit_price]
+    manco_weight=params[:manco_weight]
+
+    @good=Ecstore::Good.find_by_goods_id(goods_id)
+
+  end
+
+     ###万家小黑板
+  def mancoproduct
+    @manco_title="车源小黑板"
+     @supplier=Ecstore::Supplier.find(params[:supplier_id])
+    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
+
+    return render "not_find_good",:layout=>@supplier.layout unless @good
+
+    @recommend_user = session[:recommend_user]
+
+    if params[:wechatuser]
+      @recommend_user=params[:wechatuser]
+    end
+    if @recommend_user
+      member_id =-1
+      if signed_in?
+        member_id = @user.member_id
+      end
+      now  = Time.now.to_i
+      Ecstore::RecommendLog.new do |rl|
+        rl.wechat_id = @recommend_user
+        rl.goods_id = @good.goods_id
+        rl.member_id = member_id
+        rl.terminal_info = request.env['HTTP_USER_AGENT']
+        #   rl.remote_ip = request.remote_ip
+        rl.access_time = now
+      end.save
+      session[:recommend_user]=@recommend_user
+      session[:recommend_time] =now
+    end
+
+    tag_name = params[:tag]
+    @tag = Ecstore::TagName.find_by_tag_name(tag_name)
+
+    @cat = @good.cat
+
+    @recommend_goods = []
+    if @cat.goods.size >= 4
+      @recommend_goods =  @cat.goods.where("goods_id <> ?", @good.goods_id).order("goods_id desc").limit(4)
+    else
+      @recommend_goods += @cat.goods.where("goods_id <> ?", @good.goods_id).limit(4).to_a
+      @recommend_goods += @cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-@recommend_goods.size] if @cat.parent_cat && @recommend_goods.size < 4
+      @recommend_goods.compact!
+      if @cat.parent_cat.parent_cat && @recommend_goods.size < 4
+        count = @recommend_goods.size
+        @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
+      end
+
+
+
+
+
+      end
+    render :layout => @supplier.layout
+
+
+  end
+
+  def prime_beef
+    @goods_xlhn =  Ecstore::Good.where(:supplier_id=>"110")
+    @goods_agt= Ecstore::Good.where(:supplier_id=>"111")
+
+    @supplier = Ecstore::Supplier.find(params[:supplier_id])
+
+    @recommend_user = session[:recommend_user]
+
+    if @recommend_user==nil &&  params[:wechatuser]
+      @recommend_user = params[:wechatuser]
+    end
+    if @recommend_user
+      member_id =-1
+      if signed_in?
+        member_id = @user.member_id
+      end
+      now  = Time.now.to_i
+      Ecstore::RecommendLog.new do |rl|
+        rl.wechat_id = @recommend_user
+        #  rl.goods_id = @good.goods_id
+        rl.member_id = member_id
+        rl.terminal_info = request.env['HTTP_USER_AGENT']
+        #   rl.remote_ip = request.remote_ip
+        rl.access_time = now
+      end.save
+      session[:recommend_user]=@recommend_user
+      session[:recommend_time] =now
+    end
+
+    render :layout=>@supplier.layout
+  end
+
+  def world_food
+    @goods =  Ecstore::Good.where(:supplier_id=>"77")
+    if params[:cat_id]
+      @goods =  Ecstore::Good.where(:supplier_id=>"77",:cat_id=>params[:cat_id])
+    end
+    @supplier = Ecstore::Supplier.find(params[:supplier_id])
+
+    @recommend_user = session[:recommend_user]
+
+    if @recommend_user==nil &&  params[:wechatuser]
+      @recommend_user = params[:wechatuser]
+    end
+    if @recommend_user
+      member_id =-1
+      if signed_in?
+        member_id = @user.member_id
+      end
+      now  = Time.now.to_i
+      Ecstore::RecommendLog.new do |rl|
+        rl.wechat_id = @recommend_user
+        #  rl.goods_id = @good.goods_id
+        rl.member_id = member_id
+        rl.terminal_info = request.env['HTTP_USER_AGENT']
+        #   rl.remote_ip = request.remote_ip
+        rl.access_time = now
+      end.save
+      session[:recommend_user]=@recommend_user
+      session[:recommend_time] =now
+    end
+
+    render :layout=>@supplier.layout
+  end
+
+
+
+  def quality_products
+    @supplier = Ecstore::Supplier.find(params[:supplier_id])
+    @goods_zmq =  Ecstore::Good.where(:supplier_id=>"104")
+   @goods_tiegun=Ecstore::Good.where(:supplier_id=>"106")
+   @goods_cmcyz=Ecstore::Good.where(:supplier_id=>"105")
+  @goods_dmdm =Ecstore::Good.where(:supplier_id=>"108")
+   @goods_tsdzx=Ecstore::Good.where(:supplier_id=>"87")
+    @recommend_user = session[:recommend_user]
+
+    if @recommend_user==nil &&  params[:wechatuser]
+      @recommend_user = params[:wechatuser]
+    end
+    if @recommend_user
+      member_id =-1
+      if signed_in?
+        member_id = @user.member_id
+      end
+      now  = Time.now.to_i
+      Ecstore::RecommendLog.new do |rl|
+        rl.wechat_id = @recommend_user
+        #  rl.goods_id = @good.goods_id
+        rl.member_id = member_id
+        rl.terminal_info = request.env['HTTP_USER_AGENT']
+        #   rl.remote_ip = request.remote_ip
+        rl.access_time = now
+      end.save
+      session[:recommend_user]=@recommend_user
+      session[:recommend_time] =now
+    end
+
+    render :layout=>@supplier.layout
+  end
+
+
+>>>>>>> ac7a11c99b63f765418f1f482927c49f2ee63e9e
 
 
  def mproduct
