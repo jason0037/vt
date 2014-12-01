@@ -30,11 +30,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 
 end
-<<<<<<< HEAD
+
  gem "iconv"
-=======
-  gem 'iconv'
->>>>>>> ac7a11c99b63f765418f1f482927c49f2ee63e9e
+
 gem  'sitemap_generator'
 
 gem 'jquery-rails',  '~> 2.1.4'
