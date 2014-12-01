@@ -25,9 +25,16 @@
             <div class="row">
                 <div class="columns large-12 panel">                   
                     <div class="wrapper">
+                      <% if @user%>
+                          <label>欢迎您<%=@user.login_name%>&nbsp;|&nbsp;退出登录</label>
+                         <a href="#"  class="inside">欢迎您<%=@user.login_name%></a>
+                         <a   class="inside"href="/logout?platform=/vshop" >退出登录</a>
+                      <%else%>
+
                       <label>立刻登录&nbsp;|&nbsp;免费注册</label>
                       <a href="#" class="inside" data-reveal-id="login_iframe">登录</a>
                       <a href="#" class="inside" data-reveal-id="register_iframe">注册</a>
+                          <%end%>
                     </div>
                     <img src="img/cheuks_chengnuo_icon.png" style="width:100%">
                   </div>

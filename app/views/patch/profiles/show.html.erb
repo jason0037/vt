@@ -1,26 +1,23 @@
+<HR>
+<div class="large-10 medium-9 columns">
+  <ul class="tabs" data-tab="" role="tablist">
+    <li class="tab-title active" role="presentational"><a href="#basic" role="tab" tabindex="0" aria-selected="true" controls="basic">基本信息</a></li>
+    <li class="tab-title" role="presentational"><a href="#details" role="tab" tabindex="-1" aria-selected="false" controls="details">详细资料</a></li>
+    <!--<li class="tab-title" role="presentational"><a href="#interest" role="tab" tabindex="-1" aria-selected="false" controls="interest">个人偏好</a></li>-->
+     </ul>
 
-	<ul class="nav nav-tabs">
-		<li class='<%="active" if @tab == "basic"%>'>
-			<a href="#basic" data-toggle="tab">基本信息</a>
-		</li>
-		<li class='<%="active" if @tab == "details"%>'>
-			<a href="#details" data-toggle="tab">详细资料</a>
-		</li>
-		<!-- <li class='<%="active" if @tab == "interest"%>'>
-			<a href="#interest" data-toggle="tab">个人偏好</a>
-		</li> -->
-	</ul>
 
-	<div class="tab-content">
-		<div class="tab-pane <%='active' if @tab == 'basic'%> " id="basic">
-	                <%=render "patch/profiles/show/basic"%>
-	      </div>
+  <div class="tabs-content">
+    <section role="tabpanel" aria-hidden="false" class="content active" id="basic">
+      <%=render "patch/profiles/show/basic"%>
+       </section>
+    <section role="tabpanel" aria-hidden="true" class="content" id="details" tabindex="-1">
+      <%=render "patch/profiles/show/details"%>
+      </section>
+    <section role="tabpanel" aria-hidden="true" class="content" id="interest" tabindex="-1">
+      <%=render "patch/profiles/show/interest"%>   </section>
 
-	      <div class="tab-pane <%='active' if @tab == 'details'%>" id="details">
-	                <%=render "patch/profiles/show/details"%>
-	      </div>
+  </div>
+    </div>
 
-	      <div class="tab-pane <%='active' if @tab == 'interest'%>" id="interest">
-	                <%=render "patch/profiles/show/interest"%>
-	      </div>
-	</div>
+

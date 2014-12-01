@@ -8,11 +8,13 @@
     }
 
 </style>
+<%unless @supplier.id==98%>
 <div class="am-panel am-panel-warning" style="text-align: center">
   <div class="am-panel-hd"><%= I18n.t "commission_account"%></div>
 
 </div>
-
+      <%else%>
+    <hr><%end%>
 <%=form_for @user,:url=>profile_path,:method=>:put,:html=>{:id=>"basic_form",:class=>"am-form",:supplier=>"#{@supplier.id}"} do |f|%>
 
 

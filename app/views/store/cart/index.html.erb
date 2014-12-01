@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+<style xmlns="http://www.w3.org/1999/html">
+    .good_name{
+      overflow:hidden;
+      text-overflow:ellipsis;
+      -o-text-overflow:ellipsis;
+      white-space:nowrap;
+      width:100%;
+  }
+.clearfix{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #ffffff;
+    z-index: 1000000;
+=======
 <div id="cart" class="modal clearfix" >
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -84,10 +100,116 @@
         <span>总金额 : </span>
         <span class="total">￥<%= format('%.2f',@cart_total)%></span>
         <a href="<%=site%>/orders/new" class="black_btn" target="_top">安全结算</a>
+
         <a href="#" class="continue" data-dismiss="modal" aria-hidden="true">继续购物</a>
       </div>
 </div>
+>>>>>>> ac7a11c99b63f765418f1f482927c49f2ee63e9e
 
+} .panel.callout {
+      border-style: solid;
+      border-width: 1px;
+      text-align: center;
+      margin-bottom: 1.25rem;
+      padding: 1.25rem;
+
+      color: #333333;
+  }
+  .total{
+      color: red;
+  }
+
+  .favorite ,.delete,.good_price{
+      float: right;
+     }
+        .good_price{
+            color: #ff0000;
+            font-size: 18px;
+        }
+
+</style>
+<link href="/assets/standard.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<script src="/assets/standard.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+
+<script src="/assets/standard.js?body=1" type="text/javascript"></script>
+ <div id="cart" >
+   <div style=" background: #ffb1ae;">
+   <h2 style="color: #ffffff;text-align: center">购物车<a style="float: right"  href="#" class="close" data-dismiss="modal" aria-hidden="true">×</a></h2>
+
+   <hr>
+   </div>
+    <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
+
+          <%#=link_to good_path(line_item.good.bn),:target=>"_blank" do%>
+              <%#=image_tag line_item.good.medium_pic%>
+          <%#end%>
+ <div class="large-4 medium-4 small-4 columns" style="width:26%">
+
+             <a href="/products/a013530" target="_blank" >
+               <img alt="A013530_m"src="http://weishop.cheuks.com/images/a01/a014069_m.jpg" style="width:50%">
+             </a>
+
+         </div>
+         <div class="large-4 medium-4 small-4 columns" >
+           <div class="good_name">
+         <a class="good_name"><%=line_item.product.name%></a>
+
+            </div>
+             <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
+
+
+         </div>
+         <div class="large-4 medium-4 small-4 columns" style="float: right">
+
+             <p  > <%=link_to "取消收藏",unfav_good_path(line_item.good,:rel=>"line_#{line_item.obj_ident}"),:class=>"favorite",:remote=>true,:method=>:put if line_item.good.favorited_by?(@user)%>
+               <%=link_to "收藏",fav_good_path(line_item.good,:rel=>"line_#{line_item.obj_ident}"),:class=>"favorite",:remote=>true,:method=>:put unless line_item.good.favorited_by?(@user)%>
+               <br />
+               <%=link_to "删除",cart_path(line_item.obj_ident),:class=>"delete",:remote=>true,:method=>:delete%>
+               <br>
+               <% if cookies[:MLV] == "10" %>
+             <span class="good_price"><%= format('%.2f',line_item.product.bulk)%></span>
+           <%else%>
+               <span class="good_price">￥<%= format('%.2f',line_item.product.price)%></span>
+           <%end%>
+             </p>
+
+
+         </div>
+
+
+
+ <hr>
+
+    <%end%>
+   <div class=" clearfix">
+     <div class="large-4 medium-4 small-4 columns">
+       <div class="callout panel">
+       <span class="total">￥<%= format('%.2f',@cart_total)%></span>
+       </div>
+     </div>
+     <div class="large-4 medium-4 small-4 columns">
+       <div class="callout panel">
+         <a href="<%=site%>/orders/new" class="black_btn" target="_top">安全结算</a>
+       </div>
+     </div>
+     <div class="large-4 medium-4 small-4 columns">
+       <div class="callout panel">
+         <a href="#" class="close"  data-dismiss="modal" aria-hidden="true ">继续购物</a>
+       </div>
+     </div>
+   </div>
+ </div>
+
+
+<!--<div class="modal-footer clearfix">-->
+  <!--<span>总金额 : </span>-->
+  <!--<span class="total">￥<%= format('%.2f',@cart_total)%></span>-->
+  <!--<a href="<%=site%>/orders/new" class="black_btn" target="_top">安全结算</a>-->
+  <!--<a href="#" class="continue" data-dismiss="modal" aria-hidden="true">继续购物</a>-->
+<!--</div>-->
+ <!--<div id="backToTop" title="返回顶部" style="display: block;"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>-->
 <script type="text/javascript">
       $(window.parent.document).find(".cart-number").text("(<%=@cart_total_quantity%>)");
 </script>

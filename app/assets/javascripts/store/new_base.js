@@ -255,7 +255,7 @@ $(document).ready(function(){
      //    return false;
      //  }
 
-    if($(this).hasClass("login")) return false;
+
     $(".size_helper, .semi_custom").popover('hide');
     $(this).closest("form").submit();
 

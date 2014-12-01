@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def new
     @account = Ecstore::Account.new
   end
+
   
 
   
@@ -32,6 +33,9 @@ class UsersController < ApplicationController
       sign_in(@account)
       @return_url=params[:return_url]
      redirect_to "/"
+
+
+
     else
       render "error"
     end

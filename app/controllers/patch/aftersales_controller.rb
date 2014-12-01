@@ -1,10 +1,10 @@
 #encoding:utf-8
 class Patch::AftersalesController < ApplicationController
-	layout 'patch'
-	
+	#layout 'patch'
+  layout 'left_cheuks'
 	before_filter do
 		clear_breadcrumbs
-		add_breadcrumb("我的贸威",:member_path)
+		add_breadcrumb("我的卓展",:member_path)
 	end
 
 	def index
@@ -21,10 +21,10 @@ class Patch::AftersalesController < ApplicationController
 		add_breadcrumb("申请售后服务")
 		@order =  @user.orders.find_by_order_id(params[:order_id])
 		unless @order
-			return render(:inline=>"<p>找不到订单<p>",:layout=>"patch",:status=>:forbidden)
+			return render(:inline=>"<p>找不到订单<p>",:layout=>"left_cheuks",:status=>:forbidden)
 		end
 		if @order.aftersale
-			return render(:inline=>"<p>无法申请售后服务<p>",:layout=>"patch",:status=>:forbidden)
+			return render(:inline=>"<p>无法申请售后服务<p>",:layout=>"left_cheuks",:status=>:forbidden)
 		end
 		@aftersale = Ecstore::Aftersale.new
 	end
@@ -41,7 +41,7 @@ class Patch::AftersalesController < ApplicationController
 		params[:aftersale].merge!(:add_time=>Time.now.to_i)
 		@aftersale = Ecstore::Aftersale.new(params[:aftersale])
 		if @aftersale.save
-			render :text=>"售后服务申请已发送！", :layout=>"patch"
+			render :text=>"售后服务申请已发送！", :layout=>"left_cheuks"
 		else
 			@order =  Ecstore::Order.find_by_order_id(@aftersale.order_id)
 			render :new

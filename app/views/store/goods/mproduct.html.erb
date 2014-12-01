@@ -22,7 +22,7 @@
     <%if @cat.parent_id==558 %>
         <div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
 
-          <div class="am-panel-hd" style="text-align: center"><%= I18n.t "h4_1"%><br><%= I18n.t "h4_2"%> </span>
+          <div class="am-panel-hd" style="text-align: center"><%= I18n.t "h4_1"%></span>
           </div>
     <%end%> <%end%>
 <div data-am-widget="slider" class="am-slider am-slider-default am-no-layout" data-am-slider="{&quot;animation&quot;:&quot;slide&quot;,&quot;slideshow&quot;:false}">
@@ -61,36 +61,7 @@
   <!--</div>-->
 </div>
 
-<div class="am-panel am-panel-default">
-  <div class="am-panel-hd">
-    <h4 class="am-panel-title" >
-      <%=I18n.t 'commission'%> :<span style="float: right;color: red">¥<%=format('%.2f',@good.share*@good.default_product.price) %> </span>
-    </h4>
-  </div>
 
-  <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">
-    <div class="am-panel-bd">
-      <%= I18n.t "what_commission"%>
-      <span class="icon-arr"></span>
-
-    </div>  </a>
-
-  <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">
-    <div class="am-panel-bd">
-      <%= I18n.t "earn_commission"%>
-      <span class="icon-arr"></span>
-
-    </div>    </a>
-  <a href="/pages/yongjin?supplier_id=<%=@supplier.id%>">
-    <div class="am-panel-bd">
-      <%= I18n.t "get_commission"%>
-      <span class="icon-arr"></span>
-
-    </div> </a>
-</div>
-</div>
-
-</div>
 
 
 <div class="am-panel-group" id="accordion">
@@ -124,7 +95,7 @@
           <%=f.hidden_field :type_id,:value=>@good.type_id%>
           <%=hidden_field_tag :supplier_id, @supplier.id%>
 
-          <%=hidden_field_tag :platform,'mobile'%>
+          <%=hidden_field_tag :platform,"mobile"%>
           <%=hidden_field_tag :return_url,{:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
 
           <%if @good.specs.present?%>
@@ -173,10 +144,7 @@
 </div>
 
 
-<div class="space20"></div>
 
-<%= javascript_include_tag "mobile/swipe.min" %>
-<div class="space20"></div>
 
 <script type="text/javascript">
 

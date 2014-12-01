@@ -55,9 +55,9 @@
           <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
             <div class="am-panel-hd"><%= I18n.t "pay_options"%></div>
             <div class="am-panel-bd">
-              <%if @user.advance>0 && @user.advance < @cart_total%>
+              <%if @user.advance>0 && @user.advance > @cart_total%>
                   <label class="radio active" style="margin-left: 40px;padding: 2px">
-                    <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>>
+                    <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>
               <%end%>
               <label class="radio active" style="margin-left: 40px;padding: 2px">
                 <%=f.radio_button :payment, "alipaywap" %><%= I18n.t "alipay_mobile"%>

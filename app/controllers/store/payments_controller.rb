@@ -130,6 +130,37 @@ class Store::PaymentsController < ApplicationController
 			if result.delete(:payment_id) == @payment.payment_id.to_s && !@payment.paid?
 				@payment.update_attributes(result)
 				@order.update_attributes(:pay_status=>'1')
+
+
+        member_id=@order.member_id
+        @member = Ecstore::Member.find(member_id)
+        @users = Ecstore::User.find(member_id)
+
+          advance=@member.advance-@order.final_pay
+
+        @member.update_attribute(:advance,advance)
+        advances =  @users.member_advances.order("log_id asc").last
+        if advances
+          shop_advance = advances.shop_advance
+        else
+          shop_advance =@member.advance
+        end
+        shop_advance += @order.final_pay
+
+        Ecstore::MemberAdvance.create(:member_id=>member_id,
+                                      :money=>@order.final_pay,
+                                      :message=>"预充值消费:#{@order.final_pay}",
+                                      :mtime=>Time.now.to_i,
+                                      :memo=>"用户本人操作",
+                                      :order_id=>@order.order_id,
+                                      :import_money=>0,
+                                      :explode_money=>@order.final_pay,
+                                      :member_advance=>(advance),
+                                      :shop_advance=>shop_advance,
+                                      :disabled=>'false')
+
+
+
 				Ecstore::OrderLog.new do |order_log|
 					order_log.rel_id = @order.order_id
 					order_log.op_id = @user.member_id
@@ -145,7 +176,11 @@ class Store::PaymentsController < ApplicationController
 		end
 		
 		#redirect_to detail_order_path(@payment.pay_bill.order)
-    redirect_to  "/orders/norsh_show_order?id=#{@payment.pay_bill.order.order_id}"
+    if @order.supplier_id==98
+      redirect_to  "/orders/wuliu_show_order?id=#{@payment.pay_bill.order.order_id}&supplier_id=#{@order.supplier_id}"
+    else
+    redirect_to  "/orders/mobile_show_order?id=#{@payment.pay_bill.order.order_id}&supplier_id=#{@order.supplier_id}"
+      end
 	end
 
 	def test_notify

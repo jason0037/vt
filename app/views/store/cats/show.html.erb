@@ -1,16 +1,18 @@
 <%=render "shared/metable", :resource=>@cat%>
 
 <%=content_for :head do%>
-	<%= stylesheet_link_tag "store/cats" %>
-	<%= javascript_include_tag "store/tree_menu" %>
+    <%= stylesheet_link_tag "store/cats" %>
+    <%= javascript_include_tag "store/tree_menu" %>
 <%end%>
 <%=render "store/shared/cat_position"%>
 
-<div class="row" >    
-    <div class="large-2 medium-3 columns show-for-medium-up category-nav">
-		<%=render "store/goods/tree_menu"%>
-	</div>
-	<div class="large-10 medium-9 columns">
-		<%=render "store/goods/list_goods"%>
-	</div>
+<div class="row" >
+  <div class="large-2 medium-3 columns show-for-medium-up category-nav">
+    <%=render "store/goods/tree_menu"%>
+  </div>
+
+  <div class="large-10 medium-9 columns">
+    <%=render "store/goods/list_goods"%>
+
+  </div>
 </div>

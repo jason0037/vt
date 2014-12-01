@@ -90,8 +90,10 @@ class SessionsController < ApplicationController
       @account = Ecstore::Account.user_authenticate(params[:session][:username],params[:session][:password])
     end
 
+
     if @account
   #   return render js: "$('#login_msg').text('#{@account.login_name}').addClass('error').fadeOut(300).fadeIn(300);"
+
   		sign_in(@account,params[:remember_me])
       if params[:return_url]
          
@@ -126,6 +128,7 @@ class SessionsController < ApplicationController
 
       elsif params[:platform]=="vshop"
            redirect_to "/vshop"
+
      
       elsif params[:return_url]
           redirect_to  params[:return_url]

@@ -45,7 +45,19 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url1="http://vshop.trade-v.com/images/a0#{id}/homepage/logo.jpg"
         link_url1="http://vshop.trade-v.com/pages/#{@weixin_public_account.url}_aboutus"
 
-        articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
+
+        if id==98
+          title2="技术支持--贸威O2O微信直销商城"
+          desc2 =""
+          pic_url2="http://vshop.trade-v.com/images/a078/homepage/logo.jpg"
+          link_url2="http://vshop.trade-v.com/world_food?supplier_id=78"
+          articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1),generate_article(title2, desc2, pic_url2, link_url2)]
+
+        else
+          articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
+
+
+        end
 
       when '买'
         title="[测试商品]-----------------"
@@ -55,7 +67,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         articles = [generate_article(title, desc, pic_url, link_url)]
 
       when 'on_sale'
-        title="法兰克福香肠350克/ Frankfurter Sausages 350g仅售¥40元"
+        title="法兰克福香肠350克/ Frankfurter Sausages 350g仅售¥44元"
         desc =""
         pic_url="http://vshop.trade-v.com/images/a077/a0771030_m.jpg"
         link_url="http://vshop.trade-v.com/mproducts?id=a0771030&from=weixin&wechatuser=#{user}&supplier_id=#{id}"

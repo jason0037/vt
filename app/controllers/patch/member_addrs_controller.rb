@@ -1,11 +1,12 @@
 #encoding:utf-8
 class Patch::MemberAddrsController < ApplicationController
   # layout 'standard'
-  layout "patch"
+  #layout "patch"
+  layout 'left_cheuks'
 
   before_filter do
     clear_breadcrumbs
-    add_breadcrumb("我的贸威",:member_path)
+    add_breadcrumb("我的卓展",:member_path)
   end
 
   def new
@@ -63,6 +64,7 @@ end
   end
 
   def create
+
     @addr = Ecstore::MemberAddr.new params[:addr].merge!(:member_id=>@user.member_id)
 
     return_url= params[:return_url]
@@ -117,6 +119,7 @@ end
 
   end
   def _form_manco_second
+    @manco_title="新增卸货地址"
     session[:depars]=params[:member_departure_id]  ##有寄货地址 没收货地址的
     @addr = Ecstore::MemberAddr.new
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
@@ -125,7 +128,8 @@ end
     render :layout => @supplier.layout
   end
   def addship
-
+   @platform=params[:platform]
+   return_url=params[:return_url]
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @addr = Ecstore::MemberAddr.new params[:addr].merge!(:member_id=>@user.member_id)
 
@@ -133,11 +137,14 @@ end
       @arrid=@addr.addr_id
 
       session[:arri]=@arrid
-      redirect_to "/orders/ordersnew_manco?supplier_id=#{@supplier.id}"
+      if return_url
+        redirect_to return_url
 
-    else
-      redirect_to "/member_addrs/_form_manco_second?supplier_id=#{@supplier.id}"
-  end
+      else  redirect_to "/orders/new_manco?supplier_id=#{@supplier.id}&platform=#{@platform}"
+     end
+    else redirect_to "/member_addrs/_form_manco_second?supplier_id=#{@supplier.id}&platform=#{@platform}"
+
+   end
     end
 
 end

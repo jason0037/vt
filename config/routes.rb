@@ -3,128 +3,69 @@ require 'httpclient'
 Modengke::Application.routes.draw do
 
 
-
-
-
   get "rongda/index"
 
 
- scope :module => "cheuksgroup" do
- resource :cheuks do
-   collection do
-    get 'index'
-    get 'serach'
-    get 'news'
-     get 'new_detail'
-     get 'cheuks_goods'
-     get 'content'
-     get 'map'
-     get 'industry_trends'
-     get 'industry_detail'
-   end
- end
+  scope :module => "cheuksgroup" do
+    resource :cheuks do
+      collection do
+        get 'index'
+        get 'serach'
+        get 'news'
+        get 'new_detail'
+        get 'cheuks_goods'
+        get 'content'
+        get 'map'
+        get 'industry_trends'
+        get 'industry_detail'
+      end
+    end
 
-   resource :technicals  do
-     collection do
-       get 'index'
-       get 'product_standards'
-       get 'product_detail'
-       get 'failure_analysis'
-       get 'failure_detail'
-       get 'use_experience'
-       get 'use_detail'
-   end
-   end
+    resource :technicals  do
+      collection do
+        get 'index'
+        get 'product_standards'
+        get 'product_detail'
+        get 'failure_analysis'
+        get 'failure_detail'
+        get 'use_experience'
+        get 'use_detail'
+      end
+    end
 
- resource :rongdas do
-   collection do
-     get 'index'
-     get 'rongda'
-     get 'rongda_goods'
-     get 'goods_detail'
-     get 'order_rongda'
-   end
- end
+    resource :rongdas do
+      collection do
+        get 'index'
+        get 'rongda'
+        get 'rongda_goods'
+        get 'goods_detail'
+        get 'order_rongda'
+      end
+    end
 
- resource :services  do
-   collection do
-     get 'index'
-     get 'services_center'
-     get 'services_detail'
+    resource :services  do
+      collection do
+        get 'index'
+        get 'services_center'
+        get 'services_detail'
 
-   end
-   end
- end
-
-resources :commissions do
-  collection do
-   get  'platform'
-   get 'bank_info'
+      end
+    end
   end
 
-  member do
-    get 'paid'
-  end
-end
+  resources :commissions do
+    collection do
+      get  'platform'
+      get 'bank_info'
+    end
 
-  ####万家物流
-  resources :manco do
-    #万家主页面
-    get 'manco_comment'  ,:on=>:collection
-    get   'index'  ,:on=>:collection
-    get 'map' ,:on=>:collection
-    get  'main' ,:on=>:collection    ###万家介绍
-    get  'history' ,:on=>:collection  ####万家历史
-    post 'blackboardfind_e',:on=>:collection  ###小黑板中查询运价
-    get  'user'   ,:on=>:collection
-    #万家快递页面
-
-     get 'find_manco',:on=>:collection
-    get "black_index"  ,:on=>:collection   ##小黑版首页
-    get "express"  ,:on=>:collection
-    post "serach"  ,:on=>:collection
-    get "blackbord",:on=>:collection
-    post "blackbord_add" ,:on=>:collection
-    get "follow",:on=>:collection    ###快递跟踪
-    get 'user',:on=>:collection
-    get 'good_source', :on=>:collection  ###货源信息
-    post 'blackgood_add',:on=>:collection
-    get 'black_good_index' ,:on=>:collection
-    get 'show_carblack',:on=>:collection
-    get 'departure' ,:on=>:collection
-    post 'departure_edit',:on=>:collection
-    post 'edit_addr',:on=>:collection
-    get 'departure_new',:on=>:collection
-    post 'creat_addr',:on=>:collection
+    member do
+      get 'paid'
+    end
   end
 
 
 
-  resources :tairyo do                   # #大渔饭店
-    get   'index'  ,:on=>:collection
-    get   'group'  ,:on=>:collection
-    get   'tuangouxiang'  ,:on=>:collection
-    get   'comment'  ,:on=>:collection
-    get   'tese'  ,:on=>:collection
-    get   'user'  ,:on=>:collection
-    get   'map'  ,:on=>:collection
-    get 'tairyo_comment' ,:on=>:collection
-    get 'showorder' ,:on=>:collection
-  end
-
-
-  post 'users/tairyo' =>"users#tairyo_user" ,:controller=>"users"
-
-  #    #优惠卷
-  get 'coupon'=>"coupon#index" ,:controller=>"coupons"
-  get  'coupon/lingqu'=>"coupon#lingqu",:controller=>"coupons"
-
-  #        #评论+优惠卷
-  get 'comment_t'=>"comments#tairyo_comment",:controller=>"comments"
-  post 'comment'=>"comments#tairyo",:controller=>"comments"
-
-  get 'mycoupon'=>"coupon#mycoupon",  :controller=>"coupons"
-  #    #特色
 
 
   mount WeixinRailsMiddleware::Engine, at: "/"
@@ -179,7 +120,7 @@ end
       get :category
       get :commodity
       get :order
-     # post :payments
+      # post :payments
       get :payments
       get :native
       post :paynotifyurl
@@ -350,6 +291,8 @@ end
       get 'select_gifts',:on=>:collection
       put 'batch',:on=>:collection
       get 'select_all',:on=>:collection
+      get 'cate_temp_download', :on=>:collection
+      get 'goods_cate_specs', :on=>:collection
 
       get :toggle_future,:on=>:member
       get :toggle_agent,:on=>:member
@@ -490,7 +433,7 @@ end
 
     get 'search' => "search#index", :as=> :search
     get 'mproducts' =>"goods#mproduct", :as=>"goods" ,:controller=>"goods"
-  
+
     resources :products, :as=>"goods", :controller=>"goods" do
       # get 'newin',:on=>:collection
       get 'newest',:on=>:collection
@@ -511,16 +454,14 @@ end
 
     resources :vgoods, :controller=>"virtual_goods",:only=>[:index,:show]
     post 'cart/add'=>"cart#add",:as=>:add_to_cart
-    post 'cart/manco_add'=>"cart#manco_add" ,:as=>:add_to_cart
-    post 'cart/tairyoall_add'=>"cart#tairyoall_add" ,:as=>:add_to_cart
 
-    post 'cart/mancoexpress_add'=>"cart#mancoexpress_add",:as=>:add_to_cart
+
 
     resources :cart do
       post 'add',:on=>:collection
-      get 'show_tairyo',:on=>:collection   ###直接下单购物车
+
       get 'mobile', :on=>:collection
-      get 'manco_black_buy',:on=>:collection
+
     end
     resources :brands,:only=>[:index,:show]
     resources :users
@@ -550,7 +491,7 @@ end
       end
 
       collection do
-        get 'goodblack'       ###货源小黑板
+
         post 'destroyaddr'
         get 'check_coupon'
         get  'new_mobile'
@@ -564,8 +505,8 @@ end
         get 'departure'
         post 'arrival'
         get 'arrival'
-        get 'mancoder_show'   ###显示万家当前用户的所有订单
-        get 'tairyo_order'
+
+
         get 'mobile_show_order'
         get 'index_mobile'
         get 'share_order'   ###推荐订单
@@ -658,10 +599,9 @@ end
     end
 
     resources :member_addrs do
-         get "mobile"  ,:on=>:collection
-        get 'new_memberaddr_add' ,:on=>:collection
-      get '_form_manco_second' ,:on=>:collection
-      post 'addship' ,:on=>:collection
+      get "mobile"  ,:on=>:collection
+      get 'new_memberaddr_add' ,:on=>:collection
+
     end
     resources :aftersales do
       get 'instruction', :on=>:collection

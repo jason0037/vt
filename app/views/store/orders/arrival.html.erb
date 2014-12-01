@@ -1,89 +1,74 @@
 <style type="text/css">
-    .form-sure{
-        float: right;
+
+    .bottomdivsclearfix{
+        display: none;
     }
-
-    .href{
-        text-align: center;
-        padding: 10px;
-    }
-    #ahref{
-        font-size: 20px;
-        color: red;
+    </style>
 
 
-    }
 
-</style>
-<header id="am-topbar am-topbar-inverse">
 
-  <div class="am-panel am-panel-default">
-    <div class="am-panel-hd"style="text-align: center">收货人地址</div>
 
-  </div>
-
-</header>
-<% if @addrss.nil?%>
-<div class="href">
-<a id="ahref" class="am-btn am-btn-default" href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>&supplier_id=<%=@supplier.id%>" >新增收货人地址 </a>
-
-         </div>
-     <%end%>
-  <%= form_for :order, :url=>"ordersnew_manco",:method=>"POST",:html => {:class => "am-form"} do |f| %>
+  <%= form_for :order, :url=>@action_url,:method=>"POST",:html => {:class => "am-form"} do |f| %>
      <input type="hidden" name="supplier_id" value="<%=@supplier.id %>">
     <input type="hidden" name="platform"value="<%=@platform%>">
     <%=hidden_field_tag "member_departure_id" , @member_departure_id %>
-    <table class="am-table am-table-striped am-table-hover">
-      <tr>
-        <td>&nbsp;</td>
-        <td >姓名</td>
-        <td >手机</td>
-        <td >详细地址</td>
-        <td>删除</td>
-      </tr>
+
+      <ul class="am-list am-list-striped ">
+
+        <%if @addrss.size>0%>
+            <%@addrss.each do |def_addr|%>
+                <li style="padding: 15px" class="li_addr">
+                  <%=radio_button_tag "member_arrival_id",def_addr.addr_id ,:checked=>true ,:class=>"am-badge-danger"%>
+                  <span >&nbsp;&nbsp;<%=def_addr.name%>  <span  style="margin-left: 30px"> <%=def_addr.mobile%></span></span>
+                  <br/>
+
+                  <span >&nbsp;&nbsp;<%=def_addr.addr%></span>
+                  <span class="am-badge am-badge-danger delete" style="cursor:pointer " >删除</span>
+
+                </li>
 
 
-          <%@addrss.each do |def_addr|%>
-              <tr>
-                <td> <%=radio_button_tag "member_arrival_id",def_addr.addr_id ,:checked=>true%></td>
-                <td ><%=def_addr.name%></td>
-                <td ><%=def_addr.mobile%></td>
-                <td ><%=def_addr.addr%></td>
-                <td><input type="button"   data-url="/orders/destroyaddr?supplier_id=<%=@supplier.id%>" value="删除" class="am-btn am-btn-primary delete "></td>
-              </tr>
+            <% end %>
 
-          <% end %>
+      <%end%>
 
+      </ul>
+    <div class="bottomdiv clearfix"  >
+      <%if @addrss.size>0%>
+      <a id="ahref" class="am-btn am-btn-success" style="width:50%;float: left" href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>&supplier_id=<%=@supplier.id%>&platform=<%=params[:platform]%>" title="">新增卸货人地址 </a>
 
+      <input type="submit" class="  am-btn am-btn-primary  " style=" width:50%;float: right" value="确认选择" >
+      <% else %>
+       <a id="ahref" class="am-btn am-btn-success am-btn-block " href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>&supplier_id=<%=@supplier.id%>&platform=<%=params[:platform]%>" title="">新增卸货人地址 </a>
+      <%end%>
+              </div>
 
-    </table>
-    <% unless @addrss[0].nil?%>
-        <input type="submit" class="am-btn am-btn-primary am-btn-block form-sure" value="确认" >
-    <%else%>
-        <div class="href">
-          <a id="ahref" class="am-btn am-btn-default" href="/member_addrs/_form_manco_second?member_departure_id=<%=@member_departure_id%>&supplier_id=<%=@supplier.id%>" >新增收货人地址 </a>
-
-        </div>
-
-
-        <%end%>
-<%end%>
+    <%end%>
 
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
 <script type="application/javascript">
   $(document).ready(function(){
       $(".delete").bind("click",function(){
-       var addr_idsss=   $(this).parent("td").siblings("td").eq(0).children("input[type='radio']").val();
-          var thisTr =  $(this);
-        $.ajax( {
-               url: "/orders/destroyaddr?supplier_id=#{<%@supplier.id%>}",
-              type: "post",
-              data:{addr_idsss:addr_idsss },
-              success:function(res){
-                  thisTr.parents("td").parents("tr").remove();
+          var r=confirm("确认删除？")
+          if (r==true) {
+              var addr_idsss = $(this).parent("li").children("input[type='radio']").val();
+              var thisTr = $(this);
+              $.ajax({
+                  url: "/orders/destroyaddr?supplier_id=#{<%@supplier.id%>}",
+                  type: "post",
+                  data: {addr_idsss: addr_idsss },
+                  success: function (res) {
+                      thisTr.parents("li").remove();
+                      $("input[type='submit']").remove();
+                      $(".am-btn-success").css("width","100%");
+                  }
+              });
+          }
 
-              }
-      });
+      })
+      $(".li_addr").bind("click",function(){
+          $(this).children("input[type='radio']").attr("checked",'true');
 
       })
 

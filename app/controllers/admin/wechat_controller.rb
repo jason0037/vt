@@ -23,6 +23,8 @@ module Admin
          response = $client.create_menu(@supplier.menu)
         #response = $client.menu
         render :text=> response.cn_msg
+      else
+        render :text=>"client valid error"
       end
     end
 

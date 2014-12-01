@@ -6,7 +6,8 @@
 <table class="table table-bordered table-striped table-hover">
 	<thead>
 		<tr>
-			<th>实体商品</th>
+			<th>分类ID</th>
+			<th>分类编码</th>
 			<th>类型名称</th>
 			<th>操作</th>
 		</tr>
@@ -14,7 +15,8 @@
 	<tbody>
 		<%@types.each do |type|%>
 			<tr>
-				<td><%=type.is_physical_value%></td>
+				<td><%=type.goods_cat_id%></td>
+				<td><%=type.goods_cat_code%></td>
 				<td><%=type.name%></td>
 				<td>
 					<%= link_to '编辑', edit_admin_goods_type_path(type) %>

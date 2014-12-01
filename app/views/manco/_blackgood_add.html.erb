@@ -1,7 +1,0 @@
-
-<%@good.each do |go|%>
-    <li >
-      <a href="/show_goodblack?id=<%=go.id%>&supplier_id=98" class="am-list-item-hd"><%=go.name%></a>
-      <span class="am-list-date"><%=Time.at(go.uptime).localtime.to_s(:db)%></span>
-    </li>
-<%end%>

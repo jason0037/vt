@@ -258,19 +258,7 @@ body {
   color: #d30000;
   font-family: Georgia;
 }
-#products .meta_info a.add_to_cart{
-  display: inline-block;
-  /*line-height: 0;*/
-  width: 172px;
-  height: 46px;
-  background: url('add_to_cart2.png') top left no-repeat;
-  /*margin: 0 auto;*/
-  text-indent: -9999px;
-  cursor: pointer;
-  float: left;
-  /*margin-left: 15px;*/
-  margin-right: 10px;
-}
+
 
 #products .meta_info a.add_to_cart.buy-cols{
   background: url('buy_cols.png') top left no-repeat;
@@ -292,9 +280,6 @@ body {
   margin-right: 10px;
 }
 
-#products .meta_info a.add_to_cart:hover{
-  background: url('add_to_cart2.png') bottom left no-repeat;
-}
 
 #products .meta_info a.add_to_cart.buy-cols:hover{
   background: url('buy_cols.png') bottom left no-repeat;

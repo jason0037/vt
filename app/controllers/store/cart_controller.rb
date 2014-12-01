@@ -28,6 +28,12 @@ class Store::CartController < ApplicationController
 	
 	def add
 		# parse params
+
+    if params[:supplier_id] =="98"
+
+       @line_items.delete_all
+    end
+
 		specs = params[:product].delete(:specs)
 		customs = params[:product].delete(:customs)
 		quantity = params[:product].delete(:quantity).to_i
@@ -35,7 +41,7 @@ class Store::CartController < ApplicationController
     if quantity.blank? || quantity ==0
        quantity=1
     end
-    if params[:supplier_id] =="98" && params[:platform]=="mancoexpress"
+    if params[:supplier_id] =="98" && params[:mancoweight]
        quantity=params[:mancoweight].to_i
 
     end
@@ -101,22 +107,44 @@ class Store::CartController < ApplicationController
     if supplier_id == nil
       supplier_id = 78
 
-     end
-    if params[:platform]=="mobile"
-      redirect_to "/cart/mobile?supplier_id=#{supplier_id}"
-      #render "mobile", :layout=>@supplier.layout
-    elsif params[:platform]=="mancoexpress"
-                                  ###万家快递
-      redirect_to "/cart/manco_express?supplier_id=#{supplier_id}"
+    end
+    if params[:zhuanghuo] ||params[:xiehuo]
+      session[:zhuanghuo] =params[:zhuanghuo]
+      session[:xiehuo] =params[:xiehuo]
 
+    end
+
+    if params[:platform]=="mobile"
+
+      redirect_to "/cart/mobile?supplier_id=#{supplier_id}"
+
+      #render "mobile", :layout=>@supplier.layout
+
+    elsif params[:platform]=="manco_card" && supplier_id=="98"
+      ###万家充值"
+      redirect_to "/orders/manco_card?supplier_id=#{supplier_id}"
+
+    elsif params[:platform]=="manco_local" && supplier_id=="98"
+      redirect_to "/orders/arrival?supplier_id=#{supplier_id}&platform=#{params[:platform]}&member_departure_id=nil"
+    elsif params[:platform] && supplier_id=="98"
+      ###万家门对门
+      url="/orders/departure?supplier_id=#{supplier_id}&platform=#{params[:platform]}"
+      redirect_to url
     else
-    render "add"
+       render "add"
     end
 
 	#rescue
 		#render :text=>"add failed"
 	end
-	
+
+  def distribution_manco
+    @cats=Ecstore::GoodCat.where(:cat_id=>params[:cat_id]).first
+    @supplier=Ecstore::Supplier.find_by_id(params[:supplier_id])
+    render :layout => @supplier.layout
+  end
+
+
 	def update
 		quantity = params[:quantity]
 		@line_items.where(:obj_ident=>params[:id]).update_all(:quantity=>quantity)
@@ -171,57 +199,7 @@ login_name=Ecstore::Account.find(account_id)
      render :layout => @supplier.layout
    end
 
-   def manco_add        ###小黑板的购物
-     suppliers_id=params[:product][:suppliers_id]
-     specs = params[:product].delete(:specs)
-     customs = params[:product].delete(:customs)
-     quantity = params[:product].delete(:quantity).to_i
-     if quantity.blank? || quantity ==0
-       quantity=1
-     end
-     goods_id = params[:product][:goods_id]
 
-     @good=Ecstore::Good.find(goods_id)
-     @product = @good.products.first
-#
-     if signed_in?
-       member_id = @user.member_id
-       member_ident = Digest::MD5.hexdigest(@user.member_id.to_s)
-     else
-       member_id = -1
-       member_ident = @m_id
-     end
-
-     @cart = Ecstore::Cart.where(:obj_ident=>"goods_#{goods_id}_#{@product.product_id}",
-                                 :member_ident=>member_ident).first_or_initialize do |cart|
-       cart.obj_type = "goods"
-       cart.quantity = quantity
-       cart.time = Time.now.to_i
-       cart.member_id = member_id
-     end
-
-     if @cart.new_record?
-       @cart.save
-     else
-       Ecstore::Cart.where(:obj_ident=>@cart.obj_ident,:member_ident=>member_ident).update_all(:quantity=>@cart.quantity+quantity)
-       @cart.quantity = (@cart.quantity+1)
-     end
-
-
-
-     find_cart!
-     if params[:platform]=='manco'
-       redirect_to "/cart/manco_black_buy?supplier_id=#{suppliers_id}"
-     else
-       render "manco"
-     end
-   end
-
-   def manco_black_buy
-      @supplier=Ecstore::Supplier.find(params[:supplier_id])
-     render :layout => @supplier.layout
-
-  end
 
   def tairyo_add
 

@@ -1,10 +1,26 @@
+
+<style>
+    .good_name{
+        overflow:hidden;
+        text-overflow:ellipsis;
+        -o-text-overflow:ellipsis;
+        white-space:nowrap;
+        width:100%;
+    }
+        .money{
+            color: #ff0000;
+            float: right;
+        }
+</style>
 <%if @line_items.size > 0%>
-	<div class="section addr">
+    <div class="row">
+    <div class="large-12 columns" >
 		<h5>
 			收货地址 
 			<span class="required">*</span>
 		</h5>
-      <div class="checkcon clearfix">
+        <div class="row">
+
 		<%if @addrs.size>0%>
 			<%@addrs.each_with_index do |addr,index|%>
 				<%if @def_addr == addr%>
@@ -21,8 +37,8 @@
 					</label>
 				<%end%>
 			<%end%>
-
-			<label class="radio">
+             </div>
+			<label class="radio" style="float: left">
 				<%=radio_button_tag "member_addr", "new"%>
 				<span>使用新地址+</span>
 			</label>
@@ -33,110 +49,141 @@
 		<%=render :partial=>"patch/member_addrs/form",:locals=>{ :display=>( @addrs.size == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
 
     </div>
-
+    <div class="row">
+    <div class="large-12 columns" >
 	<%=form_for :order,:url=>orders_path,:html=>{ :class=>"form-horizontal",:id=>"order_form" } do |f|%>
 		<%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
 
-	<div class="section shipment">
-		<h5>配送方式</h5>
-      <label class="radio active">
-        <%=f.radio_button :shipping_id, 0%><span class="addr-line">自提</span>
-      </label>
-		<label class="radio">
-			<%=f.radio_button :shipping_id, 1, :checked=>true%> 快递
-			<span class="extra-info">+ ￥10</span>
-		</label>
-		<div class="control-group">
-		    <%=f.label :ship_time, "收货时间：",:class=>"control-label"%>
-		    <div class="controls">
-		      <%=f.select :ship_day,ship_day_options%>
-		      <%=f.text_field :ship_special,:class=>"input-small hide datetime"%>
-		      <%=f.select :ship_time2,ship_time_options%>
-		    </div>
-		</div>
-	</div>
+        <div class="row">
+          <div class="large-12 medium-12 ">
+            <h5>配送方式</h5>
+                 </div>
+     <div class="large-6 medium-6 small-6 columns">
+       <div class="radio">
+       <%=f.radio_button :shipping_id, 0%><span class="addr-line">自提</span>
+          </div>   </div>
+          <div class="large-6 medium-6 small-6 columns">
+            <div class="radio">
+            <%=f.radio_button :shipping_id, 1, :checked=>true%> 快递
+            <span class="extra-info">+ ￥10</span>
+              </div>
+          </div>
+           </div>
 
-	<div class="section payment" id="payments">
-		<h5>支付方式</h5>
-      <% if cookies[:MLV] == "10" %>
-          <label class="radio">
-            <%=f.radio_button :payment, "term"%> <b>账期（与供应商协商）</b>
-         </label>
-          <br/>
-      <%end%>
-			
-		<%if @user.advance>0 && @user.advance < @cart_total%>
-	 	<label class="checkbox">
-			<%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%> <b>预存款先支付</b>
-			余额(<span>￥<%=@user.advance%></span>)
-		</label>
-		<%end%>
-      <label class="radio">
-        <%=f.radio_button :payment, "ips", :checked=>true%> <b>环迅人民币支付</b>
-        <span class="extra-desc"><img src="/assets/store/ipslogo_120X55.gif"/></span>
-      </label>
-      <label class="radio">
-        <%=f.radio_button :payment, "alipay"%> <b>支付宝</b>
-        <span class="extra-desc"><img src="/assets/store/alipay.png"/></span>
-      </label>
-      <label class="radio">
-        <%=f.radio_button :payment, "offline"%> <b>货到付款</b>
-        <span class="extra-desc"><%=link_to "点击查询货到付款配送区域","http://www.zjs.com.cn/WS_Business/WS_Bussiness_CityArea.aspx?id=6",:target=>"_blank"%></span>
-      </label>
 
-		<%if @user.advance >= @cart_total%>
-	 	<label class="radio" >
-			<%=f.radio_button :payment, "deposit"%> <b>预存款</b>
-		</label>
-		<%end%>
-	</div>
+          <div class="row">
+            <div class="large-12 medium-12 ">
+              <h7>  <%=f.label :ship_time, "收货时间：",:class=>"control-label"%></h7>
+            </div>
+            <div class="large-6 medium-6 small-6 columns">
+              <div class="radio">
+                <%=f.select :ship_day,ship_day_options%>
+              </div>   </div>     <%=f.text_field :ship_special,:class=>"input-small hide datetime"%>
+            <div class="large-6 medium-6 small-6 columns">
+              <div class="radio">
+                <%=f.select :ship_time2,ship_time_options%>
+              </div>
+            </div>
+          </div>
 
-	<div class="order-items">
-		<table class="table">
-			<tr>
-				<th>商品名称</th>
-				<th>单价</th>
-				<th>数量</th>
-				<th>金额小计</th>
-			</tr>
-			
-			<%@line_items.each do |line_item|%>
-				<tr>
-				<%=hidden_field_tag "products[]",line_item.product.product_id%>
-				<td class="product-info">
-					<%=link_to good_path(line_item.good.bn),:class=>"thumb",:target=>"_blank" do%>
-						<%=image_tag line_item.good.medium_pic,:size=>"35x50",:alt=>line_item.product.name%>
-					<%end%>
-					<div class="info clearfix">
-						<div class="name">
-							<%=link_to line_item.product.name,good_path(line_item.good.bn),:target=>"_blank"%>
-							<%=link_to "(#{line_item.good.brand.brand_name})",brand_path(line_item.good.brand),:target=>"_blank" if line_item.good.brand%>
-						</div>
-						<div class="spec-info"><%=line_item.product.spec_info%></div>
-					</div>
-				</td>
-				<td>
-                  <%if cookies[:MLV] == "10"%>
+          <div class="row payment" id="payments">
+            <div class="large-12 medium-12">
+              <h5>  支付方式</h5>
+            </div>
+
+           <% if cookies[:MLV] == "10" %>
+                   <div class="large-6 medium-6 small-6 columns">
+                    <%=f.radio_button :payment, "term"%> <b>账期（与供应商协商）</b>
+                  </div>  <%end%>
+
+            <%if @user.advance>0 && @user.advance < @cart_total%>
+              <div class="large-6 medium-6 small-6 columns">
+         <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%> <b>预存款先支付</b>
+              余额(<span>￥<%=@user.advance%></span>)
+            </div>
+             <%end%>
+
+
+            <div class="large-12 medium-12 small-12 columns">
+
+                <%=f.radio_button :payment, "ips", :checked=>true%> <b>环迅人民币支付</b>
+                <span class="extra-desc"><img src="/assets/store/ipslogo_120X55.gif"/></span>
+             </div>
+            <hr>
+            <div class="large-12 medium-12 small-12 columns">
+
+                <%=f.radio_button :payment, "alipay"%> <b>支付宝</b>
+                <span class="extra-desc"><img src="/assets/store/alipay.png"/></span>
+
+            </div>
+               <hr>
+            <div class="large-12 medium-12 small-12 columns">
+
+              <%=f.radio_button :payment, "offline"%> <b>货到付款</b>
+              <span class="extra-desc"><%=link_to "点击查询货到付款配送区域","http://www.zjs.com.cn/WS_Business/WS_Bussiness_CityArea.aspx?id=6",:target=>"_blank"%></span>
+
+            </div>
+            <hr>
+
+            <div class="large-12 medium-12 small-12 columns">
+              <%if @user.advance >= @cart_total%>
+              <%=f.radio_button :payment, "deposit"%> <b>预存款</b>
+            <%end%>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="large-3 medium-3 small-3 columns">
+              <span> 商品名称</span>
+              </div>
+            <div class="large-3 medium-3 small-3 columns">
+              <span>单价</span>
+            </div>
+            <div class="large-3 medium-3 small-3 columns">
+              <span>数量</span>
+            </div>
+            <div class="large-3 medium-3 small-3 columns">
+              <span>金额小计</span>
+            </div>
+             </div>
+        <hr>
+        <%@line_items.each do |line_item|%>
+            <%=hidden_field_tag "products[]",line_item.product.product_id%>
+        <div class="row">
+          <div class="large-3 medium-3 small-3 columns">
+            <%=link_to good_path(line_item.good.bn),:class=>"thumb",:target=>"_blank" do%>
+                <%=image_tag line_item.good.medium_pic,:size=>"35x50",:alt=>line_item.product.name%>
+            <%end%>
+            <br>
+            <div class="good_name">
+            <%=link_to line_item.product.name,good_path(line_item.good.bn), :target=>"_blank"%> </div>
+               <span><%=line_item.product.spec_info%></span>
+          </div>
+          <div class="large-3 medium-3 small-3 columns">
+            <span><%if cookies[:MLV] == "10"%>
                    &yen<%=number_to_currency line_item.product.bulk,:unit=>"",:precision=>2%>
                   <%else%>
                     &yen<%=number_to_currency line_item.product.price,:unit=>"",:precision=>2%>
                   <%end%>
-                </td>
-				<td><%=line_item.quantity%></td>
-				<td>
-                  <%if cookies[:MLV] == "10"%>
+            </span>
+          </div>
+          <div class="large-3 medium-3 small-3 columns">
+            <span><%=line_item.quantity%></span>
+          </div>
+          <div class="large-3 medium-3 small-3 columns">
+            <span><%if cookies[:MLV] == "10"%>
 					&yen<%=number_to_currency line_item.line_total_bulk,:unit=>"",:precision=>2%>
                   <%else%>
                     &yen<%=number_to_currency line_item.line_total,:unit=>"",:precision=>2%>
                   <%end%>
-				</td>
-				</tr>
-			<%end%>
+            </span>
+          </div>
+        </div>
+              <%=render 'gifts'%>
+        <%end%>
 
-			<%=render 'gifts'%>
 
-		</table>
-	</div>
 
 	<%if @pmtable%>
 	<div class="section promotions">
@@ -145,14 +192,14 @@
 		<%=render "coupons"%>
 	</div>
 	<%end%>
-
-        <div class="section promotions">
-          <h5>导购信息: </h5>
-          <%=render "sales"%>
-        </div>
-	<div class="section checkout clearfix">
+     <hr>
+        <!--<div class="section promotions">-->
+          <!--<h5>导购信息: </h5>-->
+          <!--<%=render "sales"%>-->
+        <!--</div>-->
+	<div class="large-12 medium-12 small-12 columns">
 		<h5>结算信息</h5>
-		<div class="left">
+
 			<div class="memo">
 				<div class="control-group">
 				    <%=f.label :memo, "订单备注：",:class=>"control-label"%>
@@ -162,19 +209,22 @@
 				</div>
 			</div>
 		</div>
-		<div class="right">
-			<div class="tax" id="order_tax">
-				<div class="item">
-					<span class="text">需要发票：</span>
-					<span class="money">(税金:0%)<%=f.check_box :is_tax, {}, 'true','false'%></span>
-				</div>
 
-				<div class="item hide tax-input">
+        <div class="large-12 medium-12 small-12 columns">
+
+
+					<span >需要发票：</span>
+					<span class="money"><%=f.check_box :is_tax, {}, 'true','false'%>(税金:0%)</span>
+				</div>
+        <div class="large-12 medium-12 small-12 columns">
+
 					<span class="text">发票抬头：</span>
 					<span class="money"><%=f.text_field :tax_company,:class=>"tax-owner"%></span>
 				</div>
+
 			</div>
-			<div class="cost" id="order_cost">
+
+          <div class="large-12 medium-12 small-12 columns">
 				<!-- <div class="item">
 					<span class="text">商品总额：</span>
 					<span class="rmb-symbol">￥</span>
@@ -182,22 +232,29 @@
 						<%=@cart_total%> 
 					</span>
 				</div> -->
-				<div class="item">
+            <div class="large-6 medium-6 small-6 columns">
 					<span class="text">商品总额：</span>
 					<span class="rmb-symbol">￥</span>
-					<span class="money sum" data-amount = "<%=@cart_total%>" id="order_amount">
+                        </div>
+            <div class="large-6 medium-6 small-6 columns">
+              <span class="money sum" data-amount = "<%=@cart_total%>" id="order_amount">
 						<%=@cart_total %>
 					</span>
-				</div>
+            </div>
+             </div>
+                 <hr>
+          <%if @order_promotions.present? || @goods_promotions.present? %>
+          <div class="large-12 medium-12 small-12 columns">
 
-				<%if @order_promotions.present? || @goods_promotions.present? %>
-				<div class="item">
-					<span class="text">优惠：</span>
-					<span class="rmb-symbol">￥</span>
-					<span class="money" data-amount="0" id="pmt_amount"></span>
-				</div>
-				<%end%>
-
+            <div class="large-6 medium-6 small-6 columns">
+              <span class="text">优惠：</span>
+              <span class="rmb-symbol">￥</span>
+            </div>
+            <div class="large-6 medium-6 small-6 columns">
+              <span class="money" data-amount="0" id="pmt_amount"></span>
+            </div>
+          </div>
+          <%end%>
 
 				<div class="item hide">
 					<span class="text">优惠券：</span>
@@ -206,47 +263,66 @@
 						 -0
 					</span>
 				</div>
-				
-				<div class="item">
-					<span class="text">订单总金额：</span>
-					<span class="rmb-symbol">￥</span>
-					<span class="money" id="final_amount"></span>
-				</div>
 
-			</div>
-			<div class="total" id="order_bill">
-				
-				<%unless @user.advance == 0%>
-				<div class="item">
-					<span class="text">预付金额：</span>
-					<span class="rmb-symbol">￥</span>
-					<span class="money part" id="part_amount">
+          <div class="large-12 medium-12 small-12 columns">
+
+            <div class="large-6 medium-6 small-6 columns">
+              <span class="text">订单总金额：</span>
+              <span class="rmb-symbol">￥</span>
+            </div>
+            <div class="large-6 medium-6 small-6 columns">
+              <span class="money" data-amount="0" id="pmt_amount"></span>
+            </div>
+          </div>
+           <hr>
+          <%unless @user.advance == 0%>
+          <div class="large-12 medium-12 small-12 columns">
+
+            <div class="large-6 medium-6 small-6 columns">
+              <span class="text">预付金额：</span>
+              <span class="rmb-symbol">￥</span>
+            </div>
+            <div class="large-6 medium-6 small-6 columns">
+             <span class="money part" id="part_amount">
 						-<%=@user.advance < @cart_total && @user.advance>0 ? @user.advance : 0%>
 					</span>
-				</div>
-				<%end%>
+            </div>
+          </div>
+             <%end%>
+              <div class="row" style="display:none">
+            <div class="large-6 medium-6 small-6 columns" >
+              <span class="text">支付优惠(交通银行)：</span>
+              <span class="rmb-symbol">￥</span>
+            </div>
+            <div class="large-6 medium-6 small-6 columns">
+              <span class="money bcom-discount" id="bcom_discount"></span>
+            </div>
+                <hr>
+          </div>
+
+          <div class="large-12 medium-12 small-12 columns">
+
+            <div class="large-6 medium-6 small-6 columns">
+              <span class="text">支付金额：</span>
+              <span class="rmb-symbol">￥</span>
+            </div>
+            <div class="large-6 medium-6 small-6 columns">
+              <span class="money final" id="pay_amount"></span>
+            </div>
+          </div>
+          </div>
+
 				
-				<div class="item bcom" for="#order_payment_bcom" style="display:none">
-					<span class="text">支付优惠(交通银行)：</span>
-					<span class="rmb-symbol">￥</span>
-					<span class="money bcom-discount" id="bcom_discount"></span>
-				</div>
 
-
-				<div class="item">
-					<span class="text">支付金额：</span>
-					<span class="rmb-symbol">￥</span>
-					<span class="money final" id="pay_amount"></span>
-				</div>
-
+             <hr>
+			<div class="large-12 medium-12 small-12 columns" style="text-align: center">
+				<%=f.submit "安 全 结 算",:class=>" button " %>
 			</div>
-			<div class="actions clearfix">
-				<%=f.submit "安 全 结 算",:class=>"btn btn-inverse  "%>
-			</div>
-		</div>
-	</div>
+
+
 	<%end%>
 <%else%>
 	<p>您还没有选择商品。</p>
 <%end%>
   <%=javascript_include_tag "store/orders"%>
+ </div></div></div></div>

@@ -4,8 +4,9 @@ require 'axlsx'
 class Patch::MembersController < ApplicationController
 	
 	before_filter :authorize_user!
-	# layout 'standard'
-	layout "patch"
+	#  layout 'standard'
+	#  layout "patch"
+  layout 'left_cheuks'
 
 	before_filter do
 		clear_breadcrumbs

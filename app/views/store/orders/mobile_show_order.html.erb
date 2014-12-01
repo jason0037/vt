@@ -20,54 +20,45 @@
   <%@order.order_items.each do |order_item|%>
   <div id="demo-view" style="text-align: center" data-backend-compiled="">
     <%if order_item.good ||order_item.product%>
-        <%unless @supplier.id.to_i==98%>
+
     <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product'%>
     <%=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
-       <%end%>   <%end%>
+         <%end%>
     <span ><%= order_item.name%></span></div>
 
 
   <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
-
-
-
-  <div >
+ <div >
     <span class="span"> &nbsp; &nbsp;<%= I18n.t "product_price"%>：</span>        <span style="float: right">  <%= format('%.2f',order_item.price)%> &nbsp; &nbsp;    </span>
   </div>
-      <%unless @supplier.id.to_i==98%>
+
   <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
   <div class="">
     <span class="span"> &nbsp; &nbsp;<%= I18n.t "product_amount"%>：</span>     <span style="float: right">   <%=order_item.nums.to_i%>个 &nbsp; &nbsp;    </span>
   </div>
-     <%else%>
-          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
-          <div class="">
-            <span class="span"> &nbsp; &nbsp;物品重量：</span>     <span style="float: right">   <%=order_item.nums.to_i%> &nbsp; &nbsp;    </span>
-          </div>
-    <%end%>
           <% if @delivery%>
-      <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
-      <div class="">
-        <span class="span"> &nbsp; &nbsp;<%= I18n.t "delivery_company"%>：</span>     <span style="float: right">   <%=@delivery.logi_name%> &nbsp; &nbsp;    </span>
-      </div>
-          <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
-          <div class="">
-            <span class="span"> &nbsp; &nbsp;<%= I18n.t "tracking_num"%>：</span>     <span style="float: right">   <%=@delivery.delivery_id%> &nbsp; &nbsp;    </span>
-          </div>
+              <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+              <div class="">
+                <span class="span"> &nbsp; &nbsp;<%= I18n.t "delivery_company"%>：</span>     <span style="float: right">   <%=@delivery.logi_name%> &nbsp; &nbsp;    </span>
+              </div>
+              <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+              <div class="">
+                <span class="span"> &nbsp; &nbsp;<%= I18n.t "tracking_num"%>：</span>     <span style="float: right">   <%=@delivery.delivery_id%> &nbsp; &nbsp;    </span>
+              </div>
+      <%end%>
 
 
 
-         <%end%>
-
-      <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
+ <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">
 
 
   <div class="">
     <span class="span"> &nbsp; &nbsp;<%= I18n.t "order_total_price"%>：</span>       <span style="float: right">    &yen; <%= format('%.2f',order_item.price * order_item.nums) if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
     &nbsp; &nbsp;            </span>
   </div>
+  <%end%>
   <hr data-am-widget="divider"  class="am-divider am-divider-default am-no-layout">
-<%end%>
+
   <div >
     <span class="span"> &nbsp; &nbsp;<%=I18n.t "order_num"%>：</span> <span style="float: right">  <%=@order.order_id%> &nbsp; &nbsp;    </span>
   </div>
@@ -93,11 +84,18 @@
 
   </div>
     <br/>
+
+
   <% if @order.order_status_text=="待付款" %>
-  <a class="ahref am-btn  am-btn-danger " href="/orders/mobile_show?id=<%=@order.order_id%>&supplier_id=<%=@order.supplier_id%>" class="btn btn-inverse"><%= I18n.t "no_pay"%></a>
+
+
+              <a class="ahref am-btn  am-btn-danger " href="/orders/mobile_show?id=<%=@order.order_id%>&supplier_id=<%=@order.supplier_id%>" class="btn btn-inverse"><%= I18n.t "no_pay"%></a>
+
   <% else%>
+
+
       <span><%= I18n.t "success_pay"%></span>
-  <% end %>
+ <%end%>
 </div>
 
 

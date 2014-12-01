@@ -1,208 +1,187 @@
-<div id="order_details">
-	<h4 class="title">订单信息</h4>
+<!--<link href="/assets/store/orders.css?body=1" media="screen" rel="stylesheet" type="text/css" />-->
+<!--<script src="/assets/store/orders.js?body=1" type="text/javascript"></script>-->
+<div class="row ">
+  <h4 class="title">商品清单</h4>
+  <table>
+    <thead>
+    <tr>
+      <th width="20%">商品编号</th>
+      <th width="20%">商品名称</th>
+      <th width="20%">单价</th>
+      <th width="20%">数量 </th>
+      <th width="20%">金额 </th>
+    </tr>
+    </thead>
 
-	<div class="detail summary">
-		<ul>
-			<li>
-				<strong>订单编号 : <%=@order.order_id%></strong>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<strong>
-					状态 : <span class="status <%=@order.status%>">
-					<%=@order.order_status_text%></span>
-				</strong>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<%if @order.status == 'active'&&@order.pay_status == '0' && @order.payment != 'offline'%>
-				<%=link_to "付款",order_path(@order),:class=>"btn btn-inverse" %>
-				<%end%>
-			</li>
-			<li>订单备注 : <%=@order.memo%></li>
-		</ul>
+    <tbody>
 
-	</div>
+    <%@order.order_items.each do |order_item|%>
+        <tr>
+          <td><%=order_item.bn%></td>
+          <td><%=link_to order_item.name,good_path_ext(order_item.good)%>
+            <%if order_item.item_type=="gift"%>
+                <span class="hui">赠品</span>
+            <%end%></td>
+          <td>&yen;<%=order_item.price%></td>
+          <td><%=order_item.nums.to_i%></td>
+          <td>&yen;<%=(order_item.price * order_item.nums).to_i if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
+          </td>
+        </tr>
 
-	<div class="detail track">
-		<div class="subtitle">
-			<strong>订单追踪</strong>
-		</div>
-		<ul>
-			<li class="flow">
-				<span class="">提交订单</span>
-				<span class="">等待付款</span>
-				<span class="">等待发货</span>
-				<span class="">订单完成</span>
-			</li>
-			<li class="flow-img">
-				<div class="flow-progress <%=@order.progress_status%>"></div>
-			</li>
-
-			<%@order.order_logs.order("alttime asc").each do |log|%>
-			<li>
-				<%=log.created_at%> 
-				<%=log.log_text%>
-			</li>
-			<%end%>
-		</ul>
-	</div>
-	
-	<div class="detail products">
-		<div class="subtitle">
-			<strong>商品清单</strong>
-		</div>
-
-		<table class="table table-bordered">
-			<tr>
-				<th width="15%">商品编号</th>
-				<th >商品名称</th>
-				<th >单价</th>
-				<th width="10%">数量</th>
-				<th width="10%">金额小计</th>
-			</tr>
-			<%@order.order_items.each do |order_item|%>
-			<tr>
-				<td><%=order_item.bn%></td>
-				<td>
-					<div>
-						<%=link_to order_item.name,good_path_ext(order_item.good)%>
-						<%if order_item.item_type=="gift"%>
-						<span class="hui">赠品</span>
-						<%end%>
-					</div>
-					<div class="spec-info"><%=order_item.product.spec_info%></div>
-				</td>
-				<td>&yen;<%=order_item.price%></td>
-				<td><%=order_item.nums.to_i%></td>
-				<td>
-						&yen;<%=(order_item.price * order_item.nums).to_i if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
-				</td>
-			</tr>
-			<%end%>
-		</table>
-	</div>
-	<div class="detail pmts">
-		<div class="subtitle">
-			<strong>优惠</strong>
-		</div>
-		<ul>
-			<% if @order.order_pmts.size > 0%>
-				<%@order.order_pmts.each do |pmt|%>
-				<li>
-					<span class="pmt-name">
-						<%=pmt.pmt_name%> 
-						<%="(券)" if pmt.pmt_type=="coupon"%>
-					</span>
-					<span class="pmt-desc"> <%=pmt.pmt_desc%></span>
-					
-				</li>
-				<%end%>
-			<%else%>
-				<li>无优惠信息</li>
-			<%end%>
-		</ul>
-	</div>
-	<div class="detail addr-info">
-		<div class="subtitle">
-			<strong>收货信息</strong>
-		</div>
-		<ul>
-			<li>
-				<span class="name">收货人: </span>
-				<span class="val"><%=@order.ship_name%></span>
-			</li>
-			<li>
-				<span class="name">收货地址 : </span>
-				<span class="val"><%=@order.ship_addr%></span>
-			</li>
-			<li>
-				<span class="name">邮编 : </span>
-				<span class="val"><%=@order.ship_zip%></span>
-			</li>
-			<li>
-				<span class="name">手机号码 : </span>
-				<span class="val"><%=@order.ship_mobile%></span>
-			</li>
-			<li>
-				<span class="name">固定电话 : </span>
-				<span class="val"><%=@order.ship_tel%></span>
-			</li>
-			<li>
-				<span class="name">电子邮件 : </span>
-				<span class="val"><%=@order.ship_email%></span>
-			</li>
-		</ul>
-	</div>
-
-	<div class="detail shipment">
-		<div class="subtitle">
-			<strong>支付及配送方式</strong>
-		</div>
-		<ul>
-			<li>
-				<span>支付方式 : </span>
-				<span><%=@order.payment_name%></span>
-			</li>
-
-			<li>
-				<span>配送方式 : </span>
-				<span><%=@order.shipping%></span>
-			</li>
-			<li>
-				<span>配送时间 : </span>
-				<span><%=@order.ship_time%></span>
-			</li>
-		</ul>
-	</div>
-	
-	<%if @order.is_tax == 'true'%>
-	<div class="detail tax">
-		<div class="subtitle">
-			<strong>发票</strong>
-		</div>
-		<ul>
-			<li>
-				<span>发票抬头 : </span>
-				<span><%=@order.tax_company%></span>
-			</li>
-		</ul>
-	</div>
-	<%end%>
-
-
-	<div class="detail total">
-		<div class="subtitle">
-			<strong>结算信息</strong>
-		</div>
-		<ul>
-			<li>
-				<span class="name">商品总额 : </span>
-				<span class="val"> &yen;<%=@order.products_total%></span>
-			</li>
-
-			<li>
-				<span class="name">+运费 : </span>
-				<span class="val"> &yen;<%=@order.cost_freight.to_i%></span>
-			</li>
-			<li>
-				<span class="name">-优惠 : </span>
-				<span class="val"> &yen;<%=@order.pmts_total%></span>
-			</li>
-			<li>
-				<span class="name">-余额 : </span>
-				<span class="val"> &yen;<%=@order.part_pay.to_i%></span>
-			</li>
-			
-			<%if @order.payment == 'bcom'%>
-			<li>
-				<span class="name">-支付优惠 : </span>
-				<span class="val"> &yen;<%=@order.bcom_discount%></span>
-			</li>
-			<%end%>
-
-			<li class="pay-amount">
-				<span class="name">应付金额 : </span>
-				<span class="val"> &yen;<%=@order.final_pay%></span>
-			</li>
-
-		</ul>
-	</div>
-
+    <%end%>
+    </tbody>
+  </table>
+  <hr>
 </div>
+
+<div class="row ">
+   <h4 class="title">订单信息</h4>
+
+    <div class="row support panel">
+      <div class="small-6 columns "><h5>订单编号:</h5></div>
+      <div class="small-6 columns "><h5><%=@order.order_id%></h5></div>
+     </div>
+    <div class="row support panel">
+      <div class="small-6 columns "><h5>订单状态:</h5></div>
+      <div class="small-6 columns " style="color: #ff0000"><h5><%=@order.order_status_text%></h5></div>
+    </div>
+    <div class="row support panel">
+      <div class="small-6 columns "><h5>订单备注:</h5></div>
+      <div class="small-6 columns "><span><%=@order.memo%></span></div>
+    </div>
+    <%@order.order_logs.order("alttime asc").each do |log|%>
+    <div class="row support panel">
+      <div class="small-12 columns "><%=log.created_at%> : &nbsp;&nbsp;&nbsp;&nbsp;<%=log.log_text%></div>
+      </div>
+       <%end%>
+    <hr>
+    </div>
+
+
+
+<div class="row" style=" ">
+  <h4 class="title">订单追踪</h4>
+<span class="large-3 medium-3 small-3 columns ">提交订单</span>
+
+<span class="large-3 medium-3 small-3 columns">等待付款 </span>
+<span class="large-3 medium-3 small-3 columns">等待发货 </span>
+<span class="large-3 medium-3 small-3 columns">订单完成</span>  </div>
+
+ <div class="row">
+<div class="range-slider round" data-slider="50">
+  <span class="range-slider-handle" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="-webkit-transform: translateX(30px);"></span>
+  <span class="range-slider-active-segment" style="width: 25%;"></span>
+  <input type="hidden" value="50">
+</div><hr> </div>
+
+
+<div class="row ">
+  <h4 class="title">优惠信息</h4>
+  <% if @order.order_pmts.size > 0%>
+      <%@order.order_pmts.each do |pmt|%>
+  <div class="large-12 medium-12 small-12 columns panel">
+         <span >
+						<%=pmt.pmt_name%>
+           <%="(券)" if pmt.pmt_type=="coupon"%>
+					</span>
+    <span class=> <%=pmt.pmt_desc%></span>
+      <%end%>
+  <%else%>
+      <span>无优惠信息</span>
+  <%end%>
+  <hr>   </div>    </div>
+
+ <div class="row">
+   <h4>收货信息</h4>
+<div class="row support panel">
+  <div class="small-6 columns "><h5>收货人:</h5></div>
+  <div class="small-6 columns "><h5><%=@order.ship_name%></h5></div>
+ </div>
+<div class="row support panel">
+  <div class="small-6 columns"><h5>收货地址:</h5></div>
+  <div class="small-6 columns"><h5><%=@order.ship_addr%></h5></div>
+  </div>
+ <div class="row support panel">
+  <div class="small-6 columns"><h5>手机号码:</h5></div>
+  <div class="small-6 columns"><h5><%=@order.ship_mobile%></h5></div>
+ </div>
+   <div class="row support panel">
+     <div class="small-6 columns"><h5>固定电话</h5></div>
+     <div class="small-6 columns"><h5><%=@order.ship_tel%></h5></div>
+    </div>
+   <div class="row support panel">
+     <div class="small-6 columns"><h5>电子邮件</h5></div>
+     <div class="small-6 columns"><h5><%=@order.ship_email%></h5></div>
+     </div>
+   <div class="row support panel">
+     <div class="small-6 columns"><h5>邮编</h5></div>
+     <div class="small-6 columns"><h5><%=@order.ship_zip%></h5></div>
+     </div>
+   <hr>
+ </div>
+
+<div class="row">
+  <h4>支付及配送方式</h4>
+  <div class="row support panel">
+    <div class="small-6 columns "><h5>支付方式:</h5></div>
+    <div class="small-6 columns "><h5><%=@order.payment_name%></h5></div>
+   </div>
+  <div class="row support panel">
+    <div class="small-6 columns "><h5>配送方式:</h5></div>
+    <div class="small-6 columns "><h5><%=@order.shipping%></h5></div>
+  </div>
+  <div class="row support panel">
+    <div class="small-6 columns "><h5>配送时间:</h5></div>
+    <div class="small-6 columns "><h5><%=@order.ship_time%></h5></div>
+  </div>
+ <hr></div>
+
+<%if @order.is_tax == 'true'%>
+<div class="row">
+  <h4>发票</h4>
+  <div class="row support panel">
+    <div class="small-6 columns "><h5>发票抬头:</h5></div>
+    <div class="small-6 columns "><h5><%=@order.tax_company%></h5></div>
+  </div>
+
+  <hr></div>
+    <%end%>
+
+
+<div class="row">
+  <h4>结算信息</h4>
+  <div class="row support panel">
+    <div class="small-6 columns ">商品总额:</div>
+    <div class="small-6 columns " style="color: red">&yen;<%=@order.products_total%></div>
+  </div>
+  <div class="row support panel">
+    <div class="small-6 columns">运费:</div>
+    <div class="small-6 columns"style="color: red"> &yen;<%=@order.cost_freight.to_i%></div>
+  </div>
+  <div class="row support panel">
+    <div class="small-6 columns">优惠:</div>
+    <div class="small-6 columns"style="color: red">&yen;<%=@order.pmts_total%></div>
+  </div>
+  <div class="row support panel">
+    <div class="small-6 columns">余额:</div>
+    <div class="small-6 columns"style="color: red">&yen;<%=@order.pmts_total%></div>
+  </div>
+  <%if @order.payment == 'bcom'%>
+  <div class="row support panel">
+    <div class="small-6 columns">支付优惠:</div>
+    <div class="small-6 columns"style="color: red">&yen;<%=@order.bcom_discount%></div>
+  </div>
+   <%end%>
+  <div class="row support panel">
+    <div class="small-6 columns">应付金额:</div>
+    <div class="small-6 columns"style="color: red"> &yen;<%=@order.final_pay%></div>
+  </div>
+
+
+
+  </div>
+
+
+
+
+

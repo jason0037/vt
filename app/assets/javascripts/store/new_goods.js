@@ -109,7 +109,7 @@ $(document).ready(function(){
   });
 
 
-  $("#specs_container").on("click",".spec-value",function(){
+  $("#specs_container").on("click",".spec-values",function(){
     $("#cart_msg").empty();
 
     if($(this).hasClass("image") && $("#specs_container .spec-value[data-images]").length > 1){
@@ -137,6 +137,9 @@ $(document).ready(function(){
 
     $(this).closest('.spec-item').find(":hidden").val($(this).data("value"));
     $(this).closest('.spec-values').find(".spec-value").removeClass("selected");
+
+          $(this).css("color","red");
+
     $(this).addClass("selected");
     var spec_values = []
     var $specs = $("#specs_container");
@@ -170,5 +173,5 @@ $(document).ready(function(){
     return false;
   });
 
-  
+
 });
