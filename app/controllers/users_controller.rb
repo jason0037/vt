@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def new
     @account = Ecstore::Account.new
   end
-<<<<<<< HEAD
+
   
 
   
