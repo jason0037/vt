@@ -95,16 +95,10 @@ class SessionsController < ApplicationController
   #   return render js: "$('#login_msg').text('#{@account.login_name}').addClass('error').fadeOut(300).fadeIn(300);"
 
   		sign_in(@account,params[:remember_me])
-      if params[:return_url]
-         
-         redirect_to params[:return_url]
-             #update cart
-             # @line_items.update_all(:member_id=>@account.account_id,
-             #                                       :member_ident=>Digest::MD5.hexdigest(@account.account_id.to_s))
-      else 
+
           
   		    render "create"
-       end   
+
   	else
 
   		render "error"

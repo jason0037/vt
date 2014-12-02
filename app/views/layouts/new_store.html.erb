@@ -130,10 +130,17 @@
 
 
       <ul class="right">
+        <% if @user%>
+
         <li><a href="/member">用户中心</a></li>
         <li class="divider"></li>
         <li><a href="/member/orders">我的订单</a></li>
         <li class="divider"></li>
+        <%else%>
+            <li><a href="#" data-reveal-id="login_iframe">用户中心</a></li>
+            <li class="divider"></li>
+            <li><a href="#" data-reveal-id="login_iframe">我的订单</a></li>
+            <%end%>
         <li><a href="vshop">供应商加盟</a></li>
         <li class="divider"></li>
         <li class="has-dropdown">
@@ -190,7 +197,7 @@
   </nav>
 </header> <!-- END HEADER -->
 
-
+ </section>
 
 
 <%=yield :notice%>
@@ -220,7 +227,8 @@
     </dl>
            <div class="signup-panel">
                     <p class="welcome">欢迎您回来!</p>
-                 <%=form_for :session,:url=>"/login"  do |f|%>
+                 <%=form_for :session,:url=>"/login",:class=>"form login_form"  do |f|%>
+
                    
 
               <%=hidden_field_tag :return_url,request.url.sub('http://trade','').force_encoding('UTF-8')%>
@@ -335,16 +343,14 @@
 
     <div class="small-8 columns">
      <div class="row">
- <%=f.submit "注 册",:class=>"button alert" ,:style=>"margin-left:-50%;width:100%"%>
+ <%=f.submit "注 册",:class=>"button alert" ,:style=>"margin-left:10%;width:100%"%>
    <a href="#"  data-reveal-id="login_iframe" class="">已有账号，去登录&gt;&gt;</a>
       </div></div></div>
 
 </div>
   
-<script src="/assets/bootstrap-transition.js?body=1" type="text/javascript"></script>
-<script src="/assets/bootstrap-carousel.js?body=1" type="text/javascript"></script>
-<script src="/assets/jquery_placeholder_min.js?body=1" type="text/javascript"></script>
-<script src="/assets/login.js?body=1" type="text/javascript"></script>
+ <%= javascript_include_tag "login" %>
+  <%= stylesheet_link_tag "login" %>
 
 <%end%>
 
@@ -409,13 +415,15 @@
             <li><a href="/pages/hhlc">返修申请</a></li>
           </ul>
         </li>
-        <li>
+        <div class="large-2 small-4 columns">
           <i class="fi-photo"></i>
-          <img src="/images/a01/homepage/getqrcode.jpg">
-        </li>
-        <ul>
-    </div>
+          <h4>关注我们</h4>
+          <ul class="footer-links">
+            <li> <a href=""><img src="/images/a01/homepage/getqrcode.jpg" ></a>
 
+            </li></ul>
+    </div>
+         </ul>  </div>
   </div>
   <div class="row full-width" style="background-color:#FFF">
     <div class="large-12 columns text-center">
@@ -423,6 +431,7 @@
     </div>
   </div>
 </footer>
+
 <%=javascript_include_tag "vendor/jquery"%>
 
 <%=javascript_include_tag "vendor/fastclick"%>
@@ -432,6 +441,6 @@
     $(document).foundation();
 </script>
 <%= javascript_include_tag "store/new_base" %>
-<%= javascript_include_tag "store/new_#{controller_name}" %>
+<%=javascript_include_tag "store/new_#{controller_name}" %>  </div></div>
 </body>
 </html>

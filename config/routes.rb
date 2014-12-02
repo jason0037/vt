@@ -21,7 +21,6 @@ Modengke::Application.routes.draw do
       end
     end
 
-
     resource :technicals  do
       collection do
         get 'index'
@@ -33,7 +32,6 @@ Modengke::Application.routes.draw do
         get 'use_detail'
       end
     end
-
 
     resource :rongdas do
       collection do
@@ -65,6 +63,7 @@ Modengke::Application.routes.draw do
       get 'paid'
     end
   end
+
 
 
 
@@ -434,9 +433,7 @@ Modengke::Application.routes.draw do
   scope :module => "store" do
 
     get 'search' => "search#index", :as=> :search
-
     get 'mproducts' =>"goods#mproduct", :as=>"goods" ,:controller=>"goods"
-
 
     resources :products, :as=>"goods", :controller=>"goods" do
       # get 'newin',:on=>:collection
@@ -458,13 +455,13 @@ Modengke::Application.routes.draw do
 
     resources :vgoods, :controller=>"virtual_goods",:only=>[:index,:show]
     post 'cart/add'=>"cart#add",:as=>:add_to_cart
+    get 'cart/add'=>"cart#add",:as=>:add_to_cart
 
 
 
     resources :cart do
-
       post 'add',:on=>:collection
-
+      get 'show_tairyo',:on=>:collection   ###直接下单购物车
       get 'mobile', :on=>:collection
 
     end
@@ -496,34 +493,25 @@ Modengke::Application.routes.draw do
       end
 
       collection do
-
+        get 'goodblack'       ###货源小黑板
         post 'destroyaddr'
         get 'check_coupon'
         get  'new_mobile'
-        get  'new_tairyo'
-        get 'new_manco'
-        post 'new_manco'
+
+
+
         get 'new_mobile_addr'
-        get 'new_manco_addr'
-       get 'departure'
-        post 'arrival'
-        get 'arrival'
 
 
-        get 'mobile_show_order'
-        get 'wuliu_show_order'
+
         get 'index_mobile'
         get 'share_order'   ###推荐订单
-        get 'mobile_show'
-        get 'wuliu_show'    ###万家订单页面
+
         get 'addr_detail'
         get 'new_mobile_addr'
         post 'edit_addr'
-        get 'edit_manco_addr'
-        post 'xiugai_addr'
-        post 'manco_detail'
-        get 'manco_card'
-        get 'advance'   ##预付款信息
+
+
       end
     end
 
@@ -570,8 +558,7 @@ Modengke::Application.routes.draw do
       member do
         get 'password'
         put 'modify_password'
-        get 'mancouser'
-        put 'mancouser_add'
+
       end
     end
     resources :cards do
@@ -608,7 +595,8 @@ Modengke::Application.routes.draw do
     resources :member_addrs do
       get "mobile"  ,:on=>:collection
       get 'new_memberaddr_add' ,:on=>:collection
-
+      get '_form_manco_second' ,:on=>:collection
+      post 'addship' ,:on=>:collection
     end
     resources :aftersales do
       get 'instruction', :on=>:collection

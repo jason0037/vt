@@ -1,78 +1,78 @@
 <style>
-	#import_goods{text-align:center; border:1px solid #e3e3e3;float:left; position: relative;margin:0px 10px;padding:5px;min-height:80px;min-width:500px;}
+    #import_goods{text-align:center; border:1px solid #e3e3e3;float:left; position: relative;margin:0px 10px;padding:5px;min-height:80px;min-width:500px;}
 
-	dl{width:450px;margin:auto;}
-	dd{margin:0; padding :.5em 0em;}
-	dt{cursor:pointer; line-height:2em;background: #e3e3e3; border-bottom:1px solid #c5c5c5; border-top: 1px solid white;}
-	#cate_type_specs li{float:left;margin:.2em 1em;}
+    dl{width:450px;margin:auto;}
+    dd{margin:0; padding :.5em 0em;}
+    dt{cursor:pointer; line-height:2em;background: #e3e3e3; border-bottom:1px solid #c5c5c5; border-top: 1px solid white;}
+    #cate_type_specs li{float:left;margin:.2em 1em;}
 </style>
 
-<div id ="import_goods">		
-	<p id ="import_button" class="btn btn-success">批量导入商品</p>	
-	<dl>
-		<dt>已经有产品导入模板,直接导入</dt>
-		<dd>
-			<%=form_for :good,:url=>import_admin_goods_path,:html => {:multipart => true,:id=>'goods_import'} ,:method=>:post do |f|%>
-		      <%= file_field :good, :file, :id=>'csvfile',:accept => "application/msexcel",:class=>"batch" %>
-		      <%= f.submit '上传excel', :class => "btn btn-primary" %>
-		    <%end%>
-		</dd>
-		<dt>下载产品导入模板</dt>
-		<dd>
-			  <%=form_for :good, :url=>goods_cate_specs_admin_goods_path,:remote=>true,:method=>:get,:html=>{:id=>"cate_temp_select"} do |f|%>	
-		<div class="filter-item">
-			<%=f.select :cat, Ecstore::Category.where("length(code)=10").collect {|cat| [cat.full_path_name, cat.cat_id] },{:include_blank=>"请选择分类"},{:class=>"span5"} %>
-		</div>
-		<div id="goods_cate_specs"></div>
-		<p id="goods_cate_p" style="display:none">
-			<%=link_to '下载模板','#',:class => "btn btn-primary" ,:id=>'temp_download_link' %>
-			<%=link_to '修改分类规格' ,'/admin/goods_types' ,:class=>"btn" %>
-		</p>
+<div id ="import_goods">
+  <p id ="import_button" class="btn btn-success">批量导入商品</p>
+  <dl>
+    <dt>已经有产品导入模板,直接导入</dt>
+    <dd>
+      <%=form_for :good,:url=>import_admin_goods_path,:html => {:multipart => true,:id=>'goods_import'} ,:method=>:post do |f|%>
+          <%= file_field :good, :file, :id=>'csvfile',:accept => "application/msexcel",:class=>"batch" %>
+          <%= f.submit '上传excel', :class => "btn btn-primary" %>
+      <%end%>
+    </dd>
+    <dt>下载产品导入模板</dt>
+    <dd>
+      <%=form_for :good, :url=>goods_cate_specs_admin_goods_path,:remote=>true,:method=>:get,:html=>{:id=>"cate_temp_select"} do |f|%>
+          <div class="filter-item">
+            <%=f.select :cat, Ecstore::Category.where("length(code)=10").collect {|cat| [cat.full_path_name, cat.cat_id] },{:include_blank=>"请选择分类"},{:class=>"span5"} %>
+          </div>
+          <div id="goods_cate_specs"></div>
+          <p id="goods_cate_p" style="display:none">
+            <%=link_to '下载模板','#',:class => "btn btn-primary" ,:id=>'temp_download_link' %>
+            <%=link_to '修改分类规格' ,'/admin/goods_types' ,:class=>"btn" %>
+          </p>
 
-			  <div style="display:none">
-			  	<h1>XXX分类自定义参数</h1>
-			  	<div></div>
-			  	<a href="#">分类自定义参数管理</a>
-			  	<a href="#">新增参数</a>
-			  </div>
-			<%end%>
-		</dd>
-		<dt id="import_cancel">取消</dt>
-	</dl>
-	
+          <div style="display:none">
+            <h1>XXX分类自定义参数</h1>
+            <div></div>
+            <a href="#">分类自定义参数管理</a>
+            <a href="#">新增参数</a>
+          </div>
+      <%end%>
+    </dd>
+    <dt id="import_cancel">取消</dt>
+  </dl>
+
 </div>
 <script>
-	(function(){
-		var dl = $('dl');
-		dl.hide();
-		var dd =$('dd');
-		dd.hide();
-		var p = $('p#import_button');
+    (function(){
+        var dl = $('dl');
+        dl.hide();
+        var dd =$('dd');
+        dd.hide();
+        var p = $('p#import_button');
 
-		p.on('click',function(){
-			dl.show();
-			p.hide();
-		});
-		$('dt').on('click',function(){
-			$(this).next().siblings('dd').hide();
-			$(this).next().show();
-		});
-		
+        p.on('click',function(){
+            dl.show();
+            p.hide();
+        });
+        $('dt').on('click',function(){
+            $(this).next().siblings('dd').hide();
+            $(this).next().show();
+        });
 
-		$('dt#import_cancel').on('click',function(){
-			dl.hide();
-			p.show();
-		});
 
-		 $('select#good_cat').on('change',function(){
-		 	
-		 	$('form#cate_temp_select').submit();
+        $('dt#import_cancel').on('click',function(){
+            dl.hide();
+            p.show();
+        });
 
-		 	$('#temp_download_link').attr("href","/admin/goods/cate_temp_download?cat_id="+$(this).val());
-		 	$('#goods_cate_p').show();
-		 });
-	//	dl.toggle();
-	// dl.slideDown();
+        $('select#good_cat').on('change',function(){
 
-	})();
+            $('form#cate_temp_select').submit();
+
+            $('#temp_download_link').attr("href","/admin/goods/cate_temp_download?cat_id="+$(this).val());
+            $('#goods_cate_p').show();
+        });
+        //	dl.toggle();
+        // dl.slideDown();
+
+    })();
 </script>

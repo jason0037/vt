@@ -29,22 +29,17 @@ class Store::CartController < ApplicationController
 	def add
 		# parse params
 
-    if params[:supplier_id] =="98"
+    specs = params[:specs]
+    goods_id = params[:goods_id]
 
-       @line_items.delete_all
-    end
-
-		specs = params[:product].delete(:specs)
-		customs = params[:product].delete(:customs)
-		quantity = params[:product].delete(:quantity).to_i
-		goods_id = params[:product][:goods_id]
+		# specs = params[:product].delete(:specs)
+		# customs = params[:product].delete(:customs)
+		# quantity = params[:product].delete(:quantity).to_i
+		# goods_id = params[:product][:goods_id]
     if quantity.blank? || quantity ==0
        quantity=1
     end
-    if params[:supplier_id] =="98" && params[:mancoweight]
-       quantity=params[:mancoweight].to_i
 
-    end
 #return render :text=> "specs:#{specs[0].length},customs:#{customs},quantity:#{quantity},goods_id:#{goods_id}"
 		# product_id = specs.collect do |spec_value_id|
 		# 	Ecstore::GoodSpec.where(params[:product].merge(:spec_value_id=>spec_value_id)).pluck(:product_id)
@@ -108,11 +103,6 @@ class Store::CartController < ApplicationController
       supplier_id = 78
 
     end
-    if params[:zhuanghuo] ||params[:xiehuo]
-      session[:zhuanghuo] =params[:zhuanghuo]
-      session[:xiehuo] =params[:xiehuo]
-
-    end
 
     if params[:platform]=="mobile"
 
@@ -120,16 +110,7 @@ class Store::CartController < ApplicationController
 
       #render "mobile", :layout=>@supplier.layout
 
-    elsif params[:platform]=="manco_card" && supplier_id=="98"
-      ###万家充值"
-      redirect_to "/orders/manco_card?supplier_id=#{supplier_id}"
 
-    elsif params[:platform]=="manco_local" && supplier_id=="98"
-      redirect_to "/orders/arrival?supplier_id=#{supplier_id}&platform=#{params[:platform]}&member_departure_id=nil"
-    elsif params[:platform] && supplier_id=="98"
-      ###万家门对门
-      url="/orders/departure?supplier_id=#{supplier_id}&platform=#{params[:platform]}"
-      redirect_to url
     else
        render "add"
     end

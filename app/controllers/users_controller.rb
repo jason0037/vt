@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     if @account.save
       sign_in(@account)
       @return_url=params[:return_url]
-     redirect_to "/"
+      render "create"
 
 
 

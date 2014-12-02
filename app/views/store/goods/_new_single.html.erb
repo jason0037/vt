@@ -1,25 +1,35 @@
-<style>.hidden{display: none}</style>
-<div class="row">
+<style>.hidden{display: none}
+
+
+</style>
+
+<link href="/assets/store/new_screen.css?body=1" media="all" rel="stylesheet" type="text/css" />
+
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+
+<script src="/assets/jquery_jcarousel.js?body=1" type="text/javascript"></script>
+
+<script src="/assets/jquery.jqzoom-core.js?body=1" type="text/javascript"></script>
+
+
+
+<div class="row"  >
   <div class="large-8 medium-8 columns">
-
-    <!-- Grid Example -->
-
-    <div class="row">
-      <div class="large-12 columns">
+    <div id="products" >
+    <div id="product" >
+      <div class="gallery">
         <ul class="jcarousel-skin-tango">
-          <%good.pictures(:large).each_with_index do |large, index|%>
-              <li>
-                <%= link_to large, :class=>"jqzoom#{ index + 1 }" do %>
-                    <%=image_tag large,:size=>"420x592",:alt=>nil%>
-                <% end %>
-              </li>    <% end %>
-              </ul>
+          <li>  <a href="http://img.uutuu.com/data6/a/ph/large/080412/c593300067964cbbb6b3ce45eed9c58f.jpg" class="jqzoom1">
+            <img  src="http://img.uutuu.com/data6/a/ph/large/080412/c593300067964cbbb6b3ce45eed9c58f.jpg" width="420" height="592"  /> </a>    </li>
+        </ul>
       </div>
-    </div>
-   </div>
+
+
+    </div></div>   </div>
 
   <div class="large-4 medium-4 columns">
-    <hr>
+
     <%=form_for :product,:url=>add_cart_index_path,:remote=>true do |f|%>
         <%=f.hidden_field :goods_id,:value=>good.goods_id%>
         <%=f.hidden_field :type_id,:value=>good.type_id%>
@@ -47,6 +57,9 @@
               <span class="market_price">市场价<span class="georgia">￥<%=good.default_product.mktprice if good.default_product%></span>&nbsp;</span>
 
           <%end%>
+          <p >［商品型号:<%=good.model%>]</p>
+          <p >［商品规格:<%=good.size%>]</p>
+          <p >［商品参数:<%=good.size_description%>]</p>
           <p class="product_id">［商品号<%=good.bn%>]</p>
 
         </h3>
@@ -54,24 +67,13 @@
         <div class="spec" style="display: none">
           <%=render :partial=>"store/goods/product/new_spec",:locals=>{ :good=>good }%>
         </div>
-
-
-
-
-
-
-
-
-
-
-          <div class="wrapper">
+  <div class="wrapper">
           <%if @good.marketable == "true"%>
               <div id="cart_msg"></div>
 
                 <label id ="lable">加入购物车&nbsp;|&nbsp;加入收藏夹</label>
               <% unless signed_in?%>
-
-                  <a href="#" class="inside" data-reveal-id="login_iframe" >加入购物车</a>
+           <a href="#" class="inside" data-reveal-id="login_iframe" >加入购物车</a>
 
               <%else%>
                   <%=link_to "加入购物车","javascript:void(0);",
@@ -88,24 +90,76 @@
           <%else%>
               <a href="javascript:void(0);" class="add_to_favorites  inside"data-reveal-id="login_iframe" >加入收藏夹</a>
           <%end%>
+          </div></div>
 
 
-          </div>
-        </div>
 
         <!--<div class="more">-->
           <!--<%#=render partial: "store/goods/product/more",:locals=>{ :good=>good }%>-->
         <!--</div>-->
     <%end%>
 
-  </div>
 
 
-  </div>
-</div>
- <script>
-   window.onload=function(){
+<script type="text/javascript">
+    $(document).ready(function(){
+        loadProductInfo("#product");
+        $("#product ul.jcarousel-list li.jcarousel-item").each(function(index,el){
+            $('.jqzoom'+(index+1)).jqzoom({
+                zoomType: 'standard',
+                lens:true,
+                preloadImages: false,
+                alwaysOn:false,
+                zoomWidth: 400,
+                zoomHeight: 400,
+                preloadText: '正在加载图片...',
+                title: false
+            });
+        });
 
-   }
 
- </script>
+        // $('.jqzoom1').jqzoom({
+        //     zoomType: 'standard',
+        //     lens:true,
+        //     preloadImages: false,
+        //     alwaysOn:false,
+        //     zoomWidth: 400,
+        //     zoomHeight: 592,
+        //     preloadText: '正在加载图片...',
+        //     title: false
+        // });
+
+        // $('.jqzoom2').jqzoom({
+        //     zoomType: 'standard',
+        //     lens:true,
+        //     preloadImages: false,
+        //     alwaysOn:false,
+        //     zoomWidth: 400,
+        //     zoomHeight: 592,
+        //     preloadText: '正在加载图片...',
+        //     title: false
+        // });
+
+        // $('.jqzoom3').jqzoom({
+        //     zoomType: 'standard',
+        //     lens:true,
+        //     preloadImages: false,
+        //     alwaysOn:false,
+        //     zoomWidth: 400,
+        //     zoomHeight: 592,
+        //     preloadText: '正在加载图片...',
+        //     title: false
+        // });
+
+        // $('.jqzoom4').jqzoom({
+        //     zoomType: 'standard',
+        //     lens:true,
+        //     preloadImages: false,
+        //     alwaysOn:false,
+        //     zoomWidth: 400,
+        //     zoomHeight: 592,
+        //     preloadText: '正在加载图片...',
+        //     title: false
+        // });
+    })
+</script>

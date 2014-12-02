@@ -1,15 +1,16 @@
 <%#= render "shared/metable", :resource=>@good%>
+<link href="/assets/jquery.jqzoom.css?body=1" media="all" rel="stylesheet" type="text/css" />
 
-  <link href="/assets/store/base.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<link href="/assets/store/base.css?body=1" media="all" rel="stylesheet" type="text/css" />
   <link href="/assets/jquery.jqzoom.css?body=1" media="all" rel="stylesheet" type="text/css" />
 <link href="/assets/header.css?body=1" media="all" rel="stylesheet" type="text/css" />
 <link href="/assets/top_menu.css?body=1" media="all" rel="stylesheet" type="text/css" />
 <!--<link href="/assets/store/new_screen.css?body=1" media="all" rel="stylesheet" type="text/css" />-->
   <link href="/assets/store/goods.css?body=1" media="all" rel="stylesheet" type="text/css" />
 
-<div id="products" class="show">
+
 	<%= render :partial=>"new_single",:locals=>{ :good=>@good } %>
-</div>
+
 <div id="product_detail">
 	<%= render :partial=>"new_detail",:locals=>{ :good=>@good } %>
 </div>
@@ -22,6 +23,7 @@
 <%else%>
 <%= render "reco_goods" %>
 <%end%>
+
 
 <script type="text/javascript">
   window.onload = function() {

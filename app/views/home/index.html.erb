@@ -72,7 +72,11 @@
         <ul class="clearing-thumbs large-block-grid-5 small-12">
         <li class="item-wrapper">
         <div class="img-wrapper">
-          <a class="button expand add-to-cart">加入购物车</a>
+          <% unless signed_in?%>
+              <a href="#" class="button expand " data-reveal-id="login_iframe" >加入购物车</a>
+              <%else%>
+          <a href="/cart/add?goods_id=4162&quantity=1" class="button expand ">加入购物车</a>
+              <%end%>
           <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
         </div>
         
