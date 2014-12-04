@@ -269,25 +269,21 @@ class VshopController < ApplicationController
       adapter = @payment.pay_app_id
       order_id = @payment.pay_bill.rel_id
       @modec_pay = ModecPay.new adapter do |pay|
-        if adapter=='wxpay'
-          pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
-          pay.notify_url = "#{site}/vshop/#{supplier_pay_id}/paynotifyurl?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}"
-        else
-          pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
-          pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"
-        end
-        pay.pay_id = @payment.payment_id
-        pay.pay_amount = @payment.cur_money.to_f
-        pay.pay_time = Time.now
-        pay.subject = "#{@supplier_pay.name}订单(#{order_id})"
-        pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
-        pay.openid = @user.account.login_name
-        pay.spbill_create_ip = request.remote_ip
-        pay.supplier_id = supplier_pay_id
-        pay.appid = @supplier_pay.weixin_appid
-        pay.mch_id = @supplier_pay.mch_id
-        pay.partner_key = @supplier_pay.partner_key
-        pay.partnerid = @supplier_pay.partnerid
+      pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
+      pay.notify_url = "#{site}/vshop/#{supplier_pay_id}/paynotifyurl?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}"
+     
+      pay.pay_id = @payment.payment_id
+      pay.pay_amount = @payment.cur_money.to_f
+      pay.pay_time = Time.now
+      pay.subject = "#{@supplier_pay.name}订单(#{order_id})"
+      pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
+      pay.openid = @user.account.login_name
+      pay.spbill_create_ip = request.remote_ip
+      pay.supplier_id = supplier_pay_id
+      pay.appid = @supplier_pay.weixin_appid
+      pay.mch_id = @supplier_pay.mch_id
+      pay.partner_key = @supplier_pay.partner_key
+      pay.partnerid = @supplier_pay.partnerid
       end
 
        render :inline=>@modec_pay.html_form_wxpay, :layout=>"#{@supplier.layout}"
