@@ -26,7 +26,7 @@ module ModecPay
 		attr_accessor :body
 
     attr_accessor :openid, :spbill_create_ip,:supplier_id,:appid,:mch_id ,:partner_key,:partnerid
-
+    
 		# A block pass to sort_by 
 		# == Example
 		#   payment.sorter = Proc.new { |key,val|  key }
@@ -108,7 +108,7 @@ module ModecPay
       _filter = proc { true }  unless _filter
 
       form_inputs = self.fields.select(&_filter).collect do |key,val|
-        "<div >#{key}:<input name='#{key}' value='#{val}' style='width:500px' /><br/></div>"
+        "<div style='display:none'>#{key}:<input name='#{key}' value='#{val}' style='width:500px' /><br/></div>"
       end.join(" ")
 
       <<-FORM
