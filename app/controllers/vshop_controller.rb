@@ -1,4 +1,5 @@
 #encoding:utf-8
+require  'modec_pay'
 class VshopController < ApplicationController
   skip_before_filter :set_locale
   layout "vshop"
@@ -288,7 +289,7 @@ class VshopController < ApplicationController
         pay.partner_key = @supplier_pay.partner_key
         pay.partnerid = @supplier_pay.partnerid
       end
-      
+
        render :inline=>@modec_pay.html_form_wxpay, :layout=>"#{@supplier.layout}"
 
       Ecstore::PaymentLog.new do |log|
