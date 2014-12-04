@@ -96,7 +96,7 @@ class Store::PaymentsController < ApplicationController
       elsif adapter=='wxpay'
         render :inline=>@modec_pay.html_form_wxpay
       else
-			  render :inline=>@modec_pay.html_form
+		render :inline=>@modec_pay.html_form
       end
 
 			Ecstore::PaymentLog.new do |log|
