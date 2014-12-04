@@ -59,15 +59,15 @@ module ModecPay
       self.fields['appid']=val
     end
 
-    def mch_id = (val)
+    def mch_id=(val)
       self.fields['mch_id'] = val
     end
 
-    def partner_key  = (val)
+    def partner_key=(val)
       self.fields['partner_key'] = val
     end
 
-    def partnerid  = (val)
+    def partnerid=(val)
       self.fields['partnerid'] = val
     end
 
