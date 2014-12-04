@@ -51,13 +51,13 @@ class Store::PaymentsController < ApplicationController
 		if @payment.save
       if @payment.pay_app_id=='wxpay'
       	supplier_id = params[:supplier_id]
-      	
-      	if supplier_id == '98' #万家物流微信支付接口
-      		id = 98
+
+      	if supplier_id == '98' 
+      		id = 98	#万家物流微信支付接口
       	else
-      		id = 78
+      		id = 78 #贸威微信支付接口
       	end
-      	return render :text=>"supplier_id:#{supplier_id}&id#{id}"
+      	
         redirect_to "/vshop/#{id}/payments?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}"
       else
         redirect_to pay_payment_path(@payment.payment_id)
