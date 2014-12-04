@@ -253,18 +253,15 @@ class VshopController < ApplicationController
   end
 
   #get /vhsop/id/payments
-  def payments0
-    supplier_id=params[:id]
-    order_id = params[:order_id]
-    @supplier = Ecstore::Supplier.find(supplier_id)
-
-    render :layout=>"#{@supplier.layout}"
-  end
 
   def payments
     supplier_id=params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(supplier_id) 
 
-    @supplier = Ecstore::Supplier.find(supplier_id)
+    #获取不同供应商支付接口参数
+    supplier_pay_id = params[:id] 
+    @supplier_pay  = Ecstore::Supplier.find(supplier_pay_id)     
+   
 
     @payment = Ecstore::Payment.find(params[:payment_id])
     if @payment && @payment.status == 'ready'
@@ -285,7 +282,11 @@ class VshopController < ApplicationController
         pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
         pay.openid = @user.account.login_name
         pay.spbill_create_ip = request.remote_ip
-        pay.supplier_id = supplier_id
+        pay.supplier_id = id
+        pay.appid = @supplier_pay.weixin_appid
+        pay.mch_id = @supplier_pay.mch_id
+        pay.partner_key = @supplier_pay.partner_key
+        pay.partnerid = @supplier_pay.partnerid
       end
 
       if adapter=='alipaywap'
