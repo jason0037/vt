@@ -40,25 +40,29 @@ module Admin
 
         workbook.add_worksheet(:name => "Product") do |sheet|
 
-          sheet.add_row ["产品/规格","产品名称","产品型号","规格参数","产品规格","单位","产品简介","ERP产品编号","条码","库存数量", "交期","状态","市场价","促销价","货叉总长度","货叉总宽度","货叉尺寸","承重轮(双轮)","承重轮(单轮)","转向轮","货叉最高高度","货叉最低高度","额定负载"],
-                        :style=>head_cell
 
-          row_count=0
+
 
           goods.each do |good|
-
+            goodsModel=good.model
             goodsCat=good.good_type.name
             goodsSize_Desc=good.size_description
             goodsSize=good.size
             goodsUnit=good.unit
             goodDesc=good.desc
             goodsBn=good.bn.to_s
+            goodsCatCode=good.good_type.goods_cat_code
+            goodsCatId=good.good_type.goods_cat_id
+            sheet.add_row [nil ,goodsCat,goodsCatCode,goodsCatId]
+            row_count=0
+            sheet.add_row ["产品/规格","产品名称","产品型号","规格参数","产品规格","单位","产品简介","ERP产品编号","条码","库存数量", "交期","状态","市场价","促销价","货叉总长度","货叉总宽度","货叉尺寸","承重轮(双轮)","承重轮(单轮)","转向轮","货叉最高高度","货叉最低高度","额定负载"],
+                          :style=>head_cell
 
 
+           row_count+=1
+            sheet.add_row ["产品信息",good.name,goodsModel,goodsSize_Desc,goodsSize.strip,goodsUnit,goodDesc,goodsBn,nil,nil,"现货","上架"],:height=> 40
 
-            sheet.add_row ["产品信息",good.name,goodsCat,goodsSize_Desc,goodsSize.strip,goodsUnit,goodDesc,goodsBn,nil,nil,"现货","上架"],:height=> 40
 
-            row_count +=1
             # 图片
             # filename="/home/trade/pics#{good.medium_pic}"
             # if not FileTest::exist?(filename)
@@ -117,8 +121,8 @@ module Admin
         end
       end
 
-      send_data package.to_stream.read,:filename=>"goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx"
-
+     # send_data package.to_stream.read,:filename=>"goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx"
+      send_data(package.to_stream.read, :type => "text/excel;charset=utf-8; header=present",:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xls")
       #content = Ecstore::Good.export_cvs(fields,goods) #导出cvs
       # MS Office 需要转码
       # send_data(content, :type => 'text/csv',:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv")
@@ -550,10 +554,8 @@ module Admin
             @product = Ecstore::Product.new
             @product.bn = bn
           end
-          detail_spec ={"totalength"=>row[14],"totalweigth"=>row[15],"forksize"=>row[16],"doublebearing"=>row[17],"singebearing"=>row[18],"sterring"=>row[19],"highest"=>row[20],"lowest"=>row[21],"ratedload"=>row[22]}.to_json
-
-          @product.detail_spec= detail_spec
-          @product.barcode = row[8]
+          @product.detail_spec = {"totalength"=>row[14],"totalweigth"=>row[15],"forksize"=>row[16],"doublebearing"=>row[17],"singebearing"=>row[18],"sterring"=>row[19],"highest"=>row[20],"lowest"=>row[21],"ratedload"=>row[22]}.to_json
+         @product.barcode = row[8]
           @product.goods_id = @good.goods_id
           @product.name = @good.name
           @product.store_time = row[10]
