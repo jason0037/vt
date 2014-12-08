@@ -50,7 +50,15 @@ class Store::PaymentsController < ApplicationController
 		@payment.money = @payment.cur_money = @order.pay_amount
 		if @payment.save
       if @payment.pay_app_id=='wxpay'
-        redirect_to "/vshop/78/payments?payment_id=#{@payment.payment_id}&supplier_id=#{params[:supplier_id]}"
+      	supplier_id = params[:supplier_id]
+
+      	if supplier_id == '98' 
+      		id = 98	#万家物流微信支付接口
+      	else
+      		id = 78 #贸威微信支付接口
+      	end
+      	
+        redirect_to "/vshop/#{id}/payments?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}"
       else
         redirect_to pay_payment_path(@payment.payment_id)
       end
@@ -91,7 +99,7 @@ class Store::PaymentsController < ApplicationController
       elsif adapter=='wxpay'
         render :inline=>@modec_pay.html_form_wxpay
       else
-			  render :inline=>@modec_pay.html_form
+		render :inline=>@modec_pay.html_form
       end
 
 			Ecstore::PaymentLog.new do |log|

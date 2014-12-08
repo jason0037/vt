@@ -25,8 +25,8 @@ module ModecPay
 		# payment description
 		attr_accessor :body
 
-    attr_accessor :openid, :spbill_create_ip,:supplier_id
-
+    attr_accessor :openid, :spbill_create_ip,:supplier_id,:appid,:mch_id ,:partner_key,:partnerid
+    
 		# A block pass to sort_by 
 		# == Example
 		#   payment.sorter = Proc.new { |key,val|  key }
