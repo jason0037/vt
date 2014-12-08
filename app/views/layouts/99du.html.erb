@@ -9,15 +9,28 @@
   <meta content="" name="description">
   <%= stylesheet_link_tag    "99du.css" %>
 
-  <%= stylesheet_link_tag    "amazeui/amazeui.css" %>
-  <%= stylesheet_link_tag    "amazeui/amazeui.min.css" %>
-  <%= stylesheet_link_tag    "amazeui/amazeui.flat.css" %>
-  <%= stylesheet_link_tag    "amazeui/amazeui.flat.min.css" %>
-  <%= javascript_include_tag "amazeui/jquery.min.js"%>
+  <%= stylesheet_link_tag    "amaze/amazeui.basic.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.basic.min.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.min.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.widgets.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.widgets.min.css" %>
+  <%= stylesheet_link_tag    "amaze/duoshuo.css" %>
+
+
+  <%= javascript_include_tag "amaze/zepto.min.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.helper.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.helper.min.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.js"%>
+  <%= javascript_include_tag "amaze/amazeui.widgets.min.js"%>
+  <%= javascript_include_tag "amaze/amazeui.js" %>
+  <%= javascript_include_tag "amaze/amazeui.min.js" %>
+  <%= javascript_include_tag "amaze/amazeui.basic.js"%>
+  <%= javascript_include_tag "amaze/amazeui.basic.min.js"%>
 
 
 
-
+  <%= javascript_include_tag "amaze/handlebars.min.js"%>
 
 
   <style type="text/css">
@@ -42,6 +55,16 @@
 
   </style>
 
+  <script>
+      $(document).ready(function(){
+          $("#showgood").click(function(){
+
+                  $('#good').toggle();
+
+      })
+      })
+
+  </script>
 
 </head>
 <body>
@@ -63,15 +86,6 @@
 <%= yield %>
 
 
-
-<%= javascript_include_tag "amazeui/amazeui.widgets.helper.js"%>
-<%= javascript_include_tag "amazeui/amazeui.widgets.helper.min.js"%>
-
-<%= javascript_include_tag "amazeui/amazeui.js" %>
-<%= javascript_include_tag "amazeui/amazeui.min.js" %>
-<%= javascript_include_tag "amazeui/amazeui.legacy.js" %>
-<%= javascript_include_tag "amazeui/amazeui.legacy.min.js" %>
-<%= javascript_include_tag "amazeui/handlebars.min.js"%>
 
 <div class="bottomdivsclearfix">
 
@@ -156,7 +170,7 @@
 
 
 
-
+<script src="/assets/mobile/swipe.min.js" type="text/javascript"></script>
 
 <div class="footer clearfix">
 
@@ -167,16 +181,6 @@
 
 <!--<div class="c-bottom"></div>-->
 
-<script>
-    $(document).ready(function(){
-        $("#showgood").click(function(){
-
-            $('#good').toggle();
-
-        })
-    })
-
-</script>
 <script type="text/javascript">
     function wechatShare(data) {
         // If no data is defined, just fallback to wechat's default behaviour.
