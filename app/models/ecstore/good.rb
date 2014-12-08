@@ -287,6 +287,8 @@ class Ecstore::Good < Ecstore::Base
       end
   end
 
+
+
   def self.suits
       cat = Ecstore::Category.where(:parent_id=>0,:cat_name=>SUIT_NAME).first
       if cat

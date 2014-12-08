@@ -15,7 +15,7 @@ class Store::CartController < ApplicationController
     @i = 0
     if  @user
          if supplier_id == nil
-            supplier_id=78
+            supplier_id=1
          end
         @supplier = Ecstore::Supplier.find(supplier_id)
          render :layout=>@supplier.layout
@@ -29,13 +29,9 @@ class Store::CartController < ApplicationController
 	def add
 		# parse params
 
-    specs = params[:specs]
-    goods_id = params[:goods_id]
-
-		# specs = params[:product].delete(:specs)
-		# customs = params[:product].delete(:customs)
-		# quantity = params[:product].delete(:quantity).to_i
-		# goods_id = params[:product][:goods_id]
+		customs = params[:product].delete(:customs)
+		quantity = params[:product].delete(:quantity).to_i
+		goods_id = params[:product][:goods_id]
     if quantity.blank? || quantity ==0
        quantity=1
     end
@@ -100,7 +96,7 @@ class Store::CartController < ApplicationController
 
     supplier_id=params[:supplier_id]
     if supplier_id == nil
-      supplier_id = 78
+      supplier_id = 1
 
     end
 
@@ -115,15 +111,12 @@ class Store::CartController < ApplicationController
        render "add"
     end
 
+
 	#rescue
 		#render :text=>"add failed"
 	end
 
-  def distribution_manco
-    @cats=Ecstore::GoodCat.where(:cat_id=>params[:cat_id]).first
-    @supplier=Ecstore::Supplier.find_by_id(params[:supplier_id])
-    render :layout => @supplier.layout
-  end
+
 
 
 	def update
@@ -147,138 +140,5 @@ class Store::CartController < ApplicationController
   #  end
 	end
 
-  def tairyo
-    if @user
 
-
-    account_id=params[:@order_dining][:account_id]
-login_name=Ecstore::Account.find(account_id)
-    hour=params[:hour]
-    @oa = Ecstore::OrderDining.new(params[:@order_dining]) do |sv|
-       sv.dining_use=login_name.login_name
-      sv.dining_time=Time.parse(params[:@order_dining][:dining_time]).to_i+(hour.to_i)*3600
-         end
-
-       if @oa.save
-
-       render   layout: "tairyo_new"
-      else
-      redirect_to  '/tairyo_order'
-       end
-  else
-      redirect_to '/auto_login?id=99&platform=mobile&return_url=/tairyo_order'
-    end
-
-
-  end
-
-
-
-
-   def manco_express
-      @supplier=Ecstore::Supplier.find_by_id(params[:supplier_id])
-     render :layout => @supplier.layout
-   end
-
-
-
-  def tairyo_add
-
-
-    specs = params[:product].delete(:specs)
-    customs = params[:product].delete(:customs)
-
-    goods_id = params[:product][:goods_id]
-
-
-
-
-    @good = Ecstore::Good.find(goods_id)
-#
-
-    @product = @good.products.first
-#
-    if signed_in?
-      member_id = @user.member_id
-      member_ident = Digest::MD5.hexdigest(@user.member_id.to_s)
-    else
-      member_id = -1
-      member_ident = @m_id
-    end
-
-    @cart = Ecstore::Cart.where(:obj_ident=>"goods_#{goods_id}_#{@product.product_id}",
-                                :member_ident=>member_ident).first_or_initialize do |cart|
-      cart.obj_type = "goods"
-      cart.quantity = 1
-      cart.time = Time.now.to_i
-      cart.member_id = member_id
-    end
-
-    if @cart.new_record?
-      @cart.save
-
-    end
-
-
-    find_cart!
-    if params[:platform]=='tairyo'
-      redirect_to "/cart/jinbalang"
-    else
-      render "tairyo_add"
-    end
-  end
-
- def jinbalang
-
-    render :layout => "tairyo_new"
-  end
-
-  def tairyoall_add
-    specs = params[:product].delete(:specs)
-    customs = params[:product].delete(:customs)
-
-    goods_id = params[:product][:goods_id]
-
-
-
-
-    @good = Ecstore::Good.find(goods_id)
-#
-
-    @product = @good.products.first
-#
-    if signed_in?
-      member_id = @user.member_id
-      member_ident = Digest::MD5.hexdigest(@user.member_id.to_s)
-    else
-      member_id = -1
-      member_ident = @m_id
-    end
-
-    @cart = Ecstore::Cart.where(:obj_ident=>"goods_#{goods_id}_#{@product.product_id}",
-                                :member_ident=>member_ident).first_or_initialize do |cart|
-      cart.obj_type = "goods"
-      cart.quantity = 1
-      cart.time = Time.now.to_i
-      cart.member_id = member_id
-    end
-
-    if @cart.new_record?
-      @cart.save
-
-    end
-
-
-    find_cart!
-    if params[:platform]=='tairyo'
-      redirect_to "/cart/show_tairyo"
-    else
-      render "tairyoall_add"
-    end
-  end
-
-
-  def show_tairyo
-    render :layout => "tairyo_new"
-  end
 end

@@ -1,6 +1,6 @@
 class Ecstore::GoodCat < Ecstore::Base
   self.table_name = "sdb_b2c_goods_cat"
-  attr_accessible :cat_name, :cat_id, :type_id
+  attr_accessible :cat_name, :cat_id, :type_id,:code
   self.primary_key = 'cat_id'
   has_many :goods,
            :foreign_key=> "cat_id",

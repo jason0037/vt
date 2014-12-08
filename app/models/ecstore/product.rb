@@ -9,7 +9,6 @@ class Ecstore::Product < Ecstore::Base
 
 	self.accessible_all_columns
 
-	
 
 
 	def brand

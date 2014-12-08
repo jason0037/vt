@@ -75,7 +75,7 @@ Modengke::Application.routes.draw do
   root :to=>"home#index",:constraints=>{ :subdomain=>/^(www)?$/ }
   get 'blank'=>"home#blank"
   get 'home'=>"home#index"
-
+ post 'home/cart_add'=>"home#cart_add"
 
   resources :pages, :only=>[:show]
 
@@ -454,8 +454,8 @@ Modengke::Application.routes.draw do
     end
 
     resources :vgoods, :controller=>"virtual_goods",:only=>[:index,:show]
-    post 'cart/add'=>"cart#add",:as=>:add_to_cart
-    get 'cart/add'=>"cart#add",:as=>:add_to_cart
+    post 'cart/add'=>"cart#add",:as=>:cart_add
+    get 'cart/add'=>"cart#add",:as=>:cart_add
 
 
 
@@ -543,7 +543,7 @@ Modengke::Application.routes.draw do
       get 'price',:on=>:member
     end
 
-    # post 'cart/add'=>"cart#add",:as=>:add_to_cart
+    # post 'cart/add'=>"cart#add",:as=>:cart_add
     resources :cart do
       post 'add',:on=>:collection
     end

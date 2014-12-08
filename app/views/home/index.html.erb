@@ -1,7 +1,9 @@
+
 <%=render "shared/metable", :resource => @home%>
 <!--侧边菜单&滑动大图&登录&新闻-->
+
     <div class="row" >    
-        <div class="large-2 medium-3 columns show-for-medium-up category-nav">
+        <div class="large-2 medium-3 columns show-for-medium-up ">
 <%=render "store/goods/tree_menu"%>          
         </div>          
         <div class="large-7 medium-5 columns">
@@ -28,7 +30,7 @@
                       <% if @user%>
                           <label>欢迎您<%=@user.login_name%>&nbsp;|&nbsp;退出登录</label>
                          <a href="#"  class="inside">欢迎您<%=@user.login_name%></a>
-                         <a   class="inside"href="/logout?platform=/vshop" >退出登录</a>
+                         <a  class="inside" href="/logout?platform=/vshop" >退出登录</a>
                       <%else%>
 
                       <label>立刻登录&nbsp;|&nbsp;免费注册</label>
@@ -70,42 +72,48 @@
         </div>
         <div class="large-10 columns panel">    
         <ul class="clearing-thumbs large-block-grid-5 small-12">
-        <li class="item-wrapper">
+        <li class="item-wrapper  ">
         <div class="img-wrapper">
           <% unless signed_in?%>
-              <a href="#" class="button expand " data-reveal-id="login_iframe" >加入购物车</a>
+              <a href="#" class="button expand add-to-cart " data-reveal-id="login_iframe" >加入购物车</a>
               <%else%>
-          <a href="/cart/add?goods_id=4162&quantity=1" class="button expand ">加入购物车</a>
+          <a href="#" class="button expand add-to-cart">加入购物车</a>
+
+          <%end%>
+          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
+        </div>
+        
+          <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
+          <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">￥25000.00</span>
+            <p>电子秤搬运车--SAC</p>
+            <p>额定载荷(kg)：2500</p>
+            <div class="more-product-info"> 
+            <p>货叉尺寸(mm)：可定制</p>
+            <p>产品特点：<i class="fi-plus size-36"></i></p>
+            <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
+        </div>
+        </li>
+          <li class="item-wrapper">
+            <div class="img-wrapper">
+              <% unless signed_in?%>
+                  <a href="#" class="button expand add-to-cart " data-reveal-id="login_iframe" >加入购物车</a>
+              <%else%>
+                  <a href="#" class="button expand add-to-cart">加入购物车</a>
+
               <%end%>
-          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
-        </div>
-        
-          <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
-          <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">￥25000.00</span>
+              <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
+            </div>
+
+            <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
+            <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">￥25000.00</span>
             <p>电子秤搬运车--SAC</p>
             <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info"> 
-            <p>货叉尺寸(mm)：可定制</p>
-            <p>产品特点：<i class="fi-plus size-36"></i></p>
-            <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
-        </div>
-        </li>
-        <li class="item-wrapper">
-        <div class="img-wrapper">
-          <a class="button expand add-to-cart">加入购物车</a>
-          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
-        </div>
-        
-          <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
-          <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">￥25000.00</span>
-            <p>电子秤搬运车--SAC</p>
-            <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info"> 
-            <p>货叉尺寸(mm)：可定制</p>
-            <p>产品特点：<i class="fi-plus size-36"></i></p>
-            <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
-        </div>
-        </li>
+            <div class="more-product-info">
+              <p>货叉尺寸(mm)：可定制</p>
+              <p>产品特点：<i class="fi-plus size-36"></i></p>
+              <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
+            </div>
+          </li>
         <li class="item-wrapper">
         <div class="img-wrapper">
           <a class="button expand add-to-cart">加入购物车</a>
@@ -427,3 +435,8 @@
              <a href="#"><img src="img/floor_product_right.jpg"></a>
         </div>
     </div>
+
+    <script>
+
+
+            </script>

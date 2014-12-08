@@ -40,67 +40,76 @@ module Admin
 
         workbook.add_worksheet(:name => "Product") do |sheet|
 
-          sheet.add_row ['供应商',"类型","商品编号","规格货号","分类","品牌","图片","商品名称","上架", "规格","商品描述","库存",fields[0],fields[1],fields[2],fields[3],fields[4],fields[5]],
+          sheet.add_row ["产品/规格","产品名称","产品型号","规格参数","产品规格","单位","产品简介","ERP产品编号","条码","库存数量", "交期","状态","市场价","促销价","货叉总长度","货叉总宽度","货叉尺寸","承重轮(双轮)","承重轮(单轮)","转向轮","货叉最高高度","货叉最低高度","额定负载"],
                         :style=>head_cell
 
           row_count=0
 
           goods.each do |good|
 
-            supplier=good.supplier_id&&good.supplier.name
-            goodsType=good.good_type&&good.good_type.name
+            goodsCat=good.good_type.name
+            goodsSize_Desc=good.size_description
+            goodsSize=good.size
+            goodsUnit=good.unit
+            goodDesc=good.desc
             goodsBn=good.bn.to_s
-            goodsCat=good.cat&&good.cat.full_path_name
-            goodsBrand=good.brand&&good.brand.brand_name
-            goodsMt =good.marketable=="true" ? "Y" : "N"
-            goodsSpec =good.specs.order("sdb_b2c_specification.spec_id asc").pluck(:spec_name).join("|")
-            goodsDesc=good.desc
 
-            sheet.add_row [supplier,goodsType,goodsBn.strip,nil,goodsCat.strip,goodsBrand,nil,good.name.strip,goodsMt,goodsSpec,goodsDesc],:style=>goods_cell,:height=> 40
+
+
+            sheet.add_row ["产品信息",good.name,goodsCat,goodsSize_Desc,goodsSize.strip,goodsUnit,goodDesc,goodsBn,nil,nil,"现货","上架"],:height=> 40
 
             row_count +=1
+            # 图片
+            # filename="/home/trade/pics#{good.medium_pic}"
+            # if not FileTest::exist?(filename)
+            #   filename = "#{Rails.root}/app/assets/images/gray_bg.png"
+            # end
+            # img = File.expand_path(filename)
+            # sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
+            #   image.width=50
+            #   image.height=75
+            #   image.start_at 6,  row_count
+            # end
 
-            filename="/home/trade/pics#{good.medium_pic}"
-            if not FileTest::exist?(filename)
-              filename = "#{Rails.root}/app/assets/images/gray_bg.png"
-            end
-            img = File.expand_path(filename)
-            sheet.add_image(:image_src => img, :noSelect => true, :noMove => true) do |image|
-              image.width=50
-              image.height=75
-              image.start_at 6,  row_count
-            end
+
 
             good.products.each do |product|
               row_count +=1
               productBn = product.bn.to_s
+              productBarcode=product.barcode
               productMt =product.marketable=="true" ? "Y" : "N"
               spec_values = product.spec_values.order("sdb_b2c_spec_values.spec_id asc").pluck(:spec_value).join("|")
               v =[]
               fields.each do |field|
-                if field=="进货价"
-                  v.push(product.cost)
-                end
-
-                if field=="渠道价"
-                  v.push(product.bulk)
-                end
-                if field=="渠道零售价"
-                  v.push(product.promotion)
-                end
-                if field=="批发价"
-                  v.push(product.wholesale)
-                end
-
-                if field=="会员价"
-                  v.push(product.price)
-                end
+                # if field=="进货价"
+                #   v.push(product.cost)
+                # end
+                #
+                # if field=="渠道价"
+                #   v.push(product.bulk)
+                # end
+                # if field=="渠道零售价"
+                #   v.push(product.promotion)
+                # end
+                # if field=="批发价"
+                #   v.push(product.wholesale)
+                # end
+                #
+                # if field=="会员价"
+                #   v.push(product.price)
+                # end
 
                 if field=="市场价"
                   v.push(product.mktprice)
                 end
+                if field=="促销价"
+                  v.push(product.promotion)
+                end
               end
-              sheet.add_row [nil,nil,productBn,nil,nil,nil,nil,product.name.strip, productMt,spec_values,nil,product.store,v[0],v[1],v[2],v[3],v[4],v[5]],:style=>product_cell
+
+
+
+              sheet.add_row ["规格信息",nil,nil,nil,nil,nil,nil,productBn,productBarcode,product.store,"现货","上架",v[0],product.promotion, JSON.parse(product.detail_spec)["totalength"], JSON.parse(product.detail_spec)["totalweigth"],JSON.parse(product.detail_spec)["forksize"],JSON.parse(product.detail_spec)["doublebearing"],JSON.parse(product.detail_spec)["singebearing"],JSON.parse(product.detail_spec)["sterring"],JSON.parse(product.detail_spec)["highest"],JSON.parse(product.detail_spec)["lowest"],JSON.parse(product.detail_spec)["ratedload"]],:style=>product_cell
             end
 
             sheet.column_widths nil, nil,nil,nil,nil,10
@@ -528,6 +537,12 @@ module Admin
         elsif  row[0]=='规格信息'
           #保存 Products信息--------------------------------------------条码  库存数量  交期  状态  市场价 促销价  自由项...
           pp "here...."
+          if row[7].nil?
+            render :text=>"第: #{i+1}个产品没有ERP产品编号"
+            return
+          else
+            bn = row[7]
+          end
           @new_product = Ecstore::Product.find_by_bn(bn)
           if !@new_product.nil? && @new_product.persisted?
             @product = @new_product
@@ -535,13 +550,19 @@ module Admin
             @product = Ecstore::Product.new
             @product.bn = bn
           end
+          detail_spec ={"totalength"=>row[14],"totalweigth"=>row[15],"forksize"=>row[16],"doublebearing"=>row[17],"singebearing"=>row[18],"sterring"=>row[19],"highest"=>row[20],"lowest"=>row[21],"ratedload"=>row[22]}.to_json
+
+          @product.detail_spec= detail_spec
           @product.barcode = row[8]
           @product.goods_id = @good.goods_id
           @product.name = @good.name
           @product.store_time = row[10]
           @product.store = row[9]
-          @product.price = row[12]
-          @product.mktprice = row[11]
+          # @product.price = row[12]
+          @product.mktprice = row[12]
+          @product.promotion = row[13]
+
+
           @product.save!
 =begin
                 #插入GoodSpec

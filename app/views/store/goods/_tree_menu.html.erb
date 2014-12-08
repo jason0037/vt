@@ -1,28 +1,29 @@
-<ul class="no-bullet">
+
+<div class="all-goods">
   <%@top_cats.each_with_index do |top_cat,index|%>
-    <li><a href="<%=cat_path(top_cat,:gtype=>params[:gtype])%>" class="button secondary expand radius split">
-		<%=top_cat.cat_name%><span data-dropdown="drop<%=top_cat.cat_id%>"></span></a><br/>
-		<ul id="drop<%=top_cat.cat_id%>" class="f-dropdown" data-dropdown-content> 
-		  <%top_cat.categories.order("p_order asc").each do |scat|%>
-			<%if scat.all_goods.size > 0%>	
-			  <li class="f-dropdown-wide">
-		        <ul class="no-bullet"> 
-		          <li><%=link_to scat.cat_name,cat_path(scat,:gtype=>params[:gtype])%>
-					<%if scat.categories.present?%>
-					  <ul class="no-bullet">
-						<%scat.categories.each do |tcat|%>
-						  <%if tcat.all_goods.size>0%>
-							<li><%=link_to tcat.cat_name,cat_path(tcat,:gtype=>params[:gtype])%></li>
-						  <%end%>
-						<%end%>
-					  </ul>
-					<%end%>
-				  </li>
-				</ul>
-			  </li>
-			<%end%>
-		  <%end%>
-		</ul>
-	  </li>
-	<%end%>
-</ul>
+  <div class="item btnone">
+    <div class="product">
+      <a href="<%=cat_path(top_cat,:gtype=>params[:gtype])%>" ><%=top_cat.cat_name%></a>
+       <s style="display: block;"></s> </div>
+      <div class="product-wrap  show_<%=index%>" style="display: none">
+        <div class="cf">
+          <div class="fl wd252 pr20">
+            <%top_cat.categories.order("p_order asc").each do |scat|%>
+                <%if scat.all_goods.size > 0%>
+                    <h2><%=link_to scat.cat_name,cat_path(scat,:gtype=>params[:gtype])%></h2>
+                    <%if scat.categories.present?%>
+                        <ul class="cf">
+                          <%scat.categories.each do |tcat|%>
+                              <%if tcat.all_goods.size>0%>
+                                  <li><%=link_to tcat.cat_name,cat_path(tcat,:gtype=>params[:gtype])%></li>
+                              <%end%>
+                          <%end%>
+                        </ul>
+                    <%end%>
+
+                   <%end%>  <%end%>
+                   </div>
+
+        </div>    </div>
+  </div>
+<%end%>   </div>

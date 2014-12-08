@@ -21,6 +21,10 @@ class HomeController < ApplicationController
 		render :layout=>nil
 	end
 
+
+
+
+
 	def topmenu
 		render :layout=>nil
 	end

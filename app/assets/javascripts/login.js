@@ -1,4 +1,4 @@
-//=require jquery
+//=require vendor/jquery
 //=require jquery_ujs
 //=require bootstrap-transition
 //=require bootstrap-carousel
@@ -7,7 +7,7 @@
 $(document).ready(function(){
 
    /* LOGIN ELEMENT */
-  $('input[placeholder]').placeholder();
+
 
 
   $('#modal_login .modal_login_nav li').bind('click', function() {
