@@ -3,15 +3,21 @@
 	<tr>
 		<th><input type="checkbox" id="select_page_all"></th>
       	<th class="order" data-field="p_order" data-sorter="asc">排序</th>
-		<th class="td-teg">标签</th>
+		<th class="td-teg" style="display:none">标签</th>
 		<th class="order" data-field="bn" data-sorter="asc">ERP编号</th>
 		<th class="order" data-field="name" data-sorter="asc">产品名称</th>
 		<th width="50px" align="center">缩略图</th>
 		<th class="order" data-field="model" data-sorter="asc">产品型号</th>
 		<th class="order" data-field="size_description" data-sorter="asc">规格参数</th>
-		<th class="order" data-field="size" data-sorter="asc">产品规格</th>
+		<th class="order" data-field="size" data-sorter="asc">规格</th>
+		<th data-fields='color' data-sorter='asc'>颜色</th>
+		<th data-fields='wheel' data-sorter='asc'>轮子</th>
+		<th data-fields='customize' data-sorter='asc'>是否改装</th>
+		<th data-fields='steel_seal' data-sorter='asc'>有无钢印</th>
+		<th data-fields='specification' data-sorter='asc'>有无规格</th>
+		<th data-fields='unit' data-sorter='asc'>计量单位</th>
       <%if current_admin.has_right_of("goods","edit")%>
-          <th class="order" data-field="cost" data-sorter="asc">进货价</th>
+          <th class="order" data-field="cost" data-sorter="asc" style="display:none">进货价</th>
       <%end%>
       <%if current_admin.has_right_of("orders","delivery") && 1==0%> #暂时卓展不用显示
           <th class="order" data-field="bulk" data-sorter="asc">渠道价</th>
@@ -21,14 +27,14 @@
 		<th class="order" data-field="price" data-sorter="asc">会员价</th>
         <th class="order" data-field="mktprice" data-sorter="asc">市场价</th>
       <%if current_admin.has_right_of("members","index")%>
-        <th class="order" data-field="price" data-sorter="asc">佣金</th>
+        <th class="order" data-field="price" data-sorter="asc"  style="display:none">佣金</th>
       <%end%>
 
 		<th class="order" data-field="store" data-sorter="asc">库存</th>
 		<th class="order" data-field="marketable" data-sorter="asc">上架</th>
-		<th class="order" data-field="uptime" data-sorter="asc">上架时间</th>
+		<th class="order" data-field="uptime" data-sorter="asc" style="display:none">上架时间</th>
 		<th class="order" data-field="cat_id" data-sorter="asc">分类</th>
-		<th class="order" data-field="type_id" data-sorter="asc">类型</th>
+		<th class="order" data-field="type_id" data-sorter="asc"  style="display:none">类型</th>
 		<th style="width:120px">操作</th>
 	</tr>
 </thead>
@@ -40,7 +46,7 @@
 
 			<td><%=check_box_tag "batch[goods_ids][]", good.goods_id, false, :id=>"good_#{good.goods_id}",:class=>"good"%></td>
           <td><%=good.p_order if good.p_order%></td>
-			<td class="td-teg">
+			<td class="td-teg"  style="display:none">
 				<%good.tegs.each do |teg|%>
 					<span class="teg" style="background-color:<%=teg.tag_bgcolor%>;color:<%=teg.tag_fgcolor%>">
 						<%=teg.tag_name%>
@@ -59,8 +65,14 @@
 			<td><%=good.model%></td>
 			<td><%=good.size_description%></td>			
             <td><%=good.size%></td>
+            <td><%=good.color%></td>
+            <td><%=good.wheel%></td>
+            <td><%=good.customize%></td>
+            <td><%=good.steel_seal%></td>
+            <td><%=good.specification%></td>
+            <td><%=good.unit%></td>
           <%if current_admin.has_right_of("goods","edit")%>
-              <td>&yen;<%=format("%.2f",good.cost)%></td>
+              <td style="display:none">&yen;<%=format("%.2f",good.cost)%></td>
           <%end%>
           <%if current_admin.has_right_of("orders","delivery") && 1==0%>
               <td>&yen;<%=format("%.2f",good.bulk) if good.bulk%></td>
@@ -70,14 +82,14 @@
 			<td>&yen;<%=format("%.2f",good.price) if good.price%></td>
             <td>&yen;<%=format("%.2f",good.mktprice) if good.mktprice%></td>
           <%if current_admin.has_right_of("members","index")%>
-            <td>&yen;<%=format("%.2f",good.price*good.share)%></td>
+            <td style="display:none">&yen;<%=format("%.2f",good.price*good.share)%></td>
           <%end%>
 
 			<td><%=good.store.to_i%></td>
 			<td><%=good.marketable == 'true' ? '是' : '否'%></td>
-			<td><%=Time.at(good.uptime).strftime("%Y-%m-%d %H:%M:%S") if good.uptime.present?%></td>
+			<td style="display:none"><%=Time.at(good.uptime).strftime("%Y-%m-%d %H:%M:%S") if good.uptime.present?%></td>
 			<td><%=good.cat.cat_name if good.cat%></td>
-			<td><%=good.good_type.name if good.good_type%></td>
+			<td style="display:none"><%=good.good_type.name if good.good_type%></td>
 			<td>
               <%if current_admin.has_right_of("goods","edit")%>
 				<%=link_to "编辑",edit_admin_good_path(good)%>
