@@ -5,6 +5,31 @@ Modengke::Application.routes.draw do
 
 
 
+  scope :module => "shop" do
+    resource :shopinfos do
+      collection do
+        get 'register'
+	post 'shop_add'
+        get 'show_goods'
+        get 'add_goods'
+        get 'my_goods'
+        get 'goods_details'
+        get 'my_shop'
+      end
+    end
+   resource :visitors do
+     collection do
+       get 'login'
+       get 'register'
+       post 'login_in'
+       post 'register_user'
+       get 'istrue'
+       post 'my_add_shopping'
+       get 'my_shopping_cart'
+       get 'order_clearing'
+     end
+   end
+  end
 
   get "rongda/index"
 
