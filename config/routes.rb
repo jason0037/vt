@@ -5,67 +5,102 @@ Modengke::Application.routes.draw do
 
 
 
+  scope :module => "shop" do
+    resource :shopinfos do
+      collection do
+        get 'register'
+        post 'shop_add'
+        get 'show_goods'
+        get 'add_goods'
+        get 'my_goods'
+        get 'goods_details'
+        get 'my_shop'
+      end
+    end
+    resource :visitors do
+      collection do
+        get 'login'
+        get 'register'
+        post 'login_in'
+        post 'register_user'
+        get 'istrue'
+        post 'my_add_shopping'
+        get 'my_shopping_cart'
+        get 'order_clearing'
+      end
+    end
+
+    resource :goodsaddrs do
+      collection do
+
+        get 'addr_detail'
+        post 'edit_addr'
+      end
+    end
+
+  end
 
   get "rongda/index"
 
 
- scope :module => "cheuksgroup" do
- resource :cheuks do
-   collection do
-    get 'index'
-    get 'serach'
-    get 'news'
-     get 'new_detail'
-     get 'cheuks_goods'
-     get 'content'
-     get 'map'
-     get 'industry_trends'
-     get 'industry_detail'
-   end
- end
+  scope :module => "cheuksgroup" do
+    resource :cheuks do
+      collection do
+        get 'index'
+        get 'serach'
+        get 'news'
+        get 'new_detail'
+        get 'cheuks_goods'
+        get 'content'
+        get 'map'
+        get 'industry_trends'
+        get 'industry_detail'
+      end
+    end
 
-   resource :technicals  do
-     collection do
-       get 'index'
-       get 'product_standards'
-       get 'product_detail'
-       get 'failure_analysis'
-       get 'failure_detail'
-       get 'use_experience'
-       get 'use_detail'
-   end
-   end
+    resource :technicals  do
+      collection do
+        get 'index'
+        get 'product_standards'
+        get 'product_detail'
+        get 'failure_analysis'
+        get 'failure_detail'
+        get 'use_experience'
+        get 'use_detail'
 
- resource :rongdas do
-   collection do
-     get 'index'
-     get 'rongda'
-     get 'rongda_goods'
-     get 'goods_detail'
-     get 'order_rongda'
-   end
- end
+      end
+    end
 
- resource :services  do
-   collection do
-     get 'index'
-     get 'services_center'
-     get 'services_detail'
+    resource :rongdas do
+      collection do
+        get 'index'
+        get 'rongda'
+        get 'rongda_goods'
+        get 'goods_detail'
+        get 'order_rongda'
+      end
+    end
 
-   end
-   end
- end
+    resource :services  do
+      collection do
+        get 'index'
+        get 'services_center'
+        get 'services_detail'
 
-resources :commissions do
-  collection do
-   get  'platform'
-   get 'bank_info'
+      end
+    end
   end
 
-  member do
-    get 'paid'
+  resources :commissions do
+    collection do
+      get  'platform'
+      get 'bank_info'
+    end
+
+    member do
+      get 'paid'
+    end
   end
-end
 
   ####万家物流
   resources :manco do
@@ -79,7 +114,7 @@ end
     get  'user'   ,:on=>:collection
     #万家快递页面
     post 'mancoluodipei',:on=>:collection
-     get 'find_manco',:on=>:collection
+    get 'find_manco',:on=>:collection
     get "black_index"  ,:on=>:collection   ##小黑版首页
     get "express"  ,:on=>:collection
     post "serach"  ,:on=>:collection
@@ -186,7 +221,7 @@ end
       get :category
       get :commodity
       get :order
-     # post :payments
+      # post :payments
       get :payments
       get :native
       post :paynotifyurl
@@ -342,10 +377,10 @@ end
     end
 
     resources :goods do
-       get "black_good"   , :on=>:collection
+      get "black_good"   , :on=>:collection
       put "black_good_edit" , :on=>:collection
       get "black_good_new" , :on=>:collection
-       post "black_good_new" , :on=>:collection
+      post "black_good_new" , :on=>:collection
       get "tairyo_show",  :on=>:collection
       post "export", :on=>:collection
       post "import", :on=>:collection
@@ -588,7 +623,7 @@ end
         post 'new_manco'
         get 'new_mobile_addr'
         get 'new_manco_addr'
-       get 'departure'
+        get 'departure'
         post 'arrival'
         get 'arrival'
         get 'mancoder_show'   ###显示万家当前用户的所有订单
@@ -689,8 +724,8 @@ end
     end
 
     resources :member_addrs do
-         get "mobile"  ,:on=>:collection
-        get 'new_memberaddr_add' ,:on=>:collection
+      get "mobile"  ,:on=>:collection
+      get 'new_memberaddr_add' ,:on=>:collection
       get '_form_manco_second' ,:on=>:collection
       post 'addship' ,:on=>:collection
     end
