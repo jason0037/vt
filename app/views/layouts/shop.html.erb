@@ -1,13 +1,15 @@
+
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <title><%=@supplier.name%>微服务平台</title>
+  <title>微商城</title>
   <meta content="" name="keywords">
   <meta content="" name="description">
+ 
+
   <%= stylesheet_link_tag    "amaze/amazeui.basic.css" %>
   <%= stylesheet_link_tag    "amaze/amazeui.basic.min.css" %>
   <%= stylesheet_link_tag    "amaze/amazeui.css" %>
@@ -16,7 +18,6 @@
   <%= stylesheet_link_tag    "amaze/amazeui.widgets.min.css" %>
   <%= stylesheet_link_tag    "amaze/duoshuo.css" %>
 
-  <%= stylesheet_link_tag "manco/manco.css"%>
 
   <%= javascript_include_tag "amaze/zepto.min.js"%>
   <%= javascript_include_tag "amaze/amazeui.widgets.helper.js"%>
@@ -27,119 +28,46 @@
   <%= javascript_include_tag "amaze/amazeui.min.js" %>
   <%= javascript_include_tag "amaze/amazeui.basic.js"%>
   <%= javascript_include_tag "amaze/amazeui.basic.min.js"%>
+
+
+
   <%= javascript_include_tag "amaze/handlebars.min.js"%>
 
-  <%= javascript_include_tag "manco/app.js"%>
-  <%= javascript_include_tag "manco/city.js"%>
 
-  <%= csrf_meta_tag %>
-    <style>
+  <style type="text/css">
+      .am-icon-user{
+          color: #ffffff;
+          height: 20px;
+      }
+      .bottomdivsclearfix {
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+          background: #fff;
+          border: #ddd 1px solid;
+          border-top: #fff 1px solid;
+          z-index: 1000000;
+          margin: 3px;
+      }
+      .am-navbar-default .am-navbar-nav {
+          background-color: #7E0001;
+      }
 
-        .bottomdivsclearfix {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: #fff;
-            border: #ddd 1px solid;
-            border-top: #fff 1px solid;
-            z-index: 1000000;
-            margin: 3px;
-        }
-     .am-share-sns li span{
-         color: #ffffff;
-     }
-    </style>
-  <script>
-      var ui = 'touch';
-  </script>
+
+  </style>
+
+  
 </head>
 <body>
-<% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
-<%if @user%>
-    <script>
-        if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-            location.href = "/auto_login?id=<%=@supplier.id%>&supplier_id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
-        }
-    </script>
-<%end%>
-<header data-am-widget="header" class="am-header am-header-default am-no-layout">
-  <div class="am-header-left am-header-nav">
-    <a href="javascript:history.go(-1)" class="">
-      <img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""></a></div>
-  <h1 class="am-header-title"><%unless @manco_title.nil?%><%=@manco_title%><%else%>万家物流微服务平台<%end%></h1>
 
+<header data-am-widget="header" class="am-header am-header-jiu  am-no-layout"><div class="am-header-left am-header-nav">
+  <a href="javascript:history.go(-1)" class=""><img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""></a>
+</div>
 
   <div class="am-header-right am-header-nav">
-
-    <button class="am-btn am-btn-primary" data-am-offcanvas="{target: '#doc-oc-demo2', effect: 'push'}"><span class="am-sr-only">导航切换</span> <span
-    class="am-icon-bars"></span></button></div></header>
-<div class="col-md-3 col-md-pull-9 my-sidebar" style="z-index: 1000">
-  <div class="am-offcanvas" id="doc-oc-demo2">
-    <div class=" am-offcanvas-bar am-offcanvas-bar-overlay am-offcanvas-bar-active">
-      <ul class="am-nav am-menu-nav" style="color:red;">
-        <li class="am-parent am-active"><a  style="color:red"><%=@supplier.name%>微服务平台</a></li>
-        <li class="am-nav-header">目录</li>
-        <li class="am-menu-nav-channelt">  <a href="/vshop/<%=@supplier.id%>">首页</a> </li>
-        <li class="am-menu-nav-channelt"> <a href="/manco/history?supplier_id=<%=@supplier.id%>">万家历程</a></li>
-        <li class="am-menu-nav-channelt"><a href="/manco/main?supplier_id=<%=@supplier.id%>">万家详细</a></li>
-        <li class="am-menu-nav-channelt"><a href="/manco/map?supplier_id=<%=@supplier.id%>">联系我们</a></li>
-        <li class="am-menu-nav-channelt"><a href="/manco/cart_goods?supplier_id=<%=@supplier.id%>">充值</a></li>
-
-      </ul>
-    </div>
-  </div>
-</div>
+  </div></header>
 
 <%= yield %>
-
-
-<div class="bottomdivsclearfix">
-
-  <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout"
-       id="">
-    <ul class="am-navbar-nav am-cf sm-block-grid-4">
-
-      <li>
-        <a class="am-btn  am-btn-primary"  data-am-modal="{target: '#mancoserver'}">万家服务</a>
-      </li>
-       <li >
-        <a class="am-btn  am-btn-primary" href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>" >个人中心</a>
-
-
-
-      </li>
-    </ul>
- </div>
-</div>
-
-
-
-
-<div class="am-modal-actions" id="mancoserver">
-  <div class="am-modal-actions-group">
-    <ul class="am-list">
-      <li >
-        <a class="am-btn  am-btn-primary" href="/manco/choose_express?supplier_id=98"><span>落地配服务</span> </a>
-      </li>
-
-
-      <li >
-        <a class="am-btn  am-btn-primary" href="/manco/find_manco?supplier_id=98"><span>需要发货?</span> </a>
-      </li>
-      </li>
-      <li >
-        <a class="am-btn  am-btn-primary" href="/manco/black_good_index?supplier_id=98"><span>货源小黑板</span></a>
-      </li>
-      <li >
-        <a class="am-btn  am-btn-primary" href="/manco/black_index?supplier_id=98"><span>车源小黑板</span> </a>
-      </li>
-
-      <br>
-      <br>
-
-    </ul>
-  </div>
-   </div>
 
 
 
@@ -153,10 +81,12 @@
 
 <div class="footer clearfix">
 
-  <!--<p class="copyright">Copyright © 2013-2014 trade-v.com 版权所有 上海普慧信息科技有限公司 All rights reserved. 沪ICP备13045311号-1 </p>-->
+  <p class="copyright">Copyright © 2013-2014 trade-v.com <br/>版权所有 上海普慧信息科技有限公司 All rights reserved. <br/>沪ICP备13045311号-1 </p>
   <p style="display:none">from=<%=session[:wechat_user]%>|recommend=<%=session[:recommend_user]%></p>
 </div>
+<!--<div class="space10"></div>-->
 
+<!--<div class="c-bottom"></div>-->
 
 <script type="text/javascript">
     function wechatShare(data) {
@@ -214,26 +144,45 @@
         }
 
         document.addEventListener("WeixinJSBridgeReady", function onBridgeReady() {
+
             WeixinJSBridge.on("menu:share:appmessage", function(argv) {
                 shareFriend();
+                <%if @user==nil%>
+                alert('您还没有登录，只有登录后，分享给朋友，才可能赚到佣金噢！');
+                <%end%>
             });
             WeixinJSBridge.on("menu:share:timeline", function(argv) {
                 shareTimeline();
+                <%if @user==nil%>
+                alert('您还没有登录，只有登录后，分享给朋友，才可能赚到佣金噢！');
+                <%end%>
             });
             WeixinJSBridge.on("menu:share:weibo", function(argv) {
                 shareWeibo();
+                <%if @user==nil%>
+                alert('您还没有登录，只有登录后，分享给朋友，才可能赚到佣金噢！');
+                <%end%>
             });
         }, false);
     }
     <%if @user%>
     <%useraccount=@user.account.login_name%>
     <%end%>
-    var current_url =document.location.href+"&from=weixin&wechatuser=<%=useraccount%>"
+    var current_url = document.location.href;
+    //去除上一个推荐者的链接
+    num_index_of = current_url.indexOf("&from=weixin&wechatuser=");
+    if (num_index_of >0){
+        current_url = current_url.substr(0,num_index_of);
+    }
+    current_url += "&from=weixin&wechatuser=<%=useraccount%>";
+    // alert(current_url);
     var data = {"img":null,"url":current_url,"title":"关注我们，转发朋友，赚佣金啰！<%#=@wechat_share_title%>","desc":null};
     wechatShare(data);
 </script>
-
-
+<%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>
+<%#= javascript_include_tag "mobile/jquery.vs.mobile-1.0.0.min" %>
+<%= javascript_include_tag "mobile/jquery.vs.mars_wap" %>
+<script src="/assets/mobile/sm.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     var _smq = _smq || [];
     _smq.push(['_setAccount', '63e2363', new Date()]);
@@ -252,8 +201,10 @@
             (dom.index > 0 && dom.index < 31) && _smq.push(['pageview','/brandlist', dom.index.toString()]);
         })
     })
-
-
 </script>
 
-</body></html>
+</body>
+</html>
+
+
+

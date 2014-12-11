@@ -14,4 +14,5 @@ class Ecstore::Supplier < Ecstore::Base
   has_many :commissions, :foreign_key=>"supplier_id"
   has_many :cart, :foreign_key =>"supplier_id"
 
+
 end

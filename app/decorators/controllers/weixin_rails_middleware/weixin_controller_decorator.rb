@@ -113,18 +113,24 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
       when 'subscribe'
-        title="您好，#{@weixin_public_account.name}欢迎您"
-        desc ="#{@weixin_public_account.desc}"
-        pic_url="http://vshop.trade-v.com/images/a0#{id}/homepage/post.jpg"
-        link_url="http://vshop.trade-v.com/vshop/#{id}"
         if id == 78
-          title1="地道的德国人家族配方，搭配源自于丹麦供应商的有机猪肉，严格遵循德国食品质量标准，配合雅玛多全程冷链配送，保证达到您手中的每一份都是最美味、最具特色、最高标准的正宗德国香肠。"
+        title="寒冬和日本和牛-牛肉中的三文鱼来临,#{@weixin_public_account.name}听您的!"
+        desc ="#{@weixin_public_account.desc}"
+        pic_url="http://vshop.trade-v.com/images/a0#{id}/homepage/rou.jpg"
+        link_url="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=204081654&idx=1&sn=f3430887159032c774ef6f647b9162aa#rd"
+
+          title1="贸威除了热卖中的正宗德国香肠、卓玛泉、温县铁棍山药等优质产品外，还有每天听音乐、做按摩、睡软床、吹风扇、吃熟食的神秘来客，这就是雪龙黑牛，顶级品质，与您分享！"
           desc1 =""
-          pic_url1="http://vshop.trade-v.com/ckeditor_assets/pictures/1050/content_2.jpg"
-          link_url1="http://vshop.trade-v.com/mproducts?id=a0771034&supplier_id=78&fp=category"
+          pic_url1=""
+          link_url1="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=204081654&idx=1&sn=f3430887159032c774ef6f647b9162aa#rd"
 
           articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
         else
+
+          title="您好，#{@weixin_public_account.name}欢迎您"
+          desc ="#{@weixin_public_account.desc}"
+          pic_url="http://vshop.trade-v.com/images/a0#{id}/homepage/post.jpg"
+          link_url="http://vshop.trade-v.com/vshop/#{id}"
           articles = [generate_article(title, desc, pic_url, link_url)]
         end
       when '01'
