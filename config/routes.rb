@@ -9,7 +9,9 @@ Modengke::Application.routes.draw do
     resource :shopinfos do
       collection do
         get 'register'
+
         post 'shop_add'
+
         get 'show_goods'
         get 'add_goods'
         get 'my_goods'
@@ -17,6 +19,7 @@ Modengke::Application.routes.draw do
         get 'my_shop'
       end
     end
+
     resource :visitors do
       collection do
         get 'login'
@@ -37,6 +40,7 @@ Modengke::Application.routes.draw do
         post 'edit_addr'
       end
     end
+
 
   end
 

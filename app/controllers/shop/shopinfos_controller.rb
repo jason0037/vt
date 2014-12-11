@@ -1,3 +1,4 @@
+
 #encoding:utf-8
 class Shop:: ShopinfosController < ApplicationController
  layout "shop"
@@ -194,7 +195,6 @@ end
 
 
 end
-
 
 
 

@@ -1,3 +1,4 @@
+
 class CreateShops < ActiveRecord::Migration
   def change
 
@@ -18,3 +19,4 @@ class CreateShops < ActiveRecord::Migration
   end
 
 end
+

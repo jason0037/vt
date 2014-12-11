@@ -13,6 +13,7 @@ end
 
 def login_in
 
+
      #params[:visitor]
      @v = Ecstore::Visitor.where(:tel=>params[:visitor][:visitor_tel],:visitor_password=>params[:visitor][:visitor_password])
       shop_id=params[:visitor][:shop_id]
@@ -25,12 +26,16 @@ end
 
 def register_user
 
+
   visitor=Ecstore::Visitor.where(:tel=>params[:visitor][:visitor_tel])
+
 len =visitor.length
    if len==0
 
   @visitor=Ecstore::Visitor.new do |v|
+
    v.tel=params[:visitor][:visitor_tel]
+
    v.visitor_password=params[:visitor][:visitor_password]
    end.save
 
@@ -46,7 +51,9 @@ end
 
 def istrue
 
+
    visitor=Ecstore::Visitor.where(:tel=>params[:visitor_tel])
+
   len = visitor.length
    if len==0
     return "0"
