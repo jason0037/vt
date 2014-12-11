@@ -103,7 +103,8 @@
     <br/>
     <div class="control-group">
       <div class="controls">
-        <%= f.submit '确定', :class => "am-btn am-btn-primary am-btn-block" %>
+
+        <input class="am-btn am-btn-primary am-btn-block btn-submit"  type="button" value="确定">
         <!--<#%= link_to '返回', admin_goods_path,:class=>"black_btn" %>-->
       </div>
     </div>
@@ -135,7 +136,19 @@
        $(".ui_timepicker").focus(function(){
            HS_setDate(this);
        })
+        $(".btn-submit").click(function(){
+           var dep=$("#departure").val();
+            var arr=$("#arrival").val();
+          var  black_good_price=$("#black_good_price").val();
+            var black_good_weight=$("#black_good_weight").val();
+            var black_good_downtime=$("#black_good_downtime").val();
+            if (!dep||!arr||!black_good_price||!black_good_weight||!black_good_downtime) {
+                alert("亲,我们需要的数据不够哦！还不能发布");
+            }else{
+                    $(".am-form").submit();
+                }
 
+        })
 
 
     })

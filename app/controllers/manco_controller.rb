@@ -42,7 +42,7 @@ class MancoController < ApplicationController
   end
 
   def find_manco
-    @manco_title="我要送货"
+    @manco_title="我要发货"
     supplier_id = params[:supplier_id]
     if @user
     @supplier =Ecstore::Supplier.find(supplier_id)

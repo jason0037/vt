@@ -1,4 +1,5 @@
 #encoding:utf-8
+require  'modec_pay'
 class VshopController < ApplicationController
   skip_before_filter :set_locale
   layout "vshop"
@@ -253,48 +254,39 @@ class VshopController < ApplicationController
   end
 
   #get /vhsop/id/payments
-  def payments0
-    supplier_id=params[:id]
-    order_id = params[:order_id]
-    @supplier = Ecstore::Supplier.find(supplier_id)
-
-    render :layout=>"#{@supplier.layout}"
-  end
 
   def payments
     supplier_id=params[:supplier_id]
+    @supplier = Ecstore::Supplier.find(supplier_id) 
 
-    @supplier = Ecstore::Supplier.find(supplier_id)
+    #获取不同供应商支付接口参数
+    supplier_pay_id = params[:id] 
+    @supplier_pay  = Ecstore::Supplier.find(supplier_pay_id)     
+   
 
     @payment = Ecstore::Payment.find(params[:payment_id])
     if @payment && @payment.status == 'ready'
       adapter = @payment.pay_app_id
       order_id = @payment.pay_bill.rel_id
       @modec_pay = ModecPay.new adapter do |pay|
-        if adapter=='wxpay'
-          pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
-          pay.notify_url = "#{site}/vshop/#{supplier_id}/paynotifyurl?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}"
-        else
-          pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
-          pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"
-        end
-        pay.pay_id = @payment.payment_id
-        pay.pay_amount = @payment.cur_money.to_f
-        pay.pay_time = Time.now
-        pay.subject = "贸威订单(#{order_id})"
-        pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
-        pay.openid = @user.account.login_name
-        pay.spbill_create_ip = request.remote_ip
-        pay.supplier_id = supplier_id
+      pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
+      pay.notify_url = "#{site}/vshop/#{supplier_pay_id}/paynotifyurl?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}"
+     
+      pay.pay_id = @payment.payment_id
+      pay.pay_amount = @payment.cur_money.to_f
+      pay.pay_time = Time.now
+      pay.subject = "#{@supplier_pay.name}订单(#{order_id})"
+      pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
+      pay.openid = @user.account.login_name
+      pay.spbill_create_ip = request.remote_ip
+      pay.supplier_id = supplier_pay_id
+      pay.appid = @supplier_pay.weixin_appid
+      pay.mch_id = @supplier_pay.mch_id
+      pay.partner_key = @supplier_pay.partner_key
+      pay.partnerid = @supplier_pay.partnerid
       end
 
-      if adapter=='alipaywap'
-        render :text=>@modec_pay.html_form_alipaywap, :layout=>"#{@supplier.layout}"
-      elsif adapter=='wxpay'
-        render :inline=>@modec_pay.html_form_wxpay, :layout=>"#{@supplier.layout}"
-      else
-        render :inline=>@modec_pay.html_form, :layout=>"#{@supplier.layout}"
-      end
+       render :inline=>@modec_pay.html_form_wxpay, :layout=>"#{@supplier.layout}"
 
       Ecstore::PaymentLog.new do |log|
         log.payment_id = @payment.payment_id
