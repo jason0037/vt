@@ -8,7 +8,7 @@
   <title>微商城</title>
   <meta content="" name="keywords">
   <meta content="" name="description">
- 
+  <%= stylesheet_link_tag    "shop.css" %>
 
   <%= stylesheet_link_tag    "amaze/amazeui.basic.css" %>
   <%= stylesheet_link_tag    "amaze/amazeui.basic.min.css" %>
@@ -17,6 +17,7 @@
   <%= stylesheet_link_tag    "amaze/amazeui.widgets.css" %>
   <%= stylesheet_link_tag    "amaze/amazeui.widgets.min.css" %>
   <%= stylesheet_link_tag    "amaze/duoshuo.css" %>
+
 
 
   <%= javascript_include_tag "amaze/zepto.min.js"%>
@@ -28,9 +29,6 @@
   <%= javascript_include_tag "amaze/amazeui.min.js" %>
   <%= javascript_include_tag "amaze/amazeui.basic.js"%>
   <%= javascript_include_tag "amaze/amazeui.basic.min.js"%>
-
-
-
   <%= javascript_include_tag "amaze/handlebars.min.js"%>
 
 
@@ -60,12 +58,14 @@
 </head>
 <body>
 
-<header data-am-widget="header" class="am-header am-header-jiu  am-no-layout"><div class="am-header-left am-header-nav">
-  <a href="javascript:history.go(-1)" class=""><img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""></a>
-</div>
+<header data-am-widget="header" class="am-header am-header-default am-no-layout">
+  <div class="am-header-left am-header-nav">
+    <a href="javascript:history.go(-1)" class="">
+      <img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""></a></div>
+  <h1 class="am-header-title"><%unless @shop_title.nil?%><%=@shop_title%><%else%>贸威服务平台<%end%></h1>
 
-  <div class="am-header-right am-header-nav">
-  </div></header>
+
+</header>
 
 <%= yield %>
 
@@ -81,7 +81,7 @@
 
 <div class="footer clearfix">
 
-  <p class="copyright">Copyright © 2013-2014 trade-v.com <br/>版权所有 上海普慧信息科技有限公司 All rights reserved. <br/>沪ICP备13045311号-1 </p>
+  <p class="copyright" style="display: none">Copyright © 2013-2014 trade-v.com <br/>版权所有 上海普慧信息科技有限公司 All rights reserved. <br/>沪ICP备13045311号-1 </p>
   <p style="display:none">from=<%=session[:wechat_user]%>|recommend=<%=session[:recommend_user]%></p>
 </div>
 <!--<div class="space10"></div>-->

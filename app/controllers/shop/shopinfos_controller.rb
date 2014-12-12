@@ -5,6 +5,7 @@ class Shop:: ShopinfosController < ApplicationController
 
  def register
     @shop_id=params[:shop_id]
+   @shop_title="创建店铺"
 
  end
 

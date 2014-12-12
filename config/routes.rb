@@ -9,7 +9,7 @@ Modengke::Application.routes.draw do
     resource :shopinfos do
       collection do
         get 'register'
-
+        get 'index'
         post 'shop_add'
 
         get 'show_goods'
