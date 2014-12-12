@@ -1,13 +1,6 @@
-
 #encoding:utf-8
 class Shop:: ShopinfosController < ApplicationController
  layout "shop"
-
- def index
-    if @user
-       @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
-    end
- end
 
  def register
     @shop_id=params[:shop_id]
@@ -38,13 +31,14 @@ def my_shop
 	else
 	redirect_to "/shopinfos/my_goods?shop_id="+shop_id
      end
-
+	
 
 end
 
 
   def show_goods
-   @shop=Ecstore::Shop.find_by_shop_id(params[:shop_id])
+   supplier_id=78
+    @supplier = Ecstore::Supplier.find(supplier_id)
    @goods =  Ecstore::Good.where(:supplier_id=>"77")
    if params[:cat_id]
      @goods =  Ecstore::Good.where(:supplier_id=>"77",:cat_id=>params[:cat_id])
@@ -72,52 +66,63 @@ end
      session[:recommend_time] =now
    end
 
-
+   render :layout=>@supplier.layout
   end
 
 def add_goods
 
  ids = params[:selector_shop]
- @shop_id=params[:shop_id]
+ shop_id=params[:shop_id]
   if !ids.nil?
  id_array = ids.split(",")
 
+  
+ for i in id_array
+  
+ @istrue = Ecstore::ShopsGood.where(:goods_id=>i)
+     if !@istrue.nil?
+       id_array.delete(i)
+  
+
+   
+ end
+ end
   id_array.each do |id|
 
-    if  Ecstore::ShopsGood.find_by_goods_id(id).nil?
-        good =Ecstore::ShopsGood.new do |goo|
-        goo.shop_id=@shop_id
-        goo.goods_id=id
+     good =Ecstore::ShopsGood.new do |goo|
+     goo.shop_id=1
+     goo.goods_id=id
 
-        end.save
-      end
+     end.save
    end
-
-  end
 
 
 end
 
+end
+
 def my_goods
-  @shop_title="店铺中心"
-   shop_id=params[:shop_id]
 
-  goods = Ecstore::ShopsGood.where(:shop_id=> shop_id)
+   @shop_id=params[:shop_id]
+
+  goods = Ecstore::ShopsGood.where(:shop_id=>'1')
   m=nil
-  @goods_store=nil
-   for i in goods
-
+   @goods=nil  
+   for i in goods 
+    
 	good =Ecstore::Good.where(:goods_id=>i.goods_id)
-   if  @goods_store.nil?
-     @goods_store=good
-    else
-      @goods_store= @goods_store+good
+   if @goods.nil?
+       @goods=good
+    else 
+   @goods=@goods+good
   
   end
-
+   
     end
 
-
+   supplier_id=78
+  @supplier = Ecstore::Supplier.find(supplier_id)
+  render :layout=>@supplier.layout
   end
 
 
@@ -165,23 +170,4 @@ def goods_details
      @recommend_goods.compact!
      if @cat.parent_cat.parent_cat && @recommend_goods.size < 4
        count = @recommend_goods.size
-       @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
-     end
-end
-
-   @supplier_id =  @shop_id
-   
-     @supplier  =  Ecstore::Supplier.find(78)
-     render :layout=>@supplier.layout
-
-
-end
-
-
-
-
-
-end
-
-
-
+       @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }

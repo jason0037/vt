@@ -11,7 +11,6 @@ Modengke::Application.routes.draw do
         get 'register'
         get 'index'
         post 'shop_add'
-
         get 'show_goods'
         post 'add_goods'
         get 'my_goods'
