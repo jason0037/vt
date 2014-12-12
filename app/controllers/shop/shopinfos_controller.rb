@@ -1,4 +1,3 @@
-
 #encoding:utf-8
 class Shop:: ShopinfosController < ApplicationController
  layout "shop"
@@ -100,9 +99,9 @@ end
 
 def my_goods
   @shop_title="店铺中心"
-   shop_id=params[:shop_id]
+   @shop_id=params[:shop_id]
 
-  goods = Ecstore::ShopsGood.where(:shop_id=> shop_id)
+  goods = Ecstore::ShopsGood.where(:shop_id=> @shop_id)
   m=nil
   @goods_store=nil
    for i in goods
