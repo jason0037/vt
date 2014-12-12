@@ -13,7 +13,7 @@ Modengke::Application.routes.draw do
         post 'shop_add'
 
         get 'show_goods'
-        get 'add_goods'
+        post 'add_goods'
         get 'my_goods'
         get 'goods_details'
         get 'my_shop'

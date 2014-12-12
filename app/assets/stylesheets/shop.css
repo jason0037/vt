@@ -5,6 +5,27 @@ textarea{
     height: 80px;
     width: 100%;
 }
+.price{
+    color: red;font-size: 16px
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.fiex_text{margin: 0px;
+    top: 600px;
+    left: 85%;
+    width: 110%;
+    position: fixed!important;
+    z-index: 1010;
+
+}
+.text_name{
+    width: 100px;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap
+}
 .get {
     background: #1E5B94;
     color: #fff;

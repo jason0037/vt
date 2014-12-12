@@ -21,7 +21,7 @@
      <div>
 
     <%=form_for :order,:url=>"#{orders_path}?platform=mobile",:html=>{ :class=>"am-form",:id=>"order_form" } do |f|%>
-        <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
+           <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
 
         <div class="am-panel am-panel-warning" data-collapse="true" data-style="arrow" style="display:none">
           <div class="am-panel-hd"><%= I18n.t "delivery_time"%></div>
