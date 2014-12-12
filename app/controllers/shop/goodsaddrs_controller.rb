@@ -7,6 +7,7 @@ class Shop:: GoodsaddrsController < ApplicationController
 def addr_detail
   @shop_id =params[:shop_id]
   @user_id =params[:user_id]
+
   @manco_title="地址信息"
   @addr = Ecstore::Visitor.find(@user_id)
   #supplier_id=params[:supplier_id]
