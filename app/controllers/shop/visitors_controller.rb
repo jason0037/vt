@@ -199,7 +199,7 @@ end
 def mobile_show
 
   supplier_id = params[:supplier_id]
-@order = Ecstore::Order.find_by_order_id(params[:id])
+  @order = Ecstore::Order.find_by_order_id(params[:id])
 
 
 @supplier =supplier_id

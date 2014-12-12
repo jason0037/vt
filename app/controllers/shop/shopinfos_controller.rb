@@ -24,7 +24,7 @@ class Shop:: ShopinfosController < ApplicationController
 
 def my_shop
 
-   shop_id=params[:member_id] 
+   shop_id=params[:shop_id]
    shop=Ecstore::Shop.where(:shop_id=>shop_id)
     len =shop.length
      if len.to_i==0
