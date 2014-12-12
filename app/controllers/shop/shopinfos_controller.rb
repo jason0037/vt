@@ -173,8 +173,6 @@ end
    
      @supplier  =  Ecstore::Supplier.find(78)
      render :layout=>@supplier.layout
-   
-
 
 
 end

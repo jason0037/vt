@@ -13,18 +13,18 @@
       <a id="addressLink" href="/goodsaddrs/addr_detail?platform=mobile&supplier_id=<%=@supplier.id%>&id=<%=@def_addr.id%>">
 
       <div class="am-panel-bd">
-          <span class="text">&nbsp;&nbsp;<%=@def_addr.name%>  <span class="phone-num" style="margin-left: 30px"><%=@def_addr.mobile%></span></span>
+          <span class="text">&nbsp;&nbsp;<%=@def_addr.visitor_name%>  <span class="phone-num" style="margin-left: 30px"><%=@def_addr.tel%></span></span>
           <br/>
-          <span class="text2">&nbsp;&nbsp;<%=@def_addr.addr%></span>
+          <span class="text2">&nbsp;&nbsp;<%=@def_addr.address%></span>
            <span class="icon-arr" ><%=I18n.t "modify"%></span>
 
       </div>  </a>
     </div>
      <div>
 
-    <%=form_for :order,:url=>"#{orders_path}?platform=mobile",:html=>{ :class=>"am-form",:id=>"order_form" } do |f|%>
-        <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
-
+    <%=form_for :order,:url=>"#{orders_path}?platform=shop",:html=>{ :class=>"am-form",:id=>"order_form" } do |f|%>
+        <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.id%>
+           <%=hidden_field_tag "shop_id",@shop_id%>
         <div class="am-panel am-panel-warning" data-collapse="true" data-style="arrow" style="display:none">
           <div class="am-panel-hd"><%= I18n.t "delivery_time"%></div>
           <div class="am-panel-bd">
@@ -79,7 +79,7 @@
           <div class="am-panel-hd"><%= I18n.t "invoice"%></div>
           <div class="am-panel-bd">
             <input class="text_input w100" id="order_tax_company" name="order[tax_company]" placeholder="<%=I18n.t "details_invoice"%>" size="30" type="text">
-            <%#=f.text_field :tax_company,:placeholder=>"请输入发票抬头",:class=>"text_input w100"%>
+
           </div>
         </div>
         <%if @supplier.id==78 %>
@@ -117,4 +117,4 @@
 <br/>
 <br/>
 
-<%=javascript_include_tag "store/tairyo_order"%>
+

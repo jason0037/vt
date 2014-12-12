@@ -169,7 +169,15 @@ class Store::OrdersController < ApplicationController
 
   def create
 
+    platform=params["platform"];
+    addr=nil
+    if platform=='shop'
+      addr =  Ecstore::Visitor.find_by_id(params[:member_addr])
+      supplier_id = params[:shop_id]
+    else
     addr = Ecstore::MemberAddr.find_by_addr_id(params[:member_addr])
+    supplier_id = @user.account.supplier_id
+    end
 
     hour=params["hour"];
     if params[:order][:ship_day]
@@ -180,9 +188,9 @@ class Store::OrdersController < ApplicationController
        end
      end
     return_url=params[:return_url]
-    platform=params["platform"];
 
-    supplier_id = @user.account.supplier_id
+
+
     if supplier_id == nil
       supplier_id =78
     end
@@ -195,8 +203,13 @@ class Store::OrdersController < ApplicationController
 
 
     params[:order].merge!(:ip=>request.remote_ip)
-    params[:order].merge!(:member_id=>@user.member_id)
+    if platform=='shop'
+    params[:order].merge!(:member_id=>params[:member_addr])
     params[:order].merge!(:supplier_id=>supplier_id)
+    else
+      params[:order].merge!(:member_id=>@user.member_id)
+      params[:order].merge!(:supplier_id=>supplier_id)
+      end
     params[:order].merge!(:ship_day=>ship_riqi.to_s)
     params[:order].merge!(:ship_time=>hour.to_s)
 
@@ -330,6 +343,8 @@ class Store::OrdersController < ApplicationController
           redirect_to "/orders/mobile_show?id=#{@order.order_id}&supplier_id=#{supplier_id}"
         elsif platform=="wuliu"
           redirect_to "/orders/wuliu_show?id=#{@order.order_id}&supplier_id=#{supplier_id}"
+        elsif platform=="shop"
+          redirect_to "/visitors/mobile_show?id=#{@order.order_id}&supplier_id=#{supplier_id}"
         elsif
           redirect_to "#{order_path(@order)}?platform=#{platform}&supplier_id=#{supplier_id}"
         end
