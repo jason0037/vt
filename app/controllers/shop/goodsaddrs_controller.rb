@@ -1,7 +1,7 @@
 #encoding:utf-8
 class Shop:: GoodsaddrsController < ApplicationController
 
- layout "tradev"
+ layout "shop"
 
 
 def addr_detail
@@ -13,22 +13,26 @@ def addr_detail
   #supplier_id=params[:supplier_id]
   @supplier = Ecstore::Supplier.find(78)
   @method = :put
-    render :layout=>'shop'
+   render :layout=>'shop'
 end
 
 def edit_addr
-return render :text=>params[:visitor]
- @addr = Ecstore::Visitor.find(params[:id])
-   if @addr.update_attributes(params[:addr])
-      respond_to do |format|
-       format.js
-       format.html { redirect_to "/orders/new_mobile?platform=mobile" }
-     end
+
+ @visitor = Ecstore::Visitor.find(params[:id])
+
+ if  @visitor.update_attributes(params[:visitor])
+ respond_to do |format|
+   format.js
+   format.html { redirect_to "/goodsaddrs/addr_detail?user_id"+params[:id]+"&shop_id="+ }
+ end
    else
-     render 'error.js' #, status: :unprocessable_entity
+      render 'error.js' #, status: :unprocessable_entity
    end
+  end
+
+
+
 
 end
 
 
-end

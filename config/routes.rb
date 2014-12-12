@@ -30,6 +30,7 @@ Modengke::Application.routes.draw do
         post 'my_add_shopping'
         get 'my_shopping_cart'
         get 'order_clearing'
+        get 'mobile_show'
       end
     end
 

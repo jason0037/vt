@@ -18,56 +18,39 @@
 <%=form_for :visitor, :url=>  "/goodsaddrs/edit_addr", :html=>{ :class=> " form-horizontal" } do |f|%>
     <input type="hidden" name="platform" value="<%=params[:platform]%>">
     <input type="hidden" name="id" value="<%=@addr.id%>">
-    <%if @addr.nil?%>
-	<input type="hidden" name="type" value="save">
-     <%else%>
-	<input type="hidden" name="type" value="update">
-    <%end%>
+    <input type="hidden" name="shop_id" value="<%=@shop_id%>">
     <input name="addr[def_addr]" type="hidden" value="1">
     <div class="new-addr <%='hide' unless display==true%>" id="addr_form">
       <div class="am-panel am-panel-default">
 
         <div class="am-panel am-panel-default">
-	   <%=f.hidden_field :shop_id, :value=>@shop_id%>
-	   <%=f.hidden_field :user_id, :value=>@user_id%>
+
           <div class="am-input-group">
             <span class="am-input-group-label"><%= I18n.t "name"%><span class="importstart">*</span></span>
-         <!--   <input class="am-form-field" id="addr_name" name="addr[name]" placeholder="<%=I18n.t "name"%>" value="<%=@addr.visitor_name%>" size="30" type="text">-->
+
 
             <%=f.text_field :visitor_name,  :class=>"am-form-field" ,:placeholder=>"收货人姓名",:value=>@addr.visitor_name%>
           </div>
           <br/>
           <div class="am-input-group">
             <span class="am-input-group-label"><%= I18n.t "m_phone"%><span class="importstart">*</span></span>
-            <!--<input class="am-form-field" id="addr_mobile" name="addr[mobile]" placeholder="<%=I18n.t "m_phone"%>" value="<%=@addr.tel%>" size="30" type="text">-->
+
 
             <%=f.text_field :tel,  :class=>"am-form-field" ,:placeholder=>"手机", :value=>@addr.tel %>
           </div>
           <br/>
           <div class="am-input-group">
             <span class="am-input-group-label"><%= I18n.t "tel"%></span>
-           <!-- <input class="am-form-field" id="addr_tel" name="addr[tel]" placeholder="<%=I18n.t "phone"%>"  value="<%=@addr.phone%>" size="30" type="text">-->
+
 
             <%=f.text_field :phone,  :class=>"am-form-field" ,:placeholder=>"固定电话", :value=>@addr.phone%>
           </div>
           <br/>
           <div class="am-input-group">
             <span class="am-input-group-label"><%= I18n.t "express_code"%></span>
-            <!--<input class="am-form-field" id="addr_zip" name="addr[zip]" placeholder="<%=I18n.t "express_code"%>" value="<%=@addr.postal%>" size="30" type="text">-->
+
             <%=f.text_field :postal,  :class=>"am-form-field" ,:placeholder=>"邮编", :value=>@addr.postal%>
           </div>
-            <div class="controls" style="display:none">
-            <select id="province" name="addr[province]">
-              <option value="21" selected="selected">上海</option>
-            </select>
-            <select class="am-input-group-label" id="city" name="addr[city]">
-              <option value="1" selected="selected">上海</option>
-            </select>
-            <select id="district" name="addr[district]" onchange="selectDistrict(this);">
-              <option value="1" selected="selected">静安区</option>
-            </select>
-          </div>
-
 
             <br/>
 
@@ -94,7 +77,7 @@
               <%#=f.submit "确认收货地址",:class=>"am-btn am-btn-warning am-btn-block" %>
           <%end%>
         </div>
-      </div>
+
     </div>
 <%end%>
 </div>

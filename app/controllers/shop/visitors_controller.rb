@@ -153,6 +153,7 @@ end
 
 def order_clearing
 
+  @shop_id=params[:supplier_id]
 
     session[:arrivals]=nil
     session[:zhuanghuo] =nil
@@ -180,11 +181,11 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
 
 
     @cart_total_final = @cart_total+ @cart_freight + @favorable_terms
-    @addrs =  @user.member_addrs
-    if @addrs.size==0
-      redirect_to "/orders/new_mobile_addr?supplier_id=#{supplier_id}&return_url=%2forders%2fnew_mobile?supplier_id%3d#{supplier_id}"
-    else
-      @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
+   # @addrs =  @user.member_addrs
+   # if @addrs.size==0
+  #  redirect_to "/orders/new_mobile_addr?supplier_id=#{supplier_id}&return_url=%2forders%2fnew_mobile?supplier_id%3d#{supplier_id}"
+  #  else
+      @def_addr =  Ecstore::Visitor.where(:id=>params[:user_id]).first
 
       if @pmtable
         @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
@@ -192,12 +193,22 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
         @coupons = @user.usable_coupons
       end
       @supplier = Ecstore::Supplier.find(supplier_id)
-      render :layout=>@supplier.layout
-    end
+      render :layout=>'shop'
+  #  end
+end
+def mobile_show
 
+  supplier_id = params[:supplier_id]
+@order = Ecstore::Order.find_by_order_id(params[:id])
+
+
+@supplier =supplier_id
+
+
+render :layout=>'shop'
+end
 
 end
 
 
 
-end
