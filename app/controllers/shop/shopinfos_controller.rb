@@ -44,6 +44,7 @@ class Shop:: ShopinfosController < ApplicationController
 
 
   def show_goods
+    params[:shop_id]
     @shop=Ecstore::Shop.find_by_shop_id(params[:shop_id])
     @goods =  Ecstore::Good.where(:supplier_id=>"77")
     if params[:cat_id]
