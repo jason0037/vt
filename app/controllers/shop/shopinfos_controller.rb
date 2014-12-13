@@ -123,7 +123,7 @@ goods= Ecstore::ShopsGood.where(:shop_id=>shop_id,:good_status=>"1")
   end
 
   def my_goods
-    @shop_title="店铺中心"
+    @shop_title="商品中心"
 
     @shop_id=params[:shop_id]
 
