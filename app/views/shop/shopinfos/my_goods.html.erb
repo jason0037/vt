@@ -1,6 +1,8 @@
 
 <style type="text/css">
-
+    .bottomdivsclearfix{
+       display: none;
+    }
     .am-btn-catid{
         font-size: 15px;
         margin-left: 30px;
@@ -30,24 +32,26 @@ alert($('.shop_id').val())
   
 <%@goods_store.each do |good|%>
 
-        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
 
-          <a href="/shopinfos/goods_details?id=<%=good.bn%>&fp=category&shop_id=<%=@shop_id%>&user_id=<%=@user.member_id%>" class="cart_orderlist_i">
 
-            <div class="am-col col-sm-4 am-list-thumb">
-              <img src="" class="j_item_image pg1" data-original1="" data-brandid="<%=@brand_id%>" data-productid="<%=good.bn%>" data-onerror="" data-brandlazy="false" style="display: block;">
-            </div>
-            <div class="am-col col-sm-8 am-list-main">
-                <span class="am-list-item-hd" style="font-size: 10px">
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="cursor: pointer">
+
+
+              <div class="am-col col-sm-4 am-list-thumb">
+                <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
+              </div>
+              <div class="am-col col-sm-8 am-list-main">
+                <span class="am-list-item-hd ">
                   <%=good.name%>
                 </span>
-              <div class="am-list-item-text"> <strong class="" style="color: red;font-size: 16px ;float: right" >¥<%=good.price%> &nbsp;</strong>   </div>
-            </div>
-            <div>
-            </div>
-          </a>
-        </li>
-<%end%>
+                <div class="am-list-item-text" style="width: 100%;" >
+
+                  <span class="right">商品价:<strong class="price" >¥<%=good.price%></strong> </span>  </div>
+              </div>
+
+              </a>
+            </li>
+        <%end%>
 
   </ul>
 </div>
@@ -61,6 +65,15 @@ alert($('.shop_id').val())
 
      <%end%>
   </div>
+
+<div class="bottomdiv clearfix"  >
+
+  <a  class="am-btn am-btn-success " style="width:50%;float: left" href="/shopinfos/show_goods?shop_id=<%=@shop_id%>" >增加商品 </a>
+
+  <a  class="am-btn am-btn-primary " style="width:50%;float: left" href="/shopinfos/myshop?shop_id=<%=@shop_id%>" >发布 </a>
+
+</div>
+
     <script>
     $(".am-btn-catid").each(function(){
         var v = $(this).attr("href");

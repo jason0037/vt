@@ -5,6 +5,9 @@ Modengke::Application.routes.draw do
 
 
 
+
+
+
   scope :module => "shop" do
     resource :shopinfos do
       collection do
@@ -15,9 +18,13 @@ Modengke::Application.routes.draw do
         post 'add_goods'
         get 'my_goods'
         get 'goods_details'
-        get 'my_shop'
+        get 'myshop'
       end
     end
+
+    get "/shopuser"=>"shopuser#index" ,:controller=>"shopusers"
+
+
 
     resource :visitors do
       collection do
@@ -221,7 +228,7 @@ Modengke::Application.routes.draw do
       post "destory"
     end
     member do
-      get :user
+      get :shopuser
       get :category
       get :commodity
       get :order

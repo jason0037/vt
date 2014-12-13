@@ -35,6 +35,7 @@
   <ul class="am-list" >
       <input type="hidden" id="shopid" value="<%=@shop.shop_id%>">
 
+
     <% @goods.each do |good|%>
 
 
@@ -81,8 +82,7 @@
             type:'post',
             url:"/shopinfos/add_goods",
             data: { selector_shop: goodid,shop_id:shop_id },
-            success:function(data){
-
+            success:function(data){window.location.href="/shopinfos/my_goods?shop_id="+shop_id
             }
 
         });

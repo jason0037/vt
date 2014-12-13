@@ -1,4 +1,3 @@
-
 class CreateShops < ActiveRecord::Migration
   def change
 

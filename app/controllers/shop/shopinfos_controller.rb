@@ -28,19 +28,39 @@ class Shop:: ShopinfosController < ApplicationController
   end
 
 
-  def my_shop
+  def myshop
 
     shop_id=params[:shop_id]
-    shop=Ecstore::Shop.where(:shop_id=>shop_id)
-    len =shop.length
-    if len.to_i==0
-      redirect_to "/shopinfos/register?shop_id="+shop_id
-    else
-      redirect_to "/shopinfos/my_goods?shop_id="+shop_id
+    good=nil
+   shopgood= Ecstore::ShopsGood.where(:shop_id=>shop_id)
+
+    shopgood.each  do |go|
+      if go.good_status=="0"
+      go.update_attribute(:good_status,"1")   ###讲商品状态设置为上架
+
+     end
+    end
+
+goods= Ecstore::ShopsGood.where(:shop_id=>shop_id,:good_status=>"1")
+    @goods_store=nil
+    for i in goods
+
+      good =Ecstore::Good.where(:goods_id=>i.goods_id)
+      if  @goods_store.nil?
+        @goods_store=good
+      else
+        @goods_store= @goods_store+good
+
+      end
+
+    end
+    name=Ecstore::Shop.find_by_shop_id(shop_id).shop_name
+   @shop_title="来自#{name}的微商店"
+
     end
 
 
-  end
+
 
 
   def show_goods
@@ -91,6 +111,7 @@ class Shop:: ShopinfosController < ApplicationController
           good =Ecstore::ShopsGood.new do |goo|
             goo.shop_id=@shop_id
             goo.goods_id=id
+
 
           end.save
         end

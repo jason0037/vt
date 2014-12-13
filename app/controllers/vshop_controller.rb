@@ -65,7 +65,7 @@ class VshopController < ApplicationController
       @order_ids = @orders_nw.pluck(:order_id)
 
 
-      @orders = @orders_nw.includes(:user).paginate(:page=>params[:page],:per_page=>30)
+      @orders = @orders_nw.includes(:users).paginate(:page=>params[:page],:per_page=>30)
       respond_to do |format|
         format.js
         format.html
@@ -162,7 +162,7 @@ class VshopController < ApplicationController
 
   def create
     now  = Time.now
-    @account = Ecstore::Account.new(params[:user]) do |ac|
+    @account = Ecstore::Account.new(params[:users]) do |ac|
       ac.account_type ="member"
       ac.createtime = now.to_i
       ac.user.member_lv_id = 1
@@ -182,8 +182,8 @@ class VshopController < ApplicationController
 
   def search
     @title = "找回密码"
-    @by = params[:user][:by]
-    value = params[:user][:value]
+    @by = params[:users][:by]
+    value = params[:users][:value]
     col =  case @by
              when 'mobile' then '手机号码'
              when 'email' then '邮箱'

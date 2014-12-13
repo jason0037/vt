@@ -1,13 +1,11 @@
-<<<<<<< HEAD
 class CreateShopsGoods < ActiveRecord::Migration
   def change
 
     create_table :shops_goods do |t|
      t.integer :shop_id
      t.string :goods_id
-     t.string :down_time
-
-
+     t.integer :uptime ##上架时间
+     t.column :good_status ,"ENUM('0', '1')",:default=>"0"   ###1上架
       t.timestamps
     end
   end
@@ -16,22 +14,3 @@ class CreateShopsGoods < ActiveRecord::Migration
   end
 
 end
-=======
-class CreateShopsGoods < ActiveRecord::Migration
-  def change
-
-    create_table :shops_goods do |t|
-     t.integer :shop_id
-     t.string :goods_id
-     t.string :down_time
-
-
-      t.timestamps
-    end
-  end
-  def connection
-    @connection = Ecstore::Base.connection
-  end
-
-end
->>>>>>> 896dafebe2ab348b1366f1ef9b4dd0434eaf2667

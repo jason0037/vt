@@ -5,7 +5,7 @@
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <title>微商城</title>
+  <title>自贸平台</title>
   <meta content="" name="keywords">
   <meta content="" name="description">
   <%= stylesheet_link_tag    "shop.css" %>
@@ -47,10 +47,6 @@
           z-index: 1000000;
           margin: 3px;
       }
-      .am-navbar-default .am-navbar-nav {
-          background-color: #7E0001;
-      }
-
 
   </style>
 
@@ -62,7 +58,7 @@
   <div class="am-header-left am-header-nav">
     <a href="javascript:history.go(-1)" class="">
       <img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""></a></div>
-  <h1 class="am-header-title"><%unless @shop_title.nil?%><%=@shop_title%><%else%>贸威服务平台<%end%></h1>
+  <h1 class="am-header-title"><%unless @shop_title.nil?%><%=@shop_title%><%else%>贸威微信互助O2O直销平台<%end%></h1>
 
 
 </header>
@@ -72,6 +68,20 @@
 
 
 
+<div class="bottomdivsclearfix">
+
+  <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout"
+       id="">
+    <ul class="am-navbar-nav am-cf sm-block-grid-2">
+
+
+      <li><a class=""href="/shopinfos/myshop?shop_id=<%=@user.member_id%>"><span  class="am-navbar-label">|我的店铺|</span></a></li>
+      <li ><a class=" " href="/shopuser?shop_id=<%=@user.member_id%>"><span  class="am-navbar-label">|个人中心|</span></a></li>
+
+
+    </ul>                                                               ?
+  </div>
+</div>
 
 
 

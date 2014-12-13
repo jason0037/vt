@@ -1,0 +1,78 @@
+
+<style type="text/css">
+
+    .am-btn-catid{
+        font-size: 15px;
+        margin-left: 30px;
+        color: #ffffff;
+    }
+    .line_a{
+        background-color: #ff0000;
+    }
+
+</style>
+<script>
+    $(document).ready(function(){
+        $('.publish_goods_bn').click(function(){
+
+            alert($('.shop_id').val())
+        });
+
+
+    });
+</script>
+<div class="main">
+  <%if @goods_store%>
+
+      <div class="am-panel-bd">
+        <ul class="am-list">
+
+
+          <%@goods_store.each do |good|%>
+
+
+
+              <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="cursor: pointer">
+
+
+                <div class="am-col col-sm-4 am-list-thumb">
+                  <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
+                </div>
+                <div class="am-col col-sm-8 am-list-main">
+                <span class="am-list-item-hd ">
+                  <%=good.name%>
+                </span>
+                  <div class="am-list-item-text" style="width: 100%;" >
+
+                    <span class="right">商品价:<strong class="price" >¥<%=good.price%></strong> </span>  </div>
+                </div>
+
+                </a>
+              </li>
+          <%end%>
+
+        </ul>
+      </div>
+  <%else%>
+      <a href="/shopinfos/show_goods?shop_id=<%=@shop_id%>" >
+        <div class="am-panel am-panel-primary " style="margin-top: 100px">
+          <div class="am-panel-hd" style="padding: 24px"><i  class="am-icon-shopping-cart "></i>
+            <span style="margin-left: 10px">您的店铺空空的!您可以去贸威里面挑选喜欢的商品</span> </div>
+        </div>
+      </a>
+
+  <%end%>
+</div>
+
+
+
+
+<script>
+    $(".am-btn-catid").each(function(){
+        var v = $(this).attr("href");
+        if("http://"+window.location.host+v==window.location.href){
+
+        }
+    });
+
+</script>

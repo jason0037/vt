@@ -117,14 +117,6 @@ ActiveRecord::Schema.define(:version => 201412081010300) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "shops", :force => true do |t|
-    t.integer "shop_id"
-    t.string  "shop_name"
-    t.string  "shop_logo"
-    t.string  "wx_code"
-    t.string  "shop_intro"
-  end
-
   create_table "topics", :force => true do |t|
     t.string   "title"
     t.text     "body"

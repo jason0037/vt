@@ -26,6 +26,16 @@ textarea{
     width: 100px;
     overflow:hidden; text-overflow:ellipsis; white-space:nowrap
 }
+.bottomdiv {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    border: #ddd 1px solid;
+    border-top: #fff 1px solid;
+    z-index: 1000000;
+}
+
 .get {
     background: #1E5B94;
     color: #fff;

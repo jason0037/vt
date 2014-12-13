@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   def send_reset_password_instruction
     @title = "找回密码"
     member_id = params[:user][:member_id]
-    @by = params[:user][:by]
+    @by = params[:users][:by]
     @user = Ecstore::User.where(:member_id=>member_id).first
     @user.send_reset_password_instruction(@by)
 

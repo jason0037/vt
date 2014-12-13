@@ -85,6 +85,14 @@
         <span class="icon-arr"></span> </a>
     </div>
     <%end%>
+<%if Ecstore::Shop.find_by_shop_id(@user.member_id)%>
+    <div class="am-panel am-panel-default">
+      <a href="">
+        <div class="am-panel-hd">进入我的店铺</div>
+        <span class="icon-arr"></span> </a>
+    </div>
+    <%end%>
+
 <div class="s_links in_user_center">
   <a href="user-fav-product.html" style="display:none">
 
