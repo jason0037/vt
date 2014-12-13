@@ -1,4 +1,3 @@
-
 #encoding:utf-8
 class Shop:: ShopinfosController < ApplicationController
   layout "shop"
@@ -8,6 +7,7 @@ class Shop:: ShopinfosController < ApplicationController
       @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
     end
   end
+
 
   def register
     @shop_id=params[:shop_id]
@@ -52,6 +52,7 @@ class Shop:: ShopinfosController < ApplicationController
     end
     @recommend_user = session[:recommend_user]
 
+
     if @recommend_user==nil &&  params[:wechatuser]
       @recommend_user = params[:wechatuser]
     end
@@ -75,6 +76,7 @@ class Shop:: ShopinfosController < ApplicationController
 
 
   end
+
 
   def add_goods
 
@@ -101,9 +103,11 @@ class Shop:: ShopinfosController < ApplicationController
 
   def my_goods
     @shop_title="店铺中心"
+
     @shop_id=params[:shop_id]
 
     goods = Ecstore::ShopsGood.where(:shop_id=> @shop_id)
+
     m=nil
     @goods_store=nil
     for i in goods
@@ -123,6 +127,7 @@ class Shop:: ShopinfosController < ApplicationController
 
 
   def goods_details
+
 
     @shop_id=params[:shop_id]
     @user_id=params[:user_id]
@@ -183,6 +188,5 @@ class Shop:: ShopinfosController < ApplicationController
 
 
 end
-
 
 
