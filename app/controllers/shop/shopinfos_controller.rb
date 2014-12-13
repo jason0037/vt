@@ -188,3 +188,4 @@ class Shop:: ShopinfosController < ApplicationController
 
 end
 
+

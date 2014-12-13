@@ -50,7 +50,19 @@
             <span class="am-input-group-label"><%= I18n.t "express_code"%></span>
 
             <%=f.text_field :postal,  :class=>"am-form-field" ,:placeholder=>"邮编", :value=>@addr.postal%>
-          </div>
+            </div>
+            <div class="controls" style="display:none">
+              <select id="province" name="addr[province]">
+                <option value="21" selected="selected">上海</option>
+              </select>
+              <select class="am-input-group-label" id="city" name="addr[city]">
+                <option value="1" selected="selected">上海</option>
+              </select>
+              <select id="district" name="addr[district]" onchange="selectDistrict(this);">
+                <option value="1" selected="selected">静安区</option>
+              </select>
+            </div>
+
 
             <br/>
 

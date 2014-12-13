@@ -196,6 +196,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
       render :layout=>'shop'
   #  end
 end
+ 
 def mobile_show
 
   supplier_id = params[:supplier_id]
@@ -209,6 +210,3 @@ render :layout=>'shop'
 end
 
 end
-
-
-
