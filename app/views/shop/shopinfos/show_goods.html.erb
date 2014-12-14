@@ -26,10 +26,7 @@
     <a class="am-btn-catid" href="show_goods?cat_id=<%=Ecstore::GoodCat.find_by_cat_name("火腿").cat_id%>">|&nbsp;火腿</a>
     <a class="am-btn-catid" href="show_goods?cat_id=<%=Ecstore::GoodCat.find_by_cat_name("培根").cat_id%>">|&nbsp;培根</a>
     <a class="am-btn-catid" href="show_goods?cat_id=<%=Ecstore::GoodCat.find_by_cat_name("其它").cat_id%>">|&nbsp;其它</a></div>
-</div>  <div class="fiex_text ">
-    <div style="filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9 ;" >
-      <input class=" am-btn am-btn-primary submit"   type="button" value="提交">
-    </div>    </div>
+</div>
 <div class="am-panel-bd">
 
   <ul class="am-list" >
@@ -62,6 +59,12 @@
 </div>
 
     </div>
+<div class="bottomdiv clearfix"  >
+
+    <input class=" am-btn am-btn-primary submit"   type="button" value="提交">
+   </div>
+
+
 <script>
     $(".am-list-item-thumb-left").each(function(){
         $(this).bind("click",function(){
