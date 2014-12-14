@@ -73,7 +73,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="非常抱歉！！"
         desc ="您点击的商品馆正在筹备上线，敬请期待"
         pic_url=""
-        link_url="http://vshop.trade-v.com/vshop/notice&supplier_id=#{id}"
+        link_url="http://vshop.trade-v.com/vshop/notice?supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
 
 
