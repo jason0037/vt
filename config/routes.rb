@@ -19,10 +19,16 @@ Modengke::Application.routes.draw do
         get 'my_goods'
         get 'goods_details'
         get 'myshop'
+        get 'myorder'
       end
     end
 
-    get "/shopuser"=>"shopuser#index" ,:controller=>"shopusers"
+   # get "/shopuser"=>"shopuser#index" ,:controller=>"shopusers"
+
+    resource :shopusers do
+      get "index",:on=>:collection
+      get "user",:on=>:collection
+    end
 
 
 
@@ -36,7 +42,7 @@ Modengke::Application.routes.draw do
         post 'my_add_shopping'
         get 'my_shopping_cart'
         get 'order_clearing'
-        get 'mobile_show'
+        get 'order_show'
       end
     end
 
@@ -612,7 +618,7 @@ Modengke::Application.routes.draw do
     end
 
     get 'share' =>"orders#share"
-
+    get 'shop_share'=>"orders#shop_share"
 
     resources :orders, :except=>[:index] do
       member do
@@ -653,6 +659,7 @@ Modengke::Application.routes.draw do
         post 'manco_detail'
         get 'manco_card'
         get 'advance'   ##预付款信息
+
       end
     end
 

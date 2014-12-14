@@ -13,7 +13,51 @@ module SessionsHelper
 	
 	def signed_in?
 		!current_account.nil?
-	end
+  end
+
+
+  ###商店
+
+  def current_shop_account
+    return @visitors unless @visitors.nil?
+    if cookies["loginName"].present?
+      loginName = cookies["loginName"]
+      @visitors ||= Ecstore::Visitor.find_by_visitor_name(loginName)
+    end
+  end
+
+  def current_shop_account=(accounts)
+    @visitors = accounts
+  end
+
+  def signed_shop_in?
+    !current_shop_account.nil?
+  end
+
+  def sing_shop_in(accounts,remember_me = nil)
+    current_shop_account = accounts
+
+    if Rails.env == "production"
+      cookies[:loginName] = {:value=>accounts.visitor_name,:domain=>'.trade-v.com'}
+      cookies[:UNAME] = {:value=>accounts.visitor_name,:domain=>'.trade-v.com'}
+      # cookies[:MLV] = {:value=>account.user.member_lv_id,:expires=>expires,:domain=>'.trade-v.com'}
+      #cookies[:CUR] = {:value=>account.user.cur,:expires=>expires,:domain=>'.trade-v.com'}
+      # cookies[:LANG] = {:value=>account.user.lang,:expires=>expires,:domain=>'.trade-v.com'}
+    else
+      cookies[:loginName] = {:value=>accounts.visitor_name}
+      cookies[:UNAME] = {:value=>accounts.visitor_name}
+      # cookies[:MLV] = {:value=>account.user.member_lv_id,:expires=>expires}
+      #cookies[:CUR] = {:value=>account.user.cur,:expires=>expires}
+      #cookies[:LANG] = {:value=>account.user.lang,:expires=>expires}
+    end
+  end
+
+
+  ###
+
+
+
+
 
 	def sign_in(account,remember_me = nil)
 	   current_account = account
@@ -38,6 +82,8 @@ module SessionsHelper
 	         cookies[:LANG] = {:value=>account.user.lang,:expires=>expires}
 	   end
 	end
+
+
 
 	def sign_out
 		current_account = nil

@@ -9,7 +9,7 @@ class CreateVisitors < ActiveRecord::Migration
      t.string :tel
      t.string :phone
      t.string :postal
-
+     t.integer :shop_id
       t.timestamps
     end
   end

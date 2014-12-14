@@ -169,7 +169,7 @@ class Store::OrdersController < ApplicationController
 
   def create
 
-    platform=params["platform"];
+    platform=params[:platform];
     addr=nil
     if platform=='shop'
       addr =  Ecstore::Visitor.find_by_id(params[:member_addr])
@@ -179,7 +179,7 @@ class Store::OrdersController < ApplicationController
     supplier_id = @user.account.supplier_id
     end
 
-    hour=params["hour"];
+    hour=params[:hour];
     if params[:order][:ship_day]
        ship_day= params[:order][:ship_day]
        if ship_day!=("任意日期")
@@ -215,13 +215,20 @@ class Store::OrdersController < ApplicationController
 
     #=====推广佣金计算=======
     recommend_user = session[:recommend_user]
-    if recommend_user==nil
-      recommend_user= @user.login_name
+
+      if recommend_user==nil
+         if platform=="shop"
+         recommend_user= Ecstore::Shop.find_by_shop_id(supplier_id).shop_name
+        else
+          recommend_user= @user.login_name
+
+      end
     end
     params[:order].merge!(:recommend_user=>recommend_user)
     #return render :text=>params[:order]
     #====================
     @order = Ecstore::Order.new params[:order]
+
     if recommend_user == nil
       @order.commission=0
     end
@@ -332,7 +339,11 @@ class Store::OrdersController < ApplicationController
       Ecstore::OrderLog.new do |order_log|
         order_log.rel_id = @order.order_id
         order_log.op_id = @order.member_id
+        if platform=="shop"
+          order_log.op_name =Ecstore::Shop.find_by_shop_id(supplier_id).shop_name
+        else
         order_log.op_name = @user.login_name
+        end
         order_log.alttime = @order.createtime
         order_log.behavior = 'creates'
         order_log.result = "SUCCESS"
@@ -344,7 +355,7 @@ class Store::OrdersController < ApplicationController
         elsif platform=="wuliu"
           redirect_to "/orders/wuliu_show?id=#{@order.order_id}&supplier_id=#{supplier_id}"
         elsif platform=="shop"
-          redirect_to "/visitors/mobile_show?id=#{@order.order_id}&supplier_id=#{supplier_id}"
+          redirect_to "/visitors/order_show?id=#{@order.order_id}&supplier_id=#{supplier_id}"
         elsif
           redirect_to "#{order_path(@order)}?platform=#{platform}&supplier_id=#{supplier_id}"
         end
@@ -565,6 +576,29 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
 
     render :layout=>"tairyo_new"
   end
+
+
+  def shop_share
+    @shop_title="我的收益"
+    wechat_user = params[:FromUserName]
+    @share=0
+    @sharelast = 0
+    if wechat_user
+      @order_all = Ecstore::Order.where(:recommend_user=>wechat_user).select("SUM(final_amount)*0.01 as share").group(:wechat_recommend).first
+      #return render :text=>@order.final_amount
+      if @order_all
+        @share = @order_all.share.round(2)
+        @order_last =Ecstore::Order.where(:recommend_user=>wechat_user).order("createtime desc").first
+        if @order_last
+          @sharelast = @order_last.final_amount*0.01.round(2)
+        end
+      end
+    end
+
+    render :layout=>"shop"
+  end
+
+
 
   def pay
     @order  = Ecstore::Order.find_by_order_id(params[:id])

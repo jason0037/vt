@@ -18,7 +18,8 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         render xml: send("response_news_message", {})
       when '买'
         render xml: send("response_news_message", {})
-      
+      when '店铺'
+        render xml: send("response_news_message", {})
       else
        render xml: send("response_#{@weixin_message.MsgType}_message", {})
     end
@@ -33,6 +34,14 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     user = @weixin_message.FromUserName
     #user = @weixin_message.ToUserName
     case @keyword
+
+      when '店铺'
+        title="自贸交易"
+        desc=""
+        pic_url="http://vshop.trade-v.com/images/a078/homepage/zimao.jpg"
+        link_url="htto://vshop.trade-v.com/shopinfos"
+        articles = [generate_article(title, desc, pic_url, link_url)
+
       when '授权'
 
         title="二维码"

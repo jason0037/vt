@@ -1,0 +1,193 @@
+<style type="text/css">
+
+    body{
+        background: #ffffff;
+
+    }
+    .bottomdivsclearfix{
+        display: none;
+    }
+
+
+    .status_text {
+        font-family: "微软雅黑","宋体";
+        display: inline-block;
+        font-weight: normal;
+
+        margin-left: 10%;
+        line-height: 65px;
+        line-height: 1.5;
+        text-align: left;
+        font-size: 24px;
+        color: #ed145b;
+    }
+    .blue .pay_icon, .list_status .green .pay_icon {
+        background-position: 0 -160px;
+        width: 24px;
+        height: 24px;
+    }
+    .change_lange{
+        display: none;
+    }
+    .pay_success {
+        width: 65px;
+        height: 65px;
+        background-position: 0 0px;
+    }
+    .pay_icon {
+        display: block;
+        _display: inline;
+        float: left;
+        background: url(/assets/payment_status_icons.jpg) top left no-repeat;
+    }
+    .detail{
+        border: 1px;
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #f0f1ff;
+    }
+    .ovalue{
+        margin-left: 50%;
+
+    }
+    .pay_text{
+        line-height: 3;
+    }
+
+</style>
+
+<div class="">
+  <%=form_for :payment,:url=>payments_path(:order_id=>@order.order_id,:supplier_id=>@supplier_id),:method=>'post',:html=>{ :target=>"_blank" } do |f|%>
+      <%=f.hidden_field :currency, :value=>"CNY" %>
+      <br/>
+      <div class="status_text">
+        <span class="pay_icon pay_success "></span>
+        <span class="pay_text"><%= I18n.t "orders_success_get"%></span>
+      </div>
+
+      <br/>
+      <div class="list_status">
+
+        <h2 class="blue" >
+          <span class="pay_icon"></span>
+          <span style="color: #0abede"><%= I18n.t "orders_no_pay"%></span>
+
+        </h2>
+      </div>
+
+
+      <br/>
+      <div class="showall">
+        <div  class="detail" >
+          <span class="span">	&nbsp; &nbsp; <%= I18n.t "order_num"%>:</span> <span style="margin-left: 40%" ><%=@order.order_id%></span>
+        </div>
+
+        <div class="detail" >
+          <span class="span">	&nbsp; &nbsp; <%= I18n.t "orders_pay_price"%>:</span> <span id="final_pay" class="ovalue"><%#=@order.final_pay%>￥<%=@order.final_amount%>
+           </span> </div>
+        <br/>
+
+        <span id="products_total" data-amount="<%=@order.products_total%>" style="display: none"></span>
+
+
+        <div class="detail" >
+          <span class="span">&nbsp; &nbsp; 	<%= I18n.t "order_status"%>:</span> <span style=" color: #ed145b;" class="ovalue">
+         <% if @order.order_status_text =="待付款" %>
+            <%=I18n.t "order_status_no"%>
+         <%else%>
+          <%=I18n.t "order_status_yes"%></span>
+              <%end%>
+          </div>
+
+
+        <span id="pmts_total" class="hide" data-amount="<%=@order.pmts_total%>"></span>
+
+        <hr>
+        <div class="payment">
+          <span class="span">&nbsp; &nbsp; 	<%= I18n.t "pay_options"%>:</span>
+          <span class="title" style="color: #0abede">
+            <% if @order.payment =="wxpay" %>
+                <%=I18n.t "wechat"%>
+                <% elsif @order.payment =="alipaywap" %>
+                  <%=I18n.t "alipay_mobile"%>
+                <%end%>
+            </span>
+          <%if @order.status == 'active' && @order.pay_status == '0'%>
+              <a href="#" class="change " style="margin-left: 30%" id="change_payment"><%= I18n.t "change_pay"%> </a>
+          <%end%>
+          <hr>
+          <div><%=payments[@order.payment][:extra].html_safe%></div>
+        </div>
+
+        <div class="payments " style="display: none" id="payment_choices">
+          <h5><%= I18n.t "pay_change_detail"%></h5>
+
+          <%if @order.part_pay?%>
+              <label class="checkbox">
+                <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@order.part_pay.to_i,:id=>"advance" }, @order.part_pay.to_i, 0%> <b>预付款先支付</b>
+                余额(<span>￥<%=@order.part_pay.to_i%></span>)
+              </label>
+          <%end%>
+          <label class="radio">
+            <%=f.radio_button :pay_app_id, "ips", { :checked=>(@order.payment == 'ips') }%> <b><%=I18n.t "IPS_Pay"%></b>
+            <span class="extra-desc"></span>
+          </label>
+
+
+          <!--<label class="radio">-->
+          <!--<%#=f.radio_button :pay_app_id, "offline", { :checked=>(@order.payment == 'offline') }%>-->
+          <!--<b>货到付款</b>-->
+          <!--<span class="extra-desc"><#%=link_to "点击查询货到付款配送区域","http://www.zjs.com.cn/WS_Business/WS_Bussiness_CityArea.aspx?id=6",:target=>"_blank"%></span>-->
+          <!--</label>-->
+
+          <label class="radio">
+            <%=f.radio_button :pay_app_id, "alipay", { :checked=>(@order.payment == 'alipay') }%> <b><%= I18n.t "alipay"%></b>
+          </label>
+          <label class="radio">
+            <%=f.radio_button :pay_app_id, "alipaywap", { :checked=>(@order.payment == 'alipaywap') }%> <b><%= I18n.t "alipay_mobile"%></b>
+          </label>
+          <label class="radio">
+            <%=f.radio_button :pay_app_id, "wxpay", { :checked=>(@order.payment == 'wxpay') }%> <b><%= I18n.t "wechat"%></b>
+          </label>
+        </div>
+
+        <br/>
+        <br/>
+
+        <div class="actions">
+          <div class="list_status">
+
+            <h2 class="blue" style="color: #0abede">
+              <span class="pay_icon"></span>
+              <span ><%= I18n.t "pay_showone"%>
+                <!--<a href="/orders/mobile_show_order?id=<%=@order.order_id%>&supplier_id=<%=@supplier_id%>"><%= I18n.t "order_details"%></a> <%= I18n.t "pay_showtwo"%></span>-->
+            </h2>
+          </div>
+          <br>
+          <% if @order.order_status_text=="待付款" %>
+              <%#=f.submit I18n.t 'confirm_order',:class=>"btn  btn-inverse" if @order.pay_status == '0' && @order.status == 'active' && @order.payment != 'offline' %>
+              <% if @order.pay_status == '0' && @order.status == 'active' && @order.payment != 'offline' %>
+                  <input type="submit" class=" am-btn am-btn-block am-btn-primary " value="<%=I18n.t "no_pay"%>">
+              <%end%>
+          <% else%>
+              <span><%= I18n.t "success_pay"%></span>
+          <% end %>
+        </div>
+  <%end%>
+  </div>
+
+  <script type="application/javascript">
+      $(document).ready(function(){
+          $("#change_payment").click(function(){
+
+              if($('#payment_choices').is(':hidden')){
+                  $('#payment_choices').show() ;
+              }
+              else{
+                  $('#payment_choices').hide() ;
+              }
+          })
+      })
+
+
+  </script>

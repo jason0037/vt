@@ -3,9 +3,9 @@
         display: none;
     }
 </style>
-<div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
-  <div class="am-panel-hd" style="text-align: center"><%= I18n.t "shopping-basket"%>
-    <a href="/world_food?supplier_id=<%=@supplier_id%>" style="float: right"> <%= I18n.t "continue_shopping"%></a>
+<div class="am-panel am-panel-default "style="margin: 0px;padding: 0px">
+  <div class="am-panel-hd" style="text-align: center">
+    <a href="/shopinfos/myshop?shop_id=<%=@supplier_id%>" style="margin-left: 80%" > <%= I18n.t "continue_shopping"%></a>
   </div>
 </div>
 
@@ -13,22 +13,14 @@
 <div id="cart">
   <div class="am-list-news-bd">
 
-
+    <ul class="am-list">
     <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
 
-        <%if line_item.supplier_id.to_i !=@goods_supplier%>
-            <%if @goods_supplier!=0%>
-                </ul>
-            <%end%>
-            <div id="supplier_<%=line_item.supplier_id%>"><%=line_item.supplier.name%></div>
-            <ul class="am-list" id="supplierid_<%=line_item.supplier_id%>">
-              <% @i = (@i-1).abs %>
-        <%end%>
-        <%@goods_supplier = line_item.supplier_id%>
 
-        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" id="line_<%=line_item.obj_ident%>" style='background:<%=@bg_color[@i]%>'>
+
+        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" id="line_<%=line_item.obj_ident%>" >
           <div class="am-col col-sm-4 am-list-thumb">
-            <a href="/shopinfos/goods_details?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier_id%> class="cart_orderlist_i">
+            <a href="/shopinfos/goods_details?id=<%=line_item.good.bn%>&shop_id=<%=@supplier_id%>">
             <img src="<%=line_item.good.medium_pic%>"
                  data-original="<%=line_item.good.medium_pic%>"
                  data-onerror="<%=line_item.good.medium_pic%>"
@@ -37,7 +29,7 @@
           </div>
           <div class="am-col col-sm-8 am-list-main">
             <h3 class="am-list-item-hd">
-              <a href="/shopinfos/goods_details?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier_id%>&user_id=<%=@user_id%>">
+              <a href="/shopinfos/goods_details?id=<%=line_item.good.bn%>&shop_id=<%=@supplier_id%>">
                 <p class="cart_g_name"><%=line_item.good.brand.brand_name%>,<%=line_item.product.name%> </p>
 
               </a>

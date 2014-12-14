@@ -6,12 +6,12 @@ class Shop:: GoodsaddrsController < ApplicationController
 
 def addr_detail
   @shop_id =params[:shop_id]
-  @user_id =params[:user_id]
+  addr_id =params[:addr_id]
 
-  @manco_title="地址信息"
-  @addr = Ecstore::Visitor.find(@user_id)
+  @shop_title="地址信息"
+  @addr = Ecstore::Visitor.find(addr_id)
   #supplier_id=params[:supplier_id]
-  @supplier = Ecstore::Supplier.find(78)
+
   @method = :put
    render :layout=>'shop'
 end

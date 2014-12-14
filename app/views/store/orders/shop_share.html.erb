@@ -1,0 +1,28 @@
+<style>
+    .change_lange{
+        display: none;
+    }
+
+</style>
+
+
+<div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+  <div class="am-panel-hd"><%= I18n.t "total_commission"%> <span style="float: right">¥<%=@share%></span></div>
+</div>
+<div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+  <div class="am-panel-hd"><%= I18n.t "withdrawn_commission"%> <span style="float: right">¥0</span></div>
+</div>
+
+<div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+  <div class="am-panel-hd"><%= I18n.t "pending_commission"%> <span style="float: right">¥<%=@share%></span></div>
+</div>
+<input type="hidden" name="favourable_id" value="">
+
+
+<div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
+  <div class="am-panel-hd"><%= I18n.t "latest_commission"%> <span style="float: right">¥<%=format("%.2f",@sharelast)%></span></div>
+</div>
+
+
+
+</div>

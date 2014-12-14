@@ -1,49 +1,48 @@
 #encoding:utf-8
 class Shop:: VisitorsController < ApplicationController
-
+  before_filter :find_shop_user
  layout "shop"
 
 def login
+    if @user
+      sign_out
+    end
    @shop_id=params[:shop_id]
+
+
 end
 
 def register
+  if @user
+    sign_out
+  end
    @shop_id=params[:shop_id]
 end
 
 def login_in
-
-
+  shop_id=params[:visitor][:shop_id]
+  return_url=params[:return_url]
      #params[:visitor]
-     @v = Ecstore::Visitor.where(:tel=>params[:visitor][:visitor_tel],:visitor_password=>params[:visitor][:visitor_password])
-      shop_id=params[:visitor][:shop_id]
-   if @v.nil?
-     
-    else
-       redirect_to "/shopinfos/my_goods?shop_id="+shop_id
-   end
+ @visitor = Ecstore::Visitor.find_by_visitor_name(params[:visitor][:visitor_name])
+
+
+     sing_shop_in(@visitor)
+  redirect_to return_url+"&shop_id="+shop_id
+
 end
 
 def register_user
 
+  @visitors=Ecstore::Visitor.new(params[:visitor])
 
-  visitor=Ecstore::Visitor.where(:tel=>params[:visitor][:visitor_tel])
-
-len =visitor.length
-   if len==0
-
-  @visitor=Ecstore::Visitor.new do |v|
-
-   v.tel=params[:visitor][:visitor_tel]
-
-   v.visitor_password=params[:visitor][:visitor_password]
-   end.save
+  if  @visitors.save
+    sing_shop_in(@visitors)
 
     @shop_id=params[:visitor][:shop_id]
   
-   redirect_to "/visitors/login?shop_id="+@shop_id
+   redirect_to "/shopinfos/myshop?shop_id="+@shop_id
  else
-  
+
   end
 
   
@@ -113,12 +112,9 @@ def my_add_shopping
 		find_cart!
 
     supplier_id=@shop_id
-    if supplier_id == nil
-      supplier_id = 78
 
-    end
    
-    if params[:platform]=="mobile"
+    if params[:platform]=="shop"
 
       redirect_to "/visitors/my_shopping_cart?supplier_id=#{@shop_id}&user_id="+@user_id
 
@@ -131,23 +127,12 @@ end
 
 
 def my_shopping_cart
-
+    @shop_title="我的购物车"
     @supplier_id=params[:supplier_id]
    # return render :text=>@supplier_id
     @user_id=params[:user_id]
 
-    @goods_supplier = 0
-    @bg_color = ["#cde6f3","#e5fdff"]
-    @i = 0
-    if  @user
-       #  if @supplier_id == nil
-           # @supplier_id=78
-        # end
-        @supplier = Ecstore::Supplier.find(78)
-         render :layout=>@supplier.layout
-    else
-       #redirect_to  "/auto_login?id=#{supplier_id}&platform=mobile&return_url=/cart/mobile?id=#{supplier_id}"
-    end
+
 
 end
 
@@ -155,18 +140,14 @@ def order_clearing
 
   @shop_id=params[:supplier_id]
 
-    session[:arrivals]=nil
-    session[:zhuanghuo] =nil
-    session[:xiehuo] =nil
-    supplier_id= @user.account.supplier_id
 
-    if supplier_id.nil?
-      supplier_id=78
-    end
+    supplier_id= @visitors.shop_id
+
+
 
    sql = "SELECT SUM(price*quantity) AS total,mdk.sdb_b2c_cart_objects.supplier_id,SUM(freight)/count(*) AS freight FROM mdk.sdb_b2c_cart_objects
 INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING_INDEX(SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',2),'_',-1) = mdk.sdb_b2c_goods.goods_id
-WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}
+WHERE mdk.sdb_b2c_cart_objects.member_id=#{@visitors.id}
 GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
     @cart_total_by_supplier = ActiveRecord::Base.connection.execute(sql)
     @cart_freight = 0
@@ -181,10 +162,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
 
 
     @cart_total_final = @cart_total+ @cart_freight + @favorable_terms
-   # @addrs =  @user.member_addrs
-   # if @addrs.size==0
-  #  redirect_to "/orders/new_mobile_addr?supplier_id=#{supplier_id}&return_url=%2forders%2fnew_mobile?supplier_id%3d#{supplier_id}"
-  #  else
+
       @def_addr =  Ecstore::Visitor.where(:id=>params[:user_id]).first
 
       if @pmtable
@@ -192,18 +170,17 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
         @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
         @coupons = @user.usable_coupons
       end
-      @supplier = Ecstore::Supplier.find(supplier_id)
+
       render :layout=>'shop'
   #  end
 end
  
-def mobile_show
-
-  supplier_id = params[:supplier_id]
+def  order_show
+     @shop_title="我的订单"
+  @supplier_id = params[:supplier_id]
   @order = Ecstore::Order.find_by_order_id(params[:id])
 
 
-@supplier =supplier_id
 
 
 render :layout=>'shop'

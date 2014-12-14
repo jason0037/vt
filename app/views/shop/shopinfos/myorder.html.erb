@@ -1,0 +1,65 @@
+<style type="text/css" xmlns="http://www.w3.org/1999/html">
+    table{
+        width: 100%;
+        border: 4px,solid #000000;;
+    }
+    .change_lange{
+        display: none;
+    }
+    table th{
+
+        background-color: #ffffff;
+        color: #000000;
+
+    }
+    table td{
+        text-align: center;
+        color: #dd514c;
+        background-color: rgba(221, 81, 76, 0.15);
+        border-color: #f5cecd;
+
+    }
+
+
+</style>
+
+
+
+<div class="am-list-news-bd">
+  <ul class="am-list">
+    <%@orders.each  do |order|%>
+        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+          <div class="am-col col-sm-4 am-list-thumb">
+
+            <%order.order_items.each_with_index do |order_item,index|%>
+
+                    <%
+                       link_title = order_item.name
+                       link_title = "赠品:#{link_title}" if order_item.item_type == 'gift'
+                    %>
+                    <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.good%>
+
+
+            <%end%>
+
+          </div>
+          <div class="am-col col-sm-8 am-list-main">
+            <h3 class="am-list-item-hd">
+
+              ￥<%=order.final_amount%>
+              <span style="float: right">
+              购买人:<%=Ecstore::Visitor.find(order.member_id).visitor_name%>
+         </span>
+
+            </h3>
+            <a href="/orders/mobile_show_order?id=<%=order.order_id%>&supplier_id=78" target="_blank"><%= I18n.t "details"%></a>
+
+          </div>
+        </li>
+    <%end%>
+  </ul>
+</div>
+
+
+
+

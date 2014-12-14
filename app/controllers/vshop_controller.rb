@@ -2,6 +2,7 @@
 require  'modec_pay'
 class VshopController < ApplicationController
   skip_before_filter :set_locale
+  before_filter :find_shop_user
   layout "vshop"
 
 
@@ -256,9 +257,10 @@ class VshopController < ApplicationController
   #get /vhsop/id/payments
 
   def payments
+    unless @visitors
     supplier_id=params[:supplier_id]
     @supplier = Ecstore::Supplier.find(supplier_id) 
-
+    end
     #获取不同供应商支付接口参数
     supplier_pay_id = params[:id] 
     @supplier_pay  = Ecstore::Supplier.find(supplier_pay_id)     
@@ -277,7 +279,11 @@ class VshopController < ApplicationController
       pay.pay_time = Time.now
       pay.subject = "#{@supplier_pay.name}订单(#{order_id})"
       pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
+      if @visitors
+        pay.openid= @visitors.visitor_name
+      else
       pay.openid = @user.account.login_name
+      end
       pay.spbill_create_ip = request.remote_ip
       pay.supplier_id = supplier_pay_id
       pay.appid = @supplier_pay.weixin_appid
@@ -285,8 +291,13 @@ class VshopController < ApplicationController
       pay.partner_key = @supplier_pay.partner_key
       pay.partnerid = @supplier_pay.partnerid
       end
+      if @visitors
+        render :inline=>@modec_pay.html_form_wxpay, :layout=>"shop"
+      else
+        render :inline=>@modec_pay.html_form_wxpay, :layout=>"#{@supplier.layout}"
+      end
 
-       render :inline=>@modec_pay.html_form_wxpay, :layout=>"#{@supplier.layout}"
+
 
       Ecstore::PaymentLog.new do |log|
         log.payment_id = @payment.payment_id

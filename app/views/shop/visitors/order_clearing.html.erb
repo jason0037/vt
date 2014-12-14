@@ -7,13 +7,13 @@
 </style>
 <%if @line_items.size > 0%>
 
-    <div class="am-panel am-panel-warning">
+    <div class="am-panel am-panel-default">
       <div class="am-panel-hd"><%=I18n.t "details_consignee"%></div>
 
-      <a id="addressLink" href="/goodsaddrs/addr_detail?platform=mobile&supplier_id=<%=@supplier.id%>&id=<%=@def_addr.id%>">
+      <a id="addressLink" href="/goodsaddrs/addr_detail?platform=mobile&addr_id=<%=@def_addr.id%>">
 
       <div class="am-panel-bd">
-          <span class="text">&nbsp;&nbsp;<%=@def_addr.visitor_name%>  <span class="phone-num" style="margin-left: 30px"><%=@def_addr.tel%></span></span>
+          <span class="text">&nbsp;&nbsp;<%=@def_addr.visitor_name%>  <span class="phone-num" style="margin-left: 30px"><%=@def_addr.phone%></span></span>
           <br/>
           <span class="text2">&nbsp;&nbsp;<%=@def_addr.address%></span>
            <span class="icon-arr" ><%=I18n.t "modify"%></span>
@@ -36,11 +36,11 @@
           </div>
         </div>
 
-        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow" style="display:none">
+        <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow" style="display:none">
           <div class="am-panel-hd"><%= I18n.t "delivery_options"%></div>
           <div class="am-panel-bd">
             <label class="radio active">
-              <%if @supplier.id==78&& @cart_total >=350 %>
+              <%if  @cart_total >=350 %>
                   <label><%=I18n.t "order_notice_three"%></label>
               <%else%>
                <%=f.radio_button :shipping_id, 0%><span class="addr-line"><%= I18n.t "self_options"%></span>
@@ -53,45 +53,42 @@
           </div>
         </div>
 
-        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
-          <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
+
+          <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
             <div class="am-panel-hd"><%= I18n.t "pay_options"%></div>
             <div class="am-panel-bd">
-              <%if @user.advance>0 && @user.advance > @cart_total%>
-                  <label class="radio active" style="margin-left: 40px;padding: 2px">
-                    <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>
-              <%end%>
-              <label class="radio active" style="margin-left: 40px;padding: 2px">
-                <%=f.radio_button :payment, "alipaywap" %><%= I18n.t "alipay_mobile"%>
-              </label>
-              <% unless @supplier==(Ecstore::Supplier.find_by_name("诺狮").id)%>
+
               <label class="radio active" style="margin-left: 40px;padding: 2px">
                 <%=f.radio_button :payment, "wxpay",:checked=>true %>
                 <%= I18n.t "wechat"%>
-                <%end%>
+              </label>
+              <label class="radio " style="margin-left: 40px;padding: 2px">
+                <%=f.radio_button :payment, "alipaywap" %><%= I18n.t "alipay_mobile"%>
+              </label>
+
               </label>
             </div>
             <div class="am-panel-hd"><%= I18n.t "pay_detail"%></div>
           </div>
         </div>
 
-        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow" style="display:none">
+        <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow" style="display:none">
           <div class="am-panel-hd"><%= I18n.t "invoice"%></div>
           <div class="am-panel-bd">
             <input class="text_input w100" id="order_tax_company" name="order[tax_company]" placeholder="<%=I18n.t "details_invoice"%>" size="30" type="text">
 
           </div>
         </div>
-        <%if @supplier.id==78 %>
-        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow" style="display:none">
+
+        <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow" style="display:none">
           <div class="am-panel-hd"><%= I18n.t "order_notice"%>   <span style="color: #ff0000"><%= I18n.t "order_notice_one"%></span> <br/>
               <span><%= I18n.t "order_notice_two"%></span>
           </div>
           </div>
         </div>
-        <%end%>
 
-        <div class="am-panel am-panel-warning"  data-collapse="true" data-style="arrow">
+
+        <div class="am-panel am-panel-default"  data-collapse="true" data-style="arrow">
           <div class="am-panel-hd"><%= I18n.t "order_details_price"%></div>
           <div class="am-panel-bd">
             <span class="bg-border"><span class="icon"></span></span>
@@ -107,11 +104,11 @@
             <span class="bg-border2"></span>
           </div>
         </div>
-            <input type="submit" class="am-btn am-btn-warning am-btn-block" value="<%=I18n.t 'confirm_order'%>">
+            <input type="submit" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t 'confirm_order'%>">
     <%end%>
 <%else%>
     <p><%=I18n.t "order_notice_four"%>。
-      <a id="addressLink" href="/visitors/order_clearing?platform=mobile&supplier_id=3"></a></p>
+      <a id="addressLink" href="/visitors/order_clearing?platform=mobile"></a></p>
 
 <%end%>
 <br/>

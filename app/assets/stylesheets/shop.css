@@ -36,6 +36,28 @@ textarea{
     z-index: 1000000;
 }
 
+.btn_sure {
+    box-shadow: 0 1px 1px rgba(0,0,0,.2);
+    color: #fff;
+    width: 150px;
+    float: right;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c9b',endColorstr='#e61f80');
+    background: #0e90d2;
+    border: #0e90d2 1px solid!important;
+    cursor: pointer;
+}
+
+.btn_cancel, .btn_ensure, .btn_gry, .btn_red, .btn_sure, .btn_unav, .btn_white, .btn_white_order {
+    font-weight: 400;
+    height: 35px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 35px;
+    border-radius: 2px;
+    display: inline-block;
+
+}
+
 .get {
     background: #1E5B94;
     color: #fff;
@@ -120,7 +142,13 @@ textarea{
     text-align: center;
 }
 
-
+input.textcenter {
+    text-align: center;
+    position: relative;
+    margin: 0 auto;
+    width: 40px;
+    border: solid 1px #ccc;
+}
 
 .am-topbar-collapse {
     clear: none;
@@ -145,6 +173,15 @@ textarea{
     position: relative;
     line-height: 50px;
     padding: 0 10px;
+}
+.bottomdiv {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    border: #ddd 1px solid;
+    border-top: #fff 1px solid;
+    z-index: 1000000;
 }
 .am-topbar-nav > li > a:after {
     position: absolute;

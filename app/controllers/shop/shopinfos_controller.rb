@@ -1,12 +1,16 @@
 #encoding:utf-8
 class Shop:: ShopinfosController < ApplicationController
+  before_filter :find_shop_user
   layout "shop"
 
   def index
     if @user
       @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
+    else
+     redirect_to "/auto_login?id=78&supplier_id=78&platform=mobile&return_url=/shopinfos"
+      end
     end
-  end
+
 
 
   def register
@@ -30,9 +34,9 @@ class Shop:: ShopinfosController < ApplicationController
 
   def myshop
 
-    shop_id=params[:shop_id]
+    @shop_id=params[:shop_id]
     good=nil
-   shopgood= Ecstore::ShopsGood.where(:shop_id=>shop_id)
+   shopgood= Ecstore::ShopsGood.where(:shop_id=>@shop_id)
 
     shopgood.each  do |go|
       if go.good_status=="0"
@@ -41,7 +45,7 @@ class Shop:: ShopinfosController < ApplicationController
      end
     end
 
-goods= Ecstore::ShopsGood.where(:shop_id=>shop_id,:good_status=>"1")
+goods= Ecstore::ShopsGood.where(:shop_id=>@shop_id,:good_status=>"1")
     @goods_store=nil
     for i in goods
 
@@ -54,7 +58,7 @@ goods= Ecstore::ShopsGood.where(:shop_id=>shop_id,:good_status=>"1")
       end
 
     end
-    name=Ecstore::Shop.find_by_shop_id(shop_id).shop_name
+    name=Ecstore::Shop.find_by_shop_id(@shop_id).shop_name
    @shop_title="来自#{name}的微商店"
 
     end
@@ -111,7 +115,7 @@ goods= Ecstore::ShopsGood.where(:shop_id=>shop_id,:good_status=>"1")
           good =Ecstore::ShopsGood.new do |goo|
             goo.shop_id=@shop_id
             goo.goods_id=id
-
+            goo.uptime=Time.now
 
           end.save
         end
@@ -152,11 +156,11 @@ goods= Ecstore::ShopsGood.where(:shop_id=>shop_id,:good_status=>"1")
 
     @shop_id=params[:shop_id]
     @user_id=params[:user_id]
-
+    name=Ecstore::Shop.find_by_shop_id(@shop_id).shop_name
     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
-
-    return render "not_find_good",:layout=>"new_store" unless @good
-
+    @shop_title="欢迎来到#{name}的微商店"
+    return render "not_find_good",:layout=>"shop" unless @good
+    #visitors=Ecstore::Visitor
     @recommend_user = session[:recommend_user]
 
     if @recommend_user==nil &&  params[:wechatuser]
@@ -196,16 +200,18 @@ goods= Ecstore::ShopsGood.where(:shop_id=>shop_id,:good_status=>"1")
       end
     end
 
-    @supplier_id =  @shop_id
 
-    @supplier  =  Ecstore::Supplier.find(78)
-    render :layout=>@supplier.layout
+
 
 
   end
 
 
-
+ def myorder
+   shop_id=params[:shop_id]
+   @shop_title="订单管理"
+   @orders = Ecstore::Order.where(:supplier_id=>shop_id).order("createtime desc")
+ end
 
 
 end

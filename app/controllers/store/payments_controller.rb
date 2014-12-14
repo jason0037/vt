@@ -2,7 +2,7 @@
 require  'modec_pay'
 class Store::PaymentsController < ApplicationController
 	layout 'order'
-
+  before_filter :find_shop_user
 	skip_before_filter :verify_authenticity_token,:only=>[:callback,:notify]
  
 	def create
@@ -31,8 +31,14 @@ class Store::PaymentsController < ApplicationController
 			payment.paycost = 0
 
 			payment.account = 'TRADE-V | 跨境贸易 一键直达'
-			payment.member_id = payment.op_id = @user.member_id
-			payment.pay_account = @user.login_name
+      if @visitors
+        payment.member_id = payment.op_id = @visitors.id
+        payment.pay_account = @visitors.visitor_name
+      else
+        payment.member_id = payment.op_id = @user.member_id
+        payment.pay_account = @user.login_name
+        end
+
 			payment.ip = request.remote_ip
 
 			payment.t_begin = payment.t_confirm = Time.now.to_i
@@ -56,9 +62,15 @@ class Store::PaymentsController < ApplicationController
       		id = 98	#万家物流微信支付接口
       	else
       		id = 78 #贸威微信支付接口
-      	end
+        end
+
+        if @visitors
+          redirect_to "/vshop/#{id}/payments?payment_id=#{@payment.payment_id}"
+
+        else
       	
         redirect_to "/vshop/#{id}/payments?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}"
+         end
       else
         redirect_to pay_payment_path(@payment.payment_id)
       end

@@ -86,6 +86,30 @@ class ApplicationController < ActionController::Base
       end
     end
 
+  def find_shop_user
+    # if Rails.env == "development"
+    #   return  @user = Ecstore::User.find_by_member_id(217)
+    # end
+
+    unless signed_shop_in?
+      nologin_times = cookies[:nologin_times] || 0
+      cookies[:nologin_times] = nologin_times.to_i + 1
+    end
+
+
+    if cookies["loginName"].present?
+      loginName = cookies["loginName"]
+      @visitors = Ecstore::Visitor.find_by_visitor_name(loginName)
+
+    else
+      # return (render :js=>"window.location.href='#{site_path}'") if request.xhr?
+      # redirect_to (site_path)
+    end
+  end
+
+
+
+
     # find categories
     def require_top_cats
       @top_cats = Ecstore::Category.where(:parent_id=>0).where('sell=true or future=true or agent=true').where("cat_name not in (?)",['时装周预售','VIP卡']).order("p_order asc")

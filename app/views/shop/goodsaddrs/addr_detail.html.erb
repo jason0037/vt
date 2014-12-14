@@ -7,9 +7,7 @@
 
 </style>
 
-<div class="am-panel am-panel-warning" style="text-align: center">
-  <div class="am-panel-hd"><%= I18n.t "modify"%><%= I18n.t "address"%></div>
-</div>
+
 <%#=javascript_include_tag "patch/member_addrs"%>
 <div class="am-input-group">
   <span class="importstart">* </span>
@@ -33,17 +31,17 @@
           </div>
           <br/>
           <div class="am-input-group">
-            <span class="am-input-group-label"><%= I18n.t "m_phone"%><span class="importstart">*</span></span>
+            <span class="am-input-group-label">固定电话<span class="importstart">*</span></span>
 
 
             <%=f.text_field :tel,  :class=>"am-form-field" ,:placeholder=>"手机", :value=>@addr.tel %>
           </div>
           <br/>
           <div class="am-input-group">
-            <span class="am-input-group-label"><%= I18n.t "tel"%></span>
+            <span class="am-input-group-label">手机号码</span>
 
 
-            <%=f.text_field :phone,  :class=>"am-form-field" ,:placeholder=>"固定电话", :value=>@addr.phone%>
+            <%=f.text_field :phone,  :class=>"am-form-field" ,:placeholder=>"手机", :value=>@addr.phone%>
           </div>
           <br/>
           <div class="am-input-group">
@@ -82,10 +80,10 @@
       <div class="control-group">
         <div class="controls">
           <%if @method == :put%>
-              <input type="submit" class="am-btn am-btn-warning am-btn-block" value="<%=I18n.t "modify"%>">
+              <input type="submit" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "modify"%>">
               <%#=f.submit "修 改",:class=>"am-btn am-btn-warning am-btn-block" %>
           <%else%>
-              <input type="submit" class="am-btn am-btn-warning am-btn-block" value="<%=I18n.t "confirm"%>">
+              <input type="submit" class="am-btn am-btn-primary am-btn-block" value="<%=I18n.t "confirm"%>">
               <%#=f.submit "确认收货地址",:class=>"am-btn am-btn-warning am-btn-block" %>
           <%end%>
         </div>

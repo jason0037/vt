@@ -82,10 +82,10 @@
       <%=form_for :product,:url=>"/visitors/my_add_shopping", :html=>{:id=>"cartform"},:remote=>true do |f|%>
           <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
           <%=f.hidden_field :type_id,:value=>@good.type_id%>
-          <%=hidden_field_tag :supplier_id, @supplier.id%>
-	  <%=f.hidden_field :shop_id, :value=>@shop_id%>
-	  <%=f.hidden_field :user_id, :value=>@user_id%>
-          <%=hidden_field_tag :platform,"mobile"%>
+          <%=hidden_field_tag :supplier_id, @shop_id%>
+	    <%=f.hidden_field :shop_id, :value=>@shop_id%>
+	  <%=f.hidden_field :user_id, :value=>@visitors.id if @visitors%>
+          <%=hidden_field_tag :platform,"shop"%>
           <%=hidden_field_tag :return_url,{:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
 
           <%if @good.specs.present?%>
@@ -107,29 +107,23 @@
   </div>
 </div>
 <br>
-<script>
-
-</script>
 
 
 
 
-<script type="text/javascript">
-    function saveProValue(){
-        return {product_id: '26038564',brand_id: '198535'}
-    };
-</script>
+
+
 
 <div class="bottomdiv clearfix">
   <div class="inner clearfix">
-    <%if @user%>
-        <a class="fl cart_time" href="/cart/mobile?id=<%=@supplier.id%>">
+    <%if @visitors%>
+        <a class="fl cart_time" href="/cart/mobile?id=<%=@shop_id%>">
     <%end%>
     <em class="num_cart hide"></em>
     <span class="carticon fl"></span>
     <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
     </a>
-    <a href="javascript:void(0);" class="add_to_cart fr btn_sure " id="add_to_cart"><%=I18n.t "add-shoppingbasket"%></a>
+    <a href="javascript:void(0);" class="add_to_cart fr   btn_sure <% if @visitors.nil?%>login<%end%> " id="add_to_cart"><%=I18n.t "add-shoppingbasket"%></a>
   </div>
 </div>
 
@@ -139,21 +133,19 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
-        $('.choose').on("click",function() {
+        $('.choose').bind("click",function() {
             if ($(this).hasClass("am-btn-warning")){
                 $(this).removeClass("am-btn-warning");
             }   else{
                 $(this).addClass("am-btn-warning");
             }
 
-
-
             $("#product_specs_").val($(this).attr("data-size"));
             //  $(".good_salesize input[name='size']").val("");
 
         });
 
-        $('#add_to_cart').on("click",function(){
+        $('#add_to_cart').bind("click",function(){
 
             if($(this).hasClass("sold-out")){
                 alert("该商品已经售完!");
@@ -162,7 +154,8 @@
 
 
             if($(this).hasClass("login")) {
-                location.href="/mlogin?id=<%=@supplier.id%>&return_url=<%=request.url.sub('http://trade','').force_encoding('UTF-8') %>";
+                alert("由于您没有注册该商店下的用户,所以需要登陆");
+                location.href="/visitors/login?shop_id=<%=@shop_id%>&return_url=<%=request.url.sub('http://trade','') %>";
                 return false;
 
             }
