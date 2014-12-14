@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Shop::ShopusersController < ApplicationController
   before_filter :find_shop_user
   layout "shop"
