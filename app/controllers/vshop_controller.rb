@@ -400,4 +400,11 @@ class VshopController < ApplicationController
     render :text=>response
   end
 
+  def notice
+    @supplier=Ecstore::Supplier.find(params[:supplier_id])
+
+    render :layout => @supplier.layout
+
+  end
+
 end

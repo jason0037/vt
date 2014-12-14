@@ -232,6 +232,7 @@ Modengke::Application.routes.draw do
       get 'weixin'
       post "black_good_destory"
       post "destory"
+      get "notice"
     end
     member do
       get :shopuser
@@ -554,6 +555,7 @@ Modengke::Application.routes.draw do
 
     get 'search' => "search#index", :as=> :search
     get  'prime_beef'  =>"goods#prime_beef", :as=>"goods" ,:controller=>"goods"
+    get 'food_beverage'  =>"goods#food_beverage", :as=>"goods" ,:controller=>"goods"
     get 'quality_products' =>"goods#quality_products", :as=>"goods" ,:controller=>"goods"
     get 'world_food' =>"goods#world_food", :as=>"goods" ,:controller=>"goods"
     get 'mproducts' =>"goods#mproduct", :as=>"goods" ,:controller=>"goods"

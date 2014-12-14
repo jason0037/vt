@@ -88,6 +88,42 @@ class Store::GoodsController < ApplicationController
 
 
   end
+  def food_beverage
+
+
+    @goods_mok= Ecstore::Good.where(:supplier_id=>"114")
+    @goods_bs=Ecstore::Good.where(:supplier_id=>"115")
+    @supplier = Ecstore::Supplier.find(params[:supplier_id])
+
+    @recommend_user = session[:recommend_user]
+
+    if @recommend_user==nil &&  params[:wechatuser]
+      @recommend_user = params[:wechatuser]
+    end
+    if @recommend_user
+      member_id =-1
+      if signed_in?
+        member_id = @user.member_id
+      end
+      now  = Time.now.to_i
+      Ecstore::RecommendLog.new do |rl|
+        rl.wechat_id = @recommend_user
+        #  rl.goods_id = @good.goods_id
+        rl.member_id = member_id
+        rl.terminal_info = request.env['HTTP_USER_AGENT']
+        #   rl.remote_ip = request.remote_ip
+        rl.access_time = now
+      end.save
+      session[:recommend_user]=@recommend_user
+      session[:recommend_time] =now
+    end
+
+    render :layout=>@supplier.layout
+  end
+
+
+
+
 
   def prime_beef
     @goods_xlhn =  Ecstore::Good.where(:supplier_id=>"110")
@@ -163,6 +199,8 @@ class Store::GoodsController < ApplicationController
    @goods_cmcyz=Ecstore::Good.where(:supplier_id=>"105")
   @goods_dmdm =Ecstore::Good.where(:supplier_id=>"108")
    @goods_tsdzx=Ecstore::Good.where(:supplier_id=>"87")
+    @goods_ysgj=Ecstore::Good.where(:supplier_id=>"112")
+    @goods_cc=Ecstore::Good.where(:supplier_id=>"113")
     @recommend_user = session[:recommend_user]
 
     if @recommend_user==nil &&  params[:wechatuser]

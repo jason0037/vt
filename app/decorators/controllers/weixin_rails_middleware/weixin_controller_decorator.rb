@@ -69,6 +69,15 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         link_url="http://vshop.trade-v.com/mproducts?id=a980000&fp=mproducts&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
 
+      when '通知'
+        title="非常抱歉！！"
+        desc ="您点击的商品馆正在筹备上线，敬请期待"
+        pic_url=""
+        link_url="http://vshop.trade-v.com/vshop/notice&supplier_id=#{id}"
+        articles = [generate_article(title, desc, pic_url, link_url)]
+
+
+
       when '店铺'
         title="自贸交易"
         desc=""
@@ -296,6 +305,10 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       when 'Oauth'
         @keyword='授权'
         response_news_message({})
+      when 'Notice'
+        @keyword='通知'
+        response_news_message({})
+
       else
         # reply_text_message("你点击了: #{@keyword}")
     end
