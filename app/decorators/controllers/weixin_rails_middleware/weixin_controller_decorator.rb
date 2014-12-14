@@ -73,7 +73,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="非常抱歉！！"
         desc ="您点击的商品馆正在筹备上线，敬请期待"
         pic_url=""
-        link_url="http://vshop.trade-v.com/vshop/notice?supplier_id=#{id}"
+        link_url="http://vshop.trade-v.com/vshop/noticesupplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
 
 
@@ -101,12 +101,11 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         articles = [generate_article(title, desc, pic_url, link_url)]
 
       when 'new'
-        title="那不勒斯萨拉米香肠200克"
+        title="冰鲜松茸7cm-9cm【香格里拉海拔3500米以上的珍宝】"
         desc =""
-        pic_url="http://vshop.trade-v.com/images/a077/a0771043_m.jpg"
-        link_url="http://vshop.trade-v.com/mproducts?id=a0771043&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
+        pic_url="http://vshop.trade-v.com/images/a0112/a01120003_m.jpg"
+        link_url="http://vshop.trade-v.com/mgallery?name=%E5%86%B0%E9%B2%9C%E6%9D%BE%E8%8C%B8&from=weixin&wechatuser=#{user}&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
-
       when '测试'
         title="[测试商品]-----------------"
         desc ="测试商品0.01元，佣金3.00元"
