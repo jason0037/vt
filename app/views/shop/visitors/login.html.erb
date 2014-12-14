@@ -25,21 +25,10 @@
         <%=f.text_field :visitor_password,:class=>"am-form-field",:placeholder=>"密码"%>
       </div>
       <br>
-
-
-
-
-
-
-
-
-
-
-
-      <%=f.submit "登陆",:class=>"am-btn am-btn-primary am-btn-block"%>
+   <%=f.submit "登陆",:class=>"am-btn am-btn-primary am-btn-block"%>
 
 
 
 <%end%>
    </div>
-<a href='/visitors/register?shop_id=<%=@shop_id%>' class="am-btn am-btn-default"> 注册</a>
+<a href='/visitors/register?shop_id=<%=@shop_id%>' class="am-btn am-btn-default am-btn-block">没有账号?</a>
