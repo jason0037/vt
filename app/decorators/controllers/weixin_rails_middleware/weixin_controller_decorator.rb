@@ -35,12 +35,6 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     #user = @weixin_message.ToUserName
     case @keyword
 
-      when '店铺'
-        title="自贸交易"
-        desc=""
-        pic_url="http://vshop.trade-v.com/images/a078/homepage/zimao.jpg"
-        link_url="htto://vshop.trade-v.com/shopinfos"
-        articles = [generate_article(title, desc, pic_url, link_url)
 
       when '授权'
 
@@ -74,6 +68,14 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url="http://vshop.trade-v.com/images/a072/a0729002_b_1.jpg"
         link_url="http://vshop.trade-v.com/mproducts?id=a980000&fp=mproducts&supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
+
+      when '店铺'
+        title="自贸交易"
+        desc=""
+        pic_url="http://vshop.trade-v.com/images/a078/homepage/zimao.jpg"
+        link_url="htto://vshop.trade-v.com/shopinfos"
+        articles = [generate_article(title, desc, pic_url, link_url)]
+
 
       when 'on_sale'
         title="法兰克福香肠350克/ Frankfurter Sausages 350g仅售¥44元"
