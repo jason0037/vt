@@ -2,7 +2,7 @@
 <div class="get">
   <div class="am-container">
     <h3 class="get-title">欢迎来到贸威自贸平台</h3>
-
+      <input type="hidden" id="shopid" value="<%=@shop.shop_id%>">
     <p>
       期待您的参与
     </p>
@@ -93,7 +93,13 @@
 
 
 <script>
-    var url=window.location.href;
+
+  var shop_id= $("#shopid").val();
+     var host=window.location.host;
+
+    var url="http://"+host+"/shopinfos/myshop?shop_id="+shop_id;
+
+
     jQuery('#qrcodeCanvas').qrcode({
         text	: "url"
     });
