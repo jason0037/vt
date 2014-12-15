@@ -235,7 +235,7 @@ Modengke::Application.routes.draw do
       get "notice"
     end
     member do
-      get :shopuser
+      get :user
       get :category
       get :commodity
       get :order
