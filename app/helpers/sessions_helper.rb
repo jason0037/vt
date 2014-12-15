@@ -177,7 +177,9 @@ module SessionsHelper
 		else
 			redirect_to login_path
 		end
-	  end
+    end
+
+
 
 	  def finish_auth_path
 	  	user_survey_path

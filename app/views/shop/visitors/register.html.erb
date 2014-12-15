@@ -5,29 +5,9 @@
         display: none;
     }
 </style>
-<script>
- $(document).ready(function(){
 
-   $('#visitor_visitor_name').blur(function(){
- //var name = $("#visitor_visitor_name").val();
-var name =document.getElementById('visitor_visitor_name').value
-    $.ajax({
-	type: 'get',
-	url: '/visitors/istrue?visitor_name='+name,
-	success:function(date){
-alert(date)
-	}
-
-
-	});
-    });
-
-
-});
-
-</script>
 <div class="main">
-
+  <p id="notice" class="price"><%=notice%></p>
 <%=form_for :visitor,:url=>"/visitors/register_user",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
 
 
@@ -46,17 +26,47 @@ alert(date)
       </div>
       <br>
       <div class="am-input-group">
+        <span class="am-input-group-label">确认密码:</span>
+        <input class="am-form-field" id="visitor_password" name="" placeholder="确认密码"  type="text">
+      </div>
+      <br>
+      <div class="am-input-group">
         <span class="am-input-group-label">手机号:</span>
         <%=f.text_field :phone,:class=>"am-form-field",:placeholder=>"手机号"%>
+        <span class="red" id ="phone"></span>
       </div>
       <br>
 
 
+       <input type="button" class="am-btn am-btn-primary  am-btn-block submit" value="注  册">
 
-      <%=f.submit "注  册",:class=>"am-btn am-btn-primary  am-btn-block"%>
 
 <%end%>
   <br>
-  <a href='/visitors/login?shop_id=<%=@shop_id%>' class="am-btn am-btn-default am-btn-block">已经注册账号</a>
+  <a href='/visitors/login?shop_id=<%=@shop_id%>' class="am-btn am-btn-default am-btn-block">已有账号</a>
 
 </div>
+  <script>
+    $(".submit").click(function(){
+        name=$("#visitor_visitor_name").val();
+        paswd=$("#visitor_visitor_password").val();
+         confimpasswd=$("#visitor_password").val();
+        phone=$("#visitor_phone").val();
+        $("input").focus(function(){
+            $("#notice").html("");
+        })
+        if(!name ||!phone){
+            $("#notice").html("用户名和手机号码是必须的哦") ;return false ; }
+        if (paswd!=confimpasswd){
+     $("#notice").html("2次输入的密码不同哦！") ;return false ;
+      };
+
+
+    if (name &&phone &&paswd){
+
+            $("#register_form").submit();
+        }
+
+    })
+
+  </script>

@@ -7,6 +7,7 @@ def login
     if @user
       sign_out
     end
+
    @shop_id=params[:shop_id]
     name=Ecstore::Shop.find_by_shop_id(@shop_id).shop_name
    @shop_title="登陆#{name}的微店"
@@ -25,32 +26,31 @@ end
 def login_in
   shop_id=params[:visitor][:shop_id]
   return_url=params[:return_url]
-     #params[:visitor]
- @visitor = Ecstore::Visitor.find_by_visitor_name(params[:visitor][:visitor_name])
-
-
-     sing_shop_in(@visitor)
-  redirect_to return_url+"&shop_id="+shop_id
-
+ @visitors = Ecstore::Visitor.find_by_visitor_name(params[:visitor][:visitor_name])
+   if @visitors &&@visitors.visitor_password==params[:visitor][:visitor_password]
+     sing_shop_in(@visitors)
+    redirect_to return_url+"&shop_id="+shop_id
+  else
+    redirect_to "/visitors/login?shop_id=#{shop_id}&return_url=#{return_url}", :notice=>"您输入有误,登陆失败"
+    end
 end
 
 def register_user
 
-  @visitors=Ecstore::Visitor.new(params[:visitor])
+  @shop_id=params[:visitor][:shop_id]
+  @visi= Ecstore::Visitor.find_by_visitor_name(params[:visitor][:visitor_name])
+  if @visi
+    redirect_to "/visitors/register?shop_id=#{@shop_id}", :notice=>"用户名已经存在"
 
-  if  @visitors.save
+  else
+    @visitors=Ecstore::Visitor.new(params[:visitor])
+   if  @visitors.save
     sing_shop_in(@visitors)
+     redirect_to "/shopinfos/myshop?shop_id="+@shop_id
+    end
 
-    @shop_id=params[:visitor][:shop_id]
-  
-   redirect_to "/shopinfos/myshop?shop_id="+@shop_id
- else
-
-  end
-
-  
 end
-
+ end
 def istrue
 
 
