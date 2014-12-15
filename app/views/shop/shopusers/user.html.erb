@@ -1,0 +1,18 @@
+<div class="main">
+<ul class="am-list am-list-static am-list-border">
+  <%if @shopuser.size>0%>
+  <%@shopuser.each  do |user|%>
+  <li>
+    <span class="am-badge am-badge-success">查看详细</span>
+    <span class="left"><%=user.visitor_name%></span> &nbsp<span class="right"> 注册时间：<%=(user.created_at).localtime.to_s(:db)%></span></li>
+
+      <%end%>
+      <%else%>
+      <li>
+        <a href="#" class="am-badge am-badge-success">赶紧发布</a>
+      您的店铺目前还没有人注册哦</li>
+      <%end%>
+</ul>
+
+
+</div>
