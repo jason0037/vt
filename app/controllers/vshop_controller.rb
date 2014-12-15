@@ -2,7 +2,7 @@
 require  'modec_pay'
 class VshopController < ApplicationController
   skip_before_filter :set_locale
-
+  before_filter :find_shop_user
   layout "vshop"
 
 
@@ -66,7 +66,8 @@ class VshopController < ApplicationController
       @order_ids = @orders_nw.pluck(:order_id)
 
 
-      @orders = @orders_nw.includes(:users).paginate(:page=>params[:page],:per_page=>30)
+      @orders = @orders_nw.includes(:user).paginate(:page=>params[:page],:per_page=>30)
+
       respond_to do |format|
         format.js
         format.html
