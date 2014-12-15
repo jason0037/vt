@@ -15,7 +15,7 @@
 
 <div class="main">
 
-  <button class="am-btn am-btn-danger" data-am-modal="{target: '#my-popup'}">二微码查看</button>
+  <button class="am-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二微码查看</button>
 
   <div class="am-popup" id="my-popup">
     <div class="am-popup-inner">
@@ -25,7 +25,8 @@
             class="am-close">&times;</span>
       </div>
       <div class="am-popup-bd"style="text-align: center">
-        <div id="qrcodeCanvas"></div>
+        <div id="qrcodeCanvas" style="display: none"></div>
+        <div id="qrcodeimg"></div>
           <div >欢迎关注</div>
       </div>
     </div>
@@ -81,14 +82,32 @@
 
 <script>
      var url=window.location.href;
-
-    jQuery('#qrcodeCanvas').qrcode({
+   jQuery('#qrcodeCanvas').qrcode({
         text	: "url"
     });
+
+    function image(){
+ var drawing=document.getElementById("canvas") ;
+ var imgURI = drawing.toDataURL("image/png") ;
+
+     var image = document.createElement('img')
+     image.src = imgURI
+    $("#qrcodeimg").append(image);
+
+    }
+
+
+
+
        $=Zepto;
+     $(".look").bind('click',function(){
+         image();
+     })
      $('#qrcodeCanvas').bind('click', function () {
          if ($.AMUI.fullscreen.enabled) {
-             $.AMUI.fullscreen.request(this);
+             $.AMUI.fullscreen.request();
+         } else {
+             // Ignore or do something else
          }
      });
 
