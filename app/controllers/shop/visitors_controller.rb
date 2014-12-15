@@ -8,7 +8,8 @@ def login
       sign_out
     end
    @shop_id=params[:shop_id]
-
+    name=Ecstore::Shop.find_by_shop_id(@shop_id).shop_name
+   @shop_title="登陆#{name}的微店"
 
 end
 
@@ -17,6 +18,8 @@ def register
     sign_out
   end
    @shop_id=params[:shop_id]
+  name=Ecstore::Shop.find_by_shop_id(@shop_id).shop_name
+  @shop_title="注册#{name}的微店"
 end
 
 def login_in

@@ -5,7 +5,10 @@ class Shop:: ShopinfosController < ApplicationController
 
   def index
     if @user
+
       @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
+      name=@shop.shop_name
+      @shop_title="来自#{name}的微商店"
     else
      redirect_to "/auto_login?id=78&supplier_id=78&platform=mobile&return_url=/shopinfos"
       end

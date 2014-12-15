@@ -78,6 +78,7 @@
 </div>
 <%= javascript_include_tag "amaze/jquery.min.js"%>
 <%= javascript_include_tag "qrcode/jquery.qrcode.min.js"%>
+<%= javascript_include_tag "shop/urlqrcode.js"%>
 
 
 <script>
@@ -86,29 +87,6 @@
         text	: "url"
     });
 
-    function image(){
- var drawing=document.getElementById("canvas") ;
- var imgURI = drawing.toDataURL("image/png") ;
 
-     var image = document.createElement('img')
-     image.src = imgURI
-    $("#qrcodeimg").append(image);
-
-    }
-
-
-
-
-       $=Zepto;
-     $(".look").bind('click',function(){
-         image();
-     })
-     $('#qrcodeCanvas').bind('click', function () {
-         if ($.AMUI.fullscreen.enabled) {
-             $.AMUI.fullscreen.request();
-         } else {
-             // Ignore or do something else
-         }
-     });
 
 </script>
