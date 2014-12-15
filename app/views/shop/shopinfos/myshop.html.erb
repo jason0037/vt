@@ -11,17 +11,29 @@
     }
 
 </style>
-<script>
-    $(document).ready(function(){
-        $('.publish_goods_bn').click(function(){
-
-            alert($('.shop_id').val())
-        });
 
 
-    });
-</script>
 <div class="main">
+
+  <button class="am-btn am-btn-danger" data-am-modal="{target: '#my-popup'}">二微码查看</button>
+
+  <div class="am-popup" id="my-popup">
+    <div class="am-popup-inner">
+      <div class="am-popup-hd">
+        <h4 class="am-popup-title"><%=@shop_title%></h4>
+      <span data-am-modal-close
+            class="am-close">&times;</span>
+      </div>
+      <div class="am-popup-bd"style="text-align: center">
+        <div id="qrcodeCanvas"></div>
+          <div >欢迎关注</div>
+      </div>
+    </div>
+  </div>
+
+
+
+
   <%if @goods_store%>
 
       <div class="am-panel-bd">
@@ -54,7 +66,7 @@
         </ul>
       </div>
   <%else%>
-      <a href="/shopinfos/show_goods?shop_id=<%=@shop_id%>" >
+      <a href="/shopinfos/show_goods    ?shop_id=<%=@shop_id%>" >
         <div class="am-panel am-panel-primary " style="margin-top: 100px">
           <div class="am-panel-hd" style="padding: 24px"><i  class="am-icon-shopping-cart "></i>
             <span style="margin-left: 10px">您的店铺空空的!您可以去贸威里面挑选喜欢的商品</span> </div>
@@ -63,14 +75,21 @@
 
   <%end%>
 </div>
+<%= javascript_include_tag "amaze/jquery.min.js"%>
+<%= javascript_include_tag "qrcode/jquery.qrcode.min.js"%>
 
 
 <script>
-    $(".am-btn-catid").each(function(){
-        var v = $(this).attr("href");
-        if("http://"+window.location.host+v==window.location.href){
+     var url=window.location.href;
 
-        }
+    jQuery('#qrcodeCanvas').qrcode({
+        text	: "url"
     });
+       $=Zepto;
+     $('#qrcodeCanvas').bind('click', function () {
+         if ($.AMUI.fullscreen.enabled) {
+             $.AMUI.fullscreen.request(this);
+         }
+     });
 
 </script>
