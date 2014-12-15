@@ -49,7 +49,7 @@ def register_user
      redirect_to "/shopinfos/myshop?shop_id="+@shop_id
     end
 
-end
+  end
  end
 def istrue
 
