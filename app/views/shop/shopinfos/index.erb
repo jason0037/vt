@@ -5,8 +5,9 @@
 
     <p>
       期待您的参与
-
+        <%if @followers%>
       <%=image_tag eval(@followers.user_info)["headimgurl"],:id=>"weixin" ,:style=>"display:none"%>
+          <%end%>
     </p>
 
        <p>
@@ -119,7 +120,7 @@
       var kaelBase = new KaelQrcode();
       kaelBase.init(document.getElementById("qrcodeCanvas"), {
           text :url,
-          size: 200,
+          size: 300,
           img: {
               src : imag
           }

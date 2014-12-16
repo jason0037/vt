@@ -9,7 +9,7 @@ class Shop:: ShopinfosController < ApplicationController
        login_name=Ecstore::Account.find(account_id).login_name
 
 
-    @followers = Ecstore::WechatFollower.find_by_openid(login_name)
+      @followers = Ecstore::WechatFollower.find_by_openid(login_name)
 
          @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
       if @shop
