@@ -192,7 +192,7 @@
 
     if (document.location.pathname=="/shopinfos" ){
      current_url=url
-        descs="欢迎大家来我小店参观！"
+        descs="极致生活，品质共享 连接你我的极致小店~"
        }
 
 
@@ -204,13 +204,10 @@
     current_url += "&from=weixin&wechatuser=<%=useraccount%>";
     // alert(current_url);
 
-    var data = {"img":imgs,"url":current_url,"title":"关注本点！<%#=@wechat_share_title%>","desc":descs};
+    var data = {"img":imgs,"url":current_url,"title":"自媒体平台<%#=@wechat_share_title%>","desc":descs};
     wechatShare(data);
 </script>
-<%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>
-<%#= javascript_include_tag "mobile/jquery.vs.mobile-1.0.0.min" %>
-<%= javascript_include_tag "mobile/jquery.vs.mars_wap" %>
-<script src="/assets/mobile/sm.js" type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript">
     var _smq = _smq || [];
     _smq.push(['_setAccount', '63e2363', new Date()]);
