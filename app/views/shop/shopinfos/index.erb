@@ -2,7 +2,7 @@
 <div class="get">
   <div class="am-container">
     <h3 class="get-title">欢迎来到贸威自贸平台</h3>
-      <input type="hidden" id="shopid" value="<%=@shop.shop_id%>">
+
     <p>
       期待您的参与
     </p>
@@ -11,6 +11,7 @@
          <%if @shop.nil?%>
       <a href="/shopinfos/register?shop_id=<%=@user.member_id%>"class="am-btn am-btn-sm get-btn">开始商店之旅 </a>
          <%else%>
+             <input type="hidden" id="shopid" value="<%=@shop.shop_id%>">
       <a  href="/shopinfos/my_goods?shop_id=<%=@user.member_id%>" class="am-btn am-btn-sm get-btn">管理店铺</a>
              <button class="am-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二微码查看</button>
 
