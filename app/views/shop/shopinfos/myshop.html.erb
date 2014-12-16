@@ -31,7 +31,18 @@
       </div>
     </div>
   </div>
-
+  <div class="am-modal am-modal-confirm" tabindex="1" id="my-confirm" style="color: #000000">
+    <div class="am-modal-dialog">
+      <div class="am-modal-hd"><%=@shop_title%></div>
+      <div class="am-modal-bd" id="url">
+        前往店铺查看
+      </div>
+      <div class="am-modal-footer">
+        <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+        <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -86,7 +97,21 @@
    jQuery('#qrcodeCanvas').qrcode({
         text	: url
     });
+     $=Zepto;
+     $(function() {
+         $('#qrcodeimg').on('click', function() {
 
+             $('#my-confirm').modal({
+                 relatedElement: this,
+                 onConfirm: function() {
+                     window.location.href=url;
+                 },
+                 onCancel: function() {
+
+                 }
+             });
+         });
+     });
 
 
 </script>

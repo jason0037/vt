@@ -1,7 +1,7 @@
 <div class="main" >
 <div class="get">
   <div class="am-container">
-    <h3 class="get-title">欢迎来到贸威自贸平台</h3>
+    <h3 class="get-title">欢迎来到贸威自媒体平台</h3>
 
     <p>
       期待您的参与
@@ -26,10 +26,22 @@
                    <div id="qrcodeCanvas" style="display: none"></div>
                    <div id="qrcodeimg"></div>
                    <div >欢迎关注</div>
+
                  </div>
                </div>
              </div>
-
+             <div class="am-modal am-modal-confirm" tabindex="1" id="my-confirm" style="color: #000000">
+               <div class="am-modal-dialog">
+                 <div class="am-modal-hd"><%=@shop_title%></div>
+                 <div class="am-modal-bd" id="url">
+                    前往店铺查看
+                 </div>
+                 <div class="am-modal-footer">
+                   <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                   <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+                 </div>
+               </div>
+             </div>
        <%end%>
     </p>
   </div>
@@ -104,7 +116,19 @@
     jQuery('#qrcodeCanvas').qrcode({
         text	: url
     });
+    $=Zepto;
+  $(function() {
+      $('#qrcodeimg').on('click', function() {
 
+          $('#my-confirm').modal({
+              relatedElement: this,
+              onConfirm: function() {
+                window.location.href=url;
+              },
+              onCancel: function() {
 
-
+              }
+          });
+      });
+  });
 </script>

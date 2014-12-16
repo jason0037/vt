@@ -6,11 +6,17 @@ function image(){
     var drawing=document.getElementById("canvas") ;
     var imgURI = drawing.toDataURL("image/png") ;
 
-    var image = document.createElement('img')
-    image.src = imgURI
+    var image = document.createElement('img') ;
+    image.src = imgURI;
+
+    if($("#qrcodeimg").children("img").length==0)
     $("#qrcodeimg").append(image);
 
-}
+
+    }
+
+
+
 
 
 

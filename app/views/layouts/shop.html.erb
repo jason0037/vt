@@ -5,7 +5,7 @@
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <title>自贸平台</title>
+  <title>自媒体平台</title>
   <meta content="" name="keywords">
   <meta content="" name="description">
   <%= stylesheet_link_tag    "shop.css" %>
@@ -161,19 +161,19 @@
             WeixinJSBridge.on("menu:share:appmessage", function(argv) {
                 shareFriend();
                 <%if @user==nil%>
-                alert('您还没有登录，只有登录后，分享给朋友，才可能赚到佣金噢！');
+                alert('您还没有登录，只有登录后，分享给朋友！');
                 <%end%>
             });
             WeixinJSBridge.on("menu:share:timeline", function(argv) {
                 shareTimeline();
                 <%if @user==nil%>
-                alert('您还没有登录，只有登录后，分享给朋友，才可能赚到佣金噢！');
+                alert('您还没有登录，只有登录后，分享给朋友！');
                 <%end%>
             });
             WeixinJSBridge.on("menu:share:weibo", function(argv) {
                 shareWeibo();
                 <%if @user==nil%>
-                alert('您还没有登录，只有登录后，分享给朋友，才可能赚到佣金噢！');
+                alert('您还没有登录，只有登录后，分享给朋友！');
                 <%end%>
             });
         }, false);
@@ -181,15 +181,30 @@
     <%if @user%>
     <%useraccount=@user.account.login_name%>
     <%end%>
+    <%if @shop%>
+    <%shop_id=@shop.shop_id%>
+    <%end%>
     var current_url = document.location.href;
     //去除上一个推荐者的链接
+    var imgs=null
+    var descs=null
+
+
+    if (document.location.pathname=="/shopinfos" ){
+     current_url=url
+        descs="欢迎大家来我小店参观！"
+       }
+
+
+
     num_index_of = current_url.indexOf("&from=weixin&wechatuser=");
     if (num_index_of >0){
         current_url = current_url.substr(0,num_index_of);
     }
     current_url += "&from=weixin&wechatuser=<%=useraccount%>";
     // alert(current_url);
-    var data = {"img":null,"url":current_url,"title":"关注我们，转发朋友，赚佣金啰！<%#=@wechat_share_title%>","desc":null};
+
+    var data = {"img":imgs,"url":current_url,"title":"关注本点！<%#=@wechat_share_title%>","desc":descs};
     wechatShare(data);
 </script>
 <%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>
