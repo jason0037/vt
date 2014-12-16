@@ -5,8 +5,13 @@ class Shop:: ShopinfosController < ApplicationController
 
   def index
     if @user
+        account_id=@user.id
+       login_name=Ecstore::Account.find(account_id).login_name
 
-      @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
+
+    @followers = Ecstore::WechatFollower.find_by_openid(login_name)
+
+         @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
       if @shop
        name=@shop.shop_name
         @shop_title="来自#{name}的微商店"
@@ -38,8 +43,14 @@ class Shop:: ShopinfosController < ApplicationController
 
 
   def myshop
-
     @shop_id=params[:shop_id]
+    account_id=@shop_id
+    login_name=Ecstore::Account.find(account_id).login_name
+
+
+    @followers = Ecstore::WechatFollower.find_by_openid(login_name)
+
+
     good=nil
    shopgood= Ecstore::ShopsGood.where(:shop_id=>@shop_id)
 
@@ -63,9 +74,11 @@ goods= Ecstore::ShopsGood.where(:shop_id=>@shop_id,:good_status=>"1")
       end
 
     end
-    name=Ecstore::Shop.find_by_shop_id(@shop_id).shop_name
+   @shop= Ecstore::Shop.find_by_shop_id(@shop_id)
+    if @shop
+    name=@shop.shop_name
    @shop_title="来自#{name}的微商店"
-
+    end
     end
 
 
@@ -210,6 +223,60 @@ goods= Ecstore::ShopsGood.where(:shop_id=>@shop_id,:good_status=>"1")
 
 
   end
+
+  def details_trade
+    @shop_id=params[:shop_id]
+    @user_id=params[:user_id]
+    name=Ecstore::Shop.find_by_shop_id(@shop_id).shop_name
+    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
+    @shop_title="贸威商品详细"
+    return render "not_find_good",:layout=>"shop" unless @good
+
+    @recommend_user = session[:recommend_user]
+
+    if @recommend_user==nil &&  params[:wechatuser]
+      @recommend_user = params[:wechatuser]
+    end
+    if @recommend_user
+      member_id =-1
+      if signed_in?
+        member_id = @user.member_id
+      end
+      now  = Time.now.to_i
+      Ecstore::RecommendLog.new do |rl|
+        rl.wechat_id = @recommend_user
+        rl.goods_id = @good.goods_id
+        rl.member_id = member_id
+        rl.terminal_info = request.env['HTTP_USER_AGENT']
+        #   rl.remote_ip = request.remote_ip
+        rl.access_time = now
+      end.save
+      session[:recommend_user]=@recommend_user
+      session[:recommend_time] =now
+    end
+    tag_name = params[:tag]
+    @tag = Ecstore::TagName.find_by_tag_name(tag_name)
+
+    @cat = @good.cat
+    @recommend_goods = []
+    if @cat.goods.size >= 4
+      @recommend_goods =  @cat.goods.where("goods_id <> ?", @good.goods_id).order("goods_id desc").limit(4)
+    else
+      @recommend_goods += @cat.goods.where("goods_id <> ?", @good.goods_id).limit(4).to_a
+      @recommend_goods += @cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-@recommend_goods.size] if @cat.parent_cat && @recommend_goods.size < 4
+      @recommend_goods.compact!
+      if @cat.parent_cat.parent_cat && @recommend_goods.size < 4
+        count = @recommend_goods.size
+        @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
+      end
+    end
+
+
+
+
+  end
+
+
 
 
  def myorder

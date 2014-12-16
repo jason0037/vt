@@ -46,6 +46,7 @@
               <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
             </div>
             <div class="am-col col-sm-8 am-list-main">
+              <a href="/shopinfos/details_trade?id=<%=good.bn%>&shop_id=<%=@shop.shop_id%>" class="">
                 <span class="am-list-item-hd ">
                   <%=good.name%>
                 </span>
@@ -53,8 +54,8 @@
                 分成:<strong class="price" >¥<%= format('%.2f',good.price.to_i*0.15)%> </strong>
                 <span class="right">贸威价:<strong class="price" >¥<%=good.price%></strong> </span>  </div>
             </div>
-
           </a>
+
         </li>
     <%end%>
   </ul>

@@ -75,9 +75,10 @@
     <ul class="am-navbar-nav am-cf sm-block-grid-2">
 
        <% if @user%>
+
       <li><a class=""href="/shopinfos/myshop?shop_id=<%=@user.member_id%>"><span  class="am-navbar-label">|我的店铺|</span></a></li>
       <li ><a class=" " href="/shopusers?shop_id=<%=@user.member_id%>"><span  class="am-navbar-label">|个人中心|</span></a></li>
-     <%else%>
+
       <%end%>
 
 

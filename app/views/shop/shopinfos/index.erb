@@ -1,10 +1,12 @@
 <div class="main" >
 <div class="get">
   <div class="am-container">
-    <h3 class="get-title">欢迎来到贸威自媒体平台</h3>
+    <h3 class="get-title">欢迎来到贸威自贸平台</h3>
 
     <p>
       期待您的参与
+
+      <%=image_tag eval(@followers.user_info)["headimgurl"],:id=>"weixin" ,:style=>"display:none"%>
     </p>
 
        <p>
@@ -23,7 +25,7 @@
             class="am-close">&times;</span>
                  </div>
                  <div class="am-popup-bd"style="text-align: center">
-                   <div id="qrcodeCanvas" style="display: none"></div>
+                   <div id="qrcodeCanvas" ></div>
                    <div id="qrcodeimg"></div>
                    <div >欢迎关注</div>
 
@@ -100,8 +102,8 @@
 
         -->
 </div>
-<%= javascript_include_tag "amaze/jquery.min.js"%>
-<%= javascript_include_tag "qrcode/jquery.qrcode.min.js"%>
+
+<%= javascript_include_tag "qrcode/kaelQrcode.min.js"%>
 <%= javascript_include_tag "shop/urlqrcode.js"%>
 
 
@@ -111,11 +113,22 @@
      var host=window.location.host;
 
     var url="http://"+host+"/shopinfos/myshop?shop_id="+shop_id;
+    var imag=$("#weixin").attr("src");
+
+  window.onload = function(){
+      var kaelBase = new KaelQrcode();
+      kaelBase.init(document.getElementById("qrcodeCanvas"), {
+          text :url,
+          size: 200,
+          img: {
+              src : imag
+          }
+      });
 
 
-    jQuery('#qrcodeCanvas').qrcode({
-        text	: url
-    });
+  }
+
+
     $=Zepto;
   $(function() {
       $('#qrcodeimg').on('click', function() {
@@ -123,7 +136,7 @@
           $('#my-confirm').modal({
               relatedElement: this,
               onConfirm: function() {
-                window.location.href=url;
+                window.location.href=url
               },
               onCancel: function() {
 

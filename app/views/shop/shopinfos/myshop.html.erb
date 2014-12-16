@@ -11,7 +11,7 @@
     }
 
 </style>
-
+<%=image_tag eval(@followers.user_info)["headimgurl"],:id=>"weixin" ,:style=>"display:none"%>
 
 <div class="main">
 
@@ -78,7 +78,7 @@
         </ul>
       </div>
   <%else%>
-      <a href="/shopinfos/show_goods    ?shop_id=<%=@shop_id%>" >
+      <a href="/shopinfos/show_goods?shop_id=<%=@shop_id%>" >
         <div class="am-panel am-panel-primary " style="margin-top: 100px">
           <div class="am-panel-hd" style="padding: 24px"><i  class="am-icon-shopping-cart "></i>
             <span style="margin-left: 10px">您的店铺空空的!您可以去贸威里面挑选喜欢的商品</span> </div>
@@ -87,16 +87,28 @@
 
   <%end%>
 </div>
-<%= javascript_include_tag "amaze/jquery.min.js"%>
-<%= javascript_include_tag "qrcode/jquery.qrcode.min.js"%>
+<%= javascript_include_tag "qrcode/kaelQrcode.min.js"%>
 <%= javascript_include_tag "shop/urlqrcode.js"%>
-
 
 <script>
      var url=window.location.href;
-   jQuery('#qrcodeCanvas').qrcode({
-        text	: url
-    });
+
+     var imag=$("#weixin").attr("src");
+
+     window.onload = function(){
+         var kaelBase = new KaelQrcode();
+         kaelBase.init(document.getElementById("qrcodeCanvas"), {
+             text :url,
+             size: 200,
+             img: {
+                 src : imag
+             }
+         });
+
+
+     }
+
+
      $=Zepto;
      $(function() {
          $('#qrcodeimg').on('click', function() {
@@ -104,7 +116,7 @@
              $('#my-confirm').modal({
                  relatedElement: this,
                  onConfirm: function() {
-                     window.location.href=url;
+                     window.location.href=url
                  },
                  onCancel: function() {
 
@@ -112,6 +124,4 @@
              });
          });
      });
-
-
 </script>

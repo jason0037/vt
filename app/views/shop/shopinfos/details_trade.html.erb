@@ -1,0 +1,70 @@
+<style type="text/css">
+    .am-direction-nav{
+        display: none;
+    }
+    .icon-arr {
+        position: absolute;
+
+        right: 10px;
+        width: 10px;
+        height: 15px;
+        background: url(/assets/icon_order.png) 0 0 no-repeat;
+        background-size: 100px 100px;
+    }
+    .bottomdivsclearfix{
+        display: none;
+    }
+
+</style>
+
+
+<div data-am-widget="slider" class="am-slider am-slider-default am-no-layout" data-am-slider="{&quot;animation&quot;:&quot;slide&quot;,&quot;slideshow&quot;:false}">
+  <div class="am-viewport" style="overflow: hidden; position: relative;">
+    <ul class="am-slides" style="width: 1200%; -webkit-transition: 0s; transition: 0s; -webkit-transform: translate3d(-770px, 0px, 0px);">
+      <%for value in 0..(@good.big_pic.split(",").length-1)%>
+          <li style="width: 385px; float: left; display: block;"><img src="<%=@good.big_pic.split(",")[value]%>"  data-original="<%=@good.big_pic.split(",")[value]%>"
+                                                                      data-onerror="<%=@good.big_pic.split(",")[value]%>"
+                                                                      alt="" draggable="false" />
+            <div class="am-slider-desc" style="text-align: center">
+              <%=@good.name %>
+            </div></li>
+
+      <%end%>
+    </ul>
+  </div>
+
+
+
+</div>
+
+
+<div class="am-panel am-panel-default">
+  <div class="am-panel-hd">
+    <h4 class="am-panel-title" style="color:red;" >
+      <%=I18n.t 'preferential-price'%>:<span style="float: right;color: red">¥<%=@good.default_product.price %></span>
+    </h4>
+  </div>
+
+</div>
+
+<div class="am-panel-group" id="accordion">
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd">
+      <h4 class="am-panel-title" style="color:red;" >
+        <%= I18n.t "introduction"%>
+      </h4>
+    </div>
+
+    <div class="am-panel-bd" >
+      <%=raw @good.intro.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.intro%>
+
+      <%=raw @good.desc.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @good.desc%>
+
+
+    </div>
+  </div>
+</div>
+<div class="bottomdiv clearfix">
+
+  <a href="javascript:history.go(-1)" class=" am-btn am-btn-primary am-btn-block " >返回</a>
+</div>

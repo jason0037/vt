@@ -108,17 +108,9 @@
 </div>
 <br>
 
-
-
-
-
-
-
 <div class="bottomdiv clearfix">
   <div class="inner clearfix">
-    <%if @visitors%>
-        <a class="fl cart_time" href="/cart/mobile?id=<%=@shop_id%>">
-    <%end%>
+
     <em class="num_cart hide"></em>
     <span class="carticon fl"></span>
     <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
@@ -154,7 +146,7 @@
 
 
             if($(this).hasClass("login")) {
-                alert("由于您没有注册该商店下的用户,所以需要登陆");
+                alert("继续访问需要登陆才能进行哦～");
                 location.href="/visitors/login?shop_id=<%=@shop_id%>&return_url=<%=request.url.sub('http://trade','') %>";
                 return false;
 

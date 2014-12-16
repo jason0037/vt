@@ -20,6 +20,7 @@ Modengke::Application.routes.draw do
         get 'goods_details'
         get 'myshop'
         get 'myorder'
+        get 'details_trade'
       end
     end
 
