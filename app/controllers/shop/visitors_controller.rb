@@ -166,18 +166,21 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
 
     @cart_total_final = @cart_total+ @cart_freight + @favorable_terms
 
-      @def_addr =  Ecstore::Visitor.where(:id=>params[:user_id]).first
+      @def_addr =  Ecstore::Visitor.find(params[:user_id])
 
-      if @pmtable
+
+  if @pmtable
         @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
         @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
         @coupons = @user.usable_coupons
       end
 
-      render :layout=>'shop'
-  #  end
+
+
 end
- 
+
+
+
 def  order_show
      @shop_title="我的订单"
   @supplier_id = params[:supplier_id]

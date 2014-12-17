@@ -52,7 +52,7 @@ class Shop:: ShopinfosController < ApplicationController
 
 
     good=nil
-   shopgood= Ecstore::ShopsGood.where(:shop_id=>@shop_id)
+    shopgood= Ecstore::ShopsGood.where(:shop_id=>@shop_id)
 
     shopgood.each  do |go|
       if go.good_status=="0"

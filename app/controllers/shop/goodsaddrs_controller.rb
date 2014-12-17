@@ -4,6 +4,19 @@ class Shop:: GoodsaddrsController < ApplicationController
  layout "shop"
 
 
+
+
+  def  new_addr
+
+ if params[:return_url]
+      @return_url=params[:return_url]
+    end
+
+  end
+
+
+
+
 def addr_detail
   @shop_id =params[:shop_id]
   addr_id =params[:addr_id]

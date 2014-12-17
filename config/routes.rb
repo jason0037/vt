@@ -44,12 +44,13 @@ Modengke::Application.routes.draw do
         get 'my_shopping_cart'
         get 'order_clearing'
         get 'order_show'
+
       end
     end
 
     resource :goodsaddrs do
       collection do
-
+        get 'new_addr'
         get 'addr_detail'
         post 'edit_addr'
       end

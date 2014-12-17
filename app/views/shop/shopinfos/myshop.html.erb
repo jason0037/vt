@@ -11,8 +11,9 @@
     }
 
 </style>
+<%if @followers%>
 <%=image_tag eval(@followers.user_info)["headimgurl"],:id=>"weixin" ,:style=>"display:none"%>
-
+  <%end%>
 <div class="main">
 
   <button class="am-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二微码查看</button>
