@@ -6,8 +6,9 @@ function image() {
     var drawing = document.getElementById("canvas");
 
 
-    var image = document.createElement('img');
-    image.crossOrigin = 'anonymous';
+//    var image = document.createElement('img');
+    var image = new Image();
+//    image.crossOrigin = 'anonymous';
     var imgURI = drawing.toDataURL("image/png");
     image.src = imgURI;
     if ($("#qrcodeimg").children("img").length == 0) {
