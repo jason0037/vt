@@ -1,6 +1,7 @@
 #encoding:utf-8
 class Shop:: ShopinfosController < ApplicationController
   before_filter :find_shop_user
+
   layout "shop"
 
   def index
@@ -10,6 +11,7 @@ class Shop:: ShopinfosController < ApplicationController
 
 
       @followers = Ecstore::WechatFollower.find_by_openid(login_name)
+
 
          @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
       if @shop
@@ -24,9 +26,18 @@ class Shop:: ShopinfosController < ApplicationController
 
 
   def register
+    if @user
     @shop_id=params[:shop_id]
     @shop_title="创建店铺"
 
+    login_name=Ecstore::Account.find(@shop_id).login_name
+
+
+    @followers = Ecstore::WechatFollower.find_by_openid(login_name)
+
+    else
+      redirect_to "/auto_login?id=78&supplier_id=78&platform=mobile&return_url=/register?shop_id=#{@shop_id}"
+    end
   end
 
 
@@ -282,6 +293,11 @@ goods= Ecstore::ShopsGood.where(:shop_id=>@shop_id,:good_status=>"1")
  def myorder
    shop_id=params[:shop_id]
    @shop_title="订单管理"
+   if params[:user_id]
+     @user_id= params[:user_id]
+     @orders = Ecstore::Order.where(:supplier_id=>shop_id,:member_id=> @user_id).order("createtime desc")
+
+   end
    @orders = Ecstore::Order.where(:supplier_id=>shop_id).order("createtime desc")
  end
 

@@ -15,8 +15,8 @@
       <a href="/shopinfos/register?shop_id=<%=@user.member_id%>"class="am-btn am-btn-sm get-btn">开始商店之旅 </a>
          <%else%>
              <input type="hidden" id="shopid" value="<%=@shop.shop_id%>">
-      <a  href="/shopinfos/my_goods?shop_id=<%=@user.member_id%>" class="am-btn am-btn-sm get-btn">管理店铺</a>
-             <button class="am-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二微码查看</button>
+      <a  href="/shopinfos/myshop?shop_id=<%=@user.member_id%>" class="am-btn am-btn-sm get-btn">管理店铺</a>
+             <button class="am-btn am-btn-sm get-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二微码查看</button>
 
              <div class="am-popup" id="my-popup">
                <div class="am-popup-inner">
@@ -26,7 +26,7 @@
             class="am-close">&times;</span>
                  </div>
                  <div class="am-popup-bd"style="text-align: center">
-                   <div id="qrcodeCanvas" style="display: none" ></div>
+                   <div id="qrcodeCanvas" style="display: block" ></div>
                    <div id="qrcodeimg"></div>
                    <div >欢迎关注</div>
 
@@ -120,10 +120,11 @@
       var kaelBase = new KaelQrcode();
       kaelBase.init(document.getElementById("qrcodeCanvas"), {
           text :url,
-          size: 300,
-          img: {
-              src : imag
-          }
+          size: 300
+//          img: {
+//              src : imag
+//
+//          }
       });
 
 

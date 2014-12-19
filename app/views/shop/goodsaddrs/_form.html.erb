@@ -13,33 +13,34 @@
 
 
 </style>
+<div class="main">
 <div class="am-input-group">
-  <span class="importstart">* </span>
+  <span class="price">* </span>
   <span > <%=I18n.t "importstart"%></span>
 </div>
-
+    <br>
 <%#=javascript_include_tag "patch/member_addrs"%>
 
 <div class="member_addrs">
-  <%=form_for :visitor, :url=>@method == :put ? @action_url :"" , :method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
+  <%=form_for :visitor, :url=>@action_url , :method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
       <% if params[:return_url]%>
           <input type="hidden" name="return_url" value="<%=@return_url%>">
+          <input type="hidden" name="user_id" value="<%=params[:user_id]%>"
       <%else%>
 
           <input type="hidden" name="return_url" value="">
       <%end%>
       <br/>
       <input type="hidden" name="platform" value="shop">
+
       <div class="am-input-group">
-        <span class="am-input-group-label"><%=I18n.t "name"%><span class="importstart">*</span></span>
-        <input class="am-form-field" id="visitor_visitor_name" name="visitor[visitor_name]" placeholder="<%=I18n.t "name"%>"value="<%=@visitors.name%>">
 
-
-      </div>
+       当前用户： <span class="price" > <%=@visitors.visitor_name%> </span>
+       </div>
       <br/>
       <div class="am-input-group">
-        <span class="am-input-group-label"><%=I18n.t "m_phone"%><span class="importstart">*</span></span>
-        <input class="am-form-field" id="visitor_phone" name="visitor[phone]" placeholder="<%=I18n.t "m_phone"%>" value="<%=@visitors.mobile%>">
+        <span class="am-input-group-label"><%=I18n.t "m_phone"%><span class="price">*</span></span>
+        <input class="am-form-field" id="visitor_phone" name="visitor[phone]" placeholder="<%=I18n.t "m_phone"%>" value="<%=@visitors.phone%>">
 
 
       </div>
@@ -60,22 +61,20 @@
       </div>
       <br/>
       <div class="am-input-group">
-        <span class="am-input-group-label"><%= I18n.t "address_detail"%><span class="importstart">*</span></span>
+        <span class="am-input-group-label"><%= I18n.t "address_detail"%><span class="price">*</span></span>
 
-        <%=f.text_field :address, :id=>"addr", :cols=>"0",:rows=>"0",:class=>"am-form-field"%>
+        <%=f.text_field :address, :id=>"addr", :cols=>"0",:rows=>"0",:class=>"am-form-field",:value=>@visitors.address%>
         <span class="help-inline error"></span>
       </div>
 
-      <dl class="connerbox" style="display:none"><dd><span> <%=f.label :def_addr, "设置为默认地址：",:class=>"text_input"%></span>
-        <span class="form_td"><input name="visitor[def_addr]" type="hidden" value="1" checked="true" /></span>
-      </dd></dl>
+
       <br/>
       <div class="ui-btn-area">
         <%if @method == :put%>
-            <input type="button" class="am-btn am-btn-warning am-btn-block "  value="<%=I18n.t "confirm"%>">
+            <input type="button" class="am-btn am-btn-primary am-btn-block  submit"  value="<%=I18n.t "confirm"%>">
 
         <%else%>
-            <input type="button" class="am-btn  am-btn-warning am-btn-block  "   value="<%=I18n.t "confirm"%>">
+            <input type="button" class="am-btn  am-btn-primary am-btn-block submit  "   value="<%=I18n.t "confirm"%>">
 
         <%end%>
       </div>
@@ -84,8 +83,8 @@
 </div>
 
 <script>
-    $(".am-btn-block").click(function(){
-        var mobile=$("#addr_mobile").val()
+    $(".submit").click(function(){
+        var mobile=$("#visitor_phone").val()
 
         if(mobile.length==0)
         {

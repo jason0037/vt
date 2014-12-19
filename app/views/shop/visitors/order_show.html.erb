@@ -56,7 +56,7 @@
 
 </style>
 
-<div class="">
+<div class="main">
   <%=form_for :payment,:url=>payments_path(:order_id=>@order.order_id,:supplier_id=>@supplier_id),:method=>'post',:html=>{ :target=>"_blank" } do |f|%>
       <%=f.hidden_field :currency, :value=>"CNY" %>
       <br/>
@@ -152,18 +152,12 @@
         </div>
 
         <br/>
-        <br/>
+
 
         <div class="actions">
           <div class="list_status">
 
-            <h2 class="blue" style="color: #0abede">
-              <span class="pay_icon"></span>
-              <span ><%= I18n.t "pay_showone"%>
-                <!--<a href="/orders/mobile_show_order?id=<%=@order.order_id%>&supplier_id=<%=@supplier_id%>"><%= I18n.t "order_details"%></a> <%= I18n.t "pay_showtwo"%></span>-->
-            </h2>
-          </div>
-          <br>
+
           <% if @order.order_status_text=="待付款" %>
               <%#=f.submit I18n.t 'confirm_order',:class=>"btn  btn-inverse" if @order.pay_status == '0' && @order.status == 'active' && @order.payment != 'offline' %>
               <% if @order.pay_status == '0' && @order.status == 'active' && @order.payment != 'offline' %>
@@ -175,7 +169,8 @@
         </div>
   <%end%>
   </div>
-
+  </div>
+</div>
   <script type="application/javascript">
       $(document).ready(function(){
           $("#change_payment").click(function(){

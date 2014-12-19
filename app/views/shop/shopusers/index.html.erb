@@ -19,6 +19,27 @@
 
 
 <hr>
+
+
+<%if @users%>
+    <div class="am-panel am-panel-default">
+      <a href="/visitors/my_shopping_cart?supplier_id=<%=@shop.shop_id%>&user_id=<%=@users%>">
+        <div class="am-panel-hd">我的购物车</div>
+        <span class="icon-arr"></span> </a>
+    </div>
+    <div class="am-panel am-panel-default">
+      <a href="/shopinfos/myorder?shop_id=<%=@shop.shop_id%>&user_id=<%=@users%>">
+        <div class="am-panel-hd">我的订单</div>
+        <span class="icon-arr"></span> </a>
+    </div>
+    <div class="am-panel am-panel-default">
+      <a href="">
+        <div class="am-panel-hd">我的信息</div>
+        <span class="icon-arr"></span> </a>
+    </div>
+
+
+    <%else%>
 <div class="am-panel am-panel-default">
   <a href="/shop_share">
     <div class="am-panel-hd">我的收益</div>
@@ -46,3 +67,4 @@
         <span class="icon-arr"></span> </a>
     </div>
 
+   <%end%>

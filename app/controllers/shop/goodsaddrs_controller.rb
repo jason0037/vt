@@ -7,16 +7,24 @@ class Shop:: GoodsaddrsController < ApplicationController
 
 
   def  new_addr
-
+    @shop_title="地址管理"
+    user_id=params[:user_id]
+    @visitors=Ecstore::Visitor.find(user_id)
  if params[:return_url]
       @return_url=params[:return_url]
     end
-
+  @action_url="add"
   end
 
 
-
-
+  def add
+    @visitor = Ecstore::Visitor.find(params[:user_id])
+ if  @visitor.update_attributes(params[:visitor])
+    if params[:return_url]
+      redirect_to params[:return_url] +"&user_id=#{params[:user_id]}"
+    end
+  end
+  end
 def addr_detail
   @shop_id =params[:shop_id]
   addr_id =params[:addr_id]

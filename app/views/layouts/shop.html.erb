@@ -76,14 +76,18 @@
 
        <% if @user%>
 
-      <li><a class=""href="/shopinfos/myshop?shop_id=<%=@user.member_id%>"><span  class="am-navbar-label">|我的店铺|</span></a></li>
+      <li><a class=""href="/shopinfos/my_goods?shop_id=<%=@user.member_id%>"><span  class="am-navbar-label">|管理店铺|</span></a></li>
       <li ><a class=" " href="/shopusers?shop_id=<%=@user.member_id%>"><span  class="am-navbar-label">|个人中心|</span></a></li>
 
       <%end%>
+       <%if @visitors%>
+
+          <li ><a class=" " href="/shopusers?shop_id=<%=@visitors.shop_id%>&user_id=<%=@visitors.id%>"><span  class="am-navbar-label">|个人中心|</span></a></li>
+
+    <%end%>
 
 
-
-    </ul>                                                               ?
+    </ul>
   </div>
 </div>
 

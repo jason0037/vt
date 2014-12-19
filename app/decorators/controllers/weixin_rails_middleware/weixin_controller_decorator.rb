@@ -73,7 +73,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="非常抱歉！！"
         desc ="您点击的商品馆正在筹备上线，敬请期待"
         pic_url=""
-        link_url="http://vshop.trade-v.com/vshop/noticesupplier_id=#{id}"
+        link_url="http://vshop.trade-v.com/vshop/notice?supplier_id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
 
 
@@ -133,10 +133,10 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
       when 'subscribe'
         if id == 78
-        title="寒冬和日本和牛-牛肉中的三文鱼来临,#{@weixin_public_account.name}听您的!"
-        desc ="#{@weixin_public_account.desc}"
-        pic_url="http://vshop.trade-v.com/images/a0#{id}/homepage/rou.jpg"
-        link_url="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=204081654&idx=1&sn=f3430887159032c774ef6f647b9162aa#rd"
+        title="圣诞新年欢聚-以'橙'会友，送'橙'意~"
+        desc ="不能满足上述条件的亲们很抱歉不能参加本次活动哦~不过您可以先关注贸威服务号，还有更多精彩活动即将推出，咱不只有“橙“意哦~"
+        pic_url="https://mmbiz.qlogo.cn/mmbiz/oMwR6HEEzCz2X1H9ibNV6EnPkiaVDD9pajsc3XsqAmfR5WcLiagwfwyLtL2hAbHU9ADW1xQ4ibNonMqDM4GLf2YWCw/0"
+        link_url="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=204567942&idx=1&sn=c366b5a74b553a1b5017635940b5449e#rd"
 
           title1="贸威除了热卖中的正宗德国香肠、卓玛泉、温县铁棍山药等优质产品外，还有每天听音乐、做按摩、睡软床、吹风扇、吃熟食的神秘来客，这就是雪龙黑牛，顶级品质，与您分享！"
           desc1 =""

@@ -53,6 +53,7 @@ Modengke::Application.routes.draw do
         get 'new_addr'
         get 'addr_detail'
         post 'edit_addr'
+        post 'add'
       end
     end
 

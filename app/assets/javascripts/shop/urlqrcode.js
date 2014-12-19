@@ -8,12 +8,14 @@ function image() {
 
 //    var image = document.createElement('img');
     var image = new Image();
-//    image.crossOrigin = 'anonymous';
+
+
     var imgURI = drawing.toDataURL("image/png");
+
     image.src = imgURI;
     if ($("#qrcodeimg").children("img").length == 0) {
         $("#qrcodeimg").append(image);
-        console.log(imgURI);
+
 
     }
 }

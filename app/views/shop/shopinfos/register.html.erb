@@ -36,8 +36,12 @@
       <br>
       <div class="am-input-group">
         <span class="am-input-group-label">微信号码:</span>
+                <%unless  @followers.nil? %>
+        <%=f.text_field :shop_wx,:class=>"am-form-field",:placeholder=>"请输入微信号码",:value=>eval(@followers.user_info)["nickname"] %>
+            <%else%>
+            <%=f.text_field :shop_wx,:class=>"am-form-field",:placeholder=>"请输入微信号码" %>
 
-        <%=f.text_field :shop_wx,:class=>"am-form-field",:placeholder=>"请输入微信号码"%>
+      <%end%>
       </div>
       <br>
 

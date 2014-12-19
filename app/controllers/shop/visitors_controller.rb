@@ -163,10 +163,14 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
       @cart_freight += row["freight"]
     end
 
-
     @cart_total_final = @cart_total+ @cart_freight + @favorable_terms
 
       @def_addr =  Ecstore::Visitor.find(params[:user_id])
+  if @def_addr.address.nil?
+
+
+    redirect_to "/goodsaddrs/new_addr?return_url=/visitors/order_clearing?supplier_id=#{@shop_id}&user_id=#{params[:user_id]}"
+  end
 
 
   if @pmtable

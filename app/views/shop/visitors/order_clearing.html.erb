@@ -2,6 +2,19 @@
     .bottomdivsclearfix{
         display: none;
     }
+    .am-panel-default{
+        position:relative;
+    }
+    .icon-arr {
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        width: 10px;
+        height: 15px;
+
+        background-size: 100px 100px;
+    }
+
 
 
 </style>
@@ -10,7 +23,7 @@
     <div class="am-panel am-panel-default">
       <div class="am-panel-hd"><%=I18n.t "details_consignee"%></div>
 
-      <a id="addressLink" href="/goodsaddrs/addr_detail?platform=mobile&addr_id=<%=@def_addr.id%>">
+      <a id="addressLink" href="/goodsaddrs/new_addr?user_id=<%=params[:user_id]%>&return_url=/visitors/order_clearing?supplier_id=2534&user_id=2">
 
       <div class="am-panel-bd">
           <span class="text">&nbsp;&nbsp;<%=@def_addr.visitor_name%>  <span class="phone-num" style="margin-left: 30px"><%=@def_addr.phone%></span></span>
