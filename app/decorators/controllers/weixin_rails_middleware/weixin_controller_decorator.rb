@@ -138,12 +138,12 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         pic_url="https://mmbiz.qlogo.cn/mmbiz/oMwR6HEEzCz2X1H9ibNV6EnPkiaVDD9pajsc3XsqAmfR5WcLiagwfwyLtL2hAbHU9ADW1xQ4ibNonMqDM4GLf2YWCw/0"
         link_url="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=204567942&idx=1&sn=c366b5a74b553a1b5017635940b5449e#rd"
 
-          title1="贸威除了热卖中的正宗德国香肠、卓玛泉、温县铁棍山药等优质产品外，还有每天听音乐、做按摩、睡软床、吹风扇、吃熟食的神秘来客，这就是雪龙黑牛，顶级品质，与您分享！"
-          desc1 =""
-          pic_url1=""
-          link_url1="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=204081654&idx=1&sn=f3430887159032c774ef6f647b9162aa#rd"
-
-          articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
+          # title1="贸威除了热卖中的正宗德国香肠、卓玛泉、温县铁棍山药等优质产品外，还有每天听音乐、做按摩、睡软床、吹风扇、吃熟食的神秘来客，这就是雪龙黑牛，顶级品质，与您分享！"
+          # desc1 =""
+          # pic_url1=""
+          # link_url1="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=204081654&idx=1&sn=f3430887159032c774ef6f647b9162aa#rd"
+          #  articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
+        articles = [generate_article(title, desc, pic_url, link_url)]
         else
 
           title="您好，#{@weixin_public_account.name}欢迎您"
