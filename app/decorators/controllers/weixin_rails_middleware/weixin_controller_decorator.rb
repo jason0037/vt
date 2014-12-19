@@ -133,7 +133,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
       when 'subscribe'
         if id == 78
-        title="圣诞新年欢聚-以'橙'会友，送'橙'意~"
+        title="圣诞新年欢聚-以“橙“会友，送“橙“意~"
         desc ="不能满足上述条件的亲们很抱歉不能参加本次活动哦~不过您可以先关注贸威服务号，还有更多精彩活动即将推出，咱不只有“橙“意哦~"
         pic_url="https://mmbiz.qlogo.cn/mmbiz/oMwR6HEEzCz2X1H9ibNV6EnPkiaVDD9pajsc3XsqAmfR5WcLiagwfwyLtL2hAbHU9ADW1xQ4ibNonMqDM4GLf2YWCw/0"
         link_url="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=204567942&idx=1&sn=c366b5a74b553a1b5017635940b5449e#rd"
