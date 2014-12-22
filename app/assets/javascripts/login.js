@@ -1,5 +1,5 @@
-//=require vendor/jquery
-//=require jquery_ujs
+
+
 //=require bootstrap-transition
 //=require bootstrap-carousel
 //=require jquery_placeholder_min

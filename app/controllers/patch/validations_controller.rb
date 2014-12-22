@@ -29,7 +29,7 @@ class Patch::ValidationsController < ApplicationController
 			mobile =  params[:validation]&&params[:validation][:mobile]
 			return render :js=>"alert('请输入手机号码')" if mobile.blank?
 			sms_code = (0..5).collect { rand(10) }.join("")
-			text = "手机验证码:#{sms_code},如非本人操作请忽略。[I-Modec摩登客]"
+			text = "手机验证码:#{sms_code},如非本人操作请忽略。[卓仕工业品]"
 			if Sms.send(mobile,text)
 				@user.update_attribute(:mobile, mobile)
 				@user.update_attribute(:sms_code, sms_code)
@@ -49,7 +49,7 @@ class Patch::ValidationsController < ApplicationController
 			@user.update_attribute :email, email
 			@user.update_attribute :email_code, email_code
 			ValidationMailer.verify_email(@user).deliver
-			return render :inline=>"<p>验证邮件已发送。</p>", :layout=>"patch"
+			return render :inline=>"<p>验证邮件已发送。</p>", :layout=>"left_cheuks"
 		end
 
 		render :status=>:not_found

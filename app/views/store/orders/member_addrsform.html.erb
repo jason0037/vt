@@ -1,0 +1,91 @@
+<br>
+<div class="row">
+  <div class="header-container">
+    <h3 style="color:  white; text-align: center">地址信息管理</h3>
+  </div>
+  <div class="info-list" id="addr_form">
+<%=form_for :addr, :url=>@action_url, :remote=>true,:method=>"post",:html=>{ :class=> " form-horizontal" } do |f|%>
+         <br>
+       <input type="hidden" name="id" value="<%=@addr.id%>">
+        <div class="row " >
+          <div class="large-2 small-3 columns">
+           <span class="input-text"><span class="red">*</span>收货人&nbsp;&nbsp;</span>
+            </div>
+    <div class="large-8 small-9 columns left">
+
+        <%=f.text_field :name,  :placeholder=>"收货人姓名"%>
+
+    </div>
+  </div>
+        <br>
+        <div class="row">
+          <div class="large-4 small-4 columns">
+            <%=f.select :province,Ecstore::Region.provinces.collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择省" },{ :onchange=>"selectProvince(this,'#city','#district');",:id=>"province" }%>
+          </div>
+          <div class="large-4 small-4 columns">
+            <%if @addr&&@addr.city%>
+                <%=f.select :city,Ecstore::Region.cities_of(@addr.province).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择市"},{ :onchange=>"selectCity(this,'#district');",:id=>"city" }%>
+            <%else%>
+                <%=f.select :city, {}, { :include_blank=>"请选择市" }, { :onchange=>"selectCity(this,'#district');",:id=>"city" }%>
+            <%end%>
+          </div>
+          <div class="large-4 small-4 columns">
+            <%unless @addr&&@addr.new_record?%>
+                <%=f.select :district,Ecstore::Region.districts_of(@addr&&@addr.city).collect{|p| [p.local_name,p.region_id] },{:include_blank=>"请选择区/县" },{ :onchange=>"selectDistrict(this);",:id=>"district",:style=>"#{'display:none;' if @addr.district.blank? }" } %>
+            <%else%>
+                <%=f.select :district, {}, { :include_blank=>"请选择区/县" }, { :onchange=>"selectDistrict(this);",:id=>"district" }%>
+            <%end%>
+          </div>
+          <span class="help-inline "></span>
+
+        </div>
+        <br>
+    <div class="row">
+      <div class="large-2 small-3 columns">
+        <span class="input-text"><span class="red">*</span>详细地址</span>
+      </div>
+      <div class="large-8 small-9 columns left">
+
+        <%=f.text_field :addr,:class=>"span5" ,:id=>"addr"%>
+        </div>
+       </div>
+        <br>
+  <div class="row">
+    <div class="large-2 small-3 columns">
+      <span class="input-text"><span class="red">*</span>手机号</span>
+    </div>
+    <div class="large-8 small-9 columns left">
+     <%=f.text_field :mobile,  :placeholder=>"手机"%>
+     </div>
+    </div> <br>
+        <div class="row">
+    <div class="large-2 small-3 columns">
+      <span class="input-text">固话(可选)</span>
+    </div>
+    <div class="large-8 small-9 columns left">
+     <%=f.text_field :tel,  :placeholder=>"tel"%>
+    </div>
+    </div>
+
+        <br>
+  <div class="row" >
+
+    <div class="large-12 columns">
+      <label style="color: #ff0000">设为默认&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%=f.check_box :def_addr, {}, 1, 0 %><span><%=I18n.t "default"%></span> </label>
+      <span class="help-inline "></span>
+
+    </div>
+  </div>
+        <br>
+    <%if @method == :put%>
+        <input type="submit" class="button postfix" value="<%=I18n.t "modify"%>">
+
+    <%else%>
+        <input type="submit" class="button postfix " value="<%=I18n.t "confirm"%>">
+
+    <%end%>
+
+<%end%>
+</div>
+    </div>

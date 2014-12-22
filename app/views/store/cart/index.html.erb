@@ -102,16 +102,18 @@
        <span class="total">￥<%= format('%.2f',@cart_total)%></span>
        </div>
      </div>
+     <a href="<%=site%>/orders/new" class="black_btn" target="_top">
      <div class="large-4 medium-4 small-4 columns">
-       <div class="callout panel">
-         <a href="<%=site%>/orders/new" class="black_btn" target="_top">安全结算</a>
+       <div class="callout panel" style="color: #dc130a">
+       安全结算
        </div>
-     </div>
+     </div>  </a>
+     <a href="#" class="close"  data-dismiss="modal" aria-hidden="true ">
      <div class="large-4 medium-4 small-4 columns">
-       <div class="callout panel">
-         <a href="#" class="close"  data-dismiss="modal" aria-hidden="true ">继续购物</a>
+       <div class="callout panel" style="color: #dc130a">
+        继续购物
        </div>
-     </div>
+     </div> </a>
    </div>
  </div>
 

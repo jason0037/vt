@@ -63,6 +63,12 @@ end
     end
   end
 
+  def new_addr
+    @addr = Ecstore::MemberAddr.new params[:addr].merge!(:member_id=>@user.member_id)
+    @addr.save
+  end
+
+
   def create
 
     @addr = Ecstore::MemberAddr.new params[:addr].merge!(:member_id=>@user.member_id)
@@ -71,14 +77,11 @@ end
 
     @addr.save
 
-    if return_url
-      @ids=@addr.addr_id
-      session[:depar]=@ids
-      redirect_to return_url
-    else
-      redirect_to "/member_addrs?platform=#{pramas[:platform]}"
-
-    end
+   #  if return_url
+   #    @ids=@addr.addr_id
+   #    session[:depar]=@ids
+   #    redirect_to return_url
+   # end
 =begin
   respond_to do |format|
            format.js
@@ -105,6 +108,13 @@ end
     end
   end
 
+
+  def update_addr
+    @addr = Ecstore::MemberAddr.find(params[:id])
+   @addr.update_attributes(params[:addr])
+  end
+
+
   def destroy
 
     @addr = Ecstore::MemberAddr.find(params[:id])
@@ -118,33 +128,6 @@ end
   end
 
   end
-  def _form_manco_second
-    @manco_title="新增卸货地址"
-    session[:depars]=params[:member_departure_id]  ##有寄货地址 没收货地址的
-    @addr = Ecstore::MemberAddr.new
-    @supplier=Ecstore::Supplier.find(params[:supplier_id])
 
-
-    render :layout => @supplier.layout
-  end
-  def addship
-   @platform=params[:platform]
-   return_url=params[:return_url]
-    @supplier=Ecstore::Supplier.find(params[:supplier_id])
-    @addr = Ecstore::MemberAddr.new params[:addr].merge!(:member_id=>@user.member_id)
-
-    if @addr.save
-      @arrid=@addr.addr_id
-
-      session[:arri]=@arrid
-      if return_url
-        redirect_to return_url
-
-      else  redirect_to "/orders/new_manco?supplier_id=#{@supplier.id}&platform=#{@platform}"
-     end
-    else redirect_to "/member_addrs/_form_manco_second?supplier_id=#{@supplier.id}&platform=#{@platform}"
-
-   end
-    end
 
 end

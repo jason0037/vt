@@ -29,12 +29,12 @@ $(document).ready(function(){
     $(this).find('.dropdown-menu').stop(true, true).hide();
     $(this).removeClass('open');
   });
-  
+
   $(".scrolling").queue(function(next) {
     $(this).fadeIn(600).delay(600).fadeOut(600);
     $(this).queue(arguments.callee);
     next();
-  }); 
+  });
 
   if($('#nav_menu')[0]){
         $('#nav_ul>li').hover(function(){
@@ -87,17 +87,8 @@ $(document).ready(function(){
     cScrolltop = null;
     return false;
   });
-  
-  $("#backToTop").click(function() {
-    $("html, body").animate({ scrollTop: 0 }, 100);
-  });
-  $(window).bind("scroll", function() {
-    var st = $(document).scrollTop(), winh = $(window).height();
-    (st > 0)? $("#backToTop").show(): $("#backToTop").hide();
-    if (!window.XMLHttpRequest) { //IE6
-      $("#backToTop").css("top", st + winh - 166);
-    }
-  });
+
+
 
   $(".spec_bar a.color").live("click",function(){
 
@@ -129,8 +120,8 @@ $(document).ready(function(){
         bigImg = $("."+cls).attr("href");
         $(this).find("img").attr("src",bigImg);
 
-    }); 
-    
+    });
+
 
     var url = $(this).data("url");
     var spec_color_id = $(this).data("value");
@@ -145,7 +136,7 @@ $(document).ready(function(){
   });
 
   $(".spec_bar a.size").live("click",function(){
-    
+
     $(this).parent().find("a.size").removeClass("selected");
     $(this).addClass("selected");
     $(this).closest("td").find(":hidden").val($(this).data("value"));
@@ -286,7 +277,7 @@ $(document).ready(function(){
 
 function loadProductInfo(productId) {
 
-      // Init Product Gallery 
+      // Init Product Gallery
       var pg = $(productId + ' .jcarousel-skin-tango').jcarousel({
             // wrap: 'both',
             scroll: 1,
@@ -315,7 +306,7 @@ function loadProductInfo(productId) {
               $(productId + ' .paddle.pr').addClass('disabled');
               // $(productId + ' .paddle.pr .paddle_img').hide();
             }
-            
+
             return false;
       });
 
@@ -330,7 +321,7 @@ function loadProductInfo(productId) {
       });
 
       $(productId + ' .paddle').bind('click', function() {
-      
+
             if ($(this).hasClass('pl')) {
               pg.data('jcarousel').prev();
             } else {
@@ -351,7 +342,7 @@ function loadProductInfo(productId) {
             return false;
       });
 
-      // Init Product Detail info Accordion 
+      // Init Product Detail info Accordion
       $(productId + " .more" ).accordion({
         event: "click hoverintent",
         heightStyle: "content"
@@ -368,7 +359,7 @@ function loadProductInfo(productId) {
           return $(productId + " .mesure_detail").html();
         }
       }).click(function(){
-        
+
         $(".custom, .semi_custom").popover('hide');
         if ($(productId + " .see_more").hasClass("actived")) {
           $(productId + " .see_more").click();
@@ -396,7 +387,7 @@ function loadProductInfo(productId) {
         var spec_color_id = $(this).closest("table.spec_bar").find(".color.selected").data("value");
         var params = { spec_values : [spec_size_id,spec_color_id] };
         getPrice(this,url,params);
-        
+
         $(this).popover('show');
         $(".size_helper, .semi_custom").popover('hide');
         return false;
@@ -416,7 +407,7 @@ function loadProductInfo(productId) {
         $(this).parent().find("a.size").removeClass("selected");
         $(this).addClass("selected");
         $(this).closest("td").find("input[name='product[specs][]']").val($(this).data("value"));
-        
+
         var url = $(this).data("url");
         var spec_size_id = $(this).data("value");
         var spec_color_id = $(this).closest("table.spec_bar").find(".color.selected").data("value");

@@ -10,7 +10,7 @@ class Patch::MembersController < ApplicationController
 
 	before_filter do
 		clear_breadcrumbs
-		add_breadcrumb("我的贸威",:member_path)
+		add_breadcrumb("我的卓展",:member_path)
 	end
 
 
@@ -18,7 +18,7 @@ class Patch::MembersController < ApplicationController
     if @user
 		@orders = @user.orders.limit(5)
 		@unpay_count = @user.orders.where(:pay_status=>'0',:status=>'active').size
-		add_breadcrumb("我的贸威")
+		add_breadcrumb("我的卓展")
     else
       redirect_to "/login"
     end

@@ -1,6 +1,7 @@
 <!--<link href="/assets/store/orders.css?body=1" media="screen" rel="stylesheet" type="text/css" />-->
 <!--<script src="/assets/store/orders.js?body=1" type="text/javascript"></script>-->
-<div class="row ">
+
+<div class="row panel">
   <h4 class="title">商品清单</h4>
   <table>
     <thead>
@@ -31,10 +32,10 @@
     <%end%>
     </tbody>
   </table>
-  <hr>
+
 </div>
 
-<div class="row ">
+<div class="row panel ">
    <h4 class="title">订单信息</h4>
 
     <div class="row support panel">
@@ -54,28 +55,28 @@
       <div class="small-12 columns "><%=log.created_at%> : &nbsp;&nbsp;&nbsp;&nbsp;<%=log.log_text%></div>
       </div>
        <%end%>
-    <hr>
+
     </div>
 
 
 
-<div class="row" style=" ">
+<div class="row panel" style=" ">
   <h4 class="title">订单追踪</h4>
 <span class="large-3 medium-3 small-3 columns ">提交订单</span>
 
 <span class="large-3 medium-3 small-3 columns">等待付款 </span>
 <span class="large-3 medium-3 small-3 columns">等待发货 </span>
-<span class="large-3 medium-3 small-3 columns">订单完成</span>  </div>
+<span class="large-3 medium-3 small-3 columns">订单完成</span>
 
- <div class="row">
+    <br><br>
 <div class="range-slider round" data-slider="50">
   <span class="range-slider-handle" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="-webkit-transform: translateX(30px);"></span>
   <span class="range-slider-active-segment" style="width: 25%;"></span>
   <input type="hidden" value="50">
-</div><hr> </div>
+</div> </div>
 
 
-<div class="row ">
+<div class="row panel">
   <h4 class="title">优惠信息</h4>
   <% if @order.order_pmts.size > 0%>
       <%@order.order_pmts.each do |pmt|%>
@@ -89,9 +90,9 @@
   <%else%>
       <span>无优惠信息</span>
   <%end%>
-  <hr>   </div>    </div>
+  </div>    </div>
 
- <div class="row">
+ <div class="row panel">
    <h4>收货信息</h4>
 <div class="row support panel">
   <div class="small-6 columns "><h5>收货人:</h5></div>
@@ -117,10 +118,10 @@
      <div class="small-6 columns"><h5>邮编</h5></div>
      <div class="small-6 columns"><h5><%=@order.ship_zip%></h5></div>
      </div>
-   <hr>
+
  </div>
 
-<div class="row">
+<div class="row panel">
   <h4>支付及配送方式</h4>
   <div class="row support panel">
     <div class="small-6 columns "><h5>支付方式:</h5></div>
@@ -137,9 +138,9 @@
  <hr></div>
 
 <%if @order.is_tax == 'true'%>
-<div class="row">
+<div class="row panel">
   <h4>发票</h4>
-  <div class="row support panel">
+  <div class="row support ">
     <div class="small-6 columns "><h5>发票抬头:</h5></div>
     <div class="small-6 columns "><h5><%=@order.tax_company%></h5></div>
   </div>
@@ -148,7 +149,7 @@
     <%end%>
 
 
-<div class="row">
+<div class="row panel">
   <h4>结算信息</h4>
   <div class="row support panel">
     <div class="small-6 columns ">商品总额:</div>

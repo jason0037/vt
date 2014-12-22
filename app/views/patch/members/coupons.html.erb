@@ -1,27 +1,32 @@
-<table class="table table-striped" id="coupons_list">
-	<tr>
-		<th>优惠券号码</th>
-		<th>名称</th>
-		<th>有效期</th>
-		<th>状态</th>
-	</tr>
-	
-	<%  if @user_coupons && @user_coupons.size > 0%>
-		<%@user_coupons.each  do |user_coupon|%>
-		<tr>
-			<td><%=user_coupon.coupon_code%></td>
-			<td><%=user_coupon.coupon_name%></td>
-			<td><%=user_coupon.new_coupon.begin_at.strftime("%Y-%m-%d %H:%M:%S")%> ~ <%=user_coupon.new_coupon.end_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
-			<td><%=user_coupon.status_text%></td>
-		</tr>
-		<%end%>
-	<%else%>
-		<tr class="no-record">
-			<td colspan="4">您还没有优惠券</td>
-		</tr>
-	<%end%>
+<table id="coupons_list">
+  <thead>
+  <tr>
+    <th width="200">优惠券号码</th>
+    <th>名称</th>
+    <th width="150">有效期</th>
+    <th width="150">状态</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @user_coupons && @user_coupons.size > 0%>
+      <%@user_coupons.each  do |user_coupon|%>
+  <tr>
+    <td><%=user_coupon.coupon_code%></td>
+    <td><%=user_coupon.coupon_name%></td>
+    <td><%=user_coupon.new_coupon.begin_at.strftime("%Y-%m-%d %H:%M:%S")%> ~ <%=user_coupon.new_coupon.end_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+    <td><%=user_coupon.status_text%></td>
+  </tr>  <%end%>
+          <%else%>
+          <tr class="no-record">
+            <td colspan="4">您还没有优惠券</td>
+          </tr>
+      <%end%>
 
+      </tbody>
 </table>
+
+
+
 <div class="pagination">
 	<%=will_paginate @user_coupons,:container=>false if @user_coupons%>
 </div>

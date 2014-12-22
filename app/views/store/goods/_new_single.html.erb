@@ -1,73 +1,91 @@
 <style>.hidden{display: none}
 
-
 </style>
 
-<link href="/assets/store/new_screen.css?body=1" media="all" rel="stylesheet" type="text/css" />
+<%= stylesheet_link_tag "test/main" %>
 
-<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
-<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
-
-<script src="/assets/jquery_jcarousel.js?body=1" type="text/javascript"></script>
-
-<script src="/assets/jquery.jqzoom-core.js?body=1" type="text/javascript"></script>
-
-
-
-<div class="row"  >
-  <div class="large-8 medium-8 columns">
-    <div id="products" >
-    <div id="product" >
-      <div class="gallery">
-        <ul class="jcarousel-skin-tango">
-          <li>  <a href="http://img.uutuu.com/data6/a/ph/large/080412/c593300067964cbbb6b3ce45eed9c58f.jpg" class="jqzoom1">
-            <img  src="http://img.uutuu.com/data6/a/ph/large/080412/c593300067964cbbb6b3ce45eed9c58f.jpg" width="420" height="592"  /> </a>    </li>
-        </ul>
-      </div>
-
-
-    </div></div>   </div>
-
-  <div class="large-4 medium-4 columns">
-
-    <%=form_for :product,:url=>add_cart_index_path,:remote=>true do |f|%>
-        <%=f.hidden_field :goods_id,:value=>good.goods_id%>
-        <%=f.hidden_field :type_id,:value=>good.type_id%>
-        <h3 class="name_and_price">
-          <div class="name"><%=good.name %></div>
-
-          <%if good.has_cols? %>
-            <span class="price">套装价
-            <span class="georgia">
-              <% if signed_in? %>  ￥<%=good.default_product.price if good.default_product%>&nbsp;&nbsp;&nbsp;
-               <% else %>
-                <a href="#" class="small round button" data-reveal-id="login_iframe" style="font-size:14px;color:#D30000;">[会员专享]</a>
-              <%end%>
-            </span>
-          </span>
-           <span class="market_price">立省<span class="georgia">￥<%=good.savings.to_i%></span>&nbsp;</span>
-          <%else%>
-        <span class="price"><%#=good.default_product&&good.default_product.full_custom? ? "定金" : "会员价"%>
-          <span class="georgia">
-                [会员价￥<span id="product_price"><%=good.default_product.price if good.default_product%></span>]
-
-          </span>
-          <br/>
-        </span>
-              <span class="market_price">市场价<span class="georgia">￥<%=good.default_product.mktprice if good.default_product%></span>&nbsp;</span>
-
-          <%end%>
-          <p >［商品型号:<%=good.model%>]</p>
-          <p >［商品规格:<%=good.size%>]</p>
-          <p >［商品参数:<%=good.size_description%>]</p>
-          <p class="product_id">［商品号<%=good.bn%>]</p>
-
-        </h3>
-
-        <div class="spec" style="display: none">
-          <%=render :partial=>"store/goods/product/new_spec",:locals=>{ :good=>good }%>
+<div class="row">
+  <div class="large-3 medium-3 columns">
+    <div class="fdj-wrap"style="z-index: 10001;">
+      <div id="preview" >
+        <div id="img-medium">
+          <img src="" alt="" style="width: 100%">
+          <div id="mark" style="display: none; left: 125.5px; top: 263.5px;"></div>
         </div>
+        <!-- 小图导航开始 -->
+        <div class="img-small">
+          <a href="javascript:;" class="left" id="left">&lt;</a>
+          <a href="javascript:;" class="right" id="right">&gt;</a>
+          <div class="img-list-items">
+            <ul id="img-items" >
+              <li><img src="" msrc="" bsrc="" alt="" ></li>
+
+                   </ul>
+          </div>
+        </div>
+        <!-- 小图导航结束 -->
+        <div id="img-big" >
+          <img src="" alt="" id="detail" >
+        </div>
+      </div>
+  </div>  </div>
+
+
+
+
+  <div class="large-8 medium-8 columns" style="padding: 6px">
+    <div class="row">
+      <%=form_for :product,:url=>add_cart_index_path,:remote=>true do |f|%>
+          <%=f.hidden_field :goods_id,:value=>good.goods_id%>
+          <%=f.hidden_field :type_id,:value=>good.type_id%>
+    <table style="width: 100%">
+    <thead>
+    <tr>
+      <td>产品名称：</td>
+      <td  ><%=good.name %></td>
+     </tr>
+    </thead>
+    <tbody>
+    <tr>
+
+      <td>标准价格：</td>
+      <td style=" color:#f60;">请咨询客服</td>
+    </tr>
+    <tr>
+      <td>最小起订量：</td>
+      <td>1 （台）</td>
+     </tr>
+    <tr>
+      <td>运费：</td>
+      <td style=" color:#f60;">￥0.00</td>
+    </tr>
+    <tr>
+ <td>产品规格：</td>
+      <td ><%=good.size%></td>
+    </tr>
+    <tr>
+  <td>产品号：</td>
+      <td ><%=good.bn%></td>
+    </tr>
+    <tr>
+    <td>会员价￥：</td>
+    <td style=" color:#f60;"><%=good.default_product.price if good.default_product%></td>
+    </tr>
+
+    <tr>
+    <td>会员价￥：</td>
+    <td style=" color:#f60;"><%=good.default_product.price if good.default_product%></td>
+    </tr>
+
+    </tbody>
+    </table>
+          <div class="spec" style="display: none">
+            <%=render :partial=>"store/goods/product/new_spec",:locals=>{ :good=>good }%>
+          </div>
+
+
   <div class="wrapper">
+
           <%if @good.marketable == "true"%>
               <div id="cart_msg"></div>
 
@@ -91,75 +109,8 @@
               <a href="javascript:void(0);" class="add_to_favorites  inside"data-reveal-id="login_iframe" >加入收藏夹</a>
           <%end%>
           </div></div>
-
-
-
-        <!--<div class="more">-->
+    <!--<div class="more">-->
           <!--<%#=render partial: "store/goods/product/more",:locals=>{ :good=>good }%>-->
         <!--</div>-->
     <%end%>
-
-
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        loadProductInfo("#product");
-        $("#product ul.jcarousel-list li.jcarousel-item").each(function(index,el){
-            $('.jqzoom'+(index+1)).jqzoom({
-                zoomType: 'standard',
-                lens:true,
-                preloadImages: false,
-                alwaysOn:false,
-                zoomWidth: 400,
-                zoomHeight: 400,
-                preloadText: '正在加载图片...',
-                title: false
-            });
-        });
-
-
-        // $('.jqzoom1').jqzoom({
-        //     zoomType: 'standard',
-        //     lens:true,
-        //     preloadImages: false,
-        //     alwaysOn:false,
-        //     zoomWidth: 400,
-        //     zoomHeight: 592,
-        //     preloadText: '正在加载图片...',
-        //     title: false
-        // });
-
-        // $('.jqzoom2').jqzoom({
-        //     zoomType: 'standard',
-        //     lens:true,
-        //     preloadImages: false,
-        //     alwaysOn:false,
-        //     zoomWidth: 400,
-        //     zoomHeight: 592,
-        //     preloadText: '正在加载图片...',
-        //     title: false
-        // });
-
-        // $('.jqzoom3').jqzoom({
-        //     zoomType: 'standard',
-        //     lens:true,
-        //     preloadImages: false,
-        //     alwaysOn:false,
-        //     zoomWidth: 400,
-        //     zoomHeight: 592,
-        //     preloadText: '正在加载图片...',
-        //     title: false
-        // });
-
-        // $('.jqzoom4').jqzoom({
-        //     zoomType: 'standard',
-        //     lens:true,
-        //     preloadImages: false,
-        //     alwaysOn:false,
-        //     zoomWidth: 400,
-        //     zoomHeight: 592,
-        //     preloadText: '正在加载图片...',
-        //     title: false
-        // });
-    })
-</script>
+   </div>   </div> </div>

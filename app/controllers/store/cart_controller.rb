@@ -29,9 +29,10 @@ class Store::CartController < ApplicationController
 	def add
 		# parse params
 
-		customs = params[:product].delete(:customs)
-		quantity = params[:product].delete(:quantity).to_i
-		goods_id = params[:product][:goods_id]
+    specs = params[:product].delete(:specs)
+    customs = params[:product].delete(:customs)
+    quantity = params[:product].delete(:quantity).to_i
+    goods_id = params[:product][:goods_id]
     if quantity.blank? || quantity ==0
        quantity=1
     end

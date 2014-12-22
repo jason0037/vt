@@ -17,8 +17,8 @@
   <meta name="copyright" content="Copyright © 2009-2014 Cheuks MRO Co.,Ltd. 卓展集团版权所有" />
   <%= stylesheet_link_tag "app" %>
   <%= stylesheet_link_tag "foundation-icons" %>
-  <script src="/bower_components/modernizr/modernizr.js"></script>
 
+       <%=javascript_include_tag "vendor/modernizr.js"%>
   <%=stylesheet_link_tag "standard"%>
 
   <%= yield :head%>
@@ -229,11 +229,11 @@
                     <p class="welcome">欢迎您回来!</p>
                  <%=form_for :session,:url=>"/login",:class=>"form login_form"  do |f|%>
 
-                   
+
 
               <%=hidden_field_tag :return_url,request.url.sub('http://trade','').force_encoding('UTF-8')%>
               <div id="login_msg"></div>
-           
+
     <div class="small-8 columns">
       <div class="row">
         <div class="small-3 columns">
@@ -257,25 +257,25 @@
     </div>
 
      <div class="small-8 columns">
-             <div class="row"> 
+             <div class="row">
                <div class="small-9 columns">
                 <%=f.submit "登 录",:class=>"button alert",:style=>"margin-left:-50%;width:100%"%>
                 </div>
-               
+
                   </div>
         </div>
-        <%end%> 
-         <a class="close-reveal-modal">×</a>    
+        <%end%>
+         <a class="close-reveal-modal">×</a>
     </div>
-  </div>   
- 
+  </div>
+
 </div>
 
 <div id="register_iframe" class="reveal-modal remove-whitespace" data-reveal="">
     <div class="signup-panel">
       <p class="welcome" style="margin-left:-30px">您好，欢迎注册卓展!</p>
      <%=form_for :user,:url=>users_path,:html=>{:id=>"register_form"} do |f|%>
-    
+
       <%=hidden_field_tag :return_url,request.url.sub('http://trade','').force_encoding('UTF-8')%>
         <%=hidden_field_tag :platform,'vshop'%>
      <div class="connerdiv">
@@ -291,7 +291,7 @@
         <div class="help-block" rel="user_login_name"></div>
          </div>
  </div> </div>
-   
+
     <div class="small-8 columns">
         <div class="row">
 
@@ -303,7 +303,7 @@
         <div class="help-block" rel="user_login_password"></div>
          </div>
  </div> </div>
-  
+
 
       <div class="small-8 columns">
      <div class="row">
@@ -348,13 +348,13 @@
       </div></div></div>
 
 </div>
-  
+
  <%= javascript_include_tag "login" %>
   <%= stylesheet_link_tag "login" %>
 
 <%end%>
 
-     
+
   <a class="close-reveal-modal">×</a>
 </div></div>
 </div>

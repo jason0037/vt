@@ -14,7 +14,7 @@
 </style>
 <%if @line_items.size > 0%>
     <div class="row">
-    <div class="large-12 columns" >
+    <div class="large-12 columns panel" >
 		<h5>
 			收货地址 
 			<span class="required">*</span>
@@ -24,40 +24,49 @@
 		<%if @addrs.size>0%>
 			<%@addrs.each_with_index do |addr,index|%>
 				<%if @def_addr == addr%>
-					<label class="radio active">
-						<%=radio_button_tag "member_addr", addr.addr_id,:checked=>true%>
-						<span class="addr-line"><%=addr.addr_line%></span>
-						<%=link_to "修改",edit_member_addr_path(addr),:remote=>true,:class=>"update-link"%>
-					</label>
+                      <a href="/orders/member_addrsform?addr_id=<%=addr.addr_id%>" class="update-link" >
+                        <div class="large-12 medium-12 small-12 columns panel">
+
+
+                    <%=radio_button_tag "member_addr", addr.addr_id,:checked=>true%>
+                        <span class="addr-line"><%=addr.name%> &nbsp; <%=addr.mobile%> <br> <%=addr.addr%></span> <span class="right">修改</span>
+                      </div>
+                      </a>
 				<%else%>
-					<label class="radio">
+                      <a href="/orders/member_addrsform?addr_id=<%=addr.addr_id%>" class="update-link" >
+                      <div class="large-12 medium-12 small-12 columns panel">
 						<%=radio_button_tag "member_addr", addr.addr_id%> 
-						<span class="addr-line"><%=addr.addr_line%></span>
-						<%=link_to "修改",edit_member_addr_path(addr), :remote=>true, :class=>"update-link"%>
-					</label>
+						<span class="addr-line"><%=addr.name%> &nbsp; <%=addr.mobile%> <br> <%=addr.addr%></span>
+                            <span class="right">修改</span>
+                         </div>   </a>
 				<%end%>
 			<%end%>
              </div>
-			<label class="radio" style="float: left">
-				<%=radio_button_tag "member_addr", "new"%>
-				<span>使用新地址+</span>
-			</label>
-		<%end%>
+              <div class="large-12 medium-12 small-12 columns">
+                <a href="/orders/new_member_addrsform" class="update-link" >使用新的地址</a>
+
+             </div>
+		<%else%>
+              <div class="large-12 columns" >
+
+                <a href="/orders/new_member_addrsform" class="update-link" >点击创建新的地址</a>
+
+              </div>
 
 		</div>
 
-		<%=render :partial=>"patch/member_addrs/form",:locals=>{ :display=>( @addrs.size == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
-
+		<%#=render :partial=>"patch/member_addrs/form",:locals=>{ :display=>( @addrs.size == 0 ), :@addr=>Ecstore::MemberAddr.new }%>
+           <%end%>
     </div>
     <div class="row">
-    <div class="large-12 columns" >
+    <div class="large-12 columns " >
 	<%=form_for :order,:url=>orders_path,:html=>{ :class=>"form-horizontal",:id=>"order_form" } do |f|%>
 		<%=hidden_field_tag "member_addr",@def_addr&&@def_addr.addr_id%>
 
-        <div class="row">
-          <div class="large-12 medium-12 ">
+        <div class="row panel">
+
             <h5>配送方式</h5>
-                 </div>
+
      <div class="large-6 medium-6 small-6 columns">
        <div class="radio">
        <%=f.radio_button :shipping_id, 0%><span class="addr-line">自提</span>
@@ -68,11 +77,11 @@
             <span class="extra-info">+ ￥10</span>
               </div>
           </div>
-           </div>
 
 
-          <div class="row">
-            <div class="large-12 medium-12 ">
+
+
+            <div class="large-12 medium-12  ">
               <h7>  <%=f.label :ship_time, "收货时间：",:class=>"control-label"%></h7>
             </div>
             <div class="large-6 medium-6 small-6 columns">
@@ -85,8 +94,8 @@
               </div>
             </div>
           </div>
-
-          <div class="row payment" id="payments">
+              <br>
+          <div class="row payment panel" id="payments">
             <div class="large-12 medium-12">
               <h5>  支付方式</h5>
             </div>
@@ -132,56 +141,57 @@
             </div>
 
           </div>
-
-          <div class="row">
-            <div class="large-3 medium-3 small-3 columns">
-              <span> 商品名称</span>
-              </div>
-            <div class="large-3 medium-3 small-3 columns">
-              <span>单价</span>
-            </div>
-            <div class="large-3 medium-3 small-3 columns">
-              <span>数量</span>
-            </div>
-            <div class="large-3 medium-3 small-3 columns">
-              <span>金额小计</span>
-            </div>
-             </div>
-        <hr>
-        <%@line_items.each do |line_item|%>
-            <%=hidden_field_tag "products[]",line_item.product.product_id%>
-        <div class="row">
-          <div class="large-3 medium-3 small-3 columns">
-            <%=link_to good_path(line_item.good.bn),:class=>"thumb",:target=>"_blank" do%>
-                <%=image_tag line_item.good.medium_pic,:size=>"35x50",:alt=>line_item.product.name%>
-            <%end%>
             <br>
-            <div class="good_name">
-            <%=link_to line_item.product.name,good_path(line_item.good.bn), :target=>"_blank"%> </div>
-               <span><%=line_item.product.spec_info%></span>
+
+          <div class="row panel" >
+            <h4 class="title">商品清单</h4>
+            <table style="width: 100%">
+              <thead>
+              <tr>
+                <th width="20%">商品编号</th>
+                <th width="20%">商品名称</th>
+                <th width="20%">单价</th>
+                <th width="20%">数量 </th>
+                <th width="20%">金额 </th>
+              </tr>
+              </thead>
+
+              <tbody>
+
+              <%@line_items.each do |line_item|%>
+                  <%=hidden_field_tag "products[]",line_item.product.product_id%>
+                  <tr>
+                    <td><%=line_item.good.bn%></td>
+                    <td> <%=link_to good_path(line_item.good.bn),:class=>"thumb",:target=>"_blank" do%>
+                          <%=image_tag line_item.good.medium_pic,:size=>"35x50",:alt=>line_item.product.name%>
+                      <%end%>
+                     </td>
+                    <td><%if cookies[:MLV] == "10"%>
+                          &yen<%=number_to_currency line_item.product.bulk,:unit=>"",:precision=>2%>
+                      <%else%>
+                          &yen<%=number_to_currency line_item.product.price,:unit=>"",:precision=>2%>
+                      <%end%></td>
+                    <td><%=line_item.quantity%></td>
+                    <td><%if cookies[:MLV] == "10"%>
+                          &yen<%=number_to_currency line_item.line_total_bulk,:unit=>"",:precision=>2%>
+                      <%else%>
+                          &yen<%=number_to_currency line_item.line_total,:unit=>"",:precision=>2%>
+                      <%end%></td>
+                  </tr>
+
+              <%end%>
+              </tbody>
+            </table>
+
           </div>
-          <div class="large-3 medium-3 small-3 columns">
-            <span><%if cookies[:MLV] == "10"%>
-                   &yen<%=number_to_currency line_item.product.bulk,:unit=>"",:precision=>2%>
-                  <%else%>
-                    &yen<%=number_to_currency line_item.product.price,:unit=>"",:precision=>2%>
-                  <%end%>
-            </span>
-          </div>
-          <div class="large-3 medium-3 small-3 columns">
-            <span><%=line_item.quantity%></span>
-          </div>
-          <div class="large-3 medium-3 small-3 columns">
-            <span><%if cookies[:MLV] == "10"%>
-					&yen<%=number_to_currency line_item.line_total_bulk,:unit=>"",:precision=>2%>
-                  <%else%>
-                    &yen<%=number_to_currency line_item.line_total,:unit=>"",:precision=>2%>
-                  <%end%>
-            </span>
-          </div>
-        </div>
-              <%=render 'gifts'%>
-        <%end%>
+
+
+
+
+
+
+
+
 
 
 
@@ -192,11 +202,12 @@
 		<%=render "coupons"%>
 	</div>
 	<%end%>
-     <hr>
+
         <!--<div class="section promotions">-->
           <!--<h5>导购信息: </h5>-->
-          <!--<%=render "sales"%>-->
+          <!--<%#=render "sales"%>-->
         <!--</div>-->
+          <hr>
 	<div class="large-12 medium-12 small-12 columns">
 		<h5>结算信息</h5>
 
@@ -324,5 +335,7 @@
 <%else%>
 	<p>您还没有选择商品。</p>
 <%end%>
-  <%=javascript_include_tag "store/orders"%>
- </div></div></div></div>
+
+
+
+

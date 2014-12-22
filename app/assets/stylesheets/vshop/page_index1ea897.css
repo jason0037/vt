@@ -8,19 +8,19 @@ h2 {
 	color: rgb(255, 255, 255); line-height: 65px; padding-top: 170px; padding-bottom: 18px; font-size: 49px; font-style: normal; font-weight: 400;
 }
 .btn_banner.btn {
-	border-color: rgb(255, 255, 255); padding: 0px; border-radius: 8px; width: 205px; height: 60px; color: rgb(33, 135, 122); line-height: 60px; font-size: 24px; background-color: rgb(255, 255, 255); -webkit-border-radius: 8px; -moz-border-radius: 8px;
+	border-color: rgb(255, 255, 255); padding: 0px; border-radius: 8px; width: 205px; height: 60px; color: rgb(238, 24, 34); line-height: 60px; font-size: 24px; background-color: rgb(255, 255, 255); -webkit-border-radius: 8px; -moz-border-radius: 8px;
 }
 .icon_site_desc {
 	width: 116px; height: 116px; vertical-align: middle; display: inline-block;
 }
 .app_dev .gray.icon_site_desc {
-	background: url("/assets/vshop/page_index_z1ea897.png") no-repeat 0px 0px;
+	/*background: url("/assets/vshop/page_index_z1ea897.png") no-repeat 0px 0px;*/
 }
 .web_dev .gray.icon_site_desc {
-	background: url("/assets/vshop/page_index_z1ea897.png") no-repeat 0px -126px;
+	/*background: url("/assets/vshop/page_index_z1ea897.png") no-repeat 0px -126px;*/
 }
 .wx_dev .gray.icon_site_desc {
-	background: url("/assets/vshop/page_index_z1ea897.png") no-repeat 0px -252px;
+	/*background: url("/assets/vshop/page_index_z1ea897.png") no-repeat 0px -252px;*/
 }
 .site_desc_item dl {
 	font-size: 14px; position: relative;

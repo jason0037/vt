@@ -23,9 +23,7 @@ class VshopController < ApplicationController
     if @user
 
       @supplier =Ecstore::Supplier.find(params[:id])
-      if @supplier.id==98
-         @manco_title="个人中心"
-      end
+
       render :layout=>@supplier.layout
     else
       redirect_to "/auto_login?id=#{params[:id]}&platform=mobile&return_url=/vshop/#{params[:id]}/user?id=#{params[:id]}"
@@ -100,7 +98,8 @@ class VshopController < ApplicationController
     if @user
       @supplier = Ecstore::Supplier.where(:member_id=>@user.account.id).first
       @action = "/admin/suppliers/#{@supplier.id}?return_url=/vshop/weixn"
-      render  :layout=>'vshop_wechat'
+      render  :layout=>'vshop'
+      # render  :layout=>'vshop_wechat'
     else
       redirect_to '/vshop/login'
     end
@@ -116,22 +115,11 @@ class VshopController < ApplicationController
         @supplier =Ecstore::Supplier.find_by_member_id(@user.id)
         @goods = @goods.where(:supplier_id=>@supplier.id)
       end
-      if @supplier.id ==Ecstore::Supplier.find_by_name("万家物流").id
-        if params[:name]=="货源"
-          @goodes=Ecstore::BlackGood.paginate :page=>params[:page],        ###分页语句
-                                              :per_page =>20,              ###当前只显示一条
-                                              :conditions => ["cat_id=571"]
-        else
-          cat_id=params[:cat_id]
-          if cat_id.nil?
-            cat_id=570
-          end
-          @goods = @goods.paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC',:conditions => ["cat_id=#{cat_id}"])
-        end
-      else
+
+
         @goods = @goods.paginate(:page=>params[:page],:per_page=>20,:order => 'uptime DESC')   #分页
 
-      end
+
 
       @count = @goods.count
 
@@ -140,11 +128,7 @@ class VshopController < ApplicationController
     end
   end
 
-  def black_good_destory          ##万家物流货源信息删除
-    @black_good =  Ecstore::BlackGood.find(params[:id])
-    @black_good.destroy
-    redirect_to "/vshop/goods"
-  end
+
 
   def destory
     @good=Ecstore::Good.find(params[:id])

@@ -80,7 +80,6 @@ a:hover {
 
 /* line 412, ../bower_components/foundation/scss/foundation/components/_global.scss */
 img {
-    max-width: 100%;
     height: auto;
 }
 
@@ -4272,7 +4271,7 @@ select {
     color: rgba(0, 0, 0, 0.75);
     line-height: normal;
     border-radius: 0;
-    height: 2.3125rem;
+    /*height: ($input-font-size + ($form-spacing * 1.5) - rem-calc(1));*/
 }
 /* line 330, ../bower_components/foundation/scss/foundation/components/_forms.scss */
 select::-ms-expand {
@@ -5696,12 +5695,6 @@ ul.pagination li {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
     padding: 1.875rem;
 }
-@media only screen and (max-width: 40em) {
-    /* line 167, ../bower_components/foundation/scss/foundation/components/_reveal.scss */
-    .reveal-modal, dialog {
-        min-height: 100vh;
-    }
-}
 /* line 85, ../bower_components/foundation/scss/foundation/components/_reveal.scss */
 .reveal-modal .column, dialog .column, .reveal-modal .columns, dialog .columns {
     min-width: 0;
@@ -5717,7 +5710,7 @@ ul.pagination li {
 @media only screen and (min-width: 40.063em) {
     /* line 167, ../bower_components/foundation/scss/foundation/components/_reveal.scss */
     .reveal-modal, dialog {
-        width: 80%;
+        width: 50%;
         max-width: 95%;
         left: 0;
         right: 0;
@@ -5814,7 +5807,7 @@ ul.pagination li {
 }
 /* line 198, ../bower_components/foundation/scss/foundation/components/_reveal.scss */
 .reveal-modal .close-reveal-modal, dialog .close-reveal-modal {
-    font-size: 2.5rem;
+    font-size: 4.375rem;
     line-height: 1;
     position: absolute;
     top: 0.5rem;
@@ -9408,7 +9401,7 @@ input[type="text"]:focus {
 }
 /* line 308, ../scss/_custom.scss */
 .footer i {
-    font-size: 100px;
+    font-size: 50px;
 }
 
 /* line 314, ../scss/_custom.scss */
@@ -9416,7 +9409,6 @@ input[type="text"]:focus {
     color: white;
     font-size: 1em;
     font-weight: 400;
-    margin-top: 2.5rem;
     margin-bottom: 10px;
 }
 /* line 321, ../scss/_custom.scss */
@@ -9687,4 +9679,46 @@ input[type="text"]:focus {
     text-decoration: none;
     background-position: -8px -219px;
     color: #ff6600;
+}
+
+/* line 390, ../scss/_custom.scss */
+.header-container {
+    padding: 15px 30px 10px 30px;
+    background: #dc130a;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+/* line 397, ../scss/_custom.scss */
+.info-list {
+    font-size: .95rem;
+    background: #fafafa;
+    list-style: none;
+    margin: 0 0 20px 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+/* line 405, ../scss/_custom.scss */
+.input-text {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+    font-family: inherit;
+    color: rgba(0, 0, 0, 0.75);
+    display: block;
+    font-size: 0.875rem;
+    margin: 0 0 1rem 0;
+    padding: 0.5rem;
+    height: 2.3125rem;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    transition: box-shadow 0.45s, border-color 0.45s ease-in-out;
+}
+
+/* line 421, ../scss/_custom.scss */
+.red {
+    color: red;
 }

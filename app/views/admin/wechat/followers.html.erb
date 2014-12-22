@@ -1,15 +1,15 @@
-<br/><br/><br/><br/><br/>
-<div>
+
+
   <h4>所有关注者</h4>
   <%if @supplier%>
-      <h4><%=link_to '注册/互信用户',  members_vshop_index_path %></h4>
+   <%=link_to '注册/互信用户',  members_vshop_index_path ,:class => "pull-right btn btn-primary",:style=>"margin-left:30px"%>
   <%end%>
-</div>
-<%= link_to '刷新关注者列表','/admin/wechat/followers_import', :class => "pull-right btn btn-primary" %>
 
+<%= link_to '刷新关注者列表','/admin/wechat/followers_import', :class => "pull-right btn btn-primary",:style=>"float:right;margin-right:40px" %>
+ <br> <br>
 <table class="table table-bordered table-hover">
   <tr>
-    <th>openid</th>
+    <!--<th>openid</th>-->
     <th>全部佣金</th>
     <th>头像</th>
     <th>昵称</th>
@@ -21,7 +21,7 @@
 
   <% @followers.each do |follower| %>
       <tr>
-        <td><%=follower.openid%></td>
+        <!--<td><%#=follower.openid%></td>-->
         <td><%=follower.commission%></td>
         <%if follower.user_info && follower.user_info.index('}')%>
             <%@person =eval(follower.user_info)%>
@@ -42,6 +42,6 @@
   <% end %>
 </table>
 
-<div class="pagination">
+<div class="pagination" style="margin-right: 30px;float: right">
   <%= will_paginate @followers, :container => false %>
 </div>

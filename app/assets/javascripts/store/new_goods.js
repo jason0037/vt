@@ -21,7 +21,7 @@ $(document).ready(function(){
     var data = { custom_values:[] },spec_item_id,value;
 
     var url = $(this).data("url"),method = $(this).data("method");
-    
+
     $(this).closest("div.popover-content").find("ul.good_spec_items li").each(function(){
       spec_item_id = $(this).find("[name='product[customs][][spec_item_id]']").val();
       value = $(this).find("[name='product[customs][][value]']").val();
@@ -53,7 +53,7 @@ $(document).ready(function(){
     }
     });
 
-  
+
   $("#product").on("click",'.cs_helper',function(){
       var chat = $("#live800iconlink").attr("onclick");
       if(!!!chat) return;
@@ -132,7 +132,7 @@ $(document).ready(function(){
             console.log(cls);
             bigImg = $("."+cls).attr("href");
             $(this).find("img").attr("src",bigImg);
-       }); 
+       });
     }
 
     $(this).closest('.spec-item').find(":hidden").val($(this).data("value"));

@@ -67,13 +67,9 @@ class Store::GoodsController < ApplicationController
       else
         supplier_id =@good.supplier_id
       end
-   elsif supplier_id =="99"
-     if params[:platform]=="tairyo"
-       redirect_to "/tairyoall?supplier_id=#{supplier_id}&bn=#{params[:id]}"      ###金芭浪饭店订餐
-    else
-       redirect_to "/tproducts?supplier_id=#{supplier_id}&bn=#{params[:id]}"      ###金芭浪团购商品
-      end
-      else
+
+
+
       @supplier  =  Ecstore::Supplier.find(supplier_id)
      render :layout=>@supplier.layout
      end
@@ -107,8 +103,8 @@ class Store::GoodsController < ApplicationController
     end
 
     respond_to do |format|
-     format.html { render :layout=>"new_store" }
-     # format.html { render :layout=>"standard" }
+
+      format.html { render :layout=>"standard" }
       format.mobile { render :layout=>nil }
     end
   end

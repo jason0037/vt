@@ -1,13 +1,19 @@
 <!DOCTYPE HTML>
 <HTML><HEAD>
-  <META charset="utf-8"> <TITLE>微信互助O2O直销管理平台</TITLE>
-  <SCRIPT type="text/javascript">
-      var Report={
-          start:+new Date(),
-          point:{}
-      }
-  </SCRIPT>
-  <liNK href="https://www.trade-v.com/assets/vshop/weixin.ico"  rel="Shortcut Icon">
+<META charset="utf-8"> <TITLE>卓展供应商管理后台</TITLE>
+
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<SCRIPT type="text/javascript">
+    var Report={
+        start:+new Date(),
+        point:{}
+
+    }
+
+
+</SCRIPT>
+
+  <!--<liNK href="https://www.trade-v.com/assets/vshop/weixin.ico"  rel="Shortcut Icon">-->
 
   <%= stylesheet_link_tag    "vshop/page_index1ea897.css" %>
   <%= stylesheet_link_tag    "vshop/slider1ea897.css" %>
@@ -15,35 +21,44 @@
   <%= stylesheet_link_tag    "vshop/base1ea897.css" %>
 </HEAD>
 
+
 <BODY class="page_introduction">
-<div class="head">
-  <div class="global_bar" id="loginBar">
-    <div class="inner wrp">
+<div class="head" >
+  <div class="global_bar"style="background-image: url(/assets/blog/menu_bg.png);" id="loginBar">
+    <div class="inner wrp">   <H1 class="logo"><A title="微信互助O2O直销平台" class="jsUrllink" href="/vshop" target="self" data-url="/vshop">卓展供应商管理后台</A></H1>
       <div class="account" id="loginAccount">
         &nbsp;
-      <%if @user%>
+        <%if @user%>
             <a href="javascript:void(0);" data-url="setting/dev" target="self" class="account_meta no_extra jsUrllink"><%=truncate2(@user.account.login_name,:length=>5)%></a>
             <a href="javascript:void(0);" data-url="home/notice" target="self" class="account_meta jsUrllink jsNotice">通知<i class="icon_common notices jsDot" style="display:none"></i></a>
             <a href="/logout?platform=/vshop" class="account_meta" target="_self">退出</a>
-      <%else%>
-         <A class="account_meta no_extra" id="loginBarBt" href="/vshop/login">登录</A>	         <A class="account_meta jsUrllink" href="/vshop/register">注册</A>
-      <%end%>
+        <%else%>
+            <A class="account_meta no_extra" id="loginBarBt" href="/vshop/login">登录</A>	         <A class="account_meta jsUrllink" href="/vshop/register">注册</A>
+        <%end%>
       </div>
 
     </div>
   </div>
-  <div class="head_box">
-    <div class="inner wrp">
-      <H1 class="logo"><A title="微信互助O2O直销平台" class="jsUrllink" href="/vshop" target="self" data-url="/vshop">微信互助O2O直销平台</A></H1>
-      <UL class="nav">
-        <li class="nav_item jsNavItem" data-id="index"><A class="jsUrllink" href="/vshop">首页</A></li>
-        <li class="nav_item jsNavItem" data-id="res"><A class="jsUrllink" href="/vshop/goods">商品管理</A></li>
-        <li class="nav_item jsNavItem" data-id="manage"><A class="jsUrllink" href="/vshop/orders">订单管理</A></li>
-        <!--       <li class="nav_item jsNavItem" data-id="account" style="display:none"><A class="jsUrllink" href="/vshop/promotion">促销管理</A></li> -->
-        <li class="nav_item jsNavItem" data-id="manage"><A class="jsUrllink" href="/admin/wechat/followers?platform=vshop">会员管理</A></li>
-        <li class="nav_item jsNavItem" data-id="manage"><A class="jsUrllink" href="/commissions">佣金管理</A></li>
-        <li class="nav_item jsNavItem" data-id="manage"><A class="jsUrllink" href="/vshop/weixin">微店管理</A></li>
-      </UL></div></div></div>
+
+
+
+  <UL class="nav">
+    <li class="nav_item jsNavItem" data-id="index"><A class="jsUrllink" href="/vshop">首页</A></li>
+    <li class="nav_item jsNavItem good" ><a  href="/vshop/goods">商品管理</a>
+
+    </li>
+
+
+    <li class="nav_item jsNavItem" data-id="manage"><A class="jsUrllink" href="/vshop/orders">订单管理</A></li>
+
+    <li class="nav_item jsNavItem" data-id="manage"><A class="jsUrllink" href="/admin/wechat/followers?platform=vshop">会员管理</A></li>
+    <!--<li class="nav_item jsNavItem" data-id="manage"><A class="jsUrllink" href="/commissions">佣金管理</A></li>-->
+    <li class="nav_item jsNavItem" data-id="manage"><A class="jsUrllink" href="/vshop/weixin">供应商加盟</A></li>
+  </UL></div>
+<SCRIPT type="text/javascript">
+    Report.point[20]=+new Date();
+</SCRIPT>
+
 <SCRIPT type="text/javascript">
     Report.point[20]=+new Date();
 </SCRIPT>
@@ -93,6 +108,25 @@
 </SCRIPT>
   <%= javascript_include_tag "vshop/sea1ea897.js"%>
   <%= javascript_include_tag "vshop/lib1ea897.js"%>
+
+
+<script>
+  $(document).ready(function(){
+        $(".jsNavItem").each(function(){
+            var href=window.location.pathname+window.location.search
+
+        var newhref=$(this).children().attr("href");
+            if (href==newhref){
+                $(this).addClass("selected");
+     }
+        })
+
+  })
+
+
+
+</script>
+
 
 <SCRIPT type="text/javascript" charset="utf-8">
     //全局变量和快捷方法
@@ -246,9 +280,9 @@
 
 <%= javascript_include_tag "vshop/index1ea897.js"%>
 <SCRIPT type="text/javascript">
-    nav.selected("index");
-    seajs.use("home/index");
-    Report.init(169,2086,1);
+//    nav.selected("index");
+//    seajs.use("home/index");
+//    Report.init(169,2086,1);
 </SCRIPT>
 </BODY></HTML>
 

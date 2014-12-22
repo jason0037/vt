@@ -4,6 +4,10 @@ html {
 body {
 	line-height: 1.6;
 }
+
+.pagination a,.pagination span{
+    padding: 10px;
+}
 input {
 	outline: 0px;
 }
@@ -218,7 +222,7 @@ a:hover {
 	float: right;
 }
 .cell_layout.container_box {
-	margin-left:30px;
+	margin-left:350px;
 }
 .cell_layout.container_box .col_side {
 	vertical-align: top; display: table-cell; -ms-word-break: break-all; -ms-word-wrap: break-word;
@@ -269,19 +273,20 @@ a:hover {
 	text-align: right; margin-top: -36px;
 }
 .wrp.inner {
-	width: 1000px; margin-right: auto; margin-left: auto;
+	     margin-right: auto; margin-left: auto;
 }
 body {
 	min-width: 1000px;
+
 }
 .body {
-	padding-top: 20px;
+	/*padding-top: 20px;*/
 }
 .col_side {
 	border-right-color: rgb(197, 197, 197); border-right-width: 1px; border-right-style: solid;
 }
 .container_box {
-	border-radius: 2px; border: 1px solid rgb(197, 197, 197); border-image: none; background-color: rgb(255, 255, 255); -webkit-border-radius: 2px; -moz-border-radius: 2px;
+	border-radius: 2px;  border-image: none; background-color: rgb(255, 255, 255); -webkit-border-radius: 2px; -moz-border-radius: 2px;
 }
 .main_hd {
 	margin: 0px 50px; padding: 45px 0px 0px; border-bottom-color: rgb(219, 219, 219); border-bottom-width: 2px; border-bottom-style: solid;
@@ -335,14 +340,14 @@ body {
 	width: 12.5%;
 }
 .global_bar {
-	text-align: right; line-height: 36px; background: #f5f5f5;
-    border: #e2e2e2 solid 1px;
+	text-align: right; line-height: 35px; background: #f5f5f5;
+
 }
 .account {
 	line-height: 14px; font-size: 0px; display: inline-block;
 }
 .account a {
-	color: rgb(112, 112, 112); letter-spacing: normal; padding-left: 8px; font-size: 14px; margin-left: 8px; border-left-color: rgb(112, 112, 112); border-left-width: 1px; border-left-style: solid; display: inline-block;
+	color: rgb(255, 255, 255); letter-spacing: normal; padding-left: 8px; font-size: 14px; margin-left: 8px;margin-right: 10px; border-left-color: rgb(255, 255, 255); border-left-width: 1px; border-left-style: solid; display: inline-block;
 }
 .account .notices.icon_common {
 	margin-top: -10px;
@@ -364,19 +369,20 @@ body {
 	color: rgb(255, 255, 255);
 }
 .nav {
-	line-height: 60px; font-size: 18px;
+	line-height: 60px; font-size: 18px;  background-color: black;
+
 }
 .nav_item {
-	margin-left: 2em; vertical-align: top; display: inline-block;
+	margin-left: 6em; vertical-align: top; display: inline-block;
 }
 .nav_item a {
 	color: rgb(235, 235, 235); display: block;
 }
 .nav_item a:hover {
-	color: rgb(150, 228, 67); text-decoration: none;
+	color: rgb(238, 24, 34); text-decoration: none;
 }
 .selected.nav_item a {
-	color: rgb(150, 228, 67);
+	color: rgb(238, 24, 34);
 }
 .head_box {
 	text-align: right; background-color: rgb(82, 82, 85);
@@ -505,7 +511,7 @@ body {
 	float: left;
 }
 .login_function_area a {
-	color: rgb(56, 170, 30);
+	color: rgb(238, 24, 34);
 }
 .login_valid_area {
 	margin-top: 5px;

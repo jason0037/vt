@@ -1,5 +1,4 @@
-#= require jquery
-#= require jquery_ujs
+
 #= require area_seletor
 #= require jquery.ui.datepicker
 #= require jquery.ui.datepicker-zh-CN

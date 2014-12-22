@@ -498,8 +498,8 @@ Modengke::Application.routes.draw do
         get 'check_coupon'
         get  'new_mobile'
 
-
-
+        get "member_addrsform"
+        get "new_member_addrsform"
         get 'new_mobile_addr'
 
 
@@ -509,7 +509,7 @@ Modengke::Application.routes.draw do
 
         get 'addr_detail'
         get 'new_mobile_addr'
-        post 'edit_addr'
+
 
 
       end
@@ -594,9 +594,10 @@ Modengke::Application.routes.draw do
 
     resources :member_addrs do
       get "mobile"  ,:on=>:collection
-      get 'new_memberaddr_add' ,:on=>:collection
-      get '_form_manco_second' ,:on=>:collection
+
       post 'addship' ,:on=>:collection
+       post 'update_addr' ,:on=>:collection
+       post 'new_addr' ,:on=>:collection
     end
     resources :aftersales do
       get 'instruction', :on=>:collection

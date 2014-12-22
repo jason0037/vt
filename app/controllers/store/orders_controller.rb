@@ -4,7 +4,16 @@ class Store::OrdersController < ApplicationController
  # layout 'order'
    layout 'standard'
 
+   def member_addrsform
+       addr_id=params[:addr_id]
+      @addr=Ecstore::MemberAddr.find(addr_id)
+      @action_url="/member_addrs/update_addr"
+   end
 
+  def new_member_addrsform
+    @addr=Ecstore::MemberAddr.new
+    @action_url="/member_addrs/new_addr"
+end
 
   def share_order
     supplier_id =params[:supplier_id]

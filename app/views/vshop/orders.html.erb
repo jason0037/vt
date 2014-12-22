@@ -1,4 +1,4 @@
-<br/><br/><br/><br/>
+<br/>
 <link href="/assets/bootstrap_responsive.css?body=1" media="screen" rel="stylesheet" type="text/css" />
 <link href="/assets/bootstrap.css?body=1" media="screen" rel="stylesheet" type="text/css" />
 <link href="/assets/admin/base.css?body=1" media="screen" rel="stylesheet" type="text/css" />
@@ -129,8 +129,8 @@
     <td><%=order.status_text%></td>
     <td><%=order.pay_status_text%></td>
     <td><%=order.ship_status_text%></td>
-    <td><%=number_to_currency order.final_amount,:unit=>"&yen;",:precision=>2%></td>
-    <td><%=number_to_currency order.commission,:unit=>"&yen;",:precision=>2 if order.desktop_user_id || order.recommend_user%></td>
+         <td>&yen;<%=number_to_currency order.final_amount,:unit=>nil,:precision=>2%></td>
+    <td>&yen;<%=number_to_currency order.commission,:unit=>nil,:precision=>2 if order.desktop_user_id || order.recommend_user%></td>
     <td><%=order.ship_name%></td>
     <td><%=order.ship_addr%></td>
     <td><%=order.ship_mobile%></td>
@@ -140,7 +140,7 @@
 
   <%end%>
   <td colspan="<%=@colnums%>"></td>
-  <td><%=number_to_currency @total,:unit=>"&yen;",:precision=>2%></td>
+  <td>&yen<%=number_to_currency @total,:unit=>nil,:precision=>2%></td>
   </tbody>
 </table>
 <div class="paginations">

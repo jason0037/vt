@@ -7,7 +7,7 @@
   <% if cookies[:MLV] == "10" %>
        <li>  <%=link_to "我的商品",goods_member_path , :class=>"button secondary expand radius split"%></li>
       <%end%>
-  <li>	<%=link_to "我的VIP卡",cards_path(tab: "bought") ,:class=>"button secondary expand radius split"%></li>
+
     <li>	<%=link_to "我的预存款",advance_member_path  ,:class=>"button secondary expand radius split"%></li>
  </ul>
  <hr>

@@ -1,5 +1,4 @@
-//=require vendor/jquery
-//= require jquery_ujs
+
 //= require jquery-ui-1.9.2.custom
 //= require jquery_jcarousel
 //= require bootstrap-modal
@@ -86,6 +85,7 @@ $(document).ready(function(){
   });
   $(window).bind("scroll", function() {
     var st = $(document).scrollTop(), winh = $(window).height();
+
     (st > 0)? $("#backToTop").show(): $("#backToTop").hide();
     if (!window.XMLHttpRequest) { //IE6
       $("#backToTop").css("top", st + winh - 166);

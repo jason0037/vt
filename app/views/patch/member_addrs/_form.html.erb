@@ -1,9 +1,10 @@
 
 
     <hr/>
-<%=form_for :addr, :url=>@method == :put ? @action_url : member_addrs_path, :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
-    <fieldset>
-    <input type="hidden" name="platform" value="<%=params[:platform]%>">
+<%=form_for :addr, :url=> @action_url , :remote=>true,:method=>@method||:post,:html=>{ :class=> " form-horizontal" } do |f|%>
+
+
+
     <div class="new-addr <%='hide' unless display==true%>" id="addr_form">
       <div class="control-group">
         <label class="control-label">收货人姓名</label>
@@ -79,5 +80,5 @@
       </div>
 
     </div>
-     </fieldset>
+
 <%end%>

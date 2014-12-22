@@ -1,154 +1,89 @@
 <br/>     <br/>
-<% if (Ecstore::Account.find(@user.member_id).supplier_id)==(Ecstore::Supplier.find_by_name("万家物流").id)%>
-<a class="btn btn-primary" href="/vshop/goods?cat_id=<%=Ecstore::GoodCat.find_by_cat_name("物流").cat_id%>">物流</a>
-    <a class="btn btn-primary" href="/vshop/goods?name=货源">货源</a>
-    <a class="btn btn-primary" href="/vshop/goods?cat_id=<%=Ecstore::GoodCat.find_by_cat_name("车源").cat_id%>">车源</a>
-    <a class="btn btn-primary" href="/vshop/goods?cat_id=<%=Ecstore::GoodCat.find_by_cat_name("同业供配门对门").cat_id%>">门对门</a>
-    <a class="btn btn-primary" href="/vshop/goods?cat_id=<%=Ecstore::GoodCat.find_by_cat_name("同业供配自提").cat_id%>">自提</a>
 
-
-<%end%>
 <div style="float: right">
 
   <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
   <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
-<%=link_to "添加商品",'/admin/goods/new',:class=>"btn btn-primary"%>
-  <% if (Ecstore::Account.find(@user.member_id).supplier_id)==(Ecstore::Supplier.find_by_name("万家物流").id)%>
-  <%=link_to "添加货源小黑板",'/admin/goods/black_good_new',:style => "color:red",:class=>"btn "%>
-      <%end%>
+  <%#=link_to "添加商品",'/admin/goods/new',:class=>"btn btn-primary"%>
+
 </div>
-<%if @goodes%>
 
-        <table class="table table-bordered table-striped" id="goods" data-url="<%=request.fullpath.html_safe%>" count="<%=@count%>" goods_ids="<%=@goodes_ids%>" >
-          <tr>
-            <th><input type="checkbox" id="select_page_all"></th>
-            <th class="order" data-field="name" data-sorter="asc">商品名称</th>
-            <th class="order" data-field="weight" data-sorter="asc">重量</th>
-            <th class="order" data-field="mktprice" data-sorter="asc">发布人id</th>
-            <th class="order" data-field="price" data-sorter="asc">价钱</th>
-            <th class="order" data-field="marketable" data-sorter="asc">状态</th>
-            <th class="order" data-field="uptime" data-sorter="asc"  >发布时间</th>
-            <th class="order" data-field="downtime" data-sorter="asc">到期时间</th>
+    <table class="table table-bordered table-striped" id="goods" data-url="<%=request.fullpath.html_safe%>" count="<%=@count%>" goods_ids="<%=@goods_ids%>" >
+      <tr>
+        <th><input type="checkbox" id="select_page_all"></th>
+        <th class="order" data-field="brand_id" data-sorter="asc">品牌</th>
+        <th class="td-teg" style="display:none">标签</th>
+        <th class="order" data-field="bn" data-sorter="asc">商品编号</th>
+        <th class="order" data-field="name" data-sorter="asc">商品名称</th>
 
-            <th style="width:120px">操作</th>
-          </tr>
-          </thead>
-          <tbody>
-          <%@goodes.each do |good|%>
+            <th width="50px" align="center">缩略图</th>
+
+        <th class="order" data-field="cost" data-sorter="asc">成本价</th>
+        <th class="order" data-field="price" data-sorter="asc">会员价</th>
+        <th class="order" data-field="mktprice" data-sorter="asc">市场价</th>
+        <th class="order" data-field="price" data-sorter="asc">佣金</th>
+
+            <th class="order" data-field="store" data-sorter="asc">库存</th>
+
+        <th class="order" data-field="marketable" data-sorter="asc">上架</th>
+        <th class="order" data-field="uptime" data-sorter="asc"  style="display:none">上架时间</th>
+        <th class="order" data-field="cat_id" data-sorter="asc">分类</th>
+        <th class="order" data-field="type_id" data-sorter="asc">类型</th>
+        <th style="width:120px">操作</th>
+      </tr>
+      </thead>
+
+      <tbody>
+
+      <%if @count > 0%>
+          <%@goods.each do |good|%>
               <tr>
-                <td><%=check_box_tag "batch[goods_ids][]", good.id, false, :id=>"{good.id}",:class=>"good"%></td>
-                <td><%=good.name%> </td>
-                <td><%= good.weight%> </td>
+                <td><%=check_box_tag "batch[goods_ids][]", good.goods_id, false, :id=>"good_#{good.goods_id}",:class=>"good"%></td>
+                <td style="display:none"><%=good.supplier.name if good.supplier%></td>
+                <td><%=good.brand.brand_name if good.brand%></td>
 
 
 
-                <td ><%=good.ship_id%></td>
+                <td><%=good.bn%></td>
+                <td><%=link_to good.name,good_path(good.bn),:target=>"_blank"%></td>
+                     <td align="center">
+                      <%=link_to "#", :class=>"hover-thumb", :data=>{ :thumb => good.list_default_pic||"",:title=>"#{good.name}(#{good.bn})" } do%>
+                          <%=image_tag good.list_default_pic, :size => "35x50"%>
 
-            <td>&yen;<%=format("%.2f",good.price) if good.price%></td>
+                    </td>
 
-                <td ><%=good.status%></td>
+                <td>&yen;<%=format("%.2f",good.cost) if good.cost%></td>
+                <td>&yen;<%=format("%.2f",good.price) if good.price%></td>
+                <td>&yen;<%=format("%.2f",good.mktprice) if good.mktprice%></td>
+                <td>&yen;<%=format("%.2f",good.price*0.1) if good.price%></td>
 
-             <td ><%=Time.at(good.uptime).strftime("%Y-%m-%d %H:%M:%S") if good.uptime.present?%></td>
-                <td ><%=Time.at(good.downtime).strftime("%Y-%m-%d %H:%M:%S") if good.downtime.present?%></td>
+                    <td><%=good.store.to_i%></td>
+
+                <td><%=good.marketable == 'true' ? '是' : '否'%></td>
+                <td style="display:none"><%=Time.at(good.uptime).strftime("%Y-%m-%d %H:%M:%S") if good.uptime.present?%></td>
+                <td><%=good.cat.cat_name if good.cat%></td>
+                <td><%=good.good_type.name if good.good_type%></td>
                 <td>
-                  <%=link_to "编辑","/admin/goods/black_good?id=#{good.id}"%>
-                  <%=link_to "删除","/vshop/black_good_destory?id=#{good.id}",:method=>:post,:confirm=>"确定要删除吗？"%>
+                  <%=link_to "编辑",edit_admin_good_path(good)%>
 
+                      <!--<%#=link_to "规格",spec_admin_good_path(good)%>-->
+
+                  <!--<%#=link_to "删除","/vshop/destory?id=#{good.id}",:method=>:post,:confirm=>"确定要删除吗？"%>-->
 
                 </td>
               </tr>
-
-          <%end%>
-              </tbody>
-            </table>
-
-
-
-<%else%>
-<table class="table table-bordered table-striped" id="goods" data-url="<%=request.fullpath.html_safe%>" count="<%=@count%>" goods_ids="<%=@goods_ids%>" >
- <tr>
-  <th><input type="checkbox" id="select_page_all"></th>
-  <th class="order" data-field="brand_id" data-sorter="asc">品牌</th>
-  <th class="td-teg" style="display:none">标签</th>
-  <th class="order" data-field="bn" data-sorter="asc">商品编号</th>
-  <th class="order" data-field="name" data-sorter="asc">商品名称</th>
-  <% if (Ecstore::Account.find(@user.member_id).supplier_id)!=(Ecstore::Supplier.find_by_name("万家物流").id)%>
-  <th width="50px" align="center">缩略图</th>
-      <%end %>
-      <th class="order" data-field="cost" data-sorter="asc">成本价</th>
-  <th class="order" data-field="price" data-sorter="asc">会员价</th>
-  <th class="order" data-field="mktprice" data-sorter="asc">市场价</th>
-      <th class="order" data-field="price" data-sorter="asc">佣金</th>
-  <% if (Ecstore::Account.find(@user.member_id).supplier_id)!=(Ecstore::Supplier.find_by_name("万家物流").id)%>
-  <th class="order" data-field="store" data-sorter="asc">库存</th>
+                       <%end%> <%end%>
+      <%else%>
+          <tr>
+            <td colspan="100">没有找到相关商品!</td>
+          </tr>
       <%end%>
-  <th class="order" data-field="marketable" data-sorter="asc">上架</th>
-  <th class="order" data-field="uptime" data-sorter="asc"  style="display:none">上架时间</th>
-  <th class="order" data-field="cat_id" data-sorter="asc">分类</th>
-  <th class="order" data-field="type_id" data-sorter="asc">类型</th>
-  <th style="width:120px">操作</th>
-</tr>
-</thead>
 
-<tbody>
-
-<%if @count > 0%>
-    <%@goods.each do |good|%>
-        <tr>
-          <td><%=check_box_tag "batch[goods_ids][]", good.goods_id, false, :id=>"good_#{good.goods_id}",:class=>"good"%></td>
-          <td style="display:none"><%=good.supplier.name if good.supplier%></td>
-          <td><%=good.brand.brand_name if good.brand%></td>
-
-
-
-          <td><%=good.bn%></td>
-          <td><%=link_to good.name,good_path(good.bn),:target=>"_blank"%></td>
-          <% if (Ecstore::Account.find(@user.member_id).supplier_id)!=(Ecstore::Supplier.find_by_name("万家物流").id)%>
-          <td align="center">
-            <%=link_to "#", :class=>"hover-thumb", :data=>{ :thumb => good.list_default_pic||"",:title=>"#{good.name}(#{good.bn})" } do%>
-                <%=image_tag good.list_default_pic, :size => "35x50"%>
-            <%end%>
-          </td>
-              <%end %>
-              <td>&yen;<%=format("%.2f",good.cost) if good.cost%></td>
-          <td>&yen;<%=format("%.2f",good.price) if good.price%></td>
-          <td>&yen;<%=format("%.2f",good.mktprice) if good.mktprice%></td>
-              <td>&yen;<%=format("%.2f",good.price*0.1) if good.price%></td>
-          <% if (Ecstore::Account.find(@user.member_id).supplier_id)!=(Ecstore::Supplier.find_by_name("万家物流").id)%>
-          <td><%=good.store.to_i%></td>
-              <%end%>
-          <td><%=good.marketable == 'true' ? '是' : '否'%></td>
-          <td style="display:none"><%=Time.at(good.uptime).strftime("%Y-%m-%d %H:%M:%S") if good.uptime.present?%></td>
-          <td><%=good.cat.cat_name if good.cat%></td>
-          <td><%=good.good_type.name if good.good_type%></td>
-          <td>
-                <%=link_to "编辑",edit_admin_good_path(good)%>
-            <% if (Ecstore::Account.find(@user.member_id).supplier_id)!=(Ecstore::Supplier.find_by_name("万家物流").id)%>
-                <%=link_to "规格",spec_admin_good_path(good)%>
-                <%end%>
-            <%=link_to "删除","/vshop/destory?id=#{good.id}",:method=>:post,:confirm=>"确定要删除吗？"%>
-
-          </td>
-        </tr>
-    <%end%>
-<%else%>
-    <tr>
-      <td colspan="100">没有找到相关商品!</td>
-    </tr>
-<%end%>
-
-</tbody>
-</table>
-<%end%>
-<%unless @goodes%>
+      </tbody>
+    </table>
 
 
     <div class="pagination">
-  <%= will_paginate @goods, :container => false,:params=>{ :page=>params[:page] } %>
-</div>
-   <%else%>
-
-    <div class="pagination">
-      <%= will_paginate @goodes, :container => false,:params=>{ :page=>params[:page] } %>
+      <%= will_paginate @goods, :container => false,:params=>{ :page=>params[:page] } %>
     </div>
-    <%end%>
+
