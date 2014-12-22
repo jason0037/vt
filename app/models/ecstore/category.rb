@@ -7,84 +7,84 @@ class Ecstore::Category < Ecstore::Base
 				:conditions=>{:marketable=>'true'}
 
 	has_many :categories,:foreign_key=>"parent_id",:class_name=>"Category"
-  	belongs_to :parent_cat,  :foreign_key=>"parent_id", :class_name=>"Category"
 
-  	has_one :seo, :foreign_key=>:pk,:conditions=>{ :mr_id => 4 }
+	belongs_to :parent_cat,  :foreign_key=>"parent_id", :class_name=>"Category"
 
-      include Ecstore::Metable
+	has_one :seo, :foreign_key=>:pk,:conditions=>{ :mr_id => 4 }
 
-  	def cat_paths(include_self=true)
-             cat_ids = cat_path_ids
-             cat_ids << self.cat_id.to_s if include_self
-             Ecstore::Category.where(:cat_id=>cat_ids)
-  	end
+  include Ecstore::Metable
 
-      def cat_path_ids
-          self.cat_path.split(",").select{ |x| x.present? }
-      end
+	def cat_paths(include_self=true)
+     cat_ids = cat_path_ids
+     cat_ids << self.cat_id.to_s if include_self
+     Ecstore::Category.where(:cat_id=>cat_ids)
+	end
 
-      def full_path_name
-            self.cat_paths.collect { |cat| cat.cat_name }.join(" -> ")
-      end
+  def cat_path_ids
+    self.cat_path.split(",").select{ |x| x.present? }
+  end
 
-  	# Conditions must be a hash for filter goods
-  	# and must be field of Ecstore::Good
-  	#== example
-  	#  cat.all_goods(:brand_id=>1)
-  	#  cat.all_goods(:cat_id=>1)
-  	#  
-  	def all_goods( conditions={} )
-  		@all_goods = []
-  		
-  		conditions.each do |key,val|
-  			raise "Field `#{key}`  is existence" unless Ecstore::Good.attribute_names.include?(key.to_s)
-  		end if conditions.present?
+  def full_path_name
+    self.cat_paths.collect { |cat| cat.cat_name }.join(" -> ")
+  end
 
-  	#	if self.categories.blank? #目前没有用到最后一级分类
-      if self.code.length == 8 #第三级分类
-  			@all_goods += self.goods.where(conditions).order("d_order desc").to_a 
-  		else
-  			self.categories.each { |cat| @all_goods += cat.all_goods(conditions) }
-  		end
+	# Conditions must be a hash for filter goods
+	# and must be field of Ecstore::Good
+	#== example
+	#  cat.all_goods(:brand_id=>1)
+	#  cat.all_goods(:cat_id=>1)
+	#  
+	def all_goods( conditions={} )
+		@all_goods = []
+		
+		conditions.each do |key,val|
+			raise "Field `#{key}`  is existence" unless Ecstore::Good.attribute_names.include?(key.to_s)
+		end if conditions.present?
 
-  		@all_goods
+		if self.categories.blank? #目前没有用到最后一级分类
+			@all_goods += self.goods.where(conditions).order("d_order desc").to_a 
+		else
+			self.categories.each { |cat| @all_goods += cat.all_goods(conditions) }
+		end
 
-  	end
+		@all_goods
 
-  	
-  	def self.apparel_menus
-  		self.find_by_cat_id(22).categories.order("p_order asc").limit(8).select { |cat| cat.all_goods.size > 0}
-  	end
+	end
 
-      # 根据分类链获取分类信息
-      # === example
-      # Category.get_cat_by_names_chain("时装 Apparel -> 上衣 Blouses") #=> [ category, catgory ]
-      def self.get_cat_by_names_chain(names_chain)
-        cat_names = names_chain.split("->").map{ |x| x.strip }
-        return nil  if cat_names.blank?
+	
+	def self.apparel_menus
+		self.find_by_cat_id(22).categories.order("p_order asc").limit(8).select { |cat| cat.all_goods.size > 0}
+	end
 
-        cat_path = []
+    # 根据分类链获取分类信息
+    # === example
+    # Category.get_cat_by_names_chain("时装 Apparel -> 上衣 Blouses") #=> [ category, catgory ]
+    def self.get_cat_by_names_chain(names_chain)
+      cat_names = names_chain.split("->").map{ |x| x.strip }
+      return nil  if cat_names.blank?
 
-        loop do
-          cat_name = cat_names.pop
-          cats = self.where(:cat_name=>cat_name)
+      cat_path = []
 
-          if cat_names.size == 0
-            cat_path << cats.first
-            break
-          end
+      loop do
+        cat_name = cat_names.pop
+        cats = self.where(:cat_name=>cat_name)
 
-          if cats.size == 1
-            cat_path << cats.first
-          else
-            if cats.collect { |cat| cat.parent_cat.cat_name }.flatten.include?(cat_names.last)
-              cat_path << cats.first
-            end
-          end
-
+        if cat_names.size == 0
+          cat_path << cats.first
+          break
         end
-        cat_path
+
+        if cats.size == 1
+          cat_path << cats.first
+        else
+          if cats.collect { |cat| cat.parent_cat.cat_name }.flatten.include?(cat_names.last)
+            cat_path << cats.first
+          end
+        end
+
       end
+      cat_path
+    end
 
 
 	class << self
