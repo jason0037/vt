@@ -33,7 +33,7 @@
 <body>
 
 
- <!-- OFF CANVAS SECTIONS WRAPPING THE MAIN CONTENT -->
+<!-- OFF CANVAS SECTIONS WRAPPING THE MAIN CONTENT -->
 <div class="off-canvas-wrap" data-offcanvas>
   <div class="inner-wrap">
     <div class="fixed  show-for-small-only">
@@ -158,39 +158,41 @@
   </div>
 </div>
 
- <div class="row" >  <div id= "main" class="<%=controller_name%> <%=action_name%> profiles clearfix">
+<div class="row" >  <div id= "main" class="<%=controller_name%> <%=action_name%> profiles clearfix">
 
-   <div class="top-nav">
-     <%breadcrumbs.each_with_index do |bread,index|%>
-         <% name, path  =  bread%>
-         <%if index == 0 %>
-             <%if path%>
-                 <%=link_to name,Rails.application.routes.url_helpers.send(path)%>
-             <%else%>
-                 <%=name%>
-             <%end%>
-         <%else%>
-             <%if path%>
-                 <%=link_to name,Rails.application.routes.url_helpers.send(path)%>
-             <%else%>
-                 <span class="txt"> > <%=name%></span>
-             <%end%>
-         <%end%>
-     <%end if breadcrumbs%>
-   </div>  </div>
- <div class="large-2 medium-3 columns show-for-medium-up category-nav">
+  <div class="top-nav">
+    <%breadcrumbs.each_with_index do |bread,index|%>
+        <% name, path  =  bread%>
+        <%if index == 0 %>
+            <%if path%>
+                <%=link_to name,Rails.application.routes.url_helpers.send(path)%>
+            <%else%>
+                <%=name%>
+            <%end%>
+        <%else%>
+            <%if path%>
+                <%=link_to name,Rails.application.routes.url_helpers.send(path)%>
+            <%else%>
+                <span class="txt"> > <%=name%></span>
+            <%end%>
+        <%end%>
+    <%end if breadcrumbs%>
+  </div>  </div>
+  <div class="large-2 medium-3 columns show-for-medium-up">
+     <% if @menu =="services"%>
+    <%=render "patch/shared/cheuks_help"%>
+      <%elsif @menu=="techaical"%>
+        <%=render "patch/shared/cheuks_techaical"%>
+        <%end%>
+  </div>
 
-   <%=render "patch/shared/menu"%>
+  <div class="large-10 medium-9 columns ">
 
-   </div>
-
-   <div class="large-10 medium-9 columns ">
-
-   <%=yield :notice%>
+    <%=yield :notice%>
 <%#= render "shared/header" %>
 <%#if controller_name!='home'%>
 <%#= render "shared/top_menu" %>
-<%= yield :cover %>
+    <%= yield :cover %>
 
 
 
@@ -199,21 +201,21 @@
 
 
 
-<!-- <div id= "main" class="<%=controller_name%> <%=action_name%> clearfix">
+    <!-- <div id= "main" class="<%=controller_name%> <%=action_name%> clearfix">
   <%#end%> -->
-<%= yield%>
+    <%= yield%>
 <%#if controller_name!='home'%>
-<!-- </div> -->
+    <!-- </div> -->
 <%#end%>
 <%#=render "shared/common_footer"%>
- </div></div>
- <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+  </div></div>
+<div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
 
- <%#=render "shared/iframe_cart" if signed_in?%>
- <%#=render "shared/iframe_login" unless signed_in?%>
- <%#= javascript_include_tag "google-analytics" if Rails.env == "production"%>
+<%#=render "shared/iframe_cart" if signed_in?%>
+<%#=render "shared/iframe_login" unless signed_in?%>
+<%#= javascript_include_tag "google-analytics" if Rails.env == "production"%>
 
- <!-- 登录  --!>
+<!-- 登录  --!>
 <div id="login_iframe" class="reveal-modal remove-whitespace" data-reveal="">
 
 
@@ -501,16 +503,13 @@
 <script src="/assets/bootstrap-dropdown.js?body=1" type="text/javascript"></script>
 <script src="/assets/store/new_base.js?body=1" type="text/javascript"></script>
 <script src="/assets/jquery.countdown.js?body=1" type="text/javascript"></script>
-<script src="/assets/jquery.jqzoom-core.js?body=1" type="text/javascript"></script>
 <script src="/assets/store/new_goods.js?body=1" type="text/javascript"></script>
 <script src="/assets/bootstrap-transition.js?body=1" type="text/javascript"></script>
 <script src="/assets/bootstrap-carousel.js?body=1" type="text/javascript"></script>
 <script src="/assets/jquery_placeholder_min.js?body=1" type="text/javascript"></script>
 <script src="/assets/login.js?body=1" type="text/javascript"></script>
-
-
 <%=javascript_include_tag "vendor/fastclick"%>
-<%=javascript_include_tag "test/fdj.js"%>
+
 <script src="/assets/foundation.min.js"></script>
 
 <script src="/assets/cebianlan.js"></script>
@@ -525,16 +524,7 @@
             pause_on_hover: true
         }
     });
-    $(".add-to-cart").click(function(){
-        var url="/cart/add"
-        $.ajax(url,{
-            type: "post",
-            data:{"product":[{"goods_id":4162},{"spec": ""}]  },
 
-            success:function(res){
-            }
-        })
-    })
 </script>
 
 

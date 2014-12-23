@@ -557,6 +557,14 @@
               pause_on_hover: true
           }
         });
+
+      $(".btnone").each(function(){
+          var href=$(this).children().children().attr("href");
+
+          if (href==window.location.pathname){
+//          $(this).addClass("activer")
+          }
+      })
       $(".add-to-cart").click(function(){
           var url="/cart/add"
           $.ajax(url,{

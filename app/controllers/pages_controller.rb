@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-	layout 'standard'
+	layout 'page_cheuks'
 
 	def show
 		@page = Ecstore::Page.includes(:meta_seo).find(params[:id])
@@ -32,7 +32,12 @@ class PagesController < ApplicationController
     elsif params[:supplier_id]
       supplier_id = params[:supplier_id]
     end
-
+      @menu=nil
+    if @page.category=="services"
+      @menu="services"
+    else @page.category=="techaical"
+    @menu="techaical"
+    end
     if supplier_id
       @supplier = Ecstore::Supplier.find(supplier_id)
        return render :layout=>@supplier.layout
@@ -42,7 +47,7 @@ class PagesController < ApplicationController
       render :layout=>'mobile_new'
     else
 
-      render :layout=> @page.layout.present? ? @page.layout : nil
+      render :layout=> "page_cheuks"
     end
 
 	end

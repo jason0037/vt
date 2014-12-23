@@ -12,11 +12,11 @@ body{
 	color:#333;
 }
 
-#main{
-	width: 950px;
-	margin: 10px auto 40px auto;
-	min-height: 300px;
-}
+/*#main{*/
+	/*width: 950px;*/
+	/*margin: 10px auto 40px auto;*/
+	/*min-height: 300px;*/
+/*}*/
 #backToTop {
   display: none;
   border-radius: 3px 3px 3px 3px;
