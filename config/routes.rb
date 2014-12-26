@@ -3,6 +3,8 @@ require 'httpclient'
 Modengke::Application.routes.draw do
 
 
+  get "advert/advert"
+
   get "rongda/index"
 
 
@@ -409,7 +411,7 @@ Modengke::Application.routes.draw do
 
     resources :static_pages
     resources :footers
-
+    resources :advert
     resources :metas
 
     resources :specifications
@@ -461,8 +463,9 @@ Modengke::Application.routes.draw do
 
     resources :cart do
       post 'add',:on=>:collection
-      get 'show_tairyo',:on=>:collection   ###直接下单购物车
+      post 'again',:on=>:collection
       get 'mobile', :on=>:collection
+
 
     end
     resources :brands,:only=>[:index,:show]
@@ -546,6 +549,7 @@ Modengke::Application.routes.draw do
     # post 'cart/add'=>"cart#add",:as=>:cart_add
     resources :cart do
       post 'add',:on=>:collection
+
     end
 
     resources :users
@@ -585,6 +589,8 @@ Modengke::Application.routes.draw do
         get 'after_sale'
         get 'favorites'
         get 'goods'
+        get 'comments'
+        post 'add_comment'
         get 'inventorys'
         get 'inventorylog'
         post 'export_inventory'

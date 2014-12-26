@@ -64,20 +64,31 @@ class Store::CartController < ApplicationController
 		end
 
 		@cart = Ecstore::Cart.where(:obj_ident=>"goods_#{goods_id}_#{@product.product_id}",
-									  :member_ident=>member_ident).first_or_initialize do |cart|
+									  :member_ident=>member_ident,:cart_status=>"0",).first_or_initialize do |cart|
 			cart.obj_type = "goods"
 			cart.quantity = quantity
 			cart.time = Time.now.to_i
 			cart.member_id = member_id
       cart.supplier_id=@good.supplier_id
-		end
+    end
 
-		if @cart.new_record?
+
+
+
+
+    if @cart.new_record?
 			@cart.save
-		else
-			Ecstore::Cart.where(:obj_ident=>@cart.obj_ident,:member_ident=>member_ident).update_all(:quantity=>@cart.quantity+quantity)
+      # @cart_log.save
+
+
+    else
+			Ecstore::Cart.where(:obj_ident=>@cart.obj_ident,:member_ident=>member_ident,:cart_status=>"0").update_all(:quantity=>@cart.quantity+quantity)
 			@cart.quantity = (@cart.quantity+1)
-		end
+
+
+
+
+    end
 
 		# if @product.semi_custom?
 		# 	ident = "#{@user.member_id}#{@product.product_id}#{Time.now.to_i}"
@@ -117,6 +128,49 @@ class Store::CartController < ApplicationController
 		#render :text=>"add failed"
 	end
 
+  def again
+    order_id=params[:order_id]
+    @order=Ecstore::Order.find_by_order_id(order_id)
+
+    @order.order_items.each do |order_item|
+      bn=order_item.bn
+      goods_id=Ecstore::Product.find_by_bn(bn).goods_id
+      quantity=1
+
+      @good = Ecstore::Good.find(goods_id)
+
+        @product = @good.products.first
+
+
+        member_id = @user.member_id
+        member_ident = Digest::MD5.hexdigest(@user.member_id.to_s)
+
+
+      @cart = Ecstore::Cart.where(:obj_ident=>"goods_#{goods_id}_#{@product.product_id}",
+                                  :member_ident=>member_ident,:cart_status=>"0",).first_or_initialize do |cart|
+        cart.obj_type = "goods"
+        cart.quantity = quantity
+        cart.time = Time.now.to_i
+        cart.member_id = member_id
+        cart.supplier_id=1
+      end
+
+
+
+    if @cart.new_record?
+      @cart.save
+    end
+
+    end
+    find_cart!
+
+render "add"
+
+
+
+
+
+  end
 
 
 
@@ -130,7 +184,7 @@ class Store::CartController < ApplicationController
 
 	def destroy
 		_type, goods_id, product_id = params[:id].split('_')
-		@line_items.where(:obj_ident=>params[:id]).delete_all
+		@line_items.where(:obj_ident=>params[:id]).update_all(:cart_status=>"-1")
 		@user.custom_specs.where(:product_id=>product_id).delete_all if signed_in?
 
 		find_cart!

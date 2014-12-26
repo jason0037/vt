@@ -6,42 +6,130 @@
          white-space:nowrap;
 
      }
+     .thumb{
+         width: 30%;
+     }
+      td span a{
+          line-height: 1.5;
+      }
     </style>
- <div class="row">
-   <h4>订单详细</h4>  </div>
-  <div class="row">
- <%if @orders&&@orders.count > 0%>
-     <%@orders.each  do |order|%>
- <div class="row support panel">
-   <div class="small-6 columns"><%if order.status == 'active' && order.pay_status=='0'%>
-         <%=link_to "等待付款",detail_order_path(order),:target=>"_blank",:style=>"font-size:18px;color:red"%>
-     <%elsif order.status == 'finish' && order.pay_status=='1'%>
-         <%=link_to "完成",detail_order_path(order),:target=>"_blank",:style=>"font-size:18px;color:black"%>
-     <%end%></div>
-   <div class="small-6 columns"> 订单号: <%=link_to order.order_id, order_path(order),:target=>"_blank"%></div>
+
+ <div class="title">
+   <span style="border: 3px solid #ae3cbd"> </span>
+   <span style="margin-left: 10px;font-size: 20px;font-weight: bold">我的订单</span>
  </div>
-  <div class="row support panel">  <img style="width: 15%" src="http://weishop.cheuks.com/images/a01/a014182_m.jpg">  </div>
+ <br>
+<div class="row">
+  <%if @orders&&@orders.count > 0%>
 
-   <div class="row support panel">
-           <div class="small-6 columns"><h5>需支付:&yen;<%=order.final_amount.to_i%> </h5></div>
-           <div class="small-6 columns" ><%=link_to "去付款",order_path(order),:target=>"_blank",:class=>"small button" if order.status == 'active' && order.pay_status=='0'%> </div>
-     </div>
+  <table style="width:100%">
 
+    <thead>
+    <tr>
+      <th>订单信息</th>
+      <th >收货人</th>
+      <th >订单金额</th>
+      <th width="10%">订单状态 </th>
+      <th >时间 </th>
+      <th width="20%">操作 </th>
+    </tr>
+    </thead>
+    <%@orders.each  do |order_item|%>
+       <tbody style="background: #d0cfcf"><td colspan="6">
+                <span class="">订单编号:&nbsp;&nbsp;&nbsp; <a name="" id="" target="_blank" href=""><%=order_item.order_id%></a></span><span >&nbsp; 卓仕</span>
+                    <span class="">  <a class="" onclick="" href="#" title="联系客服"></a>  </span>  </td></tbody>
+ <tbody>
+    <tr>
+          <td width="25%">
 
+            <%order_item.order_items.each_with_index do |order,index|%>
+                <%
+                   link_title = order.name
+                   link_title = "赠品:#{link_title}" if order.item_type == 'gift'
+                %>
+                <%=link_to good_path_ext(order.good),:title=>link_title,:target=>"_blank",:class=>"thumb-link" do %>
+                    <%=image_tag order.good.medium_pic,:class=>"thumb" if order.item_type == 'product' && order.good%>
+                    <%=image_tag order.product.gift_image_url,:class=>"thumb" if order.item_type == 'gift'%>
+                <%end%>
 
-      <br><br>
+            <%end%>
+
+          </td>
+          <td><%=order_item.ship_name%></td>
+          <td>&yen;<%=order_item.final_amount.to_i%><br><br><%=order_item.payment_name%></td>
+           <td><%=order_item.status_text%>
+             <%unless order_item.status == 'active' && order_item.pay_status=='0'%>
+             <br>   <br><span><a href="#">跟踪</a> </span> <%end%>
+           </td>
+             <%order_item.order_logs.order("alttime asc").each do |log|%>
+      <td><%=log.created_at%> </td>
+          <%end%>
+      <td style="text-align: center">
+       <%if order_item.status == 'active' && order_item.pay_status=='0'%>
+            <%=link_to "付款",order_path(order_item),:target=>"_blank",:class=>"small button",:style=>"margin:0;
+padding: 3px 15px 4px;" %>
+
+        <span>&nbsp;&nbsp;&nbsp;<%=link_to "查看",detail_order_path(order_item),:target=>"_blank"%>&nbsp;&nbsp;</span><br>
+            <span><a href="#">取消订单</a></span>  <br>
+      <%elsif order_item.status == 'finish' && order_item.pay_status=='1'%>
+            <span><%=link_to "查看",detail_order_path(order_item),:target=>"_blank"%></span>&nbsp; <span><a href="#">删除</a></span>  <br>
+            <span><a href="/member/comments?order_id=<%=order_item.order_id%>">评价晒单</a></span> <br>
+
+             <input type="hidden" value="<%=order_item.order_id%>" class="order_id">
+            <a href="#" class="button secondary small again" style="margin:0;
+                    padding: 3px 15px 4px;" ><i class="fi-shopping-cart  "></i>再次购买</a>
+               </td>  </tr>
+
+    <%end%>
+    </tbody>
     <%end%>
 
+  </table>
 
- <%else%>
-     <div class="large-12 medium-12 small-12 columns good_name">
-       <span>没有符合条件的订单</span>
-     </div>
+  <%else%>
+      <div class="large-12 medium-12 small-12 columns good_name">
+        <span>没有符合条件的订单</span>
+      </div>
+      <div class="pagination">
+        <%=will_paginate @orders,:container=>false%>
+      </div>
+  <%end%>
 
 
- <%end%>
-  </div>
 
- <div class="pagination">
-   <%=will_paginate @orders,:container=>false%>
- </div>
+</div>
+
+
+
+
+
+
+
+
+ <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+ <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+ <script>
+   $(".again").each(function(){
+      $(this).click(function(){
+       var order_id=   $(this).parents().children("input").val();
+          var url="/cart/again"
+          $.ajax(url,{
+              type: "post",
+              data:{"order_id":order_id },
+
+              success:function(res){
+              }
+          })
+
+      })
+   })
+         </script>
+
+
+
+
+
+
+
+
+

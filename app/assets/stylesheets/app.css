@@ -9722,3 +9722,8 @@ input[type="text"]:focus {
 .red {
     color: red;
 }
+
+/* line 424, ../scss/_custom.scss */
+.top-nav a {
+    font-size: 20px;
+}

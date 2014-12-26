@@ -246,6 +246,15 @@
                 </li>
               </ul>
             </li>
+            <li class="<%='active' if controller_name=='mshop'%>">
+              <a href="#">广告设置</a>
+              <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
+                <li>
+                  <%=link_to "广告设置", admin_advert_index_path if current_admin.has_right_of("promotions","index")%>
+
+                </li>
+              </ul>
+            </li>
 
           </ul>
         </div><!--/.nav-collapse -->

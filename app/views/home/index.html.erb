@@ -1,11 +1,62 @@
+<style>
+  dd{   display: block;
+      overflow: hidden;
+      zoom: 1;
+      padding-bottom: 15px;
+      background: url(/assets/cheuks/pic_tibiao.gif) right bottom no-repeat;
+  }
+  .caption a img{
+      width: 100%;
+  }
+
+  .bg {
+      display: block;
+      height: 28px;
+      line-height: 28px;
+
+      border: 1px solid #ddd;
+  }
+  .th{
+      width: 100%;
+  }
+  /*.hover {*/
+
+      /*z-index: 20;*/
+      /*background: none;*/
+  /*}*/
+  .bg a {
+      padding-left: 24px;
+      color: #666;
+      font-size: 14px;
+      font-weight: bold;
+      background: url(/assets/cheuks/pictibiao.gif) no-repeat 10px center;
+  }
+  /*.caption:hover {*/
+
+
+      /*background: #f5e4c5;*/
+      /*border: 1px solid #dbc9a7;*/
+      /*border-top: none;*/
+  /*}*/
+
+  dd .texts {
+      overflow: hidden;
+      zoom: 1;
+      padding: 0px 8px 5px;
+      line-height: 22px;
+      border: 1px solid #ddd;
+      border-top: 1px solid #fff;
+  }
+
+</style>
 
 <%=render "shared/metable", :resource => @home%>
 <!--侧边菜单&滑动大图&登录&新闻-->
 
-    <div class="row" >    
+    <div class="row" >
         <div class="large-2 medium-3 columns show-for-medium-up ">
-<%=render "store/goods/tree_menu"%>          
-        </div>          
+<%=render "store/goods/tree_menu"%>
+        </div>
         <div class="large-7 medium-5 columns">
             <ul data-orbit class="width: 100%;">
                 <li><img style="width: 100%;" src="img/20140625143419235_indexbanner.jpg"></li>
@@ -22,10 +73,10 @@
                     <li><a href="#" class="th"><img src="img/product_top3.jpg"></a></li>
                 </ul>
             </div>
-        </div>         
+        </div>
            <div class="large-3 medium-4 columns">
             <div class="row">
-                <div class="columns large-12 panel">                   
+                <div class="columns large-12 panel">
                     <div class="wrapper">
                       <% if @user%>
                           <label>欢迎您<%=@user.login_name%>&nbsp;|&nbsp;退出登录</label>
@@ -40,11 +91,11 @@
                     </div>
                     <img src="img/cheuks_chengnuo_icon.png" style="width:100%">
                   </div>
-                </div>  
+                </div>
                 <div class="columns large-12 ">
                    <h3>商城动态</h3>
                     <ul id="news" >
-                     
+
                         <li class="news"><a href="/pages/news_wuliujiqiren">物流机器人产业大时代已经来临</a></li>
                         <li><a href="/pages/ziliuyujiaoliukongzhi">直流与交流控制系统电动叉物流机器人产业大时代已经</a></li>
                         <li><a href="/pages/newsDetails-9-1489">"卓仕"获十佳优秀物流装备技术企业称号</a></li>
@@ -52,14 +103,14 @@
                         <li><a href="/pages/newsDetails-9-1854">卓仕学院成立与发展</a></li>
                         <li><a href="/pages/newsDetails-9-1812">第九届广州叉车展卓仕成果丰硕</a></li>
                     </ul>
-                </div>        
+                </div>
                 <div class="columsn large-12 panel">
                     <img src="img/info_right_pic3.jpg" style="width:100%">
-                </div>               
-                
+                </div>
+
             </div>
-        </div>        
-        
+        </div>
+
     </div>
 
 <!--今日推荐-->
@@ -70,7 +121,7 @@
               <a href="/products/a0010003"><img src="img/recommend_left.jpg" style="width:100%"></a>
           </div>
         </div>
-        <div class="large-10 columns panel">    
+        <div class="large-10 columns panel">
         <ul class="clearing-thumbs large-block-grid-5 small-12">
         <li class="item-wrapper  ">
         <div class="img-wrapper">
@@ -82,12 +133,12 @@
           <%end%>
           <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
         </div>
-        
+
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
           <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">￥25000.00</span>
             <p>电子秤搬运车--SAC</p>
             <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info"> 
+            <div class="more-product-info">
             <p>货叉尺寸(mm)：可定制</p>
             <p>产品特点：<i class="fi-plus size-36"></i></p>
             <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
@@ -119,12 +170,12 @@
           <a class="button expand add-to-cart">加入购物车</a>
           <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
         </div>
-        
+
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
           <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">￥25000.00</span>
             <p>电子秤搬运车--SAC</p>
             <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info"> 
+            <div class="more-product-info">
             <p>货叉尺寸(mm)：可定制</p>
             <p>产品特点：<i class="fi-plus size-36"></i></p>
             <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
@@ -135,12 +186,12 @@
           <a class="button expand add-to-cart">加入购物车</a>
           <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
         </div>
-        
+
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
           <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">￥25000.00</span>
             <p>电子秤搬运车--SAC</p>
             <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info"> 
+            <div class="more-product-info">
             <p>货叉尺寸(mm)：可定制</p>
             <p>产品特点：<i class="fi-plus size-36"></i></p>
             <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
@@ -151,12 +202,12 @@
           <a class="button expand add-to-cart">加入购物车</a>
           <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
         </div>
-        
+
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
           <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">￥25000.00</span>
             <p>电子秤搬运车--SAC</p>
             <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info"> 
+            <div class="more-product-info">
             <p>货叉尺寸(mm)：可定制</p>
             <p>产品特点：<i class="fi-plus size-36"></i></p>
             <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
@@ -172,19 +223,19 @@
               <a href="/products/a0010003"><img src="img/recommend_left.jpg" style="width:100%"></a>
           </div>
         </div>
-        <div class="large-10 columns panel">    
+        <div class="large-10 columns panel">
         <ul class="clearing-thumbs large-block-grid-5 small-12">
         <li class="item-wrapper">
         <div class="img-wrapper">
           <a class="button expand add-to-cart">加入购物车</a>
           <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
         </div>
-        
+
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
           <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">￥25000.00</span>
             <p>电子秤搬运车--SAC</p>
             <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info"> 
+            <div class="more-product-info">
             <p>货叉尺寸(mm)：可定制</p>
             <p>产品特点：<i class="fi-plus size-36"></i></p>
             <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
@@ -195,12 +246,12 @@
           <a class="button expand add-to-cart">加入购物车</a>
           <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
         </div>
-        
+
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
           <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">￥25000.00</span>
             <p>电子秤搬运车--SAC</p>
             <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info"> 
+            <div class="more-product-info">
             <p>货叉尺寸(mm)：可定制</p>
             <p>产品特点：<i class="fi-plus size-36"></i></p>
             <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
@@ -211,12 +262,12 @@
           <a class="button expand add-to-cart">加入购物车</a>
           <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
         </div>
-        
+
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
           <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">￥25000.00</span>
             <p>电子秤搬运车--SAC</p>
             <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info"> 
+            <div class="more-product-info">
             <p>货叉尺寸(mm)：可定制</p>
             <p>产品特点：<i class="fi-plus size-36"></i></p>
             <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
@@ -227,12 +278,12 @@
           <a class="button expand add-to-cart">加入购物车</a>
           <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
         </div>
-        
+
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
           <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">￥25000.00</span>
             <p>电子秤搬运车--SAC</p>
             <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info"> 
+            <div class="more-product-info">
             <p>货叉尺寸(mm)：可定制</p>
             <p>产品特点：<i class="fi-plus size-36"></i></p>
             <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
@@ -243,12 +294,12 @@
           <a class="button expand add-to-cart">加入购物车</a>
           <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
         </div>
-        
+
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
           <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">￥25000.00</span>
             <p>电子秤搬运车--SAC</p>
             <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info"> 
+            <div class="more-product-info">
             <p>货叉尺寸(mm)：可定制</p>
             <p>产品特点：<i class="fi-plus size-36"></i></p>
             <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
@@ -280,23 +331,82 @@
         </ul>
         </div>
         <div class="columns large-8">
+
+
+
           <ul class="clearing-thumbs large-block-grid-4">
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+                <a href="/products/1001010113005" class=""><img src="/images/a01/1001010113005_m.jpg"></a>
+              <dd> <span class="bg"><a href="javascript:void(0);" >手动搬运车 </a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol ">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          1、动力系统
+                          发动机为美国CumminsB3.3系列柴油机，气缸总容积3300cc，额定...
+                   </p>
+                        </span>
+                </div>
+              </dd>
             </li>
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/10010107031" class=""><img src="/images/a01/10010107031_m.jpg"></a>
+
+              <dd> <span class="bg"><a href="javascript:void(0);" >半电动搬运车</a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol hidden">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          1、动力系统
+                          发动机为美国CumminsB3.3系列柴油机，气缸总容积3300cc，额定...
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/10010108093" class=""><img src="/images/a01/10010108093_m.jpg"></a>
+              <dd> <span class="bg"><a href="javascript:void(0);" >全电动搬运车</a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol ">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          1、动力系统
+                          发动机为美国CumminsB3.3系列柴油机，气缸总容积3300cc，额定...
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/10010106013" class=""><img src="/images/a01/10010106013_m.jpg"></a>
+              <dd> <span class="bg"><a href="javascript:void(0);" >高升程搬运车</a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol hidden">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          1、动力系统
+                          发动机为美国CumminsB3.3系列柴油机，气缸总容积3300cc，额定...
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
+
+
+
           </ul>
         </div>
         <div class="columns large-2">
@@ -325,22 +435,74 @@
         </div>
         <div class="columns large-8">
           <ul class="clearing-thumbs large-block-grid-4">
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/10010201051" class=""><img src="/images/a01/10010201051_m.jpg"></a>
+              <dd> <span class="bg"><a href="javascript:void(0);" >手动堆高车 </a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol hidden">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          EHS0809
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/1001020306002" class=""><img src="/images/a01/1001020306002_m.jpg"></a>
+
+              <dd> <span class="bg"><a href="javascript:void(0);" >半电动堆高车</a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol hidden">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">
+                            SPM1016
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/10010203441" class=""><img src="/images/a01/10010203441_m.jpg"></a>
+              <dd> <span class="bg"><a href="javascript:void(0);" >全电动搬运车</a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol hidden">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">倍深式前移电动堆高车-FBK15-AZ1
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/10010203371" class=""><img src="/images/a01/10010203371_m.jpg"></a>
+              <dd> <span class="bg"><a href="javascript:void(0);" > 平衡重电动堆高车 </a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol hidden">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          1、动力系统
+                          发动机为美国CumminsB3.3系列柴油机，气缸总容积3300cc，额定...
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
+
+
+
           </ul>
         </div>
         <div class="columns large-2">
@@ -352,13 +514,16 @@
             <h4><span>3</span>F 叉车</h4>
         </div>
     </div>
+
+
+
     <div class="row">
         <div class="large-2 columns panel">
         <ul class="clearing-thumbs" >
         <li>
             <ul class="side-nav">
-                <li><a href="#">手动搬运车</a></li>
-                <li><a href="#">半电动搬运车</a></li>
+                <li><a href="#">电动叉车</a></li>
+                <li><a href="#">电瓶叉车</a></li>
                 <li><a href="#">全电动搬运车</a></li>
                 <li><a href="#">高升程搬运车</a></li>
                 <li><a href="#">手推车</a></li>
@@ -369,22 +534,78 @@
         </div>
         <div class="columns large-8">
           <ul class="clearing-thumbs large-block-grid-4">
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/10010301191" class=""><img src="/images/a01/10010301191_m.jpg"></a>
+              <dd> <span class="bg"><a href="javascript:void(0);" >电动叉车 </a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol hidden">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          1、动力系统
+                          发动机为美国CumminsB3.3系列柴油机，气缸总容积3300cc，额定...
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/10010303011" class=""><img src="/images/a01/10010303011_m.jpg"></a>
+
+              <dd> <span class="bg"><a href="javascript:void(0);" >3.5T电瓶叉车-CPD35</a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol hidden">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          1、动力系统
+                          发动机为美国CumminsB3.3系列柴油机，气缸总容积3300cc，额定...
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/10010306026" class=""><img src="/images/a01/10010306026_m.jpg"></a>
+              <dd> <span class="bg"><a href="javascript:void(0);" >柴油侧面叉车-CCCD</a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol hidden">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          1、动力系统
+                          发动机为美国CumminsB3.3系列柴油机，气缸总容积3300cc，额定...
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/10010307011" class=""><img src="/images/a01/10010307011_m.jpg"></a>
+              <dd> <span class="bg"><a href="javascript:void(0);" >铰接式四驱越野叉车</a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol hidden">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          1、动力系统
+                          发动机为美国CumminsB3.3系列柴油机，气缸总容积3300cc，额定...
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
+
+
+
           </ul>
         </div>
         <div class="columns large-2">
@@ -413,22 +634,78 @@
         </div>
         <div class="columns large-8">
           <ul class="clearing-thumbs large-block-grid-4">
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/10010401051" class=""><img src="/images/a01/10010401051_m.jpg"></a>
+              <dd> <span class="bg"><a href="javascript:void(0);" >电动牵引车-QD15W</a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol hidden">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          1、动力系统
+                          发动机为美国CumminsB3.3系列柴油机，气缸总容积3300cc，额定...
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/10010401031" class=""><img src="/images/a01/10010401031_m.jpg"></a>
+
+              <dd> <span class="bg"><a href="javascript:void(0);" >EL系列汽车转移器</a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol ">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          1、动力系统
+                          发动机为美国CumminsB3.3系列柴油机，气缸总容积3300cc，额定...
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/10010401014" class=""><img src="/images/a01/10010401014_m.jpg"></a>
+              <dd> <span class="bg"><a href="javascript:void(0);" >QD系列牵引车</a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol hidden">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          1、动力系统
+                          发动机为美国CumminsB3.3系列柴油机，气缸总容积3300cc，额定...
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
-            <li>
-                <a href="#" class="th"><img src="img/floor_product_top.jpg"></a>
-                <a href="#" class="th"><img src="img/floor_product_bottom.jpg"></a>
+            <li class="caption" >
+              <a href="/products/10010401061" class=""><img src="/images/a01/10010401061_m.jpg"></a>
+              <dd> <span class="bg"><a href="javascript:void(0);" >QDK-AC系列牵引车 </a></span>
+                <div class="texts">
+                  <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol hidden">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          1、动力系统
+                          发动机为美国CumminsB3.3系列柴油机，气缸总容积3300cc，额定...
+                        </p>
+                        </span>
+                </div>
+              </dd>
             </li>
+
+
+
           </ul>
         </div>
         <div class="columns large-2">
@@ -438,5 +715,12 @@
 
     <script>
 
-
+//          $(".caption").hover(function(){
+//              $(this).children("dd").addClass("hover");
+//         $(this).children("dd").children(".texts").children(".fbol").removeClass("hidden") ;
+//},function(){
+//              $(this).children("dd").removeClass("hover");
+//              $(this).children("dd").children(".texts").children(".fbol").addClass("hidden") ;
+//          })
             </script>
+

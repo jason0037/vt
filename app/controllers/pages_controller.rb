@@ -2,6 +2,12 @@ class PagesController < ApplicationController
 
 	layout 'page_cheuks'
 
+  before_filter do
+    clear_breadcrumbs
+    add_breadcrumb("我的卓展",:member_path)
+  end
+
+
 	def show
 		@page = Ecstore::Page.includes(:meta_seo).find(params[:id])
     @recommend_user = session[:recommend_user]
@@ -33,11 +39,16 @@ class PagesController < ApplicationController
       supplier_id = params[:supplier_id]
     end
       @menu=nil
+    clear_breadcrumbs
+
     if @page.category=="services"
       @menu="services"
+      add_breadcrumb("服务中心",:member_path)
     else @page.category=="techaical"
     @menu="techaical"
+    add_breadcrumb("技术中心",:member_path)
     end
+    add_breadcrumb("#{@page.title}")
     if supplier_id
       @supplier = Ecstore::Supplier.find(supplier_id)
        return render :layout=>@supplier.layout

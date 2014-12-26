@@ -1,0 +1,155 @@
+<style>
+  table tr td a{
+      line-height: 20px;
+  }
+  .comment-box {
+      background: #fcfffa;
+      border: 1px solid #d0e4c2;
+      padding: 10px 0 0 30px;
+      margin: 0 -6px 5px;
+      text-align: left;
+     position: relative;
+      zoom: 1;
+  }
+  .dl .accordion-navigation > a, .accordion dd > a{
+   background: #ffffff;
+  }
+  .dl .accordion-navigation.active > a, .accordion dd.active > a {
+      background: #ffffff;
+  }
+  .comment-box .box-t {
+      position: absolute;
+      right: 30%;
+      top: -11px;
+      width: 21px;
+      height: 12px;
+      background: url(http://misc.360buyimg.com/myjd/skin/2014/i/cicon.png) 0 0 no-repeat;
+  }
+
+  </style>
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+<div style="margin: 10px;padding: 10px">
+<div class="row">
+  <div class="title">
+      <span style="border: 3px solid #a12b0f"> </span>
+    <span style="margin-left: 10px;font-size: 20px;font-weight: bold">商品评价/晒单</span>
+    </div>
+<table style="width: 100%;line-height: 18px;
+        text-align: center;
+        border: 1px solid #f2f2f2;
+        border-top: 0;
+        color: #333;
+        width: 100%;">
+        <thead>
+        <tr>
+            <td >商品信息</td>
+          <td>购买时间</td>
+          <td>评价状态</td>
+         </thead>
+
+      </table>
+
+
+
+
+
+
+
+  <dl class="accordion dl"style="width: 100%;" data-accordion>
+       <% @order.order_items.each do |order_item|%>
+
+  <dd class="accordion-navigation " >
+    <a href="#pp<%=Ecstore::Good.find(Ecstore::Product.find_by_bn(order_item.bn).goods_id).goods_id%>" class="row">
+      <div class="large-4 medium-4 small-4 columns">
+        <%=  Ecstore::Good.find(Ecstore::Product.find_by_bn(order_item.bn).goods_id).name
+        %> </div>
+      <div class="large-4 medium-4 small-4  columns">
+      <%@order.order_logs.order("alttime asc").each do |log|%>
+          <%=log.created_at%>
+      <%end%></div>
+      <div class="large-4 medium-4 small-4 columns">在线评论</div>
+
+    </a>
+    <div id="pp<%=Ecstore::Good.find(Ecstore::Product.find_by_bn(order_item.bn).goods_id).goods_id%>" class="content ">
+
+      <div class="row comment-box">
+        <div class="box-t"></div>
+        <%if Ecstore::Comment.where(:order_id=>order_item.order_id,:commentable_id=>Ecstore::Good.find(Ecstore::Product.find_by_bn(order_item.bn).goods_id).goods_id).first%>
+            <%@comment_text=Ecstore::Comment.where(:order_id=>order_item.order_id,:commentable_id=>Ecstore::Good.find(Ecstore::Product.find_by_bn(order_item.bn).goods_id).goods_id).first%>
+
+            <!--<div class="row">-->
+              <!--<div class="small-8 columns">-->
+                <!--<div class="row">-->
+                  <!--<div class="small-3 columns">-->
+                    <!--<label for="right-label" class="right inline">标题</label>-->
+                  <!--</div>-->
+                  <!--<div class="small-9 columns">-->
+                   <!--<span> aa</span>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+            <div class="row">
+              <div class="small-8 columns">
+                <div class="row">
+                  <div class="small-3 columns">
+                    <label for="right-label" class="right inline">心得</label>
+                  </div>
+                  <div class="small-9 columns">
+                    <%=@comment_text.content%>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+      <%else%>
+        <%=form_for :comment,:url=>"/member/add_comment" ,:remote=>true do |f|%>
+            <%=f.hidden_field :commentable_id,:value=>Ecstore::Good.find(Ecstore::Product.find_by_bn(order_item.bn).goods_id).goods_id%>
+            <%=f.hidden_field :member_id,:value=>@user.member_id if @user%>
+            <%=f.hidden_field :order_id,:value=>@order.order_id%>
+                <%=hidden_field_tag :return_url,request.url.sub('http://trade','').force_encoding('UTF-8')%>
+
+
+
+
+                <!--<div class="row">-->
+            <!--<div class="small-8 columns">-->
+              <!--<div class="row">-->
+                <!--<div class="small-3 columns">-->
+                  <!--<label for="right-label" class="right inline">标题</label>-->
+                <!--</div>-->
+                <!--<div class="small-9 columns">-->
+                  <!--<input type="text" id="right-label" placeholder="请描述下主题">-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <div class="row">
+            <div class="small-8 columns">
+              <div class="row">
+                <div class="small-3 columns">
+                  <label for="right-label" class="right inline">心得</label>
+                </div>
+                <div class="small-9 columns">
+                  <%=f.text_area :content, :style=>"height:150px;", :placeholder=>"我们的产品是否给力，快快分享您的心得"%>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <%=f.submit "提交",:class=>"button  #{'login' unless signed_in?}"%></div>
+        <%end%>
+        <%end%>
+        </div>
+     </div>
+    <hr>
+  </dd>
+  <%end%>
+</dl>
+</div>       </div>

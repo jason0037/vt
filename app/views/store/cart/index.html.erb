@@ -54,10 +54,15 @@
           <%#=link_to good_path(line_item.good.bn),:target=>"_blank" do%>
               <%#=image_tag line_item.good.medium_pic%>
           <%#end%>
+       <div id="line_<%=line_item.obj_ident%>">
  <div class="large-4 medium-4 small-4 columns" style="width:26%">
 
-             <a href="/products/a013530" target="_blank" >
-               <img alt="A013530_m"src="http://weishop.cheuks.com/images/a01/a014069_m.jpg" style="width:50%">
+             <a href="/products/<%=line_item.good.bn%>" target="_blank" >
+
+               <img src="<%=line_item.good.medium_pic%>"
+                    data-original="<%=line_item.good.medium_pic%>"
+                    data-onerror="<%=line_item.good.medium_pic%>"
+                    data-brandlazy="true" style="width:50%;">
              </a>
 
          </div>
@@ -93,7 +98,7 @@
 
 
        <hr>
-
+              </div>
     <%end%>
    <br><br> <br><br><br>
    <div class=" clearfix">

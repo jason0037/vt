@@ -165,19 +165,19 @@
         <% name, path  =  bread%>
         <%if index == 0 %>
             <%if path%>
-                <%=link_to name,Rails.application.routes.url_helpers.send(path)%>
+                <strong>   <%=link_to name,Rails.application.routes.url_helpers.send(path)%> &nbsp;&nbsp; </strong>
             <%else%>
-                <%=name%>
+                <strong>  <%=name%>    </strong>
             <%end%>
         <%else%>
             <%if path%>
-                <%=link_to name,Rails.application.routes.url_helpers.send(path)%>
-            <%else%>
-                <span class="txt"> > <%=name%></span>
+            <strong>    <%=link_to name,Rails.application.routes.url_helpers.send(path)%> &nbsp;&nbsp; </strong>
+  <%else%>
+                <span class="txt"> >&nbsp;&nbsp;<%=name%></span>
             <%end%>
         <%end%>
     <%end if breadcrumbs%>
-  </div>  </div>
+  </div> </div><br>
   <div class="large-2 medium-3 columns show-for-medium-up">
      <% if @menu =="services"%>
     <%=render "patch/shared/cheuks_help"%>
@@ -458,6 +458,7 @@
 </footer>
 
 
+
 <div class="row " style="background-color:#FFF">
   <div class="large-12 columns" style="text-align: center">
 
@@ -474,10 +475,10 @@
         <a href="#">|新闻中心|</a>
       </div>
       <div class=" small-2 column">
-        <a href="#">|技术中心|</a>
+        <a href="/pages/techaicl">|技术中心|</a>
       </div>
       <div class=" small-2 column">
-        <a href="#">|服务中心|</a>
+        <a href="/pages/shlc">|服务中心|</a>
       </div>
       <div class=" small-2 column">
         <a href="#">|联系我们|</a>

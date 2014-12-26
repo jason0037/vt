@@ -8,112 +8,79 @@
     }
 </style>
 
-
-
-  <div class="large-10 medium-9 columns">
-
-    <div class="row  ">
-      <div class="small-6 "><%=@user.login_name%>,欢迎您！</div>
-      <div class="small-6 " >  </div> </div>
-    <div class="row  ">
-      <div class="small-6 columns">会员等级</div>
-      <div class="small-6 columns" > <%=@user.member_lv.name%> </div>
-      <% @user.hasrole.each  do |hasrole|%>
-          <% if hasrole.role_id==17%>
-              <span class="lv">| 导购员</span>
-          <% end%>
-          <% if hasrole.role_id==18%>
-              <span class="lv">| 供应商</span>
-          <% end%>
-      <%end%>
-      <% if @user.member_lv.id==10%>
-          <span class="lv">| 渠道商</span>
-      <% end%>
-      <p class="validation">
-			<span class="email">
-				邮箱认证：
-              <%if @user.email_validated?%>
-					<span class="validated">邮箱已认证</span>
-				<%else%>
-					<%=link_to "邮箱未认证",email_validation_path%>
-				<%end%>
-			</span>
-			<span class="mobile">
-				手机认证：
-              <%if @user.sms_validated?%>
-					<span class="validated">手机已认证</span>
-				<%else%>
-					<%=link_to "手机未认证",mobile_validation_path%>
-				<%end%>
-			</span>
-
-      </p>
-
-
-        <p>
-			<span class="notify">
-				<%=link_to  "待付款订单(#{@unpay_count})",orders_member_path(:pay_status=>'0',:status=>'active')%>
-			</span>
-          <span>预存款: <span class="currency">&yen; <%=@user.advance%></span></span>
-        </p>
-      </div>
-    </div>
-
-       <hr>
-
-
-    <h5> 最近订单 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%=link_to "所有订单>>",orders_member_path,:class=>"all-orders"%> </h5>
-
-    <%if @orders&&@orders.count > 0%>
-        <%@orders.each  do |order|%>
-            <div class="row support panel">
-              <div class="small-6 columns"><%if order.status == 'active' && order.pay_status=='0'%>
-                    <%=link_to "等待付款",detail_order_path(order),:target=>"_blank",:style=>"font-size:18px;color:red"%>
-                <%elsif order.status == 'finish' && order.pay_status=='1'%>
-                    <%=link_to "完成",detail_order_path(order),:target=>"_blank",:style=>"font-size:18px;color:black"%>
-                <%end%></div>
-              <div class="small-6 columns"> 订单号: <%=link_to order.order_id, order_path(order),:target=>"_blank"%></div>
-            </div>
-            <div class="row support panel">  <img style="width: 15%" src="http://weishop.cheuks.com/images/a01/a014182_m.jpg">  </div>
-
-            <div class="row support panel">
-              <div class="small-6 columns"><h5>需支付:&yen;<%=order.final_amount.to_i%> </h5></div>
-              <div class="small-6 columns" ><%=link_to "去付款",order_path(order),:target=>"_blank",:class=>"small button" if order.status == 'active' && order.pay_status=='0'%> </div>
-            </div>
-
-
-
-            <br><br>
-        <%end%>
-
-
-    <%else%>
-        <div class="large-12 medium-12 small-12 columns good_name">
-          <span>没有符合条件的订单</span>
-        </div>
-
-
-    <%end%>
+<div class="row" style="padding: 10px">
+  <div class="large-12 medium-12 small-12 columns">
+    <h3 style="font-size: 14px;">您好，尊敬的会员，欢迎来到卓仕工业品网！</h3>
+  </div>   <br><br>
+  <div class="large-12 medium-12 small-12 columns">
+   <span class="left"> 会员等级:</span><span class="red" style="margin-left: 14%"><%=@user.member_lv.name%></span>
+  </div>
+  <br><br>
+  <div class="large-12 medium-12 small-12 columns">
+    <span class="left"> 账户余额:</span><span class="red" style="margin-left: 14%">&yen; <%=@user.advance%></span>
   </div>
 
-
-
-
-
+   </div>
 <br>
-<div class="title">
-<% if (@user.login_name=="user_0001")%>
-  您的导购员是：sale_0001
- <%elsif (@user.login_name=="user_0002")%>
-您的导购员是：sale_0002
-<%end%>
-</div>
-<div class="title">
 
-</div>
+  <div class="title">
+    <span style="border: 3px solid #ae3cbd"> </span>
+    <span style="margin-left: 10px;font-size: 20px;font-weight: bold">最近订单<span class="right"><%=link_to "所有订单>>",orders_member_path%> </span> </span>
+  </div>
+  <br>
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+  <%if @orders&&@orders.count > 0%>
+      <%@orders.each  do |order_item|%>
+  <tbody >
+  <tr>
+    <td width="35%">
+      <div class="img-list">
+        <%order_item.order_items.each_with_index do |order,index|%>
+            <%
+               link_title = order.name
+               link_title = "赠品:#{link_title}" if order.item_type == 'gift'
+            %>
+            <%=link_to good_path_ext(order.good),:title=>link_title,:target=>"_blank",:class=>"thumb-link" do %>
+                <%=image_tag order.good.medium_pic,:class=>"thumb" if order.item_type == 'product' && order.good%>
+                <%=image_tag order.product.gift_image_url,:class=>"thumb" if order.item_type == 'gift'%>
+            <%end%>
+
+        <%end%>
+      </div></td>
+
+    <td><%=order_item.ship_name%></td>
+    <td>&yen;<%=order_item.final_amount.to_i%><br><br><%=order_item.payment_name%></td>
+    <%order_item.order_logs.order("alttime asc").each do |log|%>
+        <td><%=log.created_at%> </td>
+    <%end%>
+    <td><%=order_item.status_text%>
+      <%unless order_item.status == 'active' && order_item.pay_status=='0'%>
+          <br>   <br><span><a href="#">跟踪</a> </span> <%end%>
+    </td>
+    <td >  <%=link_to "查看",detail_order_path(order_item),:target=>"_blank",:style=>"font-size:18px;color:red"%></td>
+  </tr>
+  </tbody>
+   <%end%>
+  <%else%>
+      <tbody>
+        <tr>
+          <td colspan="6">您在近期没有提交过订单</td> </tr>
+
+      </tbody>
+
+
+  <%end%>
+</table>
 
 
 
 
 
- </div>
+
+
+
+
+
+
+
+

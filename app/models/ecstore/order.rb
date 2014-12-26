@@ -274,7 +274,7 @@ class Ecstore::Order < Ecstore::Base
   end
 
   def status_text
-      return '活动订单 ' if status == 'active'
+      return '等待付款 ' if status == 'active'
     return '已作废' if status == 'dead'
     return '已完成' if status == 'finish'
   end

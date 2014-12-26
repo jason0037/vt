@@ -159,26 +159,26 @@
 </div>
 
  <div class="row" >  <div id= "main" class="<%=controller_name%> <%=action_name%> profiles clearfix">
-
+   <br>
    <div class="top-nav">
      <%breadcrumbs.each_with_index do |bread,index|%>
          <% name, path  =  bread%>
          <%if index == 0 %>
              <%if path%>
-                 <%=link_to name,Rails.application.routes.url_helpers.send(path)%>
+                 <strong>   <%=link_to name,Rails.application.routes.url_helpers.send(path)%> &nbsp;&nbsp; </strong>
              <%else%>
-                 <%=name%>
+                 <strong>  <%=name%>    </strong>
              <%end%>
          <%else%>
              <%if path%>
-                 <%=link_to name,Rails.application.routes.url_helpers.send(path)%>
+                 <strong>    <%=link_to name,Rails.application.routes.url_helpers.send(path)%> &nbsp;&nbsp; </strong>
              <%else%>
-                 <span class="txt"> > <%=name%></span>
+                 <span class="txt"> >&nbsp;&nbsp;<%=name%></span>
              <%end%>
          <%end%>
      <%end if breadcrumbs%>
-   </div>  </div>
- <div class="large-2 medium-3 columns show-for-medium-up category-nav">
+   </div> </div><br>
+ <div class="large-2 medium-3 columns show-for-medium-up">
 
    <%=render "patch/shared/menu"%>
 
@@ -472,10 +472,10 @@
         <a href="#">|新闻中心|</a>
       </div>
       <div class=" small-2 column">
-        <a href="#">|技术中心|</a>
+        <a href="/pages/techaicl">|技术中心|</a>
       </div>
       <div class=" small-2 column">
-        <a href="#">|服务中心|</a>
+        <a href="/pages/shlc">|服务中心|</a>
       </div>
       <div class=" small-2 column">
         <a href="#">|联系我们|</a>

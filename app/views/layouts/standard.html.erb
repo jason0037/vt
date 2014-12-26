@@ -22,7 +22,7 @@
   <%=stylesheet_link_tag "standard"%>
 
   <script src="/assets/vendor/modernizr.js"></script>
-
+  <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
 
 
     <%= yield :head%>
@@ -212,6 +212,7 @@
     </div>
   </nav>
 </header> <!-- END HEADER -->
+
 
   <%= yield%>
 
@@ -491,7 +492,7 @@
 <div class="row " style="background-color:#FFF">
             <div class="large-12 columns" style="text-align: center">
 
-                  <p class="" style="padding: 20px;"><a target="_blank" href="/About/aboutDetails.html" title="服务热线：400-820-0101"><img src="http://www.cheuks.com//images/tel_foot.gif"></a> </p>
+                  <p class="" style="padding: 20px;"><a target="_blank" href="#" title="服务热线：400-820-0101"><img src="http://www.cheuks.com//images/tel_foot.gif"></a> </p>
                 </div>
               <div class="large-12 columns"  style="text-align: center">
 
@@ -504,10 +505,10 @@
                     <a href="#">|新闻中心|</a>
                   </div>
                   <div class=" small-2 column">
-                    <a href="#">|技术中心|</a>
+                    <a href="/pages/techaicl">|技术中心|</a>
                   </div>
                   <div class=" small-2 column">
-                    <a href="#">|服务中心|</a>
+                    <a href="/pages/shlc">|服务中心|</a>
                   </div>
                   <div class=" small-2 column">
                     <a href="#">|联系我们|</a>
@@ -523,7 +524,7 @@
 
         </div>
         </div>
-<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+
 <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
 <script src="/assets/jquery-ui-1.9.2.custom.js?body=1" type="text/javascript"></script>
 <script src="/assets/jquery_jcarousel.js?body=1" type="text/javascript"></script>

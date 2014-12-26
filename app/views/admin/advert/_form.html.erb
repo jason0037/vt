@@ -1,0 +1,53 @@
+<%= form_for :adverts,:url=>@action_url, method: @method,:html => {:class => "form-horizontal"} do |f| %>
+    <fieldset>
+      <div class="control-group">
+        <%= f.label :title, "名称", :class => "control-label" %>
+        <div class="controls">
+          <%=f.text_field :title,:placeholder=>"如: 关于我们"%>
+          <span class="help-inline error"><%=@adverts.errors[:title].join(",")%> </span>
+
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :advert_slug, "访问地址", :class => "control-label" %>
+        <div class="controls">
+          <%=f.text_field :advert_slug,:placeholder=>"拼音或英文,如: about"%>
+
+          <span class="help-block">如：<b style="color:green;">about</b></span>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= f.label :cat_id, "存放产品位置", :class => "control-label" %>
+        <div class="controls">
+          <%=f.select :cat_id, Ecstore::Category.all.collect {|cat| [cat.full_path_name, cat.cat_id] },{:include_blank=>"请选择"},{:class=>"span3"} %>
+
+
+        </div>
+      </div>
+
+
+
+
+      <div class="control-group">
+        <%= f.label :body, "页面内容", :class => "control-label" %>
+        <div class="controls">
+
+          <%= f.cktext_area :body,:toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800, :fullPage=>@adverts.new_record?  %>
+          <span class="help-block error"><%=@adverts.errors[:body].join(",")%></span>
+        </div>
+      </div>
+
+
+
+      <%=render :partial=>"admin/shared/metable", :locals=>{ :form=>f, :resource=> @adverts }%>
+
+      <div class="control-group">
+        <div class="controls">
+          <%= f.submit '确定', :class => "btn btn-primary" %>
+          <%= link_to '返回', admin_static_pages_path,:class=>"btn" %>
+        </div>
+      </div>
+    </fieldset>
+<% end %>

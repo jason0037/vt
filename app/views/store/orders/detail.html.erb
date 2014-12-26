@@ -1,79 +1,146 @@
 <!--<link href="/assets/store/orders.css?body=1" media="screen" rel="stylesheet" type="text/css" />-->
 <!--<script src="/assets/store/orders.js?body=1" type="text/javascript"></script>-->
-
-<div class="row panel">
-  <h4 class="title">商品清单</h4>
-  <table>
-    <thead>
-    <tr>
-      <th width="20%">商品编号</th>
-      <th width="20%">商品名称</th>
-      <th width="20%">单价</th>
-      <th width="20%">数量 </th>
-      <th width="20%">金额 </th>
-    </tr>
-    </thead>
-
-    <tbody>
-
-    <%@order.order_items.each do |order_item|%>
-        <tr>
-          <td><%=order_item.bn%></td>
-          <td><%=link_to order_item.name,good_path_ext(order_item.good)%>
-            <%if order_item.item_type=="gift"%>
-                <span class="hui">赠品</span>
-            <%end%></td>
-          <td>&yen;<%=order_item.price%></td>
-          <td><%=order_item.nums.to_i%></td>
-          <td>&yen;<%=(order_item.price * order_item.nums).to_i if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
-          </td>
-        </tr>
-
-    <%end%>
-    </tbody>
-  </table>
-
-</div>
-
-<div class="row panel ">
-   <h4 class="title">订单信息</h4>
-
-    <div class="row support panel">
-      <div class="small-6 columns "><h5>订单编号:</h5></div>
-      <div class="small-6 columns "><h5><%=@order.order_id%></h5></div>
-     </div>
-    <div class="row support panel">
-      <div class="small-6 columns "><h5>订单状态:</h5></div>
-      <div class="small-6 columns " style="color: #ff0000"><h5><%=@order.order_status_text%></h5></div>
-    </div>
-    <div class="row support panel">
-      <div class="small-6 columns "><h5>订单备注:</h5></div>
-      <div class="small-6 columns "><span><%=@order.memo%></span></div>
-    </div>
-    <%@order.order_logs.order("alttime asc").each do |log|%>
-    <div class="row support panel">
-      <div class="small-12 columns "><%=log.created_at%> : &nbsp;&nbsp;&nbsp;&nbsp;<%=log.log_text%></div>
-      </div>
+<br>
+<div class="row">
+<div class="panel callout radius">
+ <div>
+   <strong>订单号：<%=@order.order_id%>&nbsp;&nbsp;&nbsp;&nbsp;状态：<span class="" style="color: #12A000;">
+     <%=@order.order_status_text%></span>&nbsp;&nbsp;
+     <%if @order.status == 'active' && @order.pay_status=='0'%>
+     <span ><a href="/goods/<%=@order.order_id%>" target="_blank">
+       <img width="46" height="25" style="display:inline;" src="/assets/paybtn.gif"></a></span>
        <%end%>
+   </strong>
+   <div style="border-bottom: 1px dotted #fcbebb;"></div>
+   <div class="" style="font-size: 16px">
+     尊敬的客户，我们还未收到该订单的款项，请您尽快付款<a href="/pages/zxzf">（在线支付帮助）</a>
+     该订单会为您保留24小时（从下单之日算起），24小时之后如果还未付款，系统将自动取消该订单。
+     </div>
 
-    </div>
-
-
+   </div>
+</div>  </div>
 
 <div class="row panel" style=" ">
-  <h4 class="title">订单追踪</h4>
-<span class="large-3 medium-3 small-3 columns ">提交订单</span>
 
-<span class="large-3 medium-3 small-3 columns">等待付款 </span>
-<span class="large-3 medium-3 small-3 columns">等待发货 </span>
-<span class="large-3 medium-3 small-3 columns">订单完成</span>
+  <span class="large-3 medium-3 small-3 columns ">提交订单</span>
 
-    <br><br>
-<div class="range-slider round" data-slider="50">
-  <span class="range-slider-handle" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="-webkit-transform: translateX(30px);"></span>
-  <span class="range-slider-active-segment" style="width: 25%;"></span>
-  <input type="hidden" value="50">
-</div> </div>
+  <span class="large-3 medium-3 small-3 columns">等待付款 </span>
+  <span class="large-3 medium-3 small-3 columns">等待发货 </span>
+  <span class="large-3 medium-3 small-3 columns">订单完成</span>
+
+  <br><br>
+  <div class="range-slider round" data-slider="50">
+    <span class="range-slider-handle" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" style="-webkit-transform: translateX(30px);"></span>
+    <span class="range-slider-active-segment" style="width: 25%;"></span>
+    <input type="hidden" value="50">
+  </div> </div>
+
+
+
+
+
+<div class="m row" id="orderinfo">
+  <div class="mt">
+    <strong>订单信息</strong>
+  </div>
+  <div class="mc">
+
+    <dl class="fore">
+      <dt>
+        收货人信息
+      </dt>
+      <dd>
+        <ul style="list-style-type:none">
+          <li>收&nbsp;货&nbsp;人：<%=@order.ship_name%></li>
+          <li>地&nbsp;&nbsp;&nbsp;&nbsp;址：<%=@order.ship_addr%></li>
+          <li>手机号码：<%=@order.ship_mobile%></li>
+          <%if @order.ship_email %>
+          <li>电子邮件：<%=@order.ship_email%></li><%end%>
+          <%if @order.ship_zip %>
+          <li>邮编：<%=@order.ship_zip%></li>   <%end%>
+        </ul>
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>
+        支付及配送方式
+      </dt>
+      <dd>
+        <ul style="list-style-type:none">
+          <li>支付方式：<%=@order.payment_name%></li>
+          <li>运&nbsp;&nbsp;&nbsp;&nbsp;费：&yen;<%=@order.cost_freight.to_i%></li>
+        </ul>
+      </dd>
+    </dl>
+
+    <dl>
+      <dt>
+        <span class="i-mt">商品清单</span>
+      <div id="fquan" class="fquan">
+        <div id="eventName">
+        </div>
+        <div class="prompt p-fquan" id="couponListShow">
+          <div class="pc" id="couponList">
+          </div>
+        </div>
+      </div>
+      <div class="clr"></div>
+      </dt>
+
+        <table style="width: 100%">
+          <thead>
+          <tr>
+            <th width="20%">商品编号</th>
+            <th width="20%">商品名称</th>
+            <th width="20%">单价</th>
+            <th width="20%">数量 </th>
+            <th width="20%">金额 </th>
+          </tr>
+          </thead>
+
+          <tbody>
+
+          <%@order.order_items.each do |order_item|%>
+              <tr>
+                <td><%=order_item.bn%></td>
+                <td><%=link_to order_item.name,good_path_ext(order_item.good)%>
+                  <%if order_item.item_type=="gift"%>
+                      <span class="hui">赠品</span>
+                  <%end%></td>
+                <td>&yen;<%=order_item.price%></td>
+                <td><%=order_item.nums.to_i%></td>
+                <td>&yen;<%=(order_item.price * order_item.nums).to_i if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
+                </td>
+              </tr>
+
+          <%end%>
+          </tbody>
+        </table>
+
+    </dl>
+
+  </div>
+
+  <div class="total">
+    <ul style="list-style-type:none">
+      <li><span>总商品金额：</span><%=@order.products_total%></li>
+      <li><span>- 优惠：</span>￥<%=@order.pmts_total%></li>
+      <li><span>+ 运费：</span>￥0.00</li>
+    </ul>
+
+    <span style="color:#EDEDED;"></span>
+    <div class="extra">
+      应付总额：
+      <span class="ftx04"><b><%=@order.final_pay%></b></span>
+    </div>
+  </div>
+  <link type="text/css" rel="stylesheet" href="/assets/cheuksgroup/order.css" />
+</div>
+
+
+
+
 
 
 <div class="row panel">
@@ -92,95 +159,6 @@
   <%end%>
   </div>    </div>
 
- <div class="row panel">
-   <h4>收货信息</h4>
-<div class="row support panel">
-  <div class="small-6 columns "><h5>收货人:</h5></div>
-  <div class="small-6 columns "><h5><%=@order.ship_name%></h5></div>
- </div>
-<div class="row support panel">
-  <div class="small-6 columns"><h5>收货地址:</h5></div>
-  <div class="small-6 columns"><h5><%=@order.ship_addr%></h5></div>
-  </div>
- <div class="row support panel">
-  <div class="small-6 columns"><h5>手机号码:</h5></div>
-  <div class="small-6 columns"><h5><%=@order.ship_mobile%></h5></div>
- </div>
-   <div class="row support panel">
-     <div class="small-6 columns"><h5>固定电话</h5></div>
-     <div class="small-6 columns"><h5><%=@order.ship_tel%></h5></div>
-    </div>
-   <div class="row support panel">
-     <div class="small-6 columns"><h5>电子邮件</h5></div>
-     <div class="small-6 columns"><h5><%=@order.ship_email%></h5></div>
-     </div>
-   <div class="row support panel">
-     <div class="small-6 columns"><h5>邮编</h5></div>
-     <div class="small-6 columns"><h5><%=@order.ship_zip%></h5></div>
-     </div>
-
- </div>
-
-<div class="row panel">
-  <h4>支付及配送方式</h4>
-  <div class="row support panel">
-    <div class="small-6 columns "><h5>支付方式:</h5></div>
-    <div class="small-6 columns "><h5><%=@order.payment_name%></h5></div>
-   </div>
-  <div class="row support panel">
-    <div class="small-6 columns "><h5>配送方式:</h5></div>
-    <div class="small-6 columns "><h5><%=@order.shipping%></h5></div>
-  </div>
-  <div class="row support panel">
-    <div class="small-6 columns "><h5>配送时间:</h5></div>
-    <div class="small-6 columns "><h5><%=@order.ship_time%></h5></div>
-  </div>
- <hr></div>
-
-<%if @order.is_tax == 'true'%>
-<div class="row panel">
-  <h4>发票</h4>
-  <div class="row support ">
-    <div class="small-6 columns "><h5>发票抬头:</h5></div>
-    <div class="small-6 columns "><h5><%=@order.tax_company%></h5></div>
-  </div>
-
-  <hr></div>
-    <%end%>
-
-
-<div class="row panel">
-  <h4>结算信息</h4>
-  <div class="row support panel">
-    <div class="small-6 columns ">商品总额:</div>
-    <div class="small-6 columns " style="color: red">&yen;<%=@order.products_total%></div>
-  </div>
-  <div class="row support panel">
-    <div class="small-6 columns">运费:</div>
-    <div class="small-6 columns"style="color: red"> &yen;<%=@order.cost_freight.to_i%></div>
-  </div>
-  <div class="row support panel">
-    <div class="small-6 columns">优惠:</div>
-    <div class="small-6 columns"style="color: red">&yen;<%=@order.pmts_total%></div>
-  </div>
-  <div class="row support panel">
-    <div class="small-6 columns">余额:</div>
-    <div class="small-6 columns"style="color: red">&yen;<%=@order.pmts_total%></div>
-  </div>
-  <%if @order.payment == 'bcom'%>
-  <div class="row support panel">
-    <div class="small-6 columns">支付优惠:</div>
-    <div class="small-6 columns"style="color: red">&yen;<%=@order.bcom_discount%></div>
-  </div>
-   <%end%>
-  <div class="row support panel">
-    <div class="small-6 columns">应付金额:</div>
-    <div class="small-6 columns"style="color: red"> &yen;<%=@order.final_pay%></div>
-  </div>
-
-
-
-  </div>
 
 
 

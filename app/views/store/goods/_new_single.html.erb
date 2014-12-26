@@ -9,7 +9,7 @@
     <div class="fdj-wrap"style="z-index: 10001;">
       <div id="preview" >
         <div id="img-medium">
-          <img src="" alt="" style="width: 100%">
+          <img src="<%=@good.big_pic%>" alt="w" style="width: 100%">
           <div id="mark" style="display: none; left: 125.5px; top: 263.5px;"></div>
         </div>
         <!-- 小图导航开始 -->
@@ -18,14 +18,14 @@
           <a href="javascript:;" class="right" id="right">&gt;</a>
           <div class="img-list-items">
             <ul id="img-items" >
-              <li><img src="" msrc="" bsrc="" alt="" ></li>
+              <li><img src="<%=@good.medium_pic%>" msrc="<%=@good.big_pic%>" bsrc="<%=@good.big_pic%>" alt="" ></li>
 
                    </ul>
           </div>
         </div>
         <!-- 小图导航结束 -->
         <div id="img-big" >
-          <img src="" alt="" id="detail" >
+          <img src="<%=@good.big_pic%>" alt="" id="detail" >
         </div>
       </div>
   </div>  </div>

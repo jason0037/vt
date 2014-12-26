@@ -110,5 +110,19 @@ class Patch::MembersController < ApplicationController
 		@favorites = @user.favorites.includes(:good).paginate(:page=>params[:page],:per_page=>10,:order=>"create_time desc")
 		add_breadcrumb("我的收藏")
 	end
-	
+
+  def comments
+    order_id=params[:order_id]
+    @order=Ecstore::Order.find_by_order_id(order_id)
+
+
+  end
+
+  def add_comment
+     @return_url=params[:return_url]
+    @comment = Ecstore::Comment.new( params[:comment])
+    @comment.save
+
+  end
+
 end
