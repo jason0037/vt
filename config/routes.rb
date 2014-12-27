@@ -3,7 +3,7 @@ require 'httpclient'
 Modengke::Application.routes.draw do
 
 
-  get "advert/advert"
+
 
   get "rongda/index"
 

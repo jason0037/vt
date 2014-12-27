@@ -224,7 +224,7 @@
 
                 <%=form_for :session,:url=>"/login",:class=>"form login_form" , :remote=>true do |f|%>
                       <hr>
-                  <%=hidden_field_tag :platform,'vshop'%>
+
               <%=hidden_field_tag :return_url,request.url.sub('http://trade','').force_encoding('UTF-8')%>
               <div id="login_msg"></div>
 
@@ -287,7 +287,7 @@
      <%=form_for :user,:url=>users_path,:remote=>true,:html=>{:id=>"register_form"} do |f|%>
 
       <%=hidden_field_tag :return_url,request.url.sub('http://trade','').force_encoding('UTF-8')%>
-        <%=hidden_field_tag :platform,'vshop'%>
+
      <div class="connerdiv">
 
         <div class="row">
