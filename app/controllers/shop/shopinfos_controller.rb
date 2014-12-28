@@ -1,6 +1,9 @@
 #encoding:utf-8
 class Shop:: ShopinfosController < ApplicationController
   before_filter :find_shop_user
+  require 'net/http'
+  require 'nokogiri'
+  require 'open-uri'
 
   layout "shop"
 
@@ -11,9 +14,10 @@ class Shop:: ShopinfosController < ApplicationController
 
 
       @followers = Ecstore::WechatFollower.find_by_openid(login_name)
+        url=eval(@followers.user_info)["headimgurl"]
 
-
-         @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
+          page= Nokogiri::HTML(open(url))
+        @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
       if @shop
        name=@shop.shop_name
         @shop_title="来自#{name}的微商店"

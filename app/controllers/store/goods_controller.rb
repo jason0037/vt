@@ -93,6 +93,7 @@ class Store::GoodsController < ApplicationController
 
     @goods_mok= Ecstore::Good.where(:supplier_id=>"114")
   @goods_bs=Ecstore::Good.where(:supplier_id=>"115")
+    @goods_ptj=Ecstore::Good.where(:supplier_id=>"118")
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
 
     @recommend_user = session[:recommend_user]
@@ -387,7 +388,7 @@ class Store::GoodsController < ApplicationController
                 format.mobile  { render(:layout => "layouts/store", :action => "index") }
                 format.html { render(:layout => "layouts/store", :action => "index") }
               end
-          
+
           else
               @goods = @tag.goods.paginate(:page=>params[:page], :per_page=>10,:order=>"uptime desc").to_a
               render "scroll_loading"
@@ -415,7 +416,7 @@ class Store::GoodsController < ApplicationController
   def suits
       @line_items =  @user.line_items if @user
       @goods = Ecstore::Good.suits.paginate(:page=>1, :per_page=>10,:order=>"uptime desc")
-      
+
       respond_to do |format|
         format.html { render :layout=>"standard" }
         format.js
@@ -459,7 +460,7 @@ class Store::GoodsController < ApplicationController
 
   def price
       @good = Ecstore::Good.includes(:products,:good_type_specs).find(params[:id])
-      
+
       return render(:nothing=>true) unless request.xhr?
       spec_type_count = @good.good_type_specs.blank? ? @good.spec_desc.size  : @good.good_type_specs.size
       return render(:nothing=>true)  if params[:spec_values].size != spec_type_count
@@ -467,19 +468,19 @@ class Store::GoodsController < ApplicationController
       @product  =  @good.products.select do |p|
         p.good_specs.pluck(:spec_value_id).map{ |x| x.to_s }.sort == params[:spec_values].sort || p.spec_desc["spec_value_id"].values.map{ |x| x.to_s }.sort == params[:spec_values].sort
       end.first
-      
+
       render :json=>{ :price=>@product.price,:store=>@product.p_store }
   end
 
 
-  private 
+  private
     def more_arrivals
         except_tag = ''
         except_tag = params[:tag] if params[:tag].present?
         except_tag = Ecstore::TagName.where('tag_name rlike ?','z[0-9]{4}').last.tag_name if action_name == "newest"
 
         @tags ||= Ecstore::TagName.where('tag_name rlike ? and tag_name <> ?','z[0-9]{4}',except_tag).order("tag_id desc").limit(6)
-    
+
     end
 
     def more_products

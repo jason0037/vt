@@ -20,6 +20,38 @@
 
 <div class="am-panel  "style="filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9" data-am-sticky >
 
+  <div class="am-panel-hd" style="background-color: #FF8000;"> <span style="font-size: 20px; ">澳洲葡萄酒</span>
+
+  </div>
+</div>
+<div class="am-panel-bd">
+  <ul class="am-list">
+
+    <%@goods_ptj.each do |good|%>
+
+        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+          <a href="/mproducts?id=<%=good.bn%>&supplier_id=<%=@supplier.id%>&fp=category" class="cart_orderlist_i">
+            <div class="am-col col-sm-4 am-list-thumb">
+              <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
+            </div>
+            <div class="am-col col-sm-8 am-list-main">
+                <span class="am-list-item-hd">
+                  <%=good.name%>
+                </span>
+              <div class="am-list-item-text"> <strong class="" style="color: red;font-size: 16px ;float: right" >¥<%=good.price%> &nbsp;</strong>   </div>
+            </div>
+            <div>
+            </div>
+          </a>
+        </li>
+    <%end%>
+  </ul>
+</div>
+
+
+
+<div class="am-panel  "style="filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9" data-am-sticky >
+
   <div class="am-panel-hd" style="background-color: #FF8000;"> <span style="font-size: 20px; ">摩可洛Mokaflor咖啡豆</span>
 
   </div>

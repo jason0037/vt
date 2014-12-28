@@ -6,7 +6,8 @@
     <p>
       期待您的参与
         <%if @followers%>
-      <%=image_tag eval(@followers.user_info)["headimgurl"],:id=>"weixin" ,:style=>"display:none"%>
+      <%=image_tag eval(@followers.user_info)["headimgurl"],:id=>"weixin" ,:style=>"display:block"%>
+
           <%end%>
     </p>
 
@@ -115,16 +116,16 @@
 
     var url="http://"+host+"/shopinfos/myshop?shop_id="+shop_id;
     var imag=$("#weixin").attr("src");
-
+         alert(imag)
   window.onload = function(){
       var kaelBase = new KaelQrcode();
       kaelBase.init(document.getElementById("qrcodeCanvas"), {
           text :url,
-          size: 300
-//          img: {
-//              src : imag
-//
-//          }
+          size: 300,
+          img: {
+              src : imag
+
+          }
       });
 
 
