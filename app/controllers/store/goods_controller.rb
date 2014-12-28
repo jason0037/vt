@@ -93,7 +93,7 @@ class Store::GoodsController < ApplicationController
 
     @goods_mok= Ecstore::Good.where(:supplier_id=>"114")
   @goods_bs=Ecstore::Good.where(:supplier_id=>"115")
-    @goods_ptj=Ecstore::Good.where(:supplier_id=>"118")
+    @goods_ptj=Ecstore::Good.where(:supplier_id=>"116")
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
 
     @recommend_user = session[:recommend_user]
