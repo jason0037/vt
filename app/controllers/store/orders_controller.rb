@@ -453,45 +453,6 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
     end
   end
 
-  def departure    ##起点信息
-    @manco_title="装货地址"
-     @platform=params[:platform]
-    @supplier=Ecstore::Supplier.find(params[:supplier_id])
-    manco_weight =params[:manco_weight]
-    @addrs =  @user.member_addrs
-    @def_addrs = @addrs.where(:addr_type=>1) || @addrs.first
-
-
-    render :layout=>@supplier.layout
-  end
-
-  def arrival  ###终点信息
-    @manco_title="卸货地址"
-    session[:arrivals]=params[:xiehuo]
-    @platform=params[:platform]
-    @supplier=Ecstore::Supplier.find(params[:supplier_id])
-    @member_departure_id=  params[:member_departure_id]
-    @addrs =  @user.member_addrs
-    @addrss = @addrs.where(:addr_type=>0)
-    if @platform=="door"||@platform=="self" ||@platform=="manco_local"||@platform=="mancoexpress"
-    @action_url="/orders/manco_detail"
-    elsif
-      @action_url="new_manco  "
-    end
-    render :layout=>@supplier.layout
-  end
-
-
-
-  def new_tairyo
-    if @pmtable
-      @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
-      @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
-      @coupons = @user.usable_coupons
-    end
-    render :layout=>"tairyo_new"
-
-  end
 
   def share
     wechat_user = params[:FromUserName]
@@ -598,57 +559,12 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
 
   end
 
-  def tairyo_order
-    if @user
-      @addrs =  @user.member_addrs
-
-      @def_addr = @addrs.where(:def_addr=>1).first || @addrs.first
-      login_name=@user.login_name
-      sql="select * from sdb_pam_account where login_name=?",login_name  ;
-      @account = Ecstore::Account.find_by_sql(sql)
-      @suppliers=Ecstore::Supplier.find_by_sql("select * from sdb_imodec_suppliers where name='金芭浪'")
-      render :layout => "tairyo_new"
-    else
-      redirect_to '/auto_login?id=99&platform=mobile&return_url=/tairyo_order'
-    end
-  end
-
-
 
   def destroyaddr
 
     @addr = Ecstore::MemberAddr.find(params[:addr_idsss])            ### 删除地址
     @addr.destroy
 
-  end
-
-
-
-  def manco_detail
-    @manco_title="附加服务选项"
-    @platform=params[:platform]
-    @supplier=Ecstore::Supplier.find(params[:supplier_id])
-    if (params[:member_departure_id])
-      member_departure_id=params[:member_departure_id]
-
-    else
-      if session[:depar].nil?
-        member_departure_id=session[:depars]  #有寄货地址 没收货地址的
-      else
-        member_departure_id=session[:depar]   #@addr.addr_id
-      end
-
-    end
-    if(params[:member_arrival_id])
-      member_arrival_id=params[:member_arrival_id]
-
-    else
-      member_arrival_id=session[:arri]
-    end
-    @departure_addr=Ecstore::MemberAddr.find_by_addr_id(member_departure_id)
-    @arrival_addr=Ecstore::MemberAddr.find_by_addr_id(member_arrival_id)
-
-   render :layout => @supplier.layout
   end
 
  def manco_card
@@ -695,9 +611,7 @@ WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
           end
          end
 
-                    end
-
-
+        end
 
 
        if bill=="1"
@@ -766,14 +680,7 @@ WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
     @un= Ecstore::Express.serachall(departure,arrival)
   end
 
-  def goodblack
-    @supplier=Ecstore::Supplier.find(params[:supplier_id])
-    ship_id= params[:ship_id]
-    @memberes=Ecstore::User.where(:member_id=>ship_id)
-    render :layout => @supplier.layout
-
-  end
-
+ 
   def mobile_show_order
     supplier_id=params[:supplier_id]
     @order =Ecstore::Order.find_by_order_id(params[:id])
@@ -782,39 +689,6 @@ WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
 
     render :layout=>@supplier.layout
   end
-
-  def wuliu_show_order
-    supplier_id=params[:supplier_id]
-    @order =Ecstore::Order.find_by_order_id(params[:id])
-    @delivery=Ecstore::Delivery.find_by_order_id(params[:id])
-    @supplier  =  Ecstore::Supplier.find(supplier_id)
-    render :layout=>@supplier.layout
-  end
-
-  def edit_manco_addr
-    @bill=params[:bill]                   ###签单返回
-    @invoice=params[:invoice]             ######发票服务 1:运费发票 2: 服务费发票  3:自带发票
-    @warehouse=params[:warehouse]
-       @way=params[:way]
-       @departure_id=params[:departure_id]
-       @arrival_id =params[:arrival_id]
-        if @way =="departure"
-          @addr=Ecstore::MemberAddr.find(@departure_id)
-          @manco_title="修改装货地址"
-        elsif  @way =="arrival"
-            @addr=Ecstore::MemberAddr.find(@arrival_id)
-            @manco_title="修改卸货地址"
-        end
-       @supplier=Ecstore::Supplier.find(params[:supplier_id])
-
-       @action_url="xiugai_addr"
-       @method="post"
-
-
-      render :layout => @supplier.layout
-  end
-
-
 
 
 def xiugai_addr

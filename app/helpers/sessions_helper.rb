@@ -65,7 +65,7 @@ module SessionsHelper
     cookies[:unlogin_url] = {:value=>return_url,:domain=>".cheuks.com"}
 
     #"http://#{subdomain}.#{request.domain}/passport-login.html"
-    "http://www.cheuks.com/"
+    "http://weishop.cheuks.com/"
 	end
 
 	def goto_login_path
@@ -77,8 +77,8 @@ module SessionsHelper
 	end
 
 	def site_path
-		return "http://www.cheuks.com/" if Rails.env == "development"
-		"http://www.cheuks.com/"
+		return "http://weishop.cheuks.com/" if Rails.env == "development"
+		"http://weishop.cheuks.com/"
 	end
 
   def site

@@ -5,6 +5,8 @@ Modengke::Application.routes.draw do
 
 
 
+  captcha_route
+
   get "rongda/index"
 
 

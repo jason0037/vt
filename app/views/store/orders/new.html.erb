@@ -112,24 +112,23 @@
             </div>
              <%end%>
 
-
             <div class="large-12 medium-12 small-12 columns">
-
-                <%=f.radio_button :payment, "ips", :checked=>true%> <b>环迅人民币支付</b>
-                <span class="extra-desc"><img src="/assets/store/ipslogo_120X55.gif"/></span>
+                <%=f.radio_button :payment, "bcom", :checked=>true%> <b>交通银行网上支付</b>
+             </div>
+            <hr>
+            <div class="large-12 medium-12 small-12 columns">
+                <%=f.radio_button :payment, "icbc", :checked=>true%> <b>工商银行网上支付</b>
              </div>
             <hr>
             <div class="large-12 medium-12 small-12 columns">
 
                 <%=f.radio_button :payment, "alipay"%> <b>支付宝</b>
-                <span class="extra-desc"><img src="/assets/store/alipay.png"/></span>
+                <span class="extra-desc" style="display:none"><img src="/assets/store/alipay.png"/></span>
 
             </div>
                <hr>
             <div class="large-12 medium-12 small-12 columns">
-
-              <%=f.radio_button :payment, "offline"%> <b>货到付款</b>
-              <span class="extra-desc"><%=link_to "点击查询货到付款配送区域","http://www.zjs.com.cn/WS_Business/WS_Bussiness_CityArea.aspx?id=6",:target=>"_blank"%></span>
+              <%=f.radio_button :payment, "offline"%> <b>银行转账</b>
 
             </div>
             <hr>

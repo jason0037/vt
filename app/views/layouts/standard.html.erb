@@ -376,9 +376,22 @@
       </div>
     </div>
 
+<div class="large-12 columns">
+      <div class="row collapse prefix-radius">
+        <div class="small-3 columns" style="text-align:center">
+       <span class="prefix">  <i class=" fi-lock"></i> </span>
+        </div>
+        <div class="small-9 columns">
+        <span><%=text_field_tag :captcha,nil,:style=>"width:50%",:placeholder=>"验证码"%></span><span id="captcha"><%= captcha_tag %></span> 
+           
+        <% if request.post? %>
+          <p>验证码<%= valid_captcha?(params[:captcha]) ? '正确' : '错误' %> </p>
+        <% end %>
+        </div>
+      </div>
+    </div>
 
-
-
+ 
 
 
 <div style="display:none">
@@ -396,7 +409,7 @@
        <div class="row">
 
         <div class="small-12 columns">
-           <a href="#signup" data-reveal-id="login_iframe" class="button secondary    " style="width:100%" >  登陆</a>
+           <a href="#signup" data-reveal-id="login_iframe" class="button secondary    " style="width:100%" >  登录</a>
          </div>
 
     </div>

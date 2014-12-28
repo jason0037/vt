@@ -4,6 +4,8 @@ class Blog::ArticlesController < Blog::BaseController
   # before_filter :authorize_for_article,:only=>[:show]
 
   def index
+
+    redirect_to "http://weishop.cheuks.com/home"
     @articles = Imodec::Article.where("published = ?",true).paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
     @headlined_articles = Imodec::Article.where("published = ? AND headlined = ?",true,true).order("position_id ASC").limit(8)
   end

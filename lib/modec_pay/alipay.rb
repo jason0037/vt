@@ -1,12 +1,11 @@
 #encoding:utf-8
 module ModecPay
 	class Alipay < Payment
+#支付宝账号：tianmao@cheuks.com
 
-		#@@mer_id = '2088701875473608'
-		#@@private_key  = 'x5cynpqbifj5uauqj1nx8cd79o3no4vy'
 
-    @@mer_id = '2088411414403176'
-    @@private_key  = 'hzh3bf969beqkqdbohdxocxlwpgr8278'
+    @@mer_id = '2088801376885914'
+    @@private_key  = 'p7mizsastw14a0ewd0f57hsl9rliqfty'
 
 		def initialize
 			super
