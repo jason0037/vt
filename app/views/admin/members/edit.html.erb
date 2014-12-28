@@ -20,9 +20,9 @@
       </div>
     </div>
      <div class="control-group">
-      <%= f.label :member_lv_id, "开票资质:", :class => "control-label" %>
+      <%= f.label :invoicing_qualification, "开票资质:", :class => "control-label" %>
       <div class="controls">
-        <%=f.select :member_lv_id,options_from_collection_for_select(Ecstore::MemberLv.all,:member_lv_id,:name,@member.member_lv_id),{:include_blank=>"请选择"},{:class=>"span3"} %>
+       <%=f.select :invoicing_qualification, {"有"=>"有","无"=>"无"},{:include_blank=>"请选择"},{:class=>"span3"} %>
       </div>
     </div>
 

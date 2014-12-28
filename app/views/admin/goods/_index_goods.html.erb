@@ -3,7 +3,7 @@
 	<tr>
 		<th><input type="checkbox" id="select_page_all"></th>
       	<th class="order" data-field="p_order" data-sorter="asc">排序</th>
-		<th class="td-teg" style="display:none">标签</th>
+		<th class="td-teg">标签</th>
 		<th class="order" data-field="bn" data-sorter="asc">ERP编号</th>
 		<th class="order" data-field="name" data-sorter="asc">产品名称</th>
 		<th width="50px" align="center">缩略图</th>
@@ -46,7 +46,7 @@
 
 			<td><%=check_box_tag "batch[goods_ids][]", good.goods_id, false, :id=>"good_#{good.goods_id}",:class=>"good"%></td>
           <td><%=good.p_order if good.p_order%></td>
-			<td class="td-teg"  style="display:none">
+			<td class="td-teg">
 				<%good.tegs.each do |teg|%>
 					<span class="teg" style="background-color:<%=teg.tag_bgcolor%>;color:<%=teg.tag_fgcolor%>">
 						<%=teg.tag_name%>

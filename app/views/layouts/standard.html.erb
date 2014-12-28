@@ -180,13 +180,14 @@
             <h1><img src="http://weishop.cheuks.com/img/cheuks_logo.png"></h1>
         </div>
         <div class="large-6 large-offset-2 medium-6 columns right  padding-top-20">
-            <form>
-                <div class="row  " >
+            <form accept-charset="UTF-8" action="/search" method="get">           
+                <div class="row" >
                     <div class="large-6 large-offset-4 small-8 columns">
-                        <input type="text" />
+                        <input type="text" name="q" placeholder="请输入搜索关键字" 
+                        value="<%= controller_name=="search" ? params[:q] : Ecstore::Config.get(:search_key)%>">
                     </div>
                     <div class="large-2 small-4 columns">
-                        <a href="#" class="postfix button expand">Search</a>
+                      <button type="submit" class="postfix button expand">搜索</button>
                     </div>
                 </div>
             </form>

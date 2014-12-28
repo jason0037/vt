@@ -1,0 +1,30 @@
+
+<%=content_for :title do "活动在线招募 | Cheuks | 卓仕 工业品专家" end%>
+<%=content_for :head do stylesheet_link_tag("events") end%>
+
+
+<div class="page-header">
+  <h2>所有活动</h2>
+
+</div>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>活动名</th>
+    <!-- <th>活动时间</th> -->
+    <th>创建时间</th>
+    <th></th>
+  </tr>
+
+<% @events.each do |event| %>
+  <tr>
+    <td><%=event.name%></td>
+    <td><%=event.created_at%></td>
+    <td><%= link_to '查看', event_path(event),:target=>"_blank" %></td>
+  </tr>
+<% end %>
+</table>
+
+<div class="pagination">
+  <%= will_paginate @events, :container => false %>
+</div>

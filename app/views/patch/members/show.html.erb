@@ -12,11 +12,13 @@
   <div class="large-12 medium-12 small-12 columns">
     <h3 style="font-size: 14px;">您好，尊敬的会员，欢迎来到卓仕工业品网！</h3>
   </div>   <br><br>
-  <div class="large-12 medium-12 small-12 columns">
+  <div class="large-4 medium-4 small-12 columns">
    <span class="left"> 会员等级:</span><span class="red" style="margin-left: 14%"><%=@user.member_lv.name%></span>
   </div>
-  <br><br>
-  <div class="large-12 medium-12 small-12 columns">
+  <div class="large-4 medium-4 small-12 columns">
+   <span class="left"> 开票资质:</span><span class="red" style="margin-left: 14%"><%=@user.invoicing_qualification%></span>
+  </div>
+  <div class="large-4 medium-4 small-12 columns">
     <span class="left"> 账户余额:</span><span class="red" style="margin-left: 14%">&yen; <%=@user.advance%></span>
   </div>
 
