@@ -1,29 +1,608 @@
-
+ <!--
 <div class="all-goods">
-  <%@top_cats.each_with_index do |top_cat,index|%>
+  <%#@top_cats.each_with_index do |top_cat,index|%>
   <div class="item btnone">
     <div class="product">
-      <a href="<%=cat_path(top_cat,:gtype=>params[:gtype])%>" ><%=top_cat.cat_name%></a>
+      <a href="<%#=cat_path(top_cat,:gtype=>params[:gtype])%>" ><%#=top_cat.cat_name%></a>
        <s style="display: block;"></s> </div>
-      <div class="product-wrap  show_<%=index%>" style="display: none">
+      <div class="product-wrap  show_<%#=index%>" style="display: none">
         <div class="cf">
           <div class="fl wd252 pr20">
-            <%top_cat.categories.order("p_order asc").each do |scat|%>
-                <%if scat.all_goods.size > 0%>
-                    <h2><%=link_to scat.cat_name,cat_path(scat,:gtype=>params[:gtype])%></h2>
-                    <%if scat.categories.present?%>
+            <%#top_cat.categories.order("p_order asc").each do |scat|%>
+                <%#if scat.all_goods.size > 0%>
+                    <h2><%#=link_to scat.cat_name,cat_path(scat,:gtype=>params[:gtype])%></h2>
+                    <%#if scat.categories.present?%>
                         <ul class="cf">
-                          <%scat.categories.each do |tcat|%>
-                              <%if tcat.all_goods.size>0%>
-                                  <li><%=link_to tcat.cat_name,cat_path(tcat,:gtype=>params[:gtype])%></li>
-                              <%end%>
-                          <%end%>
+                          <%#scat.categories.each do |tcat|%>
+                              <%#if tcat.all_goods.size>0%>
+                                  <li><%#=link_to tcat.cat_name,cat_path(tcat,:gtype=>params[:gtype])%></li>
+                              <%#end%>
+                          <%#end%>
                         </ul>
-                    <%end%>
+                    <%#end%>
 
-                   <%end%>  <%end%>
+                   <%#end%>  <%#end%>
                    </div>
 
         </div>    </div>
   </div>
-<%end%>   </div>
+<%#end%>   </div>
+
+ -->
+ <div class="all-goods">
+ <div class="item btnone">
+   <div class="product">
+     <a href="/gallery/1" >仓储物流设备
+     </a>
+     <s style="display: block;"></s> </div>
+   <div class="product-wrap  show_0" style="display: none">
+     <div class="cf">
+       <div class="fl wd252 pr20">
+         <h2><a href="/gallery/14">搬运车</a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/59">手动搬运车
+           </a></li>
+           <li><a href="/gallery/60">电子称搬运车
+           </a></li>
+           <li><a href="/gallery/61">纸筒搬运车
+           </a></li>
+           <li><a href="/gallery/62">野外搬运车
+           </a></li>
+           <li><a href="/gallery/63">宽腿搬运车
+           </a></li>
+           <li><a href="/gallery/64">高升程搬运车
+           </a></li>
+           <li><a href="/gallery/65">半电动搬运车
+           </a></li>
+           <li><a href="/gallery/66">全电动搬运车
+           </a></li>
+           <li><a href="/gallery/67">AGV无人搬运车
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/15">堆高车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/68">手动
+           </a></li>
+           <li><a href="/gallery/69">货叉
+           </a></li>
+           <li><a href="/gallery/70">电动
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/16">叉车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/71">电动叉车
+           </a></li>
+           <li><a href="/gallery/72">四轮平衡重式蓄电池叉车
+           </a></li>
+           <li><a href="/gallery/73">电瓶叉车
+           </a></li>
+           <li><a href="/gallery/74">石材专用叉车
+           </a></li>
+           <li><a href="/gallery/75">全方位移动叉车
+           </a></li>
+           <li><a href="/gallery/76">窄巷道叉车
+           </a></li>
+           <li><a href="/gallery/77">铰接式四驱越野叉车
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/17">牵引车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/78">电动
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/18">平台
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/79">手动平台
+           </a></li>
+           <li><a href="/gallery/80">电动平台
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/19">油桶车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/81">油桶搬运车
+           </a></li>
+           <li><a href="/gallery/82">油桶堆高车
+           </a></li>
+           <li><a href="/gallery/83">油桶属具
+           </a></li>
+           <li><a href="/gallery/84">油桶翻转车
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/20">手推车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/85">折倒式扶手静音车系列
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/21">货台高度调剂板（卸货平台）
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/86">气袋式
+           </a></li>
+           <li><a href="/gallery/87">翻转式
+           </a></li>
+           <li><a href="/gallery/88">伸缩式
+           </a></li>
+           <li><a href="/gallery/89">翻转式P型坑
+           </a></li>
+           <li><a href="/gallery/90">伸缩式T型坑
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/22">装车机
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/92">A简易系列
+           </a></li>
+           <li><a href="/gallery/93">B前置辊道系列
+           </a></li>
+           <li><a href="/gallery/94">C月台移动伸缩系列
+           </a></li>
+           <li><a href="/gallery/95">G伸缩移动系列
+           </a></li>
+           <li><a href="/gallery/96">H伸缩系列
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/23">电动观光车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/97">4座
+           </a></li>
+           <li><a href="/gallery/98">6座
+           </a></li>
+           <li><a href="/gallery/99">8座
+           </a></li>
+           <li><a href="/gallery/100">11座
+           </a></li>
+           <li><a href="/gallery/101">14座
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/24">封闭式电动货车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/102">EG60系列
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/25">周转类
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/103">托盘
+           </a></li>
+           <li><a href="/gallery/104">滑板轮
+           </a></li>
+           <li><a href="/gallery/105">周转箱/筐
+           </a></li>
+           <li><a href="/gallery/106">仓储笼
+           </a></li>
+         </ul>
+
+
+       </div>
+
+     </div>    </div>
+ </div>
+ <div class="item btnone">
+   <div class="product">
+     <a href="/gallery/2" >高空作业设备
+     </a>
+     <s style="display: block;"></s> </div>
+   <div class="product-wrap  show_1" style="display: none">
+     <div class="cf">
+       <div class="fl wd252 pr20">
+         <h2><a href="/gallery/27">高空作业平台系列
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/108">高空作业平台
+           </a></li>
+         </ul>
+
+
+       </div>
+
+     </div>    </div>
+ </div>
+ <div class="item btnone">
+   <div class="product">
+     <a href="/gallery/3" >清洁设备
+     </a>
+     <s style="display: block;"></s> </div>
+   <div class="product-wrap  show_2" style="display: none">
+     <div class="cf">
+       <div class="fl wd252 pr20">
+         <h2><a href="/gallery/28">清洁机
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/109">扫地机
+           </a></li>
+           <li><a href="/gallery/110">洗地机
+           </a></li>
+           <li><a href="/gallery/111">洗地吸干机
+           </a></li>
+         </ul>
+
+
+       </div>
+
+     </div>    </div>
+ </div>
+ <div class="item btnone">
+   <div class="product">
+     <a href="/gallery/4" >检测、工具类
+     </a>
+     <s style="display: block;"></s> </div>
+   <div class="product-wrap  show_3" style="display: none">
+     <div class="cf">
+       <div class="fl wd252 pr20">
+         <h2><a href="/gallery/29">工具类
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/112">加工工具
+           </a></li>
+           <li><a href="/gallery/113">工具包、箱、车
+           </a></li>
+           <li><a href="/gallery/114">电子电工类工具
+           </a></li>
+           <li><a href="/gallery/115">VDE绝缘类工具
+           </a></li>
+           <li><a href="/gallery/116">液压类工具
+           </a></li>
+           <li><a href="/gallery/117">紧固类工具
+           </a></li>
+           <li><a href="/gallery/118">打包工具
+           </a></li>
+           <li><a href="/gallery/119">手持式电动打带工具
+           </a></li>
+           <li><a href="/gallery/120">车间辅助用品
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/30">检测类
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/122">工业衡器
+           </a></li>
+         </ul>
+
+
+       </div>
+
+     </div>    </div>
+ </div>
+ <div class="item btnone">
+   <div class="product">
+     <a href="/gallery/5" >机械加工设备
+     </a>
+     <s style="display: block;"></s> </div>
+   <div class="product-wrap  show_4" style="display: none">
+     <div class="cf">
+       <div class="fl wd252 pr20">
+         <h2><a href="/gallery/31">机床类
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/123">立钻机床
+           </a></li>
+         </ul>
+
+
+       </div>
+
+     </div>    </div>
+ </div>
+ <div class="item btnone">
+   <div class="product">
+     <a href="/gallery/6" >起重设备
+     </a>
+     <s style="display: block;"></s> </div>
+   <div class="product-wrap  show_5" style="display: none">
+     <div class="cf">
+       <div class="fl wd252 pr20">
+         <h2><a href="/gallery/32">起吊类
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/124">吊机
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/33">葫芦类
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/126">手拉葫芦
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/34">轨道类
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/127">轨道小车
+           </a></li>
+         </ul>
+
+
+       </div>
+
+     </div>    </div>
+ </div>
+ <div class="item btnone">
+   <div class="product">
+     <a href="/gallery/7" >搬运车零部件
+     </a>
+     <s style="display: block;"></s> </div>
+   <div class="product-wrap  show_6" style="display: none">
+     <div class="cf">
+       <div class="fl wd252 pr20">
+         <h2><a href="/gallery/38">半电动搬运车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/128">车架部件
+           </a></li>
+           <li><a href="/gallery/129">电器系统部件
+           </a></li>
+           <li><a href="/gallery/130">手柄部件
+           </a></li>
+           <li><a href="/gallery/131">驱动电机部件
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/39">全电动搬运车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/132">车架部件
+           </a></li>
+           <li><a href="/gallery/133">电器系统部件
+           </a></li>
+           <li><a href="/gallery/134">电器液压系统部件
+           </a></li>
+           <li><a href="/gallery/135">驱动轮总成部件
+           </a></li>
+           <li><a href="/gallery/136">手柄部件
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/40">手动搬运车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/137">叉架零部件
+           </a></li>
+           <li><a href="/gallery/138">脚刹零部件
+           </a></li>
+           <li><a href="/gallery/139">手柄零部件
+           </a></li>
+           <li><a href="/gallery/140">油泵部分
+           </a></li>
+         </ul>
+
+
+       </div>
+
+     </div>    </div>
+ </div>
+ <div class="item btnone">
+   <div class="product">
+     <a href="/gallery/8" >堆高车零部件
+     </a>
+     <s style="display: block;"></s> </div>
+   <div class="product-wrap  show_7" style="display: none">
+     <div class="cf">
+       <div class="fl wd252 pr20">
+         <h2><a href="/gallery/41">半电动堆高车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/141">车架部件
+           </a></li>
+           <li><a href="/gallery/142">充电器部件
+           </a></li>
+           <li><a href="/gallery/143">电器系统部件
+           </a></li>
+           <li><a href="/gallery/144">起升电机部件
+           </a></li>
+           <li><a href="/gallery/145">油泵部件
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/42">全电动堆高车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/146">车架部件
+           </a></li>
+           <li><a href="/gallery/147">电器系统部件
+           </a></li>
+           <li><a href="/gallery/148">轮子部件
+           </a></li>
+           <li><a href="/gallery/149">驱动电机部件
+           </a></li>
+           <li><a href="/gallery/150">手柄部件
+           </a></li>
+           <li><a href="/gallery/151">液压电器系统部件
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/43">手动堆高车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/152">车架部件
+           </a></li>
+           <li><a href="/gallery/153">轮子部件
+           </a></li>
+           <li><a href="/gallery/154">油缸部件
+           </a></li>
+           <li><a href="/gallery/155">电器系统部件
+           </a></li>
+         </ul>
+
+
+       </div>
+
+     </div>    </div>
+ </div>
+ <div class="item btnone">
+   <div class="product">
+     <a href="/gallery/9" >叉车零部件
+     </a>
+     <s style="display: block;"></s> </div>
+   <div class="product-wrap  show_8" style="display: none">
+     <div class="cf">
+       <div class="fl wd252 pr20">
+         <h2><a href="/gallery/44">电动车零部件
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/156">车架部件
+           </a></li>
+           <li><a href="/gallery/157">电瓶部件
+           </a></li>
+           <li><a href="/gallery/158">液压电器系统部件
+           </a></li>
+           <li><a href="/gallery/159">油缸部件
+           </a></li>
+           <li><a href="/gallery/160">液压电器系统部件
+           </a></li>
+           <li><a href="/gallery/161">驱动电机部件
+           </a></li>
+         </ul>
+
+
+       </div>
+
+     </div>    </div>
+ </div>
+ <div class="item btnone">
+   <div class="product">
+     <a href="/gallery/10" >其他车零部件
+     </a>
+     <s style="display: block;"></s> </div>
+   <div class="product-wrap  show_9" style="display: none">
+     <div class="cf">
+       <div class="fl wd252 pr20">
+         <h2><a href="/gallery/46">吊机
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/162">吊机部件
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/47">高空作业平台
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/163">高空作业平台部件
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/48">剪式搬运车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/164">剪式搬运车部件
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/49">静音车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/165">静音车部件
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/50">平台车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/166">平台车部件
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/51">行李车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/167">行李车部件
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/52">油桶车
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/168">油桶车部件
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/53">叉车载人平台部件
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/169">叉车载人平台部件
+           </a></li>
+         </ul>
+
+         <h2><a href="/gallery/54">其他车型
+         </a></h2>
+         <ul class="cf">
+           <li><a href="/gallery/170">电瓶部件
+           </a></li>
+           <li><a href="/gallery/171">电子称部件
+           </a></li>
+           <li><a href="/gallery/172">工具部件
+           </a></li>
+           <li><a href="/gallery/173">货叉部件
+           </a></li>
+           <li><a href="/gallery/174">液压密封件
+           </a></li>
+           <li><a href="/gallery/176">其他部件
+           </a></li>
+         </ul>
+
+
+       </div>
+
+     </div>    </div>
+ </div>
+ <div class="item btnone">
+   <div class="product">
+     <a href="/gallery/11" >劳务类
+     </a>
+     <s style="display: block;"></s> </div>
+   <div class="product-wrap  show_10" style="display: none">
+     <div class="cf">
+       <div class="fl wd252 pr20">
+
+       </div>
+
+     </div>    </div>
+ </div>
+ <div class="item btnone">
+   <div class="product">
+     <a href="/gallery/12" >租赁设备
+     </a>
+     <s style="display: block;"></s> </div>
+   <div class="product-wrap  show_11" style="display: none">
+     <div class="cf">
+       <div class="fl wd252 pr20">
+
+       </div>
+
+     </div>    </div>
+ </div>
+ <div class="item btnone">
+   <div class="product">
+     <a href="/gallery/13" >其他
+     </a>
+     <s style="display: block;"></s> </div>
+   <div class="product-wrap  show_12" style="display: none">
+     <div class="cf">
+       <div class="fl wd252 pr20">
+
+       </div>
+
+     </div>    </div>
+ </div>
+ </div>
+

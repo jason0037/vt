@@ -26,9 +26,85 @@
       background: url(http://misc.360buyimg.com/myjd/skin/2014/i/cicon.png) 0 0 no-repeat;
   }
 
+  .showstar ul,.showstar span  .star ul,.star span{float:left;display:inline;height:19px;line-height:19px;}
+  .showstar ul,  .star ul{margin:0 10px;}
+  .showstar li, .star li{float:left;width:24px;cursor:pointer;text-indent:-9999px;background:url(/assets/cheuks/star.png) no-repeat;}
+  .showstar strong .star strong{color:#f60;padding-left:10px;}
+  .showstar li.on, .star li.on{background-position:0 -28px;}
+
   </style>
 <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
 <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $(".star .small-10 ul ").each(function(){
+            var aLi = $(this).children("li");
+             var thises=$(this);
+            var i = iScore = iStar = 0;
+            var aMsg = [
+                "很不满意|差得太离谱，与卖家描述的严重不符，非常不满",
+                "不满意|部分有破损，与卖家描述的不符，不满意",
+                "一般|质量一般，没有卖家描述的那么好",
+                "满意|质量不错，与卖家描述的基本一致，还是挺满意的",
+                "非常满意|质量非常好，与卖家描述的完全一致，非常满意"
+            ]
+
+            for (i = 1; i <= aLi.length; i++){
+                aLi[i - 1].index = i;
+
+                //鼠标移过显示分数
+                aLi[i - 1].onmouseover = function (){
+                    fnPoint(this.index);
+
+                    //浮动层显示
+//                oP.style.display = "block";
+                    //计算浮动层位置
+//                oP.style.left = oUl.offsetLeft + this.index * this.offsetWidth - 104 + "px";
+                    //匹配浮动层文字内容
+//                oP.innerHTML = "<em><b>" + this.index + "</b> 分 " + aMsg[this.index - 1].match(/(.+)\|/)[1] + "</em>" + aMsg[this.index - 1].match(/\|(.+)/)[1]
+                };
+
+                //鼠标离开后恢复上次评分
+                aLi[i - 1].onmouseout = function (){
+                    fnPoint();
+                    //关闭浮动层
+//                oP.style.display = "none"
+                };
+
+                //点击后进行评分处理
+                aLi[i - 1].onclick = function (){
+                    iStar = this.index;
+
+//                oP.style.display = "none";
+//                oSpan.innerHTML = "<strong>" + (this.index) + " 分</strong> (" + aMsg[this.index - 1].match(/\|(.+)/)[1] + ")"
+
+                }
+            }
+
+            //评分处理
+            function fnPoint(iArg){
+                //分数赋值
+
+                iScore = iArg || iStar;
+                for (i = 0; i < aLi.length; i++) aLi[i].className = i < iScore ? "on" : "";
+               thises.children("#comment_degree").val(iScore);
+
+            }
+
+
+        })
+        //显示评论星星
+        $(".showstar .small-10 ul").each(function(){
+            var aLi = $(this).children("li");
+           var iscore=$(this).children(".degree").val();
+            for (i = 0; i < aLi.length; i++) aLi[i].className = i < iscore ? "on" : "";
+        })
+
+        })
+
+
+</script>
 <div style="margin: 10px;padding: 10px">
 <div class="row">
   <div class="title">
@@ -49,12 +125,6 @@
          </thead>
 
       </table>
-
-
-
-
-
-
 
   <dl class="accordion dl"style="width: 100%;" data-accordion>
        <% @order.order_items.each do |order_item|%>
@@ -77,19 +147,36 @@
         <div class="box-t"></div>
         <%if Ecstore::Comment.where(:order_id=>order_item.order_id,:commentable_id=>Ecstore::Good.find(Ecstore::Product.find_by_bn(order_item.bn).goods_id).goods_id).first%>
             <%@comment_text=Ecstore::Comment.where(:order_id=>order_item.order_id,:commentable_id=>Ecstore::Good.find(Ecstore::Product.find_by_bn(order_item.bn).goods_id).goods_id).first%>
+            <div class="row showstar" >
+              <div class="small-2 columns">
+                <label for="right-label" class="right inline">满意度</label>
+              </div>
 
-            <!--<div class="row">-->
-              <!--<div class="small-8 columns">-->
-                <!--<div class="row">-->
-                  <!--<div class="small-3 columns">-->
-                    <!--<label for="right-label" class="right inline">标题</label>-->
-                  <!--</div>-->
-                  <!--<div class="small-9 columns">-->
-                   <!--<span> aa</span>-->
-                  <!--</div>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
+              <div class="small-10 columns">
+                <ul>
+                  <input type="hidden" class="degree" value="<%=@comment_text.degree%>">
+                  <li><a href="javascript:;">1</a></li>
+                  <li><a href="javascript:;">2</a></li>
+                  <li><a href="javascript:;">3</a></li>
+                  <li><a href="javascript:;">4</a></li>
+                  <li><a href="javascript:;">5</a></li>
+                </ul>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="small-8 columns">
+                <div class="row">
+                  <div class="small-3 columns">
+                    <label for="right-label" class="right inline">标题</label>
+                  </div>
+                  <div class="small-9 columns">
+                    <%=@comment_text.title%>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="small-8 columns">
                 <div class="row">
@@ -115,19 +202,41 @@
 
 
 
+                    <div class="row star" >
+                      <div class="small-2 columns">
+                        <label for="right-label" class="right inline">满意度</label>
+                      </div>
+                      <div class="small-10 columns">
+                        <ul>
+                          <%=f.hidden_field :degree%>
+                          <li><a href="javascript:;">1</a></li>
+                          <li><a href="javascript:;">2</a></li>
+                          <li><a href="javascript:;">3</a></li>
+                          <li><a href="javascript:;">4</a></li>
+                          <li><a href="javascript:;">5</a></li>
+                        </ul>
+                      </div>
 
-                <!--<div class="row">-->
-            <!--<div class="small-8 columns">-->
-              <!--<div class="row">-->
-                <!--<div class="small-3 columns">-->
-                  <!--<label for="right-label" class="right inline">标题</label>-->
-                <!--</div>-->
-                <!--<div class="small-9 columns">-->
-                  <!--<input type="text" id="right-label" placeholder="请描述下主题">-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
+                    </div>
+
+
+
+
+
+                <div class="row">
+            <div class="small-8 columns">
+              <div class="row">
+                <div class="small-3 columns">
+                  <label for="right-label" class="right inline">标题</label>
+                </div>
+                <div class="small-9 columns">
+
+                  <%=f.text_field :title , :placeholder=>"请描述下主题"%>
+
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="small-8 columns">
               <div class="row">
