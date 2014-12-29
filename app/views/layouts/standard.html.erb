@@ -180,13 +180,14 @@
             <h1><img src="http://weishop.cheuks.com/img/cheuks_logo.png"></h1>
         </div>
         <div class="large-6 large-offset-2 medium-6 columns right  padding-top-20">
-            <form>
-                <div class="row  " >
+            <form accept-charset="UTF-8" action="/search" method="get">           
+                <div class="row" >
                     <div class="large-6 large-offset-4 small-8 columns">
-                        <input type="text" />
+                        <input type="text" name="q" placeholder="请输入搜索关键字" 
+                        value="<%= controller_name=="search" ? params[:q] : Ecstore::Config.get(:search_key)%>">
                     </div>
                     <div class="large-2 small-4 columns">
-                        <a href="#" class="postfix button expand">Search</a>
+                      <button type="submit" class="postfix button expand">搜索</button>
                     </div>
                 </div>
             </form>
@@ -376,9 +377,22 @@
       </div>
     </div>
 
+<div class="large-12 columns">
+      <div class="row collapse prefix-radius">
+        <div class="small-3 columns" style="text-align:center">
+       <span class="prefix">  <i class=" fi-lock"></i> </span>
+        </div>
+        <div class="small-9 columns">
+        <span><%=text_field_tag :captcha,nil,:style=>"width:50%",:placeholder=>"验证码"%></span><span id="captcha"><%= captcha_tag %></span> 
+           
+        <% if request.post? %>
+          <p>验证码<%= valid_captcha?(params[:captcha]) ? '正确' : '错误' %> </p>
+        <% end %>
+        </div>
+      </div>
+    </div>
 
-
-
+ 
 
 
 <div style="display:none">
@@ -396,7 +410,7 @@
        <div class="row">
 
         <div class="small-12 columns">
-           <a href="#signup" data-reveal-id="login_iframe" class="button secondary    " style="width:100%" >  登陆</a>
+           <a href="#signup" data-reveal-id="login_iframe" class="button secondary    " style="width:100%" >  登录</a>
          </div>
 
     </div>

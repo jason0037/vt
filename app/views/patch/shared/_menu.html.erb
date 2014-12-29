@@ -1,53 +1,52 @@
 
 <dl class="accordion" data-accordion>
   <dd class="accordion-navigation">
-    <a class="title" href="#panel1b">交易管理</a>
-
+    <a class="title" href="/member">账户中心</a>
     <ul id="panel1b" class="side-nav   active">
-
-      <li>  <%=link_to "我的订单",orders_member_path%>
-      </li>
       <li><%=link_to "我的优惠券",coupons_member_path %> </li>
-
       <% if cookies[:MLV] == "10" %>
           <li>  <%=link_to "我的商品",goods_member_path%></li>
       <%end%>
-
       <li>	<%=link_to "我的预存款",advance_member_path %></li>
-
-      <!--<li>	<a href="/member/comments">待评论<%=@user.orders.where(:pay_status=>'1',:status=>'finish').size%></a></li>-->
     </ul>
-
-
+  </dd>
+  <dd class="accordion-navigation">
+    <a class="title" href="#panel1b">订单中心</a>
+    <ul id="panel1b" class="side-nav   active">
+      <li>  <%=link_to "我的订单",orders_member_path%></li>
+      <!--<li>  <a href="/member/comments">待评论<%=@user.orders.where(:pay_status=>'1',:status=>'finish').size%></a></li>-->
+    </ul>
   </dd>
   <dd class="accordion-navigation">
     <a class="title" href="#panel2b">用户信息管理</a>
-
     <ul id="panel2b" class="side-nav  active">
-
-      <li>  <%=link_to "用户信息",profile_path%>
-      </li>
+      <li>  <%=link_to "用户信息",profile_path%></li>
       <li> <%=link_to "账户安全",validation_path %> </li>
-
       <li>  <%=link_to "修改密码",password_profile_path%></li>
-
       <li>  <%=link_to "收货地址",member_addrs_path%></li>
       <li>	 <%=link_to "我的收藏",favorites_member_path %></li>
-
     </ul>
 
   </dd>
+<dd class="accordion-navigation">
+  <a class="title" href="#panel4b">活动订阅</a>
+  <ul id="panel4b" class="side-nav  active">
+    <li><a href="/events">活动报名</a></li>
+    <li> <%=link_to "消息订阅",subscribe_member_path%></li>
 
-  <!--<dd class="accordion-navigation">-->
-    <!--<a class="title" href="#panel4b">售后服务</a>-->
-    <!--<ul id="panel4b" class="side-nav  active">-->
-      <!--<li><a href="/pages/zxzf">换货流程</a></li>-->
-      <!--<li><a href="/pages/yjsh" >退货流程</a></li>-->
-      <!--<li><a href="/pages/kdsh" >售后流程</a></li>-->
-      <!--<li><a href="/pages/hdfk" >售后政策</a></li>-->
+  </ul>
+</dd>
+<dd class="accordion-navigation">
+  <a class="title" href="#panel4b">售后服务</a>
+  <ul id="panel4b" class="side-nav  active">
+    <li><a href="/pages/zxzf">换货流程</a></li>
+    <li><a href="/pages/yjsh" >退货流程</a></li>
+    <li><a href="/pages/kdsh" >售后流程</a></li>
+    <li><a href="/pages/hdfk" >售后政策</a></li>
 
-    <!--</ul>-->
-  <!--</dd>-->
+  </ul>
+</dd>
+
 </dl>
 
 

@@ -60,6 +60,7 @@ gem "redis-namespace"
 
 gem 'rest-client'
 gem 'httpclient'
+gem 'easy_captcha'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

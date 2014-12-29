@@ -22,10 +22,10 @@ class Store::SearchController < ApplicationController
 		@goods = Ecstore::Good.selling.order(order)
 
 		@splits.each do |key|
-			@goods = @goods.joins(:brand).where("name like :key or brand_name like :key",:key=>"%#{key}%")
+			@goods = @goods.where("name like :key or convert(bn,char(20)) like :key",:key=>"%#{key}%")
 		end
 
-		@goods = @goods.includes(:brand).paginate(:per_page=>per_page,:page=>page)
+		@goods = @goods.paginate(:per_page=>per_page,:page=>page)
 	end
 
 end

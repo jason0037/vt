@@ -34,6 +34,7 @@ module Admin
         @member = Ecstore::Member.find(params[:id])
         @member.mobile = params[:ecstore_member][:mobile]
         @member.email = params[:ecstore_member][:email]
+        @member.invoicing_qualification = params[:ecstore_member][:invoicing_qualification]
         @member.member_lv_id = params[:ecstore_member][:member_lv_id]
         if @member.advance != params[:ecstore_member][:advance].to_i
           @adv_log ||= Logger.new('log/adv.log')

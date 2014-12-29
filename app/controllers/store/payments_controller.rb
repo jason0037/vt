@@ -30,7 +30,7 @@ class Store::PaymentsController < ApplicationController
 			payment.pay_ver = '1.0'
 			payment.paycost = 0
 
-			payment.account = 'TRADE-V | 跨境贸易 一键直达'
+			payment.account = 'Cheuks | 卓仕工业品'
 			payment.member_id = payment.op_id = @user.member_id
 			payment.pay_account = @user.login_name
 			payment.ip = request.remote_ip
@@ -80,7 +80,7 @@ class Store::PaymentsController < ApplicationController
 				pay.pay_id = @payment.payment_id
 				pay.pay_amount = @payment.cur_money.to_f
 				pay.pay_time = Time.now
-				pay.subject = "贸威订单(#{order_id})"
+				pay.subject = "Cheuks订单(#{order_id})"
 				pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
         pay.openid = @user.account.login_name
         pay.spbill_create_ip = request.remote_ip
@@ -175,12 +175,10 @@ class Store::PaymentsController < ApplicationController
 			response =  result
 		end
 		
-		#redirect_to detail_order_path(@payment.pay_bill.order)
-    if @order.supplier_id==98
-      redirect_to  "/orders/wuliu_show_order?id=#{@payment.pay_bill.order.order_id}&supplier_id=#{@order.supplier_id}"
-    else
-    redirect_to  "/orders/mobile_show_order?id=#{@payment.pay_bill.order.order_id}&supplier_id=#{@order.supplier_id}"
-      end
+		redirect_to detail_order_path(@payment.pay_bill.order)
+    
+    #redirect_to  "/orders/mobile_show_order?id=#{@payment.pay_bill.order.order_id}&supplier_id=#{@order.supplier_id}"
+    
 	end
 
 	def test_notify
@@ -198,30 +196,12 @@ class Store::PaymentsController < ApplicationController
 				pay.fields = {}
 
 				time = Time.now
-        if adapter == "ips"
-          # ===Ips
-          pay.fields["Mer_code"] = "000015"
-          pay.fields["Billno"] = @payment.payment_id,
-          pay.fields["Amount"] = @payment.cur_money.round(2)
-          pay.fields["Date"] = time.strftime("%Y-%m-%d")
-          pay.fields["Currency_Type"] = "RMB"
-          pay.fields["Gateway_Type"] = "01"
-          pay.fields["Lang"] = "GB"
-          pay.fields["Merchanturl"] = ""
-          pay.fields["FailUrl"] = @payment.payment_id
-          pay.fields["ErrorUrl"] = ""
-          pay.fields["Attach"] = ""
-          pay.fields["OrderEncodeType"] = "5"
-          pay.fields["RetEncodeType"] = "17"
-          pay.fields["Rettype"] = "1"
-          pay.fields["ServerUrl"] = ""
-          pay.fields["SignMD5"] = ""
-        end
+       
 				if adapter == "alipay"
 					# ===Alipay
 					pay.fields["discount"] = "0.00"
 					pay.fields["payment_type"] = "1"
-					pay.fields["subject"] = "摩登客订单(#{order_id})"
+					pay.fields["subject"] = "Cheuks订单(#{order_id})"
 					pay.fields["trade_no"] = "2013091823959388"
 					pay.fields["buyer_email"] = "596849181@qq.com"
 					pay.fields["gmt_create"] = "2013-08-14 19:08:03"
@@ -241,29 +221,7 @@ class Store::PaymentsController < ApplicationController
 					pay.fields["use_coupon"] = "N"
 					pay.fields["sign_type"] = "MD5"
 				end
-
-				if adapter == "99bill"
-					pay.sorter = []
-					pay.fields = {
-						"merchantAcctId"=>"1002214092801",
-						"version"=>"v2.0",
-						"language"=>"1",
-						"signType"=>"1",
-						"payType"=>"10",
-						"bankId"=>"BOC",
-						"orderId"=>@payment.payment_id,
-						"orderTime"=>(time - 5.seconds).strftime("%Y%m%d%H%M%S"),
-						"orderAmount"=>(@payment.cur_money * 100).to_i,
-						"dealId"=>(0..9).collect{ rand(10) }.join,
-						"bankDealId"=>"130901261143",
-						"dealTime"=>time.strftime("%Y%m%d%H%M%S"),
-						"payAmount"=>(@payment.cur_money * 100).to_i,
-						"fee"=>(@payment.cur_money * 100 * 0.004).to_i,
-						"ext1"=>"",
-						"ext2"=>"",
-						"payResult"=>"10",
-						"errCode"=>""}
-				end
+				
 				if adapter == "bcom"
 					# ===Bcom
 					# 301310053119675|13786093763144|929.00|CNY|20130908| |20130908|111153|ABFF516B|1|5.57|2| | |119.165.52.9|www.i-modec.com| |

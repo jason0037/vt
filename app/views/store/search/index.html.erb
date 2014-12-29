@@ -7,7 +7,7 @@
 <%end%>
 
 <%if @goods.size > 0%>
-	<%=render "store/goods/quality_products"%>
+	<%=render "store/goods/list_goods"%>
 <%else%>
 	<p>抱歉，没有搜索到与 “<span class="keywords"><%=params[:q]%></span>” 相关商品。</p>
 <%end%>

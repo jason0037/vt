@@ -5,6 +5,8 @@ Modengke::Application.routes.draw do
 
 
 
+  captcha_route
+
   get "rongda/index"
 
 
@@ -594,6 +596,7 @@ Modengke::Application.routes.draw do
         get 'inventorys'
         get 'inventorylog'
         post 'export_inventory'
+        get 'subscribe'
 
       end
     end
