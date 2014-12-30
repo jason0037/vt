@@ -30,18 +30,17 @@
       <th >收货人</th>
       <th >订单金额</th>
       <th width="10%">订单状态 </th>
-      <th >时间 </th>
+      <th>时间 </th>
       <th width="20%">操作 </th>
     </tr>
     </thead>
     <%@orders.each  do |order_item|%>
        <tbody style="background: #d0cfcf"><td colspan="6">
-                <span class="">订单编号:&nbsp;&nbsp;&nbsp; <a name="" id="" target="_blank" href=""><%=order_item.order_id%></a></span><span >&nbsp; 卓仕</span>
-                    <span class="">  <a class="" onclick="" href="#" title="联系客服"></a>  </span>  </td></tbody>
+         <span class="">订单编号:&nbsp;&nbsp;&nbsp; <a name="" id="" target="_blank" href=""><%=order_item.order_id%></a></span>
+         <span class="">  <a class="" onclick="" href="#" title="联系客服"></a>  </span>  </td></tbody>
  <tbody>
     <tr>
           <td width="25%">
-
             <%order_item.order_items.each_with_index do |order,index|%>
                 <%
                    link_title = order.name
@@ -58,13 +57,22 @@
           <td><%=order_item.ship_name%></td>
           <td>&yen;<%=order_item.final_amount.to_i%><br><br><%=order_item.payment_name%></td>
            <td><%=order_item.status_text%>
+           <%order_item.tegs.each do |teg|%>
+      <br><span class="teg" style="background-color:<%=teg.tag_bgcolor%>;color:<%=teg.tag_fgcolor%>">
+        <%=teg.tag_name%>
+      </span>
+    <%end%>
              <%unless order_item.status == 'active' && order_item.pay_status=='0'%>
-             <br>   <br><span><a href="#">跟踪</a> </span> <%end%>
+             <br>   <br><span><a href="#">物流跟踪</a> </span> <%end%>
            </td>
-             <%order_item.order_logs.order("alttime asc").each do |log|%>
-      <td><%=log.created_at%> </td>
-          <%end%>
+           <td>
+             <%log=order_item.order_logs.order("alttime asc").first%>
+      <%=log.created_at%> 
+          </td>
       <td style="text-align: center">
+      <a href="#" class="button secondary small again" style="margin:0;
+                    padding: 3px 15px 4px;" ><i class="fi-shopping-cart  "></i>再次购买</a>
+            <input type="hidden" value="<%=order_item.order_id%>" class="order_id">
        <%if order_item.status == 'active' && order_item.pay_status=='0'%>
             <%=link_to "付款",order_path(order_item),:target=>"_blank",:class=>"small button",:style=>"margin:0;
 padding: 3px 15px 4px;" %>
@@ -74,12 +82,10 @@ padding: 3px 15px 4px;" %>
       <%elsif order_item.status == 'finish' && order_item.pay_status=='1'%>
             <span><%=link_to "查看",detail_order_path(order_item),:target=>"_blank"%></span>&nbsp;|&nbsp;
             <span><a href="#">删除</a></span>&nbsp;|&nbsp;
-            <span><a href="/member/post_sale?order_id=<%=order_item.order_id%>&tag=">申请换货</a></span>&nbsp;|&nbsp;
-            <span><a href="/member/comments?order_id=<%=order_item.order_id%>">申请返修</a></span>&nbsp;|&nbsp;
+            <span><a href="/member/post_sale?order_id=<%=order_item.order_id%>&tag=申请换货">申请换货</a></span>&nbsp;|&nbsp;
+            <span><a href="/member/post_sale?order_id=<%=order_item.order_id%>&tag=申请返修">申请返修</a></span>&nbsp;|&nbsp;
             <span><a href="/member/comments?order_id=<%=order_item.order_id%>">评价晒单</a></span>&nbsp;|&nbsp;             
-            <a href="#" class="button secondary small again" style="margin:0;
-                    padding: 3px 15px 4px;" ><i class="fi-shopping-cart  "></i>再次购买</a>
-            <input type="hidden" value="<%=order_item.order_id%>" class="order_id">
+            
                </td>  </tr>
 
     <%end%>
