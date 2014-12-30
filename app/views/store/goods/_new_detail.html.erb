@@ -17,31 +17,25 @@
   <div class="large-12 medium-12 columns">
     <span style="border: 4px solid #ff0000"></span><span style="margin-left: 10px;font-size: 20px;font-weight: bold">技术参数</span>
       <br>
-    <%product.each do |pro|%>
+    <%@product.each do |product|%>
     <table width="100%">
+    <caption><strong><%=product.name%></strong></caption>
 
       <tr >
         <td  align="center" bgcolor="#FF0000"><span style="color: rgb(255, 255, 255); "><strong>       项目/型号</strong></span></td>
+        <td colspan="2" align="center" bgcolor="#FF0000"><span style="color: rgb(255, 255, 255); "><strong>参数</strong></span></td>        
         <td  bgcolor="#FF0000"><span style="color: rgb(255, 255, 255); "><strong>&nbsp; 单位　</strong></span></td>
-        <td colspan="2" align="center" bgcolor="#FF0000"><span style="color: rgb(255, 255, 255); "><strong><%=pro.name%></strong></span></td>
       </tr>
-
-       <tr>
-         <%spec=(pro.detail_spec).%>
-         <%spec.each_key  do |i|  %>
-
-         <td>  <%=i%>  </td>
-         <%end%>
-
-
-
-
-
-
-
-
+<% if product.detail_spec%>
+         <%spec=JSON.parse(product.detail_spec)%>
+         <%spec.each_with_index  do |value, index|  %>
+       <tr>       
+         <td><%=value[0]%>  </td>
+         <td><%=value[1]%><td>
+         <td>&nbsp;</td>
        </tr>
 
-
+  <%end%>
+      <%end%>
     </table>   <%end%>
   </div>  </div>
