@@ -13,6 +13,16 @@ class UsersController < ApplicationController
 
   
   def create
+
+    if request.post?
+      if captcha_valid? params[:captcha]
+        #redirect_to :root, :notice => "valid captcha"
+      else
+        #flash[:alert] = "invalid captcha"
+        render "error"
+      end
+    end
+
     if  params[:supplier_id]
       supplier_id = params[:supplier_id]
     else
@@ -33,9 +43,6 @@ class UsersController < ApplicationController
       sign_in(@account)
       @return_url=params[:return_url]
       render "create"
-
-
-
     else
       render "error"
     end
