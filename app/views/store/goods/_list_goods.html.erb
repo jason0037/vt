@@ -35,7 +35,7 @@
 	<li>
 		<div class="good-pic good-<%=good.goods_id%>">
 			<%=link_to good_path(good.bn), :target=>"_blank" do %>
-				<%=image_tag good.list_default_pic,:alt=>good.name,:styele=>"width:197px;"%>
+				<%=image_tag good.list_default_pic,:alt=>good.name,:style=>"width:197px;",:onerror=>"javascript:this.src='/assets/nopic.png';"%>
 				<%#=image_tag good.list_hover_pic,:alt=>good.name,:class=>"hover"%>
 			<%end%>
 		</div>
