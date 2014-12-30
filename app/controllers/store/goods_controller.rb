@@ -82,8 +82,12 @@ class Store::GoodsController < ApplicationController
 
     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
 
-    return render "not_find_good",:layout=>"new_store" unless @good
-
+    return render "not_find_good",:layout=>"standard" unless @good
+    @ghistory=Ecstore::Ghistory.new do  |gh|
+      gh.goods_id =@good.goods_id
+      gh.member_id=@user.member_id if @user
+       gh.ip= request.remote_ip
+    end.save
     tag_name = params[:tag]
     @tag = Ecstore::TagName.find_by_tag_name(tag_name)
 

@@ -31,12 +31,12 @@
 		<%=f.select :weight,weight_options,{:include_blank=>"请选择"}%>
 	</div>
 
-	<div class="field">
-		<label>鞋码:</label>
-		<%=f.select :shoesize,shoe_size_options,{:include_blank=>"请选择"}%>
-	</div>
+	<!--<div class="field">-->
+		<!--<label>鞋码:</label>-->
+		<!--<%#=f.select :shoesize,shoe_size_options,{:include_blank=>"请选择"}%>-->
+	<!--</div>-->
 
 	<div class="actions">
-		<%=f.submit "保存",:class=>"btn"%>
+		<%=f.submit "保存",:class=>"button tiny" ,:style=>"margin-left:10%"%>
 	</div>
 <%end%>

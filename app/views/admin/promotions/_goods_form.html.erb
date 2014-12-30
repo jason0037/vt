@@ -3,7 +3,8 @@
 <div class="control-group">
     <%=f.label :name, "名称*",:class=>"control-label"%>
     <div class="controls">
-      <%=f.text_field :name%>
+      <%=f.select :name, Ecstore::GoodCat.where(:parent_id=>"1").collect {|cat| [cat.cat_name,cat.code] },{:include_blank=>"请选择"},{:class=>"span3"} %>
+
     </div>
 </div>
 
@@ -262,6 +263,8 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
+
+
         $(".specify-goods").click(function(){
             window.open('/admin/goods/select_goods?goods_type=normal&target=specify_goods&field_name=bns', 'newwindow', 'height=600, width=900, top=400, left=600, toolbar=no, menubar=no, scrollbars=no,resizable=yes,location=no, status=no');
         });

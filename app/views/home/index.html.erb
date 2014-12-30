@@ -154,7 +154,7 @@
                   <a href="#" class="button expand add-to-cart">加入购物车</a>
 
               <%end%>
-              <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
+              <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"onerror="javascript:this.src='/assets/.jpg';" alt="pic"></a>
             </div>
 
             <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
@@ -170,7 +170,7 @@
         <li class="item-wrapper">
         <div class="img-wrapper">
           <a class="button expand add-to-cart">加入购物车</a>
-          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
+          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg" onerror="javascript:this.src='/assets/.jpg';" alt="pic"></a>
         </div>
 
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
@@ -186,7 +186,7 @@
          <li class="item-wrapper">
         <div class="img-wrapper">
           <a class="button expand add-to-cart">加入购物车</a>
-          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
+          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"onerror="javascript:this.src='/assets/.jpg';" alt="pic"></a>
         </div>
 
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
@@ -202,7 +202,7 @@
          <li class="item-wrapper">
         <div class="img-wrapper">
           <a class="button expand add-to-cart">加入购物车</a>
-          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
+          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"onerror="javascript:this.src='/assets/.jpg';" alt="pic"></a>
         </div>
 
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
@@ -222,7 +222,7 @@
     <div id="month_champion" class="row">
             <div class="large-2 columns panel">
           <div>
-              <a href="/products/a0010003"><img src="img/recommend_left.jpg" style="width:100%"></a>
+              <a href="/products/a0010003"><img src="img/recommend_left.jpg"onerror="javascript:this.src='/assets/.jpg';" alt="pic" style="width:100%"></a>
           </div>
         </div>
         <div class="large-10 columns panel">
@@ -230,7 +230,7 @@
         <li class="item-wrapper">
         <div class="img-wrapper">
           <a class="button expand add-to-cart">加入购物车</a>
-          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
+          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"onerror="javascript:this.src='/assets/.jpg';" alt="pic"></a>
         </div>
 
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
@@ -246,7 +246,7 @@
         <li class="item-wrapper">
         <div class="img-wrapper">
           <a class="button expand add-to-cart">加入购物车</a>
-          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
+          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"onerror="javascript:this.src='/assets/.jpg';" alt="pic"></a>
         </div>
 
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
@@ -262,7 +262,7 @@
         <li class="item-wrapper">
         <div class="img-wrapper">
           <a class="button expand add-to-cart">加入购物车</a>
-          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
+          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"onerror="javascript:this.src='/assets/.jpg';" alt="pic"></a>
         </div>
 
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
@@ -278,7 +278,7 @@
          <li class="item-wrapper">
         <div class="img-wrapper">
           <a class="button expand add-to-cart">加入购物车</a>
-          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
+          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg "onerror="javascript:this.src='/assets/.jpg';" alt="pic"></a>
         </div>
 
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
@@ -294,7 +294,7 @@
          <li class="item-wrapper">
         <div class="img-wrapper">
           <a class="button expand add-to-cart">加入购物车</a>
-          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg"></a>
+          <a href="/products/a014162"><img src="/images/a01/a014162_m.jpg" onerror="javascript:this.src='/assets/.jpg';" alt="pic"></a>
         </div>
 
           <a href="/products/a014162"><h3>手动搬运车 AC-20</h3></a>
@@ -311,7 +311,7 @@
         </div>
     </div>
 
-    <!--产品列表 -->
+    <!--产品列表
      <div class="row">
         <div class="large-12 columns">
             <h4><span>1</span>F 搬运车</h4>
@@ -714,6 +714,63 @@
              <a href="#"><img src="img/floor_product_right.jpg"></a>
         </div>
     </div>
+      -->
+<% if @promotions.nil?%>
+<%@promotions.each  do |pro|%>
+<div class="row">
+  <div class="large-12 columns">
+    <h4><span><%=pro.priority%></span>F <%=pro.name%></h4>
+  </div>
+</div>
+<div class="row">
+  <div class="large-2 columns panel">
+    <ul class="clearing-thumbs" >
+      <li>
+        <ul class="side-nav">
+          <% Ecstore::GoodCat.where(:parent_id=>Ecstore::GoodCat.find_by_cat_name(pro.name).cat_id).limit(4).each  do |godes|%>
+              <li><a href="#"><%=godes.cat_name%></li>  <%end%>
+        </ul>
+        <img src="img/floor_left.jpg">
+      </li>
+    </ul>
+  </div>
+  <div class="columns large-8">
+
+    <ul class="clearing-thumbs large-block-grid-4">
+      <%pro.field_vals.split(",")[0].each do |p|%>
+
+
+      <li class="caption" >
+
+        <a href="/products/<%=p%>" class=""><img src="<%=Ecstore::Good.find_by_bn(p).medium_pic%>" onerror="javascript:this.src='/assets/.jpg';" alt="pic"></a>
+        <dd> <span class="bg"><a href="javascript:void(0);" ><%=Ecstore::Good.find_by_bn(p).name%></a></span>
+          <div class="texts">
+            <p>额定载荷(kg)：3000 </p><p>操作方式：坐驾 </p>
+
+                        <span class="fbol ">
+
+                        <h6>产品特点：</h6>
+                        <p class="text_in24">产品特点：
+                          1、动力系统
+                          发动机为美国CumminsB3.3系列柴油机，气缸总容积3300cc，额定...
+                        </p>
+                        </span>
+          </div>
+        </dd>
+      <%end%>
+      </li>
+<%end%>
+<%end%>
+
+
+
+    </ul>
+  </div>
+  <div class="columns large-2">
+    <a href="#"><img src="img/floor_product_right.jpg"></a>
+  </div>
+</div>
+
 
     <script>
 

@@ -3,7 +3,7 @@
   <%if params[:type]=="order" || params[:type].nil?%>
   订单促销
   <%else%>
-  商品促销
+    楼层管理
   <%end%>
 </h4>
 <hr>
@@ -11,14 +11,14 @@
 
 <h1>
   <%=link_to "添加订单促销",new_admin_promotion_path,:class=>"btn btn-primary right" if params[:type]=="order" || params[:type].nil?%>
-  <%=link_to "添加商品促销",new_admin_promotion_path(:type=>"goods"),:class=>"btn btn-primary right" if params[:type] == 'goods'%>
+  <%=link_to "添加楼层",new_admin_promotion_path(:type=>"goods"),:class=>"btn btn-primary right" if params[:type] == 'goods'%>
 </h1>
 
 
 
         <table class="table table-bordered table-hover">
           <tr>
-            <th>促销名称</th>
+            <th>楼层名</th>
             <th>开启状态</th>
             <th>是否排它</th>
             <th>有效期</th>

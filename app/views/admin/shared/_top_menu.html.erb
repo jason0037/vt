@@ -153,14 +153,14 @@
               current_admin.has_right_of("user_coupons","index")%>
             <li class="<%='active' if %w(promotions new_coupons user_coupons).include?(controller_name)%>">
                 <%=link_to admin_promotions_path,:class=>"dropdown-toggle" do %>
-                  促销管理 <b class="caret" style="border-top-color: #fff;border-bottom-color: #fff; margin-top:7px;margin-left:2px;"></b>
+                  楼层管理+促销管理 <b class="caret" style="border-top-color: #fff;border-bottom-color: #fff; margin-top:7px;margin-left:2px;"></b>
                 <%end%>
                 <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
                   <li>
                       <%=link_to "订单促销",admin_promotions_path(:type=>"order") if current_admin.has_right_of("promotions","index")%>
                   </li>
                   <li>
-                      <%=link_to "商品促销",admin_promotions_path(:type=>"goods") if current_admin.has_right_of("promotions","index")%>
+                      <%=link_to "首页楼层管理",admin_promotions_path(:type=>"goods") if current_admin.has_right_of("promotions","index")%>
                   </li>
                   <li class="divider"></li>
                   <li>

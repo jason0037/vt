@@ -1,9 +1,27 @@
+<style>
+    .field_span{
+        margin-left: 10px;
+    }
+    #basic_form{
+        font-size: 13px;
+        width: 100%;
+
+    }
+
+    #basic_form .field  {
+        padding: 5px 0px;
+    }
+</style>
+
 <%=form_for @user,:url=>profile_path,:method=>:put,:html=>{:id=>"basic_form"} do |f|%>
 	<%=hidden_field_tag :tab,"basic"%>
-	<div class="field">
-		<label>真实姓名:</label>
+	<div class="field" >
+		<span >真实姓名:</span>
 		<%=f.text_field :name%>
 	</div>
+
+
+
 	<div class="field">
 		<label>性别:</label>
 		<span>
@@ -18,13 +36,13 @@
 
 		<%=f.select :b_year,year_options,{:include_blank=>"请选择"}%>
 
-		
+
 		<%=select_month @user.b_month,:field_name=>:b_month,:use_month_numbers=>true,:prompt=>"请选择"%>
 		<span>月</span>
 		<%=select_day @user.b_day,:field_name=>:b_day,:prompt=>"请选择"%>
 		<span>日</span>
 
-		<span class="tip">您将会在生日当天获得一份生日礼物</span>
+		<!--<span class="tip">您将会在生日当天获得一份生日礼物</span>-->
 	</div>
 
 	<div class="field">
@@ -36,7 +54,7 @@
 		<%if @user.email_validate=='true'%>
 		<span class="tip">邮箱已认证</span>
 		<%else%>
-		<%=link_to "去验证>>","/member-sms_validate.html?tab=email",:class=>"modify",:target=>"_top"%>
+		<%#=link_to "去验证>>","/member-sms_validate.html?tab=email",:class=>"modify",:target=>"_top"%>
 		<%end%>
 	</div>
 
@@ -65,11 +83,12 @@
 		<%if @user.sms_validate=='true'%>
 		<span class="tip">手机已认证</span>
 		<%else%>
-		<%=link_to "去验证>>","/member-sms_validate.html?tab=mobile",:class=>"modify",:target=>"_top"%>
+		<%#=link_to "去验证>>","/member-sms_validate.html?tab=mobile",:class=>"modify",:target=>"_top"%>
 		<%end%>
 
 	</div>
 	<div class="actions">
-		<%=f.submit "保存",:class=>"btn"%>
+		<%=f.submit "保存",:class=>"button tiny" ,:style=>"margin-left:20%"%>
 	</div>
 <%end%>
+

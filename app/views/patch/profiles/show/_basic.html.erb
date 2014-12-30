@@ -1,8 +1,28 @@
+<style>
+  .field_span{
+      margin-left: 10px;
+  }
+  #show_basic{
+      font-size: 13px;
+      width: 100%;
+      line-height: 2;
+  }
+  #show_basic .field label {
+      margin-left: 20px;
+      margin-right: 10px;
+      width: 110px;
+      text-align: right;
+      display: inline-block;
+  }
+  #show_basic .field  {
+      padding: 5px 0px;
+  }
+</style>
 <div id="show_basic">
 	<%=hidden_field_tag :tab,"basic"%>
 	<div class="field">
 		<label>真实姓名:</label>
-		<span><%=@user.name.present? ? @user.name : "未填写"%></span>
+		<span class="field_span"><%=@user.name.present? ? @user.name : "未填写"%></span>
 	</div>
 	<div class="field">
 		<label>性别:</label>
@@ -23,7 +43,7 @@
 		<%if @user.email_validate=='true'%>
 		<span class="tip">邮箱已认证</span>
 		<%else%>
-		<%=link_to "去验证>>","/member-sms_validate.html?tab=email",:class=>"modify",:target=>"_top"%>
+		<%#=link_to "去验证>>","/member-sms_validate.html?tab=email",:class=>"modify",:target=>"_top"%>
 		<%end%>
 	</div>
 
@@ -44,15 +64,17 @@
 	<div class="field">
 		<label>手机:</label>
 		<span><%=@user.mask_mobile%></span>
-		<%=link_to "修改手机>>",edit_profile_path(:tab=>'basic',:modify=>'mobile'),:class=>"modify"%>
+		<%#=link_to "修改手机>>",edit_profile_path(:tab=>'basic',:modify=>'mobile'),:class=>"modify"%>
 		<%if @user.sms_validate=='true'%>
 		<span class="tip">手机已认证</span>
 		<%else%>
-		<%=link_to "去验证>>","/member-sms_validate.html?tab=mobile",:class=>"modify",:target=>"_top"%>
+		<%#=link_to "去验证>>","/member-sms_validate.html?tab=mobile",:class=>"modify",:target=>"_top"%>
 		<%end%>
 
 	</div>
 	<div class="actions">
-		<%=link_to "修改",edit_profile_path(:tab=>'basic'),:class=>"btn"%>
+		<%=link_to "修改",edit_profile_path(:tab=>'basic'),:class=>"button tiny" ,:style=>"margin-left:20%"%>
 	</div>
 </div>
+
+

@@ -11,6 +11,11 @@ class HomeController < ApplicationController
 		@title = "卓展集团--工业成品专家"
 
 		@home = Ecstore::Home.where(:supplier_id=>nil).last
+    @promotions = Ecstore::Promotion.where(:promotion_type=>"goods")
+
+
+
+
 	# 	if signed_in?
 	# 	   redirect_to params[:return_url] if params[:return_url].present?
 	# end
