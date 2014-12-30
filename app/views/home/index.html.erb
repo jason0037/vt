@@ -129,9 +129,9 @@
         <li class="item-wrapper  ">
         <div class="img-wrapper">
           <% unless signed_in?%>
-              <a href="#" class="button expand add-to-cart " data-reveal-id="login_iframe" >加入购物车</a>
+              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
               <%else%>
-          <a href="#" class="button expand add-to-cart">加入购物车</a>
+          <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
 
           <%end%>
           <a href="/products/10010203441"><img src="/images/a01/10010203441_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
@@ -150,9 +150,9 @@
           <li class="item-wrapper">
             <div class="img-wrapper">
               <% unless signed_in?%>
-                  <a href="#" class="button expand add-to-cart " data-reveal-id="login_iframe" >加入购物车</a>
+                  <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
               <%else%>
-                  <a href="#" class="button expand add-to-cart">加入购物车</a>
+                  <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
 
               <%end%>
               <a href="/products/10010201051"><img src="/images/a01/10010201051_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
@@ -170,7 +170,12 @@
           </li>
         <li class="item-wrapper">
         <div class="img-wrapper">
-          <a class="button expand add-to-cart">加入购物车</a>
+          <% unless signed_in?%>
+              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
+          <%else%>
+              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
+
+          <%end%>
           <a href="/products/10010201071"><img src="/images/a01/10010201071_m.jpg" onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
         </div>
           <input type="hidden"class="goods_id" value="10010201071">
@@ -186,7 +191,12 @@
         </li>
          <li class="item-wrapper">
         <div class="img-wrapper">
-          <a class="button expand add-to-cart">加入购物车</a>
+          <% unless signed_in?%>
+              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
+          <%else%>
+              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
+
+          <%end%>
           <a href="/products/10010108021"><img src="/images/a01/10010108021_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
         </div>
            <input type="hidden"class="goods_id" value="10010108021">
@@ -202,7 +212,12 @@
         </li>
          <li class="item-wrapper">
         <div class="img-wrapper">
-          <a class="button expand add-to-cart">加入购物车</a>
+          <% unless signed_in?%>
+              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
+          <%else%>
+              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
+
+          <%end%>
           <a href="/products/10010203242"><img src="/images/a01/10010203242_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
         </div>
            <input type="hidden"class="goods_id" value="10010203242">
@@ -230,7 +245,12 @@
         <ul class="clearing-thumbs large-block-grid-5 small-12">
         <li class="item-wrapper">
         <div class="img-wrapper">
-          <a class="button expand add-to-cart">加入购物车</a>
+          <% unless signed_in?%>
+              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
+          <%else%>
+              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
+
+          <%end%>
           <a href="/products/10010108025"><img src="/images/a01/10010108025_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
         </div>
           <input type="hidden"class="goods_id" value="10010108025">
@@ -246,7 +266,12 @@
         </li>
         <li class="item-wrapper">
         <div class="img-wrapper">
-          <a class="button expand add-to-cart">加入购物车</a>
+          <% unless signed_in?%>
+              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
+          <%else%>
+              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
+
+          <%end%>
           <a href="/products/10010108101"><img src="/images/a01/10010108101_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
         </div>
           <input type="hidden"class="goods_id" value="10010108101">
@@ -262,8 +287,13 @@
         </li>
         <li class="item-wrapper">
         <div class="img-wrapper">
-          <a class="button expand add-to-cart">加入购物车</a>
-          <a href="/products/10010108024"><img src="/images/a01/10010108024_b.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
+          <% unless signed_in?%>
+              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
+          <%else%>
+              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
+
+          <%end%>
+          <a href="/products/10010108024"><img src="/images/a01/10010108024_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
         </div>
           <input type="hidden"class="goods_id" value="10010108024">
           <a href="/products/10010108024"><h3>电动搬运车</h3></a>
@@ -278,7 +308,12 @@
         </li>
          <li class="item-wrapper">
         <div class="img-wrapper">
-          <a class="button expand add-to-cart">加入购物车</a>
+          <% unless signed_in?%>
+              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
+          <%else%>
+              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
+
+          <%end%>
           <a href="/products/1001010802001"><img src="/images/a01/1001010802001_m.jpg "onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
         </div>
            <input type="hidden"class="goods_id" value="1001010802001">
@@ -294,7 +329,12 @@
         </li>
          <li class="item-wrapper">
         <div class="img-wrapper">
-          <a class="button expand add-to-cart">加入购物车</a>
+          <% unless signed_in?%>
+              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
+          <%else%>
+              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
+
+          <%end%>
           <a href="/products/10010401031"><img src="/images/a01/10010401031_m.jpg" onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
         </div>
            <input type="hidden"class="goods_id" value="10010401031">
@@ -715,6 +755,14 @@
              <a href="#"><img src="img/floor_product_right.jpg"  onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
         </div>
     </div>
+
+
+
+
+
+
+
+
      <!--
 <% if @promotions.nil?%>
 <%@promotions.each  do |pro|%>
