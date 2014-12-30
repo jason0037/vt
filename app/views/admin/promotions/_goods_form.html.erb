@@ -1,14 +1,21 @@
 <%=form_for :promotion,:url=>@action_url,:method=>@method,:html=>{:class=>"form-horizontal"} do |f|%>
 <%=f.hidden_field :promotion_type,:value=>"goods"%>
 <div class="control-group">
-    <%=f.label :name, "名称*",:class=>"control-label"%>
+  <%if params[:tables]=="楼层"%>
+       </div>
+      <%=f.text_field :name ,:placeholder=>"请输入一个楼层名"%></div>
     <div class="controls">
-      <%=f.select :name, Ecstore::GoodCat.where(:parent_id=>"1").collect {|cat| [cat.cat_name,cat.code] },{:include_blank=>"请选择"},{:class=>"span3"} %>
 
-    </div>
+<%else%>
+      <%=f.label :name, "首页商品",:class=>"control-label"%>
+      <div class="controls">
+
+        <%=f.text_field :code ,:placeholder=>"请输入一个产品的ERP编号"%></div>
+  <%end%>
 </div>
 
-<div class="control-group">
+
+    <div class="control-group">
     <%=f.label :desc, "描述*",:class=>"control-label"%>
     <div class="controls">
       <%=f.text_area :desc,:rows=>3%>
@@ -31,7 +38,7 @@
 <div class="control-group">
     <%=f.label :priority, "优先级",:class=>"control-label"%>
     <div class="controls">
-      <%=f.text_field :priority,:class=>"span2",:placeholder=>"数字越大优先级越高"%>
+      <%=f.text_field :priority,:class=>"span2",:placeholder=>"数字越大优先级越高,排名要靠前"%>
     </div>
 </div>
 <div class="control-group">

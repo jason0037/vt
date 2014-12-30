@@ -2,7 +2,7 @@
 <div class="row ">
   <hr class="dashed">
   <div class="large-12 medium-12 columns">
-        <span style="border: 4px solid #ff0000"></span><span style="margin-left: 10px;font-size: 20px;font-weight: bold">商品详情</span>
+        <span style="border: 4px solid #ff0000"></span><span style="margin-left: 10px;font-size: 20px;font-weight: bold">商品详情 </span>
 
 
             <div class="good-info panel callout radius">
@@ -18,106 +18,22 @@
     <span style="border: 4px solid #ff0000"></span><span style="margin-left: 10px;font-size: 20px;font-weight: bold">技术参数</span>
       <br>
     <table width="100%">
-      <tbody>
-      <tr height="18">
-        <td width="81" height="18" bgcolor="#ff0000">
-          <p align="center"><strong><font size="2" face="Arial" color="#ffffff">型 号</font></strong></p>
-        </td>
-        <td width="38" height="18" bgcolor="#ff0000">
-          <p align="center"><strong><span style="color: rgb(255, 255, 255);">单位</span></strong></p>
-        </td>
-        <td width="99" height="18" bgcolor="#ff0000">
-          <p align="center"><strong><font size="2" face="Arial" color="#ffffff">QSJT0.5-9</font></strong></p>
-        </td>
+      <%=product.each do |pro|%>
+      <tr >
+        <td  align="center" bgcolor="#FF0000"><span style="color: rgb(255, 255, 255); "><strong>       项目/型号</strong></span></td>
+        <td  bgcolor="#FF0000"><span style="color: rgb(255, 255, 255); "><strong>&nbsp; 单位　</strong></span></td>
+        <td colspan="2" align="center" bgcolor="#FF0000"><span style="color: rgb(255, 255, 255); "><strong><%=pro.name%></strong></span></td>
       </tr>
-      <tr height="18">
-        <td width="81" height="18">
-          <p align="left"><font size="2" face="Arial">额定限载</font></p>
-        </td>
-        <td width="38" height="18">
-          <p align="center"><font size="2" face="Arial">kg</font></p>
-        </td>
-        <td width="99" height="18" x:num="500">
-          <p align="center"><font size="2" face="Arial">500</font></p>
-        </td>
-      </tr>
-      <tr height="18" bgcolor="#cccccc">
-        <td width="81" height="18">
-          <p align="left"><font size="2" face="Arial">垂直行程</font></p>
-        </td>
-        <td width="38" height="18">
-          <p align="center"><font size="2" face="Arial">mm</font></p>
-        </td>
-        <td width="99" height="18" x:num="3000">
-          <p align="center"><font size="2" face="Arial">9000</font></p>
-        </td>
-      </tr>
-      <tr height="18">
-        <td width="81" height="18">
-          <p align="left"><font size="2" face="Arial">最低高度</font></p>
-        </td>
-        <td width="38" height="18">
-          <p align="center"><font size="2" face="Arial">mm</font></p>
-        </td>
-        <td width="99" height="18" x:num="700">
-          <p align="center"><font size="2" face="Arial">1000</font></p>
-        </td>
-      </tr>
-      <tr height="18" bgcolor="#cccccc">
-        <td width="81" height="18">
-          <p align="left"><font size="2" face="Arial">最高高度</font></p>
-        </td>
-        <td width="38" height="18">
-          <p align="center"><font size="2" face="Arial">mm</font></p>
-        </td>
-        <td width="99" height="18" x:num="3700">
-          <p align="center"><font size="2" face="Arial">10000</font></p>
-        </td>
-      </tr>
-      <tr height="18">
-        <td width="81" height="18">
-          <p align="left"><font size="2" face="Arial">台面尺寸</font></p>
-        </td>
-        <td width="38" height="18">
-          <p align="center"><font size="2" face="Arial">mm</font></p>
-        </td>
-        <td width="99" height="18">
-          <p align="center"><font size="2" face="Arial">2300x1200</font></p>
-        </td>
-      </tr>
-      <tr height="18" bgcolor="#cccccc">
-        <td width="81" height="18">
-          <p align="left"><font size="2" face="Arial">起升时间</font></p>
-        </td>
-        <td width="38" height="18">
-          <p align="center"><font size="2" face="Arial">s</font></p>
-        </td>
-        <td width="99" height="18" x:num="40">
-          <p align="center"><font size="2" face="Arial">80</font></p>
-        </td>
-      </tr>
-      <tr height="18">
-        <td width="81" height="18">
-          <p align="left"><font size="2" face="Arial">功 率</font></p>
-        </td>
-        <td width="38" height="18">
-          <p align="center"><font size="2" face="Arial">kw</font></p>
-        </td>
-        <td width="99" height="18" x:num="2.2">
-          <p align="center"><font size="2" face="Arial">3</font></p>
-        </td>
-      </tr>
-      <tr height="18" bgcolor="#cccccc">
-        <td width="81" height="18">
-          <p align="left"><font size="2" face="Arial">整机重量</font></p>
-        </td>
-        <td width="38" height="18">
-          <p align="center"><font size="2" face="Arial">kg</font></p>
-        </td>
-        <td width="99" height="18" x:num="790">
-          <p align="center"><font size="2" face="Arial">1700</font></p>
-        </td>
-      </tr>
-      </tbody>
+
+       <tr>
+         <%if pro.detail_spec%>
+
+              <%=(pro.detail_spec)%>
+
+
+       <%end%>
+       </tr>
+
+     <%end%>
     </table>
   </div>  </div>

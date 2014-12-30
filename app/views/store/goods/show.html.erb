@@ -1,12 +1,16 @@
 <%#= render "shared/metable", :resource=>@good%>
 
 <!--<link href="/assets/store/base.css?body=1" media="all" rel="stylesheet" type="text/css" />-->
+<!--<div class="row">-->
+<!--<div class="large-2 medium-3 columns show-for-medium-up ">-->
+  <!--<%#=render "store/goods/tree_menu"%>-->
 
-<div id="products" class="show">
+<!--</div>-->
+<div id="products" class="show " >
   <%= render :partial=>"new_single",:locals=>{ :good=>@good } %>
 </div>
 <div id="product_detail">
-  <%= render :partial=>"new_detail",:locals=>{ :good=>@good } %>
+  <%= render :partial=>"new_detail",:locals=>{ :good=>@good,:product=>@product } %>
 </div>
 
 <%if @good.has_cols? %>
@@ -17,7 +21,7 @@
 <%else%>
     <%= render "reco_goods" %>
 <%end%>
-
+ </div>
 <script type="text/javascript">
     window.onload = function() {
         document.getElementById("preloader").style.display = 'none';
