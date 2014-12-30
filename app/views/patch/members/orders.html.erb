@@ -72,12 +72,14 @@ padding: 3px 15px 4px;" %>
         <span>&nbsp;&nbsp;&nbsp;<%=link_to "查看",detail_order_path(order_item),:target=>"_blank"%>&nbsp;&nbsp;</span><br>
             <span><a href="#">取消订单</a></span>  <br>
       <%elsif order_item.status == 'finish' && order_item.pay_status=='1'%>
-            <span><%=link_to "查看",detail_order_path(order_item),:target=>"_blank"%></span>&nbsp; <span><a href="#">删除</a></span>  <br>
-            <span><a href="/member/comments?order_id=<%=order_item.order_id%>">评价晒单</a></span> <br>
-
-             <input type="hidden" value="<%=order_item.order_id%>" class="order_id">
+            <span><%=link_to "查看",detail_order_path(order_item),:target=>"_blank"%></span>&nbsp;|&nbsp;
+            <span><a href="#">删除</a></span>&nbsp;|&nbsp;
+            <span><a href="/member/post_sale?order_id=<%=order_item.order_id%>&tag=">申请换货</a></span>&nbsp;|&nbsp;
+            <span><a href="/member/comments?order_id=<%=order_item.order_id%>">申请返修</a></span>&nbsp;|&nbsp;
+            <span><a href="/member/comments?order_id=<%=order_item.order_id%>">评价晒单</a></span>&nbsp;|&nbsp;             
             <a href="#" class="button secondary small again" style="margin:0;
                     padding: 3px 15px 4px;" ><i class="fi-shopping-cart  "></i>再次购买</a>
+            <input type="hidden" value="<%=order_item.order_id%>" class="order_id">
                </td>  </tr>
 
     <%end%>
@@ -95,16 +97,7 @@ padding: 3px 15px 4px;" %>
       </div>
   <%end%>
 
-
-
 </div>
-
-
-
-
-
-
-
 
  <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
  <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
