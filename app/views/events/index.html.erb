@@ -1,14 +1,14 @@
 
 <%=content_for :title do "活动在线招募 | Cheuks | 卓仕 工业品专家" end%>
-<%=content_for :head do stylesheet_link_tag("events") end%>
 
 
+  <div class="row">
 <div class="page-header">
-  <h2>所有活动</h2>
+  <span style="border: 4px solid #b6edff"></span><span style="margin-left: 10px;font-weight: bold;font-size: 15px">所有活动</span>
 
 </div>
-
-<table class="table table-bordered table-hover">
+  <br>
+<table class="table table-bordered table-hover" width="100%">
   <tr>
     <th>活动名</th>
     <!-- <th>活动时间</th> -->
@@ -27,4 +27,4 @@
 
 <div class="pagination">
   <%= will_paginate @events, :container => false %>
-</div>
+</div>  </div>
