@@ -9,6 +9,15 @@ class Store::SearchController < ApplicationController
 
 		q = params[:q].strip
 		q = q.gsub(/[\s,\.\*\+\/\-:'"!\&\^\[\]\(\)， 。：”’（）%@！、]+/,"%")
+
+		@search_log = Ecstore::SearchLog.new
+		@search_log.ip = request.remote_ip
+		if @user
+			@search_log.member_id = @user.member_id
+		end
+		@search_log.key = q
+		@search_log.save!
+
 		@splits = q.split(/%+/)
 
 		order = params[:order]
