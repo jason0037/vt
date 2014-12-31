@@ -115,9 +115,95 @@
 
     </div>
 
+<!--  -->
+<% @progoods .each do |pg|%>
+    <%if pg.priority==1%>
+<div id="today_recommend" class="row">
+
+  <div class="large-2 columns panel">
+    <div>
+
+      <a href="/products/<%=pg.code%>"><img src="img/recommend_left.jpg" style="width:100%"></a>
+    </div>
+  </div>
+  <div class="large-10 columns panel">
+    <ul class="clearing-thumbs large-block-grid-5 small-12">
+      <%pg.field_vals.split(",")[0].each do |p|%>
+      <li class="item-wrapper  ">
+        <div class="img-wrapper">
+          <% unless signed_in?%>
+              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
+          <%else%>
+              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
+
+          <%end%>
+          <a href="/products/<%=p%>"><img src="<%=Ecstore::Good.find_by_bn(p).medium_pic%>"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
+        </div>
+        <input type="hidden"class="goods_id" value="<%=p%>">
+        <a href="/products/<%=p%>"><h3><%=Ecstore::Good.find_by_bn(p).name%></h3></a>
+        <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">0</span>
+        <p>额定载荷(kg)：1500 </p>
+        <p>提升高度(mm)：6000 </p>
+        <div class="more-product-info">
+
+          <p>产品特点：<i class="fi-plus size-36"></i></p>
+          <p>-倍深式前移叉车(又称剪刀叉)的适用范围非常广泛，是各种室内工作的理想选择，包括整体仓库，零售店等。
+            ... </p>
+        </div>
+      </li>
+       <%end%>
+    </ul>
+  </div>
+
+</div>
+    <%elsif  pg.priority==2%>
+
+        <!--月冠军-->
+        <div id="month_champion" class="row">
+          <div class="large-2 columns panel">
+            <div>
+              <a href="/products/10010108025"><img src="img/recommend_left.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic" style="width:100%"></a>
+            </div>
+          </div>
+          <div class="large-10 columns panel">
+            <ul class="clearing-thumbs large-block-grid-5 small-12">
+              <li class="item-wrapper">
+                <div class="img-wrapper">
+                  <% unless signed_in?%>
+                      <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
+                  <%else%>
+                      <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
+
+                  <%end%>
+                  <a href="/products/10010108025"><img src="/images/a01/10010108025_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
+                </div>
+                <input type="hidden"class="goods_id" value="10010108025">
+                <a href="/products/10010108025"><h3>电动搬运车--LPT25AC</h3></a>
+                <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">0</span>
+                <p>LPT25AC</p>
+                <p>额定载荷(kg)：2500</p>
+                <div class="more-product-info">
+                  <p>货叉尺寸(mm)：可定制</p>
+                  <p>产品特点：<i class="fi-plus size-36"></i></p>
+                  <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
+                </div>
+              </li>
+
+
+            </ul>
+          </div>
+        </div>
+
+
+    <%end%>
+
+    <%end%>
+
 <!--今日推荐-->
 
+
     <div id="today_recommend" class="row">
+
         <div class="large-2 columns panel">
           <div>
 
@@ -357,8 +443,11 @@
 
 
      <div class="row">
-        <div class="large-12 columns">
-            <h4><span>1</span>F 搬运车</h4>
+        <div class="large-12 columns" >
+          <a  class="maodian" name="ONE"></a>
+
+
+          <h4 data-magellan-destination="arrival"><span>1</span>F 搬运车</h4>
         </div>
     </div>
     <div class="row">
@@ -459,9 +548,15 @@
              <a href="#"><img src="img/floor_product_right.jpg"></a>
         </div>
     </div>
-    <div class="row">
+    <div class="row" >
         <div class="large-12 columns">
-            <h4><span>2</span>F 堆高车</h4>
+
+          <a  class="maodian" name="TWO"></a>
+
+
+          <h4 data-magellan-destination="TWO"><span>2</span>F 堆高车</h4>
+
+
         </div>
     </div>
     <div class="row">
@@ -556,8 +651,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="large-12 columns">
-            <h4><span>3</span>F 叉车</h4>
+        <div class="large-12 columns ">
+
+          <a class="maodian" name="THREE"></a>
+ <h4 data-magellan-destination="THREE"><span>3</span>F 叉车</h4>
+
         </div>
     </div>
 
@@ -660,7 +758,10 @@
     </div>
     <div class="row">
         <div class="large-12 columns">
-            <h4><span>4</span>F 牵引车</h4>
+
+          <a  class="maodian" name="FOUR"></a>
+          <h4 data-magellan-destination="FOUR">  <span>4</span>F 牵引车</h4>
+
         </div>
     </div>
     <div class="row">
@@ -766,8 +867,8 @@
 
 
 
-     <!--
-<% if @promotions.nil?%>
+
+<% if @promotions%>
 <%@promotions.each  do |pro|%>
 <div class="row">
   <div class="large-12 columns">
@@ -812,7 +913,6 @@
       <%end%>
       </li>
 <%end%>
-<%end%>
 
 
 
@@ -822,9 +922,15 @@
     <a href="#"><img src="img/floor_product_right.jpg"></a>
   </div>
 </div>
-   -->
-
-    <script>
+<%end%>
+<div class="w backpanel " id="backpanel-floor"  style="display: block;">
+  <div class="backpanel-inner">
+    <div class=" bp-item bp-item-floor-links floor-fore0" data-magellan-arrival="ONE" >    <a href="#ONE" class="floor-links floor-fore0">1F</a></div>
+    <div class=" bp-item bp-item-floor-links floor-fore1"  data-magellan-arrival="TWO" >    <a href="#TWO" class="floor-links floor-fore1" >2F</a></div>
+    <div class=" bp-item bp-item-floor-links floor-fore2"  data-magellan-arrival="THREE" >    <a href="#THREE" class="floor-links floor-fore2 curr" >3F</a></div>
+    <div class=" bp-item bp-item-floor-links floor-fore3"   data-magellan-arrival="FOUR">    <a href="#FOUR" class="floor-links floor-fore3 curr" >4F</a></div>
+  </div></div>
+<script>
 
 //          $(".caption").hover(function(){
 //              $(this).children("dd").addClass("hover");

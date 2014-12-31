@@ -1,27 +1,37 @@
 <%#= render "shared/metable", :resource=>@good%>
 
 <!--<link href="/assets/store/base.css?body=1" media="all" rel="stylesheet" type="text/css" />-->
-<!--<div class="row">-->
-<!--<div class="large-2 medium-3 columns show-for-medium-up ">-->
-  <!--<%#=render "store/goods/tree_menu"%>-->
 
-<!--</div>-->
-<div id="products" class="show " >
-  <%= render :partial=>"new_single",:locals=>{ :good=>@good } %>
-</div>
-<div id="product_detail">
-  <%= render :partial=>"new_detail",:locals=>{ :good=>@good,:product=>@product } %>
-</div>
 
-<%if @good.has_cols? %>
-    <div id="new_look">
-      <%#= render "new_look2"%>
-      <%= render "reco_new_look" if @good.reco_collocation_goods.count > 0%>
+<div class="row" >
+  <div class="large-2 medium-3 columns show-for-medium-up ">
+    <%=render "store/goods/tree_menu"%>
+  </div>
+
+  <div class="large-10 medium-9 columns">
+    <div id="products" class="show " >
+      <%= render :partial=>"new_single",:locals=>{ :good=>@good } %>
     </div>
-<%else%>
-    <%= render "reco_goods" %>
-<%end%>
- </div>
+    <div id="product_detail">
+      <%= render :partial=>"new_detail",:locals=>{ :good=>@good,:product=>@product } %>
+    </div>
+
+    <%if @good.has_cols? %>
+        <div id="new_look">
+          <%#= render "new_look2"%>
+          <%= render "reco_new_look" if @good.reco_collocation_goods.count > 0%>
+        </div>
+    <%else%>
+        <%= render "reco_goods" %>
+    <%end%>
+
+  </div>
+</div>
+
+
+
+
+
 <script type="text/javascript">
     window.onload = function() {
         document.getElementById("preloader").style.display = 'none';

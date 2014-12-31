@@ -3,9 +3,14 @@
 </style>
 
 <%= stylesheet_link_tag "test/main" %>
-
-<div class="row">
-  <div class="large-3 medium-3 columns">
+        <div class="row">
+          <div class="large-10 medium-10 columns">
+          <div class="titles">
+            <h5 ><%=@good.name%></h5>
+          </div>
+          </div>     </div>
+<div class="row" >
+  <div class="large-4 medium-4 columns">
     <div class="fdj-wrap"style="z-index: 10001;">
       <div id="preview" >
         <div id="img-medium">
@@ -14,13 +19,13 @@
         </div>
         <!-- 小图导航开始 -->
         <div class="img-small">
-          <a href="javascript:;" class="left" id="left">&lt;</a>
-          <a href="javascript:;" class="right" id="right">&gt;</a>
+          <!--<a href="javascript:;" class="left" id="left">&lt;</a>-->
+          <!--<a href="javascript:;" class="right" id="right">&gt;</a>-->
           <div class="img-list-items">
             <ul id="img-items" >
               <li><img src="<%=@good.medium_pic%> "onerror="javascript:this.src='/assets/nopic.png';" alt="pic" msrc="<%=@good.big_pic%>" bsrc="<%=@good.big_pic%>" alt="" ></li>
 
-                   </ul>
+            </ul>
           </div>
         </div>
         <!-- 小图导航结束 -->
@@ -28,7 +33,7 @@
           <img src="<%=@good.big_pic%>" onerror="javascript:this.src='/assets/nopic.png';" alt="pic" id="detail" >
         </div>
       </div>
-  </div>  </div>
+    </div>  </div>
 
 
 
@@ -38,78 +43,83 @@
       <%=form_for :product,:url=>add_cart_index_path,:remote=>true do |f|%>
           <%=f.hidden_field :goods_id,:value=>good.goods_id%>
           <%=f.hidden_field :type_id,:value=>good.type_id%>
-    <table style="width: 100%">
-    <thead>
-    <tr>
-      <td>产品名称：</td>
-      <td  ><%=good.name %></td>
-     </tr>
-    </thead>
-    <tbody>
-    <tr>
+          <table style="width: 100%">
+            <thead>
+            <tr>
+              <td>产品名称：</td>
+              <td  ><%=good.name %></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
 
-      <td>标准价格：</td>
-      <td style=" color:#f60;">请咨询客服</td>
-    </tr>
-    <tr>
-      <td>最小起订量：</td>
-      <td>1 （台）</td>
-     </tr>
-    <tr>
-      <td>运费：</td>
-      <td style=" color:#f60;">￥0.00</td>
-    </tr>
-    <tr>
- <td>产品规格：</td>
-      <td ><%=good.size%></td>
-    </tr>
-    <tr>
-  <td>产品号：</td>
-      <td ><%=good.bn%></td>
-    </tr>
-    <tr>
-    <td>会员价￥：</td>
-    <td style=" color:#f60;"><%=good.default_product.price if good.default_product%></td>
-    </tr>
+              <td>标准价格：</td>
+              <td style=" color:#f60;">请咨询客服</td>
+            </tr>
+            <tr>
+              <td>最小起订量：</td>
+              <td>1 （台）</td>
+            </tr>
+            <tr>
+              <td>运费：</td>
+              <td style=" color:#f60;">￥0.00</td>
+            </tr>
+            <tr>
+              <td>产品规格：</td>
+              <td ><%=good.size%></td>
+            </tr>
+            <tr>
+              <td>产品号：</td>
+              <td ><%=good.bn%></td>
+            </tr>
+            <tr>
+              <td>会员价￥：</td>
+              <td style=" color:#f60;"><%=good.default_product.price if good.default_product%></td>
+            </tr>
 
-    <tr>
+            <tr>
 
-    </tr>
+            </tr>
 
-    </tbody>
-    </table>
+            </tbody>
+          </table>
           <div class="spec" style="display: none">
             <%=render :partial=>"store/goods/product/new_spec",:locals=>{ :good=>good }%>
           </div>
 
 
-  <div class="wrapper">
+          <div class="wrapper">
 
-          <%if @good.marketable == "true"%>
-              <div id="cart_msg"></div>
+            <%if @good.marketable == "true"%>
+                <div id="cart_msg"></div>
 
                 <label id ="lable">加入购物车&nbsp;|&nbsp;加入收藏夹</label>
-              <% unless signed_in?%>
-           <a href="#" class="inside" data-reveal-id="login_iframe" >加入购物车</a>
+                <% unless signed_in?%>
+                    <a href="#" class="inside" data-reveal-id="login_iframe" >加入购物车</a>
 
-              <%else%>
-                  <%=link_to "加入购物车","javascript:void(0);",
-                             :class=>"add_to_cart #{'sold-out' if good.store.to_i == 0 }  #{'buy-cols' if good.has_cols? } inside",
-                             :id=>"add_to_cart"%>
-              <%end%>
-          <%else%>
-              <%=image_tag  "/assets/store/not_marketing.png", :class=>"not-marketing"%>
-          <%end%>
+                <%else%>
+                    <%=link_to "加入购物车","javascript:void(0);",
+                               :class=>"add_to_cart #{'sold-out' if good.store.to_i == 0 }  #{'buy-cols' if good.has_cols? } inside",
+                               :id=>"add_to_cart"%>
+                <%end%>
+            <%else%>
+                <%=image_tag  "/assets/store/not_marketing.png", :class=>"not-marketing"%>
+            <%end%>
 
-          <%if signed_in?%>
-              <%=link_to "已收藏",unfav_good_path(@good,:rel=>"good_#{good.goods_id}"),:id=>"add_to_favorite",:class=>"add_to_favorites  hidden",:remote=>true,:method=>:put %>
-              <%=link_to "加入我的收藏夹",fav_good_path(@good,:rel=>"good_#{good.goods_id}"),:id=>"favorite",:class=>" inside",:remote=>true,:method=>:put%>
-          <%else%>
-              <a href="javascript:void(0);" class="add_to_favorites  inside"data-reveal-id="login_iframe" >加入收藏夹</a>
-          <%end%>
+            <%if signed_in?%>
+                <%=link_to "已收藏",unfav_good_path(@good,:rel=>"good_#{good.goods_id}"),:id=>"add_to_favorite",:class=>"add_to_favorites  hidden",:remote=>true,:method=>:put %>
+                <%=link_to "加入我的收藏夹",fav_good_path(@good,:rel=>"good_#{good.goods_id}"),:id=>"favorite",:class=>" inside",:remote=>true,:method=>:put%>
+            <%else%>
+                <a href="javascript:void(0);" class="add_to_favorites  inside"data-reveal-id="login_iframe" >加入收藏夹</a>
+            <%end%>
           </div></div>
-    <!--<div class="more">-->
+          <!--<div class="more">-->
           <!--<%#=render partial: "store/goods/product/more",:locals=>{ :good=>good }%>-->
-        <!--</div>-->
-    <%end%>
-   </div>   </div> </div>
+          <!--</div>-->
+      <%end%>
+      </div>
+  <div class="large-1 medium-1 columns" >
+
+  </div>
+
+</div>

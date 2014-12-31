@@ -89,6 +89,8 @@ class Store::GoodsController < ApplicationController
       gh.member_id=@user.member_id if @user
        gh.ip= request.remote_ip
     end.save
+    @history_g=Ecstore::Ghistory.where(:member_id=>@user.member_id ).order("updated_at desc").limit(3)
+
     tag_name = params[:tag]
     @tag = Ecstore::TagName.find_by_tag_name(tag_name)
 

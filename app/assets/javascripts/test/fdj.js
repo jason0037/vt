@@ -24,7 +24,7 @@ window.onload = function(){
 //        mark.style.display = "none";
 //        big.style.display = "none";
 //    }
-
+//
 //    medium.onmousemove = function(e){
 //        var e = e || window.event;
 //        var left = e.clientX - preview.offsetLeft-mark.offsetWidth/2;
@@ -50,7 +50,7 @@ window.onload = function(){
 //        detail.style.left = -persentX*big.clientWidth+'px';
 //        detail.style.top = -persentY*big.clientHeight+'px';
 //    }
-    //小图导航
+   // 小图导航
     var imgItems = document.getElementById('img-items');
     var liNodes = imgItems.childNodes;
     var tmpNodes = [];

@@ -12,7 +12,7 @@
 <h1>
   <%=link_to "添加订单促销",new_admin_promotion_path,:class=>"btn btn-primary right" if params[:type]=="order" || params[:type].nil?%>
   <%=link_to "添加楼层",new_admin_promotion_path(:type=>"goods",:tables=>"楼层"),:class=>"btn btn-primary right" if params[:type] == 'goods'%>
-  <%=link_to "首页商品管理",new_admin_promotion_path(:type=>"goods",:tables=>"商品"),:class=>"btn btn-primary right" if params[:type] == 'goods'%>
+  <%=link_to "首页商品管理",new_admin_promotion_path(:type=>"goods",:tables=>"index_goods"),:class=>"btn btn-primary right" if params[:type] == 'goods'%>
 
 
 </h1>
@@ -31,13 +31,22 @@
           
         <%@promotions.each do |promotion|%>
           <tr class="<%= 'disable' unless promotion.enable?%>">
+            <% if promotion.code %>
+                <td>第<%=promotion.priority%>＝商品<%=promotion.code%></td>
+                <%else%>
             <td><%=promotion.name%></td>
+                <%end%>
             <td><%=promotion.enable ? "是" : "否"%></td>
             <td><%=promotion.exclusive ? "是" : "否"%></td>
             <td><%=promotion.begin_at.strftime("%Y-%m-%d %H:%M:%S") if promotion.begin_at.present?%> ~ <%=promotion.end_at.strftime("%Y-%m-%d %H:%M:%S") if promotion.end_at.present?%></td>
             <td><%=promotion.priority%></td>
             <td>
-              <%=link_to "编辑", edit_admin_promotion_path(promotion,:type=>promotion.promotion_type)%>
+                <% if promotion.code %>
+              <%=link_to "编辑", edit_admin_promotion_path(promotion,:type=>promotion.promotion_type ,:tables=>"index_goods")%>
+                  <%else%>
+                  <%=link_to "编辑", edit_admin_promotion_path(promotion,:type=>promotion.promotion_type )%>
+
+            <%end%>
               <%=link_to "删除", admin_promotion_path(promotion),:method=>:delete,:confirm=>"确定要删除？"%>
             </td>
           </tr>

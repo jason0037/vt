@@ -1,12 +1,12 @@
 @charset "utf-8";
 /* CSS Document */
-body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt,dd,input,span{margin:0;padding:0;}
+
 body{font-size:12px;font-family: "Microsoft Yahei","微软雅黑";}
 img{border:none;}
 li{list-style:none;}
 input,select,textarea{outline:none;border:none; background:none;}
 textarea{resize:none;}
-a{text-decoration:none;display:block;}
+
 
 /*放大镜*/
 #preview{
@@ -20,10 +20,7 @@ a{text-decoration:none;display:block;}
     margin:10px auto 0 auto;
 }
 
-#img-medium{
 
-    border:1px solid #8f8f8f;
-}
 
 .fdj-wrap .img-small{
     width:100%;
@@ -46,7 +43,7 @@ a{text-decoration:none;display:block;}
 .fdj-wrap .img-small .left,.fdj-wrap .img-small .right{
     height:54px;
     width:17px;
-    border:1px solid #8f8f8f;
+
     text-align:center;
     color:#abcdef;
     line-height:54px;
@@ -74,7 +71,7 @@ a{text-decoration:none;display:block;}
     /*height:58px;*/
 }
 .fdj-wrap .img-small .img-list-items ul li img{
-    border:1px solid #8f8f8f;
+
     width:54px;
     height:54px;
     cursor:pointer;
@@ -92,7 +89,7 @@ a{text-decoration:none;display:block;}
     position:absolute;
     top:-10px;
     left:366px;
-    border:1px solid #8f8f8f;
+
     z-index: 1000;
     overflow:hidden;
 }
@@ -112,4 +109,25 @@ a{text-decoration:none;display:block;}
     cursor:move;
     position:absolute;
     display:none;
+}
+.titles{
+    height: 68px;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0;
+    background: #ddd;
+    background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ffffff), to(#f2f2f2));
+    background: -webkit-linear-gradient(#ffffff, #f2f2f2);
+    background: -moz-linear-gradient(#ffffff, #f2f2f2);
+    background: -ms-linear-gradient(#ffffff, #f2f2f2);
+    background: -o-linear-gradient(#ffffff, #f2f2f2);
+    background: linear-gradient(#ffffff, #f2f2f2);
+    -pie-background: linear-gradient(#ffffff, #f2f2f2);
+    behavior: url(/PIE.htc);
+
+}
+.titles h5 {
+    padding-left: 24px;
+    font: normal 32px/68px "微软雅黑","黑体";
 }

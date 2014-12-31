@@ -1,15 +1,17 @@
 <%=form_for :promotion,:url=>@action_url,:method=>@method,:html=>{:class=>"form-horizontal"} do |f|%>
 <%=f.hidden_field :promotion_type,:value=>"goods"%>
 <div class="control-group">
-  <%if params[:tables]=="楼层"%>
-       </div>
-      <%=f.text_field :name ,:placeholder=>"请输入一个楼层名"%></div>
-    <div class="controls">
+  <%unless params[:tables]=="index_goods"%>
 
-<%else%>
+      <%=f.label :name, "楼层",:class=>"control-label"%>
+      <div class="controls">
+      <%=f.text_field :name ,:placeholder=>"请输入一个楼层名；如：搬运车"%></div>
+      <%=f.hidden_field :promotion_type,:value=>"door"%>
+
+      <%else%>
       <%=f.label :name, "首页商品",:class=>"control-label"%>
       <div class="controls">
-
+        <%=f.hidden_field :promotion_type,:value=>"goods"%>
         <%=f.text_field :code ,:placeholder=>"请输入一个产品的ERP编号"%></div>
   <%end%>
 </div>

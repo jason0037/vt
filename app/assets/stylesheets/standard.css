@@ -82,3 +82,50 @@ body{
   font-weight: bold;
   margin-top: 5px;
 }
+
+#backpanel-floor .backpanel-inner {
+    margin-bottom: 90px;
+}
+.root61 .backpanel .backpanel-inner {
+    margin-left: 800px;
+}
+.backpanel .backpanel-inner {
+
+
+
+
+    margin-left: 520px;
+
+    padding: 0;
+
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+    _position: absolute;
+    right: 25px;
+    bottom: 120px;
+    _bottom: "auto";
+    cursor: pointer;
+    opacity: 0.5;
+    filter: Alpha(opacity=50);
+    z-index: 1000;
+}
+
+
+#backpanel-floor .floor-fore1 {
+    background-position: 0 -55px;
+}
+.backpanel .bp-item {
+    width: 38px;
+    height: 38px;
+    background: #ccc;
+    margin-top: 5px;
+}
+#backpanel-floor .floor-links:hover, #backpanel-floor .curr a.floor-links, #backpanel-floor .curr .floor-links:hover {
+    background-image: none;
+    background-color: #fdeeee;
+    color: #ed5759;
+    border: 1px solid #ed5759;
+    line-height: 13px;
+}
