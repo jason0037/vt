@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 
 		@home = Ecstore::Home.where(:supplier_id=>nil).last
     @promotions = Ecstore::Promotion.where(:promotion_type=>"door")
-    @progoods=Ecstore::Promotion.where(:promotion_type=>"goods")
+    @progoods=Ecstore::Promotion.where(:promotion_type=>"goos")
 
 
 	# 	if signed_in?

@@ -1,5 +1,5 @@
 <%=form_for :promotion,:url=>@action_url,:method=>@method,:html=>{:class=>"form-horizontal"} do |f|%>
-<%=f.hidden_field :promotion_type,:value=>"goods"%>
+
 <div class="control-group">
   <%unless params[:tables]=="index_goods"%>
 
@@ -11,7 +11,7 @@
       <%else%>
       <%=f.label :name, "首页商品",:class=>"control-label"%>
       <div class="controls">
-        <%=f.hidden_field :promotion_type,:value=>"goods"%>
+        <%=f.hidden_field :promotion_type,:value=>"goos"%>
         <%=f.text_field :code ,:placeholder=>"请输入一个产品的ERP编号"%></div>
   <%end%>
 </div>
