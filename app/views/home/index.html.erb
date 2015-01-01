@@ -123,7 +123,7 @@
   <div class="large-2 columns panel">
     <div>
 
-      <a href="/products/<%=pg.code%>"><img src="img/recommend_left.jpg" style="width:100%"></a>
+      <a href="/products/<%=pg.codes%>"><img src="img/recommend_left.jpg" style="width:100%"></a>
     </div>
   </div>
   <div class="large-10 columns panel">
@@ -162,36 +162,39 @@
         <div id="month_champion" class="row">
           <div class="large-2 columns panel">
             <div>
-              <a href="/products/10010108025"><img src="img/recommend_left.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic" style="width:100%"></a>
+
+              <a href="/products/<%=pg.codes%>"><img src="img/recommend_left.jpg" style="width:100%"></a>
             </div>
           </div>
           <div class="large-10 columns panel">
             <ul class="clearing-thumbs large-block-grid-5 small-12">
-              <li class="item-wrapper">
-                <div class="img-wrapper">
-                  <% unless signed_in?%>
-                      <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
-                  <%else%>
-                      <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
+              <%pg.field_vals.split(",")[0].each do |p|%>
+                  <li class="item-wrapper  ">
+                    <div class="img-wrapper">
+                      <% unless signed_in?%>
+                          <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
+                      <%else%>
+                          <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
 
-                  <%end%>
-                  <a href="/products/10010108025"><img src="/images/a01/10010108025_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
-                </div>
-                <input type="hidden"class="goods_id" value="10010108025">
-                <a href="/products/10010108025"><h3>电动搬运车--LPT25AC</h3></a>
-                <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">0</span>
-                <p>LPT25AC</p>
-                <p>额定载荷(kg)：2500</p>
-                <div class="more-product-info">
-                  <p>货叉尺寸(mm)：可定制</p>
-                  <p>产品特点：<i class="fi-plus size-36"></i></p>
-                  <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
-                </div>
-              </li>
+                      <%end%>
+                      <a href="/products/<%=p%>"><img src="<%=Ecstore::Good.find_by_bn(p).medium_pic%>"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
+                    </div>
+                    <input type="hidden"class="goods_id" value="<%=p%>">
+                    <a href="/products/<%=p%>"><h3><%=Ecstore::Good.find_by_bn(p).name%></h3></a>
+                    <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">0</span>
+                    <p>额定载荷(kg)：1500 </p>
+                    <p>提升高度(mm)：6000 </p>
+                    <div class="more-product-info">
 
-
+                      <p>产品特点：<i class="fi-plus size-36"></i></p>
+                      <p>-倍深式前移叉车(又称剪刀叉)的适用范围非常广泛，是各种室内工作的理想选择，包括整体仓库，零售店等。
+                        ... </p>
+                    </div>
+                  </li>
+              <%end%>
             </ul>
           </div>
+
         </div>
 
 
@@ -199,247 +202,6 @@
 
     <%end%>
 
-<!--今日推荐-->
-
-
-    <div id="today_recommend" class="row">
-
-        <div class="large-2 columns panel">
-          <div>
-
-              <a href="/products/10010203441"><img src="img/recommend_left.jpg" style="width:100%"></a>
-          </div>
-        </div>
-        <div class="large-10 columns panel">
-        <ul class="clearing-thumbs large-block-grid-5 small-12">
-        <li class="item-wrapper  ">
-        <div class="img-wrapper">
-          <% unless signed_in?%>
-              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
-              <%else%>
-          <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
-
-          <%end%>
-          <a href="/products/10010203441"><img src="/images/a01/10010203441_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
-        </div>
-          <input type="hidden"class="goods_id" value="10010203441">
-          <a href="/products/10010203441"><h3>倍深式前移电动堆高车</h3></a>
-          <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">0</span>
-            <p>额定载荷(kg)：1500 </p>
-            <p>提升高度(mm)：6000 </p>
-            <div class="more-product-info">
-
-            <p>产品特点：<i class="fi-plus size-36"></i></p>
-            <p>-倍深式前移叉车(又称剪刀叉)的适用范围非常广泛，是各种室内工作的理想选择，包括整体仓库，零售店等。
-              ... </p>
-        </div>
-        </li>
-          <li class="item-wrapper">
-            <div class="img-wrapper">
-              <% unless signed_in?%>
-                  <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
-              <%else%>
-                  <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
-
-              <%end%>
-              <a href="/products/10010201051"><img src="/images/a01/10010201051_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
-            </div>
-            <input type="hidden"class="goods_id" value="10010201051">
-            <a href="/products/10010201051"><h3>（快速泵）手动堆高车--SFHXX16-A</h3></a>
-            <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">0</span>
-            <p>额定载荷(kg)：1500</p>
-            <p>提升高度(mm)：1600</p>
-
-            <div class="more-product-info">
-       <p>产品特点：<i class="fi-plus size-36"></i></p>
-              <p>高品质油缸的选用密封性能好，安全省力。</p>
-            </div>
-          </li>
-        <li class="item-wrapper">
-        <div class="img-wrapper">
-          <% unless signed_in?%>
-              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
-          <%else%>
-              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
-
-          <%end%>
-          <a href="/products/10010201071"><img src="/images/a01/10010201071_m.jpg" onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
-        </div>
-          <input type="hidden"class="goods_id" value="10010201071">
-          <a href="/products/10010201071"><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;倾斜车</h3></a>
-          <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">0</span>
-
-            <p>额定载荷(kg)：100</p>
-          <p> 提升高度(mm)：285</p>
-
-            <div class="more-product-info">
-            <p>货叉尺寸(mm)：可定制</p>
-            <p>产品特点：<i class="fi-plus size-36"></i></p>
-            <p>适用于仓库、生产流水线等工作场合。</p>
-        </div>
-        </li>
-         <li class="item-wrapper">
-        <div class="img-wrapper">
-          <% unless signed_in?%>
-              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
-          <%else%>
-              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
-
-          <%end%>
-          <a href="/products/10010108021"><img src="/images/a01/10010108021_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
-        </div>
-           <input type="hidden"class="goods_id" value="10010108021">
-          <a href="/products/10010108021"><h3>电动搬运车</h3></a>
-          <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">0</span>
-            <p>电动搬运车--WP-LPT15(AC)</p>
-            <p>额定载荷(kg)：2200</p>
-            <div class="more-product-info">
-            <p>货叉尺寸(mm)：可定制</p>
-            <p>产品特点：<i class="fi-plus size-36"></i></p>
-            <p>LPT22系列全电动搬运车适用于水平中短距离货物输送，它是一款步行式和站板式结合的车辆。 1.有效载荷...</p>
-        </div>
-        </li>
-         <li class="item-wrapper">
-        <div class="img-wrapper">
-          <% unless signed_in?%>
-              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
-          <%else%>
-              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
-
-          <%end%>
-          <a href="/products/10010203242"><img src="/images/a01/10010203242_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
-        </div>
-           <input type="hidden"class="goods_id" value="10010203242">
-          <a href="/products/10010203242"><h3>插腿式全电动堆高车-CLT10AC系列</h3></a>
-          <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">0</span>
-            <p>电子秤搬运车--SAC</p>
-            <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info">
-            <p>货叉尺寸(mm)：可定制</p>
-            <p>产品特点：<i class="fi-plus size-36"></i></p>
-            <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
-        </div>
-        </li>
-        </ul>
-        </div>
-    </div>
-    <!--月冠军-->
-    <div id="month_champion" class="row">
-            <div class="large-2 columns panel">
-          <div>
-              <a href="/products/10010108025"><img src="img/recommend_left.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic" style="width:100%"></a>
-          </div>
-        </div>
-        <div class="large-10 columns panel">
-        <ul class="clearing-thumbs large-block-grid-5 small-12">
-        <li class="item-wrapper">
-        <div class="img-wrapper">
-          <% unless signed_in?%>
-              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
-          <%else%>
-              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
-
-          <%end%>
-          <a href="/products/10010108025"><img src="/images/a01/10010108025_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
-        </div>
-          <input type="hidden"class="goods_id" value="10010108025">
-          <a href="/products/10010108025"><h3>电动搬运车--LPT25AC</h3></a>
-          <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">0</span>
-            <p>LPT25AC</p>
-            <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info">
-            <p>货叉尺寸(mm)：可定制</p>
-            <p>产品特点：<i class="fi-plus size-36"></i></p>
-            <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
-        </div>
-        </li>
-        <li class="item-wrapper">
-        <div class="img-wrapper">
-          <% unless signed_in?%>
-              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
-          <%else%>
-              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
-
-          <%end%>
-          <a href="/products/10010108101"><img src="/images/a01/10010108101_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
-        </div>
-          <input type="hidden"class="goods_id" value="10010108101">
-          <a href="/products/10010108101"><h3>电动搬运拣选车</h3></a>
-          <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">0</span>
-            <p>搬运车-－OPL系列</p>
-            <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info">
-            <p>货叉尺寸(mm)：可定制</p>
-            <p>产品特点：<i class="fi-plus size-36"></i></p>
-            <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
-        </div>
-        </li>
-        <li class="item-wrapper">
-        <div class="img-wrapper">
-          <% unless signed_in?%>
-              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
-          <%else%>
-              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
-
-          <%end%>
-          <a href="/products/10010108024"><img src="/images/a01/10010108024_m.jpg"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
-        </div>
-          <input type="hidden"class="goods_id" value="10010108024">
-          <a href="/products/10010108024"><h3>电动搬运车</h3></a>
-          <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">0</span>
-            <p>WP-LPT22</p>
-            <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info">
-            <p>货叉尺寸(mm)：可定制</p>
-            <p>产品特点：<i class="fi-plus size-36"></i></p>
-            <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
-        </div>
-        </li>
-         <li class="item-wrapper">
-        <div class="img-wrapper">
-          <% unless signed_in?%>
-              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
-          <%else%>
-              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
-
-          <%end%>
-          <a href="/products/1001010802001"><img src="/images/a01/1001010802001_m.jpg "onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
-        </div>
-           <input type="hidden"class="goods_id" value="1001010802001">
-          <a href="/products/1001010802001"><h3>电动托盘搬运车</h3></a>
-          <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">0</span>
-            <p>（小金刚）- LPT15BL</p>
-            <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info">
-            <p>货叉尺寸(mm)：可定制</p>
-            <p>产品特点：<i class="fi-plus size-36"></i></p>
-            <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
-        </div>
-        </li>
-         <li class="item-wrapper">
-        <div class="img-wrapper">
-          <% unless signed_in?%>
-              <a href="#" class="button expand add-to-cart  " data-reveal-id="login_iframe" >加入购物车</a>
-          <%else%>
-              <a href="#" class="button expand add-to-cart addcart">加入购物车</a>
-
-          <%end%>
-          <a href="/products/10010401031"><img src="/images/a01/10010401031_m.jpg" onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
-        </div>
-           <input type="hidden"class="goods_id" value="10010401031">
-          <a href="/products/10010401031"><h3>汽车转移器</h3></a>
-          <h5>￥20000.00</h5>市场价：<span style="font-size:.8em">0</span>
-            <p>汽车转移器--EL系列</p>
-            <p>额定载荷(kg)：2500</p>
-            <div class="more-product-info">
-            <p>货叉尺寸(mm)：可定制</p>
-            <p>产品特点：<i class="fi-plus size-36"></i></p>
-            <p>-碳钢喷塑结构，轮子为尼龙轮，降低运输高度，对化学品有高阻抗力，运输不留痕迹。 -仪表箱采用特别的简洁.</p>
-        </div>
-        </li>
-        </ul>
-        </div>
-    </div>
 
 
 
