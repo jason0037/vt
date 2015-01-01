@@ -2,8 +2,10 @@
 <h4>
   <%if params[:type]=="order" || params[:type].nil?%>
   订单促销
-  <%else%>
+  <%elsif params[:type]=="door" ||params[:type].nil? %>
     楼层管理
+  <%elsif params[:type]=="goods" ||params[:type].nil? %>
+      首页商品管理
   <%end%>
 </h4>
 <hr>
@@ -11,8 +13,8 @@
 
 <h1>
   <%=link_to "添加订单促销",new_admin_promotion_path,:class=>"btn btn-primary right" if params[:type]=="order" || params[:type].nil?%>
-  <%=link_to "添加楼层",new_admin_promotion_path(:type=>"goods",:tables=>"楼层"),:class=>"btn btn-primary right" if params[:type] == 'goods'%>
-  <%=link_to "首页商品管理",new_admin_promotion_path(:type=>"goods",:tables=>"index_goods"),:class=>"btn btn-primary right" if params[:type] == 'goods'%>
+  <%=link_to "添加楼层",new_admin_promotion_path(:type=>"goods",:type=>"door"),:class=>"btn btn-primary right" if params[:type] == 'door'%>
+  <%=link_to "首页商品管理",new_admin_promotion_path(:type=>"goods",:type=>"goods"),:class=>"btn btn-primary right" if params[:type] == 'goods'%>
 
 
 </h1>

@@ -1,8 +1,10 @@
-<h3>楼层管理</h3>
 
 
-<% if params[:type] == "goods"  %>
+
+<% if params[:type] == "goods" ||params[:type]=="door"  %>
+    <h3>首页商品+楼层管理</h3>
 <%=render "goods_form"%>
-<%else%>
+<%elsif params[:type]=="orders" %>
+
 <%=render "form"%>
 <%end%>

@@ -160,7 +160,10 @@
                       <%=link_to "订单促销",admin_promotions_path(:type=>"order") if current_admin.has_right_of("promotions","index")%>
                   </li>
                   <li>
-                      <%=link_to "首页楼层管理",admin_promotions_path(:type=>"goods") if current_admin.has_right_of("promotions","index")%>
+                      <%=link_to "楼层管理",admin_promotions_path(:type=>"door") if current_admin.has_right_of("promotions","index")%>
+                  </li>
+                  <li>
+                    <%=link_to "首页商品推荐",admin_promotions_path(:type=>"goods") if current_admin.has_right_of("promotions","index")%>
                   </li>
                   <li class="divider"></li>
                   <li>
