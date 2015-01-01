@@ -1,6 +1,6 @@
 class AddCodeToPromotion < ActiveRecord::Migration
   def change
-    add_column :sdb_imodec_promotions, :code, :long
+    add_column :sdb_imodec_promotions, :code, :integer
 
   end
   def self.down

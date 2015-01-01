@@ -466,7 +466,7 @@
     <ul class="clearing-thumbs" >
       <li>
         <ul class="side-nav">
-          <% Ecstore::GoodCat.where(:parent_id=>pro.code).limit(4).each  do |godes|%>
+          <% Ecstore::GoodCat.where(:parent_id=>pro.goodsid).limit(4).each  do |godes|%>
               <li><a href="#"><%=godes.cat_name%></li>  <%end%>
         </ul>
         <img src="img/floor_left.jpg">
