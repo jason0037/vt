@@ -3,7 +3,7 @@ module SessionsHelper
 		return @account unless @account.nil?
 		if cookies["MEMBER"].present?
 			account_id = cookies["MEMBER"].split("-").first
-			@account ||= Ecstore::Account.find_by_account_id(account_id)
+			@account ||= Ecstore::Account.where(:account_id=>account_id).first
 		end
 	end
 

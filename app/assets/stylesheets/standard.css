@@ -122,7 +122,7 @@ body{
     background: #ccc;
     margin-top: 5px;
 }
-#backpanel-floor .floor-links:hover, #backpanel-floor .curr a.floor-links, #backpanel-floor .curr .floor-links:hover {
+ #backpanel-floor .curr .floor-links .bp-item:hover {
     background-image: none;
     background-color: #fdeeee;
     color: #ed5759;

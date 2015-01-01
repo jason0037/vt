@@ -1069,7 +1069,9 @@
      <div class="biaoti"><h3>浏览历史</h3> </div>
      <ul class="biankuang" style="display:block">
       <%@history_g.each do |his|%>
-           <li style="border-bottom: 1px dashed #ddd;">
+           <li id="line_<%=his.id%>" style="border-bottom: 1px dashed #ddd;">
+             <a  style="margin-right:5%;float: right" class="delete">×</a>
+             <input type="hidden" class="id" value="<%=his.id%>">
            <a href="/products/<%=Ecstore::Good.find(his.goods_id).bn%>" target="_blank">
              <img alt="<%=Ecstore::Good.find(his.goods_id).name%>" onerror="javascript:this.src='/assets/nopic.png';" src="<%=Ecstore::Good.find(his.goods_id).medium_pic%>" style="width:140px;">
            </a>
@@ -1078,7 +1080,7 @@
        </li>
        </ul>
 
-        <p align="center"><a href="javascript:clearCookie()">清除浏览历史</a></p>
+
    </div>
    </div>
 
@@ -1095,4 +1097,24 @@
 <script type="text/javascript">
     $(".allsort").hoverForIE6({current:"allsorthover",delay:200});
     $(".allsort .item").hoverForIE6({delay:150});
+
+
+      $(".delete").each(function(){
+
+         $(this).bind("click",function(){
+             var hid=$(this).next(".id").val();
+
+
+             var url="/delete_history"
+             $.ajax(url,{
+                 type: "post",
+                 data:{ "hisid":hid },
+
+                 success:function(res){
+                 }
+             })
+
+         })
+      })
+
 </script>

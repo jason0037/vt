@@ -155,59 +155,65 @@
         </nav>
       </header> <!-- END HEADER -->
 
+
+
+
+      <div class="row" >  <div id= "main" class="<%=controller_name%> <%=action_name%> profiles clearfix">
+        <br>
+        <div class="top-nav">
+          <%breadcrumbs.each_with_index do |bread,index|%>
+              <% name, path  =  bread%>
+              <%if index == 0 %>
+                  <%if path%>
+                      <strong>   <%=link_to name,Rails.application.routes.url_helpers.send(path)%> &nbsp;&nbsp; </strong>
+                  <%else%>
+                      <strong>  <%=name%>    </strong>
+                  <%end%>
+              <%else%>
+                  <%if path%>
+                      <strong>    <%=link_to name,Rails.application.routes.url_helpers.send(path)%> &nbsp;&nbsp; </strong>
+                  <%else%>
+                      <span class="txt"> >&nbsp;&nbsp;<%=name%></span>
+                  <%end%>
+              <%end%>
+          <%end if breadcrumbs%>
+        </div> </div><br>
+        <div class="large-2 medium-3 columns show-for-medium-up">
+
+          <%=render "patch/shared/menu"%>
+
+        </div>
+
+        <div class="large-10 medium-9 columns ">
+
+          <%=yield :notice%>
+<%#= render "shared/header" %>
+<%#if controller_name!='home'%>
+<%#= render "shared/top_menu" %>
+          <%= yield :cover %>
+
+
+
+
+
+
+
+
+          <!-- <div id= "main" class="<%=controller_name%> <%=action_name%> clearfix">
+  <%#end%> -->
+          <%= yield%>
+<%#if controller_name!='home'%>
+          <!-- </div> -->
+<%#end%>
+<%#=render "shared/common_footer"%>
+        </div></div>
+
+
     </section>
   </div>
 </div>
 
- <div class="row" >  <div id= "main" class="<%=controller_name%> <%=action_name%> profiles clearfix">
-   <br>
-   <div class="top-nav">
-     <%breadcrumbs.each_with_index do |bread,index|%>
-         <% name, path  =  bread%>
-         <%if index == 0 %>
-             <%if path%>
-                 <strong>   <%=link_to name,Rails.application.routes.url_helpers.send(path)%> &nbsp;&nbsp; </strong>
-             <%else%>
-                 <strong>  <%=name%>    </strong>
-             <%end%>
-         <%else%>
-             <%if path%>
-                 <strong>    <%=link_to name,Rails.application.routes.url_helpers.send(path)%> &nbsp;&nbsp; </strong>
-             <%else%>
-                 <span class="txt"> >&nbsp;&nbsp;<%=name%></span>
-             <%end%>
-         <%end%>
-     <%end if breadcrumbs%>
-   </div> </div><br>
- <div class="large-2 medium-3 columns show-for-medium-up">
 
-   <%=render "patch/shared/menu"%>
-
-   </div>
-
-   <div class="large-10 medium-9 columns ">
-
-   <%=yield :notice%>
-<%#= render "shared/header" %>
-<%#if controller_name!='home'%>
-<%#= render "shared/top_menu" %>
-<%= yield :cover %>
-
-     </section>
-
-
-
-
-
-
-<!-- <div id= "main" class="<%=controller_name%> <%=action_name%> clearfix">
-  <%#end%> -->
-<%= yield%>
-<%#if controller_name!='home'%>
-<!-- </div> -->
-<%#end%>
-<%#=render "shared/common_footer"%>
- </div></div>
  <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
 
  <%#=render "shared/iframe_cart" if signed_in?%>

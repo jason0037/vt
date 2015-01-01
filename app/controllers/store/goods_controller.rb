@@ -8,9 +8,15 @@ class Store::GoodsController < ApplicationController
   before_filter :find_tags, :only=>[:cheuksgroup,:newest]
 
 
+  def delete_history
+       @ids= params[:hisid]
+    history=Ecstore::Ghistory.where(:id=>@ids)
+    history.update_all(:status=>"1")
+
+  end
 
 
- def mproduct
+  def mproduct
    if params[:id]=="78" ||params[:supplier_id]=="78"
 
      set_locale
@@ -90,7 +96,7 @@ class Store::GoodsController < ApplicationController
        gh.ip= request.remote_ip
     end.save
     if @user
-    @history_g=Ecstore::Ghistory.where(:member_id=>@user.member_id ).order("updated_at desc").limit(3)
+    @history_g=Ecstore::Ghistory.where(:member_id=>@user.member_id ,:status=>"0").order("updated_at desc").limit(3)
      end
     tag_name = params[:tag]
     @tag = Ecstore::TagName.find_by_tag_name(tag_name)
@@ -253,7 +259,6 @@ class Store::GoodsController < ApplicationController
     def find_tags
         @tags =  Ecstore::Teg.includes(:tag_ext).where('tag_name rlike ?','z[0-9]{4}').order("tag_id desc").limit(20)
     end
-
 
 
 end

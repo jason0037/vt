@@ -281,6 +281,7 @@ Modengke::Application.routes.draw do
     end
 
     resources :goods do
+
       post "export", :on=>:collection
       post "import", :on=>:collection
       post "remove_spec_item",:on=>:member
@@ -438,7 +439,7 @@ Modengke::Application.routes.draw do
 
     get 'search' => "search#index", :as=> :search
     get 'mproducts' =>"goods#mproduct", :as=>"goods" ,:controller=>"goods"
-
+    post "delete_history" =>"goods#delete_history", :as=>"goods" ,:controller=>"goods"
     resources :products, :as=>"goods", :controller=>"goods" do
       # get 'newin',:on=>:collection
       get 'newest',:on=>:collection
@@ -448,7 +449,7 @@ Modengke::Application.routes.draw do
       get 'more',:on=>:collection
       get 'suits', :on=>:collection
       get 'more_suits', :on=>:collection
-
+      post "delete_history" , :on=>:collection
     end
 
     resources :suppliers
