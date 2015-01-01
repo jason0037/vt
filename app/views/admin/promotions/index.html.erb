@@ -27,7 +27,13 @@
             <th>开启状态</th>
             <th>是否排它</th>
             <th>有效期</th>
-            <th>优先级</th>
+            <%if params[:type]=="door" %>
+            <th>楼层</th>
+            <%elsif params[:type]=="goods"%>
+                <th>商品层数</th>
+                <%else%>
+                <th> 优先级 </th>
+                <%end%>
             <th>操作</th>
           </tr>
           

@@ -50,10 +50,24 @@
 </div>
 
 <div class="control-group">
-    <%=f.label :priority, "优先级",:class=>"control-label"%>
-    <div class="controls">
-      <%=f.text_field :priority,:class=>"span2",:placeholder=>"数字越大优先级越高,排名要靠前"%>
-    </div>
+  <%if params[:type]=="door" %>
+      <%=f.label :priority, "楼层",:class=>"control-label"%>
+      <div class="controls">
+        <%=f.text_field :priority,:class=>"span2",:placeholder=>"楼层"%>
+      </div>
+  <%elsif params[:type]=="goods"%>
+      <%=f.label :priority, "商品显示层",:class=>"control-label"%>
+      <div class="controls">
+        <%=f.text_field :priority,:class=>"span2",:placeholder=>"商品显示层"%>
+      </div>
+  <%else%>
+      <%=f.label :priority, "优先级",:class=>"control-label"%>
+      <div class="controls">
+        <%=f.text_field :priority,:class=>"span2",:placeholder=>"数字越大优先级越高,排名要靠前"%>
+      </div>
+  <%end%>
+
+
 </div>
 <div class="control-group">
     <%=f.label :exclusive, "是否排它*",:class=>"control-label"%>
