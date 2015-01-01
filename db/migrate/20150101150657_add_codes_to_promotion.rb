@@ -1,6 +1,6 @@
-class AddGoodsidToPromotion < ActiveRecord::Migration
+class AddCodesToPromotion < ActiveRecord::Migration
   def change
-    add_column :sdb_imodec_promotions, :goodsid, :long
+    add_column :sdb_imodec_promotions, :codes, :long
 
   end
   def self.down
