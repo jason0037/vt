@@ -3,12 +3,12 @@
     <div id="today_recommend" class="row">
 <div class="large-12  columns">
 
-<ul class="clearing-thumbs large-block-grid-3 small-block-3">
+<ul class="clearing-thumbs large-block-grid-4 small-block-4">
   <%@recommend_goods.each do |good|%>
 <li>
   <div class="good-pic good-4162">
     <%=link_to good_path(good.bn,:tag=>@tag&&@tag.tag_name) do %>
-        <%=image_tag good.rec_image,:size=>"190x268",:alt=>good.name%>
+        <%=image_tag good.rec_image,:size=>"190x268",:alt=>good.name,:onerror=>"javascript:this.src='/assets/nopic.png';" %>
     <%end%>		</div>
   <div class="good-info">
 
