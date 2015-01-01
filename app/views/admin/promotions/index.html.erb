@@ -33,7 +33,7 @@
           
         <%@promotions.each do |promotion|%>
           <tr class="<%= 'disable' unless promotion.enable?%>">
-            <% if promotion.code %>
+            <% unless params[:type]=="door" %>
                 <td>第<%=promotion.priority%>＝商品<%=promotion.code%></td>
                 <%else%>
             <td><%=promotion.name%></td>

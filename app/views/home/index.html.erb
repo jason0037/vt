@@ -880,7 +880,7 @@
     <ul class="clearing-thumbs" >
       <li>
         <ul class="side-nav">
-          <% Ecstore::GoodCat.where(:parent_id=>Ecstore::GoodCat.find_by_cat_name(pro.name).cat_id).limit(4).each  do |godes|%>
+          <% Ecstore::GoodCat.where(:parent_id=>pro.code).limit(4).each  do |godes|%>
               <li><a href="#"><%=godes.cat_name%></li>  <%end%>
         </ul>
         <img src="img/floor_left.jpg">
@@ -912,16 +912,18 @@
         </dd>
       <%end%>
       </li>
-<%end%>
-
-
-
     </ul>
   </div>
   <div class="columns large-2">
     <a href="#"><img src="img/floor_product_right.jpg"></a>
   </div>
 </div>
+<%end%>
+
+
+
+
+
 <%end%>
 <div class="w backpanel " id="backpanel-floor"  style="display: block;">
   <div class="backpanel-inner">

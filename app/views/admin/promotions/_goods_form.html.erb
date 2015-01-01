@@ -14,8 +14,20 @@
         <%=f.hidden_field :promotion_type,:value=>"goos"%>
         <%=f.text_field :code ,:placeholder=>"请输入一个产品的ERP编号"%></div>
   <%end%>
-</div>
 
+</div>
+    <%if params[:type]=="door"%>
+    <div class="control-group">
+
+
+
+        <%=f.label :code, "楼层类别",:class=>"control-label"%>
+        <div class="controls">
+        <%=f.select :code, Ecstore::Category.all.collect {|cat| [cat.full_path_name, cat.cat_id] },{:include_blank=>"请选择对应楼层类别"},{:class=>"span3"} %>
+
+
+      </div>
+    </div>   <%end%>
 
     <div class="control-group">
     <%=f.label :desc, "描述*",:class=>"control-label"%>

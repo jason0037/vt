@@ -11,7 +11,7 @@ class HomeController < ApplicationController
 		@title = "卓展集团--工业成品专家"
 
 		@home = Ecstore::Home.where(:supplier_id=>nil).last
-    @promotions = Ecstore::Promotion.where(:promotion_type=>"door")
+    @promotions = Ecstore::Promotion.where(:promotion_type=>"door").order("priority")
     @progoods=Ecstore::Promotion.where(:promotion_type=>"goos")
 
 
