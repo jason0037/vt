@@ -159,8 +159,8 @@
                             <%spec=JSON.parse(product.detail_spec)%>
                             <%spec.each_with_index  do |value, index|  %>
                                 <% if value[0] =="额定负载" %>
-                                    <p><%=value[0]%>  </p>
-                                   <p><%=value[1]%></p>
+                                   <%=value[0]%> : <%=value[1]%>
+
                                 <%end%>
                             <%end%>
 
