@@ -73,10 +73,10 @@
             </ul>
             <div class="row">
                 <ul class="large-block-grid-4 small-block-grid-2 clearing-thumbs">
-                    <li><a href="#" class="th"><img src="img/product_top3.jpg" ></a></li>
-                    <li><a href="#" class="th"><img src="img/product_top3.jpg" ></a></li>
-                    <li><a href="#" class="th"><img src="img/product_top3.jpg"></a></li>
-                    <li><a href="#" class="th"><img src="img/product_top3.jpg"></a></li>
+                    <li><a href="/gallery/14" class="th"><img src="/assets/cheuks/indexbanner.jpg" ></a></li>
+                    <li><a href="/gallery/15" class="th"><img src="/assets/cheuks/2_indexbanner.jpg" ></a></li>
+                    <li><a href="/gallery/16" class="th"><img src="/assets/cheuks/3_indexbanner.jpg"></a></li>
+                    <li><a href="/gallery/17" class="th"><img src="/assets/cheuks/4_indexbanner.jpg"></a></li>
                 </ul>
             </div>
         </div>
@@ -209,7 +209,7 @@
       <li>
         <ul class="side-nav">
           <% Ecstore::GoodCat.where(:parent_id=>pro.codes).limit(4).each  do |godes|%>
-              <li><a href="#"><%=godes.cat_name%></li>  <%end%>
+              <li><a href="/gallery/<%=godes.cat_id%>"><%=godes.cat_name%></li>  <%end%>
         </ul>
         <img src="img/floor_left.jpg">
       </li>
