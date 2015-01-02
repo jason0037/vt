@@ -154,6 +154,7 @@
                     <input type="hidden"class="goods_id" value="<%=p%>">
                     <a href="/products/<%=p%>"><h3><%=Ecstore::Good.find_by_bn(p).name%></h3></a>
                     <h5>￥<%=Ecstore::Good.find_by_bn(p).price%></h5>市场价：<span style="font-size:.8em"><%=Ecstore::Good.find_by_bn(p).mktprice%></span>
+                   <br>
                     <%@pro.each do |product|%>
                         <% if product.detail_spec%>
                             <%spec=JSON.parse(product.detail_spec)%>
