@@ -400,19 +400,26 @@
         <div class="small-3 columns" style="text-align:center">
        <span class="prefix">  <i class=" fi-lock"></i> </span>
         </div>
-        <div class="small-3 columns">
+        <div class="small-5 columns">
           <%=text_field_tag :captcha,nil,:style=>"width:50%",:placeholder=>"验证码"%>
         </div>
-        <div class="small-3 columns" id="captcha"><%= captcha_tag %></div> 
-        <div class="small-3 columns" id="refresh_captcha">刷新</div> 
-           
+        <div class="small-4 columns" id="captcha"><%= captcha_tag %></div>            
         <% if request.post? %>
           <p>验证码<%= valid_captcha?(params[:captcha]) ? '正确' : '错误' %> </p>
         <% end %>
         </div>
       </div>
     </div>
-
+<script>
+$(document).ready(function(){
+    $("img[alt='captcha']").each(function(index, item){
+        item.title = '看不清？点击刷新'
+    })
+    $("img[alt='captcha']").bind("click", function(){
+        this.src = this.src + '?' 
+    })
+})
+</script>
  
 
 
