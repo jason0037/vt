@@ -401,7 +401,7 @@
        <span class="prefix">  <i class=" fi-lock"></i> </span>
         </div>
         <div class="small-5 columns">
-          <%=text_field_tag :captcha,nil,:style=>"width:50%",:placeholder=>"验证码"%>
+          <%=text_field_tag :captcha,nil,:placeholder=>"验证码"%>
         </div>
         <div class="small-4 columns" id="captcha"><%= captcha_tag %></div>            
         <% if request.post? %>
