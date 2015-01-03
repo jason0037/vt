@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   skip_before_filter :find_cart!
   skip_before_filter :find_path_seo
   
-  layout "simple"
+  layout "standard"
 
   def new
     @account = Ecstore::Account.new
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
 
   def forgot_password
     @title = "找回密码"
-    render :layout=>"simple"
+    render :layout=>"standard"
   end
 
   def send_reset_password_instruction

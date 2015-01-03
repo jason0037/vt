@@ -102,15 +102,13 @@
               <li><a href="/vshop">供应商加盟</a></li>
               <li class="divider"></li>
               <li class="has-dropdown">
-                <a href="#">客服中心</a>
+                <a href="/pages/shlc">客服中心</a>
                 <ul class="dropdown">
-                  <li><label>技术中心</label></li>
+                  <li>  <a href="/pages/techaicl">技术中心</a></li>
                 </ul>
               </li>
               <li class="divider"></li>
-              <li>
-                <a href="#">网站导航</a>
-              </li>
+
             </ul>
           </section>
         </nav>
@@ -221,6 +219,7 @@
  <%#= javascript_include_tag "google-analytics" if Rails.env == "production"%>
 
  <!-- 登录  --!>
+
 <div id="login_iframe" class="reveal-modal remove-whitespace" data-reveal="">
 
 
@@ -250,7 +249,7 @@
     </div>
     <br>
     <br>
-    <div class="large-12 columns">
+       <div class="large-12 columns">
       <div class="row collapse prefix-radius">
         <div class="small-3 columns" style="text-align:center">
        <span class="prefix">  <i class=" fi-lock"></i> </span>
@@ -262,21 +261,43 @@
     </div>
 
   <div class="row">
-
         <div class="small-12 columns">
            <input class="button alert btn_login" name="commit" style="width:100%" type="submit" value="登 录">
          </div>
-
     </div>
-        <div class="row">
+    <div class="row"  style="display:none">
+      <div class="small-12 columns">
+       <ul class="sns_login" style="display:none">
+          <span> 或第三方登录:</span>
+          <li>
+            <a class="tsina" href="/auth/weibo" target="_top">新浪微博</a>
+          </li>
+          <li>
+            <a class="douban" href="/auth/douban" target="_top">豆瓣</a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
+
+
+
+     <div class="row collapse prefix-radius">
+        <div class="small-6 columns">
+            <input type="checkbox" style="float:left" checked="checked" id="autologin" name="remember_me" value="1">
+            <span id="remember_me" style="line-height: 3" for="autologin"> 记住登录</span>
+         </div>
+        <div class="small-6 columns">
+            <a class="forgot_link " style="line-height: 3" href="/users/forgot_password" target="_top">找回密码</a>
+         </div>
+    </div>
+    <div class="row">
         <div class="small-12 columns">
            <a href="#signup" data-reveal-id="register_iframe" class="button secondary    " style="width:100%" >  注册</a>
          </div>
-
     </div>
 
-        <%end%>
+    <%end%>
 
 
     </div>
@@ -354,8 +375,31 @@
       </div>
     </div>
 
-
-
+<div class="large-12 columns">
+      <div class="row collapse prefix-radius">
+        <div class="small-3 columns" style="text-align:center">
+       <span class="prefix">  <i class=" fi-lock"></i> </span>
+        </div>
+        <div class="small-5 columns">
+          <%=text_field_tag :captcha,nil,:placeholder=>"验证码"%>
+        </div>
+        <div class="small-4 columns" id="captcha"><%= captcha_tag %></div>
+        <% if request.post? %>
+          <p>验证码<%= valid_captcha?(params[:captcha]) ? '正确' : '错误' %> </p>
+        <% end %>
+        </div>
+      </div>
+    </div>
+<script>
+$(document).ready(function(){
+    $("img[alt='captcha']").each(function(index, item){
+        item.title = '看不清？点击刷新'
+    })
+    $("img[alt='captcha']").bind("click", function(){
+        this.src = this.src + '?'
+    })
+})
+</script>
 
 
 
@@ -374,7 +418,7 @@
        <div class="row">
 
         <div class="small-12 columns">
-           <a href="#signup" data-reveal-id="login_iframe" class="button secondary    " style="width:100%" >  登陆</a>
+           <a href="#signup" data-reveal-id="login_iframe" class="button secondary    " style="width:100%" >  登录</a>
          </div>
 
     </div>
@@ -466,7 +510,7 @@
 <div class="row " style="background-color:#FFF">
   <div class="large-12 columns" style="text-align: center">
 
-    <p class="" style="padding: 20px;"><a target="_blank" href="#" title="服务热线：400-820-0101"><img src="http://www.cheuks.com//images/tel_foot.gif"></a> </p>
+    <p class="" style="padding: 20px;"><a target="_blank" href="#" title="服务热线：400-820-0101"><img src="http://www.cheuks.com/images/tel_foot.gif"></a> </p>
   </div>
   <div class="large-12 columns"  style="text-align: center">
 

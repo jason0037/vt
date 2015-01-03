@@ -1,19 +1,37 @@
 
-<%=content_for :head do%>
-   <%= stylesheet_link_tag "forgot_password"%>
-	<%= javascript_include_tag "forgot_password"%>
-<%end%>
+     <br>
+     <br>
 
-<div class="forgot-password-holder">
+<div class="row forgot-password-holder">
 	<%=form_for :user,:url=>search_users_path,:html=>{ :class=>"form-inline" } do |f|%>
 		<%=f.hidden_field :by,:value=>"login_name"%>
-	   <div>
-	   		<span class="required">*</span>
-	   		<span>用户名</span>
-	   		<%=f.text_field :value,:value=>nil,:class=>"input-medium"%>
-	   		<%=f.submit "重新查询",:name=>nil,:class=>"btn btn-success"%>
-	   </div>
-	   <div class="help-tips"></div>
+      <div class="row">
+        <div class="large-6 columns">
+          <div class="row collapse prefix-radius">
+            <div class="small-3 columns">
+              <span class="prefix"> <i class=" fi-torso"></i></span>
+            </div>
+            <div class="small-9 columns">
+              <%=f.text_field :value,:value=>nil,:placeholder=>"用户名"%>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 columns">
+            <div class="row collapse prefix-radius">
+
+              <div class="small-9 columns">
+                <%=f.submit "重新查询",:name=>nil,:class=>"button small alert" ,:style=>"height: 38px;
+line-height: 0; margin-left:50%"%>
+
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+
 	<%end%>
 
 	<p>请选择找回密码方式 : </p>
@@ -21,18 +39,56 @@
 		<%=f.hidden_field :member_id,:value=>@user.member_id%>
 		<p>
 			<label class="radio">
-				<%=f.radio_button :by,"email",:checked=>true%>可选邮箱 : <%=@user.mask_email%>
+
 			</label>
 		</p>
 
-		<!-- <p>
+      <div class="row">
+        <div class="large-6 columns">
+          <div class="row collapse prefix-radius">
+
+            <div class=" columns">
+              <%=f.radio_button :by,"email",:checked=>true%>可选邮箱 : <%=@user.mask_email%>
+            </div>
+          </div>
+        </div></div>
+
+
+      <!--<div class="row">-->
+        <!--<div class="large-6 columns">-->
+          <!--<div class="row collapse prefix-radius">-->
+
+            <!--<div class="small-9 columns">-->
+              <!--<%=f.radio_button :by,"mobile",:checked=>false%>可选手机号码 : <%=@user.mask_mobile%>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div></div>-->
+
+
+      <!-- <p>
 			<label class="radio">
-				<%=f.radio_button :by,"mobile",:checked=>false%>可选手机号码 : <%=@user.mask_mobile%>
+
 			</label>
 		</p> -->
 
-		<p>
-			<%=f.submit "下一步",:name=>nil,:class=>"btn btn-success"%>
-		</p>
+        <div class="row">
+
+
+
+
+                <%=f.submit "下一步",:name=>nil,:class=>"button small alert" ,:style=>"height: 38px;
+line-height: 0;width:100%"%>
+
+
+          </div>
+
+
+        </div>
+
+
 	<%end%>
+</div>
+
+
+
 </div>

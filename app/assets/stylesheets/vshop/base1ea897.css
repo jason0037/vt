@@ -373,7 +373,7 @@ body {
 
 }
 .nav_item {
-	margin-left: 6em; vertical-align: top; display: inline-block;
+	margin-left: 3em; vertical-align: top; display: inline-block;
 }
 .nav_item a {
 	color: rgb(235, 235, 235); display: block;
