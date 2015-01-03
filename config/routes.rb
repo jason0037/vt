@@ -99,7 +99,8 @@ Modengke::Application.routes.draw do
   resources :sessions
   resources :users do
     get 'forgot_password', :on=>:collection
-    #post 'send_reset_password_instruction', :on=>:collectiongem 'weixin_rails_middleware', git: "git://github.com/lanrion/weixin_rails_middleware.git", branch: "master"gem 'weixin_rails_middleware', git: "git://github.com/lanrion/weixin_rails_middleware.git", branch: "master"
+    post 'send_reset_password_instruction', :on=>:collectiongem 
+    #'weixin_rails_middleware', git: "git://github.com/lanrion/weixin_rails_middleware.git", branch: "master"gem 'weixin_rails_middleware', git: "git://github.com/lanrion/weixin_rails_middleware.git", branch: "master"
     get 'reset_password',:on=>:collection
     post 'search', :on=>:collection
     post 'change_password',:on=>:collection
