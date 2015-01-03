@@ -285,48 +285,39 @@
     </div>
 
   <div class="row">
-
         <div class="small-12 columns">
            <input class="button alert btn_login" name="commit" style="width:100%" type="submit" value="登 录">
          </div>
-
     </div>
     <div class="row"  style="display:none">
-    <div class="small-12 columns">
-     <ul class="sns_login" style="display:none">
-                    <span> 或第三方登录:</span>
-                    <li>
-                      <a class="tsina" href="/auth/weibo" target="_top">新浪微博</a>
-                    </li>
-                    <li>
-                      <a class="douban" href="/auth/douban" target="_top">豆瓣</a>
-                    </li>
-                    <div class="clear"></div>
-                  </ul>
+      <div class="small-12 columns">
+       <ul class="sns_login" style="display:none">
+          <span> 或第三方登录:</span>
+          <li>
+            <a class="tsina" href="/auth/weibo" target="_top">新浪微博</a>
+          </li>
+          <li>
+            <a class="douban" href="/auth/douban" target="_top">豆瓣</a>
+          </li>
+        </ul>
+      </div>
     </div>
-
-    </div>
-        <div class="row">
-
+    <div class="row">
         <div class="small-6 columns">
-                  <input type="checkbox" checked="checked" id="autologin" name="remember_me" value="1">
-                  <label id="remember_me" class="checkbox_label"  for="autologin"> 记住登录</label>
+            <input type="checkbox" checked="checked" id="autologin" name="remember_me" value="1">
+            <label id="remember_me" for="autologin"> 记住登录</label>
          </div>
-        <div class="small-6 columns">
-           
-                  <a class="forgot_link" href="/users/forgot_password" target="_top">找回密码</a>
+        <div class="small-6 columns">           
+            <a class="forgot_link" href="/users/forgot_password" target="_top">找回密码</a>
          </div>
-
     </div>
-        <div class="row">
-
+    <div class="row">
         <div class="small-12 columns">
            <a href="#signup" data-reveal-id="register_iframe" class="button secondary    " style="width:100%" >  注册</a>
          </div>
-
     </div>
 
-        <%end%>
+    <%end%>
 
 
     </div>
@@ -409,8 +400,11 @@
         <div class="small-3 columns" style="text-align:center">
        <span class="prefix">  <i class=" fi-lock"></i> </span>
         </div>
-        <div class="small-9 columns">
-        <span><%=text_field_tag :captcha,nil,:style=>"width:50%",:placeholder=>"验证码"%></span><span id="captcha"><%= captcha_tag %></span> 
+        <div class="small-3 columns">
+          <%=text_field_tag :captcha,nil,:style=>"width:50%",:placeholder=>"验证码"%>
+        </div>
+        <div class="small-3 columns" id="captcha"><%= captcha_tag %></div> 
+        <div class="small-3 columns" id="refresh_captcha">刷新</div> 
            
         <% if request.post? %>
           <p>验证码<%= valid_captcha?(params[:captcha]) ? '正确' : '错误' %> </p>
