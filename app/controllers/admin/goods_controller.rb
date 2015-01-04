@@ -55,11 +55,28 @@ module Admin
             goodsCatId=good.good_type.goods_cat_id
             sheet.add_row [nil ,goodsCat,goodsCatCode,goodsCatId]
             row_count=0
-            sheet.add_row ["产品/规格","产品名称","产品型号","规格参数","产品规格","单位","产品简介","ERP产品编号","条码","库存数量", "交期","状态","市场价","促销价","货叉总长度","货叉总宽度","货叉尺寸","承重轮(双轮)","承重轮(单轮)","转向轮","货叉最高高度","货叉最低高度","额定负载"],
+            good.products.each do |product|
+
+                   spec=product.detail_spec.to_json
+
+                   spec.each_with_index  do |value, index|
+                     if spec.nil?
+                      value[0]=""
+                     end
+
+                     return render :text=>value[0]
+
+
+                       end end
+
+
+            sheet.add_row ["产品/规格","产品名称","产品型号","规格参数","产品规格","单位","产品简介","ERP产品编号","条码","库存数量", "交期","状态","市场价","促销价"],
                           :style=>head_cell
 
 
-           row_count+=1
+
+
+            row_count+=1
             sheet.add_row ["产品信息",good.name,goodsModel,goodsSize_Desc,goodsSize.strip,goodsUnit,goodDesc,goodsBn,nil,nil,"现货","上架"],:height=> 40
 
 
@@ -113,7 +130,7 @@ module Admin
 
 
 
-              sheet.add_row ["规格信息",nil,nil,nil,nil,nil,nil,productBn,productBarcode,product.store,"现货","上架",v[0],product.promotion, JSON.parse(product.detail_spec)["totalength"], JSON.parse(product.detail_spec)["totalweigth"],JSON.parse(product.detail_spec)["forksize"],JSON.parse(product.detail_spec)["doublebearing"],JSON.parse(product.detail_spec)["singebearing"],JSON.parse(product.detail_spec)["sterring"],JSON.parse(product.detail_spec)["highest"],JSON.parse(product.detail_spec)["lowest"],JSON.parse(product.detail_spec)["ratedload"]],:style=>product_cell
+              sheet.add_row ["规格信息",nil,nil,nil,nil,nil,nil,productBn,productBarcode,product.store,"现货","上架",v[0],product.promotion],:style=>product_cell
             end
 
             sheet.column_widths nil, nil,nil,nil,nil,10
@@ -121,8 +138,8 @@ module Admin
         end
       end
 
-     # send_data package.to_stream.read,:filename=>"goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx"
-      send_data(package.to_stream.read, :type => "text/excel;charset=utf-8; header=present",:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xls")
+      send_data package.to_stream.read,:filename=>"goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xlsx"
+      # send_data(package.to_stream.read, :type => "text/excel;charset=utf-8; header=present",:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.xls")
       #content = Ecstore::Good.export_cvs(fields,goods) #导出cvs
       # MS Office 需要转码
       # send_data(content, :type => 'text/csv',:filename => "goods_#{Time.now.strftime('%Y%m%d%H%M%S')}.csv")

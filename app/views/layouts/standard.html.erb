@@ -47,7 +47,7 @@
       </section>
 
       <section class="middle tab-bar-section">
-        <h1 class="title"><a href="/"><img src="http://weishop.cheuks.com/img/cheuks_logo.png"></a></h1>
+        <h1 class="title"><a href="/"><img src="/img/cheuks_logo.png"></a></h1>
       </section>
 
       <section class="right-small">
@@ -239,7 +239,7 @@
   <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
 
   <%#=render "shared/iframe_cart" if signed_in?%>
-  <%#=render "shared/iframe_login" unless signed_in?%>
+
   <%#= javascript_include_tag "google-analytics" if Rails.env == "production"%>
 
 <!-- 登录  --!>
@@ -468,6 +468,7 @@ $(document).ready(function(){
 </div>
 <!--页尾信息-->
   <%=render "shared/iframe_cart" if signed_in?%>
+<%=render "shared/iframe_login" unless signed_in?%>
     <hr />
 <footer class="footer">
   <div class="row full-width-footer">

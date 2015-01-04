@@ -15,9 +15,9 @@ class HomeController < ApplicationController
     @progoods=Ecstore::Promotion.where(:promotion_type=>"goods")
 
 
-	# 	if signed_in?
-	# 	   redirect_to params[:return_url] if params[:return_url].present?
-	# end
+
+
+
 
 	end
 

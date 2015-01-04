@@ -54,13 +54,15 @@ class Patch::ProfilesController < ApplicationController
 
   def modify_password
      @account =  current_account
-     if @account.update_attributes(params[:account])
-        sign_out 
-        redirect_to root_path
-     else
+     unless @account.update_attributes(params[:account])
+
+
         render :password
-     end
+     else
+       sign_out
+    end
   end
+
 
   private
     def  find_user
