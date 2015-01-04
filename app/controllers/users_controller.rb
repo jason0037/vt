@@ -111,9 +111,12 @@ class UsersController < ApplicationController
   def change_password
     @title = "修改密码成功"
     @account = Ecstore::Account.where(:account_id=>params[:account][:account_id]).first
-    if @account.change_password(params[:account][:login_password],
-                                                           params[:account][:login_password_confirmation])
+    params[:account].delete(:account_id)
+    if @account.update_attributes(params[:account])
+   # if @account.change_password(params[:account][:login_password],params[:account][:login_password_confirmation])
       @account.user.clear_reset_password_token
+      render :text=>"密码修改成功,请用新密码<a href='http://weishop.cheuks.com/home'>登录</a>"
+      #redirect_to "http://weishop.cheuks.com/home"
     else
       @user = @account.user
       render :reset_password
