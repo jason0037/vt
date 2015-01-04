@@ -39,7 +39,7 @@ class Admin::OrdersController < Admin::BaseController
     if (role=="sale")
       @orders = @orders_nw.where(:desktop_user_id=>current_admin.account_id)
 
-    elsif @user.member_id==2   ## cheuksadmin
+    elsif current_admin.account_id ==2 #@user.member_id==2   ## cheuksadmin
         @orders_nw = 	@orders_nw = Ecstore::Order.order("createtime desc")
 
     elsif (current_admin.login_name=="admin")
