@@ -253,7 +253,7 @@ class Ecstore::Account < Ecstore::Base
 				false
 		end
 	rescue Exception=>e
-		logger.error "check whether '#{self.login_name}' is following 'I-Modec'. because #{e}"
+		logger.error "check whether '#{self.login_name}' is following 'Cheuks'. because #{e}"
 	end
 
 	def follow_imodec=(val)
@@ -304,7 +304,7 @@ class Ecstore::Account < Ecstore::Base
 			client.post('friendships/create.json',:uid=>Weibo.config.uid)
 		end
 	rescue Exception=>e
-		logger.error "'#{self.login_name}' was Failed to following 'I-Modec'.because #{e}"
+		logger.error "'#{self.login_name}' was Failed to following 'Cheuks'.because #{e}"
 	end
 
 end

@@ -97,7 +97,11 @@ class Store::GoodsController < ApplicationController
     end.save
     if @user
     @history_g=Ecstore::Ghistory.where(:member_id=>@user.member_id ,:status=>"0").order("updated_at desc").limit(3)
-     end
+    end
+
+
+    @comment_cheusk=Ecstore::Comment.where(:commentable_id=>@good.goods_id).first
+
     tag_name = params[:tag]
     @tag = Ecstore::TagName.find_by_tag_name(tag_name)
 

@@ -7,7 +7,11 @@
             <DIV class="slide_con">
               <H2>欢迎加盟卓展</H2>
               <P>
+                <%unless @user%>
               <A class="jsUrlLink btn btn_banner" href="/vshop/register">加盟</A>
+                    <%else%>
+                    <A class="jsUrlLink btn btn_banner" href="#">我的资料管理</A>
+                <%end%>
               </P>
             </DIV>
           </DIV></LI>

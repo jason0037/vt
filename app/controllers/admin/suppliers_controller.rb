@@ -87,8 +87,8 @@ class Admin::SuppliersController < ApplicationController
 
     @account=Ecstore::Account.find(params[:user_id])
     @account.update_attribute(:supplier_id,params[:supplier_id])
-    if @account.account_type=="shopadmin"
-      @account.update_attribute(:account_type,"member")
+    if @account.account_type=="member"
+      @account.update_attribute(:account_type,"shopadmin")
 
     end
     @manager=Ecstore::Manager.find_by_user_id(params[:user_id])

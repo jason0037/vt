@@ -58,6 +58,9 @@ class VshopController < ApplicationController
       if !params[:ship_status].nil?
         @orders_nw = @orders_nw.where(:ship_status=>params[:ship_status])
       end
+      if @user.member_id==2840   ## cheuksadmin
+        @orders_nw = 	@orders_nw = Ecstore::Order.order("createtime desc")
+      end
 
       @order_ids = @orders_nw.pluck(:order_id)
 
@@ -111,7 +114,7 @@ class VshopController < ApplicationController
 
       @goods = Ecstore::Good.includes(:cat).includes(:brand)
       @supplier =Ecstore::Supplier.find_by_member_id(@user.id)
-      if @user.id!= 2495 #贸威
+      if @user.id!= 2840 #贸威
         @supplier =Ecstore::Supplier.find_by_member_id(@user.id)
         @goods = @goods.where(:supplier_id=>@supplier.id)
       end

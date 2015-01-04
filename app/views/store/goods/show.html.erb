@@ -10,11 +10,18 @@
 
   <div class="large-10 medium-9 columns">
     <div id="products" class="show " >
+
       <%= render :partial=>"new_single",:locals=>{ :good=>@good } %>
     </div>
     <div id="product_detail">
       <%= render :partial=>"new_detail",:locals=>{ :good=>@good,:product=>@product } %>
     </div>
+    <% unless @comment_cheusk.nil?%>
+        <div >
+        <%#= render :partial=>"comment_cheuks",:locals=>{ :@comment=>@comment_cheusk } %>
+        </div>
+    <%end%>
+
 
     <%if @good.has_cols? %>
         <div id="new_look">

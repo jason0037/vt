@@ -1,0 +1,32 @@
+table tr td a{
+    line-height: 20px;
+}
+.comment-box {
+    background: #fcfffa;
+    border: 1px solid #d0e4c2;
+    padding: 10px 0 0 30px;
+    margin: 0 -6px 5px;
+    text-align: left;
+    position: relative;
+    zoom: 1;
+}
+.dl .accordion-navigation > a, .accordion dd > a{
+    background: #ffffff;
+}
+.dl .accordion-navigation.active > a, .accordion dd.active > a {
+    background: #ffffff;
+}
+.comment-box .box-t {
+    position: absolute;
+    right: 30%;
+    top: -11px;
+    width: 21px;
+    height: 12px;
+    background: url(/assets/cheuks/cicon.png) 0 0 no-repeat;
+}
+
+.showstar ul,.showstar span  .star ul,.star span{float:left;display:inline;height:19px;line-height:19px;}
+.showstar ul,  .star ul{margin:0 10px; list-style-type: none}
+.showstar li, .star li{float:left;width:24px;cursor:pointer;text-indent:-9999px;background:url(/assets/cheuks/star.png) no-repeat;}
+.showstar strong .star strong{color:#f60;padding-left:10px;}
+.showstar li.on, .star li.on{background-position:0 -28px;}
