@@ -39,11 +39,6 @@ class Admin::OrdersController < Admin::BaseController
     if (role=="sale")
       @orders = @orders_nw.where(:desktop_user_id=>current_admin.account_id)
 
-    elsif (role=="vendor")
-      vendor={'vendor_0001'=>66, 'vendor_0002'=>65,'vendor_ybpx'=>72,'vendor_xss'=>73,'vendor_xgy'=>63,'vendor_xj'=>64}
-     # @orders = @orders_nw.joins(:order_items).where('sdb_b2c_order_items.goods_id in (3466,3467)')
-        @orders = @orders_nw.joins(:order_items)
-        .where("sdb_b2c_order_items.goods_id in (select goods_id from sdb_b2c_goods where supplier=#{vendor[current_admin.login_name]})")
     elsif @user.member_id==2   ## cheuksadmin
         @orders_nw = 	@orders_nw = Ecstore::Order.order("createtime desc")
 
