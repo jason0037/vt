@@ -1,6 +1,6 @@
 #encoding:utf-8
 class ValidationMailer < ActionMailer::Base
-  default from: "TRADE-V<cs@iotps.com>"
+  default from: "Cheuks<cs@iotps.com>"
 
 
   def verify_email(user)
@@ -8,7 +8,8 @@ class ValidationMailer < ActionMailer::Base
   	site  = "http://weishop.cheuks.com/"
   	site  = "http://weishop.cheuks.com/" if Rails.env == "production"
   	@verify_email_url = "#{site}/validation/verify_email?u=#{user.member_id}&token=#{user.email_code}"
-  	mail(:to => user.email, :subject => "卓展用户验证邮件")
+  	mail(:to => user.email, :subject => "Cheuks验证邮件")
+
   end
 
 

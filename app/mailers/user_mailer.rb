@@ -2,7 +2,7 @@
 class UserMailer < ActionMailer::Base
   async = true
   
-  default from: "TRADE-V<cs@iotps.com>"
+  default from: "Cheuks<cs@iotps.com>"
 
 
   def user_email(addr,subject)
