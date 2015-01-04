@@ -16,11 +16,11 @@
     <div id="product_detail">
       <%= render :partial=>"new_detail",:locals=>{ :good=>@good,:product=>@product } %>
     </div>
-    <% unless @comment_cheusk.nil?%>
-        <div >
-        <%=# render :partial=>"comment_cheuks",:locals=>{ :@comment=>@comment_cheusk } %>
-        </div>
-    <%end%>
+    <!--<%# unless @comment_cheusk.nil?%>-->
+        <!--<div >-->
+        <!--<%#= render :partial=>"comment_cheuks",:locals=>{ :@comment=>@comment_cheusk } %>-->
+        <!--</div>-->
+    <!--<%#end%>-->
 
 
     <%if @good.has_cols? %>
