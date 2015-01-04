@@ -44,7 +44,7 @@ class Admin::OrdersController < Admin::BaseController
      # @orders = @orders_nw.joins(:order_items).where('sdb_b2c_order_items.goods_id in (3466,3467)')
         @orders = @orders_nw.joins(:order_items)
         .where("sdb_b2c_order_items.goods_id in (select goods_id from sdb_b2c_goods where supplier=#{vendor[current_admin.login_name]})")
-    elsif @user.member_id==2840   ## cheuksadmin
+    elsif @user.member_id==2   ## cheuksadmin
         @orders_nw = 	@orders_nw = Ecstore::Order.order("createtime desc")
 
     elsif (current_admin.login_name=="admin")
