@@ -96,7 +96,7 @@ class Store::GoodsController < ApplicationController
        gh.ip= request.remote_ip
     end.save
     if @user
-    @history_g=Ecstore::Ghistory.where(:member_id=>@user.member_id ,:status=>"0").order("updated_at desc").limit(3)
+      @history_g=Ecstore::Ghistory.where(:member_id=>@user.member_id ,:status=>"0").order("updated_at desc").limit(3)
     end
 
 
@@ -108,17 +108,22 @@ class Store::GoodsController < ApplicationController
     @cat = @good.cat
 
     @recommend_goods = []
-    if @cat.goods.size >= 4
-      @recommend_goods =  @cat.goods.where("goods_id <> ?", @good.goods_id).order("goods_id desc").limit(4)
-    else
-      @recommend_goods += @cat.goods.where("goods_id <> ?", @good.goods_id).limit(4).to_a
-      @recommend_goods += @cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-@recommend_goods.size] if @cat.parent_cat && @recommend_goods.size < 4
-      @recommend_goods.compact!
-      if @cat.parent_cat.parent_cat && @recommend_goods.size < 4
-        count = @recommend_goods.size
-        @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
+    if !@cat.nil? 
+      if @cat.goods.size >= 4
+        @recommend_goods =  @cat.goods.where("goods_id <> ?", @good.goods_id).order("goods_id desc").limit(4)
+      else
+        @recommend_goods += @cat.goods.where("goods_id <> ?", @good.goods_id).limit(4).to_a
+        @recommend_goods += @cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-@recommend_goods.size] if @cat.parent_cat && @recommend_goods.size < 4
+        @recommend_goods.compact!
+        if !@cat.parent_cat.nil?
+          if @cat.parent_cat.parent_cat && @recommend_goods.size < 4
+            count = @recommend_goods.size
+            @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
+          end
+        end
       end
     end
+
 
     respond_to do |format|
 

@@ -40,19 +40,19 @@ module Admin
 
         workbook.add_worksheet(:name => "Product") do |sheet|
 
-
-
+         sheet.add_row ["产品/规格","产品名称","产品型号","规格参数","产品规格","单位","产品简介","ERP产品编号","条码","库存数量", "交期","状态","市场价","促销价"],
+                          :style=>head_cell
 
           goods.each do |good|
             goodsModel=good.model
-            goodsCat=good.good_type.name
+            goodsCat=''#good.good_type.name
             goodsSize_Desc=good.size_description
             goodsSize=good.size
             goodsUnit=good.unit
             goodDesc=good.desc
             goodsBn=good.bn.to_s
-            goodsCatCode=good.good_type.goods_cat_code
-            goodsCatId=good.good_type.goods_cat_id
+            goodsCatCode='' #good.good_type.goods_cat_code
+            goodsCatId='' #good.good_type.goods_cat_id
             sheet.add_row [nil ,goodsCat,goodsCatCode,goodsCatId]
             row_count=0
             good.products.each do |product|
@@ -69,17 +69,12 @@ module Admin
                    #
                    #     end
 
-                   end
-
-
-            sheet.add_row ["产品/规格","产品名称","产品型号","规格参数","产品规格","单位","产品简介","ERP产品编号","条码","库存数量", "交期","状态","市场价","促销价"],
-                          :style=>head_cell
-
-
+                   end           
 
 
             row_count+=1
-            sheet.add_row ["产品信息",good.name,goodsModel,goodsSize_Desc,goodsSize.strip,goodsUnit,goodDesc,goodsBn,nil,nil,"现货","上架"],:height=> 40
+            #goodsSize.strip
+            sheet.add_row ["产品信息",good.name,goodsModel,goodsSize_Desc,goodsSize,goodsUnit,goodDesc,goodsBn,nil,nil,"现货","上架"],:height=> 40
 
 
             # 图片
@@ -129,8 +124,6 @@ module Admin
                   v.push(product.promotion)
                 end
               end
-
-
 
               sheet.add_row ["规格信息",nil,nil,nil,nil,nil,nil,productBn,productBarcode,product.store,"现货","上架",v[0],product.promotion],:style=>product_cell
             end
