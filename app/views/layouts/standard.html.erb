@@ -350,8 +350,11 @@
         <div class="small-9 columns">
         <%=f.text_field :login_name,:placeholder=>"用户名"%>
         </div>
+          <div class="help-block red" rel="user_login_name"></div>
       </div>
     </div>
+
+
     <br>
     <br>
     <div class="large-12 columns">
@@ -362,6 +365,7 @@
         <div class="small-9 columns">
        <%=f.password_field :login_password,:placeholder=>"密码"%>
         </div>
+         <div class="help-block red" rel="user_login_password"></div>
       </div>
     </div>
 
@@ -373,6 +377,7 @@
         <div class="small-9 columns">
          <%=f.password_field :login_password_confirmation,:placeholder=>"确认密码"%>
         </div>
+          <div class="help-block red" rel="user_login_password_confirmation"></div>
       </div>
     </div>
 
@@ -384,6 +389,7 @@
         <div class="small-9 columns">
        <%=f.text_field :email,:placeholder=>"邮箱"%>
         </div>
+         <div class="help-block red" rel="user_email"></div>
       </div>
     </div>
 
@@ -395,6 +401,7 @@
         <div class="small-9 columns">
       <%=f.text_field :mobile,:class=>"am-form-field",:placeholder=>"手机号码"%>
         </div>
+         <div class="help-block red" rel="user_mobile"></div>
       </div>
     </div>
 

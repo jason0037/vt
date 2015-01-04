@@ -17,9 +17,9 @@ class UsersController < ApplicationController
     if request.post?
       if captcha_valid? params[:captcha]
         #redirect_to :root, :notice => "valid captcha"
-      else
-        #flash[:alert] = "invalid captcha"
-        render "error"
+      # else
+      #   #flash[:alert] = "invalid captcha"
+      #   render "error"
       end
     end
 
