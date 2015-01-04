@@ -47,7 +47,7 @@ class Admin::OrdersController < Admin::BaseController
   else
   	  @orders = @orders_nw.where(:member_id=>"0")
   end
-    @orders = @orders.includes(:user).paginate(:page=>params[:page],:per_page=>30)
+    @orders =  @orders.paginate(:page=>params[:page],:per_page=>30) #@orders.includes(:user).paginate(:page=>params[:page],:per_page=>30)
 		respond_to do |format|
 			format.js
 			format.html
