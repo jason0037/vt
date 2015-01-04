@@ -1,7 +1,7 @@
 
      <br>
      <br>
-
+     <div class="signup-panel"  style="margin-left: 20%;width: 50%">
 <div class="row forgot-password-holder">
 	<%=form_for :user,:url=>search_users_path,:html=>{ :class=>"form-inline" } do |f|%>
 		<%=f.hidden_field :by,:value=>"login_name"%>
@@ -20,9 +20,9 @@
           <div class="large-6 columns">
             <div class="row collapse prefix-radius">
 
-              <div class="small-9 columns">
-                <%=f.submit "重新查询",:name=>nil,:class=>"button small alert" ,:style=>"height: 38px;
-line-height: 0; margin-left:50%"%>
+              <div class="small-12 columns">
+                <%=f.submit "重新查询",:name=>nil,:class=>"button success small " ,:style=>"height: 50px;
+line-height: 0;"%>
 
               </div>
             </div>
@@ -34,21 +34,18 @@ line-height: 0; margin-left:50%"%>
 
 	<%end%>
 
-	<p>请选择找回密码方式 : </p>
-	<%=form_for :user,:url=>send_reset_password_instruction_users_path,:html=>{ :class=>"form-inline" } do |f|%>
-		<%=f.hidden_field :member_id,:value=>@user.member_id%>
-		<p>
-			<label class="radio">
+    <hr>
 
-			</label>
-		</p>
+	<%=form_for :user,:url=>send_reset_password_instruction_users_path,:html=>{ :class=>"form-inline"} do |f|%>
+		<%=f.hidden_field :member_id,:value=>@user.member_id%>
+      <p>请选择找回密码方式 : </p>
 
       <div class="row">
         <div class="large-6 columns">
           <div class="row collapse prefix-radius">
 
             <div class=" columns">
-              <%=f.radio_button :by,"email",:checked=>true%>可选邮箱 : <%=@user.mask_email%>
+              <%=f.radio_button :by,"email",:checked=>true,:style=>"float:left"%><span style="line-height:3">可选邮箱 : <%=@user.mask_email%></span>
             </div>
           </div>
         </div></div>

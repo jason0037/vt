@@ -1,0 +1,52 @@
+<link href="/assets/comment.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+<script src="/assets/c_comment.js" type="text/javascript"></script>
+
+<div class="row comment-box">
+  <div class="box-t"></div>
+
+      <div class="row showstar" >
+        <div class="small-2 columns">
+          <label for="right-label" class="right inline">满意度</label>
+        </div>
+
+        <div class="small-10 columns">
+          <ul>
+            <input type="hidden" class="degree" value="<%=@comment.degree%>">
+            <li><a href="javascript:;">1</a></li>
+            <li><a href="javascript:;">2</a></li>
+            <li><a href="javascript:;">3</a></li>
+            <li><a href="javascript:;">4</a></li>
+            <li><a href="javascript:;">5</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="small-8 columns">
+          <div class="row">
+            <div class="small-3 columns">
+              <label for="right-label" class="right inline">标题</label>
+            </div>
+            <div class="small-9 columns">
+              <%=@comment.title%>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-8 columns">
+          <div class="row">
+            <div class="small-3 columns">
+              <label for="right-label" class="right inline">心得</label>
+            </div>
+            <div class="small-9 columns">
+              <%=@comment.content%>
+
+            </div>
+          </div>
+        </div>
+      </div>
+     </div>

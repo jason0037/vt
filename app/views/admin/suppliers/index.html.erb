@@ -6,9 +6,10 @@
 
 <table class="table table-bordered table-hover">
   <tr>
-    <!--<th>修改权限(shopadmin->member)</th>-->
+<th>审核</th>
     <th>名字</th>
     <th>logo</th>
+    <th>供应商ID</th>
     <th>UserID</th>
     <th>Token</th>
     <th>Secret</th>
@@ -21,10 +22,18 @@
 
 <% @suppliers.each do |supplier| %>
   <tr>
-    <!--<td > <%#= link_to '修改', "/admin/suppliers/update_state?supplier_id=#{supplier.id}&user_id=#{supplier.member_id}"%></td>-->
 
-    <td><%=supplier.name%></td>
+    <td >
+      <% if supplier.status%>
+      <%= link_to '审核(供应商)', "/admin/suppliers/update_state?supplier_id=#{supplier.id}&user_id=#{supplier.member_id}"%>
+      <%else%>
+           已经是审核过的供应商
+      <%end%>
+          </td>
+
+    <td></td>
     <td><img src="<%=supplier.logo%>" style="width:200px"></td>
+    <TD><%=supplier.id%></TD>
     <td><%=supplier.member_id%></td>
     <td><%=supplier.weixin_token%></td>
     <td><%=supplier.weixin_secret_key%></td>

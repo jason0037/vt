@@ -17,34 +17,7 @@ class CommentsController < ApplicationController
   end
 
 
-  def tairyo_comment
 
-    if @user
-      @comment = Ecstore::Comment.new params[:comment]
-
-
-    render layout: "tairyo_new"
-    else
-      redirect_to '/tlogin?return_url=tairyo/comment/'
-    end
-  end
-
- def tairyo
-   if @user
-     @comment = Ecstore::Comment.new params[:comment]
-
-     if @comment.save
-
-       redirect_to '/tairyo'
-      else
-       redirect_to'./comment'
-
-     end
-   else
-     redirect_to '/tlogin?return_url=tairyo/comment/'
-    end
-
- end
 
  end
 
