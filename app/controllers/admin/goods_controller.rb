@@ -57,17 +57,19 @@ module Admin
             row_count=0
             good.products.each do |product|
 
-                   spec=product.detail_spec.to_json
+                   # spec=product.detail_spec.to_json
+                   #
+                   # spec.each_with_index  do |value, index|
+                   #   if spec.nil?
+                   #    value[0]=""
+                   #   end
+                   #
+                   #   return render :text=>value[0]
+                   #
+                   #
+                   #     end
 
-                   spec.each_with_index  do |value, index|
-                     if spec.nil?
-                      value[0]=""
-                     end
-
-                     return render :text=>value[0]
-
-
-                       end end
+                   end
 
 
             sheet.add_row ["产品/规格","产品名称","产品型号","规格参数","产品规格","单位","产品简介","ERP产品编号","条码","库存数量", "交期","状态","市场价","促销价"],
