@@ -39,15 +39,15 @@ class Admin::OrdersController < Admin::BaseController
     if (role=="sale")
       @orders = @orders_nw.where(:desktop_user_id=>current_admin.account_id)
 
-    elsif current_admin.account_id ==2 #@user.member_id==2   ## cheuksadmin
-        @orders_nw = 	@orders_nw = Ecstore::Order.order("createtime desc")
+   # elsif current_admin.account_id ==2 #@user.member_id==2   ## cheuksadmin
+   #     @orders_nw = 	@orders_nw = Ecstore::Order.order("createtime desc")
 
-    elsif (current_admin.login_name=="admin")
+    elsif (current_admin.login_name=="admin" || current_admin.login_name=="cheuksadmin")
       @orders = @orders_nw
   else
   	  @orders = @orders_nw.where(:member_id=>"0")
   end
-    @orders =  @orders.paginate(:page=>params[:page],:per_page=>30) #@orders.includes(:user).paginate(:page=>params[:page],:per_page=>30)
+    @orders = @orders.includes(:user).paginate(:page=>params[:page],:per_page=>30)
 		respond_to do |format|
 			format.js
 			format.html
