@@ -43,7 +43,7 @@ class Admin::UsersController < Admin::BaseController
 	      ac.user.reg_ip = request.remote_ip
 	      ac.user.regtime = now.to_i
 	      #ac.supplier_id = supplier_id
-	      ac.account.license = true
+	      #ac.license = true
 	    end    	
     	
 		# @account = Ecstore::Account.new
