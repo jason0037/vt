@@ -114,9 +114,13 @@ class VshopController < ApplicationController
 
       @goods = Ecstore::Good.includes(:cat).includes(:brand)
       @supplier =Ecstore::Supplier.find_by_member_id(@user.id)
-      if @user.id!= 2840 #贸威
+      if @user.id!= 2 #超级管理员
         @supplier =Ecstore::Supplier.find_by_member_id(@user.id)
-        @goods = @goods.where(:supplier_id=>@supplier.id)
+        if @supplier
+          @goods = @goods.where(:supplier_id=>@supplier.id)
+        else
+          @goods = @goods.where('0=1')
+        end
       end
 
 

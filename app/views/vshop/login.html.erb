@@ -1,7 +1,9 @@
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
  <div class="login_panel label_input prepend open" id="{id}" style="margin-top:-150px;">
     <div class="login_inner wx" id="{id}_wx">
-        <%=form_for :session,:url=>"/login",:class=>"form login_form" , :remote=>true do |f|%>
+        <%#=form_for :session,:url=>"/login",:class=>"form login_form" , :remote=>true do |f|%>
+        <%= form_for :manager,:url=>newuser_admin_users_path, :method=>@method, :html => {:class => "form-horizontal"} do |f| %>
+        <%=f.hidden_field :app_id, :value=>"vshop"%>
         <fieldset class="login_fieldset">
           <legend class="login_legend">登录</legend>
           <input name="return_url" value="/vshop" type="hidden"/>
@@ -22,8 +24,9 @@
             <input name="remember_me" type="checkbox" value="1" checked="true">记住账号&nbsp;&nbsp;&nbsp;
             <a href="javascript:void(0);" id="{id}_forget" class="jsUrlLink" data-url="regist/forget">忘记密码</a>
           </div>
-
-          <div id="login_msg" style="color:red;font-size:12pt;"></div>
+          <%if params[:error]=='1'%>
+          <div id="login_msg" style="color:red;font-size:12pt;">账号或密码错</div>
+          <%end%>
           <div class="login_tool_area">
             <%=f.submit "登 录",:class=>"btn btn_warn btn_login"%>
             <a href="/vshop/register" class="btn btn_default btn_regist" id="{id}_regist">注册</a>

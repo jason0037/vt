@@ -73,11 +73,8 @@ class SessionsController < ApplicationController
      else
        @supplier_id = params[:id]
      end
-      if @supplier_id =="78"
-         @return_url=params[:return_url].to_s+"&id=78"
-      else
-        @return_url=params[:return_url]
-      end
+      
+    @return_url=params[:return_url]
 
 
     @platform = params[:platform]
@@ -95,14 +92,14 @@ class SessionsController < ApplicationController
   #   return render js: "$('#login_msg').text('#{@account.login_name}').addClass('error').fadeOut(300).fadeIn(300);"
 
   		sign_in(@account,params[:remember_me])
-
-          
-  		    render "create"
-
+  		render "create"
   	else
-
-  		render "error"
-      #  render js: '$("#login_msg").text("帐号或密码错误!").addClass("error").fadeOut(300).fadeIn(300);'
+      if @platform == 'vshop'
+        redirect_to "/vshop/login?error=1"
+      else
+    		render "error"
+        #  render js: '$("#login_msg").text("帐号或密码错误!").addClass("error").fadeOut(300).fadeIn(300);'
+      end
   	end
    
   end
