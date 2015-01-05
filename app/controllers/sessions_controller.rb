@@ -73,11 +73,8 @@ class SessionsController < ApplicationController
      else
        @supplier_id = params[:id]
      end
-      if @supplier_id =="78"
-         @return_url=params[:return_url].to_s+"&id=78"
-      else
-        @return_url=params[:return_url]
-      end
+      
+    @return_url=params[:return_url]
 
 
     @platform = params[:platform]
@@ -95,10 +92,11 @@ class SessionsController < ApplicationController
   #   return render js: "$('#login_msg').text('#{@account.login_name}').addClass('error').fadeOut(300).fadeIn(300);"
 
   		sign_in(@account,params[:remember_me])
-
-          
+      if @return_url
+        redirect_to @return_url
+      else          
   		    render "create"
-
+      end
   	else
 
   		render "error"
