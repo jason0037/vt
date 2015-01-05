@@ -20,7 +20,7 @@
             <%if @goods_supplier!=0%>
                 </ul>
             <%end%>
-            <div id="supplier_<%=line_item.supplier_id%>"><%=line_item.supplier.name%></div>
+            <div id="supplier_<%=line_item.supplier_id%>"><%#=line_item.supplier.name if line_item.supplier_id%></div>
             <ul class="am-list" id="supplierid_<%=line_item.supplier_id%>">
               <% @i = (@i-1).abs %>
         <%end%>

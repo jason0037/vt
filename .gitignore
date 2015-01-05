@@ -34,3 +34,4 @@ sprockets*
 /config/ecstore.yml
 /config/database.yml
 /db_sql/apollo_2013-09-29:03:34:41.sql
+/public/ckeditor_assets/

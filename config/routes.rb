@@ -215,7 +215,7 @@ Modengke::Application.routes.draw do
   resources :sessions
   resources :users do
     get 'forgot_password', :on=>:collection
-    #post 'send_reset_password_instruction', :on=>:collectiongem 'weixin_rails_middleware', git: "git://github.com/lanrion/weixin_rails_middleware.git", branch: "master"gem 'weixin_rails_middleware', git: "git://github.com/lanrion/weixin_rails_middleware.git", branch: "master"
+    post 'send_reset_password_instruction', :on=>:collection    
     get 'reset_password',:on=>:collection
     post 'search', :on=>:collection
     post 'change_password',:on=>:collection
@@ -561,6 +561,7 @@ Modengke::Application.routes.draw do
     get 'food_beverage'  =>"goods#food_beverage", :as=>"goods" ,:controller=>"goods"
     get 'quality_products' =>"goods#quality_products", :as=>"goods" ,:controller=>"goods"
     get 'world_food' =>"goods#world_food", :as=>"goods" ,:controller=>"goods"
+    get 'fashion' =>"goods#fashion", :as=>"goods" ,:controller=>"goods"
     get 'mproducts' =>"goods#mproduct", :as=>"goods" ,:controller=>"goods"
     post '/goods/manco_cart'=>"goods#manco_cart",  :controller=>"goods"
     get 'show_goodblack' =>  "goods#show_goodblack",  :as=>"goods" ,:controller=>"goods"   ###货源信息
