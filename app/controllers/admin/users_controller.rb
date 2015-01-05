@@ -33,6 +33,7 @@ class Admin::UsersController < Admin::BaseController
 	def newuser
 		@return_url=params[:manager].delete(:return_url)
 		@app_id = params[:manager].delete(:app_id)
+		@desc = params[:manager].delete(:desc)
 		 now  = Time.now
 	     @account = Ecstore::Account.new(params[:manager]) do |ac|
 	      ac.account_type ="shopadmin"
