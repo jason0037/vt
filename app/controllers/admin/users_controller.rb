@@ -31,26 +31,41 @@ class Admin::UsersController < Admin::BaseController
 	end
 
 	def newuser
-		account = Ecstore::Account.new
-		account.account_type = "shopadmin"
-		account.login_name = params[:manager][:name]
-		account.login_password = params[:manager][:password]		
-		account.login_password_confirmation = params[:manager][:password_confirmation]
-		account.createtime = Time.now.to_i
-		account.email = params[:manager][:email]
-		account.mobile = params[:manager][:mobile]
-		account.license = true
-		account.save!
-		manager = Ecstore::Manager.new
-		manager.user_id = account.account_id
-		manager.status = 1
-		manager.name = params[:manager][:desc]
-		manager.save!
-		@return_url=params[:return_url]
-		if @return_url
-			redirect_to @return_url
+		 now  = Time.now
+	     @account = Ecstore::Account.new(params[:manager]) do |ac|
+	      ac.account_type ="shopadmin"
+	      ac.createtime = now.to_i
+	      ac.user.member_lv_id = 1
+	      ac.user.cur = "CNY"
+	      ac.user.reg_ip = request.remote_ip
+	      ac.user.regtime = now.to_i
+	      #ac.supplier_id = supplier_id
+	      ac.account.license = true
+	    end    	
+    	
+		# @account = Ecstore::Account.new
+		# @account.account_type = "shopadmin"
+		# @account.login_name = params[:manager][:name]
+		# @account.login_password = params[:manager][:password]		
+		# @account.login_password_confirmation = params[:manager][:password_confirmation]
+		# @account.createtime = Time.now.to_i
+		# @account.email = params[:manager][:email]
+		# @account.mobile = params[:manager][:mobile]
+		# @account.license = true
+		if @account.save		
+			manager = Ecstore::Manager.new
+			manager.user_id = account.account_id
+			manager.status = 1
+			manager.name = params[:manager][:desc]
+			manager.save!
+			@return_url=params[:manager][:return_url]
+			if @return_url
+				redirect_to @return_url
+			else
+				redirect_to admin_permissions_path
+			end
 		else
-			redirect_to admin_permissions_path
+			render :text=>@account.error.to_json
 		end
 	end
 

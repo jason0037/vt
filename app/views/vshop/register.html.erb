@@ -13,13 +13,13 @@
     <DIV class="step_panel">
       <DIV class="regist_box base_info" id="step1">
         <%#=form_for :user,:class=>'form',:url=>"#{users_path}?return_url=/vshop/apply",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
-        <%= form_for :manager,:url=>newuser_admin_users_path,:remote=>true,:html=>{:id=>"register_form"}  do |f| %>
+        <%=form_for :manager,:url=>newuser_admin_users_path,:html=>{:id=>"register_form"}  do |f| %>
         <%=f.hidden_field :app_id, :value=>"vshop"%>
-        <%=hidden_field :return_url, :value=>"/vshop/apply"%>
+        <%=f.hidden_field :return_url, :value=>"/vshop/apply"%>
           <DIV class="frm_control_group"><LABEL class="frm_label" for="">账号</LABEL>
             <DIV class="frm_controls">
               <SPAN class="frm_input_box">
-              <%=f.text_field :name,:class=>"frm_input",:placeholder=>"用户名"%>
+              <%=f.text_field :login_name,:class=>"frm_input",:placeholder=>"用户名"%>
              </SPAN>
               <div class="help-block" rel="user_login_name"></div>
               <P  class="frm_tips"></P></DIV>
@@ -28,7 +28,7 @@
 
             <DIV class="frm_controls"><SPAN
             class="frm_input_box">
-              <%=f.password_field :password,:class=>"frm_input",:placeholder=>"密码"%>
+              <%=f.password_field :login_password,:class=>"frm_input",:placeholder=>"密码"%>
 
             </SPAN>
               <div class="help-block" rel="user_login_password"></div>
@@ -37,7 +37,7 @@
           <DIV class="frm_control_group"><LABEL class="frm_label" for="">再次输入密码</LABEL>
 
             <DIV class="frm_controls"><SPAN class="frm_input_box">
-              <%=f.password_field :password_confirmation,:class=>"frm_input",:placeholder=>"确认密码"%>
+              <%=f.password_field :logion_password_confirmation,:class=>"frm_input",:placeholder=>"确认密码"%>
               </SPAN>
               <div class="help-block" rel="user_login_password_confirmation"></div>
             </DIV>
