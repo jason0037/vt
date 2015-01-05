@@ -92,15 +92,14 @@ class SessionsController < ApplicationController
   #   return render js: "$('#login_msg').text('#{@account.login_name}').addClass('error').fadeOut(300).fadeIn(300);"
 
   		sign_in(@account,params[:remember_me])
-      if @return_url
-        redirect_to @return_url
-      else          
-  		    render "create"
-      end
+  		render "create"
   	else
-
-  		render "error"
-      #  render js: '$("#login_msg").text("帐号或密码错误!").addClass("error").fadeOut(300).fadeIn(300);'
+      if @platform == 'vshop'
+        redirect_to "/vshop/login?error=1"
+      else
+    		render "error"
+        #  render js: '$("#login_msg").text("帐号或密码错误!").addClass("error").fadeOut(300).fadeIn(300);'
+      end
   	end
    
   end
