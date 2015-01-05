@@ -91,9 +91,9 @@ class Store::GoodsController < ApplicationController
   def food_beverage
 
 
-    @goods_mok= Ecstore::Good.where(:supplier_id=>"114")
-  @goods_bs=Ecstore::Good.where(:supplier_id=>"115")
-    @goods_ptj=Ecstore::Good.where(:supplier_id=>"116")
+    @goods_mok= Ecstore::Good.where(:supplier_id=>"114").order("p_order asc,uptime desc")
+  @goods_bs=Ecstore::Good.where(:supplier_id=>"115") .order("p_order asc,uptime desc")
+    @goods_ptj=Ecstore::Good.where(:supplier_id=>"116").order("p_order asc,uptime desc")
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
 
     @recommend_user = session[:recommend_user]
@@ -127,8 +127,8 @@ class Store::GoodsController < ApplicationController
 
 
   def prime_beef
-    @goods_xlhn =  Ecstore::Good.where(:supplier_id=>"110")
-    @goods_agt= Ecstore::Good.where(:supplier_id=>"111")
+    @goods_xlhn =  Ecstore::Good.where(:supplier_id=>"110").order("p_order asc,uptime desc")
+    @goods_agt= Ecstore::Good.where(:supplier_id=>"111") .order("p_order asc,uptime desc")
 
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
 
@@ -159,9 +159,9 @@ class Store::GoodsController < ApplicationController
   end
 
   def world_food
-    @goods =  Ecstore::Good.where(:supplier_id=>"77")
+    @goods =  Ecstore::Good.where(:supplier_id=>"77").order("p_order asc,uptime desc")
     if params[:cat_id]
-      @goods =  Ecstore::Good.where(:supplier_id=>"77",:cat_id=>params[:cat_id])
+      @goods =  Ecstore::Good.where(:supplier_id=>"77",:cat_id=>params[:cat_id]).order("p_order asc,uptime desc")
     end
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
 
@@ -195,13 +195,13 @@ class Store::GoodsController < ApplicationController
 
   def quality_products
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
-    @goods_zmq =  Ecstore::Good.where(:supplier_id=>"104")
-   @goods_tiegun=Ecstore::Good.where(:supplier_id=>"106")
-   @goods_cmcyz=Ecstore::Good.where(:supplier_id=>"105")
-  @goods_dmdm =Ecstore::Good.where(:supplier_id=>"108")
-   @goods_tsdzx=Ecstore::Good.where(:supplier_id=>"87")
-    @goods_ysgj=Ecstore::Good.where(:supplier_id=>"112")
-    @goods_cc=Ecstore::Good.where(:supplier_id=>"113")
+    @goods_zmq =  Ecstore::Good.where(:supplier_id=>"104").order("p_order asc,uptime desc")
+   @goods_tiegun=Ecstore::Good.where(:supplier_id=>"106").order("p_order asc,uptime desc")
+   @goods_cmcyz=Ecstore::Good.where(:supplier_id=>"105").order("p_order asc,uptime desc")
+  @goods_dmdm =Ecstore::Good.where(:supplier_id=>"108").order("p_order asc,uptime desc")
+   @goods_tsdzx=Ecstore::Good.where(:supplier_id=>"87").order("p_order asc,uptime desc")
+    @goods_ysgj=Ecstore::Good.where(:supplier_id=>"112").order("p_order asc,uptime desc")
+    @goods_cc=Ecstore::Good.where(:supplier_id=>"113").order("p_order asc,uptime desc")
     @recommend_user = session[:recommend_user]
 
     if @recommend_user==nil &&  params[:wechatuser]

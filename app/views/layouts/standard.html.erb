@@ -9,7 +9,7 @@
 
   <%=javascript_include_tag "standard"%>
   <%=stylesheet_link_tag "standard"%>
-  
+
   <%= yield :head%>
 
   <%=render "shared/baidu" if Rails.env == "production"%>
@@ -18,24 +18,24 @@
 
 <body>
 
-  <%=yield :notice%>
-  <%= render "shared/header" %>
-  <%if controller_name!='home'%>
-  <%= render "shared/top_menu" %>
-  <%= yield :cover %>
+<%=yield :notice%>
+<%= render "shared/header" %>
+<%if controller_name!='home'%>
+    <%= render "shared/top_menu" %>
+    <%= yield :cover %>
 
-  <div id= "main" class="<%=controller_name%> <%=action_name%> clearfix">
-  <%end%>
-    <%= yield%>
-  <%if controller_name!='home'%>
-  </div>
-  <%end%>
-  <%=render "shared/common_footer"%>
-  
-  <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+    <div id= "main" class="<%=controller_name%> <%=action_name%> clearfix">
+<%end%>
+<%= yield%>
+<%if controller_name!='home'%>
+    </div>
+<%end%>
+<%=render "shared/common_footer"%>
 
-  <%=render "shared/iframe_cart" if signed_in?%>
-  <%=render "shared/iframe_login" unless signed_in?%>
-  <%= javascript_include_tag "google-analytics" if Rails.env == "production"%>
+<div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
+
+<%=render "shared/iframe_cart" if signed_in?%>
+<%=render "shared/iframe_login" unless signed_in?%>
+<%= javascript_include_tag "google-analytics" if Rails.env == "production"%>
 </body>
 </html>
