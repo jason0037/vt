@@ -46,7 +46,12 @@ class Admin::UsersController < Admin::BaseController
 		manager.status = 1
 		manager.name = params[:manager][:desc]
 		manager.save!
-		redirect_to admin_permissions_path
+		@return_url=params[:return_url]
+		if @return_url
+			redirect_to @return_url
+		else
+			redirect_to admin_permissions_path
+		end
 	end
 
 
