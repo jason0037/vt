@@ -31,6 +31,8 @@ class Admin::UsersController < Admin::BaseController
 	end
 
 	def newuser
+		@return_url=params[:manager].delete!(:return_url)
+		@app_id = params[:manager].delete!(:app_id)
 		 now  = Time.now
 	     @account = Ecstore::Account.new(params[:manager]) do |ac|
 	      ac.account_type ="shopadmin"
@@ -58,7 +60,7 @@ class Admin::UsersController < Admin::BaseController
 			manager.status = 1
 			manager.name = params[:manager][:desc]
 			manager.save!
-			@return_url=params[:manager][:return_url]
+			
 			if @return_url
 				redirect_to @return_url
 			else
