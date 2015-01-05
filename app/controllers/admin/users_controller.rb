@@ -68,7 +68,7 @@ class Admin::UsersController < Admin::BaseController
 				redirect_to admin_permissions_path
 			end
 		else
-			render :text=>@account.error.to_json
+			render :text=>@account.errors.to_json
 		end
 	end
 
