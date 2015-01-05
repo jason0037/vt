@@ -9,7 +9,7 @@ module Admin
 
     def export
       fields =  params[:fields]
-
+      detail = Hash.new
 
       if(params[:batch].nil?)
         flash[:alert] = '请选择需要导出的商品'
@@ -18,7 +18,8 @@ module Admin
         goods_ids =  params[:batch][:goods_ids] || []
       end
 
-
+      ke=[]  ###规格key
+      va=[]  ###规格value
       if params[:member][:select_all].to_i > 0
         #找出所有数据
         conditions = "goods_id in ("+params[:all_goods_ids]+")"
@@ -40,36 +41,32 @@ module Admin
 
         workbook.add_worksheet(:name => "Product") do |sheet|
 
-         sheet.add_row ["产品/规格","产品名称","产品型号","规格参数","产品规格","单位","产品简介","ERP产品编号","条码","库存数量", "交期","状态","市场价","促销价"],
-                          :style=>head_cell
 
           goods.each do |good|
             goodsModel=good.model
-            goodsCat=''#good.good_type.name
+            goodsCat=good.good_type.name
             goodsSize_Desc=good.size_description
             goodsSize=good.size
             goodsUnit=good.unit
             goodDesc=good.desc
             goodsBn=good.bn.to_s
-            goodsCatCode='' #good.good_type.goods_cat_code
-            goodsCatId='' #good.good_type.goods_cat_id
+            goodsCatCode= good.good_type.goods_cat_code
+            goodsCatId=good.good_type.goods_cat_id
             sheet.add_row [nil ,goodsCat,goodsCatCode,goodsCatId]
             row_count=0
-            good.products.each do |product|
 
-                   # spec=product.detail_spec.to_json
-                   #
-                   # spec.each_with_index  do |value, index|
-                   #   if spec.nil?
-                   #    value[0]=""
-                   #   end
-                   #
-                   #   return render :text=>value[0]
-                   #
-                   #
-                   #     end
+                good.products.each do |product|
+                  unless   product.detail_spec.blank?
+                    spec= JSON.parse( product.detail_spec)
 
-                   end           
+                    spec.each_with_index  do |value, index|
+
+                       ke=ke.append(value[0])
+
+                    end end end
+
+            sheet.add_row ["产品/规格","产品名称","产品型号","规格参数","产品规格","单位","产品简介","ERP产品编号","条码","库存数量", "交期","状态","市场价","促销价"]+ke,
+                          :style=>head_cell
 
 
             row_count+=1
@@ -125,7 +122,18 @@ module Admin
                 end
               end
 
-              sheet.add_row ["规格信息",nil,nil,nil,nil,nil,nil,productBn,productBarcode,product.store,"现货","上架",v[0],product.promotion],:style=>product_cell
+              unless   product.detail_spec.blank?
+                spec= JSON.parse( product.detail_spec)
+
+                spec.each_with_index  do |value, index|
+
+                  va=va.append(value[1])
+
+                end
+              end
+
+
+              sheet.add_row ["规格信息",nil,nil,nil,nil,nil,nil,productBn,productBarcode,product.store,"现货","上架",v[0],product.promotion]+va,:style=>product_cell
             end
 
             sheet.column_widths nil, nil,nil,nil,nil,10
