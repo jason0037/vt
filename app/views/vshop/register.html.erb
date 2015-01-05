@@ -12,7 +12,10 @@
     </DIV>
     <DIV class="step_panel">
       <DIV class="regist_box base_info" id="step1">
-        <%=form_for :user,:class=>'form',:url=>"#{users_path}?return_url=/vshop/apply",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
+        <%#=form_for :user,:class=>'form',:url=>"#{users_path}?return_url=/vshop/apply",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
+        <%= form_for :manager,:url=>newuser_admin_users_path,:remote=>true,:html=>{:id=>"register_form"}  do |f| %>
+        <%=f.hidden_field :app_id, :value=>"vshop"%>
+        <%=hidden_field :return_url, :value=>"/vshop/apply"%>
           <DIV class="frm_control_group"><LABEL class="frm_label" for="">账号</LABEL>
 
             <DIV class="frm_controls">

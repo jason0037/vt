@@ -1,9 +1,7 @@
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
  <div class="login_panel label_input prepend open" id="{id}" style="margin-top:-150px;">
     <div class="login_inner wx" id="{id}_wx">
-        <%#=form_for :session,:url=>"/login",:class=>"form login_form" , :remote=>true do |f|%>
-        <%= form_for :manager,:url=>newuser_admin_users_path, :method=>@method, :html => {:class => "form-horizontal"} do |f| %>
-        <%=f.hidden_field :app_id, :value=>"vshop"%>
+        <%=form_for :session,:url=>"/login",:class=>"form login_form" , :remote=>true do |f|%>
         <fieldset class="login_fieldset">
           <legend class="login_legend">登录</legend>
           <input name="return_url" value="/vshop" type="hidden"/>
