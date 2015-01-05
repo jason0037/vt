@@ -514,6 +514,7 @@ module Admin
                     else
                     @good.freight = row[26]
                     end
+                    @good.tag= row[27]
                     #@good.intro = row[23]
                     if row[22] == "是"
                         @good.sell = 'true'
