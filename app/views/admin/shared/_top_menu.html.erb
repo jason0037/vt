@@ -167,6 +167,9 @@
                   <li>
                       <%=link_to "商品促销",admin_promotions_path(:type=>"goods") if current_admin.has_right_of("promotions","index")%>
                   </li>
+                  <li>
+                    <%=link_to "活动馆",admin_promotions_path(:type=>"mall") if current_admin.has_right_of("promotions","index")%>
+                  </li>
                   <li class="divider"></li>
                   <li>
                       <%=link_to "优惠券列表",admin_new_coupons_path if current_admin.has_right_of("new_coupons","index")%>

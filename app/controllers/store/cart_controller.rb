@@ -34,34 +34,45 @@ class Store::CartController < ApplicationController
        @line_items.delete_all
     end
 
-		specs = params[:product].delete(:specs)
-		customs = params[:product].delete(:customs)
-		quantity = params[:product].delete(:quantity).to_i
-		goods_id = params[:product][:goods_id]
-    if quantity.blank? || quantity ==0
-       quantity=1
-    end
-    if params[:supplier_id] =="98" && params[:mancoweight]
-       quantity=params[:mancoweight].to_i
+    if params[:attr]=="mall"
+       @mall="mall"
+      goods_id=params[:goods_id]
 
-    end
-#return render :text=> "specs:#{specs[0].length},customs:#{customs},quantity:#{quantity},goods_id:#{goods_id}"
-		# product_id = specs.collect do |spec_value_id|
-		# 	Ecstore::GoodSpec.where(params[:product].merge(:spec_value_id=>spec_value_id)).pluck(:product_id)
-		# end.inject(:&).first
-
-		@good = Ecstore::Good.find(goods_id)
-		# @product  =  @good.products.select do |p|
-		# 	p.spec_desc["spec_value_id"].values.map{ |x| x.to_s }.sort == specs.sort
-		# end.first
-    if specs[0].empty?
+      quantity=1
+      @good = Ecstore::Good.find(goods_id)
       @product = @good.products.first
     else
-      @product  =  @good.products.select do |p|
-        p.good_specs.pluck(:spec_value_id).map{ |x| x.to_s }.sort == specs.sort
-      end.first
+      specs = params[:product].delete(:specs)
+      customs = params[:product].delete(:customs)
+      quantity = params[:product].delete(:quantity).to_i
+      goods_id = params[:product][:goods_id]
+      #return render :text=> "specs:#{specs[0].length},customs:#{customs},quantity:#{quantity},goods_id:#{goods_id}"
+      # product_id = specs.collect do |spec_value_id|
+      # 	Ecstore::GoodSpec.where(params[:product].merge(:spec_value_id=>spec_value_id)).pluck(:product_id)
+      # end.inject(:&).first
+      if params[:supplier_id] =="98" && params[:mancoweight]
+        quantity=params[:mancoweight].to_i
 
-    end
+      end
+
+      if quantity.blank? || quantity ==0
+        quantity=1
+      end
+      @good = Ecstore::Good.find(goods_id)
+      # @product  =  @good.products.select do |p|
+      # 	p.spec_desc["spec_value_id"].values.map{ |x| x.to_s }.sort == specs.sort
+      # end.first
+      if specs[0].empty?
+        @product = @good.products.first
+      else
+        @product  =  @good.products.select do |p|
+          p.good_specs.pluck(:spec_value_id).map{ |x| x.to_s }.sort == specs.sort
+        end.first
+
+      end
+      end
+
+
 #return render :text=>@products.product_id
 		if signed_in?
 			member_id = @user.member_id
@@ -130,6 +141,7 @@ class Store::CartController < ApplicationController
       ###万家门对门
       url="/orders/departure?supplier_id=#{supplier_id}&platform=#{params[:platform]}"
       redirect_to url
+
     else
        render "add"
     end

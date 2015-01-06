@@ -1,7 +1,10 @@
 <h3>促销优惠</h3>
 
+
 <% if params[:type] == "goods"  %>
-<%=render "goods_form"%>
-<%else%>
-<%=render "form"%>
+    <%=render "goods_form"%>
+<%elsif params[:type]== "orders"%>
+    <%=render "form"%>
+<%elsif params[:type]=="mall"%>
+    <%=render "mall_form"%>
 <%end%>

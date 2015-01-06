@@ -2,6 +2,10 @@
 // console.log(document.frames("iframeCart"));
 // document.frames("iframeCart").location.reload();
 // iframeCart.location.reload();
+<%if  @mall=="mall"%>
+    $(".J-shoping-num").text(<%=@line_items.count%>)
+
+<%else%>
 $("#iframe_cart").attr("src",$("#iframe_cart").attr("src"));
 
 var _pDoc =  window.parent.document;
@@ -10,3 +14,4 @@ $(_pDoc).find("#iframe_cart").animate({ marginTop: '-260px' },'normal');
 
 $("#cart_link .cart-number").text('(<%=@cart_total_quantity%>)');
 $("#menu_cart .number").text('(<%=@cart_total_quantity%>)');
+              <%end%>

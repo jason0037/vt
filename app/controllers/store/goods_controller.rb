@@ -160,8 +160,18 @@ class Store::GoodsController < ApplicationController
 
 
   def prime_beef
-    @goods_xlhn =  Ecstore::Good.where(:supplier_id=>"110").order("p_order asc,uptime desc")
+     @goods_xlhn =  Ecstore::Good.where(:supplier_id=>"110").order("p_order asc,uptime desc")
     @goods_agt= Ecstore::Good.where(:supplier_id=>"111") .order("p_order asc,uptime desc")
+
+
+  # @promotions= Ecstore::Promotion.where(:mallname=>"prime_beef").order("priority asc")
+
+
+
+
+
+
+
 
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
 

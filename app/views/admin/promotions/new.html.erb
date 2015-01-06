@@ -3,6 +3,8 @@
 
 <% if params[:type] == "goods"  %>
 <%=render "goods_form"%>
-<%else%>
+<%elsif params[:type]== "orders"%>
 <%=render "form"%>
+ <%elsif params[:type]=="mall"%>
+ <%=render "mall_form"%>
 <%end%>

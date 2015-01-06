@@ -2,8 +2,10 @@
 <h4>
   <%if params[:type]=="order" || params[:type].nil?%>
   订单促销
-  <%else%>
+  <%elsif params[:type]=="goods" || params[:type].nil? %>
   商品促销
+  <%elsif params[:type]=="mall" || params[:type].nil? %>
+      活动馆
   <%end%>
 </h4>
 <hr>
@@ -12,25 +14,45 @@
 <h1>
   <%=link_to "添加订单促销",new_admin_promotion_path,:class=>"btn btn-primary right" if params[:type]=="order" || params[:type].nil?%>
   <%=link_to "添加商品促销",new_admin_promotion_path(:type=>"goods"),:class=>"btn btn-primary right" if params[:type] == 'goods'%>
+  <%=link_to "添加活动馆",new_admin_promotion_path(:type=>"mall"),:class=>"btn btn-primary right" if params[:type] == 'mall'%>
 </h1>
 
 
 
+
         <table class="table table-bordered table-hover">
-          <tr>
-            <th>促销名称</th>
-            <th>开启状态</th>
-            <th>是否排它</th>
-            <th>有效期</th>
+          <!--活动馆-->
+
+              <!--商品和订单-->
+              <tr>
+                <%if  params[:type]=="mall"%>
+                    <th>活动馆</th>
+                    <th>供应商</th>
+                    <th>头标题</th>
+                  <%else%>
+               <th>促销名称</th>
+                <%end%>
+              <th>开启状态</th>
+          <th>是否排它</th>
+           <th>有效期</th>
             <th>优先级</th>
             <th>操作</th>
           </tr>
           
         <%@promotions.each do |promotion|%>
           <tr class="<%= 'disable' unless promotion.enable?%>">
+            <%if  params[:type]=="mall"%>
+                <td><%=promotion.mallname%></td>
+                <td><%=promotion.supplier_id%></td>
+            <%end%>
+
+
             <td><%=promotion.name%></td>
+
             <td><%=promotion.enable ? "是" : "否"%></td>
             <td><%=promotion.exclusive ? "是" : "否"%></td>
+
+
             <td><%=promotion.begin_at.strftime("%Y-%m-%d %H:%M:%S") if promotion.begin_at.present?%> ~ <%=promotion.end_at.strftime("%Y-%m-%d %H:%M:%S") if promotion.end_at.present?%></td>
             <td><%=promotion.priority%></td>
             <td>
@@ -39,7 +61,10 @@
             </td>
           </tr>
           <%end%>
+
+
         </table>
+
 
         <div class="pagination">
           <%=will_paginate @promotions,:container=>false%>
