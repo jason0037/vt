@@ -12,9 +12,11 @@
     </DIV>
     <DIV class="step_panel">
       <DIV class="regist_box base_info" id="step1">
-        <%=form_for :user,:class=>'form',:url=>"#{users_path}?return_url=/vshop/apply",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
+        <%#=form_for :user,:class=>'form',:url=>"#{users_path}?return_url=/vshop/apply",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
+        <%=form_for :manager,:url=>newuser_admin_users_path,:html=>{:id=>"register_form"}  do |f| %>
+        <%=f.hidden_field :app_id, :value=>"vshop"%>
+        <%=f.hidden_field :return_url, :value=>"/vshop/apply"%>
           <DIV class="frm_control_group"><LABEL class="frm_label" for="">账号</LABEL>
-
             <DIV class="frm_controls">
               <SPAN class="frm_input_box">
               <%=f.text_field :login_name,:class=>"frm_input",:placeholder=>"用户名"%>
@@ -57,6 +59,14 @@
               </DIV>
 
             </DIV>
+            <DIV class="frm_control_group"><LABEL class="frm_label" for="">公司</LABEL>
+            <DIV class="frm_controls">
+              <SPAN class="frm_input_box">
+              <%=f.text_field :desc,:class=>"frm_input",:placeholder=>"公司"%>
+             </SPAN>
+              <div class="help-block" rel="user_login_name"></div>
+              <P  class="frm_tips"></P></DIV>
+          </DIV>
           <div>
             <input type="checkbox" checked="checked" value="agree" name="user[license]" id="license" class="x-input required" autocomplete="off">
             <label for="license" class="checkbox_label" id="i_agree">&nbsp;我已阅读并同意：</label><a href="/vshop/article?id=zhucexieyi" target="_top"  id="reg_term">会员注册协议</a>
