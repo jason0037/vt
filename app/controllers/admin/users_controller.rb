@@ -43,7 +43,7 @@ class Admin::UsersController < Admin::BaseController
 	      ac.user.reg_ip = request.remote_ip
 	      ac.user.regtime = now.to_i
 	      #ac.supplier_id = supplier_id
-	      #ac.license = true
+	      ac.license = true
 	    end    	
     	
 		# @account = Ecstore::Account.new
@@ -68,7 +68,7 @@ class Admin::UsersController < Admin::BaseController
 				redirect_to admin_permissions_path
 			end
 		else
-			render :text=>@account.errors.to_json
+			render error_user_path
 		end
 	end
 
