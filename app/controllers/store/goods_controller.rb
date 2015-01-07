@@ -195,10 +195,10 @@ class Store::GoodsController < ApplicationController
   end
 
   def world_food
-    @promotions= Ecstore::Promotion.where(:mallname=>"world_food").order("priority asc")
 
+    @goods = Ecstore::Good.where(:supplier_id=>"77").order("p_order asc,uptime desc")
     if params[:cat_id]
-      @good_world =  Ecstore::Good.where(:supplier_id=>"77",:cat_id=>params[:cat_id]).order("p_order asc,uptime desc")
+      @goods =  Ecstore::Good.where(:supplier_id=>"77",:cat_id=>params[:cat_id]).order("p_order asc,uptime desc")
     end
 
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
