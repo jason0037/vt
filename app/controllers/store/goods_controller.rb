@@ -166,13 +166,6 @@ class Store::GoodsController < ApplicationController
 
    @promotions= Ecstore::Promotion.where(:mallname=>"prime_beef").order("priority asc")
 
-
-
-
-
-
-
-
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
 
     @recommend_user = session[:recommend_user]
@@ -202,7 +195,7 @@ class Store::GoodsController < ApplicationController
   end
 
   def world_food
-    @promotions= Ecstore::Promotion.where(:mallname=>"prime_beef").order("priority asc")
+    @promotions= Ecstore::Promotion.where(:mallname=>"world_food").order("priority asc")
 
     if params[:cat_id]
       @goods =  Ecstore::Good.where(:supplier_id=>"77",:cat_id=>params[:cat_id]).order("p_order asc,uptime desc")
