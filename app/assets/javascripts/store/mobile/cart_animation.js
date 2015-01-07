@@ -27,7 +27,7 @@ function addProduct(event) {
 
                 thisbutton.children("button").removeClass("am-btn-danger").addClass("am-btn-default");
                 var url="/cart/add" ;
-                var goods_id= thisbutton.children("goods_id").val();
+                var goods_id= thisbutton.children(".goods_id").val();
 
                 $.ajax(url,{
                     type: "post",
