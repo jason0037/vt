@@ -164,7 +164,7 @@ class Store::GoodsController < ApplicationController
     # @goods_agt= Ecstore::Good.where(:supplier_id=>"111") .order("p_order asc,uptime desc")
 
 
-   @promotions= Ecstore::Promotion.where(:mallname=>"prime_beef").order("priority asc").order("p_order asc,uptime desc")
+   @promotions= Ecstore::Promotion.where(:mallname=>"prime_beef").order("priority asc")
 
 
 
