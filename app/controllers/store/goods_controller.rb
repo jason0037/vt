@@ -90,10 +90,10 @@ class Store::GoodsController < ApplicationController
   end
   def food_beverage
 
-
-    @goods_mok= Ecstore::Good.where(:supplier_id=>"114").order("p_order asc,uptime desc")
-  @goods_bs=Ecstore::Good.where(:supplier_id=>"115") .order("p_order asc,uptime desc")
-    @goods_ptj=Ecstore::Good.where(:supplier_id=>"116").order("p_order asc,uptime desc")
+    @promotions= Ecstore::Promotion.where(:mallname=>"food_beverage").order("priority asc")
+  #   @goods_mok= Ecstore::Good.where(:supplier_id=>"114").order("p_order asc,uptime desc")
+  # @goods_bs=Ecstore::Good.where(:supplier_id=>"115") .order("p_order asc,uptime desc")
+  #   @goods_ptj=Ecstore::Good.where(:supplier_id=>"116").order("p_order asc,uptime desc")
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
 
     @recommend_user = session[:recommend_user]
@@ -125,10 +125,10 @@ class Store::GoodsController < ApplicationController
 
  def fashion
 
-
-    @goods_flower= Ecstore::Good.where(:supplier_id=>"117")
-  @goods_box=Ecstore::Good.where(:brand_id=>"165")
-    @goods_wine=Ecstore::Good.where(:supplier_id=>"118")
+   @promotions= Ecstore::Promotion.where(:mallname=>"fashion").order("priority asc")
+  #   @goods_flower= Ecstore::Good.where(:supplier_id=>"117")
+  # @goods_box=Ecstore::Good.where(:brand_id=>"165")
+  #   @goods_wine=Ecstore::Good.where(:supplier_id=>"118")
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
 
     @recommend_user = session[:recommend_user]
@@ -202,10 +202,12 @@ class Store::GoodsController < ApplicationController
   end
 
   def world_food
-    @goods =  Ecstore::Good.where(:supplier_id=>"77").order("p_order asc,uptime desc")
+    @promotions= Ecstore::Promotion.where(:mallname=>"prime_beef").order("priority asc")
+
     if params[:cat_id]
       @goods =  Ecstore::Good.where(:supplier_id=>"77",:cat_id=>params[:cat_id]).order("p_order asc,uptime desc")
     end
+
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
 
     @recommend_user = session[:recommend_user]
