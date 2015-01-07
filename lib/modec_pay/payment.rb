@@ -102,13 +102,15 @@ module ModecPay
       if res_data_hash['xml']['return_code']=='SUCCESS'
         self.fields['package'] ="prepay_id=#{res_data_hash['xml']['prepay_id']}"
         make_pay_sign
+      else
+        self.fields['package']['return_msg']=res_data_hash['xml']
       end
 
       _filter = self.filter if self.filter.is_a?(Proc)
       _filter = proc { true }  unless _filter
 
       form_inputs = self.fields.select(&_filter).collect do |key,val|
-        "<div style='display:none'>#{key}:<input name='#{key}' value='#{val}' style='width:500px' /><br/></div>"
+        "<div style='display:none' >#{key}:<input name='#{key}' value='#{val}' style='width:500px' /><br/></div>"
       end.join(" ")
 
       <<-FORM
@@ -129,7 +131,7 @@ module ModecPay
           <span style="color: #0abede">正在跳转到到微信支付...<br/>如果长时间没有反应，请</span>
         </h2>
       </div>
-        <form accept-charset="#{self.charset}" action="/vshop/#{self.fields['supplier_id']}/payments?id=#{self.pay_id}" method="post" id="pay_form">
+        <form accept-charset="#{self.charset}" action="/vshop/#{self.fields['device_info']}/payments?id=#{self.pay_id}" method="post" id="pay_form">
           #{form_inputs}
 
         </form>
@@ -172,7 +174,7 @@ module ModecPay
 
 
                   if(res.err_msg == "get_brand_wcpay_request:ok" ) {
-                    window.location ="/vshop/#{self.fields['supplier_id']}/paynotifyurl?temp=solution&payment_id=#{self.fields['out_trade_no']}";
+                    window.location ="/vshop/#{self.fields['device_info']}/paynotifyurl?temp=solution&payment_id=#{self.fields['out_trade_no']}";
                   }
                     else{alert('支付未成功');
                   //  window.location ="/orders/mobile_show?id=20141003100859&supplier_id=97";
