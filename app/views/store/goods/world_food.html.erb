@@ -29,21 +29,18 @@
         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
 
           <div class="am-col col-sm-4 am-list-thumb">
-            <a class="Q-buy-btn" >
+            <a href="#" class="Q-buy-btn">
            <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
               <img class="j_item_image beisaier hide"  src="<%=good.list_default_pic%>">
-   <input type="hidden" class="goods_id" value="<%=good.goods_id%>">
-            <button href="#" title="加入购物车" class="baseBg Q-buy-btn am-btn am-btn-danger" > <i class="am-icon-shopping-cart"></i>
-              加入购物车 </button>
-          </a>
+  <input type="hidden" class="goods_id" value="<%=good.goods_id%>">
+            <button type="button" href="###" title="加入购物车" class="baseBg Q-buy-btn am-btn am-btn-block am-btn-danger" > <i class="am-icon-shopping-cart">  加入购物车</i> </button>
+             </a>
           </div>
           <div class="am-col col-sm-8 am-list-main">
             <a href="/mproducts?id=<%=good.bn%>&supplier_id=<%=@supplier.id%>&fp=category" class="cart_orderlist_i">
                 <span class="am-list-item-hd" style="font-size: 0.7em">
                   <%=good.name%>
                 </span>
-
-
             <div class="am-list-item-text"> <strong class="" style="color: red;font-size: 16px ;float: right" >¥<%=good.price%> &nbsp;</strong>   </div>
           </a>
           </div>
