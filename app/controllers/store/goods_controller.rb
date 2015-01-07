@@ -233,7 +233,7 @@ class Store::GoodsController < ApplicationController
 
   def quality_products
     @promotions= Ecstore::Promotion.where(:mallname=>"quality_products").order("priority asc")
-  #   @supplier = Ecstore::Supplier.find(params[:supplier_id])
+     @supplier = Ecstore::Supplier.find(params[:supplier_id])
   #   @goods_zmq =  Ecstore::Good.where(:supplier_id=>"104").order("p_order asc,uptime desc")
   #  @goods_tiegun=Ecstore::Good.where(:supplier_id=>"106").order("p_order asc,uptime desc")
   #  @goods_cmcyz=Ecstore::Good.where(:supplier_id=>"105").order("p_order asc,uptime desc")
