@@ -276,6 +276,3 @@ input.textcenter {
 
 
 }
-#floatOrder{width:100px;height:100px;padding:2px;background:#fff;border:solid 1px #e54144;overflow:hidden;position:absolute;z-index:890;}
-.Q-online{width:28px;height:20px;display:block;background-position:-78px -130px;position:fixed;right:10px;bottom:13px;}
-*html .Q-online{position:absolute;top:expression(eval(document.documentElement.scrollTop));margin:500px 0 0 0;}
