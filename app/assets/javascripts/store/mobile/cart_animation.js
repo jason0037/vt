@@ -1,6 +1,6 @@
 function addProduct(event) {
     var  thisbutton= $(this);
-    if(!thisbutton.hasClass("dis-click")){
+    if(!thisbutton.hasClass("am-btn-default")){
         var scrollTop = $(window).scrollTop();
         var offset = $('#cart').offset();
         var img= thisbutton.parents().children().children(".beisaier");
@@ -23,7 +23,8 @@ function addProduct(event) {
 
             onEnd: function(){
                 img.remove();
-                thisbutton.addClass("dis-click");
+
+                thisbutton.removeClass("am-btn-danger").addClass("am-btn-default");
                 var url="/cart/add" ;
                 var goods_id= thisbutton.prev().val();
 
