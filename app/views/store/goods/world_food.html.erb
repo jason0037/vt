@@ -23,7 +23,7 @@
 </div>
 <div class="am-panel-bd">
   <ul class="am-list">
-                                       s
+
     <% @goods.each do |good|%>
 
         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
@@ -43,7 +43,7 @@
                 </span>
             <div class="am-list-item-text"> <strong class="" style="color: red;font-size: 16px ;float: right" >¥<%=good.price%> &nbsp;</strong>   </div>
           </a>
-            <a  href="/cart/mobile?supplier_id=<%=@supplier.id%>" title="立即购买" class="  am-btn am-btn-block am-btn-danger buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
+            <a  href="/cart/mobile?supplier_id=<%=@supplier.id%>" title="立即购买" class="  am-btn  am-btn-danger buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
 
           </div>
           <div>
