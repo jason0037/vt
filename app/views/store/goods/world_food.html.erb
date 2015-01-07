@@ -1,13 +1,7 @@
 <style type="text/css">
-
-    .am-btn-catid{
-        font-size: 15px;
-        margin-left: 30px;
-        color: #ffffff;
-    }
-    .line_a{
-        background-color: #ff0000;
-    }
+  .hide{
+      display: none;
+  }
 
 </style>
 
@@ -33,23 +27,39 @@
     <% @goods.each do |good|%>
 
         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-          <a href="/mproducts?id=<%=good.bn%>&supplier_id=<%=@supplier.id%>&fp=category" class="cart_orderlist_i">
-            <div class="am-col col-sm-4 am-list-thumb">
-              <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
-            </div>
-            <div class="am-col col-sm-8 am-list-main">
+
+          <div class="am-col col-sm-4 am-list-thumb">
+            <a href="/mproducts?id=<%=good.bn%>&supplier_id=<%=@supplier.id%>&fp=category" class="cart_orderlist_i">
+              <!--<img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">-->
+              <img class="j_item_image" src="http://vshop.trade-v.com/images/a0112/a01120003_m.jpg">    </a>
+            <img class="j_item_image beisaier hide"  src="http://vshop.trade-v.com/images/a0112/a01120003_m.jpg">
+            <input type="hidden" class="goods_id" value="<%=good.goods_id%>">
+            <a href="###" title="加入购物车" class="baseBg Q-buy-btn" ></a>
+          </div>
+          <div class="am-col col-sm-8 am-list-main">
                 <span class="am-list-item-hd" style="font-size: 10px">
                   <%=good.name%>
                 </span>
-              <div class="am-list-item-text"> <strong class="" style="color: red;font-size: 16px ;float: right" >¥<%=good.price%> &nbsp;</strong>   </div>
-            </div>
-            <div>
-            </div>
-          </a>
+
+
+            <div class="am-list-item-text"> <strong class="" style="color: red;font-size: 16px ;float: right" >¥<%=good.price%> &nbsp;</strong>   </div>
+            <a href="###" title="立即购买" class="baseBg buy_now" ></a>
+          </div>
+          <div>
+          </div>
+
         </li>
     <%end%>
   </ul>
 </div>
+<div class="J-shoping">
+  <div class="amz-toolbar J-shoping-title" id="amz-toolbar" style="right: 10px;">
+    <a href="" title="购物车" >
+      <i class="am-icon-btn  am-icon-shopping-cart " id="cart"></i>
+    </a>
+    <span class="  J-shoping-num"><%=@line_items.count%></span>
+  </div> </div>
+
 <script>
     $(".am-btn-catid").each(function(){
         var v = $(this).attr("href");
@@ -57,5 +67,22 @@
 
         }
     });
+
+
+
+
+
+
+</script>
+<script type="text/javascript" >
+
+
+
+$('.Q-buy-btn').on('click',addProduct);
+
+
+
+
+
 
 </script>

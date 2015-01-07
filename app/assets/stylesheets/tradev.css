@@ -208,10 +208,25 @@ input.textcenter {
 .line_a{
     background-color: #ff0000;
 }
-.baseBg {
+.Q-buy-btn {
     background-image: url(/assets/add_cart1.png);
     background-repeat: no-repeat;
 
+}
+.buy_now{
+    background-image: url(/assets/buy.png);
+    background-repeat: no-repeat;
+}
+
+.col-sm-8 .buy_now{
+    display: block;
+    color: #fff;
+
+
+    height: 52px;
+    line-height: 21px;
+
+    margin: 12px auto 0px;
 }
 .dis-click {
     background-image: url(/assets/add_cart2.png);
@@ -219,10 +234,7 @@ input.textcenter {
 }
 .col-sm-4 .baseBg{
     display: block;
-    color: #fff;
-
-
-    height: 21px;
+     height: 21px;
     line-height: 21px;
     padding-left: 30px;
     margin: 12px auto 0px;

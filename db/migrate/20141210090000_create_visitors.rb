@@ -1,4 +1,3 @@
-
 class CreateVisitors < ActiveRecord::Migration
   def change
 
