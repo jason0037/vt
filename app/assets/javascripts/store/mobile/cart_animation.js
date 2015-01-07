@@ -3,7 +3,7 @@ function addProduct(event) {
     if(!thisbutton.hasClass("dis-click")){
         var scrollTop = $(window).scrollTop();
         var offset = $('#cart').offset();
-        var img= thisbutton.parents().children(".beisaier");
+        var img= thisbutton.parents().children().children(".beisaier");
 
         img.removeClass("hide");
 
