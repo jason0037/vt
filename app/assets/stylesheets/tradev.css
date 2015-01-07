@@ -241,8 +241,15 @@ input.textcenter {
     color: #545454;
     text-align: center;
 }
-
-
+ .J-shoping-title{
+     right: 1px;"
+ }
+  .icon-em{
+      font-size:0.7em
+  }
+  .goods-name-span{
+      font-size: 1.3em
+  }
 .J-shoping-num{
     position: relative;
 

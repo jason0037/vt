@@ -23,7 +23,7 @@
 </div>
 <div class="am-panel-bd">
   <ul class="am-list">
-
+                                       s
     <% @goods.each do |good|%>
 
         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
@@ -33,16 +33,18 @@
            <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
               <img class="j_item_image beisaier hide"  src="<%=good.list_default_pic%>">
   <input type="hidden" class="goods_id" value="<%=good.goods_id%>">
-            <button type="button" href="###" title="加入购物车" class="  am-btn am-btn-block am-btn-danger" > <i class="am-icon-shopping-cart"> <em style="font-size:0.7em">加入购物车</em> </i> </button>
+            <button type="button" href="###" title="加入购物车" class="  am-btn am-btn-block am-btn-danger" > <i class="am-icon-shopping-cart"> <em class="icon-em" >加入购物车</em> </i> </button>
              </a>
           </div>
           <div class="am-col col-sm-8 am-list-main">
             <a href="/mproducts?id=<%=good.bn%>&supplier_id=<%=@supplier.id%>&fp=category" class="cart_orderlist_i">
-                <span class="am-list-item-hd" style="font-size: 0.7em">
+                <span class="am-list-item-hd goods-name-span" >
                   <%=good.name%>
                 </span>
             <div class="am-list-item-text"> <strong class="" style="color: red;font-size: 16px ;float: right" >¥<%=good.price%> &nbsp;</strong>   </div>
           </a>
+            <a  href="/cart/mobile?supplier_id=<%=@supplier.id%>" title="立即购买" class="  am-btn am-btn-block am-btn-danger buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
+
           </div>
           <div>
           </div>
@@ -52,8 +54,8 @@
   </ul>
 </div>
 <div class="J-shoping">
-  <div class="amz-toolbar J-shoping-title" id="amz-toolbar" style="right: 10px;">
-    <a href="" title="购物车" >
+  <div class="amz-toolbar J-shoping-title" id="amz-toolbar">
+    <a href="/cart/mobile?id=<%=@supplier.id%>" title="购物车" >
       <i class="am-icon-btn  am-icon-shopping-cart " id="cart"></i>
     </a>
     <span class="  J-shoping-num"><%=@line_items.count%></span>
@@ -79,7 +81,20 @@
 
 $('.Q-buy-btn').on('click',addProduct);
 
+ $(".buttom_bolt").on('click',function(){
+   var goods_id= $(this).parent().prev().children().children(".goods_id").val();
+     var url="/cart/add" ;
 
+
+     $.ajax(url,{
+         type: "post",
+         data:{"goods_id":goods_id,"spec": "","attr":"mall","platform":"mobile"  },
+
+         success:function(res){
+
+         }
+     })
+ })
 
 
 
