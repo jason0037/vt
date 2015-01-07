@@ -232,14 +232,15 @@ class Store::GoodsController < ApplicationController
 
 
   def quality_products
-    @supplier = Ecstore::Supplier.find(params[:supplier_id])
-    @goods_zmq =  Ecstore::Good.where(:supplier_id=>"104").order("p_order asc,uptime desc")
-   @goods_tiegun=Ecstore::Good.where(:supplier_id=>"106").order("p_order asc,uptime desc")
-   @goods_cmcyz=Ecstore::Good.where(:supplier_id=>"105").order("p_order asc,uptime desc")
-  @goods_dmdm =Ecstore::Good.where(:supplier_id=>"108").order("p_order asc,uptime desc")
-   @goods_tsdzx=Ecstore::Good.where(:supplier_id=>"87").order("p_order asc,uptime desc")
-    @goods_ysgj=Ecstore::Good.where(:supplier_id=>"112").order("p_order asc,uptime desc")
-    @goods_cc=Ecstore::Good.where(:supplier_id=>"113").order("p_order asc,uptime desc")
+    @promotions= Ecstore::Promotion.where(:mallname=>"quality_products").order("priority asc")
+  #   @supplier = Ecstore::Supplier.find(params[:supplier_id])
+  #   @goods_zmq =  Ecstore::Good.where(:supplier_id=>"104").order("p_order asc,uptime desc")
+  #  @goods_tiegun=Ecstore::Good.where(:supplier_id=>"106").order("p_order asc,uptime desc")
+  #  @goods_cmcyz=Ecstore::Good.where(:supplier_id=>"105").order("p_order asc,uptime desc")
+  # @goods_dmdm =Ecstore::Good.where(:supplier_id=>"108").order("p_order asc,uptime desc")
+  #  @goods_tsdzx=Ecstore::Good.where(:supplier_id=>"87").order("p_order asc,uptime desc")
+  #   @goods_ysgj=Ecstore::Good.where(:supplier_id=>"112").order("p_order asc,uptime desc")
+  #   @goods_cc=Ecstore::Good.where(:supplier_id=>"113").order("p_order asc,uptime desc")
     @recommend_user = session[:recommend_user]
 
     if @recommend_user==nil &&  params[:wechatuser]
