@@ -69,7 +69,7 @@ class Store::PaymentsController < ApplicationController
 
         else
       	
-        redirect_to "/vshop/#{id}/payments?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}"
+        redirect_to "/vshop/#{id}/payments?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}&showwxpaytitle=1"
          end
       else
         redirect_to pay_payment_path(@payment.payment_id)
@@ -90,29 +90,28 @@ class Store::PaymentsController < ApplicationController
 
 	def pay
 		@payment = Ecstore::Payment.find(params[:id])
-      if @payment && @payment.status == 'ready'
-        adapter = @payment.pay_app_id
-        order_id = @payment.pay_bill.rel_id
-        @modec_pay = ModecPay.new adapter do |pay|
-
-        pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
-        pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"
+      	if @payment && @payment.status == 'ready'
+	        adapter = @payment.pay_app_id
+	        order_id = @payment.pay_bill.rel_id
+	        @modec_pay = ModecPay.new adapter do |pay|
+		        pay.return_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/callback"
+		        pay.notify_url = "#{site}/payments/#{@payment.payment_id}/#{adapter}/notify"
 				pay.pay_id = @payment.payment_id
 				pay.pay_amount = @payment.cur_money.to_f
 				pay.pay_time = Time.now
 				pay.subject = "贸威订单(#{order_id})"
 				pay.installment = @payment.pay_bill.order.installment if @payment.pay_bill.order
-        pay.openid = @user.account.login_name
-        pay.spbill_create_ip = request.remote_ip
-      end
+		        pay.openid = @user.account.login_name
+		        pay.spbill_create_ip = request.remote_ip
+		    end
 
-      if adapter=='alipaywap'
-        render :text=>@modec_pay.html_form_alipaywap
-      elsif adapter=='wxpay'
-        render :inline=>@modec_pay.html_form_wxpay
-      else
-		render :inline=>@modec_pay.html_form
-      end
+		    if adapter=='alipaywap'
+		        render :text=>@modec_pay.html_form_alipaywap
+		    elsif adapter=='wxpay'
+		        render :inline=>@modec_pay.html_form_wxpay
+		    else
+				render :inline=>@modec_pay.html_form
+		    end
 
 			Ecstore::PaymentLog.new do |log|
 				log.payment_id = @payment.payment_id

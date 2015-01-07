@@ -237,35 +237,38 @@ class Store::OrdersController < ApplicationController
       product = line_item.product
       good = line_item.good
 
-      #     if product || good
-      @order.order_items << Ecstore::OrderItem.new do |order_item|
-        order_item.product_id = product.product_id
-        order_item.bn = product.bn
-        order_item.name = product.name
-        if cookies[:MLV] == "10"
-          order_item.price = product.bulk
-        else
-          order_item.price = product.price
-        end
-        order_item.goods_id = good.goods_id
-        order_item.type_id = good.type_id
-        order_item.nums = line_item.quantity.to_i
-        order_item.item_type = "product"
-         if params[:cart_total_final].nil?
-         order_item.amount = order_item.price * order_item.nums
-         else
-           order_item.amount =  params[:cart_total_final]
-         end
-
-        product_attr = {}
-        # product.spec_desc["spec_value"].each  do |spec_id,spec_value|
-        # 	spec = Ecstore::Spec.find_by_spec_id(spec_id)
-        # 	product_attr.merge!(spec_id=>{"label"=>spec.spec_name,"value"=>spec_value})
-        # end
-        order_item.addon = { :product_attr => product_attr }.serialize
-
-        # @order.total_amount += order_item.calculate_amount
+      if good.nil? || product.nil?
+        next
       end
+
+        @order.order_items << Ecstore::OrderItem.new do |order_item|
+          order_item.product_id = product.product_id
+          order_item.bn = product.bn
+          order_item.name = product.name
+          if cookies[:MLV] == "10"
+            order_item.price = product.bulk
+          else
+            order_item.price = product.price
+          end
+          order_item.goods_id = good.goods_id
+          order_item.type_id = good.type_id
+          order_item.nums = line_item.quantity.to_i
+          order_item.item_type = "product"
+           if params[:cart_total_final].nil?
+           order_item.amount = order_item.price * order_item.nums
+           else
+             order_item.amount =  params[:cart_total_final]
+           end
+
+          product_attr = {}
+          # product.spec_desc["spec_value"].each  do |spec_id,spec_value|
+          # 	spec = Ecstore::Spec.find_by_spec_id(spec_id)
+          # 	product_attr.merge!(spec_id=>{"label"=>spec.spec_name,"value"=>spec_value})
+          # end
+          order_item.addon = { :product_attr => product_attr }.serialize
+
+          # @order.total_amount += order_item.calculate_amount
+        end
       #     else
       #       debug_line_item +=line_item.id.to_s + '|'
       #    end
