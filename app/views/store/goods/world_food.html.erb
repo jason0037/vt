@@ -26,7 +26,12 @@
   <ul class="am-list">
 
     <%pro.field_vals.split(",")[0].each do |p|%>
+        <% if @good_world.nil?%>
+           <%@goods=@good_world%>
+            <%else%>
         <%@goods=Ecstore::Good.where("bn like ?" , p+"%" )%>
+            <%end%>
+
         <% @goods.each do |good|%>
 
         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
