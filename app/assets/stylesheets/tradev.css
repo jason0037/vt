@@ -205,13 +205,17 @@ input.textcenter {
     z-index: 999;
 
 }
+
 .line_a{
     background-color: #ff0000;
+}
+.baseBg{
+
 }
 .Q-buy-btn {
     background-image: url(/assets/add_cart1.png);
     background-repeat: no-repeat;
-
+    background-size: cover;
 }
 .buy_now{
     background-image: url(/assets/buy.png);
