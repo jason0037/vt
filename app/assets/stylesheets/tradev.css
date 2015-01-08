@@ -278,6 +278,9 @@ ul {
     list-style-type: none;
 
 }
+.buttom_bolt{
+    float: right;
+}
 .am-hr{
 border:1px dashed ;
 }
