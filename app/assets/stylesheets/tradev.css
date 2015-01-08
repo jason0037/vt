@@ -267,9 +267,7 @@ input.textcenter {
     right: 21px;
 
 }
-.tag{
-       width:14%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap
-   }
+
 .hide{
     display: none;
 }
