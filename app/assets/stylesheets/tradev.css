@@ -278,6 +278,9 @@ ul {
     list-style-type: none;
 
 }
+.mall_price{
+    color: red; float: left; line-height: 3;
+}
 
 .am-hr{
 border:1px dashed ;
