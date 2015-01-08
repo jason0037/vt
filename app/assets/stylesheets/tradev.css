@@ -266,6 +266,18 @@ input.textcenter {
     top: -13px;
     right: 21px;
 
+}
+.tag{
+       width:14%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap
+   }
+.hide{
+    display: none;
+}
 
+ul {
+    list-style-type: none;
 
+}
+.am-hr{
+border:1px dashed ;
 }
