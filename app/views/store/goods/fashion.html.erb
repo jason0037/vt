@@ -29,7 +29,7 @@
                         <a href="javascript:void (0);" class="Q-buy-btn">
                           <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
 
-                          <input type="hidden" class="goods_id" value="<%=good.goods_id%>"> <hr style="margin-top: 2.2em;border-top:none"><button type="button" href="###" title="加入购物车" class="  am-btn am-btn-block am-btn-danger" > <i class="am-icon-shopping-cart"> <em class="icon-em" >加入购物车</em> </i> </button>
+                          <input type="hidden" class="goods_id" value="<%=good.goods_id%>"> <hr style="margin-top: 3em;border-top:none"><button type="button" href="###" title="加入购物车" class="  am-btn am-btn-block am-btn-danger" > <i class="am-icon-shopping-cart"> <em class="icon-em" >加入购物车</em> </i> </button>
                            </a>
                       </div>
                       <div class="am-col col-sm-8 am-list-main">
@@ -38,9 +38,9 @@
                   <%unless good.tag.blank?%>
                             <%a=0%>
                             <%good.tag.split(",").each do |tag|%>
-                                <%color=["#FF8000","#4CDD8C","#EE00EE","#ADFF2F","#00E5EE"]%>
+                                <%color=["#FF8000","#4CDD8C","#EE00EE","#ADFF2F"]%>
                                 <%if a<4%>
-                       <em style=" font-size: 1px; color: <%=color[a]%>"> <%=tag%> </em>
+                       <em style=" font-size: 10px; color: <%=color[a]%>"> <%=tag%> </em>
                            <%end%><%a=a+1%> <%end%>  <%end%>
                 <hr style="margin-top: 2.2em;border-top:none"><div class="am-list-item-text">
                         <div class="am-col col-sm-8">
