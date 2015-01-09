@@ -1,5 +1,5 @@
 <div id="specs_container" property-url="<%=price_good_path(good)%>">
-<%if good.specs.present?%>
+<%if good.specs.present? ||good.specs%>
    <%good.specs.order("spec_id asc").each do |spec|%>
       <div class="spec-item clearfix">
         <span class="spec-name">选择<%=spec.spec_name%> : </span>
