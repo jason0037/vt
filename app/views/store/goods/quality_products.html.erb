@@ -87,7 +87,7 @@
     $('.Q-buy-btn').on('click',addProduct);
 
     $(".buttom_bolt").on('click',function(){
-        var goods_id= $(this).parent().prev().children().children(".goods_id").val();
+        var goods_id= $(this).parent().parent().parent().prev().children().children(".goods_id").val();
         var url="/cart/add" ;
 
 
