@@ -20,6 +20,8 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         render xml: send("response_news_message", {})
       when '店铺'
         render xml: send("response_news_message", {})
+      when '登录'
+        render xml: send("response_news_message", {})
       else
        render xml: send("response_#{@weixin_message.MsgType}_message", {})
     end
@@ -74,6 +76,13 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         desc ="您点击的商品馆正在筹备上线，敬请期待"
         pic_url=""
         link_url="http://vshop.trade-v.com/vshop/notice?supplier_id=#{id}"
+        articles = [generate_article(title, desc, pic_url, link_url)]
+
+      when '登录'
+        title="自动登录测试"
+        desc =""
+        pic_url=""
+        link_url="http://vshop.trade-v.com/autologin1?id=#{id}"
         articles = [generate_article(title, desc, pic_url, link_url)]
 
 

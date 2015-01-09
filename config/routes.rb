@@ -270,6 +270,7 @@ Modengke::Application.routes.draw do
   end
 
   get 'auto_login'=>"sessions#auto_login"
+  get 'autologin1'=>"sessions#auto_login1"
   get 'login'=>"sessions#new"
   get 'mlogin'=>"sessions#new_mobile"
   get 'mregister'=>"sessions#register_mobile"
