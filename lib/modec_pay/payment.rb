@@ -102,8 +102,8 @@ module ModecPay
       if res_data_hash['xml']['return_code']=='SUCCESS'
         self.fields['package'] ="prepay_id=#{res_data_hash['xml']['prepay_id']}"
         make_pay_sign
-      else
-        self.fields['package']['return_msg']=res_data_hash['xml']
+      # else
+      #   self.fields['package']['return_msg']=res_data_hash['xml']
       end
 
       _filter = self.filter if self.filter.is_a?(Proc)

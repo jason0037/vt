@@ -23,7 +23,7 @@ class Auth::WeixinController < ApplicationController
 
 	def callback
 
-		return redirect_to(site_path) if params[:error].present?
+	return redirect_to(site_path) if params[:error].present?
     supplier_id = params[:id]
      if params[:supplier_id]
         supplier_id=params[:supplier_id]
@@ -35,11 +35,11 @@ class Auth::WeixinController < ApplicationController
     appid = @supplier.weixin_appid
     secret = @supplier.weixin_appsecret
 
-		#token = Weixin.request_token(params[:code])
+	#token = Weixin.request_token(params[:code])
     token = Weixin.request_token_multi(params[:code],appid,secret)
    #return  render :text=>token
 
-		auth_ext = Ecstore::AuthExt.where(:provider=>"weixin",
+	auth_ext = Ecstore::AuthExt.where(:provider=>"weixin",
 									:uid=>token.openid).first_or_initialize(
 									:access_token=>token.access_token,
   #                :refresh_token=>token.refresh_token,
