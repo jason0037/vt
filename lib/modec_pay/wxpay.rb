@@ -67,7 +67,11 @@ module ModecPay
       self.fields['attach'] = val
     end
 
-    def partnerid=(val)
+    # def partnerid=(val)
+    #   self.fields['mch_id'] = val
+    # end
+
+     def mch_id=(val)
       self.fields['mch_id'] = val
     end
 

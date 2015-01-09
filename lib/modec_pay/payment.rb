@@ -110,7 +110,7 @@ module ModecPay
       _filter = proc { true }  unless _filter
 
       form_inputs = self.fields.select(&_filter).collect do |key,val|
-        "<div style='display:none' >#{key}:<input name='#{key}' value='#{val}' style='width:500px' /><br/></div>"
+        "#{key}:<input name='#{key}' value='#{val}' style='width:500px' /><br/>"
       end.join(" ")
 
       <<-FORM
@@ -132,7 +132,7 @@ module ModecPay
         </h2>
       </div>
         <form accept-charset="#{self.charset}" action="/vshop/#{self.fields['device_info']}/payments?id=#{self.pay_id}" method="post" id="pay_form">
-          #{form_inputs}
+        <div style='display:none' >#{form_inputs}</div>
 
         </form>
 				<script type="text/javascript">
