@@ -18,6 +18,9 @@
 
       border: 1px solid #ddd;
   }
+  #news li{
+      border-top: 1px solid #EEE;
+  }
 
   /*.hover {*/
 
@@ -97,15 +100,16 @@
                   </div>
                 </div>
                 <div class="columns large-12 ">
-                   <h3>商城动态</h3>
+
+                   <span style="border: 4px solid#ff0e29;margin-left: 5%"></span><span style="color:darkred;margin-left: 2%;font-size: 20px;font-weight: bold ">商城动态</span>
                     <ul id="news" >
 
-                        <li class="news"><a href="/pages/news_wuliujiqiren">物流机器人产业大时代已经来临</a></li>
-                        <li><a href="/pages/ziliuyujiaoliukongzhi">直流与交流控制系统电动叉物流机器人产业大时代已经</a></li>
-                        <li><a href="/pages/newsDetails-9-1489">"卓仕"获十佳优秀物流装备技术企业称号</a></li>
-                        <li><a href="/pages/newsDetails-9-1812">第九届广州叉车展卓仕成果丰硕</a></li>
-                        <li><a href="/pages/newsDetails-9-1854">卓仕学院成立与发展</a></li>
-                        <li><a href="/pages/newsDetails-9-1812">第九届广州叉车展卓仕成果丰硕</a></li>
+                        <li class="news"><a href="/pages/news_wuliujiqiren">1:物流机器人产业大时代已经来临</a></li>
+                        <li><a href="/pages/ziliuyujiaoliukongzhi">2:直流与交流控制系统电动叉物流机器人产业大时代已经</a></li>
+                        <li><a href="/pages/newsDetails-9-1489">3:"卓仕"获十佳优秀物流装备技术企业称号</a></li>
+                        <li><a href="/pages/newsDetails-9-1812">4:第九届广州叉车展卓仕成果丰硕</a></li>
+                        <li><a href="/pages/newsDetails-9-1854">5:卓仕学院成立与发展</a></li>
+                        <li><a href="/pages/newsDetails-9-1812">6:第九届广州叉车展卓仕成果丰硕</a></li>
                     </ul>
                 </div>
                 <div class="columsn large-12 panel">
@@ -115,7 +119,7 @@
             </div>
         </div>
 
-    </div>
+
 
 <!--  -->
 <% @progoods .each do |pg|%>
@@ -150,8 +154,8 @@
                       <a href="/products/<%=p%>"><img src="<%=Ecstore::Good.find_by_bn(p).medium_pic%>"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
                     </div>
                     <input type="hidden"class="goods_id" value="<%=p%>">
-                    <a href="/products/<%=p%>"><h3><%=Ecstore::Good.find_by_bn(p).name%></h3></a>
-                    <h5>￥<%=Ecstore::Good.find_by_bn(p).price%></h5>市场价：<span style="font-size:.8em"><%=Ecstore::Good.find_by_bn(p).mktprice%></span>
+                    <a href="/products/<%=p%>"><h3><%=Ecstore::Good.find_by_bn(p).name%></h3>
+                    <h5 style="color: #ff0000">￥<%=Ecstore::Good.find_by_bn(p).price%></h5>市场价：<span style="font-size:.8em ;color: #ff0000"><%=Ecstore::Good.find_by_bn(p).mktprice%></span>
                    <br>
                     <%@pro.each do |product|%>
                         <% if product.detail_spec%>
@@ -162,7 +166,7 @@
 
                                 <%end%>
                             <%end%>
-
+                              </a>
                     <div class="more-product-info">
 
                       <p>产品特点：<i class="fi-plus size-36"></i></p>
@@ -195,7 +199,7 @@
 <% if @promotions%>
 <%@promotions.each  do |pro|%>
 <div class="row">
-  <div class="large-12 columns">
+  <div class="large-12 small-2 columns">
     <a  name="<%=pro.name%>"></a>
 
 
@@ -265,7 +269,21 @@
 
     <a href="#<%=pro.name%>" class="floor-links floor-fore0"> <div class=" bp-item bp-item-floor-links floor-fore0" data-magellan-arrival="<%=pro.name%>" > <%=pro.name%></div></a>
          <%end%>  <%end%>
-  </div></div>
+  </div></div>  </div>
+<%= javascript_include_tag "ckeditor/init" %>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#img1").fsrPMD({
+            Event: 'mouseover',        //事件
+            Id: 'img1',              //容器ID
+            Bq: 'td',               //复制html标签
+            Fx: "left",             //方向
+            Time: 10             //时间
+        })
+
+    })
+</script>
 <script>
 
 //          $(".caption").hover(function(){

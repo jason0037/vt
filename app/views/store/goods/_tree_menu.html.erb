@@ -36,11 +36,8 @@
     *{margin:0;padding:0;list-style-type:none;}
     a,img{border:0;}
     body{font-family:"宋体",Arial,Lucida,Verdana,Helvetica,sans-serif;font-size:12px;color:#333;background:#fff;}
-
-
-
-    /* navsort */
-    .navsort,.allsort,.allsort .mt .extra,.allsort h3,.allsort s,.allsort .close{background:url(images/nav-sort.gif) no-repeat;}
+  /* navsort */
+    .navsort,.allsort,.allsort .mt .extra,.allsort h3,.allsort s,.allsort {background:url(/assets/nav-sort.gif) no-repeat;background-position: -110px -45px;}
     .navsort{width: 100%}
 
 
@@ -49,31 +46,69 @@
 
     .allsort .mt strong{float:left;font-size:14px;color:#630;}
     .allsort .mt .extra{float:right;overflow:hidden;width:22px;height:22px;background-position:-214px -52px;}
-    .allsort .mc{position:absolute;overflow:visible;width:100%;padding:0 3px 0;-moz-border-radius:0 0 5px 5px;-webkit-border-radius:0 0 5px 5px;}
-    .allsort .item{border-bottom: #ddd dotted 1px;background:#efefef }
-    .allsort .fore{border-top:none;}
-    .allsort span{display:block;position:relative;z-index:1;}
-    .allsort h3{font-size:14px;height:30px;padding-left:20px;font-weight:normal;}
-    .allsort h3 a:link,.allsort h3 a:visited{display:block;height:30px;line-height:30px;color:#333;}
-    .allsort h3 a:hover,.allsort h3 a:active{color:#1B578A;}
-    .allsort s{display:block;position:absolute;top:10px;left:182px;width:13px;height:13px;background-position:-218px -106px;}
-    .allsort .item .i-mc{display:none;position:absolute;left:163px;top:0;width:700px;border:1px solid #c30;background:#FFF9EF;overflow:hidden;}
-    .allsort .item dt{padding:3px 6px 0 0;font-weight:bold;}
-    .allsort .item dd{padding:3px 0 0;overflow:hidden;zoom:1;}
-    .allsort .subitem{min-height:700px;padding:0 4px 0 8px;}
-    .allsort .subitem dl{border-top:1px solid #FFEFD7;overflow:hidden;zoom:1;}
-    .allsort .subitem .fore{border-top:none;}
-    .allsort .subitem dt{float:left;line-height:22px;text-align:right;color:#c00;}
+    .allsort .mc{padding: 3px 3px 3px 0;
+        background: #FAFAFA;
+        border: solid #E4393C;
+        border-width: 0 2px 2px;
+        overflow: visible;
+        position: absolute;
+        overflow: visible;
+        width: 100%;
 
-    .allsort .subitem em{height:14px;margin:4px 0;line-height:14px;padding:0 8px;border-left:1px solid #ccc;font-style:normal;}
+        -moz-border-radius: 0 0 5px 5px;
+        -webkit-border-radius: 0 0 5px 5px;
+    }
+    .allsort .item{border-top: 1px solid #FFF; }
+    .allsort .fore{border-top:none;}
+    .allsort span{display:block;position:relative;z-index:1;overflow: hidden;}
+    .allsort h3{line-height: 26px;
+        padding-left: 20%;
+        border-width: 1px 0;
+        background-image: none;
+        font-weight: 400;
+        font-size: 14px
+    }
+    .allsort h3 a:link,.allsort h3 a:visited{display:block;height:30px;line-height:30px;}
+    .allsort h3 a:hover,.allsort h3 a:active{color: #E4393C;text-decoration: underline;font-weight: 700;}
+    .allsort s{ display: block;
+        position: absolute;
+        top: 27%;
+        right: 0;
+        width: 13px;
+        height: 13px;}
+   .fore dt a{color: #e4393c;text-decoration: underline;}
+    .allsort .item .i-mc{display:none;position:absolute;left:163px;top:0;width:700px;border:1px solid #DDD;background:#fff;overflow:hidden;}
+    .allsort .item dt{padding:3px 6px 0 0;font-weight:bold;color: #e4393c}
+    .allsort .item dd{padding:3px 0 0;overflow:hidden;zoom:1;}
+    .allsort .subitem{min-height: 370px;float:left;padding: 0 4px 0 8px;}
+    .allsort .subitem .fore{border-top:0;}
+    .allsort .subitem dl{border-top: 1px solid #EEE!important;padding: 6px 0;margin-bottom: 0;overflow: hidden;zoom: 1}
+    .allsort .subitem dt{float:left;line-height:22px;text-align:right;}
+
+    .allsort .subitem em{float: left;
+        height: 14px;
+        margin: 7px 0;
+        line-height: 14px;
+        padding: 0 8px;
+        border-left: 1px solid #ccc;
+        font-style: normal;
+    }
     .allsort .fr{background:#fff;width:194px;padding:0 15px 2010px 15px;margin-bottom:-2000px;float:right;}
     .allsort .fr dl{padding-bottom:0;}
     .allsort .mc .extra{padding:7px 8px;background:#FDF1DE;border-top:1px solid #FDE6D2;}
     .allsorthover{background-position:0 -50px;}
     .allsorthover .mt .extra{background-position:-214px -75px;}
     .allsorthover .mc{display:block;}
-    .allsort .hover span{z-index:13;width:160px;}
-    .allsort .hover h3{font-size:14px;border:solid #c30;border-width:1px 0 1px 1px;overflow:hidden;font-weight:bold;}
+    .allsort .hover span{z-index:13;width:164px;}
+    .allsort .hover h3{border: solid #DDD;
+        padding-left: 29%;
+        border-width: 1px 0;
+        background-color: #fff;
+        overflow: hidden;
+        -moz-box-shadow: 0 0 8px #DDD;
+        -webkit-box-shadow: 0 0 8px #DDD;
+        box-shadow: 0 0 8px #DDD;
+    }
     .allsort .hover s{display:none;}
     .allsort .hover .i-mc{display:block;z-index:12;}
     *html .allsort .item dd{padding-bottom:6px;}
