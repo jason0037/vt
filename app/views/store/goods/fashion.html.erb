@@ -36,15 +36,15 @@
                       </div>
                       <div class="am-col col-sm-8 am-list-main">
                         <a href="/mproducts?id=<%=good.bn%>&supplier_id=<%=@supplier.id%>&fp=category" class="cart_orderlist_i">
-                <span class="am-list-item-hd goods-name-span" >  <%=good.name%>  </span> </a>  <br>
+                <span class="am-list-item-hd goods-name-span" >  <%=good.name%>  </span> <br>
                   <%unless good.tag.blank?%>
                             <%a=0%>
                             <%good.tag.split(",").each do |tag|%>
                                 <%color=["#FF8000","#4CDD8C","#EE00EE","#ADF"]%>
                                 <%if a<5%>
                        <em style=" font-size: 12px; color: <%=color[a]%>"> <%=tag%> </em>
-                           <%end%><%a=a+1%> <%end%>  <%end%>
-                <hr style="margin-top: 2.2em;border-top:none"><div class="am-list-item-text">
+                           <%end%><%a=a+1%> <%end%>  <%end%>  </a>
+                        <hr style="margin-top: 2.2em;border-top:none"><div class="am-list-item-text">
                         <div class="am-col col-sm-4"><br>   <span class=" mall_price" >¥<%=good.price%> &nbsp; </span>
                         </div>
                         <div class="am-col col-sm-8">
