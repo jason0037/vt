@@ -66,8 +66,11 @@ class Store::CatsController < ApplicationController
 
 
       def show
+        if @user
+          @history_g=Ecstore::Ghistory.where(:member_id=>@user.member_id ,:status=>"0").order("updated_at desc").limit(3)
+        end
 
-  	      @cat = Ecstore::Category.find_by_cat_id(params[:id])
+        @cat = Ecstore::Category.find_by_cat_id(params[:id])
           case params[:gtype]
             when "2"
               @all_goods = @cat.all_goods(:future=>"true")

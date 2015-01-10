@@ -120,7 +120,7 @@ body{
     width: 50px;
     height: 50px;
     background: #ccc;
-    margin-top: 5px;
+    margin-top: 5px;  line-height: 3;
 }
  #backpanel-floor .curr .floor-links .bp-item:hover {
     background-image: none;

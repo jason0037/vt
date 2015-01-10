@@ -20,7 +20,7 @@
 
   <%= stylesheet_link_tag "foundation-icons" %>
   <%=stylesheet_link_tag "standard"%>
-
+  <%=stylesheet_link_tag "test/slick"%>
   <script src="/assets/vendor/modernizr.js"></script>
   <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
 
@@ -77,8 +77,15 @@
     <aside class="right-off-canvas-menu">
       <ul class="off-canvas-list">
         <li><label>服务导航</label></li>
-        <li><a href="#" data-reveal-id="login_iframe">[请登录]</a></li>
-        <li><a href="#" data-reveal-id="register_iframe">[免费注册]</a></li>
+        <% if @user%>
+            <li><a href="#">欢迎您<%=@user.login_name%></a></li>
+            <li><a href="/logout?platform=/vshop" >退出登录</a></li>
+        <%else%>
+            <li><a href="#" data-reveal-id="login_iframe">[请登录]</a></li>
+
+            <li><a href="#" data-reveal-id="register_iframe">[注册账号]</a></li>
+
+        <%end%>
         <li><a href="#"><i class="fi-marker"></i>上海[更换]</a></li>
         <% if signed_in?%>
 
@@ -207,7 +214,7 @@
     </div>
     <div class="large-2 columns show-for-medium-up large-pull-10">
       <ul class="no-bullet radius"  style="margin-bottom:0.2em">
-        <li><a class="button expand" href="/gallery/14">产品列表</a></li>
+        <li><a style="border-left: 1px solid;border-color: rgba(255, 255, 255, 0.5);" class="button expand" href="/gallery/14">产品列表</a></li>
       </ul>
     </div>
   </nav>
@@ -594,6 +601,7 @@ $(document).ready(function(){
 
 <%=javascript_include_tag "vendor/fastclick"%>
 <%=javascript_include_tag "test/fdj.js"%>
+
 <script src="/assets/foundation.min.js"></script>
 <script src="/assets/foundation/foundation.magellan.js"></script>
 <script src="/assets/cebianlan.js"></script>

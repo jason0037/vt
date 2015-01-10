@@ -22,11 +22,11 @@
       border-top: 1px solid #EEE;
   }
 
-  /*.hover {*/
+  .hover {
 
-      /*z-index: 20;*/
-      /*background: none;*/
-  /*}*/
+      z-index: 20;
+      background: none;
+  }
   .bg a {
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -36,13 +36,13 @@
       font-weight: bold;
       background: url(/assets/cheuks/pictibiao.gif) no-repeat 10px center;
   }
-  /*.caption:hover {*/
+  .caption:hover {
 
 
-      /*background: #f5e4c5;*/
-      /*border: 1px solid #dbc9a7;*/
-      /*border-top: none;*/
-  /*}*/
+      background: #f5e4c5;
+      border: 1px solid #dbc9a7;
+      border-top: none;
+  }
  .text_in24{overflow:hidden;  height: 100px;width: 100%;
 
  }
@@ -61,10 +61,10 @@
 <!--侧边菜单&滑动大图&登录&新闻-->
 
     <div class="row" >
-        <div class="large-2 medium-3 columns show-for-medium-up ">
+        <div class="large-2 medium-2 columns show-for-medium-up ">
 <%=render "store/goods/tree_menu"%>
         </div>
-        <div class="large-7 medium-5 columns">
+        <div class="large-7 medium-10 columns">
             <ul data-orbit class="width: 100%;">
                 <li><img style="width: 100%;" src="img/20140625143419235_indexbanner.jpg"></li>
                 <li><img style="width: 100%;" src="img/20130812111618208_indexbanner.jpg"></li>
@@ -72,16 +72,41 @@
                 <li><img style="width: 100%;" src="img/20130812101214604_indexbanner.jpg"></li>
                 <li><img style="width: 100%;" src="img/20130809134144933_indexbanner.jpg"></li>
             </ul>
-            <div class="row">
-                <ul class="large-block-grid-4 small-block-grid-2 clearing-thumbs">
-                    <li><a href="/gallery/14" class="th"><img src="/assets/cheuks/indexbanner.jpg" ></a></li>
-                    <li><a href="/gallery/15" class="th"><img src="/assets/cheuks/2_indexbanner.jpg" ></a></li>
-                    <li><a href="/gallery/16" class="th"><img src="/assets/cheuks/3_indexbanner.jpg"></a></li>
-                    <li><a href="/gallery/17" class="th"><img src="/assets/cheuks/4_indexbanner.jpg"></a></li>
-                </ul>
+            <div class=" slider lazy">
+
+              <div><a  class="image"href="/gallery/14.html"><img data-lazy="/assets/cheuks/20120609150156309_indexbanner.jpg" title="搬运车" /></a></div>
+              <div><a  class="image"href="/gallery/15.html"><img data-lazy="/assets/cheuks/20120609150206762_indexbanner.jpg" title="堆高车" /></a></div>
+              <div><a  class="image"href="/gallery/16.html"><img data-lazy="/assets/cheuks/20120808084002135_indexbanner.jpg" title="叉车" /></a></div>
+              <div><a  class="image"href="/gallery/17.html"><img data-lazy="/assets/cheuks/20120811110709881_indexbanner.jpg" title="牵引车" /></a></div>
+              <div><a  class="image"href="#"><img data-lazy="/assets/cheuks/20120808084008948_indexbanner.jpg" title="高空平台" /></a></div>
+              <div><a  class="image"href="/gallery/19.html"><img data-lazy="/assets/cheuks/20120808084043449_indexbanner.jpg" title="工业平台" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20120808084014604_indexbanner.jpg" title="气动液压" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20120808084020214_indexbanner.jpg" title="手工具" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20120808084026214_indexbanner.jpg" title="动力工具" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20120808084032870_indexbanner.jpg" title="电机电器" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20120808084038839_indexbanner.jpg" title="测试仪器" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20120810164714971_indexbanner.jpg" title="叉车属具" /></a></div>
+              <div><a  class="image"href="/gallery/122.html"><img data-lazy="/assets/cheuks/20121225152124045_indexbanner.jpg" title="工业衡器" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20120810164738019_indexbanner.jpg" title="专用搬运工具" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20120810164731706_indexbanner.jpg" title="托盘类" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20120816100423226_indexbanner.jpg" title="机床钻床" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20120825104351653_indexbanner.jpg" title="汽车尾板" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20120825104401512_indexbanner.jpg" title="装卸平台" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20130117162642955_indexbanner.jpg" title="工业机器人" /></a></div>
+              <div><a  class="image"href="/gallery/22.html"><img data-lazy="/assets/cheuks/20130330111243934_indexbanner.jpg" title="装车机" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20130527165329739_indexbanner.jpg" title="梯子" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/default_index.jpg" title="未分类" /></a></div>
+              <div><a  class="image"href="/gallery/110.html"><img data-lazy="/assets/cheuks/20131202141336435_indexbanner.jpg" title="洗地机" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/default_index.jpg" title="脚轮" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/default_index.jpg" title="工位装备" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20140826094703997_indexbanner.jpg" title="劳保、安防、标识" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20140825140125059_indexbanner.jpg" title="立体车库" /></a></div>
+              <div><a  class="image"href=""><img data-lazy="/assets/cheuks/20140905111248857_indexbanner.jpg" title="包装捆绑" /></a></div>
+
+
             </div>
         </div>
-           <div class="large-3 medium-4 columns">
+           <div class="large-3 columns">
             <div class="row">
                 <div class="columns large-12 panel">
                     <div class="wrapper">
@@ -133,14 +158,14 @@
      <%end%>
 
 
-          <div class="large-2 columns panel">
+          <div class="large-2 small-6 columns panel">
             <div>
 
               <a href="/products/<%=pg.codes%>"><img src="img/recommend_left.jpg" style="width:100%"></a>
             </div>
           </div>
           <div class="large-10 columns panel">
-            <ul class="clearing-thumbs large-block-grid-5 small-12">
+            <ul class="clearing-thumbs large-block-grid-5 small-block-grid-2">
               <%pg.field_vals.split(",")[0].each do |p|%>
                   <%@pro=Ecstore::Product.where("bn like ?" , p+"%" )%>
                   <li class="item-wrapper  ">
@@ -187,15 +212,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
 <% if @promotions%>
 <%@promotions.each  do |pro|%>
 <div class="row">
@@ -203,16 +219,19 @@
     <a  name="<%=pro.name%>"></a>
 
 
-    <h4 data-magellan-destination="<%=pro.name%>">   <span><%=pro.priority%></span>F <%=pro.name%></h4>
+
   </div>
 </div>
 <div class="row">
   <div class="large-2 columns panel">
+    <h4 data-magellan-destination="<%=pro.name%>">   <span><%=pro.priority%></span>F <%=pro.name%></h4>
     <ul class="clearing-thumbs" >
       <li>
         <ul class="side-nav">
+
           <% Ecstore::GoodCat.where(:parent_id=>pro.codes).limit(4).each  do |godes|%>
-              <li><a href="/gallery/<%=godes.cat_id%>"><%=godes.cat_name%></li>  <%end%>
+              <% unless godes.cat_name==""%>
+              <li><a href="/gallery/<%=godes.cat_id%>"><%=godes.cat_name%></li>  <%end%><%end%>
         </ul>
         <img src="img/floor_left.jpg">
       </li>
@@ -220,7 +239,7 @@
   </div>
   <div class="columns large-8">
 
-    <ul class="clearing-thumbs large-block-grid-4">
+    <ul class="clearing-thumbs large-block-grid-4 small-block-grid-2">
       <%pro.field_vals.split(",")[0].each do |p|%>
           <%@pro=Ecstore::Product.where("bn like ?" , p+"%" )%>
 
@@ -270,19 +289,15 @@
     <a href="#<%=pro.name%>" class="floor-links floor-fore0"> <div class=" bp-item bp-item-floor-links floor-fore0" data-magellan-arrival="<%=pro.name%>" > <%=pro.name%></div></a>
          <%end%>  <%end%>
   </div></div>  </div>
-<%= javascript_include_tag "ckeditor/init" %>
+<%=javascript_include_tag "test/slick.min.js"%>
 <script type="text/javascript">
-    $(document).ready(function () {
+    $('.lazy').slick({
+        lazyLoad: 'ondemand',
+        slidesToShow: 4,
+        slidesToScroll: 1
+    });
 
-        $("#img1").fsrPMD({
-            Event: 'mouseover',        //事件
-            Id: 'img1',              //容器ID
-            Bq: 'td',               //复制html标签
-            Fx: "left",             //方向
-            Time: 10             //时间
-        })
 
-    })
 </script>
 <script>
 
