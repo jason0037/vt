@@ -21,13 +21,14 @@
 
 <% if @promotions%>
     <%@promotions.each  do |pro|%>
-        <a name="<%=pro.name%>"> </a>
+
         <div class="am-panel  "style="filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9" data-am-sticky >
           <div class="am-panel-hd" style="background-color: #FF8000;"> <span style="font-size: 20px; "><%=pro.name%></span>
 
           </div>
         </div>
         <div class="am-panel-bd">
+          <a name="<%=pro.name%>"> </a>
           <ul class="am-list">
 
             <%pro.field_vals.split(",")[0].each do |p|%>
