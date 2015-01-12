@@ -5,10 +5,7 @@
 
     <p>
       期待您的参与
-        <%if @followers%>
-      <%=image_tag eval(@followers.user_info)["headimgurl"],:id=>"weixin" ,:style=>"display:block"%>
-
-          <%end%>
+      <%=image_tag @user.weixin_headimgurl,:id=>"weixin" ,:style=>"display:block"%>
     </p>
 
        <p>
@@ -17,7 +14,7 @@
          <%else%>
              <input type="hidden" id="shopid" value="<%=@shop.shop_id%>">
       <a  href="/shopinfos/myshop?shop_id=<%=@user.member_id%>" class="am-btn am-btn-sm get-btn">管理店铺</a>
-             <button class="am-btn am-btn-sm get-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二微码查看</button>
+             <button class="am-btn am-btn-sm get-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二维码查看</button>
 
              <div class="am-popup" id="my-popup">
                <div class="am-popup-inner">

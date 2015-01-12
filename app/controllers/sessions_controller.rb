@@ -21,19 +21,20 @@ class SessionsController < ApplicationController
     redirect_uri="http%3a%2f%2fvshop.trade-v.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
     #redirect_uri="http%3a%2f%2fvshop.trade-v.com%2fautologin1"
 
-   # @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
-    res_data = RestClient.get 'https://open.weixin.qq.com/connect/oauth2/authorize',
-      {:params => {:appid => @supplier.weixin_appid, :redirect_uri=>redirect_uri, :response_type=>'code',:scope=>'snsapi_base',:state=>'STATE#wechat_redirect'}}
-    # RestClient.get(self.action)
-    # res_data = RestClient.get self.action , xml , {:content_type => :xml}
-    res_data_xml = res_data.force_encoding('gb2312').encode
+    #@oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+    @oauth2_url = "https://open.weixin.qq.com/connect/qrconnect?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_login&state=STATE#wechat_redirect"
+    # res_data = RestClient.get 'https://open.weixin.qq.com/connect/oauth2/authorize',
+    #   {:params => {:appid => @supplier.weixin_appid, :redirect_uri=>redirect_uri, :response_type=>'code',:scope=>'snsapi_base',:state=>'STATE#wechat_redirect'}}
+    # # RestClient.get(self.action)
+    # # res_data = RestClient.get self.action , xml , {:content_type => :xml}
+    # res_data_xml = res_data.force_encoding('gb2312').encode
 
    # res_data_hash = Hash.from_xml(res_data_xml)
-    @article = Imodec::Page.new do |al|
-      al.body = res_data_xml
-    end
-    @article.save!
-return render :text=>res_data_xml#.gsub('<','||')  #res_data.code
+    # @article = Imodec::Page.new do |al|
+    #   al.body = res_data_xml
+    # end
+    # @article.save!
+# return render :text=>res_data_xml#.gsub('<','||')  #res_data.code
     return_url  = params[:return_url]
     session[:return_url] =  return_url
     redirect_to  @oauth2_url
@@ -51,7 +52,8 @@ return render :text=>res_data_xml#.gsub('<','||')  #res_data.code
     #redirect_uri= URI::escape(redirect_uri)
     redirect_uri="http%3a%2f%2fvshop.trade-v.com%2fauth%2fweixin%2f#{supplier_id}%2fcallback"
 
-    @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+   # @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect"
+     @oauth2_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{@supplier.weixin_appid}&redirect_uri=#{redirect_uri}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
 
     return_url  = params[:return_url]
     session[:return_url] =  return_url

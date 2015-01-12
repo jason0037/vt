@@ -9,14 +9,12 @@ class Shop:: ShopinfosController < ApplicationController
 
   def index
     if @user
-        account_id=@user.id
-       login_name=Ecstore::Account.find(account_id).login_name
+      #   account_id=@user.id
+      #  login_name=Ecstore::Account.find(account_id).login_name
+      # @followers = Ecstore::WechatFollower.find_by_openid(login_name)
+      #   url=eval(@followers.user_info)["headimgurl"]
 
-
-      @followers = Ecstore::WechatFollower.find_by_openid(login_name)
-        url=eval(@followers.user_info)["headimgurl"]
-
-          page= Nokogiri::HTML(open(url))
+        page= Nokogiri::HTML(open(@user.weixin_headimgurl))
         @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
       if @shop
        name=@shop.shop_name

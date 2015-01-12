@@ -45,7 +45,19 @@ module ActiveApi
         body.merge! :expires_at=>(body.expires_in + request_time)
         body
   end
+     def get_userinfo_multi(openid,access_token)
+     	userinfo_uri ='https://api.weixin.qq.com/sns/userinfo'
+      params = {
+          :access_token => access_token,
+          :openid => openid,
+          :lang=>'zh_CN'
+      }
 
+      res = Faraday.new(userinfo_uri,:ssl=>config.ssl, :params => params).get
+
+      body = Hashie::Mash.new JSON.parse(res.body)
+      body
+    end
 			def request_token(code)
 				params = {
 		#			:client_id => config.client_id,

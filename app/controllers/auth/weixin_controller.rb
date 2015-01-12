@@ -34,10 +34,11 @@ class Auth::WeixinController < ApplicationController
     @supplier =Ecstore::Supplier.find(supplier_id)
     appid = @supplier.weixin_appid
     secret = @supplier.weixin_appsecret
-
+# return render :text=>params[:code]
 	#token = Weixin.request_token(params[:code])
     token = Weixin.request_token_multi(params[:code],appid,secret)
-   #return  render :text=>token
+    user_info = Weixin.get_userinfo_multi(token.openid,token.access_token)
+  # return  render :text=>user_info.nickname
 
 	auth_ext = Ecstore::AuthExt.where(:provider=>"weixin",
 									:uid=>token.openid).first_or_initialize(
@@ -53,8 +54,8 @@ class Auth::WeixinController < ApplicationController
 			logger.info auth_user.inspect
 
 			#login_name = auth_user.screen_name
-      login_name = token.openid
-    #  return render :text=>login_name
+	      login_name = token.openid
+	    #  return render :text=>login_name
 			check_user = Ecstore::Account.find_by_login_name(login_name)
 			
 			login_name = "#{login_name}_#{rand(9999)}" if check_user
@@ -67,30 +68,42 @@ class Auth::WeixinController < ApplicationController
 				ac.login_password = '123456'
 		  		ac.account_type ="member"
 		  		ac.createtime = now.to_i
-		  		# auth_ext
 		  		ac.auth_ext = auth_ext
-
-        ac.supplier_id = supplier_id
+        		ac.supplier_id = supplier_id
 	  		end
 	  		Ecstore::Account.transaction do
   				if @account.save!(:validate => false)
 		  			@user = Ecstore::User.new do |u|
 			  			u.member_id = @account.account_id
 			  			u.email = "weixin_user#{rand(9999)}@anonymous.com"
-			  			u.sex = case auth_user.gender when 'f'; '0'; when 'm'; '1'; else '2'; end if auth_user
+			  			u.source = "weixin"
+			  			#u.sex = case auth_user.gender when 'f'; '0'; when 'm'; '1'; else '2'; end if auth_user
+			  			u.sex = user_info.sex
 			  			u.member_lv_id = 1
 			  			u.cur = "CNY"
 			  			u.reg_ip = request.remote_ip
-			  			u.addr = auth_user.location || auth_user.loc_name if auth_user
+			  			#u.addr = auth_user.location || auth_user.loc_name if auth_user
+			  			u.addr = user_info.country+':'+user_info.province+'/'+user_info.city
+			  			u.weixin_area = user_info.country+':'+user_info.province+'/'+user_info.city
+			  			u.weixin_headimgurl = user_info.headimgurl
+			  			u.weixin_privilege = user_info.privilege
+			  			u.weixin_unionid = user_info.unionid
 			  			u.regtime = now.to_i
 			  		end
 		  			@user.save!(:validate=>false)
-#return render :text=>after_user_sign_in_path
+
 		  			sign_in(@account)
 		  			redirect_to after_user_sign_in_path
 		  		end
 	  		end
 		else
+			@user = Ecstore::User.where(:member_id=>auth_ext.account_id).first
+	  			@user.sex = user_info.sex
+	  			@user.weixin_area = user_info.country+'/'+user_info.province+'/'+user_info.city
+	  			@user.weixin_headimgurl = user_info.headimgurl
+	  			@user.weixin_privilege = user_info.privilege
+	  			@user.weixin_unionid = user_info.unionid
+  			@user.save!(:validate=>false)
 			sign_in(auth_ext.account)
 	    if return_url
           redirect = return_url
