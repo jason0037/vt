@@ -91,7 +91,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="自贸交易"
         desc=""
         pic_url="http://vshop.trade-v.com/images/a078/homepage/zimao.jpg"
-        link_url="http://vshop.trade-v.com/shopinfos"
+        link_url="http://vshop.trade-v.com/shop/shopinfos"
         articles = [generate_article(title, desc, pic_url, link_url)]
 
 

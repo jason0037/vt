@@ -10,7 +10,7 @@
   <br>
   <p id="notice"><%=notice%></p>
   <%unless @visitor%>
-<%=form_for :visitor,:url=>"/visitors/login_in",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
+<%=form_for :visitor,:url=>"/shop/visitors/login_in",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
 
           <%= hidden_field_tag :return_url, params[:return_url]%>
           <%=f.hidden_field :shop_id, :value=>@shop_id%>
@@ -33,8 +33,8 @@
 
 <%end%>
   <br>
-  <a href='/visitors/register?shop_id=<%=@shop_id%>' class="am-btn am-btn-default am-btn-block">没有账号?</a>
+  <a href='/shop/visitors/register?shop_id=<%=@shop_id%>' class="am-btn am-btn-default am-btn-block">没有账号?</a>
       <%else%>
- <a href="/shopinfos/myshop?shop_id=<%=@shop_id%>"> <div>您已经登陆过了!，点击进入店铺</div> </a>
+ <a href="/shop/shopinfos/myshop?shop_id=<%=@shop_id%>"> <div>您已经登陆过了!，点击进入店铺</div> </a>
   <%end%>
 </div>

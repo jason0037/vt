@@ -79,7 +79,7 @@
     </div>
 
     <div class="am-panel-bd" >
-      <%=form_for :product,:url=>"/visitors/my_add_shopping", :html=>{:id=>"cartform"},:remote=>true do |f|%>
+      <%=form_for :product,:url=>"/shop/visitors/my_add_shopping", :html=>{:id=>"cartform"},:remote=>true do |f|%>
           <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
           <%=f.hidden_field :type_id,:value=>@good.type_id%>
           <%=hidden_field_tag :supplier_id, @shop_id%>
@@ -146,8 +146,8 @@
 
 
             if($(this).hasClass("login")) {
-                alert("继续访问需要登陆才能进行哦～");
-                location.href="/visitors/login?shop_id=<%=@shop_id%>&return_url=<%=request.url.sub('http://trade','') %>";
+                alert("继续访问需要登录才能进行哦～");
+                location.href="/shop/visitors/login?shop_id=<%=@shop_id%>&return_url=<%=request.url.sub('http://trade','') %>";
                 return false;
 
             }

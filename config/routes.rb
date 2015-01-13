@@ -3,22 +3,18 @@ require 'httpclient'
 Modengke::Application.routes.draw do
 
 
+  #scope :module => "shop" do
+  get 'shop'=>'shop/shopinfos#myshop'
+  namespace :shop do
 
-
-
-
-
-  scope :module => "shop" do
     resource :shopinfos do
-      collection do
-        get 'register'
+      member do
         get 'index'
-        post 'shop_add'
         get 'show_goods'
         post 'add_goods'
         get 'my_goods'
         get 'goods_details'
-        get 'myshop'
+        get :myshop
         get 'myorder'
         get 'details_trade'
       end
@@ -31,8 +27,6 @@ Modengke::Application.routes.draw do
       get "user",:on=>:collection
     end
 
-
-
     resource :visitors do
       collection do
         get 'login'
@@ -44,7 +38,6 @@ Modengke::Application.routes.draw do
         get 'my_shopping_cart'
         get 'order_clearing'
         get 'order_show'
-
       end
     end
 
@@ -56,8 +49,6 @@ Modengke::Application.routes.draw do
         post 'add'
       end
     end
-
-
   end
 
   get "rongda/index"

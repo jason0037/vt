@@ -9,12 +9,12 @@ class Shop:: ShopinfosController < ApplicationController
 
   def index
     if @user
-      #   account_id=@user.id
-      #  login_name=Ecstore::Account.find(account_id).login_name
-      # @followers = Ecstore::WechatFollower.find_by_openid(login_name)
-      #   url=eval(@followers.user_info)["headimgurl"]
 
-        page= Nokogiri::HTML(open(@user.weixin_headimgurl))
+      headimgurl = @user.weixin_headimgurl
+      if headimgurl.nil?
+        headimgurl ='http://www.trade-v.com/assets/trade-vLogo.jpg'
+      end
+        page= Nokogiri::HTML(open(headimgurl))
         @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
       if @shop
        name=@shop.shop_name
@@ -26,31 +26,19 @@ class Shop:: ShopinfosController < ApplicationController
     end
 
 
+  def create
 
-  def register
-    if @user
-    @shop_id=params[:shop_id]
-    @shop_title="创建店铺"
+    @member = Ecstore::User.where(:member_id=>@user.member_id).first
+    @member.update_attributes(:mobile=>params[:shop][:mobile],:email=>params[:shop][:email])
 
-    login_name=Ecstore::Account.find(@shop_id).login_name
-
-
-    @followers = Ecstore::WechatFollower.find_by_openid(login_name)
-
-    else
-      redirect_to "/auto_login?id=78&supplier_id=78&platform=mobile&return_url=/register?shop_id=#{@shop_id}"
-    end
-  end
-
-
-  def shop_add
-
-    @shop=Ecstore::Shop.new(params[:shop])
-
-    shop_id=params[:shop][:shop_id]
+    params[:shop].merge!(:shop_id=>@user.member_id,:shop_logo=>@user.weixin_headimgurl)
+    @shop=Ecstore::Shop.new(params[:shop])    
 
     if @shop.save
-      redirect_to "/shopinfos/my_goods?shop_id="+shop_id
+      shop_id=@shop.shop_id
+      redirect_to "/shop/shopinfos/my_goods?shop_id=#{shop_id}"
+    else
+      redirect_to "/shop/shopinfos/new"
     end
   end
 
@@ -99,11 +87,18 @@ goods= Ecstore::ShopsGood.where(:shop_id=>@shop_id,:good_status=>"1")
 
 
   def show_goods
-    params[:shop_id]
+
+    brand_id = params[:brand]
+    cat_id = params[:cat_id]
+    if brand_id.nil?
+      brand_id = 138
+    end
+
     @shop=Ecstore::Shop.find_by_shop_id(params[:shop_id])
-    @goods =  Ecstore::Good.where(:supplier_id=>"77")
+    @goods =  Ecstore::Good.where("marketable='true' and brand_id=?",brand_id)
+
     if params[:cat_id]
-      @goods =  Ecstore::Good.where(:supplier_id=>"77",:cat_id=>params[:cat_id])
+      @goods =  Ecstore::Good.where("marketable='true' and brand_id=? and cat_id=?",brand_id,cat_id)
     end
     @recommend_user = session[:recommend_user]
 

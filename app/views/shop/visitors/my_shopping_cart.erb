@@ -5,7 +5,7 @@
 </style>
 <div class="am-panel am-panel-default "style="margin: 0px;padding: 0px">
   <div class="am-panel-hd" style="text-align: center">
-    <a href="/shopinfos/myshop?shop_id=<%=@supplier_id%>" style="margin-left: 80%" > <%= I18n.t "continue_shopping"%></a>
+    <a href="/shop/shopinfos/myshop?shop_id=<%=@supplier_id%>" style="margin-left: 80%" > <%= I18n.t "continue_shopping"%></a>
   </div>
 </div>
 
@@ -20,7 +20,7 @@
 
         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" id="line_<%=line_item.obj_ident%>" >
           <div class="am-col col-sm-4 am-list-thumb">
-            <a href="/shopinfos/goods_details?id=<%=line_item.good.bn%>&shop_id=<%=@supplier_id%>">
+            <a href="/shop/shopinfos/goods_details?id=<%=line_item.good.bn%>&shop_id=<%=@supplier_id%>">
             <img src="<%=line_item.good.medium_pic%>"
                  data-original="<%=line_item.good.medium_pic%>"
                  data-onerror="<%=line_item.good.medium_pic%>"
@@ -29,7 +29,7 @@
           </div>
           <div class="am-col col-sm-8 am-list-main">
             <h3 class="am-list-item-hd">
-              <a href="/shopinfos/goods_details?id=<%=line_item.good.bn%>&shop_id=<%=@supplier_id%>">
+              <a href="/shop/shopinfos/goods_details?id=<%=line_item.good.bn%>&shop_id=<%=@supplier_id%>">
                 <p class="cart_g_name"><%=line_item.good.brand.brand_name%>,<%=line_item.product.name%> </p>
 
               </a>
@@ -107,7 +107,7 @@
             <%= I18n.t "continue_shopping"%>
           </a>
       <%else%>
-          <a href="/visitors/order_clearing?supplier_id=<%=@supplier_id%>&user_id=<%=@user_id%>" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
+          <a href="/shop/visitors/order_clearing?supplier_id=<%=@supplier_id%>&user_id=<%=@user_id%>" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
             <%=I18n.t  "create-order"%>
             <span class="fr cart_time_smb"><span class="clockicon fl"></span>
         <!--<span class="num_cunt"><span class=":">19</span><span>:</span><span>42</span><span></span></span>--> </span>

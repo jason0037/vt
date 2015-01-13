@@ -44,7 +44,7 @@ def edit_addr
  if  @visitor.update_attributes(params[:visitor])
  respond_to do |format|
    format.js
-   format.html { redirect_to "/goodsaddrs/addr_detail?user_id="+params[:id]+"&shop_id=" +params[:shop_id]}
+   format.html { redirect_to "/shop/goodsaddrs/addr_detail?user_id="+params[:id]+"&shop_id=" +params[:shop_id]}
  end
    else
       render 'error.js' #, status: :unprocessable_entity

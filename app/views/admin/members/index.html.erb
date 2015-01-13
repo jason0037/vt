@@ -52,9 +52,16 @@
     <td>
       <%= check_box_tag "ids[]",member.member_id,false,:class =>'operate_ids'%>
     </td>
-    <% @column_data.each do |column| %>
+    <% @column_data.each do |column| %>   
+    
         <%if column.last.last == "true" %>
-            <td><%= getColumnValue(column.last[1],member) %></td>
+            <td>
+              <%if column.last[1]=='reg_time'%>
+                <%=Time.at(member.account.createtime).strftime('%Y-%m-%d %H:%M') if member.account%>
+              <%else%>
+                <%= getColumnValue(column.last[1],member) %>
+              <%end%>
+            </td>
         <%end%>
     <% end %>
     <%if (current_admin.login_name=="admin")%>

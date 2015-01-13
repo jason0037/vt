@@ -46,7 +46,7 @@
               <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
             </div>
             <div class="am-col col-sm-8 am-list-main">
-              <a href="/shopinfos/details_trade?id=<%=good.bn%>&shop_id=<%=@shop.shop_id%>" class="">
+              <a href="/shop/shopinfos/details_trade?id=<%=good.bn%>&shop_id=<%=@shop.shop_id%>" class="">
                 <span class="am-list-item-hd ">
                   <%=good.name%>
                 </span>
@@ -86,7 +86,7 @@
         var shop_id=$("#shopid").val();
         $.ajax({
             type:'post',
-            url:"/shopinfos/add_goods",
+            url:"/shop/shopinfos/add_goods?shop_id="+shop_id,
             data: { selector_shop: goodid,shop_id:shop_id },
             success:function(data){window.location.href="/shopinfos/my_goods?shop_id="+shop_id
             }

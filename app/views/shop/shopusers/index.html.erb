@@ -23,12 +23,12 @@
 
 <%if @users%>
     <div class="am-panel am-panel-default">
-      <a href="/visitors/my_shopping_cart?supplier_id=<%=@shop.shop_id%>&user_id=<%=@users%>">
+      <a href="/shop/visitors/my_shopping_cart?supplier_id=<%=@shop.shop_id%>&user_id=<%=@users%>">
         <div class="am-panel-hd">我的购物车</div>
         <span class="icon-arr"></span> </a>
     </div>
     <div class="am-panel am-panel-default">
-      <a href="/shopinfos/myorder?shop_id=<%=@shop.shop_id%>&user_id=<%=@users%>">
+      <a href="/shop/shopinfos/myorder?shop_id=<%=@shop.shop_id%>&user_id=<%=@users%>">
         <div class="am-panel-hd">我的订单</div>
         <span class="icon-arr"></span> </a>
     </div>
@@ -51,18 +51,18 @@
     <span class="icon-arr"></span> </a>
 </div>
 <div class="am-panel am-panel-default">
-  <a href="/shopinfos/myorder?shop_id=<%=@shop.shop_id%>">
+  <a href="/shop/shopinfos/myorder?shop_id=<%=@shop.shop_id%>">
     <div class="am-panel-hd">订单管理</div>
     <span class="icon-arr"></span> </a>
 </div>
 
     <div class="am-panel am-panel-default">
-      <a href="/shopusers/user?shop_id=<%=@shop.shop_id%>">
+      <a href="/shop/shopusers/user?shop_id=<%=@shop.shop_id%>">
         <div class="am-panel-hd">用户管理</div>
         <span class="icon-arr"></span> </a>
     </div>
     <div class="am-panel am-panel-default">
-      <a href="/shopinfos/my_goods?shop_id=<%=@shop.shop_id%>">
+      <a href="/shop/shopinfos/my_goods?shop_id=<%=@shop.shop_id%>">
         <div class="am-panel-hd">商品管理</div>
         <span class="icon-arr"></span> </a>
     </div>

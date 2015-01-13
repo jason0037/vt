@@ -10,10 +10,10 @@
 
        <p>
          <%if @shop.nil?%>
-      <a href="/shopinfos/register?shop_id=<%=@user.member_id%>"class="am-btn am-btn-sm get-btn">开始商店之旅 </a>
+      <a href="/shop/shopinfos/new"class="am-btn am-btn-sm get-btn">开始商店之旅 </a>
          <%else%>
              <input type="hidden" id="shopid" value="<%=@shop.shop_id%>">
-      <a  href="/shopinfos/myshop?shop_id=<%=@user.member_id%>" class="am-btn am-btn-sm get-btn">管理店铺</a>
+      <a  href="/shop/shopinfos/myshop?shop_id=<%=@user.member_id%>" class="am-btn am-btn-sm get-btn">管理店铺</a>
              <button class="am-btn am-btn-sm get-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二维码查看</button>
 
              <div class="am-popup" id="my-popup">
@@ -111,7 +111,7 @@
   var shop_id= $("#shopid").val();
      var host=window.location.host;
 
-    var url="http://"+host+"/shopinfos/myshop?shop_id="+shop_id;
+    var url="http://"+host+"/shop/shopinfos/myshop?shop_id="+shop_id;
     var imag=$("#weixin").attr("src");
          alert(imag)
   window.onload = function(){

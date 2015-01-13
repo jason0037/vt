@@ -84,6 +84,8 @@ class Auth::WeixinController < ApplicationController
 			  			u.reg_ip = request.remote_ip
 			  			#u.addr = auth_user.location || auth_user.loc_name if auth_user
 			  			u.addr = user_info.country+':'+user_info.province+'/'+user_info.city
+			  			u.name = user_info.nickname
+			  			u.weixin_nickname = user_info.nickname
 			  			u.weixin_area = user_info.country+':'+user_info.province+'/'+user_info.city
 			  			u.weixin_headimgurl = user_info.headimgurl
 			  			u.weixin_privilege = user_info.privilege
@@ -98,6 +100,7 @@ class Auth::WeixinController < ApplicationController
 	  		end
 		else
 			@user = Ecstore::User.where(:member_id=>auth_ext.account_id).first
+				@user.weixin_nickname = user_info.nickname
 	  			@user.sex = user_info.sex
 	  			@user.weixin_area = user_info.country+'/'+user_info.province+'/'+user_info.city
 	  			@user.weixin_headimgurl = user_info.headimgurl

@@ -8,7 +8,7 @@
 
 <div class="main">
   <p id="notice" class="price"><%=notice%></p>
-<%=form_for :visitor,:url=>"/visitors/register_user",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
+<%=form_for :visitor,:url=>"/shop/visitors/register_user",:remote=>true,:html=>{:id=>"register_form"} do |f|%>
 
 
          <%=f.hidden_field :shop_id, :value=>@shop_id%>
@@ -45,7 +45,7 @@
 
 <%end%>
   <br>
-  <a href='/visitors/login?shop_id=<%=@shop_id%>' class="am-btn am-btn-default am-btn-block">已有账号</a>
+  <a href='/shop/visitors/login?shop_id=<%=@shop_id%>' class="am-btn am-btn-default am-btn-block">已有账号</a>
 
 </div>
   <script>

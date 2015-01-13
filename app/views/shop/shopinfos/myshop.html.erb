@@ -16,7 +16,7 @@
   <%end%>
 <div class="main">
 
-  <button class="am-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二微码查看</button>
+  <button class="am-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二维码查看</button>
 
   <div class="am-popup" id="my-popup">
     <div class="am-popup-inner">
@@ -59,7 +59,7 @@
 
               <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="cursor: pointer">
 
-                <a href="/shopinfos/goods_details?id=<%=good.bn%>&shop_id=<%=@shop_id%>" class="">
+                <a href="/shop/shopinfos/goods_details?id=<%=good.bn%>&shop_id=<%=@shop_id%>" class="">
                 <div class="am-col col-sm-4 am-list-thumb">
                   <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
                 </div>
@@ -79,7 +79,7 @@
         </ul>
       </div>
   <%else%>
-      <a href="/shopinfos/show_goods?shop_id=<%=@shop_id%>" >
+      <a href="/shop/shopinfos/show_goods?shop_id=<%=@shop_id%>" >
         <div class="am-panel am-panel-primary " style="margin-top: 100px">
           <div class="am-panel-hd" style="padding: 24px"><i  class="am-icon-shopping-cart "></i>
             <span style="margin-left: 10px">您的店铺空空的!您可以去贸威里面挑选喜欢的商品</span> </div>
