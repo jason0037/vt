@@ -24,15 +24,11 @@ Modengke::Application.routes.draw do
 
     resource :shopusers do
       get "index",:on=>:collection
-      get "user",:on=>:collection
+      get "clients",:on=>:collection
     end
 
     resource :visitors do
       collection do
-        get 'login'
-        get 'register'
-        post 'login_in'
-        post 'register_user'
         get 'istrue'
         post 'my_add_shopping'
         get 'my_shopping_cart'

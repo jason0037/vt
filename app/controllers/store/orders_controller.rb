@@ -170,14 +170,9 @@ class Store::OrdersController < ApplicationController
   def create
 
     platform=params[:platform];
-    addr=nil
-    if platform=='shop'
-      addr =  Ecstore::Visitor.find_by_id(params[:member_addr])
-      supplier_id = params[:shop_id]
-    else
+  
     addr = Ecstore::MemberAddr.find_by_addr_id(params[:member_addr])
     supplier_id = @user.account.supplier_id
-    end
 
     hour=params[:hour];
     if params[:order][:ship_day]
@@ -194,6 +189,7 @@ class Store::OrdersController < ApplicationController
     if supplier_id == nil
       supplier_id =78
     end
+
     unless supplier_id ==98
       ["name","area","addr","zip","tel","mobile"].each do |key,val|
         params[:order].merge!("ship_#{key}"=>addr.attributes[key])
@@ -216,13 +212,8 @@ class Store::OrdersController < ApplicationController
     #=====推广佣金计算=======
     recommend_user = session[:recommend_user]
 
-      if recommend_user==nil
-         if platform=="shop"
-         recommend_user= Ecstore::Shop.find_by_shop_id(supplier_id).shop_name
-        else
-          recommend_user= @user.login_name
-
-      end
+    if recommend_user==nil
+      recommend_user= @user.login_name
     end
     params[:order].merge!(:recommend_user=>recommend_user)
     #return render :text=>params[:order]
@@ -342,11 +333,11 @@ class Store::OrdersController < ApplicationController
       Ecstore::OrderLog.new do |order_log|
         order_log.rel_id = @order.order_id
         order_log.op_id = @order.member_id
-        if platform=="shop"
-          order_log.op_name =Ecstore::Shop.find_by_shop_id(supplier_id).shop_name
-        else
+        # if platform=="shop"
+        #   order_log.op_name =Ecstore::Shop.find_by_shop_id(supplier_id).shop_name
+        # else
         order_log.op_name = @user.login_name
-        end
+        # end
         order_log.alttime = @order.createtime
         order_log.behavior = 'creates'
         order_log.result = "SUCCESS"
@@ -358,7 +349,7 @@ class Store::OrdersController < ApplicationController
         elsif platform=="wuliu"
           redirect_to "/orders/wuliu_show?id=#{@order.order_id}&supplier_id=#{supplier_id}"
         elsif platform=="shop"
-          redirect_to "/visitors/order_show?id=#{@order.order_id}&supplier_id=#{supplier_id}"
+          redirect_to "/shop/visitors/order_show?id=#{@order.order_id}&supplier_id=#{supplier_id}"
         elsif
           redirect_to "#{order_path(@order)}?platform=#{platform}&supplier_id=#{supplier_id}"
         end

@@ -4,21 +4,23 @@ class Shop::ShopusersController < ApplicationController
   layout "shop"
 
   def index
-    @shop=Ecstore::Shop.find_by_shop_id(params[:shop_id])
-    if params[:user_id]
-       @users=params[:user_id]
-       @shop_title="个人中心"
-    else
-
-   @shop_title="自贸平台管理"
+    if @user.nil?
+      redirect_to "/shop/shopinfos"
     end
+    @shop_title="账户中心"
+    if params[:shop_id]
+      @shop_id = params[:shop_id]       
+    else
+      @shop_id = @user.member_id
+    end
+
+    @shop=Ecstore::Shop.find_by_shop_id(@shop_id)    
   end
 
- def user
-   @shop_title="会员管理"
-    @shop_id=params[:shop_id]
-   @shopuser=Ecstore::Visitor.where(:shop_id=>@shop_id)
-
+ def clients
+   @shop_title="客户管理"
+   @shop_id = @user.member_id
+   @shop_clients=Ecstore::ShopClient.where(:shop_id=>@user.member_id)
 
  end
 

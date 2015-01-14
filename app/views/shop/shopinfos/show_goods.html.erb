@@ -24,7 +24,7 @@
 
   <div class="am-panel-hd" >
     <% @category.each do |cat|%>
-      <a class="am-btn-catid" href="/shop/shopinfos/show_goods?shop_id=<%=@shop_id%>&cat_id=<%=cat[1]%>">|&nbsp;<%=cat[0]%></a>        
+      <a class="am-btn-catid" href="/shop/shopinfos/show_goods?shop_id=<%=@shop_id%>&cat_id=<%=cat[1]%>">&nbsp;<%=cat[0]%></a>        
     <%end%>
   </div>
 </div>
@@ -57,7 +57,8 @@
 </div>
 </div>
 <div class="bottomdiv clearfix">
-    <input class=" am-btn am-btn-primary am-btn-block submit"   type="submit" value="确认">
+    <a class="am-btn am-btn-primary " style="width:50%;float: left" href="/shop/shopinfos/my_goods" >取消 </a>
+    <input class="am-btn am-btn-danger " style="width:50%;float: left"  type="submit" value="确认">
 </div>
 
 </form>

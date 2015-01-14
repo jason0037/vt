@@ -3,57 +3,7 @@ class Shop:: VisitorsController < ApplicationController
   before_filter :find_shop_user
  layout "shop"
 
-def login
-    if @user
-      sign_out
-    end
-
-   @shop_id=params[:shop_id]
-    name=Ecstore::Shop.find_by_shop_id(@shop_id).shop_name
-   @shop_title="登陆#{name}的微店"
-
-end
-
-def register
-  if @user
-    sign_out
-  end
-   @shop_id=params[:shop_id]
-  name=Ecstore::Shop.find_by_shop_id(@shop_id).shop_name
-  @shop_title="注册#{name}的微店"
-end
-
-def login_in
-  shop_id=params[:visitor][:shop_id]
-  return_url=params[:return_url]
- @visitors = Ecstore::Visitor.find_by_visitor_name(params[:visitor][:visitor_name])
-   if @visitors &&@visitors.visitor_password==params[:visitor][:visitor_password]
-     sing_shop_in(@visitors)
-    redirect_to return_url+"&shop_id="+shop_id
-  else
-    redirect_to "/visitors/login?shop_id=#{shop_id}&return_url=#{return_url}", :notice=>"您输入有误,登陆失败"
-    end
-end
-
-def register_user
-
-  @shop_id=params[:visitor][:shop_id]
-  @visi= Ecstore::Visitor.find_by_visitor_name(params[:visitor][:visitor_name])
-  if @visi
-    redirect_to "/visitors/register?shop_id=#{@shop_id}", :notice=>"用户名已经存在"
-
-  else
-    @visitors=Ecstore::Visitor.new(params[:visitor])
-   if  @visitors.save
-    sing_shop_in(@visitors)
-     redirect_to "/shopinfos/myshop?shop_id="+@shop_id
-    end
-
-  end
- end
 def istrue
-
-
    visitor=Ecstore::Visitor.where(:tel=>params[:visitor_tel])
 
   len = visitor.length
@@ -62,7 +12,6 @@ def istrue
     else
     return "1"
     end
-
 end
 
 def my_add_shopping
@@ -72,7 +21,8 @@ def my_add_shopping
 		quantity = params[:product].delete(:quantity).to_i
 		goods_id = params[:product][:goods_id]
 		@user_id = params[:product][:user_id]
-      		@shop_id = params[:product][:shop_id]
+    @shop_id = params[:product][:shop_id]
+
     if quantity.blank? || quantity ==0
        quantity=1
     end
@@ -100,8 +50,8 @@ def my_add_shopping
 			cart.obj_type = "goods"
 			cart.quantity = quantity
 			cart.time = Time.now.to_i
-			cart.member_id = @user_id
-      			cart.supplier_id=@shop_id
+			cart.member_id = @user.member_id
+      cart.supplier_id=@shop_id
 		end
 
 		if @cart.new_record?
@@ -119,12 +69,11 @@ def my_add_shopping
    
     if params[:platform]=="shop"
 
-      redirect_to "/visitors/my_shopping_cart?supplier_id=#{@shop_id}&user_id="+@user_id
+      redirect_to "/shop/visitors/my_shopping_cart?supplier_id=#{@shop_id}&user_id=#{@user_id}"
 
     else
        render "my_add_shopping"
     end
-
 
 end
 
@@ -135,65 +84,48 @@ def my_shopping_cart
    # return render :text=>@supplier_id
     @user_id=params[:user_id]
 
-
-
 end
 
-def order_clearing
+  def order_clearing
 
-  @shop_id=params[:supplier_id]
+    @shop_id=params[:supplier_id]
 
+    supplier_id= @shop_id
 
-    supplier_id= @visitors.shop_id
+     sql = "SELECT SUM(price*quantity) AS total,mdk.sdb_b2c_cart_objects.supplier_id,SUM(freight)/count(*) AS freight FROM mdk.sdb_b2c_cart_objects
+  INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING_INDEX(SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',2),'_',-1) = mdk.sdb_b2c_goods.goods_id
+  WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id} GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
+      @cart_total_by_supplier = ActiveRecord::Base.connection.execute(sql)
+      @cart_freight = 0
+      @favorable_terms = 0
 
-
-
-   sql = "SELECT SUM(price*quantity) AS total,mdk.sdb_b2c_cart_objects.supplier_id,SUM(freight)/count(*) AS freight FROM mdk.sdb_b2c_cart_objects
-INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING_INDEX(SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',2),'_',-1) = mdk.sdb_b2c_goods.goods_id
-WHERE mdk.sdb_b2c_cart_objects.member_id=#{@visitors.id}
-GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
-    @cart_total_by_supplier = ActiveRecord::Base.connection.execute(sql)
-    @cart_freight = 0
-    @favorable_terms = 0
-
-    @cart_total_by_supplier.each(:as => :hash) do |row|
-      if (row["total"]>=60 && row["supplier_id"]==97) || (row["total"]>=380 &&row["supplier_id"]==77) #|| @cart_total==0.01 #测试商品
-        @favorable_terms -=row["freight"]
+      @cart_total_by_supplier.each(:as => :hash) do |row|
+        if (row["total"]>=60 && row["supplier_id"]==97) || (row["total"]>=380 &&row["supplier_id"]==77) #|| @cart_total==0.01 #测试商品
+          @favorable_terms -=row["freight"]
+        end
+        @cart_freight += row["freight"]
       end
-      @cart_freight += row["freight"]
+
+      @cart_total_final = @cart_total+ @cart_freight + @favorable_terms
+
+        @def_addr =  @user.member_addrs.first
+    if @def_addr.nil?
+
+      redirect_to "/goodsaddrs/new_addr?return_url=/visitors/order_clearing?supplier_id=#{@shop_id}&user_id=#{params[:user_id]}"
     end
 
-    @cart_total_final = @cart_total+ @cart_freight + @favorable_terms
-
-      @def_addr =  Ecstore::Visitor.find(params[:user_id])
-  if @def_addr.address.nil?
-
-
-    redirect_to "/goodsaddrs/new_addr?return_url=/visitors/order_clearing?supplier_id=#{@shop_id}&user_id=#{params[:user_id]}"
+    if @pmtable
+          @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
+          @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
+          @coupons = @user.usable_coupons
+    end
   end
 
-
-  if @pmtable
-        @order_promotions = Ecstore::Promotion.matched_promotions(@line_items)
-        @goods_promotions = Ecstore::Promotion.matched_goods_promotions(@line_items)
-        @coupons = @user.usable_coupons
-      end
-
-
-
-end
-
-
-
-def  order_show
-     @shop_title="我的订单"
-  @supplier_id = params[:supplier_id]
-  @order = Ecstore::Order.find_by_order_id(params[:id])
-
-
-
-
-render :layout=>'shop'
-end
+  def  order_show
+    @shop_title="我的订单"
+    @supplier_id = params[:supplier_id]
+    @order = Ecstore::Order.find_by_order_id(params[:id])
+    render :layout=>'shop'
+  end
 
 end

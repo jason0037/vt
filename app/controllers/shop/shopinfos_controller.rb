@@ -22,12 +22,11 @@ class Shop:: ShopinfosController < ApplicationController
       end
     else
      redirect_to "/auto_login?id=78&supplier_id=78&platform=mobile&return_url=/shop/shopinfos"
-      end
     end
+  end
 
 
   def create
-
     @member = Ecstore::User.where(:member_id=>@user.member_id).first
     @member.update_attributes(:mobile=>params[:shop][:mobile],:email=>params[:shop][:email])
 
@@ -43,27 +42,43 @@ class Shop:: ShopinfosController < ApplicationController
   end
 
 
-  def myshop
-    @shop_id=params[:shop_id]
-    @shop_goods = Ecstore::ShopsGood.where(:shop_id=>@shop_id)
+  def myshop   
+
+    if params[:shop_id]
+      @shop_id = params[:shop_id]
+    else
+      redirect_to "/shop/shopinfos"
+    end
+
+    if @user
+      if @user.member_id != @shop_id
+        shop_client = Ecstore::ShopClient.where(:member_id=>@user.member_id,:shop_id=>@shop_id)
+        if shop_client.size ==0
+          Ecstore::ShopClient.new do |sc|
+            sc.member_id = @user.member_id
+            sc.shop_id = @shop_id
+          end.save
+        end
+      end
+    end
+
     @shop= Ecstore::Shop.find_by_shop_id(@shop_id)
+    @shop_title="来自#{@shop.shop_name}的微商店"
+
+    @shop_goods = Ecstore::ShopsGood.where(:shop_id=>@shop_id)
 
     # good=nil
-
     # @shop_goods.each  do |go|
     #   if go.good_status=="0"
     #   go.update_attribute(:good_status,"1")   ###讲商品状态设置为上架
-
     #  end
     # end
-
-    # goods= Ecstore::ShopsGood.where(:shop_id=>@shop_id,:good_status=>"1")
-   
-    
+    # goods= Ecstore::ShopsGood.where(:shop_id=>@shop_id,:good_status=>"1")    
   end
 
 
   def show_goods
+    @shop_title = '店铺商品挑选'
 
     sql = 'SELECT st1.cat_name, st1.cat_id,st1.parent_id,st1.cat_path FROM mdk.sdb_b2c_goods_cat st1 INNER JOIN mdk.sdb_b2c_goods st2 ON (st1.cat_id = st2.cat_id) GROUP BY st1.cat_id HAVING COUNT(*) > 1 order by cat_path'
     @category = ActiveRecord::Base.connection.execute(sql)
@@ -84,7 +99,6 @@ class Shop:: ShopinfosController < ApplicationController
 
 
   def add_goods
-
     ids = params[:goods_id]
     
     if ! ids.nil?
@@ -105,31 +119,22 @@ class Shop:: ShopinfosController < ApplicationController
   def my_goods
     @shop_title="商品中心"
 
-    @shop_id=params[:shop_id]
-
-    goods = Ecstore::ShopsGood.where(:shop_id=> @shop_id)
-
-    m=nil
-    @goods_store=nil
-    for i in goods
-
-      good =Ecstore::Good.where(:goods_id=>i.goods_id)
-      if  @goods_store.nil?
-        @goods_store=good
-      else
-        @goods_store= @goods_store+good
-
-      end
-
+     if @user
+      @shop_id = @user.member_id
+    else
+      redirect_to "/shop/shopinfos"
     end
 
+    @shop= Ecstore::Shop.find_by_shop_id(@shop_id)
+
+    @shop_goods = Ecstore::ShopsGood.where(:shop_id=> @shop_id)  
 
   end
 
-
   def goods_details
-
     @shop_id=params[:shop_id]
+    @shop=Ecstore::Shop.find_by_shop_id(@shop_id)
+    @shop_title="来自#{@shop.shop_name}的微商店"
 
     if session[:shop_id].nil?
       session[:shop_id]=@shop_id
@@ -139,10 +144,17 @@ class Shop:: ShopinfosController < ApplicationController
       @login = 'login'
     else
       @login=''
+      if @user.member_id != @shop_id
+        shop_client = Ecstore::ShopClient.where(:member_id=>@user.member_id,:shop_id=>@shop_id)
+        if shop_client.size ==0
+          Ecstore::ShopClient.new do |sc|
+            sc.member_id = @user.member_id
+            sc.shop_id = @shop_id
+          end.save
+        end
+      end
     end
-
-    
-    @shop=Ecstore::Shop.find_by_shop_id(@shop_id)
+   
     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
     return render "not_find_good",:layout=>"shop" unless @good
 
@@ -184,10 +196,6 @@ class Shop:: ShopinfosController < ApplicationController
         @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
       end
     end
-
-
-
-
 
   end
 
@@ -196,7 +204,7 @@ class Shop:: ShopinfosController < ApplicationController
     @user_id=params[:user_id]
     name=Ecstore::Shop.find_by_shop_id(@shop_id).shop_name
     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
-    @shop_title="贸威商品详细"
+    @shop_title=@good.name
     return render "not_find_good",:layout=>"shop" unless @good
 
     @recommend_user = session[:recommend_user]
@@ -238,23 +246,25 @@ class Shop:: ShopinfosController < ApplicationController
       end
     end
 
-
-
-
   end
 
 
-
-
  def myorder
-   shop_id=params[:shop_id]
-   @shop_title="订单管理"
-   if params[:user_id]
-     @user_id= params[:user_id]
-     @orders = Ecstore::Order.where(:supplier_id=>shop_id,:member_id=> @user_id).order("createtime desc")
+    if @user.nil?
+       redirect_to "/shop/shopinfos"
+    end
 
-   end
-   @orders = Ecstore::Order.where(:supplier_id=>shop_id).order("createtime desc")
+    @shop_title="订单管理"
+
+    @shop= Ecstore::Shop.find_by_shop_id(@shop_id)
+
+    if params[:shop_id] #微店客户查看订单
+      @shop_id = params[:shop_id]
+      @orders = Ecstore::Order.where(:supplier_id=>@shop_id,:member_id=> @user_id).order("createtime desc")
+    else  #店长查看订单
+      @shop_id = @user.member_id
+      @orders = Ecstore::Order.where(:supplier_id=>@shop_id).order("createtime desc")
+    end  
  end
 
 

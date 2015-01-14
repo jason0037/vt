@@ -26,9 +26,9 @@
       <a id="addressLink" href="/goodsaddrs/new_addr?user_id=<%=params[:user_id]%>&return_url=/visitors/order_clearing?supplier_id=2534&user_id=2">
 
       <div class="am-panel-bd">
-          <span class="text">&nbsp;&nbsp;<%=@def_addr.visitor_name%>  <span class="phone-num" style="margin-left: 30px"><%=@def_addr.phone%></span></span>
+          <span class="text">&nbsp;&nbsp;<%=@def_addr.name%>  <span class="phone-num" style="margin-left: 30px"><%=@def_addr.mobile%></span></span>
           <br/>
-          <span class="text2">&nbsp;&nbsp;<%=@def_addr.address%></span>
+          <span class="text2">&nbsp;&nbsp;<%=@def_addr.addr%></span>
            <span class="icon-arr" ><%=I18n.t "modify"%></span>
 
       </div>  </a>

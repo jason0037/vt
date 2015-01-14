@@ -3,6 +3,8 @@ class Ecstore::Shop< Ecstore::Base
 
   attr_accessible :shop_id, :shop_name, :shop_tel, :shop_email, :shop_logo, :shop_wx, :shop_intro, :shop_publish
 
+  has_many :shop_clients, :foreign_key=>"shop_id"
+
   end
 
 

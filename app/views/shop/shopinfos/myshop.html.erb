@@ -80,6 +80,21 @@
 
   <%end%>
 </div>
+<div class="bottomdiv clearfix"  >
+  <a  class="am-btn am-btn-primary " style="width:33.3%;float: left" href="/shop/shopusers?shop_id=<%=@shop_id%>" >账户中心 </a>
+  <a  class="am-btn am-btn-success " style="width:33.3%;float: left" href="/shop/shopinfos/show_goods?shop_id=<%=@shop_id%>" >增加商品 </a>
+  <a  class="am-btn am-btn-primary " style="width:33.3%;float: left" href="/shop/shopinfos/myshop?shop_id=<%=@shop_id%>" >发布 </a> 
+</div>
+
+    <script>
+    $(".am-btn-catid").each(function(){
+        var v = $(this).attr("href");
+        if("http://"+window.location.host+v==window.location.href){
+
+        }
+    });
+
+</script>
 <%= javascript_include_tag "qrcode/kaelQrcode.min.js"%>
 <%= javascript_include_tag "shop/urlqrcode.js"%>
 

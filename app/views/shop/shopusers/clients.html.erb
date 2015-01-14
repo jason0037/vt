@@ -1,0 +1,17 @@
+<div class="main">
+<ul class="am-list am-list-static am-list-border">
+  <%if @shop_clients.size>0%>
+    <%@shop_clients.each  do |client|%>
+      <li>
+        <span class="am-badge am-badge-success">查看详细</span>
+        <span class="left"><%=client.user.weixin_nickname%></span> &nbsp<span class="right"> 注册时间：<%=client.created_at%></span>
+      </li>
+    <%end%>
+  <%else%>
+    <li>
+      <a href="/shop/shopinfos/myshop?shop_id=<%=@shop_id%>" class="am-badge am-badge-success">赶紧去分享您的二微码</a>
+      您的店铺目前还没有客户光临哦
+    </li>
+  <%end%>
+</ul>
+</div>
