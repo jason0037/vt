@@ -58,7 +58,7 @@
   <div class="am-header-left am-header-nav">
     <a href="javascript:history.go(-1)" class="">
       <img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""></a></div>
-  <h1 class="am-header-title"><%unless @shop_title.nil?%><%=@shop_title%><%else%>贸威微信互助O2O直销平台<%end%></h1>
+  <h1 class="am-header-title"><%unless @shop%>欢迎来到<%=@shop.shop_name%>的微商店<%else%>贸威微信互助O2O直销平台<%end%></h1>
 
 
 </header>
@@ -76,13 +76,13 @@
 
        <% if @user%>
 
-      <li><a class=""href="/shopinfos/my_goods?shop_id=<%=@user.member_id%>"><span  class="am-navbar-label">|管理店铺|</span></a></li>
-      <li ><a class=" " href="/shopusers?shop_id=<%=@user.member_id%>"><span  class="am-navbar-label">|个人中心|</span></a></li>
+      <li><a class=""href="/shop/shopinfos/my_goods?shop_id=<%=@user.member_id%>"><span  class="am-navbar-label">|管理店铺|</span></a></li>
+      <li ><a class=" " href="/shop/shopusers?shop_id=<%=@user.member_id%>"><span  class="am-navbar-label">|个人中心|</span></a></li>
 
       <%end%>
        <%if @visitors%>
 
-          <li ><a class=" " href="/shopusers?shop_id=<%=@visitors.shop_id%>&user_id=<%=@visitors.id%>"><span  class="am-navbar-label">|个人中心|</span></a></li>
+          <li ><a class=" " href="/shop/shopusers?shop_id=<%=@visitors.shop_id%>&user_id=<%=@visitors.id%>"><span  class="am-navbar-label">|个人中心|</span></a></li>
 
     <%end%>
 

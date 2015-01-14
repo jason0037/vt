@@ -2,13 +2,11 @@
 require 'csv'
 require 'spreadsheet'
 
-class Ecstore::Good < Ecstore::Base
+class Ecstore::GoodManco < Ecstore::Base
 
   NEW_GOOD_START_ID = 0  #2398
 
-  SUIT_NAME = "套装 Suit"
-
-  self.table_name = "sdb_b2c_goods"
+  self.table_name = "sdb_b2c_goods_manco"
 
   scope :selling, where(:marketable=>'true')
 
@@ -17,19 +15,15 @@ class Ecstore::Good < Ecstore::Base
 
   accessible_all_columns
   attr_accessor :up_or_down
-
   belongs_to :user,:foreign_key=>"member_id"
-  belongs_to :cat,:class_name=>"Category",:foreign_key=>"cat_id"
-  belongs_to :brand, :foreign_key=>"brand_id"
-  belongs_to :supplier, :foreign_key=>"supplier_id"
+ belongs_to :cat,:class_name=>"Category",:foreign_key=>"cat_id"
+ belongs_to :brand, :foreign_key=>"brand_id"
+ belongs_to :supplier, :foreign_key=>"supplier_id"
 
-  belongs_to :default_image, :foreign_key=>"image_default_id",:class_name=>"Image"
+ belongs_to :default_image, :foreign_key=>"image_default_id",:class_name=>"Image"
 
-  has_many :order_items,:foreign_key=>"goods_id"
-
-  has_many :shops_goods,:foreign_key =>"goods_id"
-  
-  has_many :image_attachs,  :foreign_key=>"target_id", :conditions=>{:target_type=>"goods"}
+ has_many :order_items,:foreign_key=>"goods_id"
+ has_many :image_attachs,  :foreign_key=>"target_id", :conditions=>{:target_type=>"goods"}
 
   has_many :images,	:through=>:image_attachs
 

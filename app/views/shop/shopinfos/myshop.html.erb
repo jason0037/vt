@@ -11,9 +11,7 @@
     }
 
 </style>
-<%if @followers%>
-<%=image_tag eval(@followers.user_info)["headimgurl"],:id=>"weixin" ,:style=>"display:none"%>
-  <%end%>
+<%=image_tag @shop.shop_logo,:id=>"weixin"%>
 <div class="main">
 
   <button class="am-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二维码查看</button>
@@ -34,7 +32,7 @@
   </div>
   <div class="am-modal am-modal-confirm" tabindex="1" id="my-confirm" style="color: #000000">
     <div class="am-modal-dialog">
-      <div class="am-modal-hd"><%=@shop_title%></div>
+      <div class="am-modal-hd">来自<%=@shop.shop_name%>的微商店</div>
       <div class="am-modal-bd" id="url">
         前往店铺查看
       </div>
@@ -45,31 +43,25 @@
     </div>
   </div>
 
-
-
-  <%if @goods_store%>
+  <%if @shop_goods%>
 
       <div class="am-panel-bd">
         <ul class="am-list">
-
-
-          <%@goods_store.each do |good|%>
-
-
+          <%@shop_goods.each do |shopgoods|%>
 
               <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="cursor: pointer">
 
-                <a href="/shop/shopinfos/goods_details?id=<%=good.bn%>&shop_id=<%=@shop_id%>" class="">
+                <a href="/shop/shopinfos/goods_details?id=<%=shopgoods.good.bn%>&shop_id=<%=@shop_id%>" class="">
                 <div class="am-col col-sm-4 am-list-thumb">
-                  <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
+                  <img src="<%=shopgoods.good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=shopgoods.good.list_default_pic%>" data-brandid="<%=shopgoods.good.brand_id%>" data-productid="<%=shopgoods.good.bn%>" data-onerror="<%=shopgoods.good.list_default_pic%>" data-brandlazy="false" style="display: block;">
                 </div>
                 <div class="am-col col-sm-8 am-list-main">
                 <span class="am-list-item-hd ">
-                  <%=good.name%>
+                  <%=shopgoods.good.name%>
                 </span>
                   <div class="am-list-item-text" style="width: 100%;" >
 
-                    <span class="right">商品价:<strong class="price" >¥<%=good.price%></strong> </span>  </div>
+                    <span class="right">商品价:<strong class="price" >¥<%=shopgoods.good.price%></strong> </span>  </div>
                 </div>
 
                 </a>

@@ -115,7 +115,7 @@
     <span class="carticon fl"></span>
     <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
     </a>
-    <a href="javascript:void(0);" class="add_to_cart fr   btn_sure <% if @visitors.nil?%>login<%end%> " id="add_to_cart"><%=I18n.t "add-shoppingbasket"%></a>
+    <a href="javascript:void(0);" class="add_to_cart fr   btn_sure <%=@login%> " id="add_to_cart"><%=I18n.t "add-shoppingbasket"%></a>
   </div>
 </div>
 
@@ -147,7 +147,7 @@
 
             if($(this).hasClass("login")) {
                 alert("继续访问需要登录才能进行哦～");
-                location.href="/shop/visitors/login?shop_id=<%=@shop_id%>&return_url=<%=request.url.sub('http://trade','') %>";
+                location.href="/auto_login?id=78&supplier_id=78&platform=mobile&return_url=<%=request.url.sub('http://trade','') %>";
                 return false;
 
             }

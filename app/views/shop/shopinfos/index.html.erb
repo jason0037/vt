@@ -111,9 +111,8 @@
   var shop_id= $("#shopid").val();
      var host=window.location.host;
 
-    var url="http://"+host+"/shop/shopinfos/myshop?shop_id="+shop_id;
+    var url="http://"+host+"/shop/?shop_id="+shop_id;
     var imag=$("#weixin").attr("src");
-         alert(imag)
   window.onload = function(){
       var kaelBase = new KaelQrcode();
       kaelBase.init(document.getElementById("qrcodeCanvas"), {
