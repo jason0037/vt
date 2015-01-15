@@ -6,13 +6,13 @@
   $(document).ready(function(){
       var detail=$("#img-items li img").attr("src");
       var host=window.location.host;
-
+       var imgsrc="https://"+host+detail;
       var g_name=$("#g_name").val();
       bShareOpt = {
           uuid: "",
           url: "", //商品的永久链接
           summary: "", //商品描述
-          pic: host+detail, //商品图片链接
+          pic: imgsrc, //商品图片链接
           vUid: "", //用户id，为了让您能够知道您网站的注册用户分享、喜欢了哪些商品
           product: g_name, //商品名称
           price: "0", //商品价格
