@@ -10,11 +10,11 @@ class Shop:: ShopinfosController < ApplicationController
   def index
     if @user
 
-      headimgurl = @user.weixin_headimgurl
-      if headimgurl.nil?
-        headimgurl ='http://www.trade-v.com/assets/trade-vLogo.jpg'
+      @headimgurl = @user.weixin_headimgurl
+      if @headimgurl.nil?
+        @headimgurl ='http://www.trade-v.com/assets/trade-vLogo.jpg'
       end
-        page= Nokogiri::HTML(open(headimgurl))
+        page= Nokogiri::HTML(open(@headimgurl))
         @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
       if @shop
        name=@shop.shop_name

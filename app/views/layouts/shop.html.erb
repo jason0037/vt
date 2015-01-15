@@ -177,21 +177,25 @@
     var descs=null
 
 
-    if (document.location.pathname=="/shopinfos" ){
+    if (document.location.pathname=="/vhop/shopinfos" ){
      current_url=url
         descs="极致生活，品质共享 连接你我的极致小店~"
        }
 
 
 
-    num_index_of = current_url.indexOf("&from=weixin&wechatuser=");
+    var num_index_of = current_url.indexOf("from=weixin&wechatuser=");
     if (num_index_of >0){
-        current_url = current_url.substr(0,num_index_of);
+        current_url = current_url.substr(0,num_index_of-1);
     }
-    current_url += "&from=weixin&wechatuser=<%=useraccount%>";
+    var connector ='?'
+    if (current_url.indexOf("?")>0){
+         connector  ='&'
+    }
+    current_url += connector + "from=weixin&wechatuser=<%=useraccount%>";
     // alert(current_url);
 
-    var data = {"img":imgs,"url":current_url,"title":"自媒体平台<%#=@wechat_share_title%>","desc":descs};
+    var data = {"img":imgs,"url":current_url,"title":"自媒体平台<%#=@shop_title%>","desc":descs};
     wechatShare(data);
 </script>
 
