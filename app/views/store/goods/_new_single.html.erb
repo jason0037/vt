@@ -6,14 +6,18 @@
   $(document).ready(function(){
       var detail=$("#img-items li img").attr("src");
       var host=window.location.host;
+      var url=window.location.href;
        var imgsrc="http://"+host+detail;
-      var g_name=$("#g_name").val();
+      var g_desc=$("#g_desc").val();
+      var g_member=$("#g_member").val();
+      var g_name=$("#g_name").text();
+      alert(g_name)
       bShareOpt = {
           uuid: "",
-          url: "", //商品的永久链接
-          summary: "", //商品描述
+          url: url, //商品的永久链接
+          summary: g_desc, //商品描述
           pic: imgsrc, //商品图片链接
-          vUid: "", //用户id，为了让您能够知道您网站的注册用户分享、喜欢了哪些商品
+          vUid: g_member, //用户id，为了让您能够知道您网站的注册用户分享、喜欢了哪些商品
           product: g_name, //商品名称
           price: "0", //商品价格
           brand: "", //商品品牌
@@ -30,6 +34,11 @@
 
 
 <%= stylesheet_link_tag "test/main" %>
+<!--分享-->
+<input type="hidden" id="g_desc"value="<%=@good.desc%>">
+<%if @user%>
+<input type="hidden" id="g_member"value="<%=@user.member_id%>">
+   <%end%>
         <div class="row">
           <div class="large-10 medium-10 columns">
           <div class="titles">
