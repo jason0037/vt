@@ -33,11 +33,15 @@ class VshopController < ApplicationController
   end
 
   def apply
-    if params[:id]
-      @supplier  =  Ecstore::Supplier.find(params[:id])
-      @action_url =  "/admin/suppliers/#{params[:id]}?return_url=/vshop/apply"
-      @method = :put
-    end
+    if current_admin
+     if params[:id]
+       @supplier  =  Ecstore::Supplier.find(params[:id])
+       @action_url =  "/admin/suppliers/#{params[:id]}?return_url=/vshop/apply"
+       @method = :put
+     end
+    else
+      redirect_to '/vshop/login'
+      end
   end
 
   #get /vshop/orders
