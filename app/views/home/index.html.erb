@@ -305,13 +305,13 @@
 
                </div>
                   <div class="large-6 small-6 columns">
+                    <a href="/products/<%=p%>" >
 
-
-                <div class="large-12 small-12 columns" style="overflow:hidden; white-space:nowrap">   <span style="font-size: 13px; "><%=Ecstore::Good.find_by_bn(p).name%></span>  </div>
+                    <div class="large-12 small-12 columns" style="overflow:hidden; white-space:nowrap">   <span style="font-size: 13px; "><%=Ecstore::Good.find_by_bn(p).name%></span>  </div>
                       <div class="large-12 small-12 columns">    <span style="color: #ff0000">￥<%=Ecstore::Good.find_by_bn(p).price%></span> </div>
                       <div class="large-12 small-12 columns"style="overflow:hidden;white-space:nowrap"> <span style="font-size: 13px; ">  热销1000个</span> </div>
 
-               </div></div>
+                    </a></div></div>
                 <div style="border-bottom: 1px dotted #cdcdcd;"></div>
             <%end%>
 
