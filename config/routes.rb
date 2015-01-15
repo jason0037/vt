@@ -289,6 +289,7 @@ Modengke::Application.routes.draw do
       get "spec",:on=>:member
       put "update_spec",:on=>:member
       get 'select_goods',:on=>:collection
+      get 'select_reco_goods'  ,:on=>:collection  ###卓展楼层右侧推荐
       get 'collocation',:on=>:member
       get 'set_suits',:on=>:member
       get 'cancel_suits',:on=>:member
@@ -468,6 +469,7 @@ Modengke::Application.routes.draw do
       post 'add',:on=>:collection
       post 'again',:on=>:collection
       get 'mobile', :on=>:collection
+      get 'showpc',:on=>:collection
 
 
     end

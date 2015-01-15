@@ -1,6 +1,11 @@
 
 $("#line_<%=params[:id]%>").remove();
 
+if ($(".cart-inner table tbody ").children("tr").length==0){
+    $("#cart").children(".cart-inner").addClass("hide");
+    $(".cart-empty").removeClass("hide");
+}
+
 
 if ($("#supplierid_<%=params[:supplier_id]%>").children("li").length==0){
     $("#supplier_<%=params[:supplier_id]%>").remove();

@@ -13,15 +13,23 @@ class Admin::SessionsController < Admin::BaseController
       admin =  Ecstore::Account.admin_authenticate(name,password)
       if admin
             admin_sign_in admin
-  		redirect_to after_admin_sign_in_path
-  	else
+          unless params[:return_url].nil?
+            redirect_to params[:return_url]
+        else
+  		 redirect_to after_admin_sign_in_path
+          end
+      else
   		redirect_to new_admin_session_path,:notice=>"用户名或密码错误"
   	end
   end
   	
   def destroy
   	admin_sign_out
+    if params[:platform]=="vshop"
+      redirect_to "/vshop/login"
+   else
+
   	redirect_to new_admin_session_path
   end
-
+  end
 end

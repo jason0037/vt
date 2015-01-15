@@ -3,11 +3,12 @@ class Ecstore::Promotion < Ecstore::Base
   self.table_name = 'sdb_imodec_promotions'
   self.accessible_all_columns
 
-  attr_accessor :cat_ids, :brand_ids, :bns
-  attr_accessible :cat_ids, :brand_ids, :bns
+  attr_accessor :cat_ids, :brand_ids, :bns , :recos
+  attr_accessible :cat_ids, :brand_ids, :bns ,:recos
 
   serialize :goods,  Array
   serialize :field_vals,  Array
+  serialize :reco_val,  Array
 
 
   [:cat_id,:brand_id,:bn].each do |fake_field|
@@ -20,7 +21,15 @@ class Ecstore::Promotion < Ecstore::Base
     EVAL
   end
 
-  
+
+
+    class_eval <<-EVAL,__FILE__,__LINE__+1
+        def recos
+           arr = self.reco_val if self.reco_name == 'reco'
+           return [] if arr.blank?
+           arr
+        end
+    EVAL
 
 
 

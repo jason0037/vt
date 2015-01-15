@@ -3129,7 +3129,6 @@ button::-moz-focus-inner {
 }
 /* line 50, ../bower_components/foundation/scss/foundation/components/_clearing.scss */
 .clearing-thumbs li, [data-clearing] li {
-    float: left;
     margin-right: 10px;
 }
 /* line 55, ../bower_components/foundation/scss/foundation/components/_clearing.scss */
@@ -5769,7 +5768,7 @@ dialog[open] {
         background: white !important;
     }
 }
-/* line 114, ../bower_components/foundation/scss/foundation/components/_side-nav.scss */
+/* line 116, ../bower_components/foundation/scss/foundation/components/_side-nav.scss */
 .side-nav {
     display: block;
     margin: 0;
@@ -5790,19 +5789,21 @@ dialog[open] {
     color: #dc130a;
     margin: 0;
     padding: 0.4375rem 0.875rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-/* line 80, ../bower_components/foundation/scss/foundation/components/_side-nav.scss */
+/* line 82, ../bower_components/foundation/scss/foundation/components/_side-nav.scss */
 .side-nav li a:not(.button):hover, .side-nav li a:not(.button):focus {
     background: rgba(0, 0, 0, 0.025);
     color: #f64b44;
 }
-/* line 87, ../bower_components/foundation/scss/foundation/components/_side-nav.scss */
+/* line 89, ../bower_components/foundation/scss/foundation/components/_side-nav.scss */
 .side-nav li.active > a:first-child:not(.button) {
     color: #f64b44;
     font-weight: normal;
     font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
-/* line 93, ../bower_components/foundation/scss/foundation/components/_side-nav.scss */
+/* line 95, ../bower_components/foundation/scss/foundation/components/_side-nav.scss */
 .side-nav li.divider {
     border-top: 1px solid;
     height: 0;
@@ -5810,7 +5811,7 @@ dialog[open] {
     list-style: none;
     border-top-color: white;
 }
-/* line 101, ../bower_components/foundation/scss/foundation/components/_side-nav.scss */
+/* line 103, ../bower_components/foundation/scss/foundation/components/_side-nav.scss */
 .side-nav li.heading {
     color: #dc130a;
     font-size: 0.875rem;

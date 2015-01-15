@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag    "vshop/create1ea897.css" %>
-<%= stylesheet_link_tag    "vshop/processor897.css" %>
+<%#= stylesheet_link_tag    "vshop/processor1ea897(1).css" %>
 <br/><br/><br/><br/>
 <DIV class="inner wrp">
   <DIV class="page_nav"><A class="jsUrlLink" href="javascript:void(0);" target="self"
@@ -14,7 +14,7 @@
       <DIV class="app_create_box app">
         <%=form_for :supplier, :html => {:multipart => true } ,:url=>"/admin/suppliers?return_url=/vshop/apply",:method=>'post', :remote=>true do |f|%>
           <DIV class="frm_control_group">
-            <%= f.hidden_field :member_id ,:value=>@user.member_id%>
+            <%= f.hidden_field :member_id ,:value=>current_admin.account_id%>
               <%= f.label :company_name, '企业全称', :class => "frm_label" %>
               <DIV class="frm_controls">
               <SPAN class="frm_input_box">

@@ -1,5 +1,5 @@
 <%=form_for :promotion,:url=>@action_url,:method=>@method,:html=>{:class=>"form-horizontal"} do |f|%>
-
+    <%=@promotion.reco_name%>   &&bn=<%@promotion.field_name%>
 <div class="control-group">
   <%if params[:type]=="door"%>
 
@@ -168,20 +168,52 @@
             </div>
       </div>
     </div>
-
-    
-
-    
-
-    
-
-    
-
 </div>
 
 
+    <div class="control-group">
+      <label class="control-label">筛选推荐商品</label>
+      <div class="controls">
+        <%=f.select :reco_name,{'所有商品'=>'','指定商品'=>'reco'},{},{:id=>"select_reco_field",:class=>"input-small"}%>
 
-<div class="control-group">
+      </div>
+
+
+      <div id="choices_reco">
+      <div class="controls alert <%='hide' if @promotion.reco_name.blank?%>" id="reco_in_or_not">
+        <label>
+          <%=f.select :reco_in_or_not,{'包含'=>'in'},{},{:class=>"input-small in_or_not"}%>
+        </label>
+
+
+
+          <div class="<%='hide' if @promotion.reco_name !='reco' %>" for="reco">
+            <%=link_to "+选择商品","javascript:void(0);",:class=>"specify_reco_goods"%>
+            <ul id="specify_reco_goods">
+              <%@promotion.recos.each do |bn|%>
+                  <li>
+                    <%=Ecstore::Good.find_by_bn(bn).name%> (<%=bn%>)
+                    <%=hidden_field_tag "promotion[recos][]",bn%>
+                  </li>
+              <%end%>
+            </ul>
+          </div>
+        </div>
+      </div>
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+    <div class="control-group">
     <%=f.label :condition, "优惠条件*",:class=>"control-label"%>
     <div class="controls"  id="conditions">
 
@@ -302,6 +334,9 @@
 
         $(".specify-goods").click(function(){
             window.open('/admin/goods/select_goods?goods_type=normal&target=specify_goods&field_name=bns', 'newwindow', 'height=600, width=900, top=400, left=600, toolbar=no, menubar=no, scrollbars=no,resizable=yes,location=no, status=no');
+        });
+        $(".specify_reco_goods").click(function(){
+            window.open('/admin/goods/select_reco_goods?goods_type=normal&target=specify_reco_goods&reco_name=recos', 'newwindow', 'height=600, width=900, top=400, left=600, toolbar=no, menubar=no, scrollbars=no,resizable=yes,location=no, status=no');
         });
 
         $("#solution").on("click",".select-gifts",function(){

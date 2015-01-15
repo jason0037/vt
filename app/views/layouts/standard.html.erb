@@ -78,7 +78,7 @@
       <ul class="off-canvas-list">
         <li><label>服务导航</label></li>
         <% if @user%>
-            <li><a href="#">欢迎您<%=@user.login_name%></a></li>
+            <li><a href="#"><%=@user.login_name%></a></li>
             <li><a href="/logout?platform=/vshop" >退出登录</a></li>
         <%else%>
             <li><a href="#" data-reveal-id="login_iframe">[请登录]</a></li>
@@ -88,18 +88,20 @@
         <%end%>
         <li><a href="#"><i class="fi-marker"></i>上海[更换]</a></li>
         <% if signed_in?%>
-
+            <li>  <a href="/pages/news_wuliujiqiren">新闻中心</a></li>
            <li><a href="/member">用户中心</a></li>
                 <li class="divider"></li>
             <li><a href="/member/orders">我的订单</a></li>
             <li class="divider"></li>
             <%else%>
+
             <li><a href="#" data-reveal-id="login_iframe">用户中心</a></li>
             <li class="divider"></li>
             <li><a href="#" data-reveal-id="login_iframe">我的订单</a></li>
             <li class="divider"></li>
             <%end%>
-
+        <li>  <a href="/pages/news_wuliujiqiren">新闻中心</a></li>
+        <li>  <a href="/pages/techaicl">技术中心</a></li>
                 <li><a href="/vshop">供应商加盟</a></li>
                 <li class="divider"></li>
                 <li class="has-dropdown">
@@ -107,6 +109,7 @@
           <a href="/pages/shlc">客服中心</a>
           <ul class="dropdown">
             <li>  <a href="/pages/techaicl">技术中心</a></li>
+
           </ul>
 
                 </li>
@@ -138,7 +141,7 @@
             <ul class="left">
                 <li class="divider"></li>
               <% if @user%>
-               <li><a href="#">欢迎您<%=@user.login_name%></a></li>
+               <li><a href="#"><%=@user.login_name%></a></li>
                  <li><a href="/logout?platform=/vshop" >退出登录</a></li>
                <%else%>
                 <li><a href="#" data-reveal-id="login_iframe">[请登录]</a></li>
@@ -163,7 +166,8 @@
                   <li><a href="#" data-reveal-id="login_iframe">我的订单</a></li>
                   <li class="divider"></li>
               <%end%>
-
+              <li>  <a href="/pages/news_wuliujiqiren">新闻中心</a></li>
+              <li>  <a href="/pages/techaicl">技术中心</a></li>
                 <li><a href="/vshop">供应商加盟</a></li>
                 <li class="divider"></li>
                 <li class="has-dropdown">
@@ -245,6 +249,10 @@
 
   <div id="backToTop" title="返回顶部"><span><em class="at">♦</em><em class="ab">▐</em>返回顶部</span></div>
 
+ <div class="cart">
+   <a href="/cart/showpc">
+   <i class="fi-shopping-cart cart-tab-icon"></i> <span class="cart-tab-txt">购物车</span>  </a>
+ </div>
   <%#=render "shared/iframe_cart" if signed_in?%>
 
   <%#= javascript_include_tag "google-analytics" if Rails.env == "production"%>
@@ -459,8 +467,6 @@ $(document).ready(function(){
          </div>
 
     </div>
-
-
       </div>
 
 </div>
@@ -478,70 +484,65 @@ $(document).ready(function(){
 <%=render "shared/iframe_login" unless signed_in?%>
     <hr />
 <footer class="footer">
-  <div class="row full-width-footer">
+  <div class="row full-width-footer" style="margin-left: 4%">
     <div class="large-2 small-4 columns">
 
-          <i class="fi-home "></i>
+      <i class="fi-home "></i>
 
-          <h4>关于我们</h4>
-          <ul class="footer-links">
-          <li><a href="/pages/gywm">公司简介</a></li>
-            <li><a href="/pages/yxwl">营销网络</a></li>
-            <li><a href="/pages/yxwl">&nbsp;</a></li>
-             <li><a href="/pages/yxwl">&nbsp;</a></li>
-          </ul>
-        </div>
-      <div class="large-2 small-4 columns">
-          <i class="fi-results-demographics"></i>
-        <h4>购物指南</h4>
-          <ul class="footer-links">
-                <li><a href="#">购物流程</a></li>
-                <li><a href="#">会员介绍</a></li>
-                <li><a href="#">常见问题</a></li>
-                <li><a href="#">联系客服</a></li>
-          </ul>
-        </div>
-      <div class="large-2 small-4 columns">
-          <i class="fi-social-dropbox"></i>
-           <h4>配送方式</h4>
-          <ul class="footer-links">
-                <li><a href="/pages/smzt">上门自提</a></li>
-                <li><a href="/pages/kdsh">快递运输</a></li>
-                <li><a href="#">特快专递（EMS）</a></li>
-                 <li><a href="#">&nbsp;</a></li>
-
-          </ul>
-         </div>
-      <div class="large-2 small-4 columns">
-          <i class="fi-dollar"></i>
-           <h4>支付方式</h4>
-          <ul class="footer-links">
-                <li><a href="/pages/zxzf">在线支付</a></li>
-                <li><a href="/pages/yjsh">邮局汇款</a></li>
-                <li><a href="/pages/hdfk">款到发货</a></li>
-                <li><a href="/pages/hdfk">货到付款</a></li>
-          </ul>
-         </div>
-      <div class="large-2 small-4 columns">
-          <i class="fi-shield"></i>
-           <h4>售后服务</h4>
-          <ul class="footer-links">
-                <li><a href="/pages/shzc">退换货政策</a></li>
-                <li><a href="/pages/hhlc">退换货流程</a></li>
-                <li><a href="/pages/thlc">退款说明</a></li>
-                <li><a href="/pages/hhlc">返修申请</a></li>
-          </ul>
-         </div>
-    <div class="large-2 small-4 columns">
-      <i class="fi-photo"></i>
-      <h4>关注我们</h4>
+      <h4>关于我们</h4>
       <ul class="footer-links">
-        <li> <a href=""><img style="width: 80%;height: 80%" src="/images/a01/homepage/getqrcode.jpg" onerror="javascript:this.src='/assets/nopic.png';" alt="pic"  ></a>
-
-        </li></ul>
+        <li><a href="/pages/gywm">公司简介</a></li>
+        <li><a href="/pages/yxwl">营销网络</a></li>
+        <%=link_to "手机桌仕",subscribe_member_path%>
+        <li><a href="/pages/yxwl">&nbsp;</a></li>
+      </ul>
     </div>
-    </ul>  </div>
-  </div>
+    <div class="large-2 small-4 columns">
+      <i class="fi-results-demographics"></i>
+      <h4>购物指南</h4>
+      <ul class="footer-links">
+        <li><a href="#">购物流程</a></li>
+        <li><a href="#">会员介绍</a></li>
+        <li><a href="#">常见问题</a></li>
+        <li><a href="#">联系客服</a></li>
+      </ul>
+    </div>
+    <div class="large-2 small-4 columns">
+      <i class="fi-social-dropbox"></i>
+      <h4>配送方式</h4>
+      <ul class="footer-links">
+        <li><a href="/pages/smzt">上门自提</a></li>
+        <li><a href="/pages/kdsh">快递运输</a></li>
+        <li><a href="#">特快专递（EMS）</a></li>
+        <li><a href="#">&nbsp;</a></li>
+
+      </ul>
+    </div>
+    <div class="large-2 small-4 columns">
+      <i class="fi-dollar"></i>
+      <h4>支付方式</h4>
+      <ul class="footer-links">
+        <li><a href="/pages/zxzf">在线支付</a></li>
+        <li><a href="/pages/yjsh">邮局汇款</a></li>
+        <li><a href="/pages/hdfk">款到发货</a></li>
+        <li><a href="/pages/hdfk">货到付款</a></li>
+      </ul>
+    </div>
+    <div class="large-2 small-4 columns">
+      <i class="fi-shield"></i>
+      <h4>售后服务</h4>
+      <ul class="footer-links">
+        <li><a href="/pages/shzc">退换货政策</a></li>
+        <li><a href="/pages/hhlc">退换货流程</a></li>
+        <li><a href="/pages/thlc">退款说明</a></li>
+        <li><a href="/pages/hhlc">返修申请</a></li>
+      </ul>
+    </div>
+
+    <div class="large-2 small-4 columns">
+
+
+    </div></div>
 </footer>
 
 

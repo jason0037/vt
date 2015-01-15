@@ -1,0 +1,9 @@
+$(".pagination").html('<%=will_paginate @promotions,:container=>false%>');
+
+$("#select_goods tbody tr[data-page!='<%=params[:page] || 1%>']").not(".header").hide();
+
+if ($("#select_goods tbody tr[data-page='<%=params[:page] || 1%>']").length > 0){
+	$("#select_goods tbody tr[data-page='<%=params[:page] || 1%>']").show();
+}else{
+	$("#select_goods tbody").append('<%= escape_javascript render("goods").html_safe%>')
+}

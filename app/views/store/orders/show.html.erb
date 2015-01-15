@@ -1,3 +1,5 @@
+<style> .cart {  display: none;
+}</style>
 <hr>
 <div class="row ">
   <%=form_for :payment,:url=>payments_path(:order_id=>@order.order_id),:method=>'post',:html=>{ :target=>"_blank" } do |f|%>

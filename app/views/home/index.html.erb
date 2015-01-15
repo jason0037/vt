@@ -3,7 +3,12 @@
       overflow: hidden;
       zoom: 1;
       padding-bottom: 15px;
+
       background: url(/assets/cheuks/pic_tibiao.gif) right bottom no-repeat;
+  }
+
+  .caption{
+      width: 100%;
   }
   .caption a img{
       width: 100%;
@@ -15,18 +20,31 @@
       display: block;
       height: 28px;
       line-height: 28px;
-
+     background: url(/assets/cheuks/line_x.gif) no-repeat;
       border: 1px solid #ddd;
   }
   #news li{
       border-top: 1px solid #EEE;
   }
-
-  .hover {
+   .item-wrapper:hover{
+       background:#f5e4c5  ;
+   }
+   .hover {
 
       z-index: 20;
       background: none;
   }
+   .hover .bg{
+       border: none;
+       border-top: 1px solid #f5e4c5;
+       border-bottom: 1px solid #dbc9a7;
+       background: url(/assets/cheuks/line.gif) repeat-x;
+   }
+    .hover  .texts {
+        padding: 5px 8px;
+        line-height: 24px;
+        border-top: 1px solid #fff;
+    }
   .bg a {
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -43,7 +61,7 @@
       border: 1px solid #dbc9a7;
       border-top: none;
   }
- .text_in24{overflow:hidden;  height: 100px;width: 100%;
+ .text_in24{overflow:hidden;  height: 143px;width: 100%;
 
  }
  dd .texts{
@@ -52,7 +70,7 @@
       padding: 0px 8px 5px;
       line-height: 22px;
       border: 1px solid #ddd;
-      border-top: 1px solid #fff;
+
   }
 
 </style>
@@ -111,8 +129,8 @@
                 <div class="columns large-12 panel">
                     <div class="wrapper">
                       <% if @user%>
-                          <label>欢迎您<%=@user.login_name%>&nbsp;|&nbsp;退出登录</label>
-                         <a href="#"  class="inside">欢迎您<%=@user.login_name%></a>
+                          <label><%=@user.login_name%>&nbsp;|&nbsp;退出登录</label>
+                         <a href="#"  class="inside"><%=@user.login_name%></a>
                          <a  class="inside" href="/logout?platform=/vshop" >退出登录</a>
                       <%else%>
 
@@ -227,11 +245,11 @@
     <h4 data-magellan-destination="<%=pro.name%>">   <span><%=pro.priority%></span>F <%=pro.name%></h4>
     <ul class="clearing-thumbs" >
       <li>
-        <ul class="side-nav">
+        <ul class="side-nav" style="padding: 0">
 
           <% Ecstore::GoodCat.where(:parent_id=>pro.codes).limit(4).each  do |godes|%>
               <% unless godes.cat_name==""%>
-              <li><a href="/gallery/<%=godes.cat_id%>"><%=godes.cat_name%></li>  <%end%><%end%>
+              <li><a href="/gallery/<%=godes.cat_id%>"><%=godes.cat_name%></a></li>  <%end%><%end%>
         </ul>
         <img src="img/floor_left.jpg">
       </li>
@@ -271,7 +289,39 @@
     </ul>
   </div>
   <div class="columns large-2">
-    <a href="#"><img src="img/floor_product_right.jpg"></a>
+
+
+     <div style="background: rgba(107, 106, 106, 0.08);border: 1px solid #d0cfcf;height: 33px"><span style="font-weight: bold;margin-left: 10px;line-height: 35px">热销推荐</span></div>
+
+        <ul class="clearing-thumbs" style="border: 1px solid #d0cfcf;border-top: none;">
+      <li>
+
+              <%unless pro.reco_val.nil?%>
+              <%pro.reco_val.split(",")[0].each do |p|%>
+                  <%@good=Ecstore::Product.where("bn like ?" , p+"%" )%>
+                <div class="row">
+               <div class="large-6 small-6 columns">
+                 <a href="/products/<%=p%>" class=""><img width="30%" src="<%=Ecstore::Good.find_by_bn(p).medium_pic%>" onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
+
+               </div>
+                  <div class="large-6 small-6 columns">
+
+
+                <div class="large-12 small-12 columns" style="overflow:hidden; white-space:nowrap">   <span style="font-size: 13px; "><%=Ecstore::Good.find_by_bn(p).name%></span>  </div>
+                      <div class="large-12 small-12 columns">    <span style="color: #ff0000">￥<%=Ecstore::Good.find_by_bn(p).price%></span> </div>
+                      <div class="large-12 small-12 columns"style="overflow:hidden;white-space:nowrap"> <span style="font-size: 13px; ">  热销1000个</span> </div>
+
+               </div></div>
+                <div style="border-bottom: 1px dotted #cdcdcd;"></div>
+            <%end%>
+
+        <%end%>
+
+
+
+
+      </li>
+    </ul>
   </div>
 </div>
 <%end%>
@@ -301,12 +351,16 @@
 </script>
 <script>
 
-//          $(".caption").hover(function(){
-//              $(this).children("dd").addClass("hover");
-//         $(this).children("dd").children(".texts").children(".fbol").removeClass("hidden") ;
-//},function(){
-//              $(this).children("dd").removeClass("hover");
-//              $(this).children("dd").children(".texts").children(".fbol").addClass("hidden") ;
-//          })
+          $(".caption").hover(function(){
+              $(this).children("dd").addClass("hover");
+         $(this).children("dd").children(".texts").children(".fbol").removeClass("hidden") ;
+
+              $(this).children("dd").children(".texts").children(".fbol").children(".text_in24").css({"height":"200px"});
+},function(){
+              $(this).children("dd").removeClass("hover");
+              $(this).children("dd").children(".texts").children(".fbol").addClass("hidden") ;
+              $(this).children("dd").children(".texts").children(".fbol").children(".text_in24").css({"height":"143px"});
+
+          })
             </script>
 

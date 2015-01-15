@@ -23,6 +23,7 @@
 <%else%>
 
     <%good.spec_desc.each do  |spec_id, spec_hash|%>
+          <%=hidden_field_tag "product[specs][]"%>
       <div class="spec-item clearfix">
           <span class="spec-name">选择<%=(spec = Ecstore::Spec.find(spec_id)).spec_name%> : </span>
           <%=hidden_field_tag "product[specs][]"%>

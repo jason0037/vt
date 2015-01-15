@@ -7,6 +7,11 @@ class Store::CartController < ApplicationController
 		render :layout=>"cart"
   end
 
+  def showpc
+    render :layout=>"standard"
+
+  end
+
   def mobile
     supplier_id=params[:supplier_id]
 
@@ -195,17 +200,17 @@ render "add"
 	end
 
 	def destroy
-		_type, goods_id, product_id = params[:id].split('_')
-		@line_items.where(:obj_ident=>params[:id]).update_all(:cart_status=>"-1")
-		@user.custom_specs.where(:product_id=>product_id).delete_all if signed_in?
+    _type, goods_id, product_id = params[:id].split('_')
+    @line_items.where(:obj_ident=>params[:id]).delete_all
+    @user.custom_specs.where(:product_id=>product_id).delete_all if signed_in?
 
-		find_cart!
-  #  if params[:platform]=='mobile'
-  #    return  render :text=>"删除成功"# redirect_to "/cart/mobile"
-  #  else
-  		render "destroy"
-  #  end
-	end
+    find_cart!
+    #  if params[:platform]=='mobile'
+    #    return  render :text=>"删除成功"# redirect_to "/cart/mobile"
+    #  else
+    render "destroy"
+    #  end
+  end
 
 
 end

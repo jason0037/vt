@@ -62,5 +62,17 @@ $ ->
     else
       $("#in_or_not").addClass("hide")
 
+
     $("#choices div[for]").addClass("hide")
     $("#choices div[for='"+field+"']").removeClass("hide")
+
+  $("#select_reco_field").bind "change", ->
+    field = $.trim $(this).val()
+    if field.length > 0
+      $("#reco_in_or_not").removeClass("hide")
+    else
+      $("#reco_in_or_not").addClass("hide")
+
+
+    $("#choices_reco div[for]").addClass("hide")
+    $("#choices_reco div[for='"+field+"']").removeClass("hide")

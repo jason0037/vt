@@ -253,6 +253,13 @@ module Admin
       return redirect_to search_admin_goods_path(new_params)
     end
 
+    def select_reco_goods
+      params.delete(:action)
+      params.delete(:controller)
+      new_params = params.merge(:template=>"goods",:view=>"select_reco_goods","ad[marketable]"=>"true",:layout=>"dialog")
+      return redirect_to search_admin_goods_path(new_params)
+    end
+
     def select_gifts
       @gifts = Ecstore::Product.where(:goods_type=>"gift").paginate(:page=>params[:page],:per_page=>20)
       render :layout=>"dialog"

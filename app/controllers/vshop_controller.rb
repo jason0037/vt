@@ -1,6 +1,8 @@
 #encoding:utf-8
 class VshopController < ApplicationController
+  include Admin::SessionsHelper
   skip_before_filter :set_locale
+  skip_before_filter :authorize_admin!, :except=>[:destroy]
   layout "vshop"
 
 
@@ -110,12 +112,12 @@ class VshopController < ApplicationController
 
   #get /vshop/goods
   def goods
-    if @user
+    if current_admin
 
       @goods = Ecstore::Good.includes(:cat).includes(:brand)
-      @supplier =Ecstore::Supplier.find_by_member_id(@user.id)
-      if @user.id!= 2 #超级管理员
-        @supplier =Ecstore::Supplier.find_by_member_id(@user.id)
+      @supplier =Ecstore::Supplier.find_by_member_id(current_admin.account_id)
+      if current_admin.account_id!= 2 &&current_admin.account_id!= 1#超级管理员
+        @supplier =Ecstore::Supplier.find_by_member_id(current_admin.account_id)
         if @supplier
           @goods = @goods.where(:supplier_id=>@supplier.id)
         else

@@ -1,7 +1,10 @@
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
- <div class="login_panel label_input prepend open" id="{id}" style="margin-top:-150px;">
+<% if flash[:notice].present?%>
+    <div class="alert"><%=flash[:notice]%></div>
+<%end%>
+<div class="login_panel label_input prepend open" id="{id}" style="margin-top:-150px;">
     <div class="login_inner wx" id="{id}_wx">
-        <%=form_for :session,:url=>"/login",:class=>"form login_form" , :remote=>true do |f|%>
+        <%=form_for :session,:url=>admin_sessions_path,:class=>"form login_form" , :remote=>true do |f|%>
         <fieldset class="login_fieldset">
           <legend class="login_legend">登录</legend>
           <input name="return_url" value="/vshop" type="hidden"/>
@@ -10,17 +13,17 @@
           <div class="login_input_area">
                     <span class="login_input_box first">
                         <label class="login_label">账号</label>
-                      <%=f.text_field :username,:placeholder=>"已认证手机号/用户名/邮箱",:class=>"frm_input"%>
+                      <%=f.text_field :login_name,:placeholder=>"已认证手机号/用户名/邮箱",:class=>"frm_input"%>
                     </span>
                     <span class="login_input_box last">
                         <label class="login_label">密码</label>
-                      <%=f.password_field :password, :placeholder=>"密码",:class=>"frm_input"%>
+                      <%=f.password_field :login_password, :placeholder=>"密码",:class=>"frm_input"%>
                     </span>
           </div>
 
           <div class="login_function_area">
             <input name="remember_me" type="checkbox" value="1" checked="true">记住账号&nbsp;&nbsp;&nbsp;
-            <a href="javascript:void(0);" id="{id}_forget" class="jsUrlLink" data-url="regist/forget">忘记密码</a>
+            <!--<a href="javascript:void(0);" id="{id}_forget" class="jsUrlLink" data-url="regist/forget">忘记密码</a>-->
           </div>
           <%if params[:error]=='1'%>
           <div id="login_msg" style="color:red;font-size:12pt;">账号或密码错</div>

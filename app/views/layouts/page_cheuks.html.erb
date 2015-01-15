@@ -92,7 +92,7 @@
             <ul class="left">
               <li class="divider"></li>
               <% if @user%>
-                  <li><a href="#">欢迎您<%=@user.login_name%></a></li>
+                  <li><a href="#"><%=@user.login_name%></a></li>
                   <li><a href="/logout?platform=/vshop" >退出登录</a></li>
               <%else%>
                   <li><a href="#" data-reveal-id="login_iframe">[请登录]</a></li>
@@ -116,6 +116,8 @@
                   <li><a href="#" data-reveal-id="login_iframe">我的订单</a></li>
                   <li class="divider"></li>
               <%end%>
+              <li>  <a href="/pages/news_wuliujiqiren">新闻中心</a></li>
+              <li>  <a href="/pages/techaicl">技术中心</a></li>
               <li><a href="/vshop">供应商加盟</a></li>
               <li class="divider"></li>
               <li class="has-dropdown">
@@ -164,7 +166,7 @@
           </div>
           <div class="large-2 columns show-for-medium-up large-pull-10">
             <ul class="no-bullet radius"  style="margin-bottom:0.2em">
-              <li><a class="button expand" href="/gallery/14">产品列表</a></li>
+              <li><a style="border-left: 1px solid;border-color: rgba(255, 255, 255, 0.5);" class="button expand" href="/gallery/14">产品列表</a></li>
             </ul>
           </div>
         </nav>
@@ -460,9 +462,9 @@ $(document).ready(function(){
 
 <!--页尾信息-->
 <%=render "shared/iframe_cart" if signed_in?%>
-<hr />
+<hr>
 <footer class="footer">
-  <div class="row full-width-footer">
+  <div class="row full-width-footer" style="margin-left: 4%">
     <div class="large-2 small-4 columns">
 
       <i class="fi-home "></i>
@@ -471,7 +473,7 @@ $(document).ready(function(){
       <ul class="footer-links">
         <li><a href="/pages/gywm">公司简介</a></li>
         <li><a href="/pages/yxwl">营销网络</a></li>
-        <li><a href="/pages/yxwl">&nbsp;</a></li>
+        <%=link_to "手机桌仕",subscribe_member_path%>
         <li><a href="/pages/yxwl">&nbsp;</a></li>
       </ul>
     </div>
@@ -516,16 +518,11 @@ $(document).ready(function(){
         <li><a href="/pages/hhlc">返修申请</a></li>
       </ul>
     </div>
-    <div class="large-2 small-4 columns">
-      <i class="fi-photo"></i>
-      <h4>关注我们</h4>
-      <ul class="footer-links">
-        <li> <a href=""><img style="width: 80%;height: 80%" src="/images/a01/homepage/getqrcode.jpg" ></a>
 
-        </li></ul>
+    <div class="large-2 small-4 columns">
+
+
     </div>
-    </ul>  </div>
-  </div>
 </footer>
 
 

@@ -20,6 +20,14 @@ class Admin::PromotionsController < Admin::BaseController
 
   def create
       field_name  =  params[:promotion][:field_name]
+      reco_name= params[:promotion][:reco_name]
+      case reco_name
+        when  'reco'
+          params[:promotion].merge! :reco_val=>params[:promotion].delete(:recos)
+        else
+          params[:promotion].delete(:reco_in_or_not)
+          params[:promotion].delete(:reco_name)
+      end
 
       case field_name
          when 'brand_id'
@@ -33,6 +41,7 @@ class Admin::PromotionsController < Admin::BaseController
            params[:promotion].delete(:field_name)
       end
 
+
   	@promotion = Ecstore::Promotion.new params[:promotion]
   	if @promotion.save
   		redirect_to admin_promotions_path(:type=>@promotion.promotion_type)
@@ -45,7 +54,16 @@ class Admin::PromotionsController < Admin::BaseController
   def update
   	@promotion = Ecstore::Promotion.find(params[:id])
       field_name  =  params[:promotion][:field_name]
-      case field_name
+    reco_name= params[:promotion][:reco_name]
+    case reco_name
+      when  'reco'
+        params[:promotion].merge! :reco_val=>params[:promotion].delete(:recos)
+      else
+        params[:promotion].delete(:reco_in_or_not)
+        params[:promotion].delete(:reco_name)
+    end
+
+    case field_name
          when 'brand_id'
            params[:promotion].merge! :field_vals=>params[:promotion].delete(:brand_ids)
          when 'cat_id'

@@ -22,7 +22,7 @@ class Admin::EmailsController < Admin::BaseController
 	def send_all
 		@emails = Ecstore::Email.all
 		@emails.each do |email|
-			UserMailer.user_email(email.addr,"i-modec").deliver
+			UserMailer.user_email(email.addr,"cheuks").deliver
 			sleep 0.1
 		end
 		redirect_to admin_emails_url

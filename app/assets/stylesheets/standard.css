@@ -35,7 +35,7 @@ body{
   *postion:absolute;
   /*left: 50%;*/
   right: 25px;
-  bottom: 100px;
+  bottom: 23px;
   _bottom: "auto";
   cursor: pointer;
   opacity: 0.5;
@@ -84,15 +84,12 @@ body{
 }
 
 #backpanel-floor .backpanel-inner {
-    margin-bottom: 90px;
+    /*margin-bottom: 90px;*/
 }
 .root61 .backpanel .backpanel-inner {
     margin-left: 800px;
 }
 .backpanel .backpanel-inner {
-
-
-
 
     margin-left: 520px;
 
@@ -117,8 +114,8 @@ body{
     background-position: 0 -55px;
 }
 .backpanel .bp-item {
-    width: 50px;
-    height: 50px;
+    width: 39px;
+    height: 38px;
     background: #ccc;
     margin-top: 5px;  line-height: 3;
 }
@@ -132,3 +129,48 @@ body{
  .footer-links {
      margin-left:0!important;
  }
+
+.cart{
+   border-radius: 3px 3px 3px 3px;
+    width:40px;
+    height: 100px;
+    margin-left: 520px;
+    line-height: 14px;
+    padding: 0;
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #444;
+    font-size: 12px;
+    text-align: center;
+    position: fixed;
+    _position: absolute;
+    *postion:absolute;
+    right: 0px;
+    top: 220px;
+    _bottom: "auto";
+    cursor: pointer;
+
+    z-index: 1000;
+}
+.cart-tab-txt  {
+    display: block;
+    left: 7px;
+    top: 40px;
+    width: 20px;
+    color: #ffffff;
+    line-height: 20px;
+    overflow: hidden;
+    padding: 0;
+    margin-left: 7px;
+}
+.cart-tab-icon{
+    color: #ff0000;
+    display: block;
+    left: 7px;
+    top: 40px;
+    font-size: 32px;
+    width: 35px;
+    line-height: 16px;
+    overflow: hidden;
+    padding: 0;
+}
