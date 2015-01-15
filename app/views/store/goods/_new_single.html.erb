@@ -2,6 +2,31 @@
 
 </style>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+      var detail=$("#img-items li img").attr("src");
+      var g_name=$("#g_name").val();
+      bShareOpt = {
+          uuid: "",
+          url: "", //商品的永久链接
+          summary: "", //商品描述
+          pic: detail, //商品图片链接
+          vUid: "", //用户id，为了让您能够知道您网站的注册用户分享、喜欢了哪些商品
+          product: g_name, //商品名称
+          price: "0", //商品价格
+          brand: "", //商品品牌
+          tag: "", //商品标签
+          category: "", //商品分类
+          template: "1"
+      };
+  })
+
+
+</script>
+
+
+
+
 <%= stylesheet_link_tag "test/main" %>
         <div class="row">
           <div class="large-10 medium-10 columns">
@@ -32,6 +57,10 @@
         <div id="img-big" >
           <img src="<%=@good.big_pic%>" onerror="javascript:this.src='/assets/nopic.png';" alt="pic" id="detail" >
         </div>
+        <a class="bsLikeDiv" href="http://static.bshare.cn"></a>
+        <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareLike.js"></script><div class="bshare-custom icon" style="float:left;"><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到搜狐微博" class="bshare-sohuminiblog"></a></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/button.js#style=-1&amp;ssc=false&amp;mdiv=-1&amp;type=15"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC1.js"></script>
+
+
       </div>
     </div>  </div>
 
@@ -47,7 +76,7 @@
             <thead>
             <tr>
               <td>产品名称：</td>
-              <td  ><%=good.name %></td>
+              <td id="g_name" ><%=good.name %></td>
             </tr>
             </thead>
             <tbody>
