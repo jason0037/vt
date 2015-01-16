@@ -5,7 +5,7 @@
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <title>自媒体平台</title>
+  <title>贸威自媒体网站</title>
   <meta content="" name="keywords">
   <meta content="" name="description">
   <%= stylesheet_link_tag    "shop.css" %>
@@ -67,11 +67,14 @@
   <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout" id="">
     <ul class="am-navbar-nav am-cf sm-block-grid-2">
 
-       <% if @user%>
-         <%if @user.member_id =@ship_id%>
-          <li><a class=""href="/shop/shopinfos/my_goods"><span  class="am-navbar-label">|管理店铺|</span></a></li>
-        <%end%>
-        <li ><a class=" " href="/shop/shopusers?shop_id=<%=@shop_id%>"><span  class="am-navbar-label">|账户中心|</span></a></li>
+      <% if @user && @shop%>
+          <%if @user.member_id == @shop.shop_id%>
+            <li><a class="" href="/shop/shopusers"><span  class="am-navbar-label">|管理店铺|</span></a></li>
+          <%else%>
+            <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop_id%>"><span  class="am-navbar-label">|我也要开店|</span></a></li>
+            <li ><a class="" href="/shop/shopusers?shop_id=<%=@shop_id%>"><span  class="am-navbar-label">|账户中心|</span></a></li>
+          <%end%>
+          
 
       <%end%>     
 
@@ -166,24 +169,28 @@
         }, false);
     }
     <%if @user%>
-    <%useraccount=@user.account.login_name if @user.account%>
+     <%useraccount=@user.account.login_name if @user.account%>
     <%end%>
     <%if @shop%>
-    <%shop_id=@shop.shop_id%>
+      <%shop_id=@shop.shop_id%>
     <%end%>
     var current_url = document.location.href;
-    //去除上一个推荐者的链接
+    
+
     var imgs=null
-    var descs=null
+
+    var desc = '<%=@share_desc %>';
+    if (desc.length===0){
+      desc = "极致生活，品质共享 连接你我的极致小店~";
+    }
+        
+    // if (document.location.pathname=="/vhop/shopinfos" ){
+    //     current_url=url
+    //     descs="极致生活，品质共享 连接你我的极致小店~"
+    //    }
 
 
-    if (document.location.pathname=="/vhop/shopinfos" ){
-     current_url=url
-        descs="极致生活，品质共享 连接你我的极致小店~"
-       }
-
-
-
+    //去除上一个推荐者的链接
     var num_index_of = current_url.indexOf("from=weixin&wechatuser=");
     if (num_index_of >0){
         current_url = current_url.substr(0,num_index_of-1);
@@ -195,7 +202,7 @@
     current_url += connector + "from=weixin&wechatuser=<%=useraccount%>";
     // alert(current_url);
 
-    var data = {"img":imgs,"url":current_url,"title":"自媒体平台<%#=@shop_title%>","desc":descs};
+    var data = {"img":imgs,"url":current_url,"title":"<%=@shop_title%>","desc":desc};
     wechatShare(data);
 </script>
 

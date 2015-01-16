@@ -23,8 +23,6 @@
   
 <%@shop_goods.each do |shopgoods|%>
 
-
-
             <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="cursor: pointer">
               <a href="/shop/shopinfos/details_trade?id=<%=shopgoods.good.bn%>&shop_id=<%=@shop_id%>" class="">
 
@@ -58,8 +56,8 @@
   </div>
 
 <div class="bottomdiv clearfix"  >
-  <a  class="am-btn am-btn-primary " style="width:33.3%;float: left" href="/shop/shopusers?shop_id=<%=@shop_id%>" >账户中心 </a>
-  <a  class="am-btn am-btn-danger " style="width:33.3%;float: left" href="/shop/shopinfos/show_goods?shop_id=<%=@shop_id%>" >增加商品 </a>
+  <a  class="am-btn am-btn-primary " style="width:33.3%;float: left" href="/shop/shopusers" >店铺管理</a>
+  <a  class="am-btn am-btn-danger " style="width:33.3%;float: left" href="/shop/shopinfos/show_goods" >增加商品 </a>
   <a  class="am-btn am-btn-success " style="width:33.3%;float: left" href="/shop/shopinfos/myshop?shop_id=<%=@shop_id%>" >发布 </a> 
 </div>
 

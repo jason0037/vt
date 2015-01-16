@@ -10,18 +10,20 @@
         background-color: #ff0000;
     }
 
+#head{height:200px;}
+#head div{float:left;
+
+}
 </style>
-<div>
-  <%=image_tag @shop.shop_logo,:id=>"weixin", :style=>"display:none"%>
+
+<div id="head">
+  <div><%=image_tag @shop.shop_logo,:id=>"weixin", :style=>"width:200px"%></div>
   <div id="qrcodeCanvas" style="display: block" ></div>
-          <div id="qrcodeimg"></div>
-  <%=@shop.shop_intro%>
-  </div>
+  <div id="qrcodeimg"></div>
+  <div><%=@shop.shop_intro%></div>
+</div>
 <div class="main">
-
-
   <%if @shop_goods%>
-
       <div class="am-panel-bd">
         <ul class="am-list">
           <%@shop_goods.each do |shopgoods|%>
@@ -63,14 +65,13 @@
   <a  class="am-btn am-btn-primary " style="width:33.3%;float: left" href="/shop/shopinfos/myshop?shop_id=<%=@shop_id%>" >发布 </a> 
 </div>
 
-    <script>
-    $(".am-btn-catid").each(function(){
-        var v = $(this).attr("href");
-        if("http://"+window.location.host+v==window.location.href){
+<script>
+  $(".am-btn-catid").each(function(){
+      var v = $(this).attr("href");
+      if("http://"+window.location.host+v==window.location.href){
 
-        }
-    });
-
+      }
+  });
 </script>
 <%= javascript_include_tag "qrcode/kaelQrcode.min.js"%>
 <%= javascript_include_tag "shop/urlqrcode.js"%>
@@ -80,22 +81,19 @@
   var shop_id= $("#shopid").val();
      var host=window.location.host;
 
-    var url="http://"+host+"/shop/?shop_id="+shop_id;
+    var url="http://"+host+"/shop/?shop_id="+<%=@shop_id%>;
     var imag=$("#weixin").attr("src");
   window.onload = function(){
       var kaelBase = new KaelQrcode();
       kaelBase.init(document.getElementById("qrcodeCanvas"), {
           text :url,
-          size: 300,
+          size: 200,
           img: {
               src : imag
 
           }
       });
-
-
   }
-
 
     $=Zepto;
   $(function() {

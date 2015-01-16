@@ -7,12 +7,24 @@ class Shop:: ShopinfosController < ApplicationController
 
   layout "shop"
 
+  def new
+    if @user
+      @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
+      if @shop
+        redirect_to "/shop/shopinfos"
+      end
+    else
+     redirect_to "/auto_login?id=78&supplier_id=78&platform=mobile&return_url=/shop/shopinfos/new"
+    end
+
+  end
+
   def index
     if @user
 
       @headimgurl = @user.weixin_headimgurl
       if @headimgurl.nil?
-        @headimgurl ='http://www.trade-v.com/assets/trade-vLogo.jpg'
+        @headimgurl ='http://vshop.trade-v.com/assets/trade-vLogo.jpg'
       end
         page= Nokogiri::HTML(open(@headimgurl))
         @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
@@ -27,6 +39,10 @@ class Shop:: ShopinfosController < ApplicationController
 
 
   def create
+
+    if params[:parent]
+      params[:shop].merge!(:parent=>params[:parent])
+    end
     @member = Ecstore::User.where(:member_id=>@user.member_id).first
     @member.update_attributes(:mobile=>params[:shop][:mobile],:email=>params[:shop][:email])
 
@@ -35,7 +51,7 @@ class Shop:: ShopinfosController < ApplicationController
 
     if @shop.save
       shop_id=@shop.shop_id
-      redirect_to "/shop/shopinfos/my_goods?shop_id=#{shop_id}"
+      redirect_to "/shop/shopinfos/my_goods"
     else
       redirect_to "/shop/shopinfos/new"
     end
@@ -63,7 +79,8 @@ class Shop:: ShopinfosController < ApplicationController
     end
 
     @shop= Ecstore::Shop.find_by_shop_id(@shop_id)
-    @shop_title="来自#{@shop.shop_name}的微商店"
+    @share_desc =@shop.shop_intro
+    @shop_title = @shop.shop_name
 
     @shop_goods = Ecstore::ShopsGood.where(:shop_id=>@shop_id)
 
