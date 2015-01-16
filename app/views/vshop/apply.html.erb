@@ -8,7 +8,7 @@
 <br/><br/><br/><br/>
 <DIV class="inner wrp">
   <DIV class="page_nav"><A class="jsUrlLink" href="javascript:void(0);" target="self"
-                           data-url="manage/list">管理中心</A>     <SPAN class="gap">/</SPAN>     申请微店
+                           data-url="manage/list">管理中心</A>  <SPAN class="gap">/</SPAN>加盟申请
   </DIV>
   <DIV class="container_box cell_layout">
     <div  id="step1"  style="display: none;">
@@ -110,7 +110,7 @@
               </DIV>
             -->
               <DIV class="frm_control_group">
-                <%= f.label :vmanager, '微店运营者姓名', :class => "frm_label" %>
+                <%= f.label :vmanager, '用户名', :class => "frm_label" %>
                 <DIV class="frm_controls">
               <SPAN class="frm_input_box">
               <%= f.text_field :vmanager ,:class=>'frm_input',:maxlenth=>'40'%>
@@ -149,21 +149,21 @@
               </SPAN>
                 </DIV>
               </DIV>
-            <DIV class="frm_control_group">
-              <%= f.label :name, '微店名称', :class => "frm_label" %>
-              <DIV class="frm_controls">
-              <SPAN class="frm_input_box">
-              <%= f.text_field :name ,:class=>'frm_input',:maxlenth=>'40'%>
-              </SPAN>
-              </DIV>
-              <P>尽量不要超过4个字</P>
-            </DIV>
-              <DIV class="frm_control_group textarea">
-                <%= f.label :desc, '微店简介', :class => "frm_label" %>
-                <DIV class="frm_controls">
-              <SPAN class="frm_textarea_box">
-               <%= f.text_field :desc ,:class=>'frm_input',:maxlenth=>'80'%>
-              </SPAN>
+            <!--<DIV class="frm_control_group">-->
+              <!--<%#= f.label :name, '微店名称', :class => "frm_label" %>-->
+              <!--<DIV class="frm_controls">-->
+              <!--<SPAN class="frm_input_box">-->
+              <!--<%#= f.text_field :name ,:class=>'frm_input',:maxlenth=>'40'%>-->
+              <!--</SPAN>-->
+              <!--</DIV>-->
+              <!--<P>尽量不要超过4个字</P>-->
+            <!--</DIV>-->
+              <!--<DIV class="frm_control_group textarea">-->
+                <!--<%#= f.label :desc, '简介', :class => "frm_label" %>-->
+                <!--<DIV class="frm_controls">-->
+              <!--<SPAN class="frm_textarea_box">-->
+               <!--<%#= f.text_field :desc ,:class=>'frm_input',:maxlenth=>'80'%>-->
+              <!--</SPAN>-->
                   <P class="frm_tips">最多80字</P></DIV>
               </DIV>
             <DIV class="frm_control_group">
@@ -173,12 +173,12 @@
                <%= file_field_tag :agreement_file %>
               </SPAN>
               </DIV>
-              <p><a href="/m1/O2O.doc">下载协议模板</a></p>
+              <!--<p><a href="/m1/O2O.doc">下载协议模板</a></p>-->
               <P class="frm_tips"> 填写完整并且加盖企业公章的协议,大小不超过1MB。</P>
 
             </DIV>
             <DIV class="tool_bar border with_form">
-              <%=f.submit '下一步', :class=>"btn btn_primary",:id=>"nextBt" %>
+              <%=f.submit '下一步', :class=>"btn btn_warn",:id=>"nextBt" %>
             </DIV>
             <%end%>
       </DIV>
@@ -194,8 +194,8 @@
           <DIV class="inner group"><SPAN class="msg_icon_wrp"><I
           class="icon_msg success"></I>             </SPAN>
             <DIV class="msg_content">
-              <H4>您的微店开通申请已成功提交审核，预计在7天内完成审核</H4>
-              <P>                    审核通过后，将为您开通商品管理、订单管理、会员管理、微信管理等功能权限。
+              <H4>您的加盟开通申请已成功提交审核，预计在7天内完成审核</H4>
+              <P>                    审核通过后，将为您开通商品管理、订单管理、会员管理等功能权限。
               </P>
               <P class="spacing" style="display:none"><A class="btn btn_primary jsUrlLink" href="javascript:void(0);"
                                     target="self" data-url="manage/list">查看管理中心</A>
