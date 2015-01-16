@@ -16,7 +16,7 @@
       <%@files.each do |file|%>
           <tr>
             <td><%=file.name%></td>
-            <td><%=link_to file.url, "http://#{file.url}",:target=>"_blank"%></td>
+            <td><%=link_to file.url, "#{file.url}"%></td>
 
             <td><%=file.desc%></td>
 
