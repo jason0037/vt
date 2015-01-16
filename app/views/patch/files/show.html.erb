@@ -2,7 +2,7 @@
      <hr style="margin: 0;border: 1px dotted #00c5c5;">
      <ul class="side-nav">
   <%@files.each do |file|%>
-     <li> <%=link_to file.url, "#{file.name}"%> </li>
+     <li> <%=link_to file.name,"#{file.url}"%> </li>
 
   <%end%>
 </ul>
