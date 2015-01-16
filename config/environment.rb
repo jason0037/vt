@@ -13,3 +13,5 @@ Modengke::Application.initialize!
 
 PIC_PATH= "/home/trade/pics/images"
 
+DATUM_PATH= "/root/code/datum"
+
