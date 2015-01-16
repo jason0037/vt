@@ -2,11 +2,12 @@
 class UsersController < ApplicationController
   skip_before_filter :find_cart!
   skip_before_filter :find_path_seo
-  
   layout "standard"
+
 
   def new
     @account = Ecstore::Account.new
+
   end
 
   
@@ -50,6 +51,7 @@ class UsersController < ApplicationController
   
 
   def search
+    @platform=params[:platform]
       @title = "找回密码"
       @by = params[:user][:by]
       value = params[:user][:value]
@@ -58,48 +60,86 @@ class UsersController < ApplicationController
           when 'email' then '邮箱'
           when 'login_name' then '用户名'
           else '用户名'
-      end
+             end
+
       if value.present?
           @user = Ecstore::User.joins(:account).where("#{@by} = ?",value).first
           if @user
-            render "find_by_#{@by}"
+            if @platform=="vshop"
+              render "find_by_#{@by}",:layout=>"vshop"
+              else
+              render "find_by_#{@by}"
+            end
+
           else
-            redirect_to forgot_password_users_url(:by=>@by), :notice=> "您输入的#{col}不存在"
+            if @platform=="vshop"
+              redirect_to forgot_password_users_url(:by=>@by,:platform=>@platform), :notice=> "您输入的#{col}不存在"  , :layout=>"vshop"
+             else
+            redirect_to forgot_password_users_url(:by=>@by,:platform=>@platform), :notice=> "您输入的#{col}不存在"  , :layout=>"standard"
+            end
           end
       else
-          redirect_to forgot_password_users_url(:by=>@by), :notice=> "请输入#{col}"
+        if @platform=="vshop"
+          redirect_to forgot_password_users_url(:by=>@by,:platform=>@platform), :notice=> "请输入#{col}" , :layout=>"vshop"
+        else
+          redirect_to forgot_password_users_url(:by=>@by,:platform=>@platform), :notice=> "请输入#{col}"  ,:layout=>"standard"
+          end
       end
+
+
   end
 
   def forgot_password
     @title = "找回密码"
-    render :layout=>"standard"
+    if params[:platform]=="vshop"
+      @platform=params[:platform]
+      render :layout=>"vshop"
+    else
+
+      render :layout=>"standard"
+    end
   end
 
+
+
   def send_reset_password_instruction
+    @platform=params[:platform]
     @title = "找回密码"
     member_id = params[:user][:member_id]
     @by = params[:user][:by]
     @user = Ecstore::User.where(:member_id=>member_id).first
-    @user.send_reset_password_instruction(@by)
 
-    respond_to do |format|
-      format.js { render :nothing=>true }
-      format.html
-    end
+    if @platform =="vshop"
+      @user.send_reset_password_instruction_vshop(@by)
+      render :layout=>"vshop"
+    else
+      @user.send_reset_password_instruction(@by)
+      render :layout=>"standard"
+      end
+    # respond_to do |format|
+    #   format.js { render :nothing=>true }
+    #   format.html
+    # end
 
   end
 
   def reset_password
+    @platform= params[:platform]
     @title = "重设密码"
     by = params[:by] || "email"
-    
+
     @user = Ecstore::User.where(:member_id=>params[:u],:reset_password_token=>params[:token]).first
 
     respond_to do |format|
       if @user && !@user.reset_password_token_expired?
-        format.js { render :js=>"window.location.href='#{reset_password_users_url(params)}'" }
-        format.html
+        if @platform =="vshop"
+          format.js { render :js=>"window.location.href='#{reset_password_users_url(params)}'",:layout=>"vshop" }
+          format.html{ render :layout=>"vshop"}
+        else
+          format.js { render :js=>"window.location.href='#{reset_password_users_url(params)}'" }
+          format.html
+        end
+
       else
         format.js { render "sms_code_error" }
         format.html { redirect_to forgot_password_users_url, :notice=>"重设密码的链接错误" }
@@ -109,6 +149,7 @@ class UsersController < ApplicationController
   end
 
   def change_password
+    @platform= params[:platform]
     @title = "修改密码成功"
     @account = Ecstore::Account.where(:account_id=>params[:account][:account_id]).first
     params[:account].delete(:account_id)
@@ -116,13 +157,19 @@ class UsersController < ApplicationController
    # if @account.change_password(params[:account][:login_password],params[:account][:login_password_confirmation])
       @account.user.clear_reset_password_token
 
+      if @platform =="vshop"
 
+        redirect_to "/vshop/login" ,:notice=>'修改成功!请重新登陆'
+
+      end
 
       #redirect_to "http://weishop.cheuks.com/home"
     else
       @user = @account.user
       render :reset_password
     end
+
+
   end
 
 end

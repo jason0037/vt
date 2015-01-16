@@ -42,7 +42,7 @@
                
                <li class="<%='active' if %w(homes static_pages footers).include?(controller_name)%>">
                     <%=link_to admin_static_pages_path,:class=>"dropdown-toggle" do %>
-                      自定义页面 <b class="caret" style="border-top-color: #fff;border-bottom-color: #fff; margin-top:7px;margin-left:2px;"></b>
+                      页面和资料管理 <b class="caret" style="border-top-color: #fff;border-bottom-color: #fff; margin-top:7px;margin-left:2px;"></b>
                     <%end%>
 
                     <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
@@ -52,6 +52,9 @@
 
                       <li>
                           <%=link_to "网站首页",admin_homes_path if current_admin.has_right_of("homes","index")%>
+                      </li>
+                      <li>
+                        <%=link_to "资料管理",admin_files_path if current_admin.has_right_of("homes","index")%>
                       </li>
 
                       <li>

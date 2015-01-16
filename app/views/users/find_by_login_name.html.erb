@@ -1,4 +1,49 @@
+<%if @platform%>
+    <!--  vshop页面-->
 
+        <%= stylesheet_link_tag "bootstrap","simple" %>
+        <%= stylesheet_link_tag "forgot_password"%>
+        <%= javascript_include_tag "forgot_password"%>
+
+
+    <div class="forgot-password-holder" style="margin-left: 30%">
+      <%=form_for :user,:url=>search_users_path,:html=>{ :class=>"form-inline" } do |f|%>
+          <%=f.hidden_field :by,:value=>"login_name"%>
+          <div>
+            <span class="required">*</span>
+            <span>用户名</span>
+            <%=f.text_field :value,:value=>nil,:class=>"input-medium"%>
+            <input type="hidden" name="platform" value="vshop">
+            <%=f.submit "重新查询",:name=>nil,:class=>"btn btn-success"%>
+          </div>
+          <div class="help-tips"></div>
+      <%end%>
+
+      <p>请选择找回密码方式 : </p>
+      <%=form_for :user,:url=>send_reset_password_instruction_users_path,:html=>{ :class=>"form-inline" } do |f|%>
+          <%=f.hidden_field :member_id,:value=>@user.member_id%>
+          <input type="hidden" name="platform" value="vshop">
+          <p>
+            <label class="radio">
+              <%=f.radio_button :by,"email",:checked=>true%>可选邮箱 : <%=@user.mask_email%>
+            </label>
+          </p>
+
+          <!-- <p>
+			<label class="radio">
+				<%=f.radio_button :by,"mobile",:checked=>false%>可选手机号码 : <%=@user.mask_mobile%>
+			</label>
+		</p> -->
+
+          <p>
+            <%=f.submit "下一步",:name=>nil,:class=>"btn btn-success"%>
+          </p>
+      <%end%>
+    </div>
+
+
+    <!--  首页-->
+    <%else%>
      <br>
      <br>
      <div class="signup-panel"  style="margin-left: 20%;width: 50%">
@@ -89,3 +134,4 @@ line-height: 0;width:100%"%>
 
 
 </div>
+  <%end%>

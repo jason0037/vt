@@ -1,0 +1,30 @@
+<%= form_for :files,:url=>@action_url, method: @method,:html => {:multipart => true, :class => 'form-horizontal' } do |f| %>
+    <div class="control-group">
+      <%= f.label :name,'资料名称', :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :desc,'描述', :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :desc, :class => 'text_field' %>
+      </div>
+    </div>
+
+
+
+    <div class="control-group">
+      <%= f.label :file,'资料', :class => 'control-label' %>
+      <div class="controls">
+        <%= file_field_tag :file,:class => 'file_field' %>
+      </div>
+    </div>
+
+
+
+    <div class="form-actions">
+      <%= f.submit '确定', :class => 'btn btn-primary' %>
+
+    </div>
+<% end %>

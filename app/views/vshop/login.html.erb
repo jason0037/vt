@@ -1,12 +1,13 @@
 <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-<% if flash[:notice].present?%>
-    <div class="alert"><%=flash[:notice]%></div>
-<%end%>
+
 <div class="login_panel label_input prepend open" id="{id}" style="margin-top:-150px;">
     <div class="login_inner wx" id="{id}_wx">
         <%=form_for :session,:url=>admin_sessions_path,:class=>"form login_form" , :remote=>true do |f|%>
         <fieldset class="login_fieldset">
-          <legend class="login_legend">登录</legend>
+          <legend class="login_legend">登录 </legend>
+          <% if flash[:notice].present?%>
+              <div class="alert" style="color: red;font-size: 16px;"><%=flash[:notice]%></div>
+          <%end%>
           <input name="return_url" value="/vshop" type="hidden"/>
           <input name ="platform" value="vshop" type="hidden"/>
 
@@ -23,7 +24,9 @@
 
           <div class="login_function_area">
             <input name="remember_me" type="checkbox" value="1" checked="true">记住账号&nbsp;&nbsp;&nbsp;
-            <!--<a href="javascript:void(0);" id="{id}_forget" class="jsUrlLink" data-url="regist/forget">忘记密码</a>-->
+            <a href="/users/forgot_password?platform=vshop" id="{id}_forget" class="jsUrlLink" data-url="regist/forget">忘记密码</a>
+
+
           </div>
           <%if params[:error]=='1'%>
           <div id="login_msg" style="color:red;font-size:12pt;">账号或密码错</div>

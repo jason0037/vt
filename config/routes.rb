@@ -5,6 +5,10 @@ Modengke::Application.routes.draw do
 
 
 
+
+
+
+
   captcha_route
 
   get "rongda/index"
@@ -99,6 +103,7 @@ Modengke::Application.routes.draw do
   resources :sessions
   resources :users do
     get 'forgot_password', :on=>:collection
+
     post 'send_reset_password_instruction', :on=>:collection 
     get 'reset_password',:on=>:collection
     post 'search', :on=>:collection
@@ -417,6 +422,7 @@ Modengke::Application.routes.draw do
     resources :footers
     resources :advert
     resources :metas
+    resources :files
 
     resources :specifications
 
@@ -570,6 +576,7 @@ Modengke::Application.routes.draw do
 
       end
     end
+    resources :files
     resources :cards do
       member do
         get 'loss'
