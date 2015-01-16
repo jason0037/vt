@@ -33,6 +33,7 @@
         <div class="row">
 
 		<%if @addrs.size>0%>
+              <input type="hidden" value="1" class="status_add">
 			<%@addrs.each_with_index do |addr,index|%>
 				<%if @def_addr == addr%>
                       <a href="/orders/member_addrsform?addr_id=<%=addr.addr_id%>" class="update-link" >
@@ -54,13 +55,13 @@
 			<%end%>
              </div>
               <div class="large-12 medium-12 small-12 columns">
-                <a href="/orders/new_member_addrsform" class="update-link" >使用新的地址</a>
+                <a href="/orders/new_member_addrsform" class="update-link"style="color: red" >使用新的地址</a>
 
              </div>
 		<%else%>
               <div class="large-12 columns" >
-
-                <a href="/orders/new_member_addrsform" class="update-link" >点击创建新的地址</a>
+                <input type="hidden" value="0" class="status_add">
+                <a href="/orders/new_member_addrsform" style="color: red">点击创建新的地址</a>
 
               </div>
 
@@ -92,19 +93,19 @@
 
 
 
-            <div class="large-12 medium-12  ">
-              <h7>  <%=f.label :ship_time, "收货时间：",:class=>"control-label"%></h7>
-            </div>
-            <div class="large-6 medium-6 small-6 columns">
-              <div class="radio">
-                <%=f.select :ship_day,ship_day_options%>
-              </div>   </div>     <%=f.text_field :ship_special,:class=>"input-small hide datetime"%>
-            <div class="large-6 medium-6 small-6 columns">
-              <div class="radio">
-                <%=f.select :ship_time2,ship_time_options%>
-              </div>
-            </div>
-          </div>
+            <!--<div class="large-12 medium-12  ">-->
+              <!--<h7>  <%#=f.label :ship_time, "收货时间：",:class=>"control-label"%></h7>-->
+            <!--</div>-->
+            <!--<div class="large-6 medium-6 small-6 columns">-->
+              <!--<div class="radio">-->
+                <!--<%#=f.select :ship_day,ship_day_options%>-->
+              </div>   </div>     <%#=f.text_field :ship_special,:class=>"input-small hide datetime"%>
+            <!--<div class="large-6 medium-6 small-6 columns">-->
+              <!--<div class="radio">-->
+                <!--<%#=f.select :ship_time2,ship_time_options%>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
               <br>
           <div class="row payment panel" id="payments">
             <div class="large-12 medium-12">
@@ -154,7 +155,7 @@
             <br>
 
           <div class="row panel" >
-            <h4 class="title">商品清单</h4> <a href="/cart/showpc"><span style="color: red">*</span><span style="font-size: 15px;margin-left: 20%;">如果需要修改商品数量请点击</span></a>
+            <h4 class="title">商品清单<a href="/cart/showpc"><span style="color: red">*</span><span style="font-size: 15px;">如果需要修改商品数量请点击</span></a> </h4>
             <table style="width: 100%">
               <thead>
               <tr>
@@ -337,7 +338,8 @@
 
              <hr>
 			<div class="large-12 medium-12 small-12 columns" style="text-align: center">
-				<%=f.submit "提 交 订 单",:class=>" button " %>
+				<!--<%#=f.submit "提 交 订 单",:class=>" button " %>-->
+              <input type="button" value="提 交 订 单" class="button order_btn ">
 			</div>
 
 
@@ -345,6 +347,28 @@
 <%else%>
 	<p>您还没有选择商品。</p>
 <%end%>
+<script>
+  $(document).ready(function(){
+
+         if($(".status_add").val()==0){
+            $(".order_btn").addClass("secondary")  ;
+
+      } else
+         {
+             $(".order_btn").removeClass("secondary")  ;
+         }
+      $(".order_btn").bind("click",function(){
+          if($(this).hasClass("secondary")) {
+              alert("亲～！先填写地址哦！在提交订单")
+
+          }   else{
+             $("#order_form").submit();
+          }
+      })
+
+  })
+
+</script>
 
 
 
