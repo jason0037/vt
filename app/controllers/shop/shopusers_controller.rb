@@ -45,7 +45,7 @@ class Shop::ShopusersController < ApplicationController
 
     if @user.member_id.to_s==@shop_id.to_s
 
-      @share_for_sale = Ecstore::Order.all(:conditions => "shop_id = "+ @shop_id,
+      @share_for_sale = Ecstore::Order.all(:conditions => "shop_id = #{ @shop_id}",
                   :select => "SUM(share_for_sale) share_sale",:group=>"shop_id").first.share_sale
 
       if @shop.parent.nil?
