@@ -23,8 +23,11 @@ Modengke::Application.routes.draw do
    # get "/shopuser"=>"shopuser#index" ,:controller=>"shopusers"
 
     resource :shopusers do
-      get "index",:on=>:collection
-      get "clients",:on=>:collection
+      collection do
+        get "index"
+        get "clients"
+        get "share"
+      end
     end
 
     resource :visitors do

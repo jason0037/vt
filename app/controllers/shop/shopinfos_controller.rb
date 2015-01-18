@@ -277,10 +277,10 @@ class Shop:: ShopinfosController < ApplicationController
 
     if params[:shop_id] #微店客户查看订单
       @shop_id = params[:shop_id]
-      @orders = Ecstore::Order.where(:supplier_id=>@shop_id,:member_id=> @user_id).order("createtime desc")
+      @orders = Ecstore::Order.where(:shop_id=>@shop_id,:member_id=> @user.member_id).order("createtime desc")
     else  #店长查看订单
       @shop_id = @user.member_id
-      @orders = Ecstore::Order.where(:supplier_id=>@shop_id).order("createtime desc")
+      @orders = Ecstore::Order.where(:shop_id=>@shop_id).order("createtime desc")
     end  
  end
 

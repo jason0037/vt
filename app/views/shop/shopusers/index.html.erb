@@ -21,8 +21,8 @@
 <hr>
 
 <%if @user.member_id.to_s==@shop_id.to_s%>
-    <div class="am-panel am-panel-default" style="display:none">
-      <a href="/shop/shop_share">
+    <div class="am-panel am-panel-default">
+      <a href="/shop/shopusers/share">
         <div class="am-panel-hd">我的收益</div>
         <span class="icon-arr"></span> </a>
     </div>
@@ -51,6 +51,13 @@
         <div class="am-panel-hd">店铺预览</div>
         <span class="icon-arr"></span> </a>
     </div>
+    <%if @shop.parent.nil?%>
+        <div class="am-panel am-panel-default">
+          <a href="/shop/shopinfos/my_goods">
+            <div class="am-panel-hd">分店管理</div>
+            <span class="icon-arr"></span> </a>
+        </div>
+    <%end%>
 <%else%>
     <div class="am-panel am-panel-default">
       <a href="/shop/visitors/my_shopping_cart?supplier_id=<%=@shop.shop_id%>">
@@ -60,6 +67,11 @@
     <div class="am-panel am-panel-default">
       <a href="/shop/shopinfos/myorder?shop_id=<%=@shop.shop_id%>">
         <div class="am-panel-hd">我的订单</div>
+        <span class="icon-arr"></span> </a>
+    </div>
+     <div class="am-panel am-panel-default">
+      <a href="/shop/shopusers/share?shop_id=<%=@shop.shop_id%>">
+        <div class="am-panel-hd">我的收益</div>
         <span class="icon-arr"></span> </a>
     </div>
     <div class="am-panel am-panel-default">
