@@ -44,14 +44,23 @@ class Shop::ShopusersController < ApplicationController
     @share_for_promotion = 0
 
     if @user.member_id.to_s==@shop_id.to_s
-      Ecstore::order.where().
+
+      @share_for_sale = Ecstore::order.all(:conditions => "shop_id = "+ @shop_id,
+                  :select => "SUM(share_for_sale) share_sale",:group=>"shop_id").first.share_sale
 
       if @shop.parent.nil?
+        results = Ecstore::shop.find_by_parent(@shop_id)
+        results.each(:as => :hash) do |row|
+          shop_ids= row["shop_id"]
+        end
 
+        @share_for_shop = Ecstore::order.all(:conditions => "shop_id in (#{shop_ids}) ",
+                  :select => "SUM(share_for_shop) share_shop, shop_id",:group=>"shop_id")
       end
 
     else
-
+      @share_for_promotion = Ecstore::order.all(:conditions => "shop_id = #{@shop_id} and member_id=#{@user.member_id}",
+          :select => "SUM(share_for_promotion) share_promotion",:group=>"shop_id,member_id").first.share_promotion
     end
     
   end
