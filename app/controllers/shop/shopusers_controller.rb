@@ -50,8 +50,10 @@ class Shop::ShopusersController < ApplicationController
 
       if @shop.parent.nil?
         results = Ecstore::Shop.find_by_parent(@shop_id)
-        results.each(:as => :hash) do |row|
-          shop_ids= row["shop_id"]
+        if results.size>0
+          results.each(:as => :hash) do |row|
+            shop_ids= row["shop_id"]
+          end
         end
 
         @share_for_shop = Ecstore::Order.all(:conditions => "shop_id in (#{shop_ids}) ",
