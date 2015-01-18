@@ -49,6 +49,7 @@ class Shop::ShopusersController < ApplicationController
                   :select => "SUM(share_for_sale) share_sale",:group=>"shop_id").first.share_sale
 
       if @shop.parent.nil?
+        shop_ids = [0]
         results = Ecstore::Shop.find_by_parent(@shop_id)
         if results
           results.each(:as => :hash) do |row|
