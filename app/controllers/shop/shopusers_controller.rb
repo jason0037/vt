@@ -50,7 +50,7 @@ class Shop::ShopusersController < ApplicationController
 
       if @shop.parent.nil?
         results = Ecstore::Shop.find_by_parent(@shop_id)
-        if results.size>0
+        if results
           results.each(:as => :hash) do |row|
             shop_ids= row["shop_id"]
           end
