@@ -45,8 +45,11 @@ class Shop::ShopusersController < ApplicationController
 
     if @user.member_id.to_s==@shop_id.to_s
 
-      @share_for_sale = Ecstore::Order.all(:conditions => "shop_id = #{ @shop_id}",
-                  :select => "SUM(share_for_sale) share_sale",:group=>"shop_id").first.share_sale
+      share = Ecstore::Order.all(:conditions => "shop_id = #{ @shop_id}",
+                  :select => "SUM(share_for_sale) share_sale",:group=>"shop_id").first
+      if share
+        @share_for_sale = share.share_sale
+      end
 
       if @shop.parent.nil?
         shop_ids = 0
@@ -62,8 +65,12 @@ class Shop::ShopusersController < ApplicationController
       end
 
     else
-      @share_for_promotion = Ecstore::Order.all(:conditions => "shop_id = #{@shop_id} and member_id=#{@user.member_id}",
-          :select => "SUM(share_for_promotion) share_promotion",:group=>"shop_id,member_id").first.share_promotion
+      share = Ecstore::Order.all(:conditions => "shop_id = #{@shop_id} and member_id=#{@user.member_id}",
+          :select => "SUM(share_for_promotion) share_promotion",:group=>"shop_id,member_id").first
+      if share
+        @share_for_promotion = share.share_promotion
+      end
+
     end
     
   end
