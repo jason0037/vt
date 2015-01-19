@@ -46,7 +46,7 @@
                   <%=good.name%>
                 </span>
               <div class="am-list-item-text" style="width: 100%;" >
-                分成:<strong class="price" >¥<%= format('%.2f',good.price.to_i*0.15)%> </strong>
+                分成:<strong class="price" >¥<%= format('%.2f',good.price*good.share_for_sale)%> </strong>
                 <span class="right">贸威价:<strong class="price" >¥<%=good.price%></strong> </span>  </div>
             </div>
           </a>
