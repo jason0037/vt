@@ -1,0 +1,97 @@
+<style type="text/css">
+
+    .am-panel-hd >span{
+        text-align: center;
+    }
+
+</style>
+
+<div class="am-panel am-panel-default fixed_one "style="margin: 0px;padding: 0px">
+  <div class="am-panel-hd"  style="text-align: center;padding: 10px">欢迎来到顶级红茶馆</div>
+</div>
+<% if @promotions%>
+    <%@promotions.each  do |pro|%>
+
+        <div class="am-panel  "style="filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9" data-am-sticky >
+          <div class="am-panel-hd" style="background-color: #FF8000;"> <span style="font-size: 20px; "><%=pro.name%></span>
+
+          </div>
+        </div>
+        <div class="am-panel-bd">
+          <a name="<%=pro.name%>"> </a>
+          <ul class="am-list">
+
+            <%pro.field_vals.split(",")[0].each do |p|%>
+                <%@goods=Ecstore::Good.where("bn like ?" , p+"%" )%>
+                <% @goods.each do |good|%>
+
+                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+
+                      <div class="am-col col-sm-4 am-list-thumb">
+                        <a href="javascript:void (0);" class="Q-buy-btn">
+                          <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
+                          <img class="j_item_image beisaier hide"  src="<%=good.list_default_pic%>">
+                          <input type="hidden" class="goods_id" value="<%=good.goods_id%>">
+                          <hr style="margin-top: 3.5em;border-top:none"><button type="button" href="###" title="加入购物车" class="  am-btn am-btn-block am-btn-danger" > <i class="am-icon-shopping-cart"> <em class="icon-em" >加入购物车</em> </i> </button>
+                        </a>
+                      </div>
+                      <div class="am-col col-sm-8 am-list-main">
+                        <a href="/mproducts?id=<%=good.bn%>&supplier_id=<%=@supplier.id%>&fp=category" class="cart_orderlist_i">
+                          <span class="am-list-item-hd goods-name-span" >  <%=good.name%>  </span> <br>
+                          <%unless good.tag.blank?%>
+                              <%a=0%>
+                              <%good.tag.split(",").each do |tag|%>
+                                  <%color=["#FF8000","#4CDD8C","#EE00EE","#ADF"]%>
+                                  <%if a<5%>
+                                      <em style=" font-size: 12px; color: <%=color[a]%>"> <%=tag%> </em>
+                                      <%end%><%a=a+1%> <%end%>  <%end%>  </a>
+                        <hr style="margin-top: 2.2em;border-top:none"><div class="am-list-item-text">
+                        <div class="am-col col-sm-4"><br>   <span class=" mall_price" >¥<%=good.price%> &nbsp; </span>
+                        </div>
+                        <div class="am-col col-sm-8">
+                          <a  href="/cart/mobile?supplier_id=<%=@supplier.id%>"class="am-btn  am-btn-block am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
+                        </div>
+                      </div>   </div> </li>
+                <%end%> <%end%> </ul>  </div>
+
+
+
+    <%end%>
+<%end%>
+
+<div class="J-shoping">
+  <div class="amz-toolbar J-shoping-title" id="amz-toolbar">
+    <a href="/cart/mobile?id=<%=@supplier.id%>" title="购物车" >
+      <i class="am-icon-btn  am-icon-shopping-cart " id="cart"></i>
+    </a>
+    <span class="  J-shoping-num"><%=@line_items.count%></span>
+  </div> </div>
+
+<script>
+    $(".am-btn-catid").each(function(){
+        var v = $(this).attr("href");
+        if("http://"+window.location.host+v==window.location.href){
+
+        }
+    });
+
+</script>
+<script type="text/javascript" >
+    $('.Q-buy-btn').on('click',addProduct);
+
+    $(".buttom_bolt").on('click',function(){
+        var goods_id= $(this).parent().parent().parent().prev().children().children(".goods_id").val();
+        var url="/cart/add" ;
+
+
+        $.ajax(url,{
+            type: "post",
+            data:{"goods_id":goods_id,"spec": "","attr":"mall","platform":"mobile"  },
+
+            success:function(res){
+
+            }
+        })
+    })
+
+</script>
