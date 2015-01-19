@@ -142,7 +142,7 @@
                                :id=>"add_to_cart"%>
                 <%end%>
             <%else%>
-                <%=image_tag  "/assets/store/not_marketing.png", :class=>"not-marketing"%>
+                <a href="javascript:void(0);" class="add_to_favorites  inside" >商品已经下架</a>
             <%end%>
 
             <%if signed_in?%>
