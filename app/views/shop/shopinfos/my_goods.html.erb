@@ -19,28 +19,32 @@
 <%if @shop_goods%>
 
 <div class="am-panel-bd">
-  <ul class="am-list">
-  
-<%@shop_goods.each do |shopgoods|%>
+  <ul class="am-list">  
+    <%@shop_goods.each do |shopgoods|%>
+      <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="cursor: pointer">
+         <a href="/shop/shopinfos/details_trade?id=<%=shopgoods.good.bn%>&shop_id=<%=@shop_id%>" class="">
+          <div class="am-col col-sm-4 am-list-thumb">
+            <img src="<%=shopgoods.good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=shopgoods.good.list_default_pic%>" data-brandid="<%=shopgoods.good.brand_id%>" data-productid="<%=shopgoods.good.bn%>" data-onerror="<%=shopgoods.good.list_default_pic%>" data-brandlazy="false" style="display: block;">
+          </div>
+          <div class="am-col col-sm-8 am-list-main">
+            <span class="am-list-item-hd "><%=shopgoods.good.name%></span>
+          </div>
+        </a>
+        <div class="am-list-item-text" style="width: 100%;" >
+            <span class="right">提成:<strong class="price" >¥<%=format('%.2f',shopgoods.good.share_for_sale*shopgoods.good.price)%></strong> 
+            &nbsp;|&nbsp;售价:<strong class="price" >¥<%=shopgoods.good.price%></strong> </span> 
+        </div>
+        <div>
+         <span class="delete" style="float: right">
+         <a href="/shop/shopinfos/goods_destroy?goods_id=<%=shopgoods.goods_id%>" class="delete" data-method="delete" data-confirm="确定要删除吗？" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
+           <img src="/assets/mobile/scan_layer-33.png" width="30" height="30">
+         </a>
+        </span>
+        </div>
+      </li>
 
-            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="cursor: pointer">
-              <a href="/shop/shopinfos/details_trade?id=<%=shopgoods.good.bn%>&shop_id=<%=@shop_id%>" class="">
 
-              <div class="am-col col-sm-4 am-list-thumb">
-                <img src="<%=shopgoods.good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=shopgoods.good.list_default_pic%>" data-brandid="<%=shopgoods.good.brand_id%>" data-productid="<%=shopgoods.good.bn%>" data-onerror="<%=shopgoods.good.list_default_pic%>" data-brandlazy="false" style="display: block;">
-              </div>
-              <div class="am-col col-sm-8 am-list-main">
-                <span class="am-list-item-hd ">
-                  <%=shopgoods.good.name%>
-                </span>
-                <div class="am-list-item-text" style="width: 100%;" >
-
-                  <span class="right">商品价:<strong class="price" >¥<%=shopgoods.good.price%></strong> </span>  </div>
-              </div>
-
-              </a>
-            </li>
-        <%end%>
+    <%end%>
 
   </ul>
 </div>

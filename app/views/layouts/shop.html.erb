@@ -67,14 +67,17 @@
   <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout" id="">
     <ul class="am-navbar-nav am-cf sm-block-grid-2">
 
-      <% if @user && @shop%>
-          <%if @user.member_id == @shop.shop_id%>
-            <li><a class="" href="/shop/shopusers"><span  class="am-navbar-label">|管理店铺|</span></a></li>
+      <% if @shop%>
+          <%if  @user %>
+            <%if @user.member_id == @shop.shop_id%>
+              <li><a class="" href="/shop/shopusers"><span  class="am-navbar-label">|管理店铺|</span></a></li>
+            <%else%>
+              <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop_id%>"><span  class="am-navbar-label">|我也要开店|</span></a></li>
+              <li ><a class="" href="/shop/shopusers?shop_id=<%=@shop_id%>"><span  class="am-navbar-label">|账户中心|</span></a></li>
+            <%end%>
           <%else%>
-            <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop_id%>"><span  class="am-navbar-label">|我也要开店|</span></a></li>
-            <li ><a class="" href="/shop/shopusers?shop_id=<%=@shop_id%>"><span  class="am-navbar-label">|账户中心|</span></a></li>
+              <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop_id%>"><span  class="am-navbar-label">|我也要开店|</span></a></li>
           <%end%>
-          
 
       <%end%>     
 

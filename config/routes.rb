@@ -14,7 +14,8 @@ Modengke::Application.routes.draw do
         post 'add_goods'
         get 'my_goods'
         get 'goods_details'
-        get :myshop
+        get :myshop        
+        get :goods_destroy
         get 'myorder'
         get 'details_trade'
       end

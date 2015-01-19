@@ -3,6 +3,8 @@ class Shop::ShopusersController < ApplicationController
   before_filter :find_shop_user
   layout "shop"
 
+ 
+
   def index
     if @user.nil?
       redirect_to "/shop/shopinfos"

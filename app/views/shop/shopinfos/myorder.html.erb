@@ -28,38 +28,32 @@
     <%@orders.each  do |order|%>
         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
           <div class="am-col col-sm-4 am-list-thumb">
-
             <%order.order_items.each_with_index do |order_item,index|%>
-
                     <%
                        link_title = order_item.name
                        link_title = "赠品:#{link_title}" if order_item.item_type == 'gift'
                     %>
                     <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.good%>
-
-
             <%end%>
 
           </div>
           <div class="am-col col-sm-8 am-list-main">
             <h3 class="am-list-item-hd">
-
               ￥<%=order.final_amount%>
+              <span style="float: right;margin-left:15px">
+              订单状态:<a href="#"><%=order.status_text%></a>|<a href="#"><%=order.order_status_text%></a>
+              </span>
               <span style="float: right">
-                <%unless @user_id%>
-              购买人:<%=order.user.weixin_nickname%>
-                    <%end%>
-         </span>
-
+                购买人:<a href="#"><%=order.user.weixin_nickname%></a>
+              </span>
             </h3>
-            <a href="/orders/mobile_show_order?id=<%=order.order_id%>&supplier_id=78" target="_blank"><%= I18n.t "details"%></a>
+            <a href="/orders/mobile_show_order?id=<%=order.order_id%>&shop_id=<%=@shop_id%>" target="_blank"><%= I18n.t "details"%></a>
 
           </div>
         </li>
     <%end%>
   </ul>
 </div>
-
 
 
 

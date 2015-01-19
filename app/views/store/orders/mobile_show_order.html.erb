@@ -86,14 +86,14 @@
     <br/>
 
 
-  <% if @order.order_status_text=="待付款" %>
-
-
-              <a class="ahref am-btn  am-btn-danger " href="/orders/mobile_show?id=<%=@order.order_id%>&supplier_id=<%=@order.supplier_id%>" class="btn btn-inverse"><%= I18n.t "no_pay"%></a>
+  <% if @order.order_status_text=="待付款"%>
+    <%if  @shop_id.nil? || @shop_id != @user.member_id.to_s  #店主查看顾客订单，不显示付款按钮%> 
+          <a class="ahref am-btn  am-btn-danger " href="/orders/mobile_show?id=<%=@order.order_id%>&supplier_id=<%=@order.supplier_id%>&shop_id=<%=@shop_id%>" class="btn btn-inverse"><%= I18n.t "no_pay"%></a>
+    <%else%>
+         <span>待付款</span>
+    <%end%>
 
   <% else%>
-
-
       <span><%= I18n.t "success_pay"%></span>
  <%end%>
 </div>

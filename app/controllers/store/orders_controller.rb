@@ -823,6 +823,10 @@ WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}"
 
   def mobile_show_order
     supplier_id=params[:supplier_id]
+    if supplier_id.nil?
+      supplier_id=78
+    end
+    @shop_id = params[:shop_id]
     @order =Ecstore::Order.find_by_order_id(params[:id])
     @delivery=Ecstore::Delivery.find_by_order_id(params[:id])
     @supplier  =  Ecstore::Supplier.find(supplier_id)

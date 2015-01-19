@@ -7,6 +7,16 @@ class Shop:: ShopinfosController < ApplicationController
 
   layout "shop"
 
+   def goods_destroy
+    @shop_id = @user.member_id
+    @goods_id = params[:goods_id]
+
+    Ecstore::ShopsGood.where(:shop_id=>@shop_id,:goods_id=>@goods_id).delete_all
+
+   redirect_to '/shop/shopinfos/my_goods'
+  end
+
+
   def new
     if @user
       @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
