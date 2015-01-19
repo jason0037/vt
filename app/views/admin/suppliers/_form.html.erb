@@ -3,7 +3,7 @@
     <div style="float:left;width:450px">
       <div>基本信息</div>
       <div class="control-group">
-        <%= f.label :name, "微店名称", :class => "control-label" %>
+        <%= f.label :name, "供应商名", :class => "control-label" %>
         <div class="controls">
           <%= f.text_field :name%>
         </div>
@@ -58,9 +58,9 @@
         </div>
       </div>
       <div class="control-group">
-        <%= f.label :desc, "微店简介", :class => "control-label" %>
+        <%= f.label :desc, "供应商简介", :class => "control-label" %>
         <div class="controls">
-          <%=f.text_area :desc,:placeholder=>"微店简介",:class=>"span3",:rows=>3%>
+          <%=f.text_area :desc,:placeholder=>"供应商简介",:class=>"span3",:rows=>3%>
         </div>
       </div>
       <div class="control-group">
@@ -95,7 +95,7 @@
         </div>
       </div>
       <div class="control-group">
-        <%= f.label :vmanager, "微店店长", :class => "control-label" %>
+        <%= f.label :vmanager, "姓名", :class => "control-label" %>
         <div class="controls">
           <%= f.text_field :vmanager%>
         </div>
@@ -107,19 +107,19 @@
         </div>
       </div>
       <div class="control-group">
-        <%= f.label :vmanager_id, "店长身份证号", :class => "control-label" %>
+        <%= f.label :vmanager_id, "供应商身份证号", :class => "control-label" %>
         <div class="controls">
           <%= f.text_field :vmanager_id%>
         </div>
       </div>
       <div class="control-group">
-        <%= f.label :vmanager_mobile, "店长手机", :class => "control-label" %>
+        <%= f.label :vmanager_mobile, "供应商手机", :class => "control-label" %>
         <div class="controls">
           <%= f.text_field :vmanager_mobile%>
         </div>
       </div>
       <div class="control-group">
-        <%= f.label :vmanager_email, "店长email", :class => "control-label" %>
+        <%= f.label :vmanager_email, "供应商email", :class => "control-label" %>
         <div class="controls">
           <%= f.text_field :vmanager_email%>
         </div>
@@ -131,7 +131,7 @@
         </div>
       </div>
     </div>
-    <div style="float:left;width:450px">
+    <div style="float:left;width:450px display:none">
       <div>公众号信息</div>
       <div class="control-group">
         <%= f.label :weixin_token, "服务号token", :class => "control-label" %>
