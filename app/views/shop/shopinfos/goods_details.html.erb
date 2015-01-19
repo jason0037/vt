@@ -32,13 +32,7 @@
       <%end%>
     </ul>
   </div>
-
-
-
 </div>
-
-
-
 
 <div class="am-panel am-panel-default">
   <div class="am-panel-hd">
@@ -46,12 +40,8 @@
       <%=I18n.t 'preferential-price'%>:<span style="float: right;color: red">¥<%=@good.default_product.price %></span>
     </h4>
   </div>
-  <%#= I18n.t 'original-price'%>
-  
+  <%#= I18n.t 'original-price'%>  
 </div>
-
-
-
 
 <div class="am-panel-group" id="accordion">
   <div class="am-panel am-panel-default">
@@ -80,13 +70,13 @@
 
     <div class="am-panel-bd" >
       <%=form_for :product,:url=>"/shop/visitors/my_add_shopping", :html=>{:id=>"cartform"},:remote=>true do |f|%>
-          <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
-          <%=f.hidden_field :type_id,:value=>@good.type_id%>
-          <%=hidden_field_tag :supplier_id, @shop_id%>
-	    <%=f.hidden_field :shop_id, :value=>@shop_id%>
-	  <%=f.hidden_field :user_id, :value=>@visitors.id if @visitors%>
-          <%=hidden_field_tag :platform,"shop"%>
-          <%=hidden_field_tag :return_url,{:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+        <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
+        <%=f.hidden_field :type_id,:value=>@good.type_id%>
+        <%=f.hidden_field_tag :supplier_id,:value=>'78'%>
+        <%=f.hidden_field :shop_id, :value=>@shop_id%>
+        <%=f.hidden_field :user_id, :value=>@visitors.id if @visitors%>
+        <%=hidden_field_tag :platform,"shop"%>
+        <%=hidden_field_tag :return_url,{:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
 
           <%if @good.specs.present?%>
               <%@good.specs.order("spec_id asc").each do |spec|%>
@@ -94,11 +84,9 @@
                   <%=hidden_field_tag "product[specs][]"%>
 
                   <%@good.spec_values.where(:spec_id=>spec.spec_id).uniq.order("p_order asc").each do |spec_value|%>
-                      <a  data-size="<%=spec_value.spec_value_id%>" class=" am-btn am-btn-default choose" data-maxamount="2" data-minamount="1"><%=spec_value.spec_value%></a>
-
+                      <a data-size="<%=spec_value.spec_value_id%>" class=" am-btn am-btn-default choose" data-maxamount="2" data-minamount="1"><%=spec_value.spec_value%></a>
 
                   <%end%>
-
               <%end%>
           <%end%>
       <%end%>
@@ -119,11 +107,7 @@
   </div>
 </div>
 
-
-
-
 <script type="text/javascript">
-
     $(document).ready(function(){
         $('.choose').bind("click",function() {
             if ($(this).hasClass("am-btn-warning")){

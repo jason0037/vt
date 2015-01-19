@@ -25,19 +25,13 @@ class Store::PaymentsController < ApplicationController
 
 		@payment = Ecstore::Payment.new params[:payment]  do |payment|
 			payment.payment_id = Ecstore::Payment.generate_payment_id
-
 			payment.status = 'ready'
 			payment.pay_ver = '1.0'
 			payment.paycost = 0
-
 			payment.account = 'TRADE-V | 跨境贸易 一键直达'
-      if @visitors
-        payment.member_id = payment.op_id = @visitors.id
-        payment.pay_account = @visitors.visitor_name
-      else
-        payment.member_id = payment.op_id = @user.member_id
-        payment.pay_account = @user.login_name
-        end
+     
+	        payment.member_id = payment.op_id = @user.member_id
+	        payment.pay_account = @user.login_name
 
 			payment.ip = request.remote_ip
 
@@ -54,26 +48,22 @@ class Store::PaymentsController < ApplicationController
 		end
 
 		@payment.money = @payment.cur_money = @order.pay_amount
+		shop_id = params[:shop_id]
 		if @payment.save
-      if @payment.pay_app_id=='wxpay'
-      	supplier_id = params[:supplier_id]
+	      if @payment.pay_app_id=='wxpay'
+	      	supplier_id = params[:supplier_id]
 
-      	if supplier_id == '98' 
-      		id = 98	#万家物流微信支付接口
-      	else
-      		id = 78 #贸威微信支付接口
-        end
-
-        if @visitors
-          redirect_to "/vshop/#{id}/payments?payment_id=#{@payment.payment_id}"
-
-        else
-      	
-        redirect_to "/vshop/#{id}/payments?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}&showwxpaytitle=1"
-         end
-      else
-        redirect_to pay_payment_path(@payment.payment_id)
-      end
+	      	if supplier_id == '98' 
+	      		id = 98	#万家物流微信支付接口
+	      	else
+	      		id = 78 #贸威微信支付接口
+	        end
+	      	
+	        redirect_to "/vshop/#{id}/payments?payment_id=#{@payment.payment_id}&supplier_id=#{supplier_id}&shop_id=#{shop_id}&shop_id=&showwxpaytitle=1"
+	  
+	      else
+	        redirect_to pay_payment_path(@payment.payment_id)
+	      end
 
 		else
 			redirect_to order_url(@order)

@@ -22,9 +22,6 @@
 
     <div class="am-panel am-panel-default">
       <div class="am-panel-hd"><%=I18n.t "details_consignee"%></div>
-
-      <a id="addressLink" href="/goodsaddrs/new_addr?user_id=<%=params[:user_id]%>&return_url=/visitors/order_clearing?supplier_id=2534&user_id=2">
-
       <div class="am-panel-bd">
           <span class="text">&nbsp;&nbsp;<%=@def_addr.name%>  <span class="phone-num" style="margin-left: 30px"><%=@def_addr.mobile%></span></span>
           <br/>
@@ -37,7 +34,7 @@
 
     <%=form_for :order,:url=>"#{orders_path}?platform=shop",:html=>{ :class=>"am-form",:id=>"order_form" } do |f|%>
         <%=hidden_field_tag "member_addr",@def_addr&&@def_addr.id%>
-           <%=hidden_field_tag "shop_id",@shop_id%>
+        <%=f.hidden_field :shop_id,:value=>@shop_id%>
         <div class="am-panel am-panel-warning" data-collapse="true" data-style="arrow" style="display:none">
           <div class="am-panel-hd"><%= I18n.t "delivery_time"%></div>
           <div class="am-panel-bd">

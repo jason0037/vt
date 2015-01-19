@@ -23,8 +23,6 @@
 
 </style>
 
-
-
 <div class="am-list-news-bd">
   <ul class="am-list">
     <%@orders.each  do |order|%>
@@ -49,7 +47,7 @@
               ￥<%=order.final_amount%>
               <span style="float: right">
                 <%unless @user_id%>
-              购买人:<%=Ecstore::Visitor.find(order.member_id).visitor_name%>
+              购买人:<%=order.user.weixin_nickname%>
                     <%end%>
          </span>
 

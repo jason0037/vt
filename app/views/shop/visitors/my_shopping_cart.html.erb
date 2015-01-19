@@ -5,7 +5,7 @@
 </style>
 <div class="am-panel am-panel-default "style="margin: 0px;padding: 0px">
   <div class="am-panel-hd" style="text-align: center">
-    <a href="/shop/shopinfos/myshop?shop_id=<%=@supplier_id%>" style="margin-left: 80%" > <%= I18n.t "continue_shopping"%></a>
+    <a href="/shop/?shop_id=<%=@shop_id%>" style="margin-left: 80%" > <%= I18n.t "continue_shopping"%></a>
   </div>
 </div>
 
@@ -15,12 +15,9 @@
 
     <ul class="am-list">
     <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
-
-
-
         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" id="line_<%=line_item.obj_ident%>" >
           <div class="am-col col-sm-4 am-list-thumb">
-            <a href="/shop/shopinfos/goods_details?id=<%=line_item.good.bn%>&shop_id=<%=@supplier_id%>">
+            <a href="/shop/shopinfos/goods_details?id=<%=line_item.good.bn%>&shop_id=<%=@shop_id%>">
             <img src="<%=line_item.good.medium_pic%>"
                  data-original="<%=line_item.good.medium_pic%>"
                  data-onerror="<%=line_item.good.medium_pic%>"
@@ -29,7 +26,7 @@
           </div>
           <div class="am-col col-sm-8 am-list-main">
             <h3 class="am-list-item-hd">
-              <a href="/shop/shopinfos/goods_details?id=<%=line_item.good.bn%>&shop_id=<%=@supplier_id%>">
+              <a href="/shop/shopinfos/goods_details?id=<%=line_item.good.bn%>&shop_id=<%=@shop_id%>">
                 <p class="cart_g_name"><%=line_item.good.brand.brand_name%>,<%=line_item.product.name%> </p>
 
               </a>
@@ -63,8 +60,7 @@
           <div>
         <span class="delete" style="float: right">
 
-           <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile&supplier_id=#{line_item.supplier_id}"%>" class="delete" data-method="delete" data-confirm="确定要删除吗？" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
-
+           <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile&shop_id=#{line_item.shop_id}"%>" class="delete" data-method="delete" data-confirm="确定要删除吗？" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
              <img src="/assets/mobile/scan_layer-33.png" width="30" height="30">
            </a>
     </span>
@@ -74,26 +70,10 @@
         </li>
 
     <%end%>  </ul>
-
-
-
   </div></div>
-
-
-
-
 </div>
 
 </div>
-
-
-
-
-
-
-
-
-
 
 <div id ="carter">
   <div class="bottomdiv clearfix">
@@ -102,12 +82,12 @@
         <p class="cart_total modal-footer" style="color: red"><%= I18n.t "total-price"%>：<span class="c_t_price total">¥<%= format('%.2f',@cart_total)%> </span></p>
       </div>
       <%if @line_items[0]== nil%>
-          <a  style="float: right" class="am-btn am-btn-warning" style="margin-left: 30%" href="/vshop/<%=@supplier_id%>">
+          <a  style="float: right" class="am-btn am-btn-warning" style="margin-left: 30%" href="/shop/?shop_id=<%=@shop_id%>">
             <i class="am-icon-shopping-cart"></i>
             <%= I18n.t "continue_shopping"%>
           </a>
       <%else%>
-          <a href="/shop/visitors/order_clearing?supplier_id=<%=@supplier_id%>&user_id=<%=@user_id%>" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
+          <a href="/shop/visitors/order_clearing?shop_id=<%=@shop_id%>" data-islogin="true" class="fr btn_sure" data-shopcarthide="true" data-counttime="true" data-carttime="1196">
             <%=I18n.t  "create-order"%>
             <span class="fr cart_time_smb"><span class="clockicon fl"></span>
         <!--<span class="num_cunt"><span class=":">19</span><span>:</span><span>42</span><span></span></span>--> </span>

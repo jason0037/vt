@@ -49,23 +49,29 @@ class ApplicationController < ActionController::Base
     end
 
     def find_cart!
-            if signed_in?
-              @line_items = Ecstore::Cart.where(:member_id=>current_account.account_id).order("supplier_id")
+      shop_id = session[:shop_id]
+      if signed_in?
+        if (shop_id.nil?)
+          @line_items = Ecstore::Cart.where(:member_id=>current_account.account_id,:shop_id=>nil).order("supplier_id")
+        else
+          @line_items = Ecstore::Cart.where(:member_id=>current_account.account_id,:shop_id=>shop_id)
+        end
+      else
+        member_ident = @m_id
+        @line_items = Ecstore::Cart.where(:member_ident=>member_ident)
+      end
 
-            else
-              member_ident = @m_id
-              @line_items = Ecstore::Cart.where(:member_ident=>member_ident)
-            end
-            @cart_total_quantity = @line_items.inject(0){ |t,l| t+=l.quantity }.to_i || 0
-            if cookies[:MLV] == "10"
-              @cart_total =@line_items.select{|x| x.product.present? }.collect{ |x| (x.product.bulk*x.quantity) }.inject(:+) || 0
-            else
-              @cart_total = @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.price*x.quantity) }.inject(:+) || 0
-            end
-           #@pmtable = @line_items.select { |line_item| line_item.good.is_suit? }.size == 0
+      @cart_total_quantity = @line_items.inject(0){ |t,l| t+=l.quantity }.to_i || 0
+      if cookies[:MLV] == "10"
+        @cart_total =@line_items.select{|x| x.product.present? }.collect{ |x| (x.product.bulk*x.quantity) }.inject(:+) || 0
+      else
+        @cart_total = @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.price*x.quantity) }.inject(:+) || 0
+      end
+     #@pmtable = @line_items.select { |line_item| line_item.good.is_suit? }.size == 0
 
     end
 
+    
     def find_user
       # if Rails.env == "development"
       #   return  @user = Ecstore::User.find_by_member_id(217)

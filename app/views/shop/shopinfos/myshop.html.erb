@@ -10,41 +10,20 @@
         background-color: #ff0000;
     }
 
+#head{height:200px;}
+#head div{float:left;
+
+}
 </style>
-<%=image_tag @shop.shop_logo,:id=>"weixin"%>
+
+<div id="head">
+  <div><%=image_tag @shop.shop_logo,:id=>"weixin", :style=>"width:200px"%></div>
+  <div id="qrcodeCanvas" style="display: block" ></div>
+  <div id="qrcodeimg"></div>
+  <div><%=@shop.shop_intro%></div>
+</div>
 <div class="main">
-
-  <button class="am-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二维码查看</button>
-
-  <div class="am-popup" id="my-popup">
-    <div class="am-popup-inner">
-      <div class="am-popup-hd">
-        <h4 class="am-popup-title"><%=@shop_title%></h4>
-      <span data-am-modal-close
-            class="am-close">&times;</span>
-      </div>
-      <div class="am-popup-bd"style="text-align: center">
-        <div id="qrcodeCanvas" style="display: none" ></div>
-        <div id="qrcodeimg"></div>
-          <div >欢迎关注</div>
-      </div>
-    </div>
-  </div>
-  <div class="am-modal am-modal-confirm" tabindex="1" id="my-confirm" style="color: #000000">
-    <div class="am-modal-dialog">
-      <div class="am-modal-hd">来自<%=@shop.shop_name%>的微商店</div>
-      <div class="am-modal-bd" id="url">
-        前往店铺查看
-      </div>
-      <div class="am-modal-footer">
-        <span class="am-modal-btn" data-am-modal-cancel>取消</span>
-        <span class="am-modal-btn" data-am-modal-confirm>确定</span>
-      </div>
-    </div>
-  </div>
-
   <%if @shop_goods%>
-
       <div class="am-panel-bd">
         <ul class="am-list">
           <%@shop_goods.each do |shopgoods|%>
@@ -86,50 +65,49 @@
   <a  class="am-btn am-btn-primary " style="width:33.3%;float: left" href="/shop/shopinfos/myshop?shop_id=<%=@shop_id%>" >发布 </a> 
 </div>
 
-    <script>
-    $(".am-btn-catid").each(function(){
-        var v = $(this).attr("href");
-        if("http://"+window.location.host+v==window.location.href){
+<script>
+  $(".am-btn-catid").each(function(){
+      var v = $(this).attr("href");
+      if("http://"+window.location.host+v==window.location.href){
 
-        }
-    });
-
+      }
+  });
 </script>
 <%= javascript_include_tag "qrcode/kaelQrcode.min.js"%>
 <%= javascript_include_tag "shop/urlqrcode.js"%>
 
 <script>
-     var url=window.location.href;
 
-     var imag=$("#weixin").attr("src");
+  var shop_id= $("#shopid").val();
+     var host=window.location.host;
 
-     window.onload = function(){
-         var kaelBase = new KaelQrcode();
-         kaelBase.init(document.getElementById("qrcodeCanvas"), {
-             text :url,
-             size: 200
-//             img: {
-//                 src : imag
-//             }
-         });
+    var url="http://"+host+"/shop/?shop_id="+<%=@shop_id%>;
+    var imag=$("#weixin").attr("src");
+  window.onload = function(){
+      var kaelBase = new KaelQrcode();
+      kaelBase.init(document.getElementById("qrcodeCanvas"), {
+          text :url,
+          size: 200,
+          img: {
+              src : imag
 
+          }
+      });
+  }
 
-     }
+    $=Zepto;
+  $(function() {
+      $('#qrcodeimg').on('click', function() {
 
+          $('#my-confirm').modal({
+              relatedElement: this,
+              onConfirm: function() {
+                window.location.href=url
+              },
+              onCancel: function() {
 
-     $=Zepto;
-     $(function() {
-         $('#qrcodeimg').on('click', function() {
-
-             $('#my-confirm').modal({
-                 relatedElement: this,
-                 onConfirm: function() {
-                     window.location.href=url
-                 },
-                 onCancel: function() {
-
-                 }
-             });
-         });
-     });
+              }
+          });
+      });
+  });
 </script>

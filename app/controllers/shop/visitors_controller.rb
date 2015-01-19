@@ -20,7 +20,6 @@ def my_add_shopping
 		customs = params[:product].delete(:customs)
 		quantity = params[:product].delete(:quantity).to_i
 		goods_id = params[:product][:goods_id]
-		@user_id = params[:product][:user_id]
     @shop_id = params[:product][:shop_id]
 
     if quantity.blank? || quantity ==0
@@ -51,7 +50,7 @@ def my_add_shopping
 			cart.quantity = quantity
 			cart.time = Time.now.to_i
 			cart.member_id = @user.member_id
-      cart.supplier_id=@shop_id
+      cart.shop_id = @shop_id
 		end
 
 		if @cart.new_record?
@@ -61,16 +60,11 @@ def my_add_shopping
 			@cart.quantity = (@cart.quantity+1)
 		end
 
-		
-		find_cart!
-
-    supplier_id=@shop_id
-
+		session[:shop_id] = @shop_id
+    find_cart!
    
     if params[:platform]=="shop"
-
-      redirect_to "/shop/visitors/my_shopping_cart?supplier_id=#{@shop_id}&user_id=#{@user_id}"
-
+      redirect_to "/shop/visitors/my_shopping_cart?shop_id=#{@shop_id}"
     else
        render "my_add_shopping"
     end
@@ -80,15 +74,13 @@ end
 
 def my_shopping_cart
     @shop_title="我的购物车"
-    @supplier_id=params[:supplier_id]
-   # return render :text=>@supplier_id
-    @user_id=params[:user_id]
-
+    @shop_id=params[:shop_id]
+    session[:shop_id] = @shop_id
 end
 
-  def order_clearing
+def order_clearing
 
-    @shop_id=params[:supplier_id]
+    @shop_id=params[:shop_id]
 
     supplier_id= @shop_id
 
@@ -123,7 +115,7 @@ end
 
   def  order_show
     @shop_title="我的订单"
-    @supplier_id = params[:supplier_id]
+    @shop_id = params[:shop_id]
     @order = Ecstore::Order.find_by_order_id(params[:id])
     render :layout=>'shop'
   end
