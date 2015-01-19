@@ -553,6 +553,7 @@ Modengke::Application.routes.draw do
     get 'quality_products' =>"goods#quality_products", :as=>"goods" ,:controller=>"goods"
     get 'world_food' =>"goods#world_food", :as=>"goods" ,:controller=>"goods"
     get 'fashion' =>"goods#fashion", :as=>"goods" ,:controller=>"goods"
+    get 'black_tea'=>"goods#black_tea", :as=>"goods" ,:controller=>"goods"
     get 'mproducts' =>"goods#mproduct", :as=>"goods" ,:controller=>"goods"
     post '/goods/manco_cart'=>"goods#manco_cart",  :controller=>"goods"
     get 'show_goodblack' =>  "goods#show_goodblack",  :as=>"goods" ,:controller=>"goods"   ###货源信息

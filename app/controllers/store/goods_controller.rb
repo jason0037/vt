@@ -126,9 +126,7 @@ class Store::GoodsController < ApplicationController
  def fashion
 
    @promotions= Ecstore::Promotion.where(:mallname=>"fashion").order("priority asc")
-  #   @goods_flower= Ecstore::Good.where(:supplier_id=>"117")
-  # @goods_box=Ecstore::Good.where(:brand_id=>"165")
-  #   @goods_wine=Ecstore::Good.where(:supplier_id=>"118")
+
     @supplier = Ecstore::Supplier.find(params[:supplier_id])
 
     @recommend_user = session[:recommend_user]
@@ -157,11 +155,39 @@ class Store::GoodsController < ApplicationController
     render :layout=>@supplier.layout
   end
 
+  def black_tea
+    @promotions= Ecstore::Promotion.where(:mallname=>"black_tea").order("priority asc")
 
+    @supplier = Ecstore::Supplier.find(params[:supplier_id])
+
+    @recommend_user = session[:recommend_user]
+
+    if @recommend_user==nil &&  params[:wechatuser]
+      @recommend_user = params[:wechatuser]
+    end
+    if @recommend_user
+      member_id =-1
+      if signed_in?
+        member_id = @user.member_id
+      end
+      now  = Time.now.to_i
+      Ecstore::RecommendLog.new do |rl|
+        rl.wechat_id = @recommend_user
+        #  rl.goods_id = @good.goods_id
+        rl.member_id = member_id
+        rl.terminal_info = request.env['HTTP_USER_AGENT']
+        #   rl.remote_ip = request.remote_ip
+        rl.access_time = now
+      end.save
+      session[:recommend_user]=@recommend_user
+      session[:recommend_time] =now
+    end
+
+    render :layout=>@supplier.layout
+  end
 
   def prime_beef
-    #  @goods_xlhn =  Ecstore::Good.where(:supplier_id=>"110").order("p_order asc,uptime desc")
-    # @goods_agt= Ecstore::Good.where(:supplier_id=>"111") .order("p_order asc,uptime desc")
+
 
 
    @promotions= Ecstore::Promotion.where(:mallname=>"prime_beef").order("priority asc")
