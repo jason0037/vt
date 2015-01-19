@@ -42,7 +42,7 @@
         <%@promotions.each do |promotion|%>
 
           <tr class="<%= 'disable' unless promotion.enable?%>">
-            <%unless  params[:type]=="mall"%>
+            <%if  params[:type]=="mall"%>
 
                  <%if promotion.mallname=="quality_products" %>
                     <td style="color: green">生态农产馆</td>
@@ -56,9 +56,9 @@
                     <td style="color: red">顶级红茶馆</td>
 
            <%end%>
-
                 <td><%=promotion.supplier_id%></td>
 
+            <%end%>
 
 
             <td><%=promotion.name%></td>
