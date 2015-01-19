@@ -42,7 +42,23 @@
         <%@promotions.each do |promotion|%>
           <tr class="<%= 'disable' unless promotion.enable?%>">
             <%if  params[:type]=="mall"%>
-                <td><%=promotion.mallname%></td>
+
+                 <%if promotion.mallname=="quality_products" %>
+                    <td>生态农产馆</td>
+                    <%elsif promotion.mallname=="food_beverage" %>
+                      <td>食品饮料馆</td>
+                <%elsif promotion.mallname=="fashion" %>
+                    <td>时令礼品馆</td>
+                <%elsif promotion.mallname=="prime_beef" %>
+                    <td>顶级牛肉馆</td>
+                <%elsif promotion.mallname=="black_tea" %>
+                    <td>顶级红茶馆</td>
+
+           <%end%>
+
+
+
+
                 <td><%=promotion.supplier_id%></td>
             <%end%>
 
