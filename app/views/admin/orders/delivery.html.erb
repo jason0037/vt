@@ -28,7 +28,7 @@
           <span class="readonly-field"><%=@order.created_at%></span>
         </div>
       </div>
-     <% unless @order.supplier_id==(Ecstore::Supplier.find_by_name("万家物流").id)%>
+
       <div class="control-group">
         <label class="control-label">物流公司:</label>
         <div class="controls">
@@ -84,69 +84,9 @@
              <span class="help-inline error"><%=@delivery.errors[:ship_area].join(",")%></span>
           </div>
       </div>
-    <%end%>
 
-      <% if @order.supplier_id==(Ecstore::Supplier.find_by_name("万家物流").id)%>
-        <div class="controls" style="display:none">
-          <select id="province" name="delivery[province]">
-            <option value="21" selected="selected">上海</option>
-          </select>
-          <select class="am-input-group-label" id="city" name="delivery[city]">
-            <option value="1" selected="selected">上海</option>
-          </select>
-          <select id="district" name="delivery[district]" onchange="selectDistrict(this);">
-            <option value="1" selected="selected">静安区</option>
-          </select>
-          <%=f.hidden_field :logi_id,:value=>"-1"%>
-          <%=f.hidden_field :logi_name%>
-          <%=f.number_field :money,:value=>0,:class=>"input-small"%>
-          <%=f.radio_button :is_protect,'false',:checked=>true%>
-        </div>
-         <%if @order.from_addr%>
-        <div class="control-group">
-            <label class="control-label">寄货人:</label>
-            <div class="controls">
-              <span class="readonly-field"><%=@order.from_addr.split(",")[0]%> </span>
-            </div>
-          </div>
-          <div class="control-group">
-            <label class="control-label">手机号码:</label>
-            <div class="controls">
-              <span class="readonly-field"><%=@order.from_addr.split(",")[1]%> </span>
-            </div>
-          </div>
-        <div class="control-group">
-          <label class="control-label">寄货人地址:</label>
-          <div class="controls">
-            <span class="readonly-field"><%=@order.from_addr.split(",")[2]%> </span>
-          </div>
-        </div>
-            <%end%>
-        <div class="control-group">
-          <label class="control-label">签单返回:</label>
-          <div class="controls">
-            <span class="readonly-field"style="color: red"><%=@order.serverbill_text%></span>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label">发票类型:</label>
-          <div class="controls">
-            <span class="readonly-field" style="color: red"><%=@order.serverinvoice_text%></span>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label">进仓服务费:</label>
-          <div class="controls">
-            <span class="readonly-field"style="color: red"><%=@order.serverwarehouse_text%></span>
-          </div>
-        </div>
-        <div class="control-group">
-          <label class="control-label">物流单号:</label>
-          <div class="controls">
-            <%=f.text_field :logi_no%>
-          </div>
-        </div>
-            <%end%>
+
+
       <div class="control-group ">
           <%=f.label :ship_zip, "邮编:",:class=>"control-label"%>
           <div class="controls zip">
