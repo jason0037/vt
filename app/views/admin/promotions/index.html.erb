@@ -40,33 +40,24 @@
           </tr>
           
         <%@promotions.each do |promotion|%>
-              <%unless  params[:type]=="mall"%>
+
           <tr class="<%= 'disable' unless promotion.enable?%>">
+            <%unless  params[:type]=="mall"%>
 
-              <%else%>
-                  <%if promotion.mallname=="quality_products" %>
-                      <tr class="<%= 'disable' unless promotion.enable?%>"style="background: green">
-                        <td >生态农产馆</td>
-                  <%elsif promotion.mallname=="food_beverage" %>
-                      <tr class="<%= 'disable' unless promotion.enable?%>"style="background: greenyellow">
-                        <td >食品饮料馆</td>
-                  <%elsif promotion.mallname=="fashion" %>
-                      <tr class="<%= 'disable' unless promotion.enable?%>"style="background: blue">
-                        <td >时令礼品馆</td>
-                  <%elsif promotion.mallname=="prime_beef" %>
-                      <tr class="<%= 'disable' unless promotion.enable?%>"style="background: #999933">
-                        <td >顶级牛肉馆</td>
-                  <%elsif promotion.mallname=="black_tea" %>
-                      <tr class="<%= 'disable' unless promotion.enable?%>"style="background: red">
-                        <td >顶级红茶馆</td>
+                 <%if promotion.mallname=="quality_products" %>
+                    <td style="color: green">生态农产馆</td>
+                    <%elsif promotion.mallname=="food_beverage" %>
+                      <td style="color:blanchedalmond ">食品饮料馆</td>
+                <%elsif promotion.mallname=="fashion" %>
+                    <td style="color: blue ">时令礼品馆</td>
+                <%elsif promotion.mallname=="prime_beef" %>
+                    <td style="color:#999933 ">顶级牛肉馆</td>
+                <%elsif promotion.mallname=="black_tea" %>
+                    <td style="color: red">顶级红茶馆</td>
 
-                  <%end%>
-                  <td><%=promotion.supplier_id%></td>
+           <%end%>
 
-
-        <%end%>
-
-
+                <td><%=promotion.supplier_id%></td>
 
 
 
@@ -83,7 +74,6 @@
               <%=link_to "删除", admin_promotion_path(promotion),:method=>:delete,:confirm=>"确定要删除？"%>
             </td>
           </tr>
-
           <%end%>
 
 
