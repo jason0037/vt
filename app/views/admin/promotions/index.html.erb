@@ -12,7 +12,7 @@
 
 
 <h1>
-  <%=link_to "添加订单促销",new_admin_promotion_path,:class=>"btn btn-primary right" if params[:type]=="order" || params[:type].nil?%>
+  <%=link_to "添加订单促销",new_admin_promotion_path(:type=>"order"),:class=>"btn btn-primary right" if params[:type]=="order" || params[:type].nil?%>
   <%=link_to "添加楼层",new_admin_promotion_path(:type=>"goods",:type=>"door"),:class=>"btn btn-primary right" if params[:type] == 'door'%>
   <%=link_to "首页商品管理",new_admin_promotion_path(:type=>"goods",:type=>"goods"),:class=>"btn btn-primary right" if params[:type] == 'goods'%>
 
