@@ -193,7 +193,7 @@
 			<tr>
 				<td><%=pmt.pmt_name%><%="(券)" if pmt.pmt_type=="coupon"%></td>
 				<td><%=pmt.pmt_desc%></td>
-				<td>&yen;<%=pmt.pmt_amount.to_i%></td>
+				<td>￥<%=pmt.pmt_amount.to_i%></td>
 			</tr>
 			<%end if @order.order_pmts%>
 		</table>
