@@ -83,8 +83,8 @@
         <%@total_commission=0%>
 		<%=render :partial=>"order_tr",:collection=>@orders,:as=>:order%>
         <td colspan="<%=@colnums%>"></td>
-        <td><%=number_to_currency @total,:unit=>"&yen;",:precision=>2%></td>
-        <td><%=number_to_currency @total_commission,:unit=>"&yen;",:precision=>2%></td>
+        <td>&yen;<%=number_to_currency @total,:precision=>2%></td>
+        <td>&yen;<%=number_to_currency @total_commission,:precision=>2%></td>
         <td colspan="5">&nbsp;</td>
 	</tbody>
 </table>
