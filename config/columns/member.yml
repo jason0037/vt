@@ -34,7 +34,7 @@
 17-income-家庭月收入: 
   - 家庭月收入
   - user.income
-  - "true"
+  - "false"
 18-education-教育程度: 
   - 教育程度
   - user.edu
@@ -83,6 +83,10 @@
   - 手机验证
   - sms_validate_name
   - "false"
+30-supplier_id-供应商: 
+  - 供应商
+  - user.account.supplier_id
+  - "true"
 5-order_num-订单数: 
   - 订单数
   - order_num
@@ -98,8 +102,4 @@
 9-sex-性别: 
   - 性别
   - sex_name
-  - "true"
-30-supplier_id-供应商:
- - 供应商
- - user.account.supplier_id
- - "true"
+  - "false"
