@@ -72,7 +72,7 @@
       <%=form_for :product,:url=>"/shop/visitors/my_add_shopping", :html=>{:id=>"cartform"},:remote=>true do |f|%>
         <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
         <%=f.hidden_field :type_id,:value=>@good.type_id%>
-        <%=f.hidden_field_tag :supplier_id,:value=>'78'%>
+        <%=f.hidden_field :supplier_id,:value=>'78'%>
         <%=f.hidden_field :shop_id, :value=>@shop_id%>
         <%=f.hidden_field :user_id, :value=>@visitors.id if @visitors%>
         <%=hidden_field_tag :platform,"shop"%>
