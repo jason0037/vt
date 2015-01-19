@@ -1,23 +1,23 @@
 <div class="row">
 
 
-    <ul class="breadcrumb">
-      <li><a href="/">首页</a> <span class="divider">/</span></li>
-        <%if @cat
-           @cat.cat_paths.each_with_index do |cat,index|%>
+  <ul class="breadcrumb">
+    <li><a href="/">首页</a> <span class="divider">/</span></li>
+    <%if @cat
+        @cat.cat_paths.each_with_index do |cat,index|%>
             <%if index != @cat.cat_paths.size - 1%>
-              <li>
-                <%=link_to cat.cat_name,"#{cat_path(cat)}?gtype=#{params[:gtype]}",:target=>"_blank" if cat%>
-                <span class="divider">/</span>
-              </li>
+                <li>
+                  <%=link_to cat.cat_name,"#{cat_path(cat)}?gtype=#{params[:gtype]}",:target=>"_blank" if cat%>
+                  <span class="divider">/</span>
+                </li>
             <%else%>
-               <li class="active">
-                <%=cat.cat_name if cat%>
-              </li>
+                <li class="active">
+                  <%=cat.cat_name if cat%>
+                </li>
             <%end%>
 
         <%end%>
-        <%end%>
-    </ul>
+    <%end%>
+  </ul>
 
 </div>

@@ -45,6 +45,18 @@ class Admin::AdvertController < Admin::BaseController
   end
 
   def create
+
+    uploaded_io = params[:file]
+    if !uploaded_io.blank?
+      extension = uploaded_io.original_filename.split('.')
+      filename = "#{Time.now.strftime('%Y%m%d%H%M%S')}.#{extension[-1]}"
+      filepath = "#{PIC_PATH}/advert/#{filename}"
+      File.open(filepath, 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
+      params[:adverts].merge!(:url=>"/advert/#{filename}")
+    end
+
     @adverts  = Ecstore::Advert.new params[:adverts]
     if @adverts.save
       redirect_to admin_advert_index_path
@@ -59,8 +71,8 @@ class Admin::AdvertController < Admin::BaseController
       redirect_to admin_advert_index_path
     else
       render :edit
+      end
     end
-  end
 
   def destroy
     @adverts  = Ecstore::Advert.find(params[:id])

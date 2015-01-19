@@ -31,11 +31,10 @@
 
 
       <div class="control-group">
-        <%= f.label :body, "页面内容", :class => "control-label" %>
+        <%= f.label :file, "页面内容", :class => "control-label" %>
         <div class="controls">
 
-          <%= f.cktext_area :body,:toolbar => 'Easy',:language=>'zh-cn',:height => 200,:width=>800, :fullPage=>@adverts.new_record?  %>
-          <span class="help-block error"><%=@adverts.errors[:body].join(",")%></span>
+          <%= file_field_tag :file,:class => 'file_field' %>
         </div>
       </div>
 
