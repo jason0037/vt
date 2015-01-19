@@ -11,7 +11,7 @@ ENV['LD_LIBRARY_PATH'] = "#{ENV['JAVA_HOME']}/jre/lib"
 # Initialize the rails application
 Modengke::Application.initialize!
 
-PIC_PATH= "root/code/pics/images"
+PIC_PATH= "/root/code/pics/images"
 
 DATUM_PATH= "/root/code/datum"
 
