@@ -254,6 +254,16 @@
                 </li>
               </ul>
             </li>
+            <li class="<%='active' if controller_name=='mshop'%>">
+              <a href="#">店铺管理</a>
+              <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
+                <li>
+                  <%=link_to "店铺查看", admin_shops_path if current_admin.has_right_of("promotions","index")%>
+
+                </li>
+              </ul>
+            </li>
+
 
           </ul>
         </div><!--/.nav-collapse -->

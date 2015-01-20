@@ -1,7 +1,7 @@
 #encoding:utf-8
 class Ecstore::Shop< Ecstore::Base
 
-  attr_accessible :shop_id, :shop_name, :shop_tel, :shop_email, :shop_logo, :shop_wx, :shop_intro, :shop_publish
+  self.accessible_all_columns
 
   has_many :shop_clients, :foreign_key=>"shop_id"
 

@@ -4,7 +4,7 @@ require 'axlsx'
 
 module Admin
     class GoodsController < Admin::BaseController
-      # skip_before_filter :require_permission!
+      skip_before_filter :require_permission!
       skip_before_filter :verify_authenticity_token,:only=>[:batch]
 
       def export

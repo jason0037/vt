@@ -1,19 +1,19 @@
 <div class="main" >
 <div class="get">
   <div class="am-container">
-    <h3 class="get-title">欢迎来到贸威自贸平台</h3>
-
     <p>
-      期待您的参与
       <%=image_tag @user.weixin_headimgurl,:id=>"weixin" ,:style=>"display:block"%>
     </p>
 
        <p>
          <%if @shop.nil?%>
-      <a href="/shop/shopinfos/new"class="am-btn am-btn-sm get-btn">开始商店之旅 </a>
-         <%else%>
-             <input type="hidden" id="shopid" value="<%=@shop.shop_id%>">
-      <a  href="/shop/shopinfos/myshop?shop_id=<%=@user.member_id%>" class="am-btn am-btn-sm get-btn">管理店铺</a>
+         <h3 class="get-title">欢迎来到贸威自媒体商城<br>
+         <a href="/shop/shopinfos/new"class="am-btn am-btn-sm get-btn">请创建您的店铺</a></h3>
+         <%elsif @shop.status==0%>
+           <h3 class="get-title">您已成功创建了店铺，店铺正在审核阶段请耐心等待！</h3>
+         <%elsif @shop.status==1%>
+            <input type="hidden" id="shopid" value="<%=@shop.shop_id%>">
+            <a href="/shop/shopinfos/myshop?shop_id=<%=@user.member_id%>" class="am-btn am-btn-sm get-btn">管理店铺</a>
              <button class="am-btn am-btn-sm get-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二维码查看</button>
 
              <div class="am-popup" id="my-popup">

@@ -1,0 +1,20 @@
+<%=form_for @category,:url=>admin_category_path(@category),:method=>:put,:html=>{:class=>"form-horizontal"} do |f|%>
+	 <div class="control-group">
+	    <label class="control-label">分类</label>
+	    <div class="controls">
+	      <%=f.text_field :name%>
+	      <span class="help-block error">
+	      	<%=@category.errors.messages[:name].join("")%>
+	      </span>
+	    </div>
+  	</div>
+
+  	<div class="control-group">
+  		<div class="controls">
+	      		<%=f.submit "更新",:class=>"btn btn-primary"%>
+	      		&nbsp;&nbsp;&nbsp;
+	      		<%=link_to "返回",admin_categories_path%>
+	    	</div>
+  	</div>
+  	
+<%end%>

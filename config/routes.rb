@@ -347,6 +347,11 @@ Modengke::Application.routes.draw do
     resources :carts do
 
     end
+
+    resources :shops do
+
+    end
+    
     resources :wechat do
       get :menu,:on=>:collection
       get :menu_edit,:on=>:collection

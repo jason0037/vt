@@ -23,8 +23,12 @@
       <br>
       <div class="am-input-group">
         <span class="am-input-group-label">手机号:</span>
-
         <%=f.text_field :shop_tel,:class=>"am-form-field",:placeholder=>"请输入手机号",:value=>@user.mobile%>
+      </div>
+      <br>
+      <div class="am-input-group">
+        <span class="am-input-group-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</span>
+        <%=f.text_field :name,:class=>"am-form-field",:placeholder=>"请输入您的姓名"%>
       </div>
       <br>
       <div class="am-input-group">
@@ -32,12 +36,13 @@
             <%=f.text_field :shop_wx,:class=>"am-form-field",:placeholder=>"请输入微信号" %>
       </div>
       <br>
-
-        <%=f.text_area :shop_intro,:class=>"am-form-field",:placeholder=>"请输入店铺描述"%>
-
+      <div class="am-input-group">
+        <span class="am-input-group-label">销售区域:</span>               
+            <%=f.text_field :area,:class=>"am-form-field",:placeholder=>"请输入销售区域" %>
+      </div>
       <br>
-
-
+        <%=f.text_area :shop_intro,:class=>"am-form-field",:placeholder=>"请输入店铺简介"%>
+      <br>
       <div id="login_msg" style="color:red;font-size:12pt;"></div>
       <%=f.submit "创建店铺",:class=>"am-btn am-btn-primary am-btn-block "%>
         </div>

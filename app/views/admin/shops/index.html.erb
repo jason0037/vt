@@ -1,0 +1,35 @@
+<%=render "form"%>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>shop_id</th>
+			<th>店名</th>
+			<th>店长</th>
+			<th>手机</th>
+			<th>邮件</th>
+			<th>销售地区</th>
+			<th>创建时间</th>
+			<th>状态</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@shops.each do |shop|%>
+		<tr>
+			<td><%=shop.shop_id%></td>
+			<td><%=shop.shop_name%></td>
+			<td><%=shop.name%></td>
+			<td><%=shop.shop_tel%></td>
+			<td><%=shop.shop_email%></td>
+			<td><%=shop.area%></td>
+			<td><%=shop.created_at%></td>
+			<td><%=shop.status%></td>
+
+			<td>
+				<%=link_to "编辑",edit_admin_shop_path(shop)%>
+				<%=link_to "删除",admin_shop_path(shop),:method=>:delete,:confirm=>"确定删除吗？"%>
+			</td>
+		</tr>
+		<%end%>
+	</tbody>
+</table>

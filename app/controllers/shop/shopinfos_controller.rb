@@ -31,17 +31,17 @@ class Shop:: ShopinfosController < ApplicationController
 
   def index
     if @user
-
-      @headimgurl = @user.weixin_headimgurl
-      if @headimgurl.nil?
-        @headimgurl ='http://vshop.trade-v.com/assets/trade-vLogo.jpg'
-      end
-        page= Nokogiri::HTML(open(@headimgurl))
-        @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
+      @shop = Ecstore::Shop.find_by_shop_id(@user.member_id)
       if @shop
-       name=@shop.shop_name
-        @shop_title="来自#{name}的微商店"
+        @headimgurl =  @shop.shop_logo
+        @shop_title= @shop.shop_name
+      else
+        @headimgurl = @user.weixin_headimgurl
       end
+     if @headimgurl
+      page= Nokogiri::HTML(open(@headimgurl))
+     end
+
     else
      redirect_to "/auto_login?id=78&supplier_id=78&platform=mobile&return_url=/shop/shopinfos"
     end
@@ -60,8 +60,7 @@ class Shop:: ShopinfosController < ApplicationController
     @shop=Ecstore::Shop.new(params[:shop])    
 
     if @shop.save
-      shop_id=@shop.shop_id
-      redirect_to "/shop/shopinfos/my_goods"
+      redirect_to "/shop/shopinfos"
     else
       redirect_to "/shop/shopinfos/new"
     end
@@ -69,38 +68,43 @@ class Shop:: ShopinfosController < ApplicationController
 
 
   def myshop   
-
     if params[:shop_id]
       @shop_id = params[:shop_id]
     else
       redirect_to "/shop/shopinfos"
     end
 
-    if @user
-      if @user.member_id != @shop_id
-        shop_client = Ecstore::ShopClient.where(:member_id=>@user.member_id,:shop_id=>@shop_id)
-        if shop_client.size ==0
-          Ecstore::ShopClient.new do |sc|
-            sc.member_id = @user.member_id
-            sc.shop_id = @shop_id
-          end.save
+    @shop = Ecstore::Shop.where(:shop_id=>@shop_id,:status=>1).first
+    if @shop
+   
+
+      if @user
+        if @user.member_id != @shop_id
+          shop_client = Ecstore::ShopClient.where(:member_id=>@user.member_id,:shop_id=>@shop_id)
+          if shop_client.size ==0
+            Ecstore::ShopClient.new do |sc|
+              sc.member_id = @user.member_id
+              sc.shop_id = @shop_id
+            end.save
+          end
         end
       end
+
+     
+      @share_desc = @shop.shop_intro
+      @shop_title = @shop.shop_name
+      @shop_goods = Ecstore::ShopsGood.where(:shop_id=>@shop_id)
+
+      # good=nil
+      # @shop_goods.each  do |go|
+      #   if go.good_status=="0"
+      #   go.update_attribute(:good_status,"1")   ###讲商品状态设置为上架
+      #  end
+      # end
+      # goods= Ecstore::ShopsGood.where(:shop_id=>@shop_id,:good_status=>"1") 
+    else   
+       redirect_to "/shop/shopinfos" 
     end
-
-    @shop= Ecstore::Shop.find_by_shop_id(@shop_id)
-    @share_desc =@shop.shop_intro
-    @shop_title = @shop.shop_name
-
-    @shop_goods = Ecstore::ShopsGood.where(:shop_id=>@shop_id)
-
-    # good=nil
-    # @shop_goods.each  do |go|
-    #   if go.good_status=="0"
-    #   go.update_attribute(:good_status,"1")   ###讲商品状态设置为上架
-    #  end
-    # end
-    # goods= Ecstore::ShopsGood.where(:shop_id=>@shop_id,:good_status=>"1")    
   end
 
 

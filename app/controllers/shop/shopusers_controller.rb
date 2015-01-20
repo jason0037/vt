@@ -16,7 +16,7 @@ class Shop::ShopusersController < ApplicationController
       @shop_id = @user.member_id
     end
 
-    @shop=Ecstore::Shop.find_by_shop_id(@shop_id)    
+     @shop= Ecstore::Shop.where(:shop_id=>@shop_id,:status=>1).first
   end
 
  def clients
