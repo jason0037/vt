@@ -44,7 +44,11 @@ module Admin
 
           goods.each do |good|
             goodsModel=good.model
-            goodsCat=good.good_type.name
+            if good.good_type.name
+              goodsCat=good.good_type.name
+            else
+              goodsCat=""
+            end
             goodsSize_Desc=good.size_description
             goodsSize=good.size
             goodsUnit=good.unit
