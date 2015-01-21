@@ -506,27 +506,30 @@ module Admin
                     @good.promotion=row[16]
                     @good.price = row[17]
                     @good.mktprice = row[18]
-                    @good.desc = row[19]
-                    @good.place_info = row[20]
-                    @good.spec_info = row[21]
-                    if row[26].nil?
+                    @good.share = row [19]
+                    @good.share_for_sale = row[20]
+                    @good.share_for_shop = row[21]
+                    @good.desc = row[22]
+                    @good.place_info = row[23]
+                    @good.spec_info = row[24]
+                    if row[29].nil?
                       @good.freight = 10
                     else
-                    @good.freight = row[26]
+                      @good.freight = row[29]
                     end
-                    @good.tag= row[27]
+                    @good.tag= row[30]
                     #@good.intro = row[23]
-                    if row[22] == "是"
+                    if row[25] == "是"
                         @good.sell = 'true'
                     else
                         @good.sell = 'false'
                     end
-                    if row[23] == "是"
+                    if row[26] == "是"
                         @good.agent = 'true'
                     else
                         @good.agent = 'false'
                     end
-                    if row[24] == "是"
+                    if row[27] == "是"
                         @good.future = 'true'
                     else
                         @good.future = 'false'

@@ -27,8 +27,6 @@ class Ecstore::Order < Ecstore::Base
 
   has_many :refunds, :through=>:bills
 
-
-
   has_one :aftersale, :foreign_key=>"order_id"
 
   has_many :tagables, :foreign_key=>"rel_id"
@@ -62,7 +60,7 @@ class Ecstore::Order < Ecstore::Base
     return "自提" if self.shipping_id==0
   end
 
-  before_create :calculate_order_amount,:calculate_commission
+  before_create :calculate_order_amount,:calculate_share
 
   def calculate_order_amount
     # =====order amount ====
@@ -114,10 +112,13 @@ class Ecstore::Order < Ecstore::Base
     end
   end
 
-  def calculate_commission
-    # ====commission amount===
-    commission = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount * order_item.good.share}.inject(:+).to_f
-    self.commission = commission
+  def calculate_share
+    share_for_promotion = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.share_for_promotion}.inject(:+).to_f
+    share_for_sale = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.share_for_sale}.inject(:+).to_f
+    share_for_shop = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.share_for_shop}.inject(:+).to_f
+    self.share_for_promotion = share_for_promotion
+    self.share_for_shop = share_for_shop
+    self.share_for_sale = share_for_sale
   end
 
   before_save :calculate_itemnum

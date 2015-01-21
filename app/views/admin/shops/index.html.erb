@@ -17,7 +17,7 @@
 		<%@shops.each do |shop|%>
 		<tr>
 			<td><%=shop.shop_id%></td>
-			<td><%=shop.shop_name%></td>
+			<td><%=link_to shop.shop_name,"/shop/?shop_id=#{shop.shop_id}",:target=>"_blank"%></td>
 			<td><%=shop.name%></td>
 			<td><%=shop.shop_tel%></td>
 			<td><%=shop.shop_email%></td>

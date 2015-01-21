@@ -204,9 +204,9 @@ class Store::OrdersController < ApplicationController
     #=====推广佣金计算=======
     recommend_user = session[:recommend_user]
 
-    if recommend_user==nil
-      recommend_user= @user.login_name
-    end
+    # if recommend_user==nil
+    #   recommend_user= @user.login_name
+    # end
     params[:order].merge!(:recommend_user=>recommend_user)
     #return render :text=>params[:order]
     #====================
@@ -242,6 +242,9 @@ class Store::OrdersController < ApplicationController
            else
              order_item.amount =  params[:cart_total_final]
            end
+          order_item.share_for_promotion = order_item.amount* good.share
+          order_item.share_for_sale = order_item.amount * good.share_for_sale
+          order_item.share_for_shop = order_item.amount * good.share_for_shop
 
           product_attr = {}
           # product.spec_desc["spec_value"].each  do |spec_id,spec_value|
