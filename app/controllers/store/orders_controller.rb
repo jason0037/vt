@@ -187,7 +187,6 @@ class Store::OrdersController < ApplicationController
     return_url=params[:return_url]
 
 
-
     if supplier_id == nil
       supplier_id =78
     end
@@ -197,7 +196,6 @@ class Store::OrdersController < ApplicationController
         params[:order].merge!("ship_#{key}"=>addr.attributes[key])
       end
     end
-
 
     params[:order].merge!(:ip=>request.remote_ip, :member_id=>@user.member_id,:supplier_id=>supplier_id,:ship_day=>ship_riqi.to_s, :ship_time=>hour.to_s)
 
@@ -224,37 +222,37 @@ class Store::OrdersController < ApplicationController
         next
       end
 
-        @order.order_items << Ecstore::OrderItem.new do |order_item|
-          order_item.product_id = product.product_id
-          order_item.bn = product.bn
-          order_item.name = product.name
-          if cookies[:MLV] == "10"
-            order_item.price = product.bulk
-          else
-            order_item.price = product.price
-          end
-          order_item.goods_id = good.goods_id
-          order_item.type_id = good.type_id
-          order_item.nums = line_item.quantity.to_i
-          order_item.item_type = "product"
-           if params[:cart_total_final].nil?
-           order_item.amount = order_item.price * order_item.nums
-           else
-             order_item.amount =  params[:cart_total_final]
-           end
-          order_item.share_for_promotion = order_item.amount* good.share
-          order_item.share_for_sale = order_item.amount * good.share_for_sale
-          order_item.share_for_shop = order_item.amount * good.share_for_shop
-
-          product_attr = {}
-          # product.spec_desc["spec_value"].each  do |spec_id,spec_value|
-          # 	spec = Ecstore::Spec.find_by_spec_id(spec_id)
-          # 	product_attr.merge!(spec_id=>{"label"=>spec.spec_name,"value"=>spec_value})
-          # end
-          order_item.addon = { :product_attr => product_attr }.serialize
-
-          # @order.total_amount += order_item.calculate_amount
+      @order.order_items << Ecstore::OrderItem.new do |order_item|
+        order_item.product_id = product.product_id
+        order_item.bn = product.bn
+        order_item.name = product.name
+        if cookies[:MLV] == "10"
+          order_item.price = product.bulk
+        else
+          order_item.price = product.price
         end
+        order_item.goods_id = good.goods_id
+        order_item.type_id = good.type_id
+        order_item.nums = line_item.quantity.to_i
+        order_item.item_type = "product"
+         if params[:cart_total_final].nil?
+         order_item.amount = order_item.price * order_item.nums
+         else
+           order_item.amount =  params[:cart_total_final]
+         end
+        order_item.share_for_promotion = order_item.amount* good.share
+        order_item.share_for_sale = order_item.amount * good.share_for_sale
+        order_item.share_for_shop = order_item.amount * good.share_for_shop
+
+        product_attr = {}
+        # product.spec_desc["spec_value"].each  do |spec_id,spec_value|
+        # 	spec = Ecstore::Spec.find_by_spec_id(spec_id)
+        # 	product_attr.merge!(spec_id=>{"label"=>spec.spec_name,"value"=>spec_value})
+        # end
+        order_item.addon = { :product_attr => product_attr }.serialize
+
+        # @order.total_amount += order_item.calculate_amount
+      end
       #     else
       #       debug_line_item +=line_item.id.to_s + '|'
       #    end
@@ -529,9 +527,7 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
     @share=0
     @sharelast = 0
     if wechat_user
-      @order_all = Ecstore::Order.where(:recommend_user=>wechat_user,:pay_status=>'1').select("sum(commission) as share").group(:recommend_user).first
-
-      #return render :text=>@order.final_amount
+      @order_all = Ecstore::Order.where(:recommend_user=>wechat_user,:pay_status=>'1').select("sum(share_for_promotion) as share").group(:recommend_user).first
       if @order_all
         @share = @order_all.share.round(2)
         @order_last =Ecstore::Order.where(:recommend_user=>wechat_user,:pay_status=>'1').order("createtime desc").first

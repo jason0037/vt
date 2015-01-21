@@ -51,19 +51,21 @@
 			</span>
 		<%end%>
 	</td>
-	<td><%=order.user.login_name if order.user%></td>
+	<td><%=order.member_id if order.user%></td>
 	<td><%=order.created_at%></td>
 	<td><%=order.payment_name%></td>
 	<td><%=order.status_text%></td>
 	<td><%=order.pay_status_text%></td>
 	<td><%=order.ship_status_text%></td>
 	<td><%=number_to_currency order.final_amount,:unit=>"&yen;",:precision=>2%></td>
-    <td><%=number_to_currency order.commission,:unit=>"&yen;",:precision=>2 if order.desktop_user_id || order.recommend_user%></td>
+	<td><a href="#" title="<%=order.recommend_user%>"><%=number_to_currency order.share_for_promotion,:unit=>"&yen;",:precision=>2 if order.desktop_user_id || order.recommend_user%></a></td>
+	<td><a href="#" title="<%=order.shop_id%>"><%=number_to_currency order.share_for_sale,:unit=>"&yen;",:precision=>2 if order.shop_id%></a></td>
     <td><%=number_to_currency order.cost_freight,:unit=>"&yen;",:precision=>2%></td>
 	<td><%=order.ship_name%></td>
 	<td><%=order.ship_addr%></td>
 	<td><%=order.ship_mobile%></td>
-    <td><%=order.recommend_user%></td>
+    <td><%=order.shop_id%></td>
+    <td><%=order.supplier_id%></td>
 </tr>
-<%@total_commission +=order.commission%>
+<%@total_commission +=order.share_for_promotion%>
 <%@total +=order.final_amount%>

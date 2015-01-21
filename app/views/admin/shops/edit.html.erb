@@ -1,11 +1,51 @@
-<%=form_for @category,:url=>admin_category_path(@category),:method=>:put,:html=>{:class=>"form-horizontal"} do |f|%>
-	 <div class="control-group">
-	    <label class="control-label">分类</label>
+<%=form_for :shop,:url=>admin_shop_path(@shop),:method=>:put,:html=>{:class=>"form-horizontal"} do |f|%>
+	
+  	<div class="control-group">
+	    <label class="control-label">店铺名称</label>
+	    <div class="controls">
+	      <%=f.text_field :shop_name%>
+	    </div>
+  	</div>
+  	<div class="control-group">
+	    <label class="control-label">邮箱</label>
+	    <div class="controls">
+	      <%=f.text_field :shop_email%>
+	    </div>
+  	</div>
+  	<div class="control-group">
+	    <label class="control-label">手机</label>
+	    <div class="controls">
+	      <%=f.text_field :shop_tel%>
+	    </div>
+  	</div>
+  	<div class="control-group">
+	    <label class="control-label">店长</label>
 	    <div class="controls">
 	      <%=f.text_field :name%>
-	      <span class="help-block error">
-	      	<%=@category.errors.messages[:name].join("")%>
-	      </span>
+	    </div>
+  	</div>
+<div class="control-group">
+	    <label class="control-label">微信号</label>
+	    <div class="controls">
+	      <%=f.text_field :shop_wx%>
+	    </div>
+  	</div>
+<div class="control-group">
+	    <label class="control-label">销售区域</label>
+	    <div class="controls">
+	      <%=f.text_field :area%>
+	    </div>
+  	</div>
+<div class="control-group">
+	    <label class="control-label">简介</label>
+	    <div class="controls">
+	      <%=f.text_area :shop_intro%>
+	    </div>
+  	</div>
+<div class="control-group">
+	    <label class="control-label">状态</label>
+	    <div class="controls">
+	      <%=f.text_field :status%>
 	    </div>
   	</div>
 
@@ -13,7 +53,7 @@
   		<div class="controls">
 	      		<%=f.submit "更新",:class=>"btn btn-primary"%>
 	      		&nbsp;&nbsp;&nbsp;
-	      		<%=link_to "返回",admin_categories_path%>
+	      		<%=link_to "返回",admin_shops_path%>
 	    	</div>
   	</div>
   	
