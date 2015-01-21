@@ -2,17 +2,23 @@ class Admin::StaticPagesController < Admin::BaseController
   include Admin::SessionsHelper
 	def index
 
-		@pages =  Ecstore::Page.paginate(:per_page=>20,:page=>params[:page],:order=>"updated_at desc")
-
+    @pages =  Ecstore::Page.paginate(:per_page=>20,:page=>params[:page],:order=>"updated_at desc")
       if current_admin
+
         @supplier = Ecstore::Supplier.where(:member_id=>current_admin.account_id,:status=>1).first
         unless @supplier.nil?
 
+         @pages = @pages.where(:supplier_id=>@supplier.id).paginate(:per_page=>20,:page=>params[:page],:order=>"updated_at desc")
 
-        @pages = @pages.where(:supplier_id=>@supplier.id).paginate(:per_page=>20,:page=>params[:page],:order=>"updated_at desc")
         else
-          @pages=nil
+
+          if current_admin.account_id== 1 ||current_admin.account_id ==2
+             @pages=@pages
+          else
+            @pages=nil
+          end
         end
+
       end
 
 
