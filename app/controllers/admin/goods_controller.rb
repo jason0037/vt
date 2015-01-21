@@ -46,15 +46,17 @@ module Admin
             goodsModel=good.model
             if good.good_type
               goodsCat=good.good_type.name
+              goodsCatCode= good.good_type.goods_cat_code
             else
               goodsCat=""
+              goodsCatCode=""
             end
             goodsSize_Desc=good.size_description
             goodsSize=good.size
             goodsUnit=good.unit
             goodDesc=good.desc
             goodsBn=good.bn.to_s
-            goodsCatCode= good.good_type.goods_cat_code
+
             goodsCatId=good.good_type.goods_cat_id
             sheet.add_row [nil ,goodsCat,goodsCatCode,goodsCatId]
             row_count=0
