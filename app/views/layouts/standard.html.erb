@@ -354,7 +354,7 @@
 
      <%=form_for :user,:url=>users_path,:remote=>true,:html=>{:id=>"register_form"} do |f|%>
 
-      <%=hidden_field_tag :return_url,request.url.sub('http://trade','').force_encoding('UTF-8')%>
+      <%=hidden_field_tag :return_url,request.url.sub(':5000','').force_encoding('UTF-8')%>
 
      <div class="connerdiv">
 
