@@ -1,14 +1,21 @@
 class Admin::StaticPagesController < Admin::BaseController
-
+  include Admin::SessionsHelper
 	def index
 
 		@pages =  Ecstore::Page.paginate(:per_page=>20,:page=>params[:page],:order=>"updated_at desc")
 
-      if cookies["MEMBER"]
-        @supplier = Ecstore::Supplier.where(:member_id=>cookies["MEMBER"].split("-").first,:status=>1).first
-        @pages = @pages.where(:supplier_id=>@supplier.id).paginate(:per_page=>20,:page=>params[:page],:order=>"updated_at desc")
+      if current_admin
+        @supplier = Ecstore::Supplier.where(:member_id=>current_admin.account_id,:status=>1).first
+        unless @supplier.nil?
 
+
+        @pages = @pages.where(:supplier_id=>@supplier.id).paginate(:per_page=>20,:page=>params[:page],:order=>"updated_at desc")
+        else
+          @pages=nil
+        end
       end
+
+
   end
 
 	def new
