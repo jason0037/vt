@@ -332,8 +332,11 @@ module Admin
       role=current_admin.login_name.split( "_")[0]
       if (role=="vendor")
         @goods = Ecstore::Good.where(:supplier_id =>vendor[current_admin.login_name]).order(@order)
-      else
+
+      elsif current_admin.account_id==2|| current_admin.account_id==1
         @goods = Ecstore::Good.order(@order)
+      else
+        @goods = Ecstore::Good.where(:supplier_id=>current_admin.account_id).order(@order)
       end
       #	@goods = @goods.includes(:cat,:brand,:good_type,:tegs,:supplier)
 
