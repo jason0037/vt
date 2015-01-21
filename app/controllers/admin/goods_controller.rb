@@ -44,7 +44,7 @@ module Admin
 
           goods.each do |good|
             goodsModel=good.model
-            if good.good_type.name
+            if good.good_type
               goodsCat=good.good_type.name
             else
               goodsCat=""
