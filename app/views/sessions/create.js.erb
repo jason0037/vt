@@ -6,6 +6,12 @@ if ('<%=@platform%>'=='mobile'){
     window.location.href='<%=@return_url%>';
 }
 else{
-    window.parent.location.replace('<%=@return_url%>');
+
+    <%if @return_url =="#{site}/users/forgot_password"%>
+    <%@return_url="#{site}"%>
+
+
+<%end%>
+ window.parent.location.replace('<%=@return_url%>');
 }
 

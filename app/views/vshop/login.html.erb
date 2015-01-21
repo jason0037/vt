@@ -24,8 +24,9 @@
 
           <div class="login_function_area">
             <input name="remember_me" type="checkbox" value="1" checked="true">记住账号&nbsp;&nbsp;&nbsp;
+            <%unless @user%>
             <a href="/users/forgot_password?platform=vshop" id="{id}_forget" class="jsUrlLink" data-url="regist/forget">忘记密码</a>
-
+              <%end%>
 
           </div>
           <%if params[:error]=='1'%>

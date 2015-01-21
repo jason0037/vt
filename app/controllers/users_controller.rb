@@ -43,6 +43,10 @@ class UsersController < ApplicationController
     if @account.save
       sign_in(@account)
       @return_url=params[:return_url]
+      if @return_url =="#{site}+/users/forgot_password"
+        @return_url="#{site}+/"
+
+      end
       render "create"
     else
       render "error"

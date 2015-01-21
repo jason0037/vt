@@ -1,5 +1,8 @@
-     <span style="border: 4px solid darkcyan"></span><span style="margin-left: 20px;line-height: 2;font-size: 15px;font-weight: bold"> 技术资料下载</span>
-     <hr style="margin: 0;border: 1px dotted #00c5c5;">
+<div class="title">
+  <span style="border: 3px solid #ae3cbd"> </span>
+  <span style="margin-left: 10px;font-size: 20px;font-weight: bold">资料下载</span>
+  <hr style="margin: 0;border: 1px dotted #ae3cbd;">  <br>
+</div>
      <ul class="side-nav">
   <%@files.each do |file|%>
      <li> <%=link_to file.name,"#{file.url}"%> </li>

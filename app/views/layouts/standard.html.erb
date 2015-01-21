@@ -325,9 +325,11 @@
             <input type="checkbox" style="float:left" checked="checked" id="autologin" name="remember_me" value="1">
             <span id="remember_me" style="line-height: 3" for="autologin"> 记住登录</span>
          </div>
+          <% unless current_admin%>
         <div class="small-6 columns">           
             <a class="forgot_link " style="line-height: 3" href="/users/forgot_password" target="_top">找回密码</a>
          </div>
+         <%end%>
     </div>
     <div class="row">
         <div class="small-12 columns">

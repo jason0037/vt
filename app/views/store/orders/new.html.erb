@@ -16,6 +16,9 @@
         }
     .cart {  display: none;
     }
+    h2{
+        font-weight: 400; font-size: 14px; overflow: hidden;
+    }
 </style>
 
 
@@ -26,10 +29,10 @@
 <%if @line_items.size > 0%>
     <div class="row">
     <div class="large-12 columns panel" >
-		<h5>
+		<h2>
 			收货地址 
 			<span class="required">*</span>
-		</h5>
+		</h2>
         <div class="row">
 
 		<%if @addrs.size>0%>
@@ -77,7 +80,7 @@
 
         <div class="row panel">
 
-            <h5>配送方式</h5>
+            <h2>配送方式</h2>
 
      <div class="large-6 medium-6 small-6 columns">
        <div class="radio">
@@ -106,15 +109,16 @@
               <!--</div>-->
             <!--</div>-->
           <!--</div>-->
+          </div>
               <br>
-          <div class="row payment panel" id="payments">
+          <div class="row  panel" id="payments">
             <div class="large-12 medium-12">
-              <h5>  支付方式</h5>
+              <h2>  支付方式</h2>
             </div>
 
            <% if cookies[:MLV] == "10" %>
                    <div class="large-6 medium-6 small-6 columns">
-                    <%=f.radio_button :payment, "term"%> <b>账期（与供应商协商）</b>
+                    <%=f.radio_button :payment, "term"%> <span>账期（与供应商协商）</span>
                   </div>  <%end%>
 
             <%if @user.advance>0 && @user.advance < @cart_total%>
@@ -125,29 +129,29 @@
              <%end%>
 
             <div class="large-12 medium-12 small-12 columns">
-                <%=f.radio_button :payment, "bcom", :checked=>true%> <b>交通银行网上支付</b>
+                <%=f.radio_button :payment, "bcom", :checked=>true%> <span>交通银行网上支付</span>
              </div>
             <hr>
             <div class="large-12 medium-12 small-12 columns">
-                <%=f.radio_button :payment, "icbc", :checked=>true%> <b>工商银行网上支付</b>
+                <%=f.radio_button :payment, "icbc", :checked=>true%> <span>工商银行网上支付</span>
              </div>
             <hr>
             <div class="large-12 medium-12 small-12 columns">
 
-                <%=f.radio_button :payment, "alipay"%> <b>支付宝</b>
+                <%=f.radio_button :payment, "alipay"%> <span>支付宝</span>
                 <span class="extra-desc" style="display:none"><img src="/assets/store/alipay.png"/></span>
 
             </div>
                <hr>
             <div class="large-12 medium-12 small-12 columns">
-              <%=f.radio_button :payment, "offline"%> <b>银行转账</b>
+              <%=f.radio_button :payment, "offline"%> <span>银行转账</span>
 
             </div>
             <hr>
 
             <div class="large-12 medium-12 small-12 columns">
               <%if @user.advance >= @cart_total%>
-              <%=f.radio_button :payment, "deposit"%> <b>预存款</b>
+              <%=f.radio_button :payment, "deposit"%> <span>预存款</span>
             <%end%>
             </div>
 
@@ -155,7 +159,7 @@
             <br>
 
           <div class="row panel" >
-            <h4 class="title">商品清单<a href="/cart/showpc"><span style="color: red">*</span><span style="font-size: 15px;">如果需要修改商品数量请点击</span></a> </h4>
+            <h2 class="title">商品清单<a href="/cart/showpc"><span style="color: red">*</span><span style="font-size: 5px;">如果需要修改商品数量请点击</span></a> </h2>
             <table style="width: 100%">
               <thead>
               <tr>
@@ -208,7 +212,7 @@
 
 	<%if @pmtable%>
 	<div class="section promotions">
-		<h5>优惠: </h5>
+		<h2>优惠: </h2>
 		<%=render "promotions"%>
 		<%=render "coupons"%>
 	</div>
@@ -220,7 +224,7 @@
         <!--</div>-->
           <hr>
 	<div class="large-12 medium-12 small-12 columns">
-		<h5>结算信息</h5>
+      <h2>结算信息</h2>
 
 			<div class="memo">
 				<div class="control-group">
@@ -244,7 +248,7 @@
 					<span class="money"><%=f.text_field :tax_company,:class=>"tax-owner"%></span>
 				</div>
 
-			</div>
+
 
           <div class="large-12 medium-12 small-12 columns">
 				<!-- <div class="item">
@@ -345,7 +349,12 @@
 
 	<%end%>
 <%else%>
-	<p>您还没有选择商品。</p>
+    <div class="row">
+	<p></p>
+      <div class="message panel">
+        <p>您还没有选择商品。，您可以<a href="/">去首页</a>挑选喜欢的商品</p>
+      </div>
+        </div>
 <%end%>
 <script>
   $(document).ready(function(){

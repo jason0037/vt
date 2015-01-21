@@ -76,7 +76,7 @@
 				<%end%>
 			</div>
 			<div class="prices">
-				<span>
+				<span class="red" style="font-size: 14px">
 
 					会员价:
 					<%if signed_in?%>
@@ -86,7 +86,7 @@
 					<%end%>
 
 				</span>
-				<span class="mtkprice">市场价: &yen;<%=good.mktprice%></span>
+				<span class="mtkprice" style="font-size: 14px">市场价: &yen;<%=good.mktprice%></span>
 			</div>
 		</div>
 	</li>

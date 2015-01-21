@@ -73,9 +73,8 @@ class SessionsController < ApplicationController
      else
        @supplier_id = params[:id]
      end
-      
-    @return_url=params[:return_url]
 
+    @return_url=params[:return_url]
 
     @platform = params[:platform]
 

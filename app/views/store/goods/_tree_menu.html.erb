@@ -40,7 +40,9 @@
     .navsort,.allsort,.allsort .mt .extra,.allsort h3,.allsort s,.allsort {background:url(/assets/nav-sort.gif) no-repeat;background-position: -110px -45px;}
     .navsort{width: 100%}
 
-
+    h2{
+        font-weight: 400; font-size: 14px;
+    }
     /*allsort*/
     .allsort{width: 100%;float:left;height:50px;background-position:0px -101px;position:relative;z-index:11;}
 
@@ -65,8 +67,8 @@
         padding-left: 20%;
         border-width: 1px 0;
         background-image: none;
-        font-weight: 400;
-        font-size: 14px
+
+        font-size: 13px
     }
     .allsort h3 a:link,.allsort h3 a:visited{display:block;height:30px;line-height:30px;}
     .allsort h3 a:hover,.allsort h3 a:active{color: #E4393C;text-decoration: underline;font-weight: 700;}
@@ -1099,9 +1101,11 @@
 </div><!--allsort end-->
 </div>
 <%if @history_g %>
- <div class="" style="position:relative; top :511px">
+ <div class="browse_p" style="position:relative; top :511px ;">
    <div class="browse_product" style="border: 1px solid #ddd;">
-     <div class="biaoti"><h3>浏览历史</h3> </div>
+     <div class="biaoti" style="background: rgba(107, 106, 106, 0.08); text-align: center;overflow: hidden ;
+             border: 1px solid #d0cfcf;
+            "><h2>浏览历史</h2> </div>
      <ul class="biankuang" style="display:block">
       <%@history_g.each do |his|%>
            <li id="line_<%=his.id%>" style="border-bottom: 1px dashed #ddd;">
@@ -1127,9 +1131,13 @@
 
 
 
-
-
 <script type="text/javascript">
+//   $(document).ready(function(){
+//       $(".browse_p").css({"height":document.body.scrollHeight});
+//   })
+
+
+
     $(".allsort").hoverForIE6({current:"allsorthover",delay:200});
     $(".allsort .item").hoverForIE6({delay:150});
 

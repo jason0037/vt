@@ -32,6 +32,14 @@ class Imodec::Resource < ActiveRecord::Base
   		where(:name=>ctrls).order("FIELD(name,#{ctrls.map{|e| "'#{e}'" }.join(',') })")
     end
 
-  end
+    def cheuks_resources
+      ctrls = %w(advert carts files)
+      where(:name=>ctrls).order("FIELD(name,#{ctrls.map{|e| "'#{e}'" }.join(',') })")
 
+    end
+
+
+
+
+  end
 end

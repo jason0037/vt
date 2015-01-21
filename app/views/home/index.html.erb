@@ -54,12 +54,16 @@
       font-weight: bold;
       background: url(/assets/cheuks/pictibiao.gif) no-repeat 10px center;
   }
+   .dotted{ border-bottom: 1px dotted #cdcdcd;
+
+   }
+
   .caption:hover {
 
 
       background: #f5e4c5;
       border: 1px solid #dbc9a7;
-      border-top: none;
+
   }
  .text_in24{overflow:hidden;  height: 143px;width: 100%;
 
@@ -144,10 +148,11 @@
                 </div>
                 <div class="columns large-12 ">
 
-                   <span style="border: 4px solid#ff0e29;margin-left: 5%"></span><span style="color:darkred;margin-left: 2%;font-size: 20px;font-weight: bold ">商城动态</span>
-                    <ul id="news" >
+              <h2 style="color:darkred;margin-left: 2%; ">商城动态</h2>
+                    <ul id="news" style="font-size: 14px">
 
                         <li class="news"><a href="/pages/news_wuliujiqiren">1:物流机器人产业大时代已经来临</a></li>
+
                         <li><a href="/pages/ziliuyujiaoliukongzhi">2:直流与交流控制系统电动叉物流机器人产业大时代已经</a></li>
                         <li><a href="/pages/newsDetails-9-1489">3:"卓仕"获十佳优秀物流装备技术企业称号</a></li>
                         <li><a href="/pages/newsDetails-9-1812">4:第九届广州叉车展卓仕成果丰硕</a></li>
@@ -197,22 +202,24 @@
                       <a href="/products/<%=p%>"><img src="<%=Ecstore::Good.find_by_bn(p).medium_pic%>"onerror="javascript:this.src='/assets/nopic.png';" alt="pic"></a>
                     </div>
                     <input type="hidden"class="goods_id" value="<%=p%>">
-                    <a href="/products/<%=p%>"><h3><%=Ecstore::Good.find_by_bn(p).name%></h3>
-                    <h5 style="color: #ff0000">￥<%=Ecstore::Good.find_by_bn(p).price%></h5>市场价：<span style="font-size:.8em ;color: #ff0000"><%=Ecstore::Good.find_by_bn(p).mktprice%></span>
-                   <br>
+                    <a href="/products/<%=p%>"><h2><%=Ecstore::Good.find_by_bn(p).name%></h2>
+                      <p class="dotted"> </p>
+                    <p style="color: #ff0000">￥<%=Ecstore::Good.find_by_bn(p).price%></p><p >市场价：<%=Ecstore::Good.find_by_bn(p).mktprice%></p>
+                      <p class="dotted"> </p>
                     <%@pro.each do |product|%>
                         <% if product.detail_spec%>
                             <%spec=JSON.parse(product.detail_spec)%>
                             <%spec.each_with_index  do |value, index|  %>
                                 <% if value[0] =="额定负载" %>
-                                   <%=value[0]%> : <%=value[1]%>
-
+                                 <p>  <%=value[0]%> : <%=value[1]%> </p>
+                                      <p class="dotted"> </p>
                                 <%end%>
                             <%end%>
                               </a>
                     <div class="more-product-info">
 
                       <p>产品特点：<i class="fi-plus size-36"></i></p>
+
                       <p class="text_in24"><%=Ecstore::Good.find_by_bn(p).desc%> </p>
                     </div>   <%end %>
                     <%end%>
@@ -272,8 +279,8 @@
                     <%spec=JSON.parse(product.detail_spec)%>
                     <%spec.each_with_index  do |value, index|  %>
                            <% if value[0] =="额定负载" %>
-                          <%=value[0]%>
-                         <%=value[1]%>
+                        <p>  <%=value[0]%><%=value[1]%> </p>
+                        <p class="dotted"> </p>
                         <%end   %>
                      <%end%>
 
@@ -291,7 +298,7 @@
   <div class="columns large-2">
 
 
-     <div style="background: rgba(107, 106, 106, 0.08);border: 1px solid #d0cfcf;height: 33px"><span style="font-weight: bold;margin-left: 10px;line-height: 35px">热销推荐</span></div>
+     <div style="background: rgba(107, 106, 106, 0.08);border: 1px solid #d0cfcf;height: 33px"><h2 style="margin-left: 10px;line-height: 28px">热销推荐</h2></div>
 
         <ul class="clearing-thumbs" style="border: 1px solid #d0cfcf;border-top: none;">
       <li>
@@ -312,7 +319,7 @@
                       <div class="large-12 small-12 columns"style="overflow:hidden;white-space:nowrap"> <span style="font-size: 13px; ">  热销1000个</span> </div>
 
                     </a></div></div>
-                <div style="border-bottom: 1px dotted #cdcdcd;"></div>
+                <div class="dotted"></div>
             <%end%>
 
         <%end%>
@@ -325,6 +332,8 @@
   </div>
 </div>
 <%end%>
+
+
 
 
 

@@ -16,7 +16,7 @@
     <div class="title">权限分配</div>
     <br>
     
-    <% %w(goods order user article system).each do |pcat|%>
+    <% %w(goods order user article system cheuks).each do |pcat|%>
         <ul>
         <%Imodec::Resource.send("#{pcat}_resources").each do |controller|%>
             <li class="controller">
