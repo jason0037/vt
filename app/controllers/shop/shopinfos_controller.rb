@@ -1,6 +1,6 @@
 #encoding:utf-8
 class Shop:: ShopinfosController < ApplicationController
-  before_filter :find_shop_user
+
   require 'net/http'
   require 'nokogiri'
   require 'open-uri'
@@ -8,10 +8,10 @@ class Shop:: ShopinfosController < ApplicationController
   layout "shop"
 
    def goods_destroy
-    @shop_id = @user.member_id
-    @goods_id = params[:goods_id]
 
-    Ecstore::ShopsGood.where(:shop_id=>@shop_id,:goods_id=>@goods_id).delete_all
+
+
+    Ecstore::ShopsGood.where(:shop_id=> params[:shop_id],:goods_id=> params[:goods_id]).delete_all
 
    redirect_to '/shop/shopinfos/my_goods'
   end
@@ -31,7 +31,7 @@ class Shop:: ShopinfosController < ApplicationController
 
   def index
     if @user
-      @shop = Ecstore::Shop.find_by_shop_id(@user.member_id)
+      @shop = Ecstore::Shop.find_by_member_id(@user.member_id)
       if @shop
         @headimgurl =  @shop.shop_logo
         @shop_title= @shop.shop_name
@@ -56,7 +56,7 @@ class Shop:: ShopinfosController < ApplicationController
     @member = Ecstore::User.where(:member_id=>@user.member_id).first
     @member.update_attributes(:mobile=>params[:shop][:mobile],:email=>params[:shop][:email])
 
-    params[:shop].merge!(:shop_id=>@user.member_id,:shop_logo=>@user.weixin_headimgurl)
+    params[:shop].merge!(:member_id=>@user.member_id,:shop_logo=>@user.weixin_headimgurl)
     @shop=Ecstore::Shop.new(params[:shop])    
 
     if @shop.save
@@ -69,22 +69,22 @@ class Shop:: ShopinfosController < ApplicationController
 
   def myshop   
     if params[:shop_id]
-      @shop_id = params[:shop_id]
+      shop_id = params[:shop_id]
     else
       redirect_to "/shop/shopinfos"
     end
 
-    @shop = Ecstore::Shop.where(:shop_id=>@shop_id,:status=>1).first
+    @shop = Ecstore::Shop.where(:shop_id=>shop_id,:status=>"1").first
     if @shop
    
 
       if @user
-        if @user.member_id != @shop_id
-          shop_client = Ecstore::ShopClient.where(:member_id=>@user.member_id,:shop_id=>@shop_id)
+        if @user.member_id != shop_id
+          shop_client = Ecstore::ShopClient.where(:member_id=>@user.member_id,:shop_id=>shop_id)
           if shop_client.size ==0
             Ecstore::ShopClient.new do |sc|
               sc.member_id = @user.member_id
-              sc.shop_id = @shop_id
+              sc.shop_id = shop_id
             end.save
           end
         end
@@ -93,7 +93,7 @@ class Shop:: ShopinfosController < ApplicationController
      
       @share_desc = @shop.shop_intro
       @shop_title = @shop.shop_name
-      @shop_goods = Ecstore::ShopsGood.where(:shop_id=>@shop_id)
+      @shop_goods = Ecstore::ShopsGood.where(:shop_id=>shop_id)
 
       # good=nil
       # @shop_goods.each  do |go|
@@ -121,8 +121,8 @@ class Shop:: ShopinfosController < ApplicationController
       cat_id = 561 #德国香肠
     end
 
-    @shop_id = @user.member_id
-    @shop=Ecstore::Shop.find_by_shop_id(@shop_id)
+    member_id = @user.member_id
+    @shop=Ecstore::Shop.find_by_member_id(member_id)
    
     @goods =  Ecstore::Good.where("marketable='true' and cat_id=?",cat_id)
 
@@ -131,56 +131,56 @@ class Shop:: ShopinfosController < ApplicationController
 
   def add_goods
     ids = params[:goods_id]
-    
+    shop_id=Ecstore::Shop.find_by_member_id(@user.member_id).shop_id
     if ! ids.nil?
       ids.each do |id|        
 
-        if  Ecstore::ShopsGood.where(:goods_id=>id,:shop_id=>@user.member_id).size==0
+        if  Ecstore::ShopsGood.where(:goods_id=>id,:shop_id=>shop_id).size==0
           Ecstore::ShopsGood.new do |goo|
-            goo.shop_id=@user.member_id
+            goo.shop_id=shop_id
             goo.goods_id=id
             goo.uptime=Time.now
           end.save
         end
       end
     end
-    redirect_to "/shop/shopinfos/my_goods?shop_id=#{@user.member_id}"
+    redirect_to "/shop/shopinfos/my_goods?shop_id=#{shop_id}"
   end
 
   def my_goods
     @shop_title="商品中心"
 
      if @user
-      @shop_id = @user.member_id
+      member_id = @user.member_id
     else
       redirect_to "/shop/shopinfos"
     end
 
-    @shop= Ecstore::Shop.find_by_shop_id(@shop_id)
+    @shop= Ecstore::Shop.find_by_member_id(member_id)
 
-    @shop_goods = Ecstore::ShopsGood.where(:shop_id=> @shop_id)  
+    @shop_goods = Ecstore::ShopsGood.where(:shop_id=> @shop.shop_id)
 
   end
 
   def goods_details
-    @shop_id=params[:shop_id]
-    @shop=Ecstore::Shop.find_by_shop_id(@shop_id)
+    shop_id=params[:shop_id]
+    @shop=Ecstore::Shop.find_by_shop_id(shop_id)
     @shop_title="来自#{@shop.shop_name}的微商店"
 
     if session[:shop_id].nil?
-      session[:shop_id]=@shop_id
+      session[:shop_id]=shop_id
     end
 
      if @user.nil?
       @login = 'login'
     else
       @login=''
-      if @user.member_id != @shop_id
-        shop_client = Ecstore::ShopClient.where(:member_id=>@user.member_id,:shop_id=>@shop_id)
+      if @user.member_id != @shop.member_id
+        shop_client = Ecstore::ShopClient.where(:member_id=>@user.member_id,:shop_id=> @shop.shop_id)
         if shop_client.size ==0
           Ecstore::ShopClient.new do |sc|
             sc.member_id = @user.member_id
-            sc.shop_id = @shop_id
+            sc.shop_id = shop_id
           end.save
         end
       end
@@ -231,9 +231,9 @@ class Shop:: ShopinfosController < ApplicationController
   end
 
   def details_trade
-    @shop_id=params[:shop_id]
+    shop_id= params[:shop_id]
     @user_id=params[:user_id]
-    name=Ecstore::Shop.find_by_shop_id(@shop_id).shop_name
+    @shop=Ecstore::Shop.find_by_shop_id(shop_id)
     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
     @shop_title=@good.name
     return render "not_find_good",:layout=>"shop" unless @good

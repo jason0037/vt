@@ -51,6 +51,7 @@ class ApplicationController < ActionController::Base
     def find_cart!
       shop_id = session[:shop_id]
       if signed_in?
+
         if (shop_id.nil?)
           @line_items = Ecstore::Cart.where(:member_id=>current_account.account_id,:shop_id=>nil).order("supplier_id")
         else
@@ -91,27 +92,6 @@ class ApplicationController < ActionController::Base
       	   # redirect_to (site_path)
       end
     end
-
-  def find_shop_user
-    # if Rails.env == "development"
-    #   return  @user = Ecstore::User.find_by_member_id(217)
-    # end
-
-    unless signed_shop_in?
-      nologin_times = cookies[:nologin_times] || 0
-      cookies[:nologin_times] = nologin_times.to_i + 1
-    end
-
-
-    if cookies["loginName"].present?
-      loginName = cookies["loginName"]
-      @visitors = Ecstore::Visitor.find_by_visitor_name(loginName)
-
-    else
-      # return (render :js=>"window.location.href='#{site_path}'") if request.xhr?
-      # redirect_to (site_path)
-    end
-  end
 
 
 

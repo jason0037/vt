@@ -20,7 +20,7 @@
 
 <hr>
 
-<%if @user.member_id.to_s==@shop_id.to_s%>
+<%if @user.member_id.to_s==@shop.member_id.to_s%>
     <div class="am-panel am-panel-default">
       <a href="/shop/shopusers/share">
         <div class="am-panel-hd">我的收益</div>
@@ -47,7 +47,7 @@
         <span class="icon-arr"></span> </a>
     </div>
     <div class="am-panel am-panel-default">
-      <a href="/shop/shopinfos/myshop?shop_id=<%=@user.member_id%>">
+      <a href="/shop/shopinfos/myshop?shop_id=<%=@shop.shop_id%>">
         <div class="am-panel-hd">店铺预览</div>
         <span class="icon-arr"></span> </a>
     </div>

@@ -1,6 +1,6 @@
 #encoding:utf-8
 class Shop:: VisitorsController < ApplicationController
-  before_filter :find_shop_user
+
  layout "shop"
 
 def istrue
@@ -20,7 +20,7 @@ def my_add_shopping
 		customs = params[:product].delete(:customs)
 		quantity = params[:product].delete(:quantity).to_i
 		goods_id = params[:product][:goods_id]
-    @shop_id = params[:product][:shop_id]
+   shop_id = params[:product][:shop_id]
 
     if quantity.blank? || quantity ==0
        quantity=1
@@ -50,21 +50,22 @@ def my_add_shopping
 			cart.quantity = quantity
 			cart.time = Time.now.to_i
 			cart.member_id = @user.member_id
-      cart.shop_id = @shop_id
+      cart.shop_id = shop_id
 		end
 
 		if @cart.new_record?
 			@cart.save
 		else
-			Ecstore::Cart.where(:obj_ident=>@cart.obj_ident,:member_ident=>member_ident).update_all(:quantity=>@cart.quantity+quantity)
+			Ecstore::Cart.where(:obj_ident=>@cart.obj_ident,:member_ident=>member_ident).update_all(:shop_id=>shop_id,:quantity=>@cart.quantity+quantity)
 			@cart.quantity = (@cart.quantity+1)
 		end
 
-		session[:shop_id] = @shop_id
+		session[:shop_id] = shop_id
+
     find_cart!
    
     if params[:platform]=="shop"
-      redirect_to "/shop/visitors/my_shopping_cart?shop_id=#{@shop_id}"
+      redirect_to "/shop/visitors/my_shopping_cart?shop_id=#{shop_id}"
     else
        render "my_add_shopping"
     end

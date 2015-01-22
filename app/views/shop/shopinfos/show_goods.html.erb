@@ -20,11 +20,11 @@
 </script>
   <div class="main">
 
-<div class="am-panel am-panel-primary  "style="filter:alpha(Opacity=70);-moz-opacity:0.7;opacity: 0.7" data-am-sticky >
+<div class="am-panel am-panel-primary  "style="filter:alpha(Opacity=70);-moz-opacity:0.7;opacity: 0.7"  >
 
   <div class="am-panel-hd" >
     <% @category.each do |cat|%>
-      <a class="am-btn-catid" href="/shop/shopinfos/show_goods?shop_id=<%=@shop_id%>&cat_id=<%=cat[1]%>">&nbsp;<%=cat[0]%></a>        
+      <a class="am-btn-catid" href="/shop/shopinfos/show_goods?shop_id=<%=@shop.shop_id%>&cat_id=<%=cat[1]%>">&nbsp;<%=cat[0]%></a>
     <%end%>
   </div>
 </div>
@@ -41,27 +41,28 @@
               <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
             </div>
             <div class="am-col col-sm-8 am-list-main">
-              <a href="/shop/shopinfos/details_trade?id=<%=good.bn%>&shop_id=<%=@shop.shop_id%>" class="">
+              <a href="/shop/shopinfos/details_trade?id=<%=good.bn%>&shop_id=<%=@shop.member_id%>" class="">
                 <span class="am-list-item-hd ">
                   <%=good.name%>
                 </span>
               <div class="am-list-item-text" style="width: 100%;" >
                 分成:<strong class="price" >¥<%= format('%.2f',good.price*good.share_for_sale)%> </strong>
                 <span class="right">贸威价:<strong class="price" >¥<%=good.price%></strong> </span>  </div>
-            </div>
-          </a>
 
+          </a>
+            </div>
         </li>
     <%end%>
   </ul>
 </div>
-</div>
+
+
 <div class="bottomdiv clearfix">
     <a class="am-btn am-btn-primary " style="width:50%;float: left" href="/shop/shopinfos/my_goods" >取消 </a>
     <input class="am-btn am-btn-danger " style="width:50%;float: left"  type="submit" value="确认">
 </div>
 
-</form>
+</form>  </div>
 <script>
     $(".am-list-item-thumb-left").each(function(){
         $(this).bind("click",function(){

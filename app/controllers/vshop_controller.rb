@@ -2,7 +2,7 @@
 require  'modec_pay'
 class VshopController < ApplicationController
   skip_before_filter :set_locale
-  before_filter :find_shop_user
+
   layout "vshop"
 
 

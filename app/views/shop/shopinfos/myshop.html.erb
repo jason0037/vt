@@ -30,7 +30,7 @@
 
               <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="cursor: pointer">
 
-                <a href="/shop/shopinfos/goods_details?id=<%=shopgoods.good.bn%>&shop_id=<%=@shop_id%>" class="">
+                <a href="/shop/shopinfos/goods_details?id=<%=shopgoods.good.bn%>&shop_id=<%=@shop.shop_id%>">
                 <div class="am-col col-sm-4 am-list-thumb">
                   <img src="<%=shopgoods.good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=shopgoods.good.list_default_pic%>" data-brandid="<%=shopgoods.good.brand_id%>" data-productid="<%=shopgoods.good.bn%>" data-onerror="<%=shopgoods.good.list_default_pic%>" data-brandlazy="false" style="display: block;">
                 </div>
@@ -50,7 +50,7 @@
         </ul>
       </div>
   <%else%>
-      <a href="/shop/shopinfos/show_goods?shop_id=<%=@shop_id%>" >
+      <a href="/shop/shopinfos/show_goods?shop_id=<%=@shop.shop_id%>" >
         <div class="am-panel am-panel-primary " style="margin-top: 100px">
           <div class="am-panel-hd" style="padding: 24px"><i  class="am-icon-shopping-cart "></i>
             <span style="margin-left: 10px">您的店铺空空的!您可以去贸威里面挑选喜欢的商品</span> </div>
@@ -75,7 +75,7 @@
   var shop_id= $("#shopid").val();
      var host=window.location.host;
 
-    var url="http://"+host+"/shop/?shop_id="+<%=@shop_id%>;
+    var url="http://"+host+"/shop/?shop_id="+<%=@shop.shop_id%>;
     var imag=$("#weixin").attr("src");
   window.onload = function(){
       var kaelBase = new KaelQrcode();

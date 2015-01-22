@@ -1,6 +1,6 @@
 # encoding: utf-8
 class Shop::ShopusersController < ApplicationController
-  before_filter :find_shop_user
+
   layout "shop"
 
  
@@ -11,12 +11,12 @@ class Shop::ShopusersController < ApplicationController
     end
     @shop_title="账户中心"
     if params[:shop_id]
-      @shop_id = params[:shop_id]       
+      shop_id = params[:shop_id]
     else
-      @shop_id = @user.member_id
+      shop_id =Ecstore::Shop.find_by_member_id( @user.member_id).shop_id
     end
 
-     @shop= Ecstore::Shop.where(:shop_id=>@shop_id,:status=>1).first
+     @shop= Ecstore::Shop.where(:shop_id=>shop_id,:status=>1).first
   end
 
  def clients
@@ -34,20 +34,20 @@ class Shop::ShopusersController < ApplicationController
 
     @shop_title="我的收益"
     if params[:shop_id]
-      @shop_id = params[:shop_id]       
+      shop_id = params[:shop_id]
     else
-      @shop_id = @user.member_id
+      shop_id =Ecstore::Shop.find_by_member_id( @user.member_id).shop_id
     end
 
-    @shop=Ecstore::Shop.find_by_shop_id(@shop_id)
+    @shop=Ecstore::Shop.find_by_shop_id(shop_id)
 
     @share_for_shop = 0
     @share_for_sale = 0
     @share_for_promotion = 0
 
-    if @user.member_id.to_s==@shop_id.to_s
+    if @user.member_id.to_s==shop_id.to_s
 
-      share = Ecstore::Order.all(:conditions => "shop_id = #{ @shop_id}",
+      share = Ecstore::Order.all(:conditions => "shop_id = #{ shop_id}",
                   :select => "SUM(share_for_sale) share_sale",:group=>"shop_id").first
       if share
         @share_for_sale = share.share_sale
@@ -55,7 +55,7 @@ class Shop::ShopusersController < ApplicationController
 
       if @shop.parent.nil?
         shop_ids = 0
-        results = Ecstore::Shop.find_by_parent(@shop_id)
+        results = Ecstore::Shop.find_by_parent(shop_id)
         if results
           results.each(:as => :hash) do |row|
             shop_ids= row["shop_id"]
@@ -67,7 +67,7 @@ class Shop::ShopusersController < ApplicationController
       end
 
     else
-      share = Ecstore::Order.all(:conditions => "shop_id = #{@shop_id} and member_id=#{@user.member_id}",
+      share = Ecstore::Order.all(:conditions => "shop_id = #{shop_id} and member_id=#{@user.member_id}",
           :select => "SUM(share_for_promotion) share_promotion",:group=>"shop_id,member_id").first
       if share
         @share_for_promotion = share.share_promotion

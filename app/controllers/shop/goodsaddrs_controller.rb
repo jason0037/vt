@@ -1,6 +1,6 @@
 #encoding:utf-8
 class Shop:: GoodsaddrsController < ApplicationController
-  before_filter :find_shop_user
+
  layout "shop"
 
 

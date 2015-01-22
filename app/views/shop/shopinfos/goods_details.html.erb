@@ -73,14 +73,14 @@
         <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
         <%=f.hidden_field :type_id,:value=>@good.type_id%>
         <%=f.hidden_field :supplier_id,:value=>'78'%>
-        <%=f.hidden_field :shop_id, :value=>@shop_id%>
-        <%=f.hidden_field :user_id, :value=>@visitors.id if @visitors%>
+        <%=f.hidden_field :shop_id, :value=>@shop.shop_id%>
+
         <%=hidden_field_tag :platform,"shop"%>
         <%=hidden_field_tag :return_url,{:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
 
           <%if @good.specs.present?%>
               <%@good.specs.order("spec_id asc").each do |spec|%>
-                  <%= hidden_field_tag  :good_supplier_id,@good.supplier_id%>
+
                   <%=hidden_field_tag "product[specs][]"%>
 
                   <%@good.spec_values.where(:spec_id=>spec.spec_id).uniq.order("p_order asc").each do |spec_value|%>

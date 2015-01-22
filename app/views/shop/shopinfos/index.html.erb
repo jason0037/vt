@@ -13,15 +13,14 @@
            <h3 class="get-title">您已成功创建了店铺，店铺正在审核阶段请耐心等待！</h3>
          <%elsif @shop.status==1%>
             <input type="hidden" id="shopid" value="<%=@shop.shop_id%>">
-            <a href="/shop/shopinfos/myshop?shop_id=<%=@user.member_id%>" class="am-btn am-btn-sm get-btn">管理店铺</a>
+            <a href="/shop/shopinfos/myshop?shop_id=<%=@shop.shop_id%>" class="am-btn am-btn-sm get-btn">管理店铺</a>
              <button class="am-btn am-btn-sm get-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二维码查看</button>
 
              <div class="am-popup" id="my-popup">
                <div class="am-popup-inner">
                  <div class="am-popup-hd">
                    <h4 class="am-popup-title"><%=@shop_title%></h4>
-      <span data-am-modal-close
-            class="am-close">&times;</span>
+      <span data-am-modal-close class="am-close">&times;</span>
                  </div>
                  <div class="am-popup-bd"style="text-align: center">
                    <div id="qrcodeCanvas" style="display: block" ></div>
