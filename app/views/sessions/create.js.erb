@@ -2,16 +2,16 @@
 
 window.location.href ='/vshop/<%=@supplier_id%>';
 
-if ('<%=@platform%>'=='mobile'){
+if ('<%=@platform%>'=='mobile')
+   {
     window.location.href='<%=@return_url%>';
-}
-else{
-
-    <%if @return_url =="#{site}/users/forgot_password"%>
-    <%@return_url="#{site}"%>
-
-
-<%end%>
+  }
+else                                                                                               s
+  {
+    <%if @return_url =="/users/forgot_password"%>
+    <%@return_url="/"%>
+  }
+ <%end%>
  window.parent.location.replace('<%=@return_url%>');
-}
+
 
