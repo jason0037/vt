@@ -29,6 +29,7 @@ Modengke::Application.routes.draw do
         get "index"
         get "clients"
         get "share"
+        get "branch"
       end
     end
 

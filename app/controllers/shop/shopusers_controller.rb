@@ -26,6 +26,13 @@ class Shop::ShopusersController < ApplicationController
 
  end
 
+  def branch
+    @shop_title="分店中心"
+     @results = Ecstore::Shop.all(:conditions =>"parent =#{params[:shop_id]}")
+     end
+
+
+
 
   def share
     if @user.nil?

@@ -18,31 +18,67 @@
 </style>
 
 
-<hr>
 
-<%if @user.member_id.to_s==@shop.member_id.to_s%>
-    <div class="am-panel am-panel-default">
-      <a href="/shop/shopinfos/myorder">
-        <div class="am-panel-hd">我的销售提成</div>
-        <div class="am-panel-hd"><%=@share_for_sale%></div>
-        <span class="icon-arr"></span> </a>
-    </div>
-    <div class="am-panel am-panel-default">
-      <a href="/shop/shopusers/my_branch">
-        <div class="am-panel-hd">我的分店提成</div>
-        <div class="am-panel-hd"><%=@share_for_shop%></div>
-        <span class="icon-arr"></span> </a>
-    </div>
+<div class="main">
 
-    <%@share_for_shop.each do |ss|%>
 
-         <%=ss.share_shop%>  <br><%=ss.shop_id%>
-        <%end%>
+
+    <div class="am-g">
+      <%if @user.member_id.to_s==@shop.member_id.to_s%>
+      <div class="am-u-md-6">
+        <div class="am-panel am-panel-default">
+          <div class="am-panel-hd">
+            我的销售提成
+          </div>
+          <div class="am-panel-bd">
+            <a href="/shop/shopinfos/myorder">
+
+            <%=@share_for_sale%>
+              <span class="icon-arr"></span> </a>
+          </div>
+        </div>
+      </div>
+      <div class="am-u-md-6">
+        <div class="am-panel am-panel-default">
+          <div class="am-panel-hd">
+            我的分店提成
+          </div>
+         <table class="am-panel-bd am-table">
+           <thead>
+              <tr>
+            <td>分店名</td>
+                <td>分店销售提成</td>
+              </tr>
+              </thead>
+             <tbody>
+             <%count=0%>
+              <%@share_for_shop.each do |ss|%>
+                 <tr>
+                 <td>  <%=ss.shop_name%>  </td>
+                   <td>  <%=ss.share_shop%>  </td>
+                   <%count+=ss.share_shop%>
+                  </tr>
+             <%end%>
+             <tr>
+               <td>总计:</td>
+               <td style="text-align: right;color: #ff0000"><%=count%></td>
+             </tr>
+
+              </tbody>
+
+              </table>
+
+        </div>
+      </div>
+       </div>
 
 <%else%>
-    <div class="am-panel am-panel-default">
+          <div class="am-u-md-6">
+            <div class="am-panel am-panel-default">
+
         <div class="am-panel-hd">我的推广佣金</div>
         <div class="am-panel-hd"><%=@share_for_promotion%></div>
         <span class="icon-arr"></span>
-    </div>
+    </div>  </div>
 <%end%>
+    </div>
