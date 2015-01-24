@@ -46,7 +46,7 @@
          </span>
 
                 <em class="good_data_num_m J_num_cart_txt">
-                  <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity good_data_num_m J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>cart_path(line_item.obj_ident)%>
+                  <%=number_field_tag :quantity,line_item.quantity.to_i,:class=>"textcenter quantity good_data_num_m J_num_cart_txt",:size=>3,:min=>1,:'data-url'=>"#{cart_path(line_item.obj_ident)}?platform=mobile&shop_id=#{line_item.shop_id}"%>
                 </em>
          <span class="good_data_num_r J_num_cart_add" onclick="VsmCart.addNum(this)" >
                       <a href="javascript:;" class="addition" mars_sead="cart_edit_btn" style="font-size: 26px"  data_mars="prd_id:26038564">+</a>
@@ -70,12 +70,12 @@
         </li>
 
     <%end%>  </ul>
-  </div></div>
-</div>
+  </div>
 
-</div>
 
-<div id ="carter">
+
+
+
   <div class="bottomdiv clearfix">
     <div class="inner clearfix">
       <div class="fl" style="float: left">
@@ -95,7 +95,7 @@
       <%end%>
     </div>
   </div>
-</div>
+
 
 <%= javascript_include_tag "jquery", "jquery_ujs" %>
 <script>

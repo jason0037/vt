@@ -1,6 +1,6 @@
 
 #encoding:utf-8
-     
+
 module Admin
   class ShopsController < Admin::BaseController
     skip_before_filter :require_permission!
@@ -10,9 +10,12 @@ module Admin
 
     def edit
      @shop = Ecstore::Shop.find(params[:id])
+     @shop_desc = Ecstore::ShopLog.find(params[:id]).shop_desc
     end
 
     def update
+      shop_desc=params[:shop_desc]
+      Ecstore::ShopLog.find(params[:id]).update_attributes(:shop_desc=>shop_desc)
       @shop = Ecstore::Shop.find(params[:id])
       if @shop.update_attributes(params[:shop])
         redirect_to  admin_shops_url
@@ -23,6 +26,7 @@ module Admin
 
     def create
       @shop = Ecstore::Shop.new(params[:shop])
+
       @shop.save
       redirect_to admin_categories_url
     end

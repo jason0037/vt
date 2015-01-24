@@ -4,6 +4,7 @@ class Ecstore::Shop< Ecstore::Base
   self.accessible_all_columns
 
   has_many :shop_clients, :foreign_key=>"shop_id"
+  has_many :shop_log, :foreign_key=>"shop_id"
 
   end
 

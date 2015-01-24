@@ -22,7 +22,7 @@
 
 
 </style>
-
+      <% if @orders.size>0%>
 <div class="am-list-news-bd">
   <ul class="am-list">
     <%@orders.each  do |order|%>
@@ -54,6 +54,12 @@
     <%end%>
   </ul>
 </div>
+<%else%>
+    <div style="margin:28% auto; text-align: center;">
+
+      <span>您当前还没有订单哦!!!</span>
+    </div>
+<%end%>
 
 
 

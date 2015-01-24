@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   # before_filter :authorize_user!
   before_filter :adjust_format_for_mobile
-  before_filter :find_user,:find_session_id,:find_cart!
+  before_filter :find_user,:find_session_id,:find_cart! ,:find_shop_order
   before_filter :find_path_seo
   before_filter :set_locale
 
@@ -72,7 +72,19 @@ class ApplicationController < ActionController::Base
 
     end
 
-    
+   def find_shop_order
+     shop_id = session[:shop_id]
+     @s_order=0
+     order=  Ecstore::Order.all(:conditions => "shop_id = #{shop_id}",
+                             :select => "SUM(final_amount)")
+     order.each do |row|
+       @s_order+= row["SUM(final_amount)"]
+
+     end
+
+
+   end
+
     def find_user
       # if Rails.env == "development"
       #   return  @user = Ecstore::User.find_by_member_id(217)

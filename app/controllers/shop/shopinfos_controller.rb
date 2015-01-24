@@ -30,8 +30,10 @@ class Shop:: ShopinfosController < ApplicationController
   end
 
   def index
+
+
     if @user
-      @shop = Ecstore::Shop.find_by_member_id(@user.member_id)
+      @shop = Ecstore::Shop.where(:member_id=>@user.member_id).first
       if @shop
         @headimgurl =  @shop.shop_logo
         @shop_title= @shop.shop_name
@@ -41,6 +43,10 @@ class Shop:: ShopinfosController < ApplicationController
      if @headimgurl
       page= Nokogiri::HTML(open(@headimgurl))
      end
+      shop_id=@shop.shop_id
+      session[:shop_id]=shop_id
+
+  find_shop_order
 
     else
      redirect_to "/auto_login?id=78&supplier_id=78&platform=mobile&return_url=/shop/shopinfos"
@@ -60,6 +66,12 @@ class Shop:: ShopinfosController < ApplicationController
     @shop=Ecstore::Shop.new(params[:shop])    
 
     if @shop.save
+
+      @shop_log =Ecstore::ShopLog.new do |log|
+        log.datetime=Time.now
+        log.shop_id=@shop.shop_id
+        log.shop_ip=request.remote_ip
+      end.save
       redirect_to "/shop/shopinfos"
     else
       redirect_to "/shop/shopinfos/new"
@@ -76,10 +88,9 @@ class Shop:: ShopinfosController < ApplicationController
 
     @shop = Ecstore::Shop.where(:shop_id=>shop_id,:status=>"1").first
     if @shop
-   
 
-      if @user
-        if @user.member_id != shop_id
+       if @user
+        if @user.member_id != @shop.member_id
           shop_client = Ecstore::ShopClient.where(:member_id=>@user.member_id,:shop_id=>shop_id)
           if shop_client.size ==0
             Ecstore::ShopClient.new do |sc|
@@ -90,7 +101,6 @@ class Shop:: ShopinfosController < ApplicationController
         end
       end
 
-     
       @share_desc = @shop.shop_intro
       @shop_title = @shop.shop_name
       @shop_goods = Ecstore::ShopsGood.where(:shop_id=>shop_id)
@@ -132,9 +142,15 @@ class Shop:: ShopinfosController < ApplicationController
   def add_goods
     ids = params[:goods_id]
     shop_id=Ecstore::Shop.find_by_member_id(@user.member_id).shop_id
-    if ! ids.nil?
-      ids.each do |id|        
+    count= Ecstore::ShopsGood.where(:shop_id=>shop_id).count
 
+   unless count>3
+
+    if ! ids.nil?
+      count=0
+      ids.each do |id|        
+              count+=1;
+              if count<4
         if  Ecstore::ShopsGood.where(:goods_id=>id,:shop_id=>shop_id).size==0
           Ecstore::ShopsGood.new do |goo|
             goo.shop_id=shop_id
@@ -142,8 +158,15 @@ class Shop:: ShopinfosController < ApplicationController
             goo.uptime=Time.now
           end.save
         end
+        end
+
       end
+
     end
+    else
+                return render :text => "您已经添加了3个商品了!!"
+    end
+
     redirect_to "/shop/shopinfos/my_goods?shop_id=#{shop_id}"
   end
 

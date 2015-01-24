@@ -20,7 +20,7 @@
 
 <hr>
 
-<%if @user.member_id.to_s==@shop.shop_id.to_s%>
+<%if @user.member_id.to_s==@shop.member_id.to_s%>
     <div class="am-panel am-panel-default">
       <a href="/shop/shopinfos/myorder">
         <div class="am-panel-hd">我的销售提成</div>
@@ -33,6 +33,12 @@
         <div class="am-panel-hd"><%=@share_for_shop%></div>
         <span class="icon-arr"></span> </a>
     </div>
+
+    <%@share_for_shop.each do |ss|%>
+
+         <%=ss.share_shop%>  <br><%=ss.shop_id%>
+        <%end%>
+
 <%else%>
     <div class="am-panel am-panel-default">
         <div class="am-panel-hd">我的推广佣金</div>

@@ -5,7 +5,10 @@ $("#line_<%=params[:id]%>").remove();
    if ($("#supplierid_<%=params[:supplier_id]%>").children("li").length==0){
        $("#supplier_<%=params[:supplier_id]%>").remove();
            }
-$("#carter .modal-footer .total").html('<%=raw "￥#{@cart_total}"%>');
+$("#cart .modal-footer .total").html('<%=raw "￥#{@cart_total}"%>');
 var _pDoc =  window.parent.document;
 $(_pDoc).find("#cart_link .cart-number").text('(<%=@cart_total_quantity%>)');
 $(_pDoc).find("#menu_cart .number").text('(<%=@cart_total_quantity%>)');
+ <% if @line_items.count==0%>
+
+<%end%>

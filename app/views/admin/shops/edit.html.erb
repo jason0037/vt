@@ -39,14 +39,28 @@
 <div class="control-group">
 	    <label class="control-label">简介</label>
 	    <div class="controls">
-	      <%=f.text_area :shop_intro%>
+	      <%=f.text_area :shop_intro ,:style=>"height:40px;"%>
 	    </div>
   	</div>
+    <div class="control-group">
+      <label class="control-label">审核内容 </label>
+      <div class="controls">
+          <%if @shop_desc.nil?%>
+        <%=text_area_tag :shop_desc ,@shop_desc %>
+        <%else%>
+        <%text_area_tag :shop_desc%>
+            <%end%>
+      </div>
+    </div>
 <div class="control-group">
-	    <label class="control-label">状态</label>
+	    <label class="control-label">申请状态 </label>
 	    <div class="controls">
-	      <%=f.text_field :status%>
-	    </div>
+          <%if @shop.status==0%>
+          <%=f.select :status, {"审核中"=>"0","审核通过"=>"1" }%>
+              <%else%>
+          <span style="line-height: 32px;color: #ff0000">该店铺已经审核通过</span>
+            <%end%>
+        </div>
   	</div>
 
   	<div class="control-group">

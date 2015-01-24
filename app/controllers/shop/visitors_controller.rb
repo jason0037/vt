@@ -56,7 +56,7 @@ def my_add_shopping
 		if @cart.new_record?
 			@cart.save
 		else
-			Ecstore::Cart.where(:obj_ident=>@cart.obj_ident,:member_ident=>member_ident).update_all(:shop_id=>shop_id,:quantity=>@cart.quantity+quantity)
+			Ecstore::Cart.where(:obj_ident=>@cart.obj_ident,:member_ident=>member_ident).update_all(:quantity=>@cart.quantity+quantity)
 			@cart.quantity = (@cart.quantity+1)
 		end
 

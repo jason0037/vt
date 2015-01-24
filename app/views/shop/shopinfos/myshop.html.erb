@@ -23,7 +23,7 @@
   <div><%=@shop.shop_intro%></div>
 </div>
 <div class="main">
-  <%if @shop_goods%>
+  <%if @shop_goods.size>0%>
       <div class="am-panel-bd">
         <ul class="am-list">
           <%@shop_goods.each do |shopgoods|%>

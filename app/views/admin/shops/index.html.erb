@@ -23,7 +23,12 @@
 			<td><%=shop.shop_email%></td>
 			<td><%=shop.area%></td>
 			<td><%=shop.created_at%></td>
-			<td><%=shop.status%></td>
+          <%if shop.status==1%>
+              <td>审核通过</td>
+              <%else%>
+              <td>待审核</td>
+              <%end%>
+
 
 			<td>
 				<%=link_to "编辑",edit_admin_shop_path(shop)%>

@@ -100,6 +100,13 @@ ActiveRecord::Schema.define(:version => 201412081010300) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "permissions0", :force => true do |t|
+    t.integer  "manager_id"
+    t.text     "rights"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "resources", :force => true do |t|
     t.integer "parent_id"
     t.string  "name"

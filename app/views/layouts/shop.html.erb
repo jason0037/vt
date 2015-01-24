@@ -9,11 +9,7 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
   <%= stylesheet_link_tag    "shop.css" %>
-
-
-  <%= stylesheet_link_tag    "amaze/amazeui.basic.min.css" %>
-
-  <%= stylesheet_link_tag    "amaze/amazeui.min.css" %>
+ <%= stylesheet_link_tag    "amaze/amazeui.min.css" %>
 
   <%= stylesheet_link_tag    "amaze/amazeui.widgets.min.css" %>
 
@@ -68,17 +64,24 @@
       <% if @shop%>
           <%if  @user %>
             <%if @user.member_id == @shop.member_id%>
-              <li><a class="" href="/shop/shopinfos/myshop?shop_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">|管理店铺|</span></a></li>
+                  <%if @shop.status==1%>
+              <li><a class="" href="/shop/shopusers"><span  class="am-navbar-label ">管理店铺</span></a></li>
+                      <%end%>
             <%else%>
-              <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">|我也要开店|</span></a></li>
+                  <%if  @shop.member_id%>
+                      <!--当订单达到200后才显示开分店-->
+                      <% if @s_order>200%>
+
+              <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">我也要开店</span></a></li>
+                      <%end%><%end%>
+                  <li ><a class="" href="/shop/shopusers?shop_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">账户中心</span></a></li>
               <%end%>
-              <li ><a class="" href="/shop/shopusers?shop_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">|账户中心|</span></a></li>
 
           <%else%>
-              <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">|我也要开店|</span></a></li>
+              <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">我也要开店</span></a></li>
           <%end%>
 
-      <%end%>     
+      <%end%>
 
     </ul>
   </div>
@@ -176,8 +179,8 @@
     <%if @shop%>
       <%shop_id=@shop.shop_id%>
     <%end%>
-    var current_url = document.location.href;
-    
+//    var current_url = document.location.href;
+//
 
     var imgs=null
 
@@ -186,23 +189,22 @@
       desc = "极致生活，品质共享 连接你我的极致小店~";
     }
         
-    // if (document.location.pathname=="/vhop/shopinfos" ){
-    //     current_url=url
-    //     descs="极致生活，品质共享 连接你我的极致小店~"
-    //    }
 
+//    //去除上一个推荐者的链接
+//    var num_index_of = current_url.indexOf("from=weixin&wechatuser=");
+//    if (num_index_of >0){
+//        current_url = current_url.substr(0,num_index_of-1);
+//    }
+//    var connector ='?'
+//    if (current_url.indexOf("?")>0){
+//         connector  ='&'
+//    }
+//    current_url += connector + "from=weixin&wechatuser=<%=useraccount%>";
+//    // alert(current_url);
+    <%if @shop%>
+         current_url="http://"+host+"/shop/?shop_id="+<%=@shop.shop_id%>;
+    <%end%>
 
-    //去除上一个推荐者的链接
-    var num_index_of = current_url.indexOf("from=weixin&wechatuser=");
-    if (num_index_of >0){
-        current_url = current_url.substr(0,num_index_of-1);
-    }
-    var connector ='?'
-    if (current_url.indexOf("?")>0){
-         connector  ='&'
-    }
-    current_url += connector + "from=weixin&wechatuser=<%=useraccount%>";
-    // alert(current_url);
 
     var data = {"img":imgs,"url":current_url,"title":"<%=@shop_title%>","desc":desc};
     wechatShare(data);

@@ -159,15 +159,30 @@ class Store::CartController < ApplicationController
 
 	def update
 		quantity = params[:quantity]
+     unless params[:shop_id].nil?
+       @shop_id= params[:shop_id]
+       @line_items.where(:obj_ident=>params[:id],:shop_id=>@shop_id).update_all(:quantity=>quantity)
+       @line_item  = @line_items.where(:obj_ident=>params[:id],:shop_id=>@shop_id).first
+       session[:shop_id] = @shop_id
+     else
 		@line_items.where(:obj_ident=>params[:id]).update_all(:quantity=>quantity)
-		@line_item  = @line_items.where(:obj_ident=>params[:id]).first
+    @line_item  = @line_items.where(:obj_ident=>params[:id]).first
+     end
+
 		find_cart!
 		render "update"
 	end
 
 	def destroy
 		_type, goods_id, product_id = params[:id].split('_')
+    if params[:shop_id]
+      @shop_id= params[:shop_id]
+      @line_items.where(:obj_ident=>params[:id],:shop_id=>@shop_id).delete_all
+
+      session[:shop_id] = @shop_id
+    else
 		@line_items.where(:obj_ident=>params[:id]).delete_all
+    end
 		@user.custom_specs.where(:product_id=>product_id).delete_all if signed_in?
 
 		find_cart!

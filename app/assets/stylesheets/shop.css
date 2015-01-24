@@ -210,3 +210,6 @@ input.textcenter {
 .am-topbar-nav > li.am-active > a:after {
     border-bottom-color: #0e90d2;
 }
+.amz-features .am-g-fixed .img{
+    margin-left: auto;margin-right: auto;
+}
