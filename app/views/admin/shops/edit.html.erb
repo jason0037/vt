@@ -45,10 +45,10 @@
     <div class="control-group">
       <label class="control-label">审核内容 </label>
       <div class="controls">
-          <%if @shop_desc.nil?%>
+          <%unless @shop_desc.nil?%>
         <%=text_area_tag :shop_desc ,@shop_desc %>
         <%else%>
-        <%text_area_tag :shop_desc%>
+        <%=text_area_tag :shop_desc%>
             <%end%>
       </div>
     </div>
@@ -62,6 +62,20 @@
             <%end%>
         </div>
   	</div>
+
+    <div class="control-group">
+      <label class="control-label">分店申请状态 </label>
+      <div class="controls">
+        <%if @shop.permission_branch=="0"%>
+            <%=f.select :permission_branch, {"申请中"=>"0","审核通过"=>"1" }%>
+        <%elsif @shop.permission_branch=="1" %>
+            <span style="line-height: 32px;color: #d222fc">该店铺已经具有分店了</span>
+            <%else%>
+            <span style="line-height: 32px;color: #8a216b">该店铺目前无法申请分店</span>
+        <%end%>
+      </div>
+    </div>
+
 
   	<div class="control-group">
   		<div class="controls">

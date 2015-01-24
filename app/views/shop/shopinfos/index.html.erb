@@ -46,7 +46,20 @@
        <%end%>
     </p>
   </div>
-</div>
+       <%if @shop.permission_branch=="-1"%>
+  <div class="am-alert tijiao am-alert-danger">
+    <strong>注意：</strong>您的订单成交金额已达到200元
+    <p>可以申请开分店了哦!!</p>
+    <button class="am-btn am-btn-sm get-btn am-btn-default fendian">开启分店</button>
+     </div>
+      <%elsif @shop.permission_branch=="0" %>
+      <div class="am-alert ">
+
+        <p>您已经成提交申请开分店了,请耐心等待!!,如果系统审核完成,您可以在店铺管理中查看到"分店管理"</p>
+
+      </div>
+  <%end%>
+
   </div>
   <div class="am-g ">
   <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default am-margin-zero am-titlebar-multi am-no-layout">
@@ -91,6 +104,7 @@
 
 <script>
 
+
   var shop_id= $("#shopid").val();
      var host=window.location.host;
 
@@ -111,19 +125,23 @@
   }
 
 
-    $=Zepto;
-  $(function() {
-      $('#qrcodeimg').on('click', function() {
+$(document).ready(function(){
+    $(".fendian").click(function(){
+        $.ajax(
+                {  type:"post",
+                   url:"/shop/shopinfos/fendian?shop_id="+shop_id,
+                    success:function(data){
 
-          $('#my-confirm').modal({
-              relatedElement: this,
-              onConfirm: function() {
-                window.location.href=url
-              },
-              onCancel: function() {
+                        window.location.href=window.location.href;
+                    }
 
-              }
-          });
-      });
-  });
+                }
+        )
+
+
+    })
+})
+
+
+
 </script>

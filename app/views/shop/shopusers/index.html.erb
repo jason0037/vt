@@ -52,11 +52,13 @@
         <span class="icon-arr"></span> </a>
     </div>
     <%if @shop.parent.nil?%>
+        <%if @shop.permission_branch=="1"%>
         <div class="am-panel am-panel-default">
           <a href="/shop/shopinfos/my_goods">
             <div class="am-panel-hd">分店管理</div>
             <span class="icon-arr"></span> </a>
         </div>
+            <%end%>
     <%end%>
 <%else%>
     <div class="am-panel am-panel-default">

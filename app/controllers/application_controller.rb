@@ -72,18 +72,7 @@ class ApplicationController < ActionController::Base
 
     end
 
-   # def find_shop_order
-   #   shop_id = session[:shop_id]
-   #   @s_order=0
-   #   order=  Ecstore::Order.all(:conditions => "shop_id = #{shop_id}",
-   #                           :select => "SUM(final_amount)")
-   #   order.each do |row|
-   #     @s_order+= row["SUM(final_amount)"]
-   #
-   #   end
-   #
-   #
-   # end
+
 
     def find_user
       # if Rails.env == "development"

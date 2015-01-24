@@ -13,3 +13,11 @@ def good_status_text
   return  '上架' if good_status=='1'
   return  '下架' if good_status=='0'
 end
+
+def permission_branch_text
+  return  '没有资格' if permission_branch=='-2'
+  return  '具备申请' if permission_branch=='-1'
+  return  '申请中' if permission_branch=='0'
+  return  '批准' if permission_branch=='1'
+
+end

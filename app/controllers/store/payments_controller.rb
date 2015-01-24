@@ -140,6 +140,22 @@ class Store::PaymentsController < ApplicationController
 				@payment.update_attributes(result)
 				@order.update_attributes(:pay_status=>'1')
 
+        unless @order.shop_id.nil?
+          shop_id=  @order.shop_id
+           @shop=  Ecstore::Shop.find(shop_id)
+            if @shop.permission_branch=="-2"
+                  s_order=0
+                  @ord=  Ecstore::Order.all(:conditions => "shop_id = #{shop_id}", :select => "SUM(final_amount)")
+                  @ord.each do |row|
+                   s_order+= row["SUM(final_amount)"]
+                       end
+                    if s_order>200
+                      @shop.update_attributes(:permission_branch=>"-1")
+                    end
+            else
+
+            end
+        end
 
         member_id=@order.member_id
         @member = Ecstore::Member.find(member_id)

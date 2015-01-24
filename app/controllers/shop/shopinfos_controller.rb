@@ -19,7 +19,7 @@ class Shop:: ShopinfosController < ApplicationController
 
   def new
     if @user
-      @shop=Ecstore::Shop.find_by_shop_id(@user.member_id)
+      @shop=Ecstore::Shop.find_by_member_id(@user.member_id)
       if @shop
         redirect_to "/shop/shopinfos"
       end
@@ -43,10 +43,19 @@ class Shop:: ShopinfosController < ApplicationController
      if @headimgurl
       page= Nokogiri::HTML(open(@headimgurl))
      end
-      shop_id=@shop.shop_id
-      session[:shop_id]=shop_id
 
-  find_shop_order
+
+      def fendian
+        @shop=Ecstore::Shop.find(params[:shop_id])
+
+        if @shop.permission_branch=="-1"
+
+          @shop.update_attributes(:permission_branch=>"0")
+          end
+
+      end
+
+
 
     else
      redirect_to "/auto_login?id=78&supplier_id=78&platform=mobile&return_url=/shop/shopinfos"

@@ -18,6 +18,7 @@ Modengke::Application.routes.draw do
         get :goods_destroy
         get 'myorder'
         get 'details_trade'
+        post "fendian"
       end
     end
 

@@ -70,7 +70,7 @@
             <%else%>
                   <%if  @shop.member_id%>
                       <!--当订单达到200后才显示开分店-->
-                      <% if @s_order>200%>
+                      <% if @shop.permission_branch=="1"%>
 
               <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">我也要开店</span></a></li>
                       <%end%><%end%>
