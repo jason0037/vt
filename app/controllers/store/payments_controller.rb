@@ -2,7 +2,7 @@
 require  'modec_pay'
 class Store::PaymentsController < ApplicationController
 	layout 'order'
-  before_filter :find_shop_user
+
 	skip_before_filter :verify_authenticity_token,:only=>[:callback,:notify]
  
 	def create
