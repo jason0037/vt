@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   # before_filter :authorize_user!
   before_filter :adjust_format_for_mobile
-  before_filter :find_user,:find_session_id,:find_cart! ,:find_shop_order
+  before_filter :find_user,:find_session_id,:find_cart!
   before_filter :find_path_seo
   before_filter :set_locale
 
