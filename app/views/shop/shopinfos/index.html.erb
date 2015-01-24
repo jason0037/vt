@@ -46,6 +46,7 @@
        <%end%>
     </p>
   </div>
+  <% unless @shop.nil?%>
        <%if @shop.permission_branch=="-1"%>
   <div class="am-alert tijiao am-alert-danger">
     <strong>注意：</strong>您的订单成交金额已达到200元
@@ -58,6 +59,7 @@
         <p>您已经成提交申请开分店了,请耐心等待!!,如果系统审核完成,您可以在店铺管理中查看到"分店管理"</p>
 
       </div>
+  <%end%>
   <%end%>
 
   </div>
