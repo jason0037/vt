@@ -1,0 +1,65 @@
+<div style="padding: 15px">
+
+  <div class="am-g">
+
+   <div class="am-u-md-6">
+     <div class="am-panel am-panel-default">
+     <div class="am-panel-hd">当前活动是: <%=@event.name%></div>
+     <div class="am-panel-bd">目前已经有<span style="color: #ff0000">(<%=@applicants.size%>)</span>人报名了哦!!!<br>
+        <span>活动地点:  <%=@event.adds%></span> <br>
+       <span>活动时间:  <%=@event.times.strftime("%Y-%m-%d %H:%M:%S")%></span> <br>
+  <span>活动内容:</span> <%=raw @event.body.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @event.body%>
+     </div></div></div>
+
+
+  <div class="applicant-form" id="form">
+  <div>
+ <span style="border: 4px solid #FF8000"></span> <span style="margin-left: 10px">活动报名</span>
+  </div>
+<%=form_for :applicant,:url=>@action_url,:html => {:class=>"am-form"},:remote=>true do |f|%>
+    <%=f.hidden_field :event_id,:value=>@event.id%>
+    <div id="msg">
+
+    </div>
+
+
+      <fieldset>
+
+
+        <div class="am-form-group">
+          <label >姓名</label>
+          <%=f.text_field :name,:class=>"input" ,:placeholder=>"请输入您的姓名"%>
+        </div>
+
+        <div class="am-form-group">
+          <label >年龄</label>
+          <%=f.text_field :age,:class=>"input age",:placeholder=>"请输入您的年龄"%>
+        </div>
+
+        <div class="am-form-group">
+          <label >性别</label>
+          <%=f.select :sex,{'女'=>"female",'男'=>"male"}%>
+
+        </div>
+        <div class="am-form-group">
+          <label >手机号</label>
+          <%=f.text_field :mobile,:class=>"input", :placeholder=>"请输入您的手机号"%>
+
+        </div>
+        <div class="am-form-group">
+          <label >邮箱</label>
+          <%=f.text_field :email,:class=>"input", :placeholder=>"请输入您的邮箱"%>
+        </div>
+        <div class="am-form-group">
+          <label >微信号</label>
+          <%=f.text_field :wechat_num,:class=>"input", :placeholder=>"请输入您的微信号"%>
+        </div>
+
+     <input type="submit" value="提交报名" class="am-btn am-btn-block am-btn-warning">
+      </fieldset>
+
+
+
+
+<%end%>
+    </div> </div>      </div>

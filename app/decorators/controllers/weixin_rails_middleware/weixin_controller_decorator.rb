@@ -20,6 +20,8 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         render xml: send("response_news_message", {})
       when '店铺'
         render xml: send("response_news_message", {})
+      when '活动'
+        render xml: send("response_news_message", {})
       when '登录'
         render xml: send("response_news_message", {})
       else
@@ -92,6 +94,13 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         desc=""
         pic_url="http://vshop.trade-v.com/images/a078/homepage/zimao.jpg"
         link_url="http://vshop.trade-v.com/shop/shopinfos"
+        articles = [generate_article(title, desc, pic_url, link_url)]
+
+      when '活动'
+        title="吃货帮聚会报名"
+        desc=""
+        pic_url="http://vshop.trade-v.com/assets/foodie.jpg"
+        link_url="http://vshop.trade-v.com/events/foodie? supplier_id=78"
         articles = [generate_article(title, desc, pic_url, link_url)]
 
 

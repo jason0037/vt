@@ -3,6 +3,10 @@ require 'httpclient'
 Modengke::Application.routes.draw do
 
 
+
+
+
+
   #scope :module => "shop" do
   get 'shop'=>'shop/shopinfos#myshop'
   namespace :shop do
@@ -53,7 +57,12 @@ Modengke::Application.routes.draw do
     end
   end
 
-  get "rongda/index"
+
+
+
+
+
+
 
 
   scope :module => "cheuksgroup" do
@@ -275,11 +284,21 @@ Modengke::Application.routes.draw do
   scope :module=> "events" do
     resources :user_survey, :controller=>"survey" do
       post "add_mobile", :on=>:collection
+
     end
+
+
   end
 
   namespace :events do
     resources :applicants
+
+    resources :foodie do
+      collection do
+        get 'index'
+        post 'add_foodie'
+      end
+    end
   end
 
   resources :events

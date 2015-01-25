@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 201412081010300) do
     t.integer  "event_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "wechat_num"
   end
 
   create_table "articles", :force => true do |t|
@@ -78,8 +79,11 @@ ActiveRecord::Schema.define(:version => 201412081010300) do
     t.string   "name"
     t.text     "body"
     t.string   "slug"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+    t.string   "adds"
+    t.string   "terminal",   :limit => 6, :default => "mobile"
+    t.datetime "times"
   end
 
   add_index "events", ["slug"], :name => "index_events_on_slug", :unique => true

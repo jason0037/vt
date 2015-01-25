@@ -28,8 +28,13 @@
 			<label>邮箱 : </label>
 			<%=f.text_field :email,:class=>"input"%>
 		</span>
-		<span class="field"></span>
-	</div>
+
+			<span class="field">
+			<label>微信号 : </label>
+              <%=f.text_field :wechat_num,:class=>"input"%>
+		</span>
+
+    </div>
 
 	<div class="actions">
 		<%=f.submit "",:class=>"btn-submit"%>

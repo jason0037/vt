@@ -1,6 +1,6 @@
 <div class="page-header">
-  <h2>所有摩登活动
-    <%= link_to '新建摩登活动', new_admin_event_path, :class => "pull-right btn btn-primary" %>
+  <h2>所有吃货帮活动
+    <%= link_to '新建活动', new_admin_event_path, :class => "pull-right btn btn-primary" %>
   </h2>
 
 </div>
@@ -10,6 +10,7 @@
     <th>活动名</th>
     <!-- <th>活动时间</th> -->
     <th>创建时间</th>
+    <th>终端</th>
     <th></th>
   </tr>
 
@@ -17,6 +18,7 @@
   <tr>
     <td><%=event.name%></td>
     <td><%=event.created_at%></td>
+    <td><%=event.terminal_text%></td>
     <td><%= link_to '查看', event_path(event),:target=>"_blank" %></td>
     <td><%= link_to '查看报名者', applicants_admin_event_path(event) %></td>
     <td><%= link_to '编辑', edit_admin_event_path(event) %></td>

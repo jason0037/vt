@@ -1,0 +1,10 @@
+
+
+<div class="am-alert am-alert-danger" data-am-alert>
+  <button type="button" class="am-close">&times;</button>
+  <ul >
+    <%@applicant.errors.messages.each do |key,msg|%>
+        <li><%=msg.join(",")%></li>
+    <%end%>
+  </ul>
+</div>

@@ -1,6 +1,6 @@
 #encoding:utf-8
 class Imodec::Event < ActiveRecord::Base
-  attr_accessible :body, :name
+  attr_accessible :body, :name ,:times  ,:adds,:terminal
 
   extend FriendlyId
   friendly_id :name, :use => :slugged
@@ -14,5 +14,12 @@ class Imodec::Event < ActiveRecord::Base
   end
 
   has_many :applicants
+
+  def terminal_text
+    return "电脑端" if self.terminal=="pc"
+    return "手机端" if self.terminal=="mobile"
+
+  end
+
 
 end

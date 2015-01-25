@@ -1,3 +1,13 @@
+<link href="/assets/jquery.ui.core.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="/assets/jquery.ui.theme.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="/assets/jquery.ui.datepicker.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<link href="/assets/admin/promotions.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.ui.core.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.ui.datepicker.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery-ui-timepicker-addon.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery.ui.datepicker-zh-CN.js?body=1" type="text/javascript"></script>
+<script src="/assets/admin/promotions.js?body=1" type="text/javascript"></script>
 
 <%= form_for @event,:url=>@create_or_update_path ,:html => {:class => "form-horizontal"} do |f| %>
   <% if @event.errors.any? %>
@@ -17,6 +27,29 @@
         <%= f.text_field :name, :placeholder => "活动名称" %>
       </div>
     </div>
+    <div class="control-group">
+      <%= f.label :times, "活动时间", :class => "control-label" %>
+      <div class="controls">
+        <%=f.text_field :times,:value=>@event.times&&@event.times.strftime("%Y-%m-%d %H:%M:%S"),:class=>"span2 datetime"%>
+
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :adds, "活动地点", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :adds, :placeholder => "活动地点" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :terminal, "活动展示", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :terminal, {"电脑端"=>"pc","手机端"=>"mobile" }%>
+      <span style="color: red">pc端显示的是pc的页面以及活动</span>
+      </div>
+    </div>
+
+
     <div class="control-group">
       <%= f.label :body, "内容", :class => "control-label" %>
       <div class="controls">
