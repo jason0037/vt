@@ -100,7 +100,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         title="吃货帮聚会报名"
         desc=""
         pic_url="http://vshop.trade-v.com/assets/foodie.jpg"
-        link_url="http://vshop.trade-v.com/events/foodie? supplier_id=78"
+        link_url="http://vshop.trade-v.com/events/foodie?supplier_id=78"
         articles = [generate_article(title, desc, pic_url, link_url)]
 
 
