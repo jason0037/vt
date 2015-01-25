@@ -1,7 +1,7 @@
 class AddTimesToEvents < ActiveRecord::Migration
   def self.up
     change_table :events do |t|
-      t.column :times, :timestamp
+     # t.column :times, :timestamp
 
       t.string :adds   ###地点
 
