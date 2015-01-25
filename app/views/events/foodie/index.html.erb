@@ -27,7 +27,7 @@
         <%if @events.size>0%>
         <%@events.each do |eve|%>
         <li class="am-g">
-         <a href="/events/foodie/new?id=<%=eve.id%>&supplier_id=78"><%=eve.name%><span class=""></span></a>
+         <a href="/events/foodie/new?id=<%=eve.id%>&supplier_id=78"><%=eve.name%><span class="">报名</span></a>
         </li>  <%end%>
          <%else%>
             <li class="am-g"><a href="javascript:void (0)">当前没有活动 ,具体发布请留意贸威服务号哦!!!!</a>
