@@ -1,0 +1,46 @@
+<div style="padding: 15px">
+<div id="amz-home">
+  <section id="amz-hero" style="text-align: center">
+    <div class="amz-container am-cf">
+      <div class="amz-mascot am-scrollspy-init am-scrollspy-inview am-animation-slide-left" data-am-scrollspy="{animation: 'slide-left', delay: 100}">
+        <img style="width:40%;" src="/assets/foodie.jpg" alt="foodie_log" />
+      </div>
+      <div class="amz-hero-intro">
+        <div class="amz-hero-headings">
+          <h1 data-am-scrollspy="{animation:'slide-left'}" class="am-scrollspy-init am-scrollspy-inview am-animation-slide-left">欢迎来到贸威吃货平台</h1>
+          <h2 data-am-scrollspy="{animation:'slide-right', delay: 500}" class="am-scrollspy-init am-scrollspy-inview am-animation-slide-right">xxxxx</h2>
+        </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  <div data-am-widget="list_news" class="am-list-news am-list-news-default am-no-layout">
+    <!--列表标题-->
+    <div class="am-list-news-hd am-cf">
+      <!--带更多链接-->
+      <a href="javascript:void (0)">
+       <h2 style="border: 4px solid #FF8000"></h2> <h2 style="margin-left: 10px">热门活动</h2>
+      </a>
+    </div>
+    <div class="am-list-news-bd">
+      <ul class="am-list">
+        <%if @events.size>0%>
+        <%@events.each do |eve|%>
+        <li class="am-g">
+         <a href="/events/foodie/new?id=<%=eve.id%>&supplier_id=78"><%=eve.name%><span class=""></span></a>
+        </li>  <%end%>
+         <%else%>
+            <li class="am-g"><a href="javascript:void (0)">当前没有活动 ,具体发布请留意贸威服务号哦!!!!</a>
+                <%end%>
+
+
+      </ul>
+    </div>
+    <!--更多在底部-->
+    <!--<div class="am-list-news-ft">-->
+      <!--<a class="am-list-news-more am-btn am-btn-default" href="###">查看更多 »</a>-->
+    <!--</div>-->
+  </div>
+
+
+ </div>
