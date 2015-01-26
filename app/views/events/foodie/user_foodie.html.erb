@@ -10,8 +10,10 @@
             <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-left">
               <a href="javascript:void (0)">
                 <div class="am-u-sm-2 am-list-thumb">
+                  <%if Ecstore::User.find_by_member_id(applicant.member_id).weixin_headimgurl%>
                   <%=image_tag Ecstore::User.find_by_member_id(applicant.member_id).weixin_headimgurl,:id=>"weixin" ,:class => "am-circle",:style=>"width: 45px; height: 45px;",:onerror=>"javascript:this.src='/assets/event.png';"%>
-
+                  <%else%>
+                  <img src="/assets/event.png" style="width: 45px; height: 45px;"> <%end%>
                 </div>
                 <div class="am-u-sm-10 am-list-main">
                   <h4 class="clearstyle"> <%=Imodec::Event.find(applicant.event_id).name%>  <span style=";margin-left:23px;font-size: 13px"><%=applicant.name%></span> </h4>

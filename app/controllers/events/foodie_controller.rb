@@ -15,6 +15,7 @@ class Events::FoodieController < ApplicationController
   end
 
   def add_foodie
+    @user.update_attributes(:user_desc=>params[:user_desc])
     @applicant = Imodec::Applicant.new(params[:applicant])
 
     if @applicant.save

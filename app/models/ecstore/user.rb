@@ -6,7 +6,7 @@ class Ecstore::User < Ecstore::Base
   attr_accessor :province,:city,:district
   attr_accessible :mobile,:email,:name,:sex, :area,:addr, :b_year, :b_month, :b_day, :bank_info,
                             :interests,:voc, :job, :income, :height, :weight, :shoesize,:price,:places,:colors,:edu,
-                            :province,:city,:district,:login_count,:sms_validate,:email_validate,:custom_values,:sent_sms_at,:wechat_num
+                            :province,:city,:district,:login_count,:sms_validate,:email_validate,:custom_values,:sent_sms_at,:wechat_num,:user_desc
   self.accessible_all_columns
   belongs_to :account,:foreign_key=>"member_id"
 

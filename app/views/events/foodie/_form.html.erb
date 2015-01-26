@@ -18,6 +18,7 @@
   </div>
 <%=form_for :applicant,:url=>@action_url,:html => {:class=>"am-form"},:remote=>true do |f|%>
     <%=f.hidden_field :event_id,:value=>@event.id%>
+        <%=f.hidden_field :member_id,:value=>@user.member_id%>
     <div id="msg"></div>
 
         <div class="am-input-group">
@@ -50,11 +51,16 @@
           <%=f.text_field :wechat_num,:class=>"input", :placeholder=>"请输入您的微信号",:value=>@user.wechat_num%>
         </div>
         <br>
+        <div class="am-input-group">
+            <span>自我介绍</span>
+          <%=text_field_tag :user_desc ,@user.user_desc,:class=>"input" ,:placeholder=>"请输入下您的自我介绍如:公司职位,性格等!!" ,:style=>"height:60px;width:100%"%>
+        </div>
+        <br>
 
 
 
 
-     <input type="submit" value="提交报名" class="am-btn am-btn-block am-btn-warning">
+        <input type="submit" value="提交报名" class="am-btn am-btn-block am-btn-warning">
       </fieldset>
 
 <%end%>

@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="/assets/timeplug/jquery.datetimepicker.css"/>
+
 <div class="am-g"style="padding: 15px">
   <!--完善个人信息-->
   <div  id="step1"  style="display: none;">
@@ -47,8 +49,11 @@
       <br>
       <div class="am-input-group">
         <span class="am-input-group-label"><i class="am-icon-clock-o"></i></span>
-        <%=f.text_field :times,:class=>"input" ,:placeholder=>"请输入活动时间"%>
+        <%=f.text_field :times,:class=>"input" ,:id=>"datetimepicker",:placeholder=>"请输入活动时间"%>
       </div> <br>
+
+
+
 
       <div class="am-input-group">
 
@@ -73,8 +78,8 @@
           <div class="am-col col-sm-8 am-list-main">
             <div style="text-align: center;color: #ff0000">温馨提示</div>
             <div class="dotted">   </div>
-            <span ><%=@user.name%>您好,&nbsp;&nbsp;&nbsp;恭喜您报名成功!!!</span> <br>
-            <span style="font-size: 14px"> 您可以在个人中心查看我的活动信息</span></br>
+            <span ><%=@user.name%>您好,&nbsp;&nbsp;&nbsp;恭喜您发布成功!!!</span> <br>
+            <span style="font-size: 14px"> 您可以在个人中心查看我的活动信息或者是在吃货平台里查看</span></br>
 
             <a href="/events/foodie?supplier_id=78">点击返回吃货平台</a>
           </div>  </li> </ul>
@@ -97,5 +102,15 @@
     else{
         document.getElementById("step1").style.display="";
     }
-</SCRIPT>
 
+</SCRIPT>
+<script src="/assets/jquery.min.js"></script>
+
+<script src="/assets/timeplug/jquery.datetimepicker.js"></script>
+
+
+  <script> $('#datetimepicker').datetimepicker({
+      format:'Y-m-d H:i',
+      lang:'ch'
+
+  });</script>
