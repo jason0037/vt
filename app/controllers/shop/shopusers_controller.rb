@@ -9,7 +9,7 @@ class Shop::ShopusersController < ApplicationController
     if @user.nil?
       redirect_to "/shop/shopinfos"
     end
-    @shop_title="账户中心"
+    @shop_title="管理中心"
     if params[:shop_id]
       shop_id = params[:shop_id]
     else

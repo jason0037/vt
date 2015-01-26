@@ -153,13 +153,14 @@ class Shop:: ShopinfosController < ApplicationController
     shop_id=Ecstore::Shop.find_by_member_id(@user.member_id).shop_id
     count= Ecstore::ShopsGood.where(:shop_id=>shop_id).count
 
-   unless count>3
+   unless count>2
 
     if ! ids.nil?
-      count=0
+      co=0
       ids.each do |id|        
-              count+=1;
-              if count<4
+              co+=1;
+              if co<4
+
         if  Ecstore::ShopsGood.where(:goods_id=>id,:shop_id=>shop_id).size==0
           Ecstore::ShopsGood.new do |goo|
             goo.shop_id=shop_id
@@ -173,11 +174,18 @@ class Shop:: ShopinfosController < ApplicationController
 
     end
     else
-                return render :text => "您已经添加了3个商品了!!"
+     return render "adderror"
     end
 
     redirect_to "/shop/shopinfos/my_goods?shop_id=#{shop_id}"
   end
+
+  def adderror
+
+    @shop_title="错误了哦!"
+
+  end
+
 
   def my_goods
     @shop_title="商品中心"
