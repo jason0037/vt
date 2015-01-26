@@ -1,0 +1,101 @@
+<div class="am-g"style="padding: 15px">
+  <!--完善个人信息-->
+  <div  id="step1"  style="display: none;">
+  <div style="border: none" data-am-widget="titlebar" class="am-titlebar am-titlebar-default am-no-layout">
+    <h2 class="am-titlebar-title">完善个人信息</h2>
+  </div>
+  <%=form_for :user,:url=>"/events/party/stepone" ,:html => {:class => "am-form"} do |f| %>
+
+        <div class="am-input-group">
+          <span class="am-input-group-label"><i class="am-icon-user"></i></span>
+          <%=f.text_field :name,:class=>"input" ,:placeholder=>"请输入您的姓名"%>
+        </div>
+          <br>
+        <div class="am-input-group">
+          <span class="am-input-group-label"><i class="am-icon-envelope"></i></span>
+          <%=f.text_field :email,:class=>"input" ,:placeholder=>"请输入您的邮箱"%>
+        </div>
+   <br>
+        <div class="am-input-group">
+          <span class="am-input-group-label"><i class="am-icon-weixin"></i></span>
+          <%=f.text_field :wechat_num,:class=>"input" ,:placeholder=>"请输入您的微信号"%>
+        </div>
+        <br>
+      <%=f.submit "确  认", :class=>"am-btn am-btn-block am-btn-warning"%>
+  <%end%>    </div>
+
+    <!--发布活动-->
+
+
+<div  id="step2"  style="display: none;">
+  <div style="border: none" data-am-widget="titlebar" class="am-titlebar am-titlebar-default am-no-layout">
+    <h2 class="am-titlebar-title">发布活动</h2>
+  </div>
+  <%=form_for :event,:url=>"/events/party/steptwo" ,:html => {:class => "am-form"} do |f| %>
+       <%=f.hidden_field :terminal ,:value=>"mobile"%>
+      <%=f.hidden_field :member_id ,:value=>@user.member_id%>
+
+      <div class="am-input-group">
+        <span class="am-input-group-label"><i class="am-icon-cutlery"></i></span>
+        <%= f.text_field :name, :placeholder => "活动名称" %>
+      </div>
+      <br>
+     <div class="am-input-group">
+        <span class="am-input-group-label"><i class="am-icon-map-marker"></i></span>
+        <%=f.text_field :adds,:class=>"input" ,:placeholder=>"请输入活动地址"%>
+      </div>
+      <br>
+      <div class="am-input-group">
+        <span class="am-input-group-label"><i class="am-icon-clock-o"></i></span>
+        <%=f.text_field :times,:class=>"input" ,:placeholder=>"请输入活动时间"%>
+      </div> <br>
+
+      <div class="am-input-group">
+
+        <%=f.text_area :body,:class=>"input" ,:placeholder=>"请输入活动内容" ,:style=>"height:60px"%>
+      </div> <br>
+
+
+      <%=f.submit "确  认", :class=>"am-btn am-btn-block am-btn-warning"%>
+      <%end%>        </div>
+
+
+  <div  id="step3"  style="display: none;">
+
+    <br><br>
+    <div class="am-list-news-bd">
+
+      <ul class="am-list">
+        <li style="border: none" class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" >
+          <div class="am-col col-sm-4 am-list-thumb">
+            <img src="/assets/error.png" >
+          </div>
+          <div class="am-col col-sm-8 am-list-main">
+            <div style="text-align: center;color: #ff0000">温馨提示</div>
+            <div class="dotted">   </div>
+            <span ><%=@user.name%>您好,&nbsp;&nbsp;&nbsp;恭喜您报名成功!!!</span> <br>
+            <span style="font-size: 14px"> 您可以在个人中心查看我的活动信息</span></br>
+
+            <a href="/events/foodie?supplier_id=78">点击返回吃货平台</a>
+          </div>  </li> </ul>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<SCRIPT type="text/javascript">
+
+    if ('<%=params[:step]%>'=='2'){
+        document.getElementById("step2").style.display="";
+    }
+    else if('<%=params[:step]%>'=='3'){
+        document.getElementById("step3").style.display="";
+    }
+    else{
+        document.getElementById("step1").style.display="";
+    }
+</SCRIPT>
+

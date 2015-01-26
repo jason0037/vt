@@ -66,7 +66,11 @@ class Shop:: ShopinfosController < ApplicationController
   def create
 
     if params[:parent]
-      params[:shop].merge!(:parent=>params[:parent])
+
+       @shop_status= Ecstore::Shop.find_by_parent(params[:parent])    ##查找当前父类的店铺订单是后过200
+       if @shop_status.permission_branch=="1"
+         params[:shop].merge!(:parent=>params[:parent])
+       end
     end
     @member = Ecstore::User.where(:member_id=>@user.member_id).first
     @member.update_attributes(:mobile=>params[:shop][:mobile],:email=>params[:shop][:email])

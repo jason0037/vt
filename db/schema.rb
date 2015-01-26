@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(:version => 201412081010300) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "wechat_num"
+    t.string   "member_id"
+    t.text     "user_desc"
   end
 
   create_table "articles", :force => true do |t|
@@ -79,11 +81,12 @@ ActiveRecord::Schema.define(:version => 201412081010300) do
     t.string   "name"
     t.text     "body"
     t.string   "slug"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
-    t.string   "adds"
-    t.string   "terminal",   :limit => 6, :default => "mobile"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.datetime "times"
+    t.string   "adds"
+    t.string   "terminal",   :limit => 6, :default => "pc"
+    t.integer  "member_id"
   end
 
   add_index "events", ["slug"], :name => "index_events_on_slug", :unique => true

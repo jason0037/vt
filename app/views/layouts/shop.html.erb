@@ -70,20 +70,15 @@
             <%else%>
                   <%if  @shop.member_id%>
                       <!--当订单达到200后才显示开分店-->
-                      <% if @shop.permission_branch=="1"%>
-
-              <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">我也要开店</span></a></li>
-                      <%end%><%end%>
-                  <li ><a class="" href="/shop/shopusers?shop_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">账户中心</span></a></li>
+          <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">我也要开店</span></a></li>
+                    <%end%>
+                  <li ><a class="" href="/shop/shopusers?shop_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">用户中心</span></a></li>
               <%end%>
-
-          <%else%>
+           <%else%>
               <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">我也要开店</span></a></li>
           <%end%>
-
       <%end%>
-
-    </ul>
+     </ul>
   </div>
 </div>
 

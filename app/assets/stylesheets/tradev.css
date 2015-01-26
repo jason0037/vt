@@ -285,3 +285,21 @@ ul {
 .am-hr{
 border:1px dashed ;
 }
+.am-panel-default{
+    position:relative;
+}
+.icon-arr {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    width: 10px;
+    height: 15px;
+    background: url(/assets/icon_order.png) 0 0 no-repeat;
+    background-size: 100px 100px;
+}
+.am-panel-hd{
+    padding: 20px;
+}
+ .clearstyle{
+     margin: 0;padding: 0px;
+ }

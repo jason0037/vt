@@ -1,7 +1,8 @@
 #encoding:utf-8
 class Imodec::Event < ActiveRecord::Base
-  attr_accessible :body, :name ,:times  ,:adds,:terminal
+  attr_accessible :body, :name ,:times  ,:adds,:terminal , :member_id
 
+  belongs_to :ecstore_member, :class_name => 'Ecstore::Member',:foreign_key=>"member_id"
   extend FriendlyId
   friendly_id :name, :use => :slugged
   require "babosa"

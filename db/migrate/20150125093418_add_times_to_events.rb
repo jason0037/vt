@@ -6,7 +6,7 @@ class AddTimesToEvents < ActiveRecord::Migration
       t.string :adds   ###地点
 
       t.column :terminal ,"ENUM('pc','mobile')",:default=>"pc"
-
+      t.integer :member_id
 
     end
   end

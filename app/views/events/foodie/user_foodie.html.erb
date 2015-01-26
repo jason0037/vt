@@ -1,0 +1,27 @@
+<div class="am-g" style="padding: 15px">
+
+  <div data-am-widget="list_news" class="am-list-news am-list-news-default am-no-layout">
+    <div class="am-list-news-hd am-cf">
+      <a href="###" class=""><h2 style="border: 4px solid #FF8000"></h2> <h2 style="margin-left: 10px">我参加的活动</h2></a>
+    </div>
+    <div class="am-list-news-bd">
+      <ul class="am-list">
+        <%@applicant.each do |applicant| %>
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-left">
+              <a href="javascript:void (0)">
+                <div class="am-u-sm-2 am-list-thumb">
+                  <img style="width: 45px; height: 45px;" src="/assets/event.png" alt="">
+                </div>
+                <div class="am-u-sm-10 am-list-main">
+                  <h4 class="clearstyle"> <%=Imodec::Event.find(applicant.event_id).name%>  <span style=";margin-left:23px;font-size: 13px"><%=applicant.name%></span> </h4>
+                  <span style="font-size: 13px"><%=Imodec::Event.find(applicant.event_id).times%> </span>
+                  <span class="icon-arr"></span>
+                </div></a></li>
+
+        <%end%>
+      </ul>
+    </div>
+  </div>
+
+
+</div>

@@ -6,7 +6,7 @@ class Ecstore::User < Ecstore::Base
   attr_accessor :province,:city,:district
   attr_accessible :mobile,:email,:name,:sex, :area,:addr, :b_year, :b_month, :b_day, :bank_info,
                             :interests,:voc, :job, :income, :height, :weight, :shoesize,:price,:places,:colors,:edu,
-                            :province,:city,:district,:login_count,:sms_validate,:email_validate,:custom_values,:sent_sms_at
+                            :province,:city,:district,:login_count,:sms_validate,:email_validate,:custom_values,:sent_sms_at,:wechat_num
   self.accessible_all_columns
   belongs_to :account,:foreign_key=>"member_id"
 
@@ -45,8 +45,9 @@ class Ecstore::User < Ecstore::Base
   has_many :manager,:foreign_key=>"user_id"
 
   has_many :shop_clients,:foreign_key=>"member_id"
+  has_many :imodec_events, :class_name => 'Imodec::Event'  , :foreign_key=>"member_id"
+  has_many :imodec_applicants, :class_name => 'Imodec::applicants'  , :foreign_key=>"member_id"
 
-  
   def aftersale_orders
       self.orders.includes(:order_logs).joins(:order_logs).where("behavior = ?  and  result = ? and alttime >= ? and status = ? ","finish","SUCCESS",(Time.now - 7.days).to_i,"finish")
   end

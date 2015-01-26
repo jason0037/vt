@@ -1,0 +1,42 @@
+ <div class="am-g"style="padding: 15px">
+
+    <div class="am-u-md-6">
+      <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">活动: <%=@event.name%></div>
+        <div class="am-panel-bd">目前已经有<span style="color: #ff0000">(<%=@applicants.size%>)</span>人报名了哦!!!<br>
+          <span>活动地点:  <%=@event.adds%></span> <br>
+          <span>活动时间:  <%=@event.times.strftime("%Y-%m-%d %H:%M:%S")%></span> <br>
+          <span>活动内容:</span> <%=raw @event.body.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @event.body%>
+        </div></div></div>
+
+
+
+        <div id="demo-view" data-backend-compiled="">
+          <div data-am-widget="list_news" class="am-list-news am-list-news-default am-no-layout">
+            <div class="am-list-news-hd am-cf">
+              <a href="###" class=""><h2 style="border: 4px solid #FF8000"></h2> <h2 style="margin-left: 10px">当前报名人</h2><span class="am-list-news-more am-fr">更多 &raquo;</span></a>
+            </div>
+            <div class="am-list-news-bd">
+              <ul class="am-list">
+                <% @applicants.each do |applicant| %>
+                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-left"><h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class=""></a></h3>
+                  <a href="javascript:void(0)">
+                    <div class="am-u-sm-2 am-list-thumb">
+                      <img style="width: 45px; height: 45px;" src="/assets/foodie.png" alt="" />
+                    </div>
+                    <div class="am-u-sm-10 am-list-main">
+                      <h4 class="clearstyle"> <%=applicant.name%> </h4>
+
+                      <span class="icon-arr"></span>
+                    </div></a></li>
+                     <%end%>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+
+        </div>
+    </div>

@@ -298,8 +298,24 @@ Modengke::Application.routes.draw do
       collection do
         get 'index'
         post 'add_foodie'
+        get 'user_foodie'
+        get 'detail'
       end
     end
+
+    resources :party do
+      collection do
+        get 'index'
+        get 'list'
+        post 'stepone'
+        get 'steptwo'
+        post 'steptwo'
+        get 'list'
+        get 'user_party'
+        get 'detail'
+      end
+    end
+
   end
 
   resources :events

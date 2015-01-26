@@ -1,7 +1,8 @@
 class AddWechatNumToApplicants < ActiveRecord::Migration
   def self.up
     change_table :applicants do |t|
-      t.string :wechat_num   ###微信号
+      t.string :member_id
+      t.text :user_desc
     end
   end
 end

@@ -29,7 +29,7 @@
     <li><a href="user-order-list-more.html" class=""><span class="all_orders"></span><p>更多订单</p></a></li>
   </ul>
 </div>
-  <hr>
+  <br>
 <div class="am-panel am-panel-default">
   <a href="/share?supplier_id=<%=@supplier.id%>">
     <div class="am-panel-hd"><%= I18n.t "commission"%></div>
@@ -85,13 +85,29 @@
         <span class="icon-arr"></span> </a>
     </div>
     <%end%>
-<%if Ecstore::Shop.find_by_shop_id(@user.member_id)%>
+<%if Ecstore::Shop.find_by_member_id(@user.member_id)%>
     <div class="am-panel am-panel-default">
-      <a href="">
+      <a href="/shop/shopinfos/myshop?shop_id=<%= Ecstore::Shop.find_by_member_id(@user.member_id).shop_id%>">
         <div class="am-panel-hd">进入我的店铺</div>
         <span class="icon-arr"></span> </a>
     </div>
     <%end%>
+<%if Imodec::Event.find_by_member_id(@user.member_id)%>
+    <div class="am-panel am-panel-default">
+      <a href="/events/party/user_party?supplier_id=78">
+        <div class="am-panel-hd">我发布的活动</div>
+        <span class="icon-arr"></span> </a>
+    </div>
+<%end%>
+<%if Imodec::Applicant.find_by_member_id(@user.member_id)%>
+    <div class="am-panel am-panel-default">
+      <a href="/events/foodie/user_foodie?supplier_id=78">
+        <div class="am-panel-hd">我参加活动</div>
+        <span class="icon-arr"></span> </a>
+    </div>
+<%end%>
+
+
 
 <div class="s_links in_user_center">
   <a href="user-fav-product.html" style="display:none">
@@ -100,7 +116,7 @@
   </a>
 
   <a href="user-logout.html" class="btn_white btn_out" mars_sead="logout_btn" style="display:none"><%= I18n.t "logout"%></a>
-  <div class="space20"></div>
+
 </div>
 
 <div class="footnav clearfix">

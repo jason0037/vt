@@ -25,5 +25,16 @@ class Events::FoodieController < ApplicationController
   end
 
 
+  def user_foodie
+    @supplier=Ecstore::Supplier.find(params[:supplier_id])
+    @applicant = Imodec::Applicant.where(:member_id=>@user.member_id).order("created_at desc")
+
+  end
+
+
+  def detail
+    @supplier=Ecstore::Supplier.find(params[:supplier_id])
+  end
+
 
   end
