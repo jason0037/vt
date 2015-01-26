@@ -22,7 +22,8 @@
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-left"><h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class=""></a></h3>
                   <a href="javascript:void(0)">
                     <div class="am-u-sm-2 am-list-thumb">
-                      <img style="width: 45px; height: 45px;" src="/assets/foodie.png" alt="" />
+                      <%=image_tag Ecstore::User.find_by_member_id(applicant.member_id).weixin_headimgurl,:id=>"weixin" ,:class => "am-circle",:style=>"width: 45px; height: 45px;",:onerror=>"javascript:this.src='/assets/event.png';"%>
+
                     </div>
                     <div class="am-u-sm-10 am-list-main">
                       <h4 class="clearstyle"> <%=applicant.name%> </h4>

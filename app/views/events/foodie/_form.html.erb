@@ -22,7 +22,7 @@
 
         <div class="am-input-group">
          <span class="am-input-group-label"> <span style="color: red">*</span><i class="am-icon-user"></i></span>
-          <%=f.text_field :name,:class=>"input" ,:placeholder=>"请输入您的姓名"%>
+          <%=f.text_field :name,:class=>"input" ,:placeholder=>"请输入您的姓名",:value=>@user.name%>
         </div>
         <br>
         <div class="am-input-group">
@@ -37,17 +37,17 @@
         <br>
         <div class="am-input-group">
           <span class="am-input-group-label"><span style="color: red">*</span> <i class="am-icon-mobile"></i></span>
-          <%=f.text_field :mobile,:class=>"input", :placeholder=>"请输入您的手机号"%>
+          <%=f.text_field :mobile,:class=>"input", :placeholder=>"请输入您的手机号",:value=>@user.mobile%>
         </div>
         <br>
         <div class="am-input-group">
           <span class="am-input-group-label"><span style="color: red">*</span> <i class="am-icon-envelope"></i></span>
-          <%=f.text_field :email,:class=>"input", :placeholder=>"请输入您的邮箱"%>
+          <%=f.text_field :email,:class=>"input", :placeholder=>"请输入您的邮箱",:value=>@user.email%>
         </div>
         <br>
         <div class="am-input-group">
           <span class="am-input-group-label"><span style="color: red">*</span> <i class="am-icon-weixin"></i></span>
-          <%=f.text_field :wechat_num,:class=>"input", :placeholder=>"请输入您的微信号"%>
+          <%=f.text_field :wechat_num,:class=>"input", :placeholder=>"请输入您的微信号",:value=>@user.wechat_num%>
         </div>
         <br>
 
