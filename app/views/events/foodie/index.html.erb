@@ -3,12 +3,13 @@
   <section id="amz-hero" style="text-align: center">
     <div class="amz-container am-cf">
       <div class="amz-mascot am-scrollspy-init am-scrollspy-inview am-animation-slide-left" data-am-scrollspy="{animation: 'slide-left', delay: 100}">
-        <img style="width:40%;" src="/assets/foodie.jpg" alt="foodie_log" />
+        <img style="width:40%;" src="/assets/nigailai.png" alt="foodie_log" />
       </div>
+
       <div class="amz-hero-intro">
         <div class="amz-hero-headings">
-          <h1 class="clearstyle" data-am-scrollspy="{animation:'slide-left'}" class="am-scrollspy-init am-scrollspy-inview am-animation-slide-left">欢迎来到贸威吃货平台</h1>
-          <h2 class="clearstyle" data-am-scrollspy="{animation:'slide-right', delay: 500}" class="am-scrollspy-init am-scrollspy-inview am-animation-slide-right">活动吧</h2>
+          <h1 class="clearstyle evenfont" data-am-scrollspy="{animation:'slide-left'}" class="am-scrollspy-init am-scrollspy-inview am-animation-slide-left">欢迎来到贸威吃货平台</h1>
+          <h2 class="clearstyle evenfont" data-am-scrollspy="{animation:'slide-right', delay: 500}" class="am-scrollspy-init am-scrollspy-inview am-animation-slide-right">活动吧</h2>
         </div>
           </div>
         </div>
@@ -36,7 +37,8 @@
                 </div>
                 <div class="am-u-sm-10 am-list-main">
                   <h4 class="clearstyle"> <%=event.name%>   </h4>
-                  <span style="font-size: 13px"><%=Time.at(event.times).to_s(:db)%> </span>
+                  <span style="font-size: 13px"> 报名截止时间:<%=Time.at(event.endtime).to_s(:db)%> </span> <br>
+
                   <span class="icon-arr"></span>
                 </div></a></li>
 
@@ -78,7 +80,7 @@
              <img style="width: 50px; height: 50px;" src="/assets/foodie.png" alt="" />
             </div>
             <div class="am-u-sm-10 am-list-main">
-           <h4 class="clearstyle"> 活动组织  </h4>
+           <h4 class="clearstyle">活动发布  </h4>
               <span style="font-size: 13px">发表活动、聚餐、…</span>
               <span class="icon-arr"></span>
             </div></a></li>

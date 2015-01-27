@@ -21,7 +21,7 @@ class Events::PartyController < ApplicationController
 
    def steptwo
 
-     @event = Imodec::Event..new(params[:event]) do |ev|
+     @event = Imodec::Event.new(params[:event]) do |ev|
        ev.startime= Time.parse(params[:event][:startime]).to_i
        ev.endtime= Time.parse(params[:event][:endtime]).to_i
        end
@@ -32,13 +32,13 @@ class Events::PartyController < ApplicationController
 
   def list
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
-    @events  = Imodec::Event.paginate(:page => params[:page], :per_page => 20,:order=>"created_at desc")
+    @events  = Imodec::Event.paginate(:page => params[:page], :per_page => 20,:order=>"endtime desc")
 
   end
 
   def user_party
    @supplier=Ecstore::Supplier.find(params[:supplier_id])
-    @events  = Imodec::Event.paginate(:page => params[:page], :per_page => 20,:order=>"created_at desc",:conditions =>{
+    @events  = Imodec::Event.paginate(:page => params[:page], :per_page => 20,:order=>"endtime desc",:conditions =>{
         :terminal=>"mobile",:member_id=>@user.member_id})
 
   end

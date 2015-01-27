@@ -16,8 +16,12 @@
                 <img src="/assets/event.png" style="width: 45px; height: 45px;"> <%end%>
           </div>
           <div class="am-u-sm-10 am-list-main">
-            <h4 class="clearstyle"> <%=event.name%>  <span style=";margin-left:23px;font-size: 13px"><%=event.name%></span> </h4>
-            <span style="font-size: 13px"><%=event.times%> </span>
+            <h4 class="clearstyle evenfont"> <%=event.name%>  </h4>
+            <%if (Time.at(event.endtime).to_s(:db))<Time.at(Time.now).to_s(:db)%>
+            <span style="font-size: 13px;color: #000000">报名已经结束</span>
+
+                <%else%>
+            <span style="font-size: 13px">报名截止时间:<%=Time.at(event.endtime).to_s(:db)%> </span><%end%> <br>
             <span class="icon-arr"></span>
           </div></a></li>
 

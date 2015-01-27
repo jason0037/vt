@@ -16,8 +16,9 @@
                   <img src="/assets/event.png" style="width: 50px; height: 50px;"> <%end%>
                 </div>
                 <div class="am-u-sm-10 am-list-main">
-                  <h4 class="clearstyle"> <%=Imodec::Event.find(applicant.event_id).name%>  <span style=";margin-left:23px;font-size: 13px"><%=applicant.name%></span> </h4>
-                  <span style="font-size: 13px"><%=Imodec::Event.find(applicant.event_id).times%> </span>
+                  <h4 class="clearstyle evenfont"> <%=Imodec::Event.find(applicant.event_id).name%>  <span class="evenfont" style=";margin-left:23px;font-size: 13px"><%=applicant.name%></span> </h4>
+                  <span class="evenfont"> 报名截止时间<%=Time.at(Imodec::Event.find(applicant.event_id).endtime).to_s(:db)%> </span> <br>
+                 <span class="evenfont">活动开始时间<%=Time.at(Imodec::Event.find(applicant.event_id).startime).to_s(:db)%> </span> <br>
                   <span class="icon-arr"></span>
                 </div></a></li>
 

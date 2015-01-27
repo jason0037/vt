@@ -12,7 +12,7 @@
 <%= stylesheet_link_tag    "amaze/amazeui.widgets.min.css" %>
 <link rel="stylesheet" type="text/css" href="/assets/timeplug/jquery.datetimepicker.css"/>
 
-<style>.bottomdivsclearfix{display: none}</style>
+<style>.bottomdivsclearfix{display: none} .evenfont{color: #0e90d2;}</style>
 <div class="am-g"style="padding: 15px">
   <!--完善个人信息-->
   <div  id="step1"  style="display: none;">
@@ -46,6 +46,7 @@
   <div style="border: none" data-am-widget="titlebar" class="am-titlebar am-titlebar-default am-no-layout">
     <h2 class="am-titlebar-title">发布活动</h2>
   </div>
+
   <%=form_for :event,:url=>"/events/party/steptwo" ,:html => {:class => "eventform am-form"} do |f| %>
        <%=f.hidden_field :terminal ,:value=>"mobile"%>
       <%=f.hidden_field :member_id ,:value=>@user.member_id%>
@@ -62,9 +63,13 @@
       <br>
       <div class="am-input-group">
         <span class="am-input-group-label"><i class="am-icon-clock-o"></i></span>
-        <%=f.text_field :times,:class=>"input" ,:id=>"datetimepicker",:placeholder=>"请选择活动时间"%>
+        <%=f.text_field :endtime,:class=>"input" ,:id=>"endatetimepicker",:placeholder=>"请选择报名截止时间"%>
       </div> <br>
 
+      <div class="am-input-group">
+        <span class="am-input-group-label"><i class="am-icon-clock-o"></i></span>
+        <%=f.text_field :startime,:class=>"input" ,:id=>"startdatetimepicker",:placeholder=>"请选择活动开始时间"%>
+      </div> <br>
 
       <div class="am-input-group">
 
@@ -83,19 +88,20 @@
 
       <ul class="am-list">
         <li style="border: none" class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" >
-          <div class="am-col col-sm-4 am-list-thumb">
-            <img src="/assets/error.png" >
+          <div class="am-col col-sm-2 am-list-thumb" style="line-height: 4">
+            <img src="/assets/tick.png" >
           </div>
-          <div class="am-col col-sm-8 am-list-main">
+          <div class="am-col col-sm-10 am-list-main">
             <div style="text-align: center;color: #ff0000">温馨提示</div>
             <div class="dotted">   </div>
-            <span ><%=@user.name%>您好,&nbsp;&nbsp;&nbsp;恭喜您发布成功!!!</span> <br>
-            <span style="font-size: 14px"> 您可以在个人中心查看我的活动信息或者是在吃货平台里查看</span></br>
+            <span class="evenfont" ><%=@user.name%>您好:&nbsp;&nbsp;&nbsp;恭喜您发布成功!!!</span> <br>
 
-            <a href="/events/foodie?supplier_id=78">点击返回吃货平台</a>
+
+
           </div>  </li> </ul>
     </div>
-
+    <p  class=""style="font-size: 14px"> 您可以在<a href="/vshop/78/user?id=78">个人中心</a>查看我的活动信息或者是在<a href="/events/foodie?supplier_id=78">吃货平台</a>里查看</p>
+    <a href="/events/foodie?supplier_id=78" >点击返回吃货平台</a>
   </div>
 </div>
 
@@ -121,15 +127,30 @@
 <script src="/assets/timeplug/jquery.datetimepicker.js"></script>
 
 
-  <script> $('#datetimepicker').datetimepicker({
+  <script> $('#startdatetimepicker').datetimepicker({
       format:'Y-m-d H:i',
       lang:'ch'
 
-  });</script>
+  });
+          $('#endatetimepicker')  .datetimepicker({
+              format:'Y-m-d H:i',
+              lang:'ch'
+
+          });
+
+  </script>
 <script>
   $(document).ready(function(){
 
+
     $(".submit").click(function(){
+        var startime=$("#startdatetimepicker").val();
+        var endtime=$("#endatetimepicker").val();
+
+        if( new Date(endtime)> new Date(startime)){
+           alert("报名截至时间不能大于活动开始时间"); return false;
+        }
+
        var event_name=$("#event_name").val();
         var event_adds=$("#event_adds").val();
         var event_times=$("#event_times").val();
@@ -290,7 +311,6 @@
     var data = {"img":imgs,"url":current_url,"title":"关注贸威，转发朋友，享受更优质生活！<%#=@wechat_share_title%>","desc":descs};
     wechatShare(data);
 </script>
-<%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>
 
 
 <script type="text/javascript">
@@ -323,11 +343,7 @@
 
 <script>
     $(document).ready(function(){
-        $("#showgood").click(function(){
 
-            $('#aaa').toggle();
-
-        })
 
         $("#showall").click(function() {
             pathname = document.location.pathname;

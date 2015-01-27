@@ -2,8 +2,8 @@ class Events::FoodieController < ApplicationController
   layout "tradev"
   def index
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
-    @events  = Imodec::Event.paginate(:page => params[:page], :conditions =>{:terminal=>"mobile"},:per_page => 20,:order=>"created_at desc")
-
+    @events  = Imodec::Event.paginate(:page => params[:page], :conditions =>{:terminal=>"mobile",},:per_page => 20,:order=>"endtime desc")
+    @events =@events.where("endtime>UNIX_TIMESTAMP(now()) ")
   end
 
   def new
