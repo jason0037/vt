@@ -264,20 +264,6 @@
 
     }
 
-    if (document.location.href.indexOf('events')>0) {
-        var pathname = document.location.pathname;
-        imgs = "http://vshop.trade-v.com/assets/nigailai.png"
-        descs = '<%=@event_desc%>'
-        if (descs.length === 0) {
-            descs = "吃货帮活动聚会了哦!!!";
-            }
-        if (pathname == "/events/party/detail") {
-            var serach = document.location.search;
-            var host = document.location.host;
-            var url = host + pathname + serach;
-             current_url = url
-        }
-    }
 
 
     if (document.location.search=="?name=%E9%A6%99%E8%82%A0&id=78"){
@@ -287,10 +273,20 @@
         descs="德国老祖母级香肠，原汁原味，来自德国的美味！";
     }
 
+    if (document.location.pathname=="/events/party/detail"){
+
+        descs = '<%=@event_desc%>'
+        if (descs.length === 0) {
+            descs = "吃货帮活动聚会了哦!!!";
+        }
+        imgs="http://vshop.trade-v.com/images/a104/zhuoma.png"
+
+    }
+
     if (document.location.pathname=="/pages/about_zmq"){
 
         descs="卓玛泉西藏冰川水 喝水也可以如此美好";
-        imgs="http://vshop.trade-v.com/images/a104/zhuoma.png"
+        imgs = "http://vshop.trade-v.com/assets/nigailai.png"
 
     }
 
@@ -302,6 +298,7 @@
     // alert(current_url);
 
     var data = {"img":imgs,"url":current_url,"title":"关注贸威，转发朋友，享受更优质生活！<%#=@wechat_share_title%>","desc":descs};
+     alert(imgs)
     wechatShare(data);
 </script>
 <%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>
