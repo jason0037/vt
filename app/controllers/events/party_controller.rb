@@ -3,7 +3,7 @@ class Events::PartyController < ApplicationController
   def index
     if @user
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
-   render layout: nil?
+    render :layout => "default"
    end
 
 

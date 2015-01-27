@@ -12,6 +12,7 @@ class Events::FoodieController < ApplicationController
     @applicants = @event.applicants.paginate(:page => params[:page], :per_page => 20,:order=>"created_at desc")
 
     @action_url="/events/foodie/add_foodie"
+    render :layout => "default"
   end
 
   def add_foodie
