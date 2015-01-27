@@ -16,13 +16,19 @@ class Events::FoodieController < ApplicationController
 
   def add_foodie
     @user.update_attributes(:user_desc=>params[:user_desc])
-    @applicant = Imodec::Applicant.new(params[:applicant])
 
-    if @applicant.save
-      render "create"
-    else
-      render "error"
-    end
+    @applicant = Imodec::Applicant.new(params[:applicant])
+    @app= Imodec::Applicant.where(:member_id=>params[:applicant][:member_id],:event_id=>@applicant.event_id)
+     if @app.size>0
+       render "error"
+     else
+
+       if @applicant.save
+         render "create"
+       else
+         render "error"
+       end
+     end
   end
 
 

@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/assets/timeplug/jquery.datetimepicker.css"/>
-
+<style>.bottomdivsclearfix{display: none}</style>
 <div class="am-g"style="padding: 15px">
   <!--完善个人信息-->
   <div  id="step1"  style="display: none;">
@@ -23,7 +23,7 @@
           <%=f.text_field :wechat_num,:class=>"input" ,:placeholder=>"请输入您的微信号"%>
         </div>
         <br>
-      <%=f.submit "确  认", :class=>"am-btn am-btn-block am-btn-warning"%>
+      <%=f.submit "下一步", :class=>"am-btn am-btn-block am-btn-warning"%>
   <%end%>    </div>
 
     <!--发布活动-->
@@ -33,7 +33,7 @@
   <div style="border: none" data-am-widget="titlebar" class="am-titlebar am-titlebar-default am-no-layout">
     <h2 class="am-titlebar-title">发布活动</h2>
   </div>
-  <%=form_for :event,:url=>"/events/party/steptwo" ,:html => {:class => "am-form"} do |f| %>
+  <%=form_for :event,:url=>"/events/party/steptwo" ,:html => {:class => "eventform am-form"} do |f| %>
        <%=f.hidden_field :terminal ,:value=>"mobile"%>
       <%=f.hidden_field :member_id ,:value=>@user.member_id%>
 
@@ -49,10 +49,8 @@
       <br>
       <div class="am-input-group">
         <span class="am-input-group-label"><i class="am-icon-clock-o"></i></span>
-        <%=f.text_field :times,:class=>"input" ,:id=>"datetimepicker",:placeholder=>"请输入活动时间"%>
+        <%=f.text_field :times,:class=>"input" ,:id=>"datetimepicker",:placeholder=>"请选择活动时间"%>
       </div> <br>
-
-
 
 
       <div class="am-input-group">
@@ -60,8 +58,8 @@
         <%=f.text_area :body,:class=>"input" ,:placeholder=>"请输入活动内容" ,:style=>"height:60px"%>
       </div> <br>
 
+      <input class=" am-btn am-btn-block am-btn-warning submit" name="commit" type="button" value="确  认">
 
-      <%=f.submit "确  认", :class=>"am-btn am-btn-block am-btn-warning"%>
       <%end%>        </div>
 
 
@@ -104,6 +102,7 @@
     }
 
 </SCRIPT>
+
 <script src="/assets/jquery.min.js"></script>
 
 <script src="/assets/timeplug/jquery.datetimepicker.js"></script>
@@ -114,3 +113,22 @@
       lang:'ch'
 
   });</script>
+<script>
+  $(document).ready(function(){
+
+    $(".submit").click(function(){
+       var event_name=$("#event_name").val();
+        var event_adds=$("#event_adds").val();
+        var event_times=$("#event_times").val();
+        if (event_name.length<=0||event_adds.length<=0||event_times.length<=0) {
+          alert("信息量不足!无法发布活动哦!");
+            return false;
+        }
+        else{
+            $(".eventform").submit();
+        }
+    })
+  })
+
+
+</script>

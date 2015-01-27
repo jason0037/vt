@@ -1,2 +1,7 @@
+<%if @app.nil?%>
 $(".applicant-form #msg").html('<%=escape_javascript(render :partial=>"events/foodie/error").html_safe%>');
 window.scrollTo(0,0);
+
+<%else%>
+$(".applicant-form #msg").html('<div class="am-alert am-alert-danger" data-am-alert><button type="button" class="am-close">&times;</button><p>您已经报了名了,请不要重复的报名哦!</p></div>')
+<%end%>

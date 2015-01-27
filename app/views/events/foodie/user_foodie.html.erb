@@ -2,7 +2,7 @@
 
   <div data-am-widget="list_news" class="am-list-news am-list-news-default am-no-layout">
     <div class="am-list-news-hd am-cf">
-      <a href="###" class=""><h2 style="border: 4px solid #FF8000"></h2> <h2 style="margin-left: 10px">我参加的活动</h2></a>
+      <a href="javascript:void(0)" class=""><h2 style="border: 4px solid #FF8000"></h2> <h2 style="margin-left: 10px">我参加的活动</h2></a>
     </div>
     <div class="am-list-news-bd">
       <ul class="am-list">
@@ -11,9 +11,9 @@
               <a href="javascript:void (0)">
                 <div class="am-u-sm-2 am-list-thumb">
                   <%if Ecstore::User.find_by_member_id(applicant.member_id).weixin_headimgurl%>
-                  <%=image_tag Ecstore::User.find_by_member_id(applicant.member_id).weixin_headimgurl,:id=>"weixin" ,:class => "am-circle",:style=>"width: 45px; height: 45px;",:onerror=>"javascript:this.src='/assets/event.png';"%>
+                  <%=image_tag Ecstore::User.find_by_member_id(applicant.member_id).weixin_headimgurl,:id=>"weixin" ,:class => "am-circle",:style=>"width: 50px; height: 50px;",:onerror=>"javascript:this.src='/assets/event.png';"%>
                   <%else%>
-                  <img src="/assets/event.png" style="width: 45px; height: 45px;"> <%end%>
+                  <img src="/assets/event.png" style="width: 50px; height: 50px;"> <%end%>
                 </div>
                 <div class="am-u-sm-10 am-list-main">
                   <h4 class="clearstyle"> <%=Imodec::Event.find(applicant.event_id).name%>  <span style=";margin-left:23px;font-size: 13px"><%=applicant.name%></span> </h4>
