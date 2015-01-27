@@ -36,7 +36,7 @@
                 </div>
                 <div class="am-u-sm-10 am-list-main">
                   <h4 class="clearstyle"> <%=event.name%>   </h4>
-                  <span style="font-size: 13px"><%=event.times%> </span>
+                  <span style="font-size: 13px"><%=Time.at(event.times).to_s(:db)%> </span>
                   <span class="icon-arr"></span>
                 </div></a></li>
 

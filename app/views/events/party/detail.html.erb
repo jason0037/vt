@@ -1,4 +1,5 @@
- <div class="am-g"style="padding: 15px">
+<style>.bottomdivsclearfix{display: none}</style>
+<div class="am-g"style="padding: 15px">
 
     <div class="am-u-md-6">
       <div class="am-panel am-panel-warning">
@@ -16,10 +17,7 @@
 
     </div> </div>
 
-   <div data-am-sticky="{top:350}">
-     <a href="/events/foodie/new?id=<%=@event.id%>&supplier_id=78"class="am-btn am-btn-block am-btn-warning">我要报名</a>
-   </div>
-   <br><br>
+
 
         <div id="demo-view" data-backend-compiled="">
           <div data-am-widget="list_news" class="am-list-news am-list-news-default am-no-layout">
@@ -54,6 +52,17 @@
 
 
 
-
     </div>
+
+<div style="position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #fff;
+        border: #ddd 1px solid;
+        border-top: #fff 1px solid;
+        z-index: 1000000;
+        margin: 3px;
+        }">
+  <a href="/events/foodie/new?id=<%=@event.id%>&supplier_id=78"class="am-btn am-btn-block am-btn-warning">我要报名</a>
+</div>
 

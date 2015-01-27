@@ -5,7 +5,7 @@
       <div class="am-panel-hd">活动: <%=@event.name%></div>
       <div class="am-panel-bd">目前已经有<span style="color: #ff0000">(<%=@applicants.size%>)</span>人报名了哦!!!<br>
         <span>活动地点:  <%=@event.adds%></span> <br>
-        <span>活动时间:  <%=@event.times.strftime("%Y-%m-%d %H:%M:%S")%></span> <br>
+        <span>活动时间:  <%= Time.at(@event.times).to_s(:db)%></span> <br>
         <span>活动内容:</span> <%=raw @event.body.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @event.body%>
       </div></div></div>
 
