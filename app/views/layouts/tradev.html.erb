@@ -279,14 +279,15 @@
         if (descs.length === 0) {
             descs = "吃货帮活动聚会了哦!!!";
         }
-        imgs="http://vshop.trade-v.com/images/a104/zhuoma.png"
-
+        imgs = "http://vshop.trade-v.com/assets/nigailai.png"
     }
 
     if (document.location.pathname=="/pages/about_zmq"){
 
         descs="卓玛泉西藏冰川水 喝水也可以如此美好";
-        imgs = "http://vshop.trade-v.com/assets/nigailai.png"
+
+        imgs="http://vshop.trade-v.com/images/a104/zhuoma.png"
+
 
     }
 
@@ -298,7 +299,7 @@
     // alert(current_url);
 
     var data = {"img":imgs,"url":current_url,"title":"关注贸威，转发朋友，享受更优质生活！<%#=@wechat_share_title%>","desc":descs};
-     alert(imgs)
+
     wechatShare(data);
 </script>
 <%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>

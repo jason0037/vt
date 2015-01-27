@@ -5,10 +5,10 @@
       <div class="am-panel am-panel-warning">
         <div class="am-panel-hd">活动: <%=@event.name%></div>
         <div class="am-panel-bd"><span class="evenfont">目前已经有<span style="color: #ff0000">(<%=@applicants.size%>)</span>人报名了哦!!!</span><br>
-            <span class="evenfont">报名截止时间:<%=Time.at(@event.endtime).to_s(:db)%> </span> <br>
-          <span class="evenfont">活动开始时间:<%=Time.at(@event.startime).to_s(:db)%> </span> <br>
+            <span class="evenfont">报名截止时间:<br><%=Time.at(@event.endtime).to_s(:db)%> </span> <br>
+          <span class="evenfont">活动开始时间:<br><%=Time.at(@event.startime).to_s(:db)%> </span> <br>
           <span class="evenfont">活动内容:</span> <%=raw @event.body.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @event.body%>   <br>
-          <span class="evenfont" >活动地址:<a href="#map"> <%=@event.adds%> 查看地图</a></span>
+          <span class="evenfont" >活动地址:<a href="#map"> <%=@event.adds%> <span style=" font-size: 13px;color: #0000ee">查看地图</span></a></span>
         </div>
 
    </div></div></div>
