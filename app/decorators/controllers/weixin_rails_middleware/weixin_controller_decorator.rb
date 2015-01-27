@@ -152,8 +152,8 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       when 'subscribe'
         if id == 78
         title="欢迎关注贸威优品商城"
-        desc =""
-        pic_url="回复1:进入贸威自媒体商场 ,回复2:吃货平台活动中心"
+        desc ="回复1:进入贸威自媒体商场 ,回复2:吃货平台活动中心"
+        pic_url=""
         link_url=""
 
           # title1="贸威除了热卖中的正宗德国香肠、卓玛泉、温县铁棍山药等优质产品外，还有每天听音乐、做按摩、睡软床、吹风扇、吃熟食的神秘来客，这就是雪龙黑牛，顶级品质，与您分享！"
