@@ -24,9 +24,9 @@
                   <a href="javascript:void(0)">
                     <div class="am-u-sm-2 am-list-thumb">
                          <%if Ecstore::User.find_by_member_id(applicant.member_id).weixin_headimgurl%>
-                      <%=image_tag Ecstore::User.find_by_member_id(applicant.member_id).weixin_headimgurl,:id=>"weixin" ,:class => "am-circle",:style=>"width: 50px; height: 50px;",:onerror=>"javascript:this.src='/assets/event.png';"%>
+                      <%=image_tag Ecstore::User.find_by_member_id(applicant.member_id).weixin_headimgurl,:id=>"weixin" ,:class => "am-circle",:style=>"",:onerror=>"javascript:this.src='/assets/event.png';"%>
                       <%else%>
-                      <img src="/assets/event.png" style="width: 50px; height: 50px;"> <%end%>
+                      <img class="weixinyuantu" src="/assets/event.png" style="width: 50px; height: 50px;"> <%end%>
                     </div>
                     <div class="am-u-sm-10 am-list-main">
                       <h4 class="clearstyle"> <%=applicant.name%> </h4>

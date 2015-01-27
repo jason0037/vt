@@ -252,35 +252,33 @@
 
     if (document.location.href.indexOf('order')>0){
         var pathname = document.location.pathname;
-        if (pathname=="/events/party/detail"){
-
+        if (pathname=="/orders/mobile_show_order"||pathname=="/orders/mobile_show"){
+            pathnames="/orders/share_order";
             var serach =document.location.search;
             var host=document.location.host;
 
-            var url=host + pathname+serach;
+            var url=host + pathnames+serach;
             current_url=url
 
         }
 
     }
 
-    if (document.location.href.indexOf('events')>0) {
+    if (document.location.href.indexOf('events')>0){
         var pathname = document.location.pathname;
+        if (pathname=="/events/party/detail"){
 
+            var serach =document.location.search;
+            var host=document.location.host;
+            imgs = "http://vshop.trade-v.com/assets/nigailai.png"
+            var url=host + pathname+serach;
+            current_url=url
+            descs ='<%=@event_desc%>'
+            if (descs.length===0){
+                descs = "吃货帮活动聚会了哦!!!";
+            }
 
-            var serach = document.location.search;
-
-        var host = document.location.host;
-        imgs = "http://vshop.trade-v.com/assets/nigailai.png"
-        var url = host + pathname + serach;
-        current_url = url
-
-        descs ='<%=@event_desc%>'
-        if (descs.length===0){
-            desc = "吃货帮活动聚会了哦!!!";
         }
-
-
 
     }
 
