@@ -7,10 +7,10 @@
     <div class="am-list-news-bd">
       <ul class="am-list">
         <% @events.each do |event| %>
-            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-left"><h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11614662/" class=""></a></h3>
+            <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-left">
               <a href="/events/party/detail?id=<%=event.id%>&supplier_id=78">
                 <div class="am-u-sm-2 am-list-thumb">
-                  <%=image_tag Ecstore::User.find_by_member_id(event.member_id).weixin_headimgurl,:id=>"weixin" ,:class => "am-circle",:style=>"width: 45px; height: 45px;",:onerror=>"javascript:this.src='/assets/event.png';"%>
+                  <%=image_tag Ecstore::User.find_by_member_id(event.member_id).weixin_headimgurl,:id=>"weixin" ,:class => "am-circle",:onerror=>"javascript:this.src='/assets/event.png';"%>
                 </div>
                 <div class="am-u-sm-10 am-list-main">
                   <h4 class="clearstyle evenfont"> <%=event.name%>  <span style=";margin-left:23px;font-size: 13px"><%=event.name%></span> </h4>
