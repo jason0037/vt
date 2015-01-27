@@ -163,8 +163,6 @@
 
 <script type="text/javascript">
 
-
-
     function wechatShare(data) {
         // If no data is defined, just fallback to wechat's default behaviour.
         if (!data) {
@@ -296,7 +294,7 @@
         current_url = current_url.substr(0,num_index_of);
     }
     current_url += "&from=weixin&wechatuser=<%=useraccount%>";
-    // alert(current_url);
+
 
     var data = {"img":imgs,"url":current_url,"title":"关注贸威，转发朋友，享受更优质生活！<%#=@wechat_share_title%>","desc":descs};
 

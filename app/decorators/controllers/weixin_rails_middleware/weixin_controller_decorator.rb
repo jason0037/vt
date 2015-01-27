@@ -8,19 +8,19 @@ WeixinRailsMiddleware::WeixinController.class_eval do
     case @keyword
       when '地址'
         render xml: send("response_location_message", {})
-      when '01'
+      when '1'
         render xml: send("response_news_message", {})
-      when '02'
+      when '2'
         render xml: send("response_news_message", {})
-      when '03'
+      when '3'
         render xml: send("response_news_message", {})
       when '测试'
         render xml: send("response_news_message", {})
       when '买'
         render xml: send("response_news_message", {})
-      when '店铺'
+      when '4'
         render xml: send("response_news_message", {})
-      when '活动'
+      when '5'
         render xml: send("response_news_message", {})
       when '登录'
         render xml: send("response_news_message", {})
@@ -89,14 +89,14 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
 
 
-      when '店铺'
+      when '1'
         title="自贸交易"
         desc=""
         pic_url="http://vshop.trade-v.com/images/a078/homepage/zimao.jpg"
         link_url="http://vshop.trade-v.com/shop/shopinfos"
         articles = [generate_article(title, desc, pic_url, link_url)]
 
-      when '活动'
+      when '2'
         title="吃货帮聚会报名"
         desc=""
         pic_url="http://vshop.trade-v.com/assets/foodie.jpg"
@@ -151,10 +151,10 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         articles = [generate_article(title, desc, pic_url, link_url),generate_article(title1, desc1, pic_url1, link_url1)]
       when 'subscribe'
         if id == 78
-        title="圣诞新年欢聚-以“橙“会友，送“橙“意~"
-        desc ="不能满足上述条件的亲们很抱歉不能参加本次活动哦~不过您可以先关注贸威服务号，还有更多精彩活动即将推出，咱不只有“橙“意哦~"
-        pic_url="https://mmbiz.qlogo.cn/mmbiz/oMwR6HEEzCz2X1H9ibNV6EnPkiaVDD9pajsc3XsqAmfR5WcLiagwfwyLtL2hAbHU9ADW1xQ4ibNonMqDM4GLf2YWCw/0"
-        link_url="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=204567942&idx=1&sn=c366b5a74b553a1b5017635940b5449e#rd"
+        title="欢迎关注贸威优品商城"
+        desc =""
+        pic_url="回复1:进入贸威自媒体商场 ,回复2:吃货平台活动中心"
+        link_url=""
 
           # title1="贸威除了热卖中的正宗德国香肠、卓玛泉、温县铁棍山药等优质产品外，还有每天听音乐、做按摩、睡软床、吹风扇、吃熟食的神秘来客，这就是雪龙黑牛，顶级品质，与您分享！"
           # desc1 =""
@@ -170,7 +170,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
           link_url="http://vshop.trade-v.com/vshop/#{id}"
           articles = [generate_article(title, desc, pic_url, link_url)]
         end
-      when '01'
+      when '5'
         if id ==97
           title="诺狮产品店长推荐"
           desc =""
@@ -178,7 +178,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
           link_url="http://vshop.trade-v.com/vshop/#{id}"
           articles = [generate_article(title, desc, pic_url, link_url)]
         end
-      when '02'
+      when '4'
         if id ==97
           title="领取分享谢礼"
           desc =""
@@ -186,7 +186,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
           link_url="http://mp.weixin.qq.com/s?__biz=MzA3NzQ0MjMzNQ==&mid=200440674&idx=1&sn=891b3876611926ba115678e685983ba3#rd"
           articles = [generate_article(title, desc, pic_url, link_url)]
         end
-      when '03'
+      when '3'
         if id ==97
           title="了解诺狮品牌故事"
           desc =""
