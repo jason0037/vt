@@ -120,7 +120,7 @@
        var event_name=$("#event_name").val();
         var event_adds=$("#event_adds").val();
         var event_times=$("#event_times").val();
-        if (event_name.length<=0||event_adds.length<=0||event_times.length<=0) {
+        if (event_name==""||event_adds==""||event_times=="") {
           alert("信息量不足!无法发布活动哦!");
             return false;
         }
