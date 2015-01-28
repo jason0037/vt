@@ -69,12 +69,18 @@
         </ul>
       </div>
   <%else%>
+      <%=if @user.member_id==@shop.member_id%>
+
       <a href="/shop/shopinfos/show_goods?shop_id=<%=@shop.shop_id%>" >
         <div class="am-panel am-panel-primary " style="margin-top: 100px">
           <div class="am-panel-hd" style="padding: 24px"><i  class="am-icon-shopping-cart "></i>
             <span style="margin-left: 10px">您的店铺空空的!您可以去贸威里面挑选喜欢的商品</span> </div>
         </div>
       </a>
+       <%else%>
+          <div class="am-panel am-panel-primary " style="margin-top: 100px">
+            <div class="am-panel-hd"><i  class="am-icon-shopping-cart "></i>
+              <span style="margin-left: 10px">对方店铺目前没有商品 您可以选择<a href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>">我也要开店</a>来经营自己的小店</span> </div></div>
 
   <%end%>
 </div>
