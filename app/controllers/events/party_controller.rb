@@ -48,7 +48,7 @@ class Events::PartyController < ApplicationController
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @event = Imodec::Event.find(params[:id])
     @applicants = @event.applicants.paginate(:page => params[:page], :per_page => 20,:order=>"created_at desc")
-    @event_desc=@event.body
+    @event_desc=@event.name
   end
 
   end
