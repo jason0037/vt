@@ -28,9 +28,16 @@
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :times, "活动时间", :class => "control-label" %>
+      <%= f.label :times, "报名截止时间", :class => "control-label" %>
       <div class="controls">
-        <%=f.text_field :times,:value=>@event.times&&@event.times.strftime("%Y-%m-%d %H:%M:%S"),:class=>"span2 datetime"%>
+        <%=f.text_field :endtime,:value=>Time.at(@event.endtime).to_s(:db),:class=>"span2 datetime"%>
+
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :startime, "请选择活动开始时间", :class => "control-label" %>
+      <div class="controls">
+        <%=f.text_field :startime,:value=>Time.at(@event.startime).to_s(:db),:class=>"span2 datetime"%>
 
       </div>
     </div>
