@@ -25,9 +25,10 @@ class Admin::EventsController < Admin::BaseController
 	end
 
 	def create
-		@event = Imodec::Event.new params[:imodec_event]
-		
-
+		@event = Imodec::Event.new(params[:imodec_event]) do |ev|
+    ev.startime= Time.parse(params[:event][:startime]).to_i
+    ev.endtime= Time.parse(params[:event][:endtime]).to_i
+      end
 		if @event.save
 			redirect_to edit_admin_event_url(@event)
 		else
