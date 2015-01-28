@@ -69,7 +69,7 @@
         </ul>
       </div>
   <%else%>
-      <%=if @user.member_id==@shop.member_id%>
+      <%if @user.member_id==@shop.member_id%>
 
       <a href="/shop/shopinfos/show_goods?shop_id=<%=@shop.shop_id%>" >
         <div class="am-panel am-panel-primary " style="margin-top: 100px">
