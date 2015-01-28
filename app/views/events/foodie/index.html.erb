@@ -33,7 +33,7 @@
                   <% if Ecstore::User.find_by_member_id(event.member_id).weixin_headimgurl %>
             <%=image_tag Ecstore::User.find_by_member_id(event.member_id).weixin_headimgurl,:id=>"weixin" ,:class => "am-circle",:onerror=>"javascript:this.src='/assets/event.png';"%>
                  <%else%>
-                  <img src="/assets/event.png" style="width: 50px; height: 50px;"> <%end%>
+                  <img src="/assets/event.png" class="am-circle" > <%end%>
                 </div>
                 <div class="am-u-sm-10 am-list-main">
                   <h4 class="clearstyle"> <%=event.name%>   </h4>

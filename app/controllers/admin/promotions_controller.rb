@@ -2,7 +2,7 @@ class Admin::PromotionsController < Admin::BaseController
   
   def index
       promotion_type = params[:type] || "order"
-  	@promotions = Ecstore::Promotion.where(:promotion_type=>promotion_type).paginate(:page=>params[:page],:per_page=>20,:order=>"priority desc")
+  	@promotions = Ecstore::Promotion.where(:promotion_type=>promotion_type).paginate(:page=>params[:page],:per_page=>20,:order=>"mallname  desc").order("priority asc")
   end
 
   def new

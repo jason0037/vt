@@ -9,19 +9,38 @@
     .line_a{
         background-color: #ff0000;
     }
-
+    .clearstyle{margin: 0;padding: 0}
 #head{height:200px;}
 #head div{float:left;
 
 }
 </style>
 
-<div id="head">
-  <div><%=image_tag @shop.shop_logo,:id=>"weixin", :style=>"width:200px"%></div>
-  <div id="qrcodeCanvas" style="display:none" ></div>
-  <div id="qrcodeimg"></div>
-  <div><%=@shop.shop_intro%></div>
+<div id="amz-home">
+  <section id="amz-hero" style="text-align: center">
+    <div class="amz-container am-cf">
+      <div class="amz-mascot am-scrollspy-init am-scrollspy-inview am-animation-slide-left" data-am-scrollspy="{animation: 'slide-left', delay: 100}">
+        <%=image_tag @shop.shop_logo,:id=>"weixin",:style => "width:40%"  %>
+      </div>
+
+      <div class="amz-hero-intro">
+        <div class="amz-hero-headings">
+          <h1 class="clearstyle " data-am-scrollspy="{animation:'slide-left'}" class="am-scrollspy-init am-scrollspy-inview am-animation-slide-left">欢迎来到<%=@shop.shop_name%>的小店</h1>
+          <h2 class="clearstyle " style="color: #1f6377" data-am-scrollspy="{animation:'slide-right', delay: 500}" class="am-scrollspy-init am-scrollspy-inview am-animation-slide-right"><%=@shop.shop_intro%></h2>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
+
+
+
+
+
+
+
+
+
 <div class="main">
   <%if @shop_goods.size>0%>
       <div class="am-panel-bd">
