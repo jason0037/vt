@@ -39,8 +39,10 @@ class Admin::EventsController < Admin::BaseController
 
 	def update
 		@event = Imodec::Event.find(params[:id])
-		if @event.update_attributes(params[:imodec_event])
-			redirect_to edit_admin_event_url(@event)
+
+		if @event.update_attributes(:startime=>Time.parse(params[:event][:startime]).to_i,:endtime=>Time.parse(params[:event][:endtime]).to_i)
+
+				redirect_to edit_admin_event_url(@event)
 		else
 			render action: "edit"
 		end
