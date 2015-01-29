@@ -1,4 +1,5 @@
 class Admin::EventsController < Admin::BaseController
+  include Admin::SessionsHelper
 	def index
 		@events  = Imodec::Event.paginate(:page => params[:page], :per_page => 20,:order=>"created_at desc")
 	end

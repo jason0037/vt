@@ -9,7 +9,8 @@
 <script src="/assets/jquery.ui.datepicker-zh-CN.js?body=1" type="text/javascript"></script>
 <script src="/assets/admin/promotions.js?body=1" type="text/javascript"></script>
 
-<%= form_for @event,:url=>@create_or_update_path ,:html => {:class => "form-horizontal"} do |f| %>
+<%= form_for @event,:url=>@create_or_update_path ,:html => {:class => "form-horizontal eventform"} do |f| %>
+    <%=f.hidden_field :member_id ,:value=>current_admin.account_id%>
   <% if @event.errors.any? %>
       <div class="notice">
         <ul>
@@ -71,10 +72,39 @@
     </div>
     <div class="control-group">
       <div class="controls">
-        <%= f.submit '确定', :class => "btn btn-primary" %>
+        <%= f.submit '确定', :class => "btn btn-primary submit" %>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <%= link_to '返回', admin_events_path %>
       </div>
     </div>
   </fieldset>
 <% end %>
+
+
+<script>
+    $(document).ready(function(){
+
+
+        $(".submit").click(function(){
+            var startime=$("#imodec_event_startime").val();
+            var endtime=$("#imodec_event_endtime").val();
+
+            if( new Date(endtime)> new Date(startime)){
+                alert("报名截至时间不能大于活动开始时间"); return false;
+            }
+
+            var event_name=$("#imodec_event_name").val();
+            var event_adds=$("#imodec_event_adds").val();
+            var event_times=$("#imodec_event_times").val();
+            if (event_name==""||event_adds==""||event_times=="") {
+                alert("信息量不足!无法发布活动哦!");
+                return false;
+            }
+            else{
+                $(".eventform").submit();
+            }
+        })
+    })
+
+
+</script>
