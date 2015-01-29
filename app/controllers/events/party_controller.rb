@@ -1,3 +1,4 @@
+#encoding:utf-8
 class Events::PartyController < ApplicationController
   layout "tradev"
   def index
