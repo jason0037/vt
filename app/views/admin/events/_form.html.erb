@@ -10,7 +10,9 @@
 <script src="/assets/admin/promotions.js?body=1" type="text/javascript"></script>
 
 <%= form_for @event,:url=>@create_or_update_path ,:html => {:class => "form-horizontal eventform"} do |f| %>
-
+  <%if @event.member_id.nil?%>
+    <%=f.hidden_field :member_id ,:value=>"2521"%>
+        <%end%>
   <% if @event.errors.any? %>
       <div class="notice">
         <ul>
@@ -72,7 +74,8 @@
     </div>
     <div class="control-group">
       <div class="controls">
-        <%= f.submit '确定', :class => "btn btn-primary submit" %>
+        <input type="button" value="确定" class="btn btn-primary submit">
+
         &nbsp;&nbsp;&nbsp;&nbsp;
         <%= link_to '返回', admin_events_path %>
       </div>
