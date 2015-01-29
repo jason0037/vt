@@ -155,7 +155,7 @@ class Shop:: ShopinfosController < ApplicationController
   def add_goods
     ids = params[:goods_id]
     shop_id=Ecstore::Shop.find_by_member_id(@user.member_id).shop_id
-    count= Ecstore::ShopsGood.where(:shop_id=>shop_id).count
+    count= Ecstore::ShopsGood.where(:shop_id=>shop_id,:conditions=>[ "group by having count(*)"])
 
    unless count>2
 

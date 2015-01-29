@@ -10,7 +10,7 @@
 <script src="/assets/admin/promotions.js?body=1" type="text/javascript"></script>
 
 <%= form_for @event,:url=>@create_or_update_path ,:html => {:class => "form-horizontal eventform"} do |f| %>
-    <%=f.hidden_field :member_id ,:value=>current_admin.account_id%>
+
   <% if @event.errors.any? %>
       <div class="notice">
         <ul>
@@ -90,7 +90,7 @@
             var endtime=$("#imodec_event_endtime").val();
 
             if( new Date(endtime)> new Date(startime)){
-                alert("报名截至时间不能大于活动开始时间"); return false;
+///               alert("报名截至时间不能大于活动开始时间"); return false;
             }
 
             var event_name=$("#imodec_event_name").val();
