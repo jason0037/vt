@@ -30,15 +30,21 @@
     <div class="control-group">
       <%= f.label :times, "报名截止时间", :class => "control-label" %>
       <div class="controls">
-        <%=f.text_field :endtime,:value=>Time.at(@event.endtime).to_s(:db),:class=>"span2 datetime"%>
-
-      </div>
+            <%unless @event.endtime.nil?%>
+        <%=f.text_field :endtime,:value=>Time.at(@event.endtime).to_s(:db),:class=>"span2 datetime" %>
+            <%else%>
+        <%=f.text_field :endtime,:class=>"span2 datetime"%>
+        <%end%>
+           </div>
     </div>
     <div class="control-group">
       <%= f.label :startime, "请选择活动开始时间", :class => "control-label" %>
       <div class="controls">
+        <%unless @event.startime.nil?%>
         <%=f.text_field :startime,:value=>Time.at(@event.startime).to_s(:db),:class=>"span2 datetime"%>
-
+        <%else%>
+            <%=f.text_field :startime,:class=>"span2 datetime"%>
+        <%end%>
       </div>
     </div>
     <div class="control-group">

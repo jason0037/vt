@@ -45,6 +45,7 @@ class Events::PartyController < ApplicationController
 
 
   def detail
+    @tradev_title="吃货帮聚会活动"
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @event = Imodec::Event.find(params[:id])
     @applicants = @event.applicants.paginate(:page => params[:page], :per_page => 20,:order=>"created_at desc")

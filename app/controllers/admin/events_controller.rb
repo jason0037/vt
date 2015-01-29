@@ -26,8 +26,8 @@ class Admin::EventsController < Admin::BaseController
 
 	def create
 		@event = Imodec::Event.new(params[:imodec_event]) do |ev|
-    ev.startime= Time.parse(params[:event][:startime]).to_i
-    ev.endtime= Time.parse(params[:event][:endtime]).to_i
+    ev.startime= Time.parse(params[:imodec_event][:startime]).to_i
+    ev.endtime= Time.parse(params[:imodec_event][:endtime]).to_i
       end
 		if @event.save
 			redirect_to edit_admin_event_url(@event)
@@ -39,8 +39,12 @@ class Admin::EventsController < Admin::BaseController
 
 	def update
 		@event = Imodec::Event.find(params[:id])
+    startime=params[:imodec_event].delete(:startime)
+    endtime= params[:imodec_event].delete(:endtime)
+    startime= Time.parse(startime).to_i
+    endtime= Time.parse(endtime).to_i
 
-		if @event.update_attributes(params[:imodec_event])
+		if @event.update_attributes(params[:imodec_event].merge!(:startime=>startime,:endtime=>endtime))
     redirect_to edit_admin_event_url(@event)
 		else
 			render action: "edit"
