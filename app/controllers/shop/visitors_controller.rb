@@ -15,7 +15,14 @@ def istrue
 end
 
 def my_add_shopping
-
+  if params[:attr]=="mall"
+    @mall="mall"
+    goods_id=params[:goods_id]
+    shop_id = params[:shop_id]
+    quantity=1
+    @good = Ecstore::Good.find(goods_id)
+    @product = @good.products.first
+  else
 		specs = params[:product].delete(:specs)
 		customs = params[:product].delete(:customs)
 		quantity = params[:product].delete(:quantity).to_i
@@ -35,7 +42,7 @@ def my_add_shopping
       end.first
 
     end
-
+  end
 		if signed_in?
 			member_id = @user.member_id
 			member_ident = Digest::MD5.hexdigest(@user.member_id.to_s)

@@ -10,6 +10,8 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         render xml: send("response_location_message", {})
       when '1'
         render xml: send("response_news_message", {})
+      when '11'
+        render xml: send("response_news_message", {})
       when '2'
         render xml: send("response_news_message", {})
       when '3'
@@ -71,6 +73,13 @@ WeixinRailsMiddleware::WeixinController.class_eval do
         desc ="测试商品0.01元，佣金3.00元"
         pic_url="http://vshop.trade-v.com/images/a072/a0729002_b_1.jpg"
         link_url="http://vshop.trade-v.com/mproducts?id=a980000&fp=mproducts&supplier_id=#{id}"
+        articles = [generate_article(title, desc, pic_url, link_url)]
+
+      when '11'
+        title="团购测试"
+        desc ="团购测试"
+        pic_url="http://img10.360buyimg.com/tuangou/jfs/t496/280/1261399253/132576/71742946/54c8b7f6N1cb15fcb.jpg!q80.jpg"
+        link_url="http://vshop.trade-v.com/tuan"
         articles = [generate_article(title, desc, pic_url, link_url)]
 
       when '通知'

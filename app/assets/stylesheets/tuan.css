@@ -1,0 +1,185 @@
+.am-header-danger {
+    background-color: #ff0e29;
+}
+.am-header-title {
+    color: #ffffff;
+}
+.am-padding-xs {
+    padding: .5rem;
+}
+.index-btns p {
+    margin: 0;
+    font-size: 1.2rem;
+color: #666;
+
+}
+.am-gallery ,.am-list-news-default,.am-panel{margin: 0px}
+
+.am-titlebar-multi {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: #f5f5f5;
+    border-top: 2px solid  #ff0e29;
+    border-bottom: 1px solid #e8e8e8;
+}
+.am-titlebar-multi .am-titlebar-title {
+    padding-left: 10px;
+    color:  #ff0e29;
+    font-size: 1.8rem;
+    text-align: left;
+    font-weight: 700;
+    line-height: 42px;
+}
+.am-titlebar >h2:before {
+    content: '\20';
+    height: 100%;
+    width: 0;
+    margin-right: 10px;
+    border-left: 6px solid  #ff0e29;
+}
+.am-titlebar >span{
+    font-size: 13px;
+    font-weight: 400;
+    color: #00002a;
+    margin-left: 10px;
+    line-height: 45px;
+}
+
+.omitted {
+    font-weight: 100;
+    transition: font-size .2s ease-out;
+    font-size: 14px;
+    color: #636363;
+    margin: 5px 0 0 10px;
+    display: block;
+    overflow: hidden;
+    line-height: 15px;
+    line-height: 20px;
+    padding-right: 10px;
+}
+.price {
+    transition: font-size .2s ease-out;
+    color: #f94d4d;
+    font-weight: 700;
+    font-size: 18px;
+    margin: 0 0 0 10px;
+    line-height: 15px;
+    font-weight: 700;
+}
+.tradev {
+    transition: font-size .2s ease-out;
+    font-size: 12px;
+    color: #666;
+    margin: 5px 0 0 10px;
+}
+.tradev span.originalprice {
+    text-decoration: line-through;
+}
+span.gmrs {
+    border: none;
+}
+.tradev span {
+    transition: font-size .2s ease-out;
+    line-height: 15px;
+    color: #9e9e9e;
+    height: 15px;
+    display: inline-block;
+    float: left;
+    padding-right: 5px;
+    border-right: 1px solid #ddd;
+    margin-right: 5px;
+    margin-bottom: 3px;
+    font-size: 12px;
+}
+
+/*商品详细*/
+.cpxq_area_1 {
+    background: #FFF;
+    width: 100%;
+    overflow: hidden;
+}
+.cpxq_area_1 .onefloor {
+    width: 100%;
+    overflow: hidden;
+
+}
+.cpxq_area_1 .onefloor .left {
+    width: 50%;
+    overflow: hidden;
+    float: left;
+}
+.cpxq_area_1 .onefloor .left span{
+    padding-left: 10px;
+    display: block;
+    font-size: 14px;
+    color: #000;
+    font-weight: 700;
+    line-height: 20px;
+
+}
+.cpxq_area_1 .onefloor .right {
+
+    overflow: hidden;
+    float: right;
+}
+.cpxq_area_1 .onefloor .right p {
+    background: url(http://img12.360buyimg.com/mobilecms/jfs/t292/265/2077203042/1636/beffd091/545201b4Nc050b771.png) no-repeat 0 4px;
+    background-size: 12px 12px;
+
+    color: #ccc;
+    font-size: 12px;
+    margin-right: 0;
+    overflow: hidden;
+    padding-right: 10px;
+}
+.cpxq_area_1 .onefloor .right p span:first-child {
+    overflow: hidden;
+     margin-left: 15px;
+     line-height: 20px;
+     font-size: 14px;
+ }
+.cpxq_area_1 .twofloor {
+    margin: 0px;
+    padding: 0 10px;
+    color: #666;
+    font-size: 13px;
+    font-weight: 700;
+  line-height: 20px;
+}
+.cpxq_area_1 .threefloor {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f94d4d;
+}
+.cpxq_area_1 .threefloor .right a, .cpxq_area_1 .threefloor .right div, .cpxq_area_1 .threefloor .right div {
+    display: block;
+    float: right;
+    margin-right: 10px;
+    width: 120px;
+    height: 41px;
+    background: #f94d4d;
+    border-radius: 5px;
+    color: #FFF;
+    line-height: 41px;
+    text-align: center;
+    font-size: 16px;
+}
+.cpxq_area_1 .threefloor .right div {
+    background: #CCC;
+}
+.cpxq_area_1 .threefloor .left span.s1 {
+    color: #f94d4d;
+    font-size: 22px;
+    font-weight: 700;
+    padding-left: 10px;
+}
+.cpxq_area_1 .threefloor .left span.s2 {
+    color: #ccc;
+    font-size: 12px;
+    padding-left: 10px;
+    text-decoration: line-through;
+}

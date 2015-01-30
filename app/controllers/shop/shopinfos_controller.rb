@@ -45,7 +45,7 @@ class Shop:: ShopinfosController < ApplicationController
      end
 
 
-      def fendian
+  def fendian
         @shop=Ecstore::Shop.find(params[:shop_id])
 
         if @shop.permission_branch=="-1"
@@ -134,16 +134,18 @@ class Shop:: ShopinfosController < ApplicationController
   def show_goods
     @shop_title = '店铺商品挑选'
 
-    sql = 'SELECT st1.cat_name, st1.cat_id,st1.parent_id,st1.cat_path FROM mdk.sdb_b2c_goods_cat st1 INNER JOIN mdk.sdb_b2c_goods st2 ON (st1.cat_id = st2.cat_id) GROUP BY st1.cat_id HAVING COUNT(*) > 1 order by cat_path'
-    @category = ActiveRecord::Base.connection.execute(sql)
+   #sql = 'SELECT st1.cat_name, st1.cat_id,st1.parent_id,st1.cat_path FROM mdk.sdb_b2c_goods_cat st1 INNER JOIN mdk.sdb_b2c_goods st2 ON (st1.cat_id = st2.cat_id) GROUP BY st1.cat_id HAVING COUNT(*) > 1 order by cat_path'
+ # @category = ActiveRecord::Base.connection.execute(sql)
+  if  params[:supplier_id]
+    @category = Ecstore::Good.all(:conditions => "supplier_id=#{params[:supplier_id]}",
+                                  :select => "count(*) sum ,cat_id",:group=>"cat_id")
+      else
+        @sup = Ecstore::Good.all(:conditions => "shopstatus = true",
+                                 :select => "count(*) sum ,supplier_id",:group=>"supplier_id")
 
-  #  brand_id = params[:brand]
+      end
+    #  brand_id = params[:brand]
     cat_id = params[:cat_id]
-
-    if cat_id.nil?
-      cat_id = 561 #德国香肠
-    end
-
     member_id = @user.member_id
     @shop=Ecstore::Shop.find_by_member_id(member_id)
    
@@ -154,35 +156,41 @@ class Shop:: ShopinfosController < ApplicationController
 
   def add_goods
     ids = params[:goods_id]
+    supplier_id= params[:supplier_id]
     shop_id=Ecstore::Shop.find_by_member_id(@user.member_id).shop_id
-    count= Ecstore::ShopsGood.where(:shop_id=>shop_id,:conditions=>[ "group by having count(*)"])
 
-   unless count>2
+    @count = Ecstore::ShopsGood.all(:conditions => "shop_id = #{shop_id}",
+                             :select => "count(*) sum, supplier_id ",:group=>"supplier_id")
 
+
+
+   unless  @count.size >2
     if ! ids.nil?
-      co=0
+
       ids.each do |id|        
-              co+=1;
-              if co<4
 
         if  Ecstore::ShopsGood.where(:goods_id=>id,:shop_id=>shop_id).size==0
-          Ecstore::ShopsGood.new do |goo|
-            goo.shop_id=shop_id
-            goo.goods_id=id
-            goo.uptime=Time.now
-          end.save
+             Ecstore::ShopsGood.new do |goo|
+              goo.shop_id=shop_id
+             goo.goods_id=id
+              goo.supplier_id=supplier_id
+             goo.uptime=Time.now
+           end.save
         end
         end
-
-      end
 
     end
-    else
+
+   else
      return render "adderror"
+   end
+
+    else
+      redirect_to "/shop/shopinfos/my_goods?shop_id=#{shop_id}"
     end
 
-    redirect_to "/shop/shopinfos/my_goods?shop_id=#{shop_id}"
-  end
+
+
 
   def adderror
 

@@ -1,37 +1,29 @@
-
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!--<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <title>贸威自媒体商城</title>
+  <title>贸威团购</title>
   <meta content="" name="keywords">
   <meta content="" name="description">
-  <%= stylesheet_link_tag    "shop.css" %>
- <%= stylesheet_link_tag    "amaze/amazeui.min.css" %>
 
+  <%= stylesheet_link_tag    "amaze/amazeui.min.css" %>
   <%= stylesheet_link_tag    "amaze/amazeui.widgets.min.css" %>
 
-
-  <%= javascript_include_tag "amaze/zepto.min.js"%>
-
-  <%= javascript_include_tag "amaze/amazeui.widgets.helper.min.js"%>
-
-  <%= javascript_include_tag "amaze/amazeui.widgets.min.js"%>
-
-
-  <%= javascript_include_tag "amaze/amazeui.min.js" %>
-
-  <%= javascript_include_tag "amaze/handlebars.min.js"%>
-
+  <%= stylesheet_link_tag    "tuan.css" %>
+  <%= javascript_include_tag "amaze2.2/jquery.min.js"%>
+  <%= javascript_include_tag "amaze2.2/amazeui.min.js"%>
+  <%= javascript_include_tag "amaze2.2/amazeui.legacy.min.js"%>
+  <%= javascript_include_tag "amaze2.2/amazeui.widgets.helper.min.js"%>
+  <%= javascript_include_tag "amaze2.2/handlebars.min.js"%>
+  <script>
+      var ui = 'touch';
+  </script>
+  <style>
 
 
-  <style type="text/css">
-      .am-icon-user{
-          color: #ffffff;
-          height: 20px;
-      }
       .bottomdivsclearfix {
           position: fixed;
           bottom: 0;
@@ -42,57 +34,63 @@
           z-index: 1000000;
           margin: 3px;
       }
+      .am-navbar-default .am-navbar-nav {
+          background-color: #FF8000;
+      }
+      .hidden{
+          display: none;
+      }
+      .am-navbar-nav li a{
+          color: #ffffff;
+      }
 
   </style>
-
 </head>
-<body>
-<header data-am-widget="header" class="am-header am-header-default am-no-layout">
-  <div class="am-header-left am-header-nav">
-    <a href="javascript:history.go(-1)" class="">
-      <img class="am-header-icon-custom" src="data:image/svg+xml;charset=utf-8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 12 20&quot;&gt;&lt;path d=&quot;M10,0l2,2l-8,8l8,8l-2,2L0,10L10,0z&quot; fill=&quot;%23fff&quot;/&gt;&lt;/svg&gt;" alt=""></a></div>
-  <h1 class="am-header-title"><%= @shop_title? @shop_title : '贸威微信互助O2O直销平台' %></h1>
+<header data-am-widget="header" class="am-header am-header-danger">
 
+  <h1 class="am-header-title">
+   <%if @tuan_title%>  <%=@tuan_title%> <%else%>团购<%end%>
+   </h1>
 
 </header>
+<body>
 
+<% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+<%if @user%>
+    <script>
+        if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
+            location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
+        }
+    </script>
+<%end%>
 <%= yield %>
 
-<div class="bottomdivsclearfix">
-  <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout">
-    <ul class="am-navbar-nav am-cf sm-block-grid-2">
 
-      <% if @shop%>
-          <%if  @user %>
-            <%if @user.member_id == @shop.member_id%>
-                  <%if @shop.status==1%>
-              <li><a class="" href="/shop/shopusers"><span  class="am-navbar-label ">店铺管理</span></a></li>
-                      <%end%>
-            <%else%>
-                  <%if  @shop.member_id%>
-                      <!--当订单达到200后才显示开分店-->
-          <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">我也要开店</span></a></li>
-                    <%end%>
-                  <li ><a class="" href="/shop/shopusers?shop_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">用户中心</span></a></li>
-              <%end%>
-           <%else%>
-              <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">我也要开店</span></a></li>
-          <%end%>
-      <%end%>
-     </ul>
-  </div>
-</div>
+
 
 
 <div class="footer clearfix">
-  <p class="copyright" style="display: none">Copyright © 2013-2015 www.trade-v.com <br/>版权所有 贸威 All rights reserved. <br/>沪ICP备13045311号-1 </p>
+  <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+  <%if @user%>
+      <script>
+          if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
+              location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
+          }
+      </script>
+  <%else%>
+      <script>
+          location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
+      </script>
+  <%end%>
+  <p class="copyright" style="display: none">Copyright © 2013-2014 trade-v.com <br/>版权所有 上海普慧信息科技有限公司 All rights reserved. <br/>沪ICP备13045311号-1 </p>
   <p style="display:none">from=<%=session[:wechat_user]%>|recommend=<%=session[:recommend_user]%></p>
 </div>
-<!--<div class="space10"></div>-->
 
-<!--<div class="c-bottom"></div>-->
 
 <script type="text/javascript">
+
+
+
     function wechatShare(data) {
         // If no data is defined, just fallback to wechat's default behaviour.
         if (!data) {
@@ -152,60 +150,93 @@
             WeixinJSBridge.on("menu:share:appmessage", function(argv) {
                 shareFriend();
                 <%if @user==nil%>
-                alert('您还没有登录，只有登录后，分享给朋友！');
+                alert('您还没有登录，只有登录后，分享给朋友，才可能赚到佣金噢！');
                 <%end%>
             });
             WeixinJSBridge.on("menu:share:timeline", function(argv) {
                 shareTimeline();
                 <%if @user==nil%>
-                alert('您还没有登录，只有登录后，分享给朋友！');
+                alert('您还没有登录，只有登录后，分享给朋友，才可能赚到佣金噢！');
                 <%end%>
             });
             WeixinJSBridge.on("menu:share:weibo", function(argv) {
                 shareWeibo();
                 <%if @user==nil%>
-                alert('您还没有登录，只有登录后，分享给朋友！');
+                alert('您还没有登录，只有登录后，分享给朋友，才可能赚到佣金噢！');
                 <%end%>
             });
         }, false);
     }
     <%if @user%>
-     <%useraccount=@user.account.login_name if @user.account%>
+    <%useraccount=@user.account.login_name%>
     <%end%>
-    <%if @shop%>
-      <%shop_id=@shop.shop_id%>
-    <%end%>
-//    var current_url = document.location.href;
-//
-
+    var current_url = document.location.href;
+    //去除上一个推荐者的链接
     var imgs=null
+    var descs=null
 
-    var desc = '<%=@share_desc %>';
-    if (desc.length===0){
-      desc = "极致生活，品质共享 连接你我的极致小店~";
+
+    if (document.location.href.indexOf('order')>0){
+        var pathname = document.location.pathname;
+        if (pathname=="/events/party/detail"){
+
+            var serach =document.location.search;
+            var host=document.location.host;
+
+            var url=host + pathname+serach;
+            current_url=url
+
+        }
+
     }
-        
 
-//    //去除上一个推荐者的链接
-//    var num_index_of = current_url.indexOf("from=weixin&wechatuser=");
-//    if (num_index_of >0){
-//        current_url = current_url.substr(0,num_index_of-1);
-//    }
-//    var connector ='?'
-//    if (current_url.indexOf("?")>0){
-//         connector  ='&'
-//    }
-//    current_url += connector + "from=weixin&wechatuser=<%=useraccount%>";
-//    // alert(current_url);
-    <%if @shop%>
-    var host=window.location.host;
-         current_url="http://"+host+"/shop/?shop_id="+<%=@shop.shop_id%>;
-    <%end%>
+    if (document.location.href.indexOf('events')>0) {
+        var pathname = document.location.pathname;
 
 
-    var data = {"img":imgs,"url":current_url,"title":"<%=@shop_title%>","desc":desc};
+        var serach = document.location.search;
+
+        var host = document.location.host;
+        imgs = "http://vshop.trade-v.com/assets/nigailai.png"
+        var url = host + pathname + serach;
+        current_url = url
+
+        descs ='<%=@event_desc%>'
+        if (descs.length===0){
+            desc = "吃货帮活动聚会了哦!!!";
+        }
+
+
+
+    }
+
+
+    if (document.location.search=="?name=%E9%A6%99%E8%82%A0&id=78"){
+
+        imgs="http://vshop.trade-v.com/images/a077/xiangchang.png"
+
+        descs="德国老祖母级香肠，原汁原味，来自德国的美味！";
+    }
+
+    if (document.location.pathname=="/pages/about_zmq"){
+
+        descs="卓玛泉西藏冰川水 喝水也可以如此美好";
+        imgs="http://vshop.trade-v.com/images/a104/zhuoma.png"
+
+    }
+
+    num_index_of = current_url.indexOf("&from=weixin&wechatuser=");
+    if (num_index_of >0){
+        current_url = current_url.substr(0,num_index_of);
+    }
+    current_url += "&from=weixin&wechatuser=<%=useraccount%>";
+    // alert(current_url);
+
+    var data = {"img":imgs,"url":current_url,"title":"关注贸威，转发朋友，享受更优质生活！<%#=@wechat_share_title%>","desc":descs};
     wechatShare(data);
 </script>
+<%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>
+
 
 <script type="text/javascript">
     var _smq = _smq || [];
@@ -227,8 +258,4 @@
     })
 </script>
 
-</body>
-</html>
-
-
-
+</body></html>

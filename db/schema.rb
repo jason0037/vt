@@ -83,10 +83,11 @@ ActiveRecord::Schema.define(:version => 201412081010300) do
     t.string   "slug"
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
-    t.datetime "times"
+    t.integer  "startime"
     t.string   "adds"
     t.string   "terminal",   :limit => 6, :default => "pc"
     t.integer  "member_id"
+    t.integer  "endtime"
   end
 
   add_index "events", ["slug"], :name => "index_events_on_slug", :unique => true

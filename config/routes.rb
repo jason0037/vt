@@ -621,6 +621,17 @@ Modengke::Application.routes.draw do
 
     resources :suppliers
 
+
+    resources :tuan do
+      collection do
+       get 'index'
+        get 'wares_details'
+
+
+
+      end
+    end
+
     resources :coupons, :controller=>"offline_coupons" do
       post 'download',:on=>:member
     end

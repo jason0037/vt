@@ -20,23 +20,32 @@
 </script>
   <div class="main">
 
-<div class="am-panel am-panel-primary  "style="filter:alpha(Opacity=70);-moz-opacity:0.7;opacity: 0.7"  >
+    <ul class="am-list" >
+        <%if @sup%>
+        <% @sup.each do |sup|%>
+          <li >  <a class="am-btn-catid" style="color: #000000" href="/shop/shopinfos/show_goods?supplier_id=<%=sup.supplier_id%>"><%=sup.supplier.name%>&nbsp;(<%=sup.sum%>)</a>  </li>
+        <%end%>
+            <%elsif @category%>
+            <% @category.each do |cat|%>
+               <li> <a class="am-btn-catid"style="color: #000000" href="/shop/shopinfos/show_goods?supplier_id=<%=params[:supplier_id]%>&cat_id=<%=cat.cat_id%>"><%=cat.cat.cat_name%>&nbsp;(<%=cat.sum%>)</a> </li>
+            <%end%>
 
-  <div class="am-panel-hd" >
-    <% @category.each do |cat|%>
-      <a class="am-btn-catid" href="/shop/shopinfos/show_goods?shop_id=<%=@shop.shop_id%>&cat_id=<%=cat[1]%>">&nbsp;<%=cat[0]%></a>
-    <%end%>
-  </div>
-</div>
+        <%end%>  </ul>
+      </div>
+    </div>
+
 <form action ="/shop/shopinfos/add_goods" method="post">
 <div class="am-panel-bd">
-  <ul class="am-list" >  
+  <ul class="am-list" >
+    <%if @goods.size>0%>
+        <input type="hidden" value="<%=params[:supplier_id]%>" name="supplier_id"/>
     <% @goods.each do |good|%>
 
         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="cursor: pointer">
 
           <div class="am-col col-sm-2 am-list-thumb ">
-            <input type="checkbox" value="<%=good.goods_id%>" class="shop_selector" name="goods_id[]"/> </div>
+            <input type="checkbox" value="<%=good.goods_id%>" class="shop_selector" name="goods_id[]"/>
+            </div>
             <div class="am-col col-sm-2 am-list-thumb">
               <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
             </div>
@@ -52,7 +61,7 @@
           </a>
             </div>
         </li>
-    <%end%>
+    <%end%><%end%>
   </ul>
 </div>
 
@@ -66,19 +75,16 @@
 <script>
 
     $(".am-list-item-thumb-left").each(function(){
-         $(this).bind("click",function(){
-          if( $('input[type=checkbox][checked]').length>2){
-                    alert("目前店铺商品不能超过3个哦!!!");
-                      $(this).children().children().removeAttr("checked");
-                  }
+         $(this).bind("click",function() {
 
-                else{ if($(this).children().children().attr("checked")==false )
-                  {
-                   $(this).children().children().attr("checked",'true'); }
-                  else{
-                    $(this).children().children().removeAttr("checked");
-                   }
-                }})
+
+             if ($(this).children().children().attr("checked") == false) {
+                 $(this).children().children().attr("checked", 'true');
+             }
+             else {
+                 $(this).children().children().removeAttr("checked");
+             }
+         });
     });
 
 
@@ -111,3 +117,15 @@
         return shop_selector_ids;
     }
 </script>
+           <script>
+              $(document).ready(function(){
+
+                      $('#my-prompt').modal({
+                      });
+
+              })
+
+
+
+
+           </script>

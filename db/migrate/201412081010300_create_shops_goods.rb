@@ -6,6 +6,7 @@ class CreateShopsGoods < ActiveRecord::Migration
      t.string :goods_id
      t.integer :uptime ##上架时间
      t.column :good_status ,"ENUM('0', '1')",:default=>"0"   ###1上架
+     # t.integer :supplier_id
       t.timestamps
     end
   end
