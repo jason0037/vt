@@ -2,7 +2,7 @@ require 'digest/md5'
 class Ecstore::Coupon < Ecstore::Base
 	self.table_name = "sdb_b2c_coupons"
 
-	belongs_to :rule,:foreign_key=>"rule_id"
+	belongs_to :rule_order,:foreign_key=>"rule_id"
 
 	COUPON_COUNT_LEN = 5
 	COUPON_ENCRYPT_LEN = 5
@@ -22,6 +22,6 @@ class Ecstore::Coupon < Ecstore::Base
 
 	def expired?
 		now = Time.now.to_i
-		!(self.rule.from_time <= now && self.rule.to_time >= now)
+		!(self.rule_order.from_time <= now && self.rule_order.to_time >= now)
 	end
 end

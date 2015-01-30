@@ -13,7 +13,7 @@ module Admin
       	end
       	current_time = Time.now.to_i
       	@coupons = Ecstore::Coupon.where(:cpns_status=>"1").select do |coupon|
-      					rule = Ecstore::Rule.find_by_rule_id(coupon.rule_id)
+          rule = Ecstore::RuleOrder.find_by_rule_id(coupon.rule_id)
       					if rule.from_time <= current_time && rule.to_time >= current_time
       						coupon
       					end
