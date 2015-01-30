@@ -1,0 +1,62 @@
+<link rel="stylesheet" type="text/css" href="/assets/timeplug/jquery.datetimepicker.css"/>
+<script src="/assets/jquery.min.js"></script>
+<script src="/assets/timeplug/jquery.datetimepicker.js"></script>
+<%= form_for :rules,:url=>@action_url,:html => {:class => "form-horizontal"} do |f| %>
+  <fieldset>
+
+
+    <div class="control-group">
+      <%= f.label :name, "标题", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :name, :placeholder => "标题" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :description, "描述", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_area :description, :style=>"height:100px" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :from_time, "开始时间", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :from_time,:id=>"from_time" %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :to_time, "开始时间", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :to_time,:id=>"to_time" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :status, "启用", :class => "control-label" %>
+      <div class="controls">
+        <%=f.select :status, {"是"=>"true","否"=>"false" }%>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls">
+        <%= f.submit '确定', :class => "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '返回', admin_rules_path %>
+      </div>
+    </div>
+  </fieldset>
+<% end %>
+
+
+
+
+<script> $('#from_time').datetimepicker({
+    format:'Y-m-d H:i',
+    lang:'ch'
+
+});
+$('#to_time')  .datetimepicker({
+    format:'Y-m-d H:i',
+    lang:'ch'
+
+});
+
+</script>

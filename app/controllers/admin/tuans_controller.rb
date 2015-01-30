@@ -1,5 +1,5 @@
 module Admin
-  class TuanController < Admin::BaseController
+  class TuansController < Admin::BaseController
     skip_before_filter :require_permission!
 
     def index

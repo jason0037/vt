@@ -9,7 +9,6 @@ Modengke::Application.routes.draw do
 
 
 
-  get "tuan/index"
 
   #scope :module => "shop" do
   get 'shop'=>'shop/shopinfos#myshop'
@@ -391,6 +390,12 @@ Modengke::Application.routes.draw do
     end
 
     resource :rules do
+      collection do
+        get 'index'
+      end
+    end
+
+    resource :tuans do
       collection do
         get 'index'
       end

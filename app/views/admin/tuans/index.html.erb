@@ -1,0 +1,30 @@
+
+<div class="page-header">
+  <h2>优惠政策<%= link_to '新建优惠政策', new_admin_rules_path, :class => "pull-right btn btn-primary" %></h2>
+
+</div>
+
+<table class="table table-bordered table-hover">
+  <tr>
+    <th>活动名</th>
+    <th>活动描述</th>
+    <th>开始时间</th>
+    <th>结束时间</th>
+
+  </tr>
+
+  <% @rules.each do |rules| %>
+      <tr>
+
+        <td><%=rules.name%></td>
+        <td><%=rules.description%></td>
+        <td><%=Time.at(rules.from_time)%></td>
+        <td><%=Time.at(rules.to_time)%></td>
+
+      </tr>
+  <% end %>
+</table>
+
+<div class="pagination">
+  <%= will_paginate @rules, :container => false %>
+</div>
