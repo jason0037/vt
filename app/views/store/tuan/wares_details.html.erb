@@ -15,7 +15,7 @@
     <div class="onefloor">
       <div class="left"><span>果园老农美果盛宴</span></div>
       <div class="right">
-        <p><span style="color: rgb(0, 0, 0); font-size: 14px;"><span id="day_show">0天</span><span id="hour_show">0时</span><span id="minute_show">0分</span><span id="second_show">0秒</span></span></p>
+        <p><span style="color: rgb(0, 0, 0); font-size: 14px;"><span id="day_show">0</span><span id="hour_show">0:</span><span id="minute_show">0:</span><span id="second_show">0</span></span></p>
       </div>
     </div>
     <p class="twofloor">仅售106元,即可享受果园老农美果盛宴坚果礼盒干果零食大礼包 年货礼盒 1454g</p>
@@ -49,9 +49,9 @@
             if (minute <= 9) minute = '0' + minute;
             if (second <= 9) second = '0' + second;
             $('#day_show').html(day+"天");
-            $('#hour_show').html('<s id="h"></s>'+hour+'时');
-            $('#minute_show').html('<s></s>'+minute+'分');
-            $('#second_show').html('<s></s>'+second+'秒');
+            $('#hour_show').html('<s id="h"></s>'+hour+':');
+            $('#minute_show').html('<s></s>'+minute+':');
+            $('#second_show').html('<s></s>'+second);
             intDiff--;
         }, 1000);
     }
