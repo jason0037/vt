@@ -14,6 +14,16 @@
         <%= f.text_field :p_order,:class=>"span4"%>
       </div>
     </div>
+    <div class="control-group">
+      <label class="control-label">是否被店铺选择 </label>
+      <div class="controls">
+
+            <%=f.select :shopstatus, {"是"=>"true","否"=>"false" }%>
+
+      </div>
+    </div>
+
+
 
     <div class="control-group">
       <%= f.label :freight, "运费", :class => "control-label" %>
