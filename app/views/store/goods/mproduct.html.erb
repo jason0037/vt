@@ -27,7 +27,7 @@
     <%end%> <%end%>
 <div data-am-widget="slider" class="am-slider am-slider-default am-no-layout" data-am-slider="{&quot;animation&quot;:&quot;slide&quot;,&quot;slideshow&quot;:false}">
   <div class="am-viewport" style="overflow: hidden; position: relative;">
-    <ul class="am-slides" style="width: 1200%;">
+    <ul class="am-slides" style="width: 1200%; -webkit-transition: 0s; transition: 0s; -webkit-transform: translate3d(-770px, 0px, 0px);">
       <%for value in 0..(@good.big_pic.split(",").length-1)%>
           <li style="width: 385px; float: left; display: block;"><img src="<%=@good.big_pic.split(",")[value]%>"  data-original="<%=@good.big_pic.split(",")[value]%>"
                                                                       data-onerror="<%=@good.big_pic.split(",")[value]%>"
