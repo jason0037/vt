@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
   include Breadcrumb
-  
+
   
 
   layout "survey"
@@ -63,13 +63,38 @@ class ApplicationController < ActionController::Base
       end
 
       @cart_total_quantity = @line_items.inject(0){ |t,l| t+=l.quantity }.to_i || 0
-      if cookies[:MLV] == "10"
-        @cart_total =@line_items.select{|x| x.product.present? }.collect{ |x| (x.product.bulk*x.quantity) }.inject(:+) || 0
-      else
-        @cart_total = @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.price*x.quantity) }.inject(:+) || 0
-      end
-     #@pmtable = @line_items.select { |line_item| line_item.good.is_suit? }.size == 0
 
+        @cart_total1=0  ###团购
+        @cart_total2=0
+
+      if cookies[:MLV] == "10"
+        @line_items.each do |li|
+        unless li.ref_id.nil?
+             @cart_total1= @cart_total1+ li.ecstore_goods_promotion_ref.promotionsprice*li.quantity
+        else
+          @cart_total2 =   @cart_total2+li.product.bulk*li.quantity
+        #    @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.bulk*x.quantity) }.inject(:+) || 0
+         end
+        @cart_total=@cart_total1+@cart_total2
+           end
+      else
+      @line_items.each do |li|
+           unless li.ref_id.nil?
+              @cart_total1= @cart_total1+li.ecstore_goods_promotion_ref.promotionsprice*li.quantity
+          else
+              @cart_total2 = li.product.price*li.quantity
+              # @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.price*x.quantity) }.inject(:+) || 0
+            end
+           @cart_total=@cart_total1+@cart_total2
+           end
+
+        end
+
+
+     #@pmtable = @line_items.select { |line_item| line_item.good.is_suit? }.size == 0
+      if @cart_total.nil?
+        @cart_total=0
+      end
     end
 
 

@@ -2,9 +2,9 @@
 <ul class="am-gallery am-gallery-overlay" data-am-widget="gallery">
   <li>
     <div class="am-gallery-item">
-      <img class="xqimg" src="http://img10.360buyimg.com/tuangou/jfs/t487/28/1287049954/46872/9d713f52/54c8bb03N30f34cb2.jpg!q80.jpg" width="100%">
+      <img class="xqimg" src="<%=@good.big_pic.split(",")[0]%>" width="100%">
       <h3 class="am-gallery-title" style="color:white">
-        200人已团</h3>
+        <%=@tuan.count%>人已团</h3>
 
     </div>
   </li>
@@ -13,17 +13,22 @@
 <section>
   <div class="cpxq_area_1">
     <div class="onefloor">
-      <div class="left"><span>果园老农美果盛宴</span></div>
+      <div class="left"><span><%=@good.brand.brand_name if @good.brand%></span></div>
       <div class="right">
+        <!--时间显示-->
+        <input type="hidden"id="date" value=" <%=(@tuan.to_time)-(Time.now).to_i%>">
         <p><span style="color: rgb(0, 0, 0); font-size: 14px;"><span id="day_show">0</span><span id="hour_show">0:</span><span id="minute_show">0:</span><span id="second_show">0</span></span></p>
       </div>
     </div>
-    <p class="twofloor">仅售106元,即可享受果园老农美果盛宴坚果礼盒干果零食大礼包 年货礼盒 1454g</p>
+    <p class="twofloor"><%=@good.name%></p>
     <div class="threefloor">
-      <div class="left"><span class="s1">￥106</span><span class="s2">￥119</span></div>
+      <div class="left"><span class="s1">￥<%=@tuan.promotionsprice%></span><span class="s2">￥<%=@good.price%></span></div>
       <div class="right">
-        <a data-role="button" href="javascript:void (0)" id="orderbuy">立即抢购</a>
-        <div href="javascript:;" id="orderbuy2" style="display:none;">活动结束</div>
+        <%if (@tuan.to_time)-(Time.now).to_i<2%>
+            <div href="javascript:;" id="orderbuy2">活动结束</div>
+            <%else%>
+        <a data-role="button" href="/mproducts?id=<%=@good.bn%>&supplier_id=<%=@supplier.id%>&fp=category&ref_id=<%=@tuan.ref_id%>" id="orderbuy">立即抢购</a>
+           <%end%>
       </div>
       </div>
   </div>
@@ -31,8 +36,13 @@
 
 
 <script type="text/javascript">
+           var date=$("#date").val()  ;
 
-    var intDiff = parseInt(1000000000);//倒计时总秒数量
+//             if(date<1){
+//                $("#orderbuy").css({"display":"none"})
+//                 $("#orderbuy2").css({"display":"block"})
+//             }
+    var intDiff = parseInt(date);//倒计时总秒数量
 
     function timer(intDiff){
         window.setInterval(function(){

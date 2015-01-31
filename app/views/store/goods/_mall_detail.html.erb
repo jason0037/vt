@@ -46,3 +46,23 @@
 
     <%end%>
 <%end%>
+
+<script type="text/javascript" >
+    $('.Q-buy-btn').on('click',addProduct);
+
+    $(".buttom_bolt").on('click',function(){
+        var goods_id= $(this).parent().parent().parent().prev().children().children(".goods_id").val();
+        var url="/cart/add" ;
+
+
+        $.ajax(url,{
+            type: "post",
+            data:{"goods_id":goods_id,"spec": "","attr":"mall","platform":"mobile"  },
+
+            success:function(res){
+
+            }
+        })
+    })
+
+</script>

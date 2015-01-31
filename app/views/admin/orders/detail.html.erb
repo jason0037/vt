@@ -149,6 +149,7 @@
 			<tr>
 				<th width="15%">货品编号</th>
 				<th>供应商货号</th>
+                <th>是否团购</th>
 				<th >货品品牌</th>
 				<th >货品名称</th>
 				<th >会员价</th>
@@ -159,6 +160,11 @@
 			<tr>
 				<td><%=order_item.bn%></td>
 				<td><%z=order_item.good.sbn%></td>
+              <%unless order_item.ref_id.nil?%>
+              <td> 是</td>
+                  <%else%>
+              <td>否</td>
+                  <%end%>
 				<td><%=order_item.product.brand.brand_name if order_item.product&&order_item.product.brand%></td>
 				<td>
 					<div>

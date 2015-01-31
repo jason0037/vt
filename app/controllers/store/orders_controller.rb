@@ -217,19 +217,39 @@ class Store::OrdersController < ApplicationController
     @line_items.each do |line_item|
       product = line_item.product
       good = line_item.good
+      unless line_item.ref_id.nil?
+          @tuan= Ecstore::GoodsPromotionRef.find(line_item.ref_id)
 
+          count=@tuan.count+line_item.quantity
+         @tuan.update_attributes(:count=>count)
+      end
       if good.nil? || product.nil?
         next
       end
+
+
+
 
       @order.order_items << Ecstore::OrderItem.new do |order_item|
         order_item.product_id = product.product_id
         order_item.bn = product.bn
         order_item.name = product.name
         if cookies[:MLV] == "10"
-          order_item.price = product.bulk
+          unless line_item.ref_id.nil?
+            order_item.price = line_item.ecstore_goods_promotion_ref.promotionsprice
+            order_item.ref_id= line_item.ref_id
+          else
+            order_item.price = product.bulk
+           end
         else
+
+          unless line_item.ref_id.nil?
+            order_item.price = line_item.ecstore_goods_promotion_ref.promotionsprice
+            order_item.ref_id= line_item.ref_id
+          else
           order_item.price = product.price
+
+         end
         end
         order_item.goods_id = good.goods_id
         order_item.type_id = good.type_id
@@ -321,6 +341,7 @@ class Store::OrdersController < ApplicationController
     end
 
     if @order.save
+
       @line_items.delete_all
 
       Ecstore::OrderLog.new do |order_log|
@@ -383,7 +404,10 @@ class Store::OrdersController < ApplicationController
       @coupons = @user.usable_coupons
     end
 
+
   end
+
+
 
   def new_mobile_addr
 

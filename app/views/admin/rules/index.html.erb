@@ -20,6 +20,8 @@
         <td><%=rules.description%></td>
         <td><%=Time.at(rules.from_time)%></td>
         <td><%=Time.at(rules.to_time)%></td>
+        <td><%= link_to '编辑', edit_admin_rules_path(rules)%></td>
+        <td><%= link_to '删除', admin_rules_path(rules), method: :delete, data: { confirm: '确定删除吗?' } %></td>
 
       </tr>
   <% end %>

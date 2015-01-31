@@ -1,30 +1,36 @@
 
 <div class="page-header">
-  <h2>优惠政策<%= link_to '新建优惠政策', new_admin_rules_path, :class => "pull-right btn btn-primary" %></h2>
+  <h2>团购政策<%= link_to '新建团购政策', new_admin_tuans_path, :class => "pull-right btn btn-primary" %></h2>
 
 </div>
 
 <table class="table table-bordered table-hover">
   <tr>
-    <th>活动名</th>
+    <th>商品id</th>
     <th>活动描述</th>
     <th>开始时间</th>
     <th>结束时间</th>
-
+    <th>状态</th>
+    <th>团购价格</th>
+    <th></th>
   </tr>
 
-  <% @rules.each do |rules| %>
+  <% @goodspromotion_ref.each do |rules| %>
       <tr>
 
-        <td><%=rules.name%></td>
+        <td><%=rules.goods_id%></td>
         <td><%=rules.description%></td>
         <td><%=Time.at(rules.from_time)%></td>
         <td><%=Time.at(rules.to_time)%></td>
+        <td><%=rules.status%></td>
+        <td><%=rules.promotionsprice%> </td>
+        <td><%= link_to '编辑',  "/admin/tuans/edit?ref_id=#{rules.ref_id}"%></td>
+        <!--<td><%#= link_to '删除', admin_tuans_path(rules), method: :delete, data: { confirm: '确定删除吗?' } %></td>-->
 
       </tr>
   <% end %>
 </table>
 
 <div class="pagination">
-  <%= will_paginate @rules, :container => false %>
+  <%= will_paginate @goodspromotion_ref, :container => false %>
 </div>

@@ -50,7 +50,12 @@
 <div class="am-panel am-panel-default">
   <div class="am-panel-hd">
     <h4 class="am-panel-title" style="color:red;" >
+      <!---->
+      <%if @tuan.nil?%>
       <%=I18n.t 'preferential-price'%>:<span style="float: right;color: red">¥<%=@good.default_product.price %></span>
+          <%else%>
+         团购价:<span style="float: right;color: red">¥<%=@tuan.promotionsprice %></span>
+          <%end%>
     </h4>
   </div>
   <!--<div id="do-not-say-1" >-->
@@ -94,7 +99,9 @@
           <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
           <%=f.hidden_field :type_id,:value=>@good.type_id%>
           <%=hidden_field_tag :supplier_id, @supplier.id%>
-
+          <%unless @tuan.nil?%>
+          <%=f.hidden_field :ref_id,:value=> @tuan.ref_id%>
+              <%end%>
           <%=hidden_field_tag :platform,"mobile"%>
           <%=hidden_field_tag :return_url,{:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
 
@@ -136,7 +143,14 @@
     <em class="num_cart hide"></em>
     <span class="carticon fl"></span>
     <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
-    </a> <em>吃货价</em> <span style="color: #ff0000">￥:<%=@good.default_product.price %></span>
+
+    <%if @tuan.nil?%>
+        </a> <em>吃货价</em> <span style="color: #ff0000">￥:<%=@good.default_product.price %></span>
+    <%else%>
+        </a> <em>  团购价</em> <span style="color: #ff0000">￥:<%=@tuan.promotionsprice %></span>
+    <%end%>
+
+
     <a href="javascript:void(0);" style="width: 40%" class="add_to_cart fr am-btn-block am-btn am-btn-success " id="add_to_cart"> <i class="am-icon-bolt"> <em class="icon-em" ><%=I18n.t "add-shoppingbasket"%></em> </i></a>
   </div>
 </div>

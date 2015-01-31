@@ -300,7 +300,9 @@ class Store::GoodsController < ApplicationController
 
      set_locale
    end
-
+  if params[:ref_id]
+   @tuan=Ecstore::GoodsPromotionRef.where(:status=>"true",:ref_id=>params[:ref_id]).first
+   end
    @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
 
    return render "not_find_good",:layout=>"new_store" unless @good
@@ -360,9 +362,12 @@ class Store::GoodsController < ApplicationController
       end
       else
       @supplier  =  Ecstore::Supplier.find(supplier_id)
-     render :layout=>@supplier.layout
-     end
-
+          if params[:ref_id]
+            render :layout=>"tuan"
+          else
+           render :layout=>@supplier.layout
+         end
+      end
  end
 
 

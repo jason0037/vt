@@ -34,6 +34,10 @@ class Ecstore::Good < Ecstore::Base
   has_many :images,	:through=>:image_attachs
 
   has_many :products, :foreign_key=>"goods_id",:class_name=>"Ecstore::Product",:dependent=>:destroy
+
+  has_many :rules, :foreign_key=>"goods_id"
+  has_many :ecstore_goods_promotion_refs, :class_name => 'Ecstore::GoodsPromotionRef', :foreign_key=>"goods_id"
+
   accepts_nested_attributes_for :products
 
   has_many :recommend_logs, :foreign_key=>"goods_id"

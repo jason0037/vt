@@ -10,6 +10,8 @@ Modengke::Application.routes.draw do
 
 
 
+
+
   #scope :module => "shop" do
   get 'shop'=>'shop/shopinfos#myshop'
   namespace :shop do
@@ -398,6 +400,7 @@ Modengke::Application.routes.draw do
     resource :tuans do
       collection do
         get 'index'
+        put 'edit'
       end
     end
 

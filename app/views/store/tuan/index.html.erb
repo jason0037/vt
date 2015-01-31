@@ -49,40 +49,20 @@
 
       <div class="am-list-news-bd">
         <ul class="am-list">
+          <%@tuan.each do |tuan|%>
+
      <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-left">
-                <a href="/tuan/wares_details">
+                <a href="/tuan/wares_details?goods_id=<%=tuan.goods_id%>">
                   <div class="am-u-sm-4 am-list-thumb">
 
-                    <img data-original="http://img10.360buyimg.com/tuangou/s288x288_jfs/t487/28/1287049954/46872/9d713f52/54c8bb03N30f34cb2.jpg!q80.jpg" src="http://img10.360buyimg.com/tuangou/s288x288_jfs/t487/28/1287049954/46872/9d713f52/54c8bb03N30f34cb2.jpg!q80.jpg" style="display: block;">
+                    <img src="<%=tuan.good.list_default_pic%>"  style="display: block;">
                   </div>
                   <div class="am-u-sm-8 am-list-main" style="overflow: hidden;">
-                    <h4 class="title omitted" style="padding-top: 0px; padding-bottom: 0px;">仅售106元,即可享受果园老农美果盛宴坚果礼盒干果零食大礼包 年货礼盒 1454g</h4>
-                    <div class="zkhw"><span class="price">￥106</span></div>
-                    <div class="tradev"><span class="originalprice">￥119</span><span class="zk">8.91折</span><span class="gmrs">865人已买</span><span class="jds" style="display:none">送京豆:0</span></div>
+                    <h4 class="title omitted" style="padding-top: 0px; padding-bottom: 0px;"><%=tuan.good.name%></h4>
+                    <div class="zkhw"><span class="price"><%=tuan.promotionsprice%></span></div>
+                    <div class="tradev"><span class="originalprice">￥<%=tuan.good.price%></span><span class="zk"><%=(tuan.promotionsprice.to_f)/(tuan.good.price.to_f).to_f%>折</span><span class="gmrs"> <%=tuan.count%>人已买</span></div>
                   </div></a></li>
-
-          <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-left">
-            <a href="/tuan/wares_details">
-              <div class="am-u-sm-4 am-list-thumb">
-
-                <img data-original="http://img10.360buyimg.com/tuangou/s288x288_jfs/t487/28/1287049954/46872/9d713f52/54c8bb03N30f34cb2.jpg!q80.jpg" src="http://img10.360buyimg.com/tuangou/s288x288_jfs/t487/28/1287049954/46872/9d713f52/54c8bb03N30f34cb2.jpg!q80.jpg" style="display: block;">
-              </div>
-              <div class="am-u-sm-8 am-list-main" style="overflow: hidden;">
-                <h4 class="title omitted" style="padding-top: 0px; padding-bottom: 0px;">仅售106元,即可享受果园老农美果盛宴坚果礼盒干果零食大礼包 年货礼盒 1454g</h4>
-                <div class="zkhw"><span class="price">￥106</span></div>
-                <div class="tradev"><span class="originalprice">￥119</span><span class="zk">8.91折</span><span class="gmrs">865人已买</span><span class="jds" style="display:none">送京豆:0</span></div>
-              </div></a></li>
-          <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-left">
-            <a href="/tuan/wares_details">
-              <div class="am-u-sm-4 am-list-thumb">
-
-                <img data-original="http://img10.360buyimg.com/tuangou/s288x288_jfs/t487/28/1287049954/46872/9d713f52/54c8bb03N30f34cb2.jpg!q80.jpg" src="http://img10.360buyimg.com/tuangou/s288x288_jfs/t487/28/1287049954/46872/9d713f52/54c8bb03N30f34cb2.jpg!q80.jpg" style="display: block;">
-              </div>
-              <div class="am-u-sm-8 am-list-main" style="overflow: hidden;">
-                <h4 class="title omitted" style="padding-top: 0px; padding-bottom: 0px;">仅售106元,即可享受果园老农美果盛宴坚果礼盒干果零食大礼包 年货礼盒 1454g</h4>
-                <div class="zkhw"><span class="price">￥106</span></div>
-                <div class="tradev"><span class="originalprice">￥119</span><span class="zk">8.91折</span><span class="gmrs">865人已买</span><span class="jds" style="display:none">送京豆:0</span></div>
-              </div></a></li>
+                       <%end%>
 
         </ul>  </div></div></div>
 

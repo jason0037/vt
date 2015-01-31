@@ -37,9 +37,15 @@
           </div>
           <div class="am-col col-sm-8 am-list-main">
             <h3 class="am-list-item-hd">
-              <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%>">
-                <p class="cart_g_name"><%=line_item.good.brand.brand_name%>,<%=line_item.product.name%> </p>
 
+              <% if line_item.ref_id.nil?%>
+
+              <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%>">
+                <%else%>
+                  <a href="\mproducts?id=<%=line_item.good.bn%>&supplier_id=<%=@supplier.id%>&fp=category&ref_id=<%=line_item.ref_id%>">
+                <%end%>
+                <p class="cart_g_name"><%=line_item.good.brand.brand_name%>,<%=line_item.product.name%> </p>
+              </a>
               </a>
             </h3>
 
@@ -62,52 +68,30 @@
          <span class="good_data_num_r J_num_cart_add" onclick="VsmCart.addNum(this)" >
                       <a href="javascript:;" class="addition" mars_sead="cart_edit_btn" style="font-size: 26px"  data_mars="prd_id:26038564">+</a>
         </span>
+                <% if line_item.ref_id.nil?%>
                 <span  style="float: right;color: #ff0000">¥<%= format('%.2f',line_item.good.price)%></span>
-
+                   <%else%>
+                    <span  style="float: right;color: #ff0000">¥<%= format('%.2f',line_item.ecstore_goods_promotion_ref.promotionsprice)%></span>
+                <%end%>
               </div>
             </div>
           </div>
-
-          <div>
+         <div>
         <span class="delete" style="float: right">
-
-           <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile&supplier_id=#{line_item.supplier_id}"%>" class="delete" data-method="delete" data-confirm="确定要删除吗？" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
-
-             <img src="/assets/mobile/scan_layer-33.png" width="30" height="30">
-           </a>
-    </span>
-          </div>
-
-
-        </li>
-
+         <a href="<%="#{cart_path(line_item.obj_ident)}?platform=mobile&supplier_id=#{line_item.supplier_id}"%>" class="delete" data-method="delete" data-confirm="确定要删除吗？" data-remote="true" rel="nofollow"  mars_sead="cart_delect_btn">
+      <img src="/assets/mobile/scan_layer-33.png" width="30" height="30">  </a>
+       </span> </div> </li>
     <%end%>  </ul>
-
-
-
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
 
 
   <div class="bottomdiv clearfix">
     <div class="inner clearfix">
       <div class="fl" style="float: left">
+
         <p class="cart_total modal-footer" style="color: red"><%= I18n.t "total-price"%>：<span class="c_t_price total">¥<%= format('%.2f',@cart_total)%> </span></p>
+
+
       </div>
       <%if @line_items[0]== nil%>
           <a  style="float: right" class="am-btn am-btn-warning" style="margin-left: 30%" href="/vshop/<%=@supplier.id%>">

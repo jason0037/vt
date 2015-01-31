@@ -263,11 +263,11 @@
                 </li>
               </ul>
             </li>
-            <li class="<%='active' if controller_name=='tuan'%>">
+            <li class="<%='active' if controller_name=='tuans'%>">
               <a href="#">团购</a>
               <ul class="dropdown-menu " aria-labelledby="dropdownMenu">
                 <li>
-                  <%=link_to "团购设置", admin_tuan_path if current_admin.has_right_of("promotions","index")%>
+                  <%=link_to "团购设置", admin_tuans_path if current_admin.has_right_of("promotions","index")%>
 
                 </li>
               </ul>

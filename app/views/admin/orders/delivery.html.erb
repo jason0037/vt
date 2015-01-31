@@ -198,6 +198,7 @@
               <tr>
                 <th>货号</th>
                 <th>商品名称</th>
+                <th>是否团购</th>
                 <th>当前库存</th>
                 <th>购买数量</th>
                 <th>已发货</th>
@@ -209,6 +210,11 @@
                 <tr>
                     <td><%=order_item.bn%></td>
                     <td><%=order_item.name%></td>
+                  <%unless order_item.ref_id.nil?%>
+                      <td> 是</td>
+                  <%else%>
+                      <td>否</td>
+                  <%end%>
                     <td><%=order_item.product.store%></td>
                     <td><%=order_item.nums%></td>
                     <td><%=order_item.sendnum%></td>

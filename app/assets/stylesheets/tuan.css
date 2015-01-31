@@ -183,3 +183,30 @@ span.gmrs {
     padding-left: 10px;
     text-decoration: line-through;
 }
+.bottomdiv {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    border: #ddd 1px solid;
+    border-top: #fff 1px solid;
+    z-index: 1000000;
+}
+.hide {
+    display: none;
+}
+a span {
+    font-size: 20px;
+}
+.fr {
+    float: right
+}
+.am-btn-success{
+    background-color: #ff0e29;
+    border-color: #ff325b;
+}
+
+.am-btn-success:hover{
+    background-color: #ff0619;
+    border-color:  #ff0e29;
+}

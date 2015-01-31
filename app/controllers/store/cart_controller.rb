@@ -34,6 +34,7 @@ class Store::CartController < ApplicationController
        @line_items.delete_all
     end
 
+
     if params[:attr]=="mall"
        @mall="mall"
       goods_id=params[:goods_id]
@@ -46,6 +47,7 @@ class Store::CartController < ApplicationController
       customs = params[:product].delete(:customs)
       quantity = params[:product].delete(:quantity).to_i
       goods_id = params[:product][:goods_id]
+       ref_id=  params[:product][:ref_id]
       #return render :text=> "specs:#{specs[0].length},customs:#{customs},quantity:#{quantity},goods_id:#{goods_id}"
       # product_id = specs.collect do |spec_value_id|
       # 	Ecstore::GoodSpec.where(params[:product].merge(:spec_value_id=>spec_value_id)).pluck(:product_id)
@@ -89,6 +91,7 @@ class Store::CartController < ApplicationController
 			cart.time = Time.now.to_i
 			cart.member_id = member_id
       cart.supplier_id=@good.supplier_id
+      cart.ref_id=ref_id
 		end
 
 		if @cart.new_record?

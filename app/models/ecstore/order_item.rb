@@ -4,7 +4,7 @@ class Ecstore::OrderItem < Ecstore::Base
 
 	belongs_to :product, :foreign_key=>"product_id"
 	belongs_to :good, :foreign_key=>"goods_id"
-
+  belongs_to :ecstore_goods_promotion_ref, :class_name => 'Ecstore::GoodsPromotionRef', :foreign_key=>"ref_id"
 	has_many :reship_items, :foreign_key=>"order_item_id"
 
 
