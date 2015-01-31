@@ -27,7 +27,7 @@
     <%end%> <%end%>
 <div data-am-widget="slider" class="am-slider am-slider-default am-no-layout" data-am-slider="{&quot;animation&quot;:&quot;slide&quot;,&quot;slideshow&quot;:false}">
   <div class="am-viewport" style="overflow: hidden; position: relative;">
-    <ul class="am-slides" style="width: 1200%; -webkit-transition: 0s; transition: 0s; -webkit-transform: translate3d(-770px, 0px, 0px);">
+    <ul class="am-slides" style="width: 1200%;">
       <%for value in 0..(@good.big_pic.split(",").length-1)%>
           <li style="width: 385px; float: left; display: block;"><img src="<%=@good.big_pic.split(",")[value]%>"  data-original="<%=@good.big_pic.split(",")[value]%>"
                                                                       data-onerror="<%=@good.big_pic.split(",")[value]%>"
@@ -145,9 +145,9 @@
     <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
 
     <%if @tuan.nil?%>
-        </a> <em>吃货价</em> <span style="color: #ff0000">￥:<%=@good.default_product.price %></span>
+        </a> <em>吃货价:</em> <span style="    color: #ff0000">￥<%=@good.default_product.price %></span>
     <%else%>
-        </a> <em>  团购价</em> <span style="color: #ff0000">￥:<%=@tuan.promotionsprice %></span>
+        </a> <em>  团购价:</em> <span style="color: #ff0000">￥<%=@tuan.promotionsprice %></span>
     <%end%>
 
 
