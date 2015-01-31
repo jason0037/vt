@@ -16,7 +16,11 @@
     }
 
 </style>
+<%if params[:ref_id]%>
+<%= javascript_include_tag "amaze/zepto.min.js"%>
+    <%= javascript_include_tag "amaze/amazeui.widgets.helper.min.js"%>
 
+    <%end%>
 <% if @supplier.id==78%>
 
     <%if @cat.parent_id==558 %>
