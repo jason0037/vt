@@ -66,7 +66,8 @@
           <%if  @user %>
             <%if @user.member_id == @shop.member_id%>
                   <%if @shop.status==1%>
-              <li><a class="" href="/shop/shopusers"><span  class="am-navbar-label ">店铺管理</span></a></li>
+              <li><a  href="/shop/shopusers"><span  class="am-navbar-label ">店铺管理</span></a></li>
+                      <li><a  href="/shop/shopinfos/myshop?shop_id=<%=@shop.shop_id%>"><span  class="am-navbar-label ">店铺预览</span></a></li>
                       <%end%>
             <%else%>
                   <%if  @shop.member_id%>
