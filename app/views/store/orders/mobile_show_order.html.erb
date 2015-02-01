@@ -55,10 +55,15 @@
   <div class="">
     <span class="span"> &nbsp; &nbsp;
       <%if order_item.ref_id.nil? %>
-      <%= I18n.t "order_total_price"%>：
-          <%else%>
-      团购价
-      <%end%>
+            <%= I18n.t "order_total_price"%>：
+         <%else%>
+           <%unless order_item.ecstore_goods_promotion_ref.persons-1<order_item.nums%>
+                <%= I18n.t "order_total_price"%>：
+              <%else%>
+           团购价
+         <%end%>
+
+        <%end%>
     </span>       <span style="float: right">    &yen; <%= format('%.2f',order_item.price * order_item.nums) if order_item.item_type == 'product'%><%= 0 if order_item.item_type == 'gift'%>
     &nbsp; &nbsp;            </span>
   </div>
