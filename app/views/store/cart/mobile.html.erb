@@ -69,9 +69,9 @@
                       <a href="javascript:;" class="addition" mars_sead="cart_edit_btn" style="font-size: 26px"  data_mars="prd_id:26038564">+</a>
         </span>
                 <% if line_item.ref_id.nil?%>
-                <span  style="float: right;color: #ff0000">¥<%= format('%.2f',line_item.good.price)%></span>
+                  <span  style="float: right;color: #ff0000">¥<%= format('%.2f',line_item.good.price)%></span>
                    <%else%>
-                    <span  style="float: right;color: #ff0000">¥<%= format('%.2f',line_item.ecstore_goods_promotion_ref.promotionsprice)%></span>
+                       <span  style="float: right;color: #ff0000">团购价:¥<%= format('%.2f',line_item.ecstore_goods_promotion_ref.promotionsprice)%></span>
                 <%end%>
               </div>
             </div>

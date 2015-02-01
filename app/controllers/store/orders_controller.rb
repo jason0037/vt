@@ -236,19 +236,22 @@ class Store::OrdersController < ApplicationController
         order_item.name = product.name
         if cookies[:MLV] == "10"
           unless line_item.ref_id.nil?
-            order_item.price = line_item.ecstore_goods_promotion_ref.promotionsprice
             order_item.ref_id= line_item.ref_id
-          else
-            order_item.price = product.bulk
-           end
-        else
+       if line_item.quantity.to_i>line_item.ecstore_goods_promotion_ref.persons.to_i-1
+             order_item.price = line_item.ecstore_goods_promotion_ref.promotionsprice
+                else
+               order_item.price = product.bulk
+                end
+          end
+       else
 
           unless line_item.ref_id.nil?
-            order_item.price = line_item.ecstore_goods_promotion_ref.promotionsprice
             order_item.ref_id= line_item.ref_id
-          else
-          order_item.price = product.price
-
+            if  line_item.quantity.to_i>line_item.ecstore_goods_promotion_ref.persons.to_i-1
+            order_item.price = line_item.ecstore_goods_promotion_ref.promotionsprice
+             else
+              order_item.price = product.price
+              end
          end
         end
         order_item.goods_id = good.goods_id

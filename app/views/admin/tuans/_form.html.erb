@@ -22,6 +22,13 @@
         <%= f.text_field :promotionsprice,:value=>@goodspromotion_ref.promotionsprice%>
       </div>
     </div>
+    <div class="control-group">
+      <%= f.label :persons, "团购人", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :persons,:value=>@goodspromotion_ref.persons%>
+      </div>
+    </div>
+
 
     <div class="control-group">
       <%= f.label :description, "描述", :class => "control-label" %>
