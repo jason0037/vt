@@ -72,11 +72,12 @@ class ApplicationController < ActionController::Base
         unless li.ref_id.nil?
              if li.quantity.to_i>li.ecstore_goods_promotion_ref.persons.to_i-1
              @cart_total1= @cart_total1+ li.ecstore_goods_promotion_ref.promotionsprice*li.quantity
+             end
                else
 
           @cart_total2 =   @cart_total2+li.product.bulk*li.quantity
         #    @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.bulk*x.quantity) }.inject(:+) || 0
-               end end
+               end
         unless (shop_id.nil?)
           @cart_total2 =   @cart_total2+li.product.bulk*li.quantity
                end
@@ -87,10 +88,11 @@ class ApplicationController < ActionController::Base
            unless li.ref_id.nil?
              if li.quantity.to_i>li.ecstore_goods_promotion_ref.persons.to_i-1
               @cart_total1= @cart_total1+li.ecstore_goods_promotion_ref.promotionsprice*li.quantity
+             end
           else
               @cart_total2 =  @cart_total2+ li.product.price*li.quantity
               # @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.price*x.quantity) }.inject(:+) || 0
-          end
+
            end
            unless (shop_id.nil?)
              @cart_total2 =   @cart_total2+li.product.price*li.quantity
