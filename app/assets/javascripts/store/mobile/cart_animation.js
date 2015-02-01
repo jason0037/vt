@@ -1,5 +1,5 @@
 function addProduct(event) {
-
+    var cart_num=  $("#cart_num").text();
     var  thisbutton= $(this);
     if(!thisbutton.hasClass("am-btn-default")){
         var scrollTop = $(window).scrollTop();
@@ -34,7 +34,7 @@ function addProduct(event) {
                     data:{"goods_id":goods_id,"spec": "","attr":"mall"  },
 
                     success:function(res){
-
+                        $("#cart_num").text(cart_num*1+1);
                     }
                 })
 

@@ -1,6 +1,7 @@
 function addProduct(event) {
      var shop_id=$("#shop_id").val();
     var  thisbutton= $(this);
+  var cart_num=  $("#cart_num").text();
     if(!thisbutton.hasClass("am-btn-default")){
         var scrollTop = $(window).scrollTop();
         var offset = $('#cart').offset();
@@ -34,7 +35,7 @@ function addProduct(event) {
                     data:{"goods_id":goods_id,"spec": "","attr":"mall","platform":"shop","shop_id": shop_id },
 
                     success:function(res){
-
+                      $("#cart_num").text(cart_num*1+1);
                     }
                 })
 

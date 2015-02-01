@@ -111,7 +111,7 @@
     <a href="/shop/visitors/my_shopping_cart?shop_id=<%=@shop.shop_id%>" title="购物车" >
       <i class="am-icon-btn  am-icon-shopping-cart " id="cart"></i>
     </a>
-    <span class="  J-shoping-num"><%=@line_items.count%></span>
+    <span class="  J-shoping-num" id="cart_num"><%=@line_items.count%></span>
   </div> </div>
 <%end%>
 <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
@@ -119,6 +119,7 @@
 <%= javascript_include_tag  "store/mobile/fly.js"%>
 <%= javascript_include_tag  "store/mobile/shop_animation.js"%>
 <script type="text/javascript" >
+
 
     $('.Q-buy-btn').on('click',addProduct);
 
