@@ -37,11 +37,11 @@
                         <div class="am-col col-sm-4"><br>  <span  class="mall_price">吃货价 &nbsp; &nbsp;¥<%=good.price%> &nbsp; </span>
                         </div>
                         <div class="am-col col-sm-8">
-                          <a  href="/cart/mobile?supplier_id=<%=@supplier.id%>"class="am-btn  am-btn-block am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
+                          <a  href="javascript:void (0)"class="am-btn  am-btn-block am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
                         </div>
                       </div>   </div> <div></div> </li>
                 <%end%> <%end%> </ul>  </div>
-
+        <input type="hidden" id="supplier_id" value="<%=@supplier.id%>">
 
 
     <%end%>
@@ -50,7 +50,7 @@
 
 <script type="text/javascript" >
     $('.Q-buy-btn').on('click',addProduct);
-
+    var supplier_id=$("#supplier_id");
     $(".buttom_bolt").on('click',function(){
         var goods_id= $(this).parent().parent().parent().prev().children().children(".goods_id").val();
         var url="/cart/add" ;
@@ -61,7 +61,7 @@
             data:{"goods_id":goods_id,"spec": "","attr":"mall","platform":"mobile"  },
 
             success:function(res){
-
+             window.location.href="/cart/mobile?supplier_id="+supplier_id;
             }
         })
     })
