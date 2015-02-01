@@ -10,5 +10,5 @@ var _pDoc =  window.parent.document;
 $(_pDoc).find("#cart_link .cart-number").text('(<%=@cart_total_quantity%>)');
 $(_pDoc).find("#menu_cart .number").text('(<%=@cart_total_quantity%>)');
  <% if @line_items.count==0%>
-
+$("#cart .modal-footer .total").html('<%=raw "￥0"%>');
 <%end%>
