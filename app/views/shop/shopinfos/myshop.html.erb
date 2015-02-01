@@ -114,6 +114,8 @@
     <span class="  J-shoping-num"><%=@line_items.count%></span>
   </div> </div>
 <%end%>
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
 <%= javascript_include_tag  "store/mobile/fly.js"%>
 <%= javascript_include_tag  "store/mobile/shop_animation.js"%>
 <script type="text/javascript" >
@@ -123,6 +125,7 @@
     $(".buttom_bolt").on('click',function(){
         var goods_id= $(this).parent().parent().parent().prev().children().children(".goods_id").val();
         var shop_id=$("#shop_id").val();
+
         var url="/shop/visitors/my_add_shopping"
         $.ajax(url,{
             type: "post",

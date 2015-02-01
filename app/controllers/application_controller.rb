@@ -76,7 +76,10 @@ class ApplicationController < ActionController::Base
 
           @cart_total2 =   @cart_total2+li.product.bulk*li.quantity
         #    @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.bulk*x.quantity) }.inject(:+) || 0
-         end end
+               end end
+        unless (shop_id.nil?)
+          @cart_total2 =   @cart_total2+li.product.bulk*li.quantity
+               end
         @cart_total=@cart_total1+@cart_total2
            end
       else
@@ -87,7 +90,11 @@ class ApplicationController < ActionController::Base
           else
               @cart_total2 = li.product.price*li.quantity
               # @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.price*x.quantity) }.inject(:+) || 0
-            end end
+          end end
+           unless (shop_id.nil?)
+             @cart_total2 =   @cart_total2+li.product.price*li.quantity
+           end
+
            @cart_total=@cart_total1+@cart_total2
            end
 

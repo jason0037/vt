@@ -59,7 +59,9 @@
                   </div>
                   <div class="am-u-sm-8 am-list-main" style="overflow: hidden;">
                     <h4 class="title omitted" style="padding-top: 0px; padding-bottom: 0px;"><%=tuan.good.name%></h4>
-                    <div class="zkhw"><span class="price">￥<%=tuan.promotionsprice%></span><span class="omitted"><%=tuan.description    %></span></div>
+                    <div class="zkhw"><span class="price">￥<%=tuan.promotionsprice%></span><span class="omitted"><%=tuan.description %></span>
+                      <span class="omitted">到期时间:<%=Time.at(tuan.to_time).to_s(:db)%></span>
+                    </div>
                     <div class="tradev"><span class="originalprice">￥<%=tuan.good.price%></span><span class="zk"><%=format('%.2f',(tuan.promotionsprice.to_f)/(tuan.good.price.to_f))%>折</span><span class="gmrs"> <%=tuan.count%>人已买</span></div>
                   </div></a></li>
                        <%end%>
