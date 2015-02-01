@@ -79,7 +79,7 @@
                   </div>
                   <%if @user%>
                   <div class="am-col col-sm-8">
-                    <a href="/shop/visitors/my_shopping_cart?shop_id=<%=@shop.shop_id%>"class="am-btn  am-btn-block am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
+                    <a href="javascript:void(0)"class="am-btn  am-btn-block am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
                   </div>  <%end%>
                 </div>   </div> <div></div> </li>
 
@@ -133,7 +133,7 @@
             data:{"goods_id":goods_id,"spec": "","attr":"mall","platform":"shop","shop_id": shop_id },
 
             success:function(res){
-
+                 window.location.href="/shop/visitors/my_shopping_cart?shop_id="+shop_id;
             }
         })
     })

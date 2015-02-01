@@ -237,11 +237,13 @@ class Store::OrdersController < ApplicationController
         if cookies[:MLV] == "10"
           unless line_item.ref_id.nil?
             order_item.ref_id= line_item.ref_id
-       if line_item.quantity.to_i>line_item.ecstore_goods_promotion_ref.persons.to_i-1
+            if line_item.quantity.to_i>line_item.ecstore_goods_promotion_ref.persons.to_i-1
              order_item.price = line_item.ecstore_goods_promotion_ref.promotionsprice
-                else
-               order_item.price = product.bulk
-                end
+            else
+              order_item.price = product.bulk
+            end
+          else
+            order_item.price = product.bulk
           end
        else
 
@@ -251,18 +253,19 @@ class Store::OrdersController < ApplicationController
             order_item.price = line_item.ecstore_goods_promotion_ref.promotionsprice
              else
               order_item.price = product.price
-              end
+             end
+          else
+            order_item.price = product.price
          end
         end
         order_item.goods_id = good.goods_id
         order_item.type_id = good.type_id
         order_item.nums = line_item.quantity.to_i
         order_item.item_type = "product"
-         if params[:cart_total_final].nil?
+
          order_item.amount = order_item.price * order_item.nums
-         else
-           order_item.amount =  params[:cart_total_final]
-         end
+
+
         order_item.share_for_promotion = order_item.amount* good.share
         order_item.share_for_sale = order_item.amount * good.share_for_sale
         order_item.share_for_shop = order_item.amount * good.share_for_shop
