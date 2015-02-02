@@ -64,13 +64,23 @@
 <body>
 
 <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+  <script>
+    var supplier_id='78';
+      <%if @supplier%>
+      supplier_id="<%=@supplier.id%>";
+      <%end%>
 <%if @user%>
-    <script>
-        if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-            location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
+
+
+        if ('<%=@user.account.supplier_id %>'!=supplier_id){
+            location.href = '/auto_login?id='+supplier_id+'&<%=return_url%>&platform=mobile'
         }
-    </script>
-<%end%>
+
+<%else%>
+
+        location.href = "/auto_login?id="+supplier_id+"&<%=return_url%>&platform=mobile"
+
+<%end%> </script>
 <%= yield %>
 <div class="bottomdivsclearfix">
 
@@ -133,32 +143,15 @@
           <li><a href="/fashion?supplier_id=<%=@supplier.id%>" ><span>时令礼品馆</span> </a>
           </li>
         </ul>
-
-
-      </li>
-
-
-      <br>
-      <br>
-
-    </ul>
+      </li> <br>
+    <br>
+</ul>
   </div>
 </div>
 
 
 <div class="footer clearfix">
-  <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
-  <%if @user%>
-      <script>
-          if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-              location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
-          }
-      </script>
-  <%else%>
-      <script>
-          location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
-      </script>
-  <%end%>
+
   <p class="copyright" style="display: none">Copyright © 2013-2014 trade-v.com <br/>版权所有 上海普慧信息科技有限公司 All rights reserved. <br/>沪ICP备13045311号-1 </p>
   <p style="display:none">from=<%=session[:wechat_user]%>|recommend=<%=session[:recommend_user]%></p>
 </div>
