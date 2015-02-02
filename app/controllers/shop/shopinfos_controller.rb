@@ -13,7 +13,13 @@ class Shop:: ShopinfosController < ApplicationController
 
     Ecstore::ShopsGood.where(:shop_id=> params[:shop_id],:goods_id=> params[:goods_id]).delete_all
 
-   redirect_to '/shop/shopinfos/my_goods'
+    if params[:platform]=="mygood"
+       render "destroy"
+    else
+      redirect_to '/shop/shopinfos/my_goods'
+    end
+
+
   end
 
 
@@ -155,9 +161,9 @@ class Shop:: ShopinfosController < ApplicationController
 
 
   def add_goods
-    ids = params[:goods_id]
+   @goods_id = params[:goods_id]
     supplier_id= params[:supplier_id]
-    shop_id=Ecstore::Shop.find_by_member_id(@user.member_id).shop_id
+    shop_id= params[:shop_id]
 
     @count = Ecstore::ShopsGood.all(:conditions => "shop_id = #{shop_id}",
                              :select => "count(*) sum, supplier_id ",:group=>"supplier_id")
@@ -165,21 +171,17 @@ class Shop:: ShopinfosController < ApplicationController
 
 
    unless  @count.size >2
-    if ! ids.nil?
 
-      ids.each do |id|        
 
-        if  Ecstore::ShopsGood.where(:goods_id=>id,:shop_id=>shop_id).size==0
+        if  Ecstore::ShopsGood.where(:goods_id=>@goods_id,:shop_id=>shop_id).size==0
              Ecstore::ShopsGood.new do |goo|
               goo.shop_id=shop_id
-             goo.goods_id=id
+             goo.goods_id=@goods_id
               goo.supplier_id=supplier_id
              goo.uptime=Time.now
            end.save
         end
-        end
 
-    end
 
    else
      return render "adderror"
@@ -191,12 +193,6 @@ class Shop:: ShopinfosController < ApplicationController
 
 
 
-
-  def adderror
-
-    @shop_title="错误了哦!"
-
-  end
 
 
   def my_goods

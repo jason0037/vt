@@ -99,7 +99,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 
 
       when '1'
-        title="我的自媒体小铺"
+        title="我的自媒体店铺"
         desc=""
         pic_url="http://vshop.trade-v.com/images/a078/homepage/zimao.jpg"
         link_url="http://vshop.trade-v.com/shop/shopinfos"

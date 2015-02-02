@@ -38,7 +38,8 @@
 <div class="am-panel-bd">
   <ul class="am-list" >
     <%if @goods.size>0%>
-        <input type="hidden" value="<%=params[:supplier_id]%>" name="supplier_id"/>
+        <input type="hidden" value="<%=params[:supplier_id]%>" id="supplier_id"/>
+        <input type="hidden" value="<%=@shop.shop_id%>" id="shop_id" />
     <% @goods.each do |good|%>
 
         <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="cursor: pointer">
@@ -67,22 +68,44 @@
 
 
 <div class="bottomdiv clearfix">
-    <a class="am-btn am-btn-primary " style="width:50%;float: left" href="/shop/shopinfos/my_goods" >取消 </a>
-    <input class="am-btn am-btn-danger  " style="width:50%;float: left"  type="submit" value="确认">
+    <a class="am-btn am-btn-primary " href="javascript:history(-1)" style="width:50%;float: left"  >返回 </a>
+  <a class="am-btn am-btn-primary " href="/shop/shopinfos/my_goods?shop_id=<%=@shop.shop_id%>" style="width:50%;float: left">商品管理 </a>
 </div>
 
 </form>  </div>
 <script>
-
+    var supplier_id=$("#supplier_id").val();
+    var shop_id=$("#shop_id").val();
     $(".am-list-item-thumb-left").each(function(){
+
          $(this).bind("click",function() {
 
+          var cheched=    $(this).children().children();
+            var good_id=cheched.val();
 
-             if ($(this).children().children().attr("checked") == false) {
-                 $(this).children().children().attr("checked", 'true');
+             if (cheched.attr("checked") == false) {
+                 cheched.attr("checked", 'true');
+                 $.ajax({
+                           type:'post',
+                            url:"/shop/shopinfos/add_goods",
+                            data: { goods_id: good_id ,supplier_id:supplier_id,shop_id:shop_id},
+                           success:function(data){
+                                alert("添加成功!!")
+                          }
+
+                 } )
              }
              else {
-                 $(this).children().children().removeAttr("checked");
+                 cheched.removeAttr("checked");
+                 $.ajax({
+                     type:'post',
+                     url:"/shop/shopinfos/goods_destroy",
+                     data: { goods_id: good_id ,supplier_id:supplier_id,shop_id:shop_id,platform:"mygood"},
+                     success:function(data){
+                         alert("删除成功")
+                     }
+
+                 } )
              }
          });
     });
@@ -91,7 +114,7 @@
 
     // $(".submit").click(function(){
     //  var goodid=   get_selector_shop_ids();
-    //     var shop_id=$("#shopid").val();
+    //
     //     $.ajax({
     //         type:'post',
     //         url:"/shop/shopinfos/add_goods?shop_id="+shop_id,

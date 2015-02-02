@@ -26,6 +26,7 @@ Modengke::Application.routes.draw do
         get 'goods_details'
         get :myshop        
         get :goods_destroy
+        post 'goods_destroy'
         get 'myorder'
         get 'details_trade'
         post "fendian"
