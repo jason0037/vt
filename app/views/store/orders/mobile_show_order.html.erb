@@ -3,7 +3,7 @@
     .bottomdivsclearfix{
           display: none;
       }
-
+   .thumb{width: 45px;height: 45px}
   .span  {
           color: #dd514c;
       }
@@ -11,20 +11,20 @@
         width: 100%;
 
       }
+     .order_detail{text-overflow: ellipsis;border: none !important ;padding:3px;white-space: nowrap;font-size: 13px}
   </style>
-</head>
-<body>
+
 
 <div class="am-panel am-panel-default">
   <div class="am-panel-hd" style="text-align: center" ><%= I18n.t "order_details"%></div>
   <%@order.order_items.each do |order_item|%>
-  <div id="demo-view" style="text-align: center" data-backend-compiled="">
+  <div id="demo-view" style="text-align: center; overflow: hidden;" data-backend-compiled="">
     <%if order_item.good ||order_item.product%>
 
     <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product'%>
     <%=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
          <%end%>
-    <span ><%= order_item.name%></span></div>
+    <span class="order_detail" ><%= order_item.name%></span></div>
 
 
   <hr data-am-widget="divider" style="" class="am-divider am-divider-default am-no-layout">

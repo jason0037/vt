@@ -78,7 +78,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
       when '11'
         title="团购"
         desc ="团购"
-        pic_url="http://img10.360buyimg.com/tuangou/jfs/t496/280/1261399253/132576/71742946/54c8b7f6N1cb15fcb.jpg!q80.jpg"
+        pic_url="http://vshop.trade-v.com/images/a078/homepage/tuan_2015.jpg"
         link_url="http://vshop.trade-v.com/tuan"
         articles = [generate_article(title, desc, pic_url, link_url)]
 

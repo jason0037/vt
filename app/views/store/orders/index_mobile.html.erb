@@ -1,73 +1,40 @@
-<style type="text/css" xmlns="http://www.w3.org/1999/html">
-    table{
-        width: 100%;
-        border: 4px,solid #000000;;
- }
-    .change_lange{
-        display: none;
-    }
-    table th{
+<style type="text/css" >
 
-        background-color: #ffffff;
-        color: #000000;
-
-    }
-    table td{
-        text-align: center;
-        color: #dd514c;
-        background-color: rgba(221, 81, 76, 0.15);
-        border-color: #f5cecd;
-
-    }
-
-
+    .order_list{overflow: hidden;text-overflow: ellipsis;border: none !important ;padding:3px;white-space: nowrap;}.order_list>img{width: 45px!important;height: 45px!important}.order_list>span{font-size: 14px;color: #000000}
 </style>
 
-<header class="demo-bar"> <h1 style="text-align: center"><%= I18n.t "orders"%></h1></header>
-
-
-<div class="am-list-news-bd">
-  <ul class="am-list">
-    <%@orders.each  do |order|%>
-    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-      <div class="am-col col-sm-4 am-list-thumb">
-
-          <%order.order_items.each_with_index do |order_item,index|%>
-            <% unless @supplier.id.to_s=="98"%>
-              <%
-                 link_title = order_item.name
-                 link_title = "赠品:#{link_title}" if order_item.item_type == 'gift'
-              %>
-              <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.good%>
-            <%else%>
-                <%=order_item.good.name%>
-              <%end%>
-
-        <%end%>
-
-      </div>
-      <div class="am-col col-sm-8 am-list-main">
-        <h3 class="am-list-item-hd">
-
-           ￥<%=order.final_amount%>
-         <span style="float: right">
-           <%if @supplier.id.to_s=="98"%>
-             <a href="/orders/wuliu_show_order?id=<%=order.order_id%>&supplier_id=<%=@supplier.id%>" target="_blank"><%= I18n.t "details"%></a>
-
-               <%else%>
-              <a href="/orders/mobile_show_order?id=<%=order.order_id%>&supplier_id=<%=@supplier.id%>" target="_blank"><%= I18n.t "details"%></a>
-
-               <%end%>
-         </span>
-
-        </h3>
-
-      </div>
-    </li>
-     <%end%>
-  </ul>
+<div class="am-panel am-panel-default " style="margin: 0px;padding: 0px">
+  <div class="am-panel-hd" style="text-align: center;padding: 10px">订单中心</div>
 </div>
 
+<div class="am-g" style="margin-top: 10px">
+  <div class="am-u-md-6">
+    <%@orders.each  do |order|%>
 
+        <div class="am-panel am-panel-default">
+
+          <div class="am-panel-hd"><span class="left">订单状态:</span>
+            <%if @supplier.id.to_s=="98"%>
+                <a href="/orders/wuliu_show_order?id=<%=order.order_id%>&supplier_id=<%=@supplier.id%>" target="_blank"><%=order.order_status_text%> </a>
+                <%else%>
+                <a href="/orders/mobile_show_order?id=<%=order.order_id%>&supplier_id=<%=@supplier.id%>" target="_blank"><%=order.order_status_text%> </a>
+             <%end%> </div>
+          <ul class="am-panel-bd am-list">
+            <%order.order_items.each_with_index do |order_item,index|%>
+
+                <li class="order_list">
+                  <%unless @supplier.id.to_s=="98" %>
+                  <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.good%><%end%>
+                  <span style="font-size: 14px"><%=order_item.good.name%></span></li>
+            <%end%>
+          </ul>
+        </div>
+
+
+
+
+
+
+    <%end%></div></div>
 
 
