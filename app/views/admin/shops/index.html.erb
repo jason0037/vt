@@ -25,7 +25,7 @@
 			<td><%=shop.area%></td>
 			<td><%=shop.created_at%></td>
           <%if shop.status==1%>
-              <td>审核通过</td>
+              <td style="color: red">审核通过</td>
               <%else%>
               <td>待审核</td>
               <%end%>
@@ -36,7 +36,7 @@
           <% elsif shop.permission_branch=="0"%>
             <td style="color: red">分店申请中!!</td>
               <%elsif shop.permission_branch=="1"%>
-              <td>显示分店个数</td>
+              <td style="color: #070bd6" >有分店了</td>
               <%end%>
 			<td>
 				<%=link_to "编辑",edit_admin_shop_path(shop)%>
