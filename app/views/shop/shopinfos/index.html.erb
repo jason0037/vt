@@ -15,7 +15,7 @@
          <%elsif @shop.status==1%>
             <input type="hidden" id="shopid" value="<%=@shop.shop_id%>">
             <a href="/shop/shopinfos/myshop?shop_id=<%=@shop.shop_id%>" class="am-btn am-btn-sm get-btn">我的店铺</a>
-             <button class="am-btn am-btn-sm get-btn am-btn-danger look" data-am-modal="{target: '#my-popup'}">二维码查看</button>
+             <button class="am-btn am-btn-sm  am-btn-danger look" data-am-modal="{target: '#my-popup'}">二维码查看</button>
 
              <div class="am-popup" id="my-popup">
                <div class="am-popup-inner">
