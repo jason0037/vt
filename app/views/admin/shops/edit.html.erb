@@ -67,7 +67,7 @@
       <label class="control-label">分店申请状态 </label>
       <div class="controls">
         <%#if @shop.permission_branch=="0"%>
-            <%=f.select :permission_branch, {"申请中"=>"0","审核通过"=>"1" }%>
+            <%=f.select :permission_branch, {"默认状态"=>"-2","有资格开(未申请)"=>"-1","申请中"=>"0","审核通过"=>"1" }%>
         <%#elsif @shop.permission_branch=="1" %>
             <!--<span style="line-height: 32px;color: #d222fc">该店铺已经具有分店了</span>-->
             <%#else%>
