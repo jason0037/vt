@@ -36,7 +36,9 @@
           <% elsif shop.permission_branch=="0"%>
             <td style="color: red">分店申请中!!</td>
               <%elsif shop.permission_branch=="1"%>
-              <td style="color: #070bd6" >有分店了</td>
+
+              <td style="color: #070bd6" >(<%=Ecstore::Shop.where(:parent=>shop.shop_id).count%>)个分店
+                 </td>
               <%end%>
 			<td>
 				<%=link_to "编辑",edit_admin_shop_path(shop)%>
