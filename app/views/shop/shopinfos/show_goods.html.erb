@@ -55,7 +55,7 @@
                 </a></div>
           <div class="am-col col-sm-3 am-list-thumb ">
             <input type="hidden" class="good_id" value="<%=good.goods_id%>" />
-            <input type="button" class="am-btn am-btn-primary btn-loading-example btn-loading-goods" data-am-loading="{spinner: 'circle-o-notch', loadingText: '加载中...',resetText: '操作成功'}" value="添加" />
+            <input type="button" class="am-btn am-btn-primary btn-loading-example btn-loading-goods"  value="添加" />
            </div>
            </li>
             <div>
@@ -68,7 +68,7 @@
 
 
 <div class="bottomdiv clearfix">
-    <a class="am-btn am-btn-primary " href="javascript:history(-1)" style="width:50%;float: left"  >返回 </a>
+    <a class="am-btn am-btn-primary " href="javascript:history.go(-1)" style="width:50%;float: left"  >返回 </a>
   <a class="am-btn am-btn-primary " href="/shop/shopinfos/my_goods?shop_id=<%=@shop.shop_id%>" style="width:50%;float: left">商品管理 </a>
 </div>
 
@@ -89,11 +89,17 @@
                             url:"/shop/shopinfos/add_goods",
                             data: { goods_id: good_id ,supplier_id:supplier_id,shop_id:shop_id},
                            success:function(data){
-                               $btn.removeClass(" am-btn-primary");
-                               $btn.addClass("am-btn-default");
-                               setTimeout(function(){
-                                   $btn.val("取消");
-                               }, 500);
+                               if(!$btn.hasClass("error")){
+                                   $btn.removeClass(" am-btn-primary");
+                                   $btn.addClass("am-btn-default");
+                                   setTimeout(function(){
+                                       $btn.val("取消");
+                                   }, 500);
+                               } else{
+                                   $btn.val("添加失败");
+
+                               }
+
 
                           }
 

@@ -334,8 +334,8 @@ class Shop:: ShopinfosController < ApplicationController
     end
 
     @shop_title="订单管理"
-
-    @shop= Ecstore::Shop.find_by_shop_id(@shop_id)
+      @shop_id=params[:shop_id]
+     @shop= Ecstore::Shop.find_by_shop_id(@shop_id)
 
     if params[:shop_id] #微店客户查看订单
       @shop_id = params[:shop_id]

@@ -1,9 +1,10 @@
 alert("目前贸威商品只能添加3个供应商的哦!!!");
 var a=<%=@goods_id%>;
-$(".shop_selector").each(function(){
-    var valu= $(this).val();
-    if(valu==a){
-        $(this).removeAttr("checked");
-    } else
-    {return}
-})
+
+$(".btn-loading-goods").each(function(){
+    var good_id=$(this).prev(".good_id").val();
+    if(good_id==a){
+           $(this).addClass("error")
+
+    }  else{return}
+});
