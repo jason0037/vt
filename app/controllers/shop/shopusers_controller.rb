@@ -21,7 +21,7 @@ class Shop::ShopusersController < ApplicationController
 
  def clients
    @shop_title="客户管理"
-   @shop_id = @user.member_id
+   @shop_id = Ecstore::Shop.find_by_member_id(@user.member_id).shop_id
    @shop_clients=Ecstore::ShopClient.where(:shop_id=>@user.member_id)
 
  end
