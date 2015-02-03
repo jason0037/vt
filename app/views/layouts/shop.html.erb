@@ -173,9 +173,7 @@
     <%if @user%>
      <%useraccount=@user.account.login_name if @user.account%>
     <%end%>
-    <%if @shop%>
-      <%shop_id=@shop.shop_id%>
-    <%end%>
+
   var current_url =null;
    var imgs=null;
 
@@ -197,9 +195,12 @@
 //    current_url += connector + "from=weixin&wechatuser=<%=useraccount%>";
 //    // alert(current_url);
     <%if @shop%>
+
     var host=window.location.host;
-         current_url="http://"+host+"/shop/?shop_id="+<%=@shop.shop_id%>;
+    current_url="http://"+host+"/shop/?shop_id="+<%=@shop.shop_id%>;
+
     <%end%>
+
 
 
     var data = {"img":imgs,"url":current_url,"title":"<%=@shop_title%>","desc":desc};
