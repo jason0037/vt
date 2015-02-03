@@ -80,11 +80,11 @@ class Shop::ShopusersController < ApplicationController
           end
         end
 
-        @share_for_shop = Ecstore::Order.all(:conditions => "shop_id in (#{shop_ids}) ",
+        @share_for_shop = Ecstore::Order.all(:conditions => "shop_id in (#{shop_ids}) and orderstatus='true'",
                   :select => "SUM(share_for_shop) share_shop, shop_id",:group=>"shop_id")
     end
     else
-      share = Ecstore::Order.all(:conditions => "shop_id = #{shop_id} and member_id=#{@user.member_id}",
+      share = Ecstore::Order.all(:conditions => "shop_id = #{shop_id} and member_id=#{@user.member_id} and orderstatus='true'",
           :select => "SUM(share_for_promotion) share_promotion",:group=>"shop_id,member_id").first
       if share
         @share_for_promotion = share.share_promotion

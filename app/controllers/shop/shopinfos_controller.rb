@@ -329,10 +329,22 @@ class Shop:: ShopinfosController < ApplicationController
       @orders = Ecstore::Order.where(:shop_id=>@shop_id,:member_id=> @user.member_id).order("createtime desc")
     else  #店长查看订单
       @shop_id =Ecstore::Shop.find_by_member_id(@user.member_id).shop_id
-      @orders = Ecstore::Order.where(:shop_id=>@shop_id).order("createtime desc")
+      @orders = Ecstore::Order.where(:shop_id=>@shop_id,:orderstatus=>"true").order("createtime desc")
     end  
  end
 
+  def delete_order
+     order_id=params[:order_id]
+     @order=Ecstore::Order.find(order_id)
+     if @order.update_attributes(:orderstatus=>"false")
+    render "delete_order"
+     else
+
+     render "error"
+
+     end
+
+    end
 
 end
 

@@ -30,6 +30,7 @@ Modengke::Application.routes.draw do
         get 'myorder'
         get 'details_trade'
         post "fendian"
+        delete 'delete_order'
       end
     end
 
