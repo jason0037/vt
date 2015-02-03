@@ -43,7 +43,7 @@ class Ecstore::User < Ecstore::Base
 
   has_many :hasrole, :foreign_key=>"user_id"
   has_many :manager,:foreign_key=>"user_id"
-
+  has_many :shops,:foreign_key=>"member_id"
   has_many :shop_clients,:foreign_key=>"member_id"
   has_many :imodec_events, :class_name => 'Imodec::Event'  , :foreign_key=>"member_id"
   has_many :imodec_applicants, :class_name => 'Imodec::applicants'  , :foreign_key=>"member_id"

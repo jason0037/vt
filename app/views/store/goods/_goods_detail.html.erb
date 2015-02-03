@@ -2,44 +2,50 @@
   <%goods.each do |good|%>
 
       <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-        <div class="am-col col-sm-4 am-list-thumb">
-          <a href="javascript:void (0);" class="Q-buy-btn">
-            <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
-            <img class="j_item_image beisaier hide"  src="<%=good.list_default_pic%>">
+        <img class=" beisaier hide"  src="<%=good.list_default_pic%>">
 
-            <input type="hidden" class="goods_id" value="<%=good.goods_id%>"> <hr style="margin-top: 3.5em;border-top:none"><button type="button" href="###" title="加入购物车" class="  am-btn am-btn-block am-btn-danger" > <i class="am-icon-shopping-cart"> <em class="icon-em" >加入购物车</em> </i> </button>
-          </a>
-        </div>
+        <div class="am-col col-sm-4 am-list-thumb">
+
+            <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
+           </div>
         <div class="am-col col-sm-8 am-list-main">
-          <a href="/mproducts?id=<%=good.bn%>&supplier_id=<%=@supplier.id%>&fp=category" class="cart_orderlist_i">
-            <span class="am-list-item-hd goods-name-span" >  <%=good.name%>  </span> </a>  <br>
+        <a href="/mproducts?id=<%=good.bn%>&supplier_id=<%=@supplier.id%>&fp=category" class="cart_orderlist_i">
+          <span class="am-list-item-hd goods-name-span" >  <%=good.name%>  </span>   <br>
           <%unless good.tag.blank?%>
               <%a=0%>
               <%good.tag.split(",").each do |tag|%>
                   <%color=["black","red","black","red"]%>
                   <%if a<5%>
                       <em style=" font-size: 12px; color: <%=color[a]%>"> <%=tag%> </em>
-                      <%end%><%a=a+1%> <%end%>  <%end%>
-          <hr style="margin-top: 2.2em;border-top:none"><div class="am-list-item-text">
-          <div class="am-col col-sm-4">  <br> <span  class="mall_price">¥<%=good.price%> &nbsp; </span>
-          </div>
-          <div class="am-col col-sm-8">
-            <a  href="javascript:void (0)"class="am-btn  am-btn-block am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
-          </div>
-        </div>   </div> <div></div> </li>
+                      <%end%><%a=a+1%> <%end%>  <%end%>  </a>
+
+        <div class="am-list-item-text" style="line-height: 2">
+            <div class="am-col ">
+              <span  class="mall_price">吃货价¥<%=good.price%> </span> &nbsp;
+              <span class="mktprice" >市场价:<%=good.mktprice%></span>
+
+            </div>   </div>
+
+        </div> </li>
+
+      <div class="button">
+        <input type="hidden" class="goods_id" value="<%=good.goods_id%>"/>
+        <a href="javascript:void (0)" class="am-btn am-btn-danger addcart"> <i class="am-icon-shopping-cart"> <em class="icon-em">加入购物车</em> </i> </a>
+        <a  href="javascript:void (0)"class="am-btn  am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
+      </div>
+
   <%end%> </ul>
 
 
 <script type="text/javascript" >
 
 
-
-    $('.Q-buy-btn').on('click',addProduct);
+    $('.addcart').on('click',addProduct);
 
     $(".buttom_bolt").on('click',function(){
-        var goods_id= $(this).parent().parent().parent().prev().children().children(".goods_id").val();
-        var url="/cart/add" ;
+        var goods_id= $(this).parent().children(".goods_id").val();
 
+        var url="/cart/add" ;
 
         $.ajax(url,{
             type: "post",

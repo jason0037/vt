@@ -5,7 +5,7 @@ class Ecstore::Shop< Ecstore::Base
 
   has_many :shop_clients, :foreign_key=>"shop_id"
   has_many :shop_log, :foreign_key=>"shop_id"
-
+  belongs_to :user , :foreign_key=>"member_id"
   end
 
 

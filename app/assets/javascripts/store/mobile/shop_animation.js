@@ -5,7 +5,8 @@ function addProduct(event) {
     if(!thisbutton.hasClass("am-btn-default")){
         var scrollTop = $(window).scrollTop();
         var offset = $('#cart').offset();
-        var img= thisbutton.children(".beisaier");
+        var img= thisbutton.parents().prev("li").children(".beisaier");
+
 
         img.removeClass("hide");
 
@@ -26,15 +27,14 @@ function addProduct(event) {
             onEnd: function(){
                 img.remove();
 
-                thisbutton.children("button").removeClass("am-btn-danger").addClass("am-btn-default");
+                thisbutton.removeClass("am-btn-danger").addClass("am-btn-default");
                 var url="/shop/visitors/my_add_shopping"
-                var goods_id= thisbutton.children(".goods_id").val();
+                var goods_id= thisbutton.parent().children(".goods_id").val();
 
                 $.ajax(url,{
                     type: "post",
                     data:{"goods_id":goods_id,"spec": "","attr":"mall","platform":"shop","shop_id": shop_id },
-
-                    success:function(res){
+           success:function(res){
                       $("#cart_num").text(cart_num*1+1);
                     }
                 })

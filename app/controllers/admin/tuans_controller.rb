@@ -22,7 +22,7 @@ class Admin::TuansController < Admin::BaseController
 
     @goodspromotion_ref.save
 
-
+    @goodspromotion_ref.good.update_attributes(:shopstatus=>"false")
 
     redirect_to admin_tuans_path
   end
