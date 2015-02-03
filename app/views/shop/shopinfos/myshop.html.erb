@@ -1,9 +1,9 @@
 <style type="text/css">
-.am-btn-catid{font-size: 15px;  margin-left: 30px;  color: #ffffff;}
-.line_a{  background-color: #ff0000;}
-.clearstyle{margin: 0;padding: 0}
-#head{height:200px;}
-#head div{float:left; }
+    .am-btn-catid{font-size: 15px;  margin-left: 30px;  color: #ffffff;}
+    .line_a{  background-color: #ff0000;}
+    .clearstyle{margin: 0;padding: 0}
+    #head{height:200px;}
+    #head div{float:left; }
 </style>
 <input type="hidden" id="shop_id" value="<%=@shop.shop_id%>">
 
@@ -37,13 +37,13 @@
                   <a href="javascript:void (0);" class="Q-buy-btn">
                     <img class="j_item_image beisaier hide "  src="<%=shopgoods.good.list_default_pic%>" >
                     <img src="<%=shopgoods.good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=shopgoods.good.list_default_pic%>" data-brandid="<%=shopgoods.good.brand_id%>" data-productid="<%=shopgoods.good.bn%>" data-onerror="<%=shopgoods.good.list_default_pic%>" data-brandlazy="false" style="display: block;">
-               <input type="hidden" class="goods_id" value="<%=shopgoods.good.goods_id%>">
+                    <input type="hidden" class="goods_id" value="<%=shopgoods.good.goods_id%>">
 
-                    <hr style="margin-top: 3.5em;border-top:none">
+
                     <%if @user%>
-                        <%unless @user.member_id==@shop.member_id%>
-                    <button type="button" href="###" title="加入购物车" class="  am-btn am-btn-block am-btn-danger" > <i class="am-icon-shopping-cart"> <em class="icon-em" >加入购物车</em> </i> </button>
-                 <%end%><%end%>
+
+                            <button type="button" href="###" title="加入购物车" class="  am-btn am-btn-block am-btn-danger" > <i class="am-icon-shopping-cart"> <em class="icon-em" >加入购物车</em> </i> </button>
+                          <%end%>
                   </a>
                 </div>
                 <div class="am-col col-sm-8 am-list-main">
@@ -57,13 +57,13 @@
                           <%if a<5%>
                               <em style=" font-size: 12px; color: <%=color[a]%>"> <%=tag%> </em>
                               <%end%><%a=a+1%> <%end%>  <%end%>
-                  <hr style="margin-top: 2.2em;border-top:none"><div class="am-list-item-text">
-                  <div class="am-col col-sm-4">  <br> <span  class="mall_price">¥<%=shopgoods.good.price%> &nbsp; </span>
+                <div class="am-list-item-text">
+                  <div class="am-col ">  <br> <span  class="mall_price">¥<%=shopgoods.good.price%> &nbsp; </span>
                   </div>
                   <%if @user%>
-                  <div class="am-col col-sm-8">
-                    <a href="javascript:void(0)"class="am-btn  am-btn-block am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
-                  </div>  <%end%>
+                      <div class="am-col col-sm-8">
+                        <a href="javascript:void(0)"class="am-btn  am-btn-block am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
+                      </div>  <%end%>
                 </div>   </div> <div></div> </li>
 
 
@@ -75,13 +75,13 @@
   <%else%>
       <%if @user.member_id==@shop.member_id%>
 
-      <a href="/shop/shopinfos/show_goods?shop_id=<%=@shop.shop_id%>" >
-        <div class="am-panel am-panel-primary " style="margin-top: 100px">
-          <div class="am-panel-hd" style="padding: 24px"><i  class="am-icon-shopping-cart "></i>
-            <span style="margin-left: 10px">您的店铺空空的!您可以去贸威里面挑选喜欢的商品</span> </div>
-        </div>
-      </a>
-       <%else%>
+          <a href="/shop/shopinfos/show_goods?shop_id=<%=@shop.shop_id%>" >
+            <div class="am-panel am-panel-primary " style="margin-top: 100px">
+              <div class="am-panel-hd" style="padding: 24px"><i  class="am-icon-shopping-cart "></i>
+                <span style="margin-left: 10px">您的店铺空空的!您可以去贸威里面挑选喜欢的商品</span> </div>
+            </div>
+          </a>
+      <%else%>
           <div class="am-panel am-panel-primary " style="margin-top: 100px">
             <div class="am-panel-hd"><i  class="am-icon-shopping-cart "></i>
               <span style="margin-left: 10px">对方店铺目前没有商品<br> 您可以选择<a style="color: #ff0e29" href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>">我也要开店</a>来经营自己的小店</span> </div></div>
@@ -89,15 +89,15 @@
   <%end%>
 </div>
 <% if @user%>
- <%unless @user.member_id==@shop.member_id%>
-<div class="J-shoping">
-  <div class="amz-toolbar J-shoping-title" id="amz-toolbar">
-    <a href="/shop/visitors/my_shopping_cart?shop_id=<%=@shop.shop_id%>" title="购物车" >
-      <i class="am-icon-btn  am-icon-shopping-cart " id="cart"></i>
-    </a>
-    <span class="  J-shoping-num" id="cart_num"><%=@line_items.count%></span>
-  </div> </div>
-<%end%> <%end%>
+    <%unless @user.member_id==@shop.member_id%>
+        <div class="J-shoping">
+          <div class="amz-toolbar J-shoping-title" id="amz-toolbar">
+            <a href="/shop/visitors/my_shopping_cart?shop_id=<%=@shop.shop_id%>" title="购物车" >
+              <i class="am-icon-btn  am-icon-shopping-cart " id="cart"></i>
+            </a>
+            <span class="  J-shoping-num" id="cart_num"><%=@line_items.count%></span>
+          </div> </div>
+    <%end%> <%end%>
 <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
 <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
 <%= javascript_include_tag  "store/mobile/fly.js"%>
@@ -117,7 +117,7 @@
             data:{"goods_id":goods_id,"spec": "","attr":"mall","platform":"shop","shop_id": shop_id },
 
             success:function(res){
-                 window.location.href="/shop/visitors/my_shopping_cart?shop_id="+shop_id;
+                window.location.href="/shop/visitors/my_shopping_cart?shop_id="+shop_id;
             }
         })
     })

@@ -41,6 +41,8 @@ Modengke::Application.routes.draw do
         get "clients"
         get "share"
         get "branch"
+        get "user"
+        post "edit"
       end
     end
 

@@ -7,10 +7,7 @@ class Shop:: ShopinfosController < ApplicationController
 
   layout "shop"
 
-   def goods_destroy
-
-
-
+  def goods_destroy
     Ecstore::ShopsGood.where(:shop_id=> params[:shop_id],:goods_id=> params[:goods_id]).delete_all
 
     if params[:platform]=="mygood"
@@ -19,9 +16,7 @@ class Shop:: ShopinfosController < ApplicationController
       redirect_to '/shop/shopinfos/my_goods'
     end
 
-
   end
-
 
   def new
     if @user
@@ -49,25 +44,19 @@ class Shop:: ShopinfosController < ApplicationController
      if @headimgurl
       page= Nokogiri::HTML(open(@headimgurl))
      end
-
-
-  def fendian
-        @shop=Ecstore::Shop.find(params[:shop_id])
-
-        if @shop.permission_branch=="-1"
-
-          @shop.update_attributes(:permission_branch=>"0")
-          end
-
-      end
-
-
-
     else
      redirect_to "/auto_login?id=78&supplier_id=78&platform=mobile&return_url=/shop/shopinfos"
     end
   end
 
+  def fendian
+    @shop=Ecstore::Shop.find(params[:shop_id])
+
+    if @shop.permission_branch=="-1"
+      @shop.update_attributes(:permission_branch=>"0")
+    end
+
+  end
 
   def create
 
@@ -96,7 +85,6 @@ class Shop:: ShopinfosController < ApplicationController
       redirect_to "/shop/shopinfos/new"
     end
   end
-
 
   def myshop   
     if params[:shop_id]
@@ -136,14 +124,13 @@ class Shop:: ShopinfosController < ApplicationController
     end
   end
 
-
   def show_goods
     @shop_title = '店铺商品挑选'
-
+    supplier_id= params[:supplier_id]
    #sql = 'SELECT st1.cat_name, st1.cat_id,st1.parent_id,st1.cat_path FROM mdk.sdb_b2c_goods_cat st1 INNER JOIN mdk.sdb_b2c_goods st2 ON (st1.cat_id = st2.cat_id) GROUP BY st1.cat_id HAVING COUNT(*) > 1 order by cat_path'
  # @category = ActiveRecord::Base.connection.execute(sql)
-  if  params[:supplier_id]
-    @category = Ecstore::Good.all(:conditions => "supplier_id=#{params[:supplier_id]}",
+  if  supplier_id
+    @category = Ecstore::Good.all(:conditions => "supplier_id=#{supplier_id}",
                                   :select => "count(*) sum ,cat_id",:group=>"cat_id")
       else
         @sup = Ecstore::Good.all(:conditions => "shopstatus = true",
@@ -154,12 +141,14 @@ class Shop:: ShopinfosController < ApplicationController
     cat_id = params[:cat_id]
     member_id = @user.member_id
     @shop=Ecstore::Shop.find_by_member_id(member_id)
-   
-    @goods =  Ecstore::Good.where("marketable='true' and cat_id=?",cat_id)
-
+    @goods=""
+   if supplier_id
+    @goods =  Ecstore::Good.where("marketable='true' and shopstatus='true' and supplier_id=?",supplier_id )
+     end
+   if  cat_id
+     @goods =  Ecstore::Good.where("marketable='true' and shopstatus='true' and cat_id=?",cat_id)
   end
-
-
+  end
   def add_goods
    @goods_id = params[:goods_id]
     supplier_id= params[:supplier_id]
@@ -167,21 +156,24 @@ class Shop:: ShopinfosController < ApplicationController
 
     @count = Ecstore::ShopsGood.all(:conditions => "shop_id = #{shop_id}",
                              :select => "count(*) sum, supplier_id ",:group=>"supplier_id")
-
-
-
-   unless  @count.size >2
-
-
-        if  Ecstore::ShopsGood.where(:goods_id=>@goods_id,:shop_id=>shop_id).size==0
-             Ecstore::ShopsGood.new do |goo|
-              goo.shop_id=shop_id
-             goo.goods_id=@goods_id
-              goo.supplier_id=supplier_id
-             goo.uptime=Time.now
-           end.save
-        end
-
+    if  @count.size <3                     ###判断当供应商个数小于3执行添加,但是当添加第3个供应商后 执行elsif去查找是否第3个供应商的的supplier_id存在店铺表中
+       if  Ecstore::ShopsGood.where(:goods_id=>@goods_id,:shop_id=>shop_id).size==0
+               Ecstore::ShopsGood.new do |goo|
+                goo.shop_id=shop_id
+                goo.goods_id=@goods_id
+                goo.supplier_id=supplier_id
+                goo.uptime=Time.now
+               end.save
+      end
+   elsif  Ecstore::ShopsGood.where(:supplier_id=>supplier_id ).count>0
+       if  Ecstore::ShopsGood.where(:goods_id=>@goods_id,:shop_id=>shop_id).size==0
+           Ecstore::ShopsGood.new do |goo|
+           goo.shop_id=shop_id
+           goo.goods_id=@goods_id
+           goo.supplier_id=supplier_id
+           goo.uptime=Time.now
+         end.save
+       end
 
    else
      return render "adderror"
@@ -190,10 +182,6 @@ class Shop:: ShopinfosController < ApplicationController
     else
       redirect_to "/shop/shopinfos/my_goods?shop_id=#{shop_id}"
     end
-
-
-
-
 
   def my_goods
     @shop_title="商品中心"
@@ -327,8 +315,7 @@ class Shop:: ShopinfosController < ApplicationController
 
   end
 
-
- def myorder
+  def myorder
     if @user.nil?
        redirect_to "/shop/shopinfos"
     end

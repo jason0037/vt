@@ -3,7 +3,7 @@
   <%if @shop_clients.size>0%>
     <%@shop_clients.each  do |client|%>
       <li>
-        <span class="am-badge am-badge-success">查看详细</span>
+        <!--<span class="am-badge am-badge-success">查看详细</span>-->
         <span class="left"><%=client.user.weixin_nickname%></span> &nbsp<span class="right"> 注册时间：<%=client.created_at%></span>
       </li>
     <%end%>

@@ -1,0 +1,56 @@
+
+
+<style>
+    .help-block {color:red;}
+    .bottomdivsclearfix{
+        display: none;
+    }
+</style>
+
+
+<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+<script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+<div class="main">
+  <%= form_for :shop,:url => edit_shop_shopusers_path,:remote=>true,:html=>{:id=>"register_form"}  do |f| %>
+      <input type="hidden" value="<%=@shop.shop_id%>" name="shop_id">
+      <div class="connerdiv">
+        <div class="am-input-group">
+          <span class="am-input-group-label">店铺名:</span>
+          <%=f.text_field :shop_name,:class=>"am-form-field",:placeholder=>"name"%>
+
+        </div>
+        <br>
+        <div class="am-input-group">
+          <span class="am-input-group-label">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱:</span>
+          <%=f.text_field :shop_email,:class=>"am-form-field",:placeholder=>"请输入email",:value=>@user.email%>
+
+        </div>
+        <br>
+        <div class="am-input-group">
+          <span class="am-input-group-label">手机号:</span>
+          <%=f.text_field :shop_tel,:class=>"am-form-field",:placeholder=>"请输入手机号",:value=>@user.mobile%>
+        </div>
+        <br>
+        <div class="am-input-group">
+          <span class="am-input-group-label">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</span>
+          <%=f.text_field :name,:class=>"am-form-field",:placeholder=>"请输入您的姓名"%>
+        </div>
+        <br>
+        <div class="am-input-group">
+          <span class="am-input-group-label">微信号:</span>
+          <%=f.text_field :shop_wx,:class=>"am-form-field",:placeholder=>"请输入微信号" %>
+        </div>
+        <br>
+        <div class="am-input-group">
+          <span class="am-input-group-label">销售区域:</span>
+          <%=f.text_field :area,:class=>"am-form-field",:placeholder=>"请输入销售区域" %>
+        </div>
+        <br>
+        <%=f.text_area :shop_intro,:class=>"am-form-field",:placeholder=>"请输入店铺简介"%>
+        <br>
+        <div id="login_msg" style="color:red;font-size:12pt;"></div>
+        <%=f.submit "修改信息",:class=>"am-btn am-btn-primary am-btn-block "%>
+      </div>
+  <%end%>
+
+</div>

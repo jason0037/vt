@@ -1,0 +1,5 @@
+module Shop::ShopinfosHelper
+
+
+
+end

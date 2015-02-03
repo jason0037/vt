@@ -1,12 +1,9 @@
-
-  <% if @orders.size>0%>
+ <% if @orders.size>0%>
       <div class="am-g">
         <div class="am-u-md-6">
        <%@orders.each  do |order|%>
-
-               <div class="am-panel am-panel-default">
-
-                 <div class="am-panel-hd"><span class="left">订单状态:</span><a href="/orders/mobile_show_order?id=<%=order.order_id%>&shop_id=<%=@shop_id%>" target="_blank"><%=order.order_status_text%> </a>  <span class="right" >购买人:<%=order.user.weixin_nickname%></span></div>
+        <div class="am-panel am-panel-default">
+         <div class="am-panel-hd"><span class="left">订单状态:</span><a href="/orders/mobile_show_order?id=<%=order.order_id%>&shop_id=<%=@shop_id%>" target="_blank"><%=order.order_status_text%> </a>  <span class="right" >购买人:<%=order.user.weixin_nickname%></span></div>
                <ul class="am-panel-bd am-list">
                  <%order.order_items.each_with_index do |order_item,index|%>
 
@@ -14,11 +11,6 @@
                  <%end%>
                </ul>
                </div>
-
-
-
-
-
 
 <%end%></div></div>
 

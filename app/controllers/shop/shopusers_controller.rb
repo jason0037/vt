@@ -26,6 +26,18 @@ class Shop::ShopusersController < ApplicationController
 
  end
 
+  def user
+    @shop_title="用户信息"
+    @shop= Ecstore::Shop.find_by_member_id(@user.member_id)
+  end
+
+  def edit
+      @shop=Ecstore::Shop.find(params[:shop_id])
+     if  @shop.update_attributes(params[:shop])
+         render "edit"
+     end
+
+  end
   def branch
     @shop_title="分店中心"
      @results = Ecstore::Shop.all(:conditions =>"parent =#{params[:shop_id]}")
