@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -89,9 +88,6 @@
   <p class="copyright" style="display: none">Copyright © 2013-2015 www.trade-v.com <br/>版权所有 贸威 All rights reserved. <br/>沪ICP备13045311号-1 </p>
   <p style="display:none">&from=<%=session[:wechat_user]%>|recommend=<%=session[:recommend_user]%></p>
 </div>
-<!--<div class="space10"></div>-->
-
-<!--<div class="c-bottom"></div>-->
 
 <script type="text/javascript">
     function wechatShare(data) {
@@ -99,9 +95,9 @@
         if (!data) {
             return;
         }
-        var title = data.title || document.title;
-        var desc = data.desc || "分享";
-        var url = data.url ;
+        var title = data.title ;
+        var desc =  "分享";
+        var url = "/aaa"
 
         function getDefaultImage() {
             var images = document.getElementsByTagName("img");

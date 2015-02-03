@@ -60,7 +60,9 @@
                 </div> </li>
               <div class="button">
                 <input type="hidden" class="goods_id" value="<%=shopgoods.good.goods_id%>"/>
+                <%unless @user.member_id==@shop.member_id%>
                 <a href="javascript:void (0)" class="am-btn am-btn-danger addcart"> <i class="am-icon-shopping-cart"> <em class="icon-em">加入购物车</em> </i> </a>
+               <%end%>
                 <a  href="javascript:void (0)"class="am-btn  am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
               </div>
 
@@ -86,7 +88,7 @@
   <%end%>
 </div>
 <% if @user%>
-
+    <%unless @user.member_id==@shop.member_id%>
         <div class="J-shoping">
           <div class="amz-toolbar J-shoping-title" id="amz-toolbar">
             <a href="/shop/visitors/my_shopping_cart?shop_id=<%=@shop.shop_id%>" title="购物车" >
@@ -94,7 +96,7 @@
             </a>
             <span class="  J-shoping-num" id="cart_num"><%=@line_items.count%></span>
           </div> </div>
-   <%end%>
+   <%end%>    <%end%>
 <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
 <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
 <%= javascript_include_tag  "store/mobile/fly.js"%>
