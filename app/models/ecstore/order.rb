@@ -9,9 +9,9 @@ class Ecstore::Order < Ecstore::Base
   has_many :order_logs,:foreign_key=>"rel_id"
   has_many :deliveries, :foreign_key=>"order_id"
 
-  belongs_to :user,:foreign_key=>"member_id"
+  belongs_to :shop,:foreign_key=>"order_id"
   belongs_to :manager,:foreign_key=>"desktop_user_id"
-
+  belongs_to :user,:foreign_key=>"member_id"
   belongs_to :wechat_follower, :foreign_key=>"recommend_user"
 
   self.accessible_all_columns

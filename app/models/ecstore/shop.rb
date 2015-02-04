@@ -1,11 +1,12 @@
 #encoding:utf-8
 class Ecstore::Shop< Ecstore::Base
-
+     ###status  1:是开启 0:是默认, -2是提交关闭 ,-1是关闭成功
   self.accessible_all_columns
 
   has_many :shop_clients, :foreign_key=>"shop_id"
   has_many :shop_log, :foreign_key=>"shop_id"
   belongs_to :user , :foreign_key=>"member_id"
+  has_many :order, :foreign_key=>"shop_id"
   end
 
 

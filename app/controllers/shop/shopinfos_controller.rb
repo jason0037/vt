@@ -93,7 +93,7 @@ class Shop:: ShopinfosController < ApplicationController
       redirect_to "/shop/shopinfos"
     end
 
-    @shop = Ecstore::Shop.where(:shop_id=>shop_id,:status=>"1").first
+    @shop = Ecstore::Shop.where(:shop_id=>shop_id,:status=>1).first
     if @shop
 
        if @user

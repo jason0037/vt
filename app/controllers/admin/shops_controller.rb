@@ -6,6 +6,7 @@ module Admin
     skip_before_filter :require_permission!
     def index
       @shops = Ecstore::Shop.paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
+
     end
 
     def edit
@@ -28,11 +29,20 @@ module Admin
       @shop = Ecstore::Shop.new(params[:shop])
 
       @shop.save
-      redirect_to admin_categories_url
+      redirect_to admin_shops_url
+    end
+
+    def detail
+      shop_id=params[:shop_id]
+      @shop = Ecstore::Shop.find(shop_id)
+     @shop_user=Ecstore::ShopClient.where(:shop_id=>shop_id)
+      @shop_order=Ecstore::Order.where(:shop_id=>shop_id)
     end
 
     def destroy
-      @shop = Imodec::Shop.find(params[:id])
+      shop_id=params[:id]
+      @shop = Ecstore::Shop.find(shop_id)
+
       @shop.destroy
       redirect_to admin_shops_url
     end

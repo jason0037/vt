@@ -1,0 +1,124 @@
+<link href="/assets/admin/orders.css?body=1" media="screen" rel="stylesheet" type="text/css" />
+<ul class="nav nav-list  affix" id="guide_menu">
+  <li>
+    <a href="#shop_detail">
+      <i class="icon-chevron-right pull-right"></i> 商店状态
+    </a>
+  </li>
+  <li>
+    <a href="#member">
+      <i class="icon-chevron-right pull-right"></i> 会员信息
+    </a>
+  </li>
+  <li>
+    <a href="#odetails">
+      <i class="icon-chevron-right pull-right"></i> 订单清单
+    </a>
+  </li>
+
+
+
+
+
+</ul>
+
+<div id="order_details">
+<h4 class="title"><%=@shop.name%></h4>
+
+<div class="detail summary" id="shop_detail">
+  <ul>
+    <li>所属 : <strong><%=@shop.parent%></strong></li>
+    <li>店长姓名 : <strong><%=@shop.user.name%></strong></li>
+    <li>店长电话 : <strong><%=@shop.shop_tel%></strong></li>
+    <li>店长邮件 : <strong><%=@shop.shop_email%></strong></li>
+    <li>微信号 : <strong><%=@shop.shop_wx%></strong></li>
+    <li>店铺描述 : <strong><%=@shop.shop_intro%></strong></li>
+    <li>销售范围 : <strong><%=@shop.area%></strong></li>
+
+  </ul>
+
+
+</div>
+
+<div class="detail" id="member">
+  <div class="subtitle">
+    <strong>店铺会员</strong>
+  </div>
+  <table class="table table-bordered">
+    <tr>
+      <th width="15%">会员id</th>
+      <th>会员姓名</th>
+      <th>创建时间</th>
+     </tr>
+     <tbody>
+     <%@shop_user.each  do|shop_user|%>
+     <tr>
+     <td><%=shop_user.member_id%></td>
+      <td><%=shop_user.user.weixin_nickname%> </td>
+     <td><%=(shop_user.created_at).strftime("%Y-%m-%d %H:%M:%S")%></td> </tr>
+         <%end%>
+     </tbody>
+  </table>
+
+</div>
+
+
+
+
+
+<div class="detail products" id="odetails">
+  <div class="subtitle">
+    <strong>订单清单</strong>
+  </div>
+
+  <table class="table table-bordered">
+    <tr>
+      <th>会员</th>
+      <th>下单时间</th>
+      <th>支付方式</th>
+      <th>订单状态</th>
+      <th>付款状态</th>
+      <th>发货状态</th>
+      <th>订单金额</th>
+      <th>推荐佣金</th>
+      <th>销售提成</th>
+      <th>运费</th>
+      <th>收货人</th>
+      <th>收货地址</th>
+      <th>收货人手机</th>
+      <th>订单状态</th>
+    </tr>
+    <tbody>
+    <%if @shop_order.size>0%>
+    <%@shop_order.each do |order|%>
+   <tr>
+    <td><%=order.member_id if order.user%></td>
+    <td><%=order.created_at%></td>
+    <td><%=order.payment_name%></td>
+    <td><%=order.status_text%></td>
+    <td><%=order.pay_status_text%></td>
+    <td><%=order.ship_status_text%></td>
+    <td><%=number_to_currency order.final_amount,:unit=>"&yen;",:precision=>2%></td>
+    <td><a href="#" title="<%=order.recommend_user%>"><%=number_to_currency order.share_for_promotion,:unit=>"&yen;",:precision=>2 if order.desktop_user_id || order.recommend_user%></a></td>
+    <td><a href="#" title="<%=order.shop_id%>"><%=number_to_currency order.share_for_sale,:unit=>"&yen;",:precision=>2 if order.shop_id%></a></td>
+    <td><%=number_to_currency order.cost_freight,:unit=>"&yen;",:precision=>2%></td>
+    <td><%=order.ship_name%></td>
+    <td><%=order.ship_addr%></td>
+    <td><%=order.ship_mobile%></td>
+    <td><%=order.orderstatus%></td>
+
+     </tr> <%end%>
+
+        <%end%>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+<div>
+  <%=link_to "返回",@return_url,:class=>"btn"%>
+</div>
+
+</div>

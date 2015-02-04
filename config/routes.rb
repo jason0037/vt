@@ -44,6 +44,8 @@ Modengke::Application.routes.draw do
         get "branch"
         get "user"
         post "edit"
+        get "delete"
+        post "submit_delete"
       end
     end
 
@@ -410,7 +412,9 @@ Modengke::Application.routes.draw do
 
 
     resources :shops do
-
+      collection do
+        get 'detail'
+      end
     end
     
     resources :wechat do

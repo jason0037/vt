@@ -1,0 +1,111 @@
+<style>.am-list>li{border: none;padding: 5px}.time{width: 100px;font-size: 10px;text-overflow:ellipsis;white-space:nowrap}</style>
+<%if @shop.status==-2%>
+<div class="main">
+  <div class="am-alert  am-alert-success"  id ="alert" data-am-alert>
+    <button type="button" class="am-close">&times;</button>
+      <p>您已经提交申请了,请耐心等待系统核实</p>
+  </div>
+  <%end%>
+
+  <div class="am-g">
+    <div class="am-u-md-6">
+      <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+         店铺详细
+        </div>
+        <div class="am-panel-bd">
+        <ul class="am-list">
+        <li>店名: <%=@shop.shop_name%> </li>
+          <li>店主: <%=@shop.name%> </li>
+          <li>描述: <%=@shop.shop_intro%> </li>
+          <li>创建时间: <%=@shop.created_at.strftime("%Y-%m-%d %H:%M:%S")%> </li>
+
+         </ul>
+        </div>
+      </div>
+    </div>
+    <div class="am-u-md-6">
+      <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+         会员管理
+        </div>
+        <table class="am-table ">
+          <tr>
+            <th >id</th>
+            <th >姓名</th>
+            <th >创建时间</th>
+          </tr>
+
+          <%@shop_user.each  do|shop_user|%>
+              <tr>
+                <td><%=shop_user.member_id%></td>
+                <td  class="time"><%=shop_user.user.weixin_nickname%> </td>
+                <td class="time"><%=(shop_user.created_at).strftime("%Y-%m-%d %H:%M:%S")%></td> </tr>
+          <%end%>
+         </table>
+      </div>
+    </div>
+    <div class="am-u-md-6">
+      <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+          订单管理
+        </div>
+
+       <table class="am-table">
+         <tr>
+           <td>金额</td>
+           <td>状态</td>
+           <td>提成</td>
+           <td>购买者</td>
+           </tr>
+         <%@shop_order.each do |order|%>
+            <tr>
+              <td><%=number_to_currency order.final_amount,:unit=>"&yen;",:precision=>2%></td>
+              <td><%=order.status_text%></td>
+              <td><a href="javascript:void (0)" title="<%=order.recommend_user%>"><%=number_to_currency order.share_for_promotion,:unit=>"&yen;",:precision=>2 if order.desktop_user_id || order.recommend_user%></a></td>
+              <td><%=order.user.weixin_nickname%></td>
+            </tr>
+         <%end%>
+      </table>
+      </div>
+    </div>
+    <div class="am-u-md-6">
+      <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+          分店管理
+        </div>
+        <div class="am-panel-bd">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form data-remote="true" action="/shop/shopusers/submit_delete?shop_id=<%=@shop.shop_id%>" method="post">
+    <div style="margin:0;padding:0;display:inline">
+      <input name="utf8" type="hidden" value="✓">
+     <input name="authenticity_token" type="hidden" value="+WFcWS0KxWwn16E8OAuw4Gx4nZetAWnsCqaq/QDxo80="></div>
+
+    <input type="submit" class="am-btn am-btn-block am-btn-danger" value="提交关闭申请">
+          </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+  <script src="/assets/jquery_ujs.js?body=1" type="text/javascript"></script>
+
+</div>

@@ -94,6 +94,21 @@ class Shop::ShopusersController < ApplicationController
 
   end
 
+  def delete
+    shop_id=params[:shop_id]
+    @shop=Ecstore::Shop.find(shop_id)
+    @shop_user=Ecstore::ShopClient.where(:shop_id=>shop_id)
+    @shop_order=Ecstore::Order.where(:shop_id=>shop_id)
+    @shop_title="申请关店"
+  end
+
+  def submit_delete
+    shop_id=params[:shop_id]
+    @shop=Ecstore::Shop.find(shop_id)
+    @shop.update_attribute(:status ,-2)
+
+
+  end
 
 end
 
