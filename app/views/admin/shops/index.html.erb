@@ -9,7 +9,7 @@
 			<th>邮件</th>
 			<th>销售地区</th>
 			<th>创建时间</th>
-          <th>是否关闭</th>
+
 			<th>状态</th>
           <th>分店管理</th>
           <th>操作</th>
@@ -31,13 +31,11 @@
               <td style="color: seagreen">申请关闭</td>
              <%elsif shop.status==-1%>
               <td style="color: #ff0619">已经关闭</td>
-              <%end%>
-
-          <%if shop.status==1%>
-              <td style="color: red">审核通过</td>
               <%else%>
               <td>待审核</td>
               <%end%>
+
+
           <% if shop.permission_branch=="-2"%>
               <td >目前没有资格</td>
               <% elsif shop.permission_branch=="-1"%>
