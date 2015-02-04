@@ -27,15 +27,7 @@
   <%= javascript_include_tag "amaze/handlebars.min.js"%>
 
 
-  <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
-  <script>
 
-      <%unless @user%>
-
-
-      location.href = "/auto_login?<%=return_url%>"
-
-      <%end%> </script>
   <style type="text/css">
       .am-icon-user{
           color: #ffffff;
