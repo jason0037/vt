@@ -63,9 +63,10 @@
               <%if @user%>
                 <%unless @user.member_id==@shop.member_id%>
                 <a href="javascript:void (0)" class="am-btn am-btn-danger addcart"> <i class="am-icon-shopping-cart"> <em class="icon-em">加入购物车</em> </i> </a>
-               <%end%> <%end%>
+               <%end%>
                 <a  href="javascript:void (0)"class="am-btn  am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
-              </div>
+                <%end%>
+                    </div>
 
         <%end%>
 
