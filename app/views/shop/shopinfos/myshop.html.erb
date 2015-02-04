@@ -60,9 +60,10 @@
                 </div> </li>
               <div class="button">
                 <input type="hidden" class="goods_id" value="<%=shopgoods.good.goods_id%>"/>
+              <%if @user%>
                 <%unless @user.member_id==@shop.member_id%>
                 <a href="javascript:void (0)" class="am-btn am-btn-danger addcart"> <i class="am-icon-shopping-cart"> <em class="icon-em">加入购物车</em> </i> </a>
-               <%end%>
+               <%end%> <%end%>
                 <a  href="javascript:void (0)"class="am-btn  am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
               </div>
 
@@ -72,6 +73,7 @@
         </ul>
       </div>
   <%else%>
+      <%if @user%>
       <%if @user.member_id==@shop.member_id%>
 
           <a href="/shop/shopinfos/show_goods?shop_id=<%=@shop.shop_id%>" >
