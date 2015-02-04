@@ -30,7 +30,7 @@
               <%elsif shop.status==-2 %>
               <td style="color: seagreen">申请关闭</td>
              <%elsif shop.status==-1%>
-              <td style="color: #62125e">已经关闭</td>
+              <td style="color: #ff0619">已经关闭</td>
               <%end%>
 
           <%if shop.status==1%>
@@ -52,7 +52,7 @@
 			<td>
 				<%=link_to "编辑",edit_admin_shop_path(shop)%>
               <%unless shop.order.count>0%>
-				<%=link_to "删除",admin_shop_path(shop),:method=>:delete,:confirm=>"确定删除吗？"%>
+				<%=link_to "关闭",admin_shop_path(shop),:method=>:delete,:confirm=>"确定关闭吗？"%>
                   <%else%>  <br>
                  <span>该店铺目前有订单无法删除</span>
 

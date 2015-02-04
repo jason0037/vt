@@ -43,7 +43,8 @@ module Admin
       shop_id=params[:id]
       @shop = Ecstore::Shop.find(shop_id)
 
-      @shop.destroy
+      # @shop.destroy
+      @shop.update_attribute(:status,-1);
       redirect_to admin_shops_url
     end
   end
