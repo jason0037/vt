@@ -4,7 +4,9 @@
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <title>贸威自媒体商城</title>
+  <title>
+    <% if @shop_title%>
+        <%=@shop_title%>的自媒体商城<%else%>贸威自媒体商城<%end%></title>
   <meta content="" name="keywords">
   <meta content="" name="description">
 
@@ -24,8 +26,16 @@
 
   <%= javascript_include_tag "amaze/handlebars.min.js"%>
 
-   <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 
+  <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+  <script>
+
+      <%unless @user%>
+
+
+      location.href = "/auto_login?<%=return_url%>"
+
+      <%end%> </script>
   <style type="text/css">
       .am-icon-user{
           color: #ffffff;
@@ -196,17 +206,6 @@
     current_url="http://"+host+"/shop/?shop_id="+<%=@shop.shop_id%>;
 
     <%end%>
-    wx.onMenuShareTimeline({
-        title: 'aaa', // 分享标题
-        link: 'aaa', // 分享链接
-        imgUrl: 'aaa', // 分享图标
-        success: function () {
-            // 用户确认分享后执行的回调函数
-        },
-        cancel: function () {
-            // 用户取消分享后执行的回调函数
-        }
-    });
 
 
     var data = {"img":imgs,"url":current_url,"title":"<%=@shop_title%>","desc":desc};
