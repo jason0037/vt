@@ -1,28 +1,121 @@
+  <style>
 
+    .am-header-default{display: none}
+      #head-pic {
+           background-image: url(/assets/background_default.png);
+          background-position: left center;
+          height: 200px;
+      }#broker-slogan {
+           padding: 10px 15px;
+          margin-top: -60px;
+           z-index: 2;
+
+       }
+      #broker-slogan .name-contact-wrapper>img {
+          display: inline-block;
+          float: left;
+          width: 80px;
+          height: 80px;
+          border-radius: 40px 40px;
+          -moz-border-radius: 40px 40px;
+          -webkit-border-radius: 40px 40px;
+          border: 1px white solid;
+      }.broker-slogan .name-contact {
+           margin-left: -80px;
+           padding-left: 90px;
+           float: left;
+           padding-right: 5px;
+           padding-top: 5px;
+           width: 100%;
+           color: white;
+       }
+      #broker-slogan .name-contact h3 {
+
+          line-height: 40px;
+          font-size: 18px;
+      }
+
+      #broker-slogan .name-contact .contact span:first-child {
+          background-image: url(/assets/wx.png);
+
+      }
+      #broker-slogan .name-contact .contact span:last-child {
+          margin-left: 10px;
+          background-image: url(/assets/tel.png);
+      }
+      #broker-slogan .name-contact {
+          margin-left: -80px;
+          padding-left: 90px;
+          float: left;
+          padding-top: 5px;
+         color: white;
+      }
+      #broker-slogan .slogan {
+          clear: left;
+          margin: 0px;
+          margin-left: 20px;
+          font-size: 14px;
+          padding: 10px 0 0;
+      }
+      #broker-slogan .name-contact .contact span {
+          float: left;
+          padding-left: 20px;
+          background-size: 16px;
+          background-repeat: no-repeat;
+          background-position: left center;
+
+          line-height: 20px;
+          font-weight: normal;
+         font-size: 13px;
+          color: #666666;
+          letter-spacing: .4px;
+      }
+    .goods_p{background: #EFEFF4;
+
+        overflow: hidden;
+        border-top: 1px solid #C7C7CC;}
+    .goods_p .goods_p_count {
+        margin-top: 13px;
+        margin-bottom: 5px;
+        margin-left: 15px;
+        font-size: 13px;
+
+        letter-spacing: .4px;
+    }
+
+  </style>
 <input type="hidden" id="shop_id" value="<%=@shop.shop_id%>">
 
 
-<div id="amz-home">
-  <section id="amz-hero" style="text-align: center">
-    <div class="amz-container am-cf">
-      <div class="amz-mascot am-scrollspy-init am-scrollspy-inview am-animation-slide-left" data-am-scrollspy="{animation: 'slide-left', delay: 100}">
-        <%=image_tag @shop.shop_logo,:id=>"weixin",:style => "width:40%"  %>
-      </div>
 
-      <div class="amz-hero-intro">
-        <div class="amz-hero-headings">
-          <h1 class="clearstyle " data-am-scrollspy="{animation:'slide-left'}" class="am-scrollspy-init am-scrollspy-inview am-animation-slide-left">欢迎来到<%=@shop.shop_name%>的小店</h1>
-          <h2 class="clearstyle " style="color: #1f6377" data-am-scrollspy="{animation:'slide-right', delay: 500}" class="am-scrollspy-init am-scrollspy-inview am-animation-slide-right"><%=@shop.shop_intro%></h2>
+  <section id="head-pic">
+
+  </section>
+
+  <section id="broker-slogan">
+    <div class="name-contact-wrapper">
+      <%=image_tag @shop.shop_logo,:id=>"weixin"  %>
+      <div data-soj-an="photo" class="name-contact">
+        <h3><%=@shop.name%></h3>
+        <div class="contact">
+           <span ><%=@shop.user.weixin_nickname%></span>
+
+          <a style="" href="tel:<%=@shop.user.mobile%>">
+            <span><%=@shop.user.mobile%></span>
+          </a>
+        </div>
         </div>
       </div>
     </div>
+    <p class="slogan"><%=@shop.shop_intro%></p>
   </section>
-</div>
 
-
-<div class="main">
+    <div class="goods_p">
+      <div class="goods_p_count">
+        全部房源(<span>80</span>)
+      </div>
   <%if @shop_goods.size>0%>
-      <div class="am-panel-bd">
+
         <ul class="am-list">
           <%@shop_goods.each do |shopgoods|%>
 
@@ -68,7 +161,7 @@
 
 
         </ul>
-      </div>
+
   <%else%>
       <%if @user%>
       <%if @user.member_id==@shop.member_id%>
@@ -86,7 +179,7 @@
       <%end%>
   <%end%>
       <%end%>
-</div>
+            </div>
 <% if @user%>
     <%unless @user.member_id==@shop.member_id%>
         <div class="J-shoping">
