@@ -62,7 +62,9 @@ class Shop::ShopusersController < ApplicationController
 
   def user
     @shop_title="用户信息"
-    @shop= Ecstore::Shop.find_by_member_id(@user.member_id)
+
+    member_id=params[:member_id]
+    @shop= Ecstore::Shop.find_by_member_id(member_id)
    unless @shop
      redirect_to "/shop/shopinfos/new"
    end
