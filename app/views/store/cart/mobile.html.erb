@@ -15,7 +15,7 @@
 
 
     <%@line_items.select{ |x| x.good.present? && x.product.present? }.each do |line_item|%>
-
+       <%=line_item.supplier_id.to_i%>
         <%if line_item.supplier_id.to_i !=@goods_supplier%>
             <%if @goods_supplier!=0%>
                 </ul>
