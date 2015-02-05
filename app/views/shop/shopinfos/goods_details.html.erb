@@ -131,7 +131,8 @@
 
             if($(this).hasClass("login")) {
                 alert("继续访问需要登录才能进行哦～");
-                location.href="/auto_login?id=78&supplier_id=78&platform=mobile&return_url=<%=request.url.sub('http://trade','') %>";
+                <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+                location.href="/auto_login?id=78&supplier_id=78&platform=mobile&<%=return_url%>";
                 return false;
 
             }
