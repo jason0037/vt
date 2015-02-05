@@ -47,7 +47,7 @@
 </header>
 
 <%= yield %>
-
+       <br><br >
 <div class="bottomdivsclearfix">
 
   <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default am-no-layout" id="">
@@ -76,7 +76,7 @@
            <%if  @shop.member_id%>
              <li> <a href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span class=" am-icon-columns"> </span> <span class="am-navbar-label">我要开店</span> </a> </li>
                   <%end%>
-                  <li> <a href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span class=" am-icon-user"> </span> <span class="am-navbar-label">用户中心</span> </a> </li>
+                  <li> <a href="/shop/shopusers?shop_id=<%=@shop.shop_id%>"><span class=" am-icon-user"> </span> <span class="am-navbar-label">用户中心</span> </a> </li>
               <%end%>
           <%else%>
               <li> <a href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span class=" am-icon-columns"> </span> <span class="am-navbar-label">我要开店</span> </a> </li>
