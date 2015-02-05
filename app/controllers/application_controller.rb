@@ -50,6 +50,7 @@ class ApplicationController < ActionController::Base
 
     def find_cart!
       shop_id = session[:shop_id]
+      session[:shop_id]=nil
       if signed_in?
 
         if (shop_id.nil?)
