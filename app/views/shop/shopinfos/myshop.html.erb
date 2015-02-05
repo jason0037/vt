@@ -1,10 +1,4 @@
-<style type="text/css">
-    .am-btn-catid{font-size: 15px;  margin-left: 30px;  color: #ffffff;}
-    .line_a{  background-color: #ff0000;}
-    .clearstyle{margin: 0;padding: 0}
-    #head{height:200px;}
-    #head div{float:left; }
-</style>
+
 <input type="hidden" id="shop_id" value="<%=@shop.shop_id%>">
 
 
@@ -63,9 +57,11 @@
               <%if @user%>
                 <%unless @user.member_id==@shop.member_id%>
                 <a href="javascript:void (0)" class="am-btn am-btn-danger addcart"> <i class="am-icon-shopping-cart"> <em class="icon-em">加入购物车</em> </i> </a>
-               <%end%>
-                <a  href="javascript:void (0)"class="am-btn  am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
-                <%end%>
+
+                    <%end%>
+                    <a  href="javascript:void (0)"class="am-btn  am-btn-success buttom_bolt <%='buttom_to_bolt' if @user.member_id==@shop.member_id%>"  > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
+
+              <%end%>
                     </div>
 
         <%end%>

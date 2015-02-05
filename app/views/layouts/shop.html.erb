@@ -26,24 +26,13 @@
 
   <%= javascript_include_tag "amaze/handlebars.min.js"%>
 
-
-
   <style type="text/css">
       .am-icon-user{
           color: #ffffff;
           height: 20px;
       }
-      .bottomdivsclearfix {
-          position: fixed;
-          bottom: 0;
-          width: 100%;
-          background: #fff;
-          border: #ddd 1px solid;
-          border-top: #fff 1px solid;
-          z-index: 1000000;
-          margin: 3px;
-      }
 
+      .am-navbar-nav a .am-navbar-label{line-height: 20px}
   </style>
 
 </head>
@@ -60,29 +49,44 @@
 <%= yield %>
 
 <div class="bottomdivsclearfix">
-  <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout">
-    <ul class="am-navbar-nav am-cf sm-block-grid-2">
 
+  <div data-am-widget="navbar" class="am-navbar am-cf am-navbar-default am-no-layout" id="">
+    <ul class="am-navbar-nav am-cf am-avg-sm-3">
       <% if @shop%>
           <%if  @user %>
-            <%if @user.member_id == @shop.member_id%>
+              <%if @user.member_id == @shop.member_id%>
                   <%if @shop.status==1%>
-              <li><a class="am-btn am-btn-primary " href="/shop/shopusers"><span  class="am-navbar-label ">店铺管理</span></a></li>
-                      <li><a class="am-btn am-btn-primary " href="/shop/shopinfos/myshop?shop_id=<%=@shop.shop_id%>"><span  class="am-navbar-label ">进入店铺</span></a></li>
-                      <%end%>
-            <%else%>
-                  <%if  @shop.member_id%>
-                      <!--当订单达到200后才显示开分店-->
-          <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">我也要开店</span></a></li>
-                    <%end%>
-                  <li ><a class="" href="/shop/shopusers?shop_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">用户中心</span></a></li>
+      <li>
+        <a href="/shop/shopinfos/myshop?shop_id=<%=@shop.shop_id%>"  >
+          <span class="am-icon-home"></span>
+          <span class="am-navbar-label">店铺首页</span>
+        </a>
+      </li>
+      <li>
+        <a href="/shop/shopusers" >
+          <span class="am-icon-cog"></span>
+          <span class="am-navbar-label">店铺管理</span>
+        </a>
+      </li>
+
+  <li> <a href=""><span class=" am-icon-file-text-o"></span><span class="am-navbar-label">我的订单</span>  </a> </li>
+
+    <%end%>
+       <%else%>
+           <%if  @shop.member_id%>
+             <li> <a href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span class=" am-icon-columns"> </span> <span class="am-navbar-label">我要开店</span> </a> </li>
+                  <%end%>
+                  <li> <a href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span class=" am-icon-user"> </span> <span class="am-navbar-label">用户中心</span> </a> </li>
               <%end%>
-           <%else%>
-              <li><a class="" href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span  class="am-navbar-label">我也要开店</span></a></li>
+          <%else%>
+              <li> <a href="/shop/shopinfos/new?parent_id=<%=@shop.shop_id%>"><span class=" am-icon-columns"> </span> <span class="am-navbar-label">我要开店</span> </a> </li>
           <%end%>
       <%end%>
-     </ul>
+
+
+              </ul>
   </div>
+
 </div>
 
 

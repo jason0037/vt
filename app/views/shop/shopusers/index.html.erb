@@ -16,14 +16,35 @@
     }
 
 </style>
+<div class="am-g" style="background: #EFDEAD">
+  <div class="am-col col-sm-3 "><%=image_tag @shop.shop_logo,:id=>"weixin",:class => "am-radius",:style => " width:60px ;height:60px;margin: 8px;"  %>
+  </div>
+  <div class="am-col col-sm-8 ">
+    <span>会员ID: &nbsp;<%=@shop.member_id%></span><br>
+    <span>昵称: &nbsp;<%=@shop.user.weixin_nickname%></span> <br>
+    <span>创建时间:&nbsp;<%=@shop.created_at.strftime("%Y-%m-%d ")%></span>
+  </div>
+</div>
+<div class="am-g" style="background: #000000">
+  <div class="am-col col-sm-4 ">
+    <span class="white_font">营业额:<%= format('%.2f',@share.final_amount)%>&nbsp;&nbsp;&nbsp;</span>
+    </div>
+  <div class="am-col col-sm-4 ">
+     <span class="white_font">店铺佣金:<%= format('%.2f',@share_for_sale)%>&nbsp;</span>
+ </div>
+  <div class="am-col col-sm-4 ">
+   <span class="white_font"> 分店佣金:<%= format('%.2f',@share_for_shop.sum)%> </span>
+  </div>
+</div>
+
+<div class="main">
 
 
-<hr>
 
 <%if @user.member_id.to_s==@shop.member_id.to_s%>
     <div class="am-panel am-panel-default">
       <a href="/shop/shopusers/share">
-        <div class="am-panel-hd">我的收益</div>
+        <div class="am-panel-hd">我的佣金</div>
         <span class="icon-arr"></span> </a>
     </div>
     <div class="am-panel am-panel-default" style="display:none">
@@ -38,17 +59,17 @@
     </div>
     <div class="am-panel am-panel-default">
       <a href="/shop/shopusers/clients">
-        <div class="am-panel-hd">顾客管理</div>
+        <div class="am-panel-hd">我的顾客</div>
         <span class="icon-arr"></span> </a>
     </div>
     <div class="am-panel am-panel-default">
       <a href="/shop/shopinfos/my_goods">
-        <div class="am-panel-hd">商品管理</div>
+        <div class="am-panel-hd">我的商品</div>
         <span class="icon-arr"></span> </a>
     </div>
     <div class="am-panel am-panel-default">
       <a href="/shop/shopinfos/myshop?shop_id=<%=@shop.shop_id%>">
-        <div class="am-panel-hd">店铺预览</div>
+        <div class="am-panel-hd">我的店铺</div>
         <span class="icon-arr"></span> </a>
     </div>
     <%if @shop.parent.nil?%>
@@ -79,6 +100,10 @@
       <%end%>
 <div class="am-panel am-panel-default">
   <a href="/shop/shopusers/user?shop_id=<%=@shop.shop_id%>&member_id=<%==@user.member_id%>">
-    <div class="am-panel-hd">我的信息</div>
+    <div class="am-panel-hd">个人信息</div>
     <span class="icon-arr"></span> </a>
 </div>
+
+
+
+    </div>

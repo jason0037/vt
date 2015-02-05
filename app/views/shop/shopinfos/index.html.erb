@@ -43,6 +43,11 @@
                  </div>
                </div>
              </div>
+
+    <%elsif @shop.status==-2%>
+        <h3 class="get-title">您已成功提交了关闭店铺，系统正在审核阶段请耐心等待！</h3>
+    <%elsif @shop.status==-1%>
+        <h3 class="get-title">您已成功关闭了店铺！</h3>
        <%end%>
     </p>
   </div>
