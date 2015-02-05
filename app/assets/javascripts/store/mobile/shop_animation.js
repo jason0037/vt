@@ -9,7 +9,7 @@ function addProduct(event) {
         var offset = $('#cart').offset();
         var img= thisbutton.parents().prev("li").children(".beisaier");
 
-
+        alert(scrollTop);
         img.removeClass("hide");
 
         img.fly({
