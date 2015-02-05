@@ -56,7 +56,7 @@ class Shop::ShopusersController < ApplicationController
    @shop_title="客户管理"
    shop_id = params[:shop_id]
 
-   @shop_clients=Ecstore::ShopClient.where(:member_id=>@user.member_id,:shop_id=>shop_id)
+   @shop_clients=Ecstore::ShopClient.where(:shop_id=>shop_id)
 
  end
 
