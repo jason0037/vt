@@ -103,6 +103,7 @@
           <%=f.hidden_field :goods_id,:value=>@good.goods_id%>
           <%=f.hidden_field :type_id,:value=>@good.type_id%>
           <%unless @tuan.nil?%>
+              <%=session[:shop_id]=nil%>
               <%=hidden_field_tag :supplier_id, 78%>
           <%=f.hidden_field :ref_id,:value=> @tuan.ref_id%>
               <%else%>
