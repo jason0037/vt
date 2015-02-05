@@ -107,7 +107,7 @@ class Auth::WeixinController < ApplicationController
 	  			@user.weixin_privilege = user_info.privilege
 	  			@user.weixin_unionid = user_info.unionid
   			@user.save!(:validate=>false)
-			sign_in(auth_ext.account)
+			sign_in(auth_ext.account,'1')
 	    if return_url
           redirect = return_url
       else
