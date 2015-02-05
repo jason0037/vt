@@ -56,13 +56,13 @@ class Shop::ShopusersController < ApplicationController
    @shop_title="客户管理"
    shop_id = params[:shop_id]
 
-   @shop_clients=Ecstore::ShopClient.where(:shop_id=>shop_id)
+   @shop_clients=Ecstore::ShopClient.where(:shop_id=>shop_id).order("created_at desc")
 
  end
 
   def user
     @shop_title="用户信息"
-    @shop= Ecstore::Shop.find_by_member_id(@user.member_id).order("created_at desc")
+    @shop= Ecstore::Shop.find_by_member_id(@user.member_id)
    unless @shop
      redirect_to "/shop/shopinfos/new"
    end
