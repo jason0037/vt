@@ -18,7 +18,7 @@
         <li>店名: <%=@shop.shop_name%> </li>
           <li>店主: <%=@shop.name%> </li>
           <li>描述: <%=@shop.shop_intro%> </li>
-          <li>创建时间: <%=@shop.created_at.strftime("%Y-%m-%d %H:%M:%S")%> </li>
+          <li>创建时间: <%=@shop.created_at.strftime("%Y-%m-%d")%> </li>
 
          </ul>
         </div>
@@ -40,7 +40,7 @@
               <tr>
                 <td><%=shop_user.member_id%></td>
                 <td  class="time"><%=shop_user.user.weixin_nickname%> </td>
-                <td class="time"><%=(shop_user.created_at).strftime("%Y-%m-%d %H:%M:%S")%></td> </tr>
+                <td class="time"><%=(shop_user.created_at).strftime("%Y-%m-%d ")%></td> </tr>
           <%end%>
          </table>
       </div>
