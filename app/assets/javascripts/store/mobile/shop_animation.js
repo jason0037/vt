@@ -1,7 +1,7 @@
 function addProduct(event) {
      var shop_id=$("#shop_id").val();
     var  thisbutton= $(this);
-
+    alert(shop_id);
   var cart_num=  $("#cart_num").text();
 
     if(!thisbutton.hasClass("am-btn-default")){
@@ -9,7 +9,7 @@ function addProduct(event) {
         var offset = $('#cart').offset();
         var img= thisbutton.parents().prev("li").children(".beisaier");
 
-        alert(scrollTop);
+
         img.removeClass("hide");
 
         img.fly({
