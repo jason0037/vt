@@ -22,7 +22,7 @@ class Shop::ShopusersController < ApplicationController
     @share_for_sale = 0
     @share_for_promotion = 0
 
-    if @user.member_id.to_s==@shop.member_id.to_s
+
 
       @share = Ecstore::Order.all(:conditions => "shop_id = #{ shop_id}",
                                  :select => "SUM(share_for_sale) share_sale ,SUM(final_amount) final_amount",:group=>"shop_id").first
@@ -31,23 +31,23 @@ class Shop::ShopusersController < ApplicationController
       end
       if @shop.parent.nil?
         shop_ids = 0
-        results = Ecstore::Shop.find_by_parent(shop_id)
+        results = Ecstore::Shop.where(:parent=>shop_id)
+
         if results
-          results.each(:as => :hash) do |row|
+          results.each do |row|
+            shop_ids=+ row.shop_id
+
           end
         end
 
         @share_for_shop = Ecstore::Order.all(:conditions => "shop_id in (#{shop_ids}) and orderstatus='true'",
+
                                              :select => "SUM(share_for_shop) share_shop, shop_id",:group=>"shop_id")
-      end
-    else
-      share = Ecstore::Order.all(:conditions => "shop_id = #{shop_id} and member_id=#{@user.member_id} and orderstatus='true'",
-                                 :select => "SUM(share_for_promotion) share_promotion",:group=>"shop_id,member_id").first
-      if share
-        @share_for_promotion = share.share_promotion
+
+
       end
 
-    end
+
 
 
   end
@@ -62,6 +62,9 @@ class Shop::ShopusersController < ApplicationController
   def user
     @shop_title="用户信息"
     @shop= Ecstore::Shop.find_by_member_id(@user.member_id)
+   unless @shop
+     redirect_to "/shop/shopinfos/new"
+   end
   end
 
   def edit
@@ -106,13 +109,20 @@ class Shop::ShopusersController < ApplicationController
       end
     if @shop.parent.nil?
         shop_ids = 0
-        results = Ecstore::Shop.find_by_parent(shop_id)
+        # results = Ecstore::Shop.find_by_parent(shop_id)
+        # if results
+        #   results.each(:as => :hash) do |row|
+        #     shop_ids= row["shop_id"]
+        #   end
+        # end
+        results = Ecstore::Shop.where(:parent=>shop_id)
+
         if results
-          results.each(:as => :hash) do |row|
-            shop_ids= row["shop_id"]
+          results.each do |row|
+            shop_ids=+ row.shop_id
+
           end
         end
-
         @share_for_shop = Ecstore::Order.all(:conditions => "shop_id in (#{shop_ids}) and orderstatus='true'",
                   :select => "SUM(share_for_shop) share_shop, shop_id",:group=>"shop_id")
     end

@@ -1,7 +1,9 @@
 function addProduct(event) {
      var shop_id=$("#shop_id").val();
     var  thisbutton= $(this);
+
   var cart_num=  $("#cart_num").text();
+
     if(!thisbutton.hasClass("am-btn-default")){
         var scrollTop = $(window).scrollTop();
         var offset = $('#cart').offset();

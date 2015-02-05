@@ -5,6 +5,8 @@
            background-image: url(/assets/background_default.png);
           background-position: left center;
           height: 200px;
+          background-repeat: no-repeat;
+
       }#broker-slogan {
            padding: 10px 15px;
           margin-top: -60px;
@@ -81,8 +83,8 @@
         font-size: 13px;
 
         letter-spacing: .4px;
-    }
-
+    } .weixinname{}
+     .beisaier{width: 50px;height: 50px}
   </style>
 <input type="hidden" id="shop_id" value="<%=@shop.shop_id%>">
 
@@ -98,7 +100,7 @@
       <div data-soj-an="photo" class="name-contact">
         <h3><%=@shop.name%></h3>
         <div class="contact">
-           <span ><%=@shop.user.weixin_nickname%></span>
+           <span class="weixinname" > <%=truncate2(@shop.user.weixin_nickname,:length=>4)%></span>
 
           <a style="" href="tel:<%=@shop.user.mobile%>">
             <span><%=@shop.user.mobile%></span>
@@ -120,7 +122,7 @@
           <%@shop_goods.each do |shopgoods|%>
 
               <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                <img class=" beisaier hide"  src="<%=shopgoods.good.list_default_pic%>">
+                <img class=" beisaier hide" src="<%=shopgoods.good.list_default_pic%>">
 
                 <div class="am-col col-sm-4 am-list-thumb">
 

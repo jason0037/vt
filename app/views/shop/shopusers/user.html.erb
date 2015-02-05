@@ -52,5 +52,8 @@
         <%=f.submit "修改信息",:class=>"am-btn am-btn-primary am-btn-block "%>
       </div>
   <%end%>
-  <a href="/shop/shopusers/delete?shop_id=4" class="am-btn am-btn-default">申请关店</a>
+  <% if @shop%>
+      <%#if @shop.status==1%>
+  <a href="/shop/shopusers/delete?shop_id=<%=@shop.shop_id%>" class="am-btn am-btn-default">申请关店</a>
+      <%#end%> <%end%>
 </div>

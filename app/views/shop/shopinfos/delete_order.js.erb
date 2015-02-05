@@ -1,4 +1,4 @@
-<% unless @shop.nil%>
+<% if @order.orderstatus=="false"%>
 alert("删除成功!!!");
 window.location.href="/shop/shopinfos/myorder"
 <%else%>
