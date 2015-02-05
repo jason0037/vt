@@ -44,7 +44,6 @@ class Shop::ShopusersController < ApplicationController
 
                                              :select => "SUM(share_for_shop) share_shop, shop_id",:group=>"shop_id")
 
-
       end
 
 

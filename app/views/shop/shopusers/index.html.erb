@@ -94,6 +94,11 @@
         <div class="am-panel-hd">我的订单</div>
         <span class="icon-arr"></span> </a>
     </div>
+      <div class="am-panel am-panel-default">
+        <a href="/shop/shopinfos/myshop?shop_id=<%=@shop.shop_id%>">
+          <div class="am-panel-hd"><%=@shop.user.weixin_nickname%>的店铺</div>
+          <span class="icon-arr"></span> </a>
+      </div>
      <div class="am-panel am-panel-default">
       <a href="/shop/shopusers/share?shop_id=<%=@shop.shop_id%>">
         <div class="am-panel-hd">我的收益</div>
