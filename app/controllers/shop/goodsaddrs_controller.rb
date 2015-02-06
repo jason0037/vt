@@ -3,9 +3,6 @@ class Shop:: GoodsaddrsController < ApplicationController
 
  layout "shop"
 
-
-
-
   def  new_addr
     @shop_title="地址管理"
     user_id=params[:user_id]

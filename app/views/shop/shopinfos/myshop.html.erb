@@ -5,6 +5,7 @@
            background-image: url(/assets/background_default.png);
           background-position: left center;
           height: 200px;
+
           background-repeat: no-repeat;
 
       }#broker-slogan {
@@ -89,10 +90,8 @@
 <input type="hidden" id="shop_id" value="<%=@shop.shop_id%>">
 
 
-
-  <section id="head-pic">
-
-  </section>
+   <div class="">
+  <section id="head-pic"></section>
 
   <section id="broker-slogan">
     <div class="name-contact-wrapper">
@@ -108,10 +107,10 @@
         </div>
         </div>
       </div>
-    </div>
+
     <p class="slogan"><%=@shop.shop_intro%></p>
   </section>
-
+                 </div>
     <div class="goods_p">
       <div class="goods_p_count">
         全部商品(<span><%if @shop_goods%><%=@shop_goods.size%><%end%></span>)
@@ -169,8 +168,8 @@
       <%if @user.member_id==@shop.member_id%>
 
           <a href="/shop/shopinfos/show_goods?shop_id=<%=@shop.shop_id%>" >
-            <div class="am-panel am-panel-primary " style="margin-top: 100px">
-              <div class="am-panel-hd" style="padding: 24px"><i  class="am-icon-shopping-cart "></i>
+            <div class="am-panel am-panel-primary " style="margin-top: 50px">
+              <div class="am-panel-hd" ><i  class="am-icon-shopping-cart "></i>
                 <span style="margin-left: 10px">您的店铺空空的!您可以去贸威里面挑选喜欢的商品</span> </div>
             </div>
           </a>

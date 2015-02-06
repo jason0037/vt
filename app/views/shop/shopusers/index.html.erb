@@ -4,36 +4,39 @@
     }
     .icon-arr {
         position: absolute;
-        top: 20px;
+        top: 13px;
         right: 10px;
         width: 10px;
         height: 15px;
         background: url(/assets/icon_order.png) 0 0 no-repeat;
         background-size: 100px 100px;
     }
-    .am-panel-hd{
-        padding: 20px;
+       .am-panel-hd{
+       background-color: #f0dddd;
+           color: #5E3232;
     }
 
 </style>
-<div class="am-g" >
+<div class="am-g" style="background: #f0dddd;" >
   <div class="am-col col-sm-3 "><%=image_tag @shop.shop_logo,:id=>"weixin",:class => "am-radius",:style => " width:60px ;height:60px;margin: 8px;"  %>
   </div>
   <div class="am-col col-sm-8 ">
     <span>会员ID: &nbsp;<%=@shop.member_id%></span><br>
     <span>店主昵称: &nbsp;<%=@shop.user.weixin_nickname%></span> <br>
-    <span>创建时间:&nbsp;<%=@shop.created_at.strftime("%Y-%m-%d ")%></span>
+    <span>创建时间:&nbsp;<%=@shop.created_at.strftime("%Y-%m-%d")%></span>
   </div>
 </div>
-<div class="am-g" style="background: #000000">
+<div class="am-g" style="background: #007074">
   <div class="am-col col-sm-4 ">
-    <span class="white_font">营业额:<%= format('%.2f',@share.final_amount) if @share%>&nbsp;&nbsp;&nbsp;</span>
+    <span class="white_font">营业额: <%if @share%><%= format('%.2f',@share.final_amount)%><%else%>0<%end%>&nbsp;&nbsp;&nbsp;</span>
+
+
     </div>
   <div class="am-col col-sm-4 ">
      <span class="white_font">店铺佣金:<%= format('%.2f',@share_for_sale)if @share_for_sale %>&nbsp;</span>
  </div>  <%if @shop.parent.nil?%>
   <div class="am-col col-sm-4 ">
-   <span class="white_font"> 分店佣金:<%= format('%.2f',@share_for_shop.share_shop) unless @share_for_shop==[]  %> </span>
+   <span class="white_font"> 分店佣金:<% if @share_for_shop==[]%>0<%else%><%= format('%.2f',@share_for_shop.share_shop)  %> <%end%></span>
   </div>
       <%end%>
 </div>

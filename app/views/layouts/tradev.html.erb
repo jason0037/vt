@@ -38,6 +38,7 @@
           position: fixed;
           bottom: 0;
           width: 100%;
+
           background: #fff;
           border: #ddd 1px solid;
           border-top: #fff 1px solid;
@@ -56,7 +57,7 @@
 
   </style>
 </head>
-<body>
+<body style="margin: 0 auto; min-width: 320px; max-width: 640px; ">
 
 <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
   <script>

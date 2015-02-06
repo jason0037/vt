@@ -185,6 +185,7 @@ input.textcenter {
     position: fixed;
     bottom: 0;
     width: 100%;
+    left: 0;
     background: #fff;
     border: #ddd 1px solid;
     border-top: #fff 1px solid;

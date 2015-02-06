@@ -17,7 +17,7 @@
           <span class="am-input-group-label"><i class="am-icon-envelope"></i></span>
           <%=f.text_field :email,:class=>"input" ,:placeholder=>"请输入您的邮箱"%>
         </div>
-   <br>
+         <br>
         <div class="am-input-group">
           <span class="am-input-group-label"><i class="am-icon-weixin"></i></span>
           <%=f.text_field :wechat_num,:class=>"input" ,:placeholder=>"请输入您的微信号"%>
@@ -134,7 +134,7 @@
            alert("报名截至时间不能大于活动开始时间"); return false;
         }
 
-       var event_name=$("#event_name").val();
+        var event_name=$("#event_name").val();
         var event_adds=$("#event_adds").val();
         var event_times=$("#event_times").val();
         if (event_name==""||event_adds==""||event_times=="") {

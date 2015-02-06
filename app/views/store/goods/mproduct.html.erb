@@ -56,7 +56,7 @@
     <h4 class="am-panel-title" style="color:red;" >
       <!---->
       <%if @tuan.nil?%>
-      <%=I18n.t 'preferential-price'%>:<span style="float: right;color: red">¥<%=@good.default_product.price %></span>
+      <%=I18n.t 'preferential-price'%>:<div style="float: right">  <span style="color: red">¥<%=@good.default_product.price %></span> </div>
           <%else%>
          团购价:<span style="float: right;color: red">¥<%=@tuan.promotionsprice %></span>
           <%end%>
@@ -152,7 +152,7 @@
     <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
 
     <%if @tuan.nil?%>
-        </a> <em>吃货价:</em> <span style="    color: #ff0000">￥<%=@good.default_product.price %></span>
+        </a> <span class="mktprice" style=" color: rgb(176, 176, 172);" >￥<%=@good.mktprice %></span>  <span style="    color: #ff0000">￥<%=@good.default_product.price %>&nbsp;&nbsp;包邮</span>
     <%else%>
         </a> <em>  团购价:</em> <span style="color: #ff0000">￥<%=@tuan.promotionsprice %></span>
     <%end%>
