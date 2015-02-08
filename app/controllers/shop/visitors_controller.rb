@@ -81,9 +81,45 @@ end
 
 
 def my_shopping_cart
-    @shop_title="我的购物车"
-    @shop_id=params[:shop_id]
-    session[:shop_id] = @shop_id
+  @shop_title="我的购物车"
+  @shop_id=params[:shop_id]
+  session[:shop_id] = @shop_id
+  @line_items = Ecstore::Cart.where(:member_id=>current_account.account_id,:shop_id=>@shop_id)
+  @cart_total_quantity = @line_items.inject(0){ |t,l| t+=l.quantity }.to_i || 0
+  
+      
+  @cart_total1=0  ###团购
+  @cart_total2=0
+  @cart_total=0
+
+  if cookies[:MLV] == "10"
+    @line_items.each do |li|
+      unless li.ref_id.nil?
+        if li.quantity.to_i>li.ecstore_goods_promotion_ref.persons.to_i-1
+          @cart_total1 += li.ecstore_goods_promotion_ref.promotionsprice*li.quantity
+        else
+           @cart_total2 += li.product.price*li.quantity
+        end
+      else
+        @cart_total2 += li.product.bulk*li.quantity
+        #    @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.bulk*x.quantity) }.inject(:+) || 0
+      end
+    end
+  else
+    @line_items.each do |li|
+      unless li.ref_id.nil?
+        if li.quantity.to_i>li.ecstore_goods_promotion_ref.persons.to_i-1
+          @cart_total1= @cart_total1+li.ecstore_goods_promotion_ref.promotionsprice*li.quantity
+        else
+           @cart_total2 =  @cart_total2+ li.product.price*li.quantity
+        end
+      else
+          @cart_total2 =  @cart_total2+ li.product.price*li.quantity
+          # @line_items.select{|x| x.product.present? }.collect{ |x| (x.product.price*x.quantity) }.inject(:+) || 0
+      end   
+    end
+  end
+  @cart_total = @cart_total1 + @cart_total2
 end
 
 def order_clearing
