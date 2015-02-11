@@ -46,6 +46,9 @@ class Events::PartyController < ApplicationController
 
 
   def detail
+    if params[:id]=='8'
+      redirect_to "/Cyprus"
+    end
 
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @event = Imodec::Event.find(params[:id])
