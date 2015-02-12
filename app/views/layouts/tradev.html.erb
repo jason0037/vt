@@ -80,9 +80,10 @@
         }
 
 <%else%>
-
-        // location.href = "/auto_login?id="+supplier_id+"&<%=return_url%>&platform=mobile"
-
+        if(isWeixinBrowser())
+        {
+          location.href = "/auto_login?id="+supplier_id+"&<%=return_url%>&platform=mobile"
+        }
 <%end%></script>
   <%= yield %>
   <div class="bottomdivsclearfix">
