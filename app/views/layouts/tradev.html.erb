@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!--<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />-->
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!--<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />
+  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="black" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-   <%if @event_desc%>
-  <title><%=@event_desc%></title><%else%>
-      <title><%= I18n.t 'title' %></title>  <%end%>
+  <%if @event_desc%>
+  <title><%=@event_desc%></title>
+  <%else%>
+  <title><%= I18n.t 'title' %></title>
+  <%end%>
   <meta content="" name="keywords">
   <meta content="" name="description">
   <%= stylesheet_link_tag    "tradev.css" %>
- <%= stylesheet_link_tag    "amaze/amazeui.min.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.min.css" %>
 
   <%= stylesheet_link_tag    "amaze/amazeui.widgets.min.css" %>
 
@@ -21,18 +26,14 @@
 
   <%= javascript_include_tag "amaze/amazeui.widgets.min.js"%>
 
-
   <%= javascript_include_tag "amaze/amazeui.min.js" %>
 
   <%= javascript_include_tag "amaze/handlebars.min.js"%>
 
-
   <%= javascript_include_tag  "store/mobile/fly.js"%>
   <%= javascript_include_tag  "store/mobile/cart_animation.js"%>
 
-  <script>
-      var ui = 'touch';
-  </script>
+  <script>var ui = 'touch';</script>
   <style>
  .bottomdivsclearfix {
           position: fixed;
@@ -59,13 +60,19 @@
 </head>
 <body style="margin: 0 auto; min-width: 320px; max-width: 640px; ">
 
-<% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+  <% return_url={:return_url =>
+  request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
   <script>
+    function isWeixinBrowser(){
+        var ua = navigator.userAgent.toLowerCase();
+        return (/micromessenger/.test(ua)) ? true : false ;
+    }
+
     var supplier_id='78';
       <%if @supplier%>
-      supplier_id="<%=@supplier.id%>";
+        supplier_id="<%=@supplier.id%>";
       <%end%>
-<%if @user%>
+<%if @user && isWeixinBrowser%>
 
 
         if ('<%=@user.account.supplier_id %>'!=supplier_id){
@@ -74,87 +81,157 @@
 
 <%else%>
 
-        location.href = "/auto_login?id="+supplier_id+"&<%=return_url%>&platform=mobile"
+        // location.href = "/auto_login?id="+supplier_id+"&<%=return_url%>&platform=mobile"
 
-<%end%> </script>
-<%= yield %>
-<div class="bottomdivsclearfix">
+<%end%></script>
+  <%= yield %>
+  <div class="bottomdivsclearfix">
 
-  <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout"
+    <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout"
        id="">
-    <ul class="am-navbar-nav am-cf sm-block-grid-3">
+      <ul class="am-navbar-nav am-cf sm-block-grid-3">
 
-      <li> <a class=" "  data-am-modal="{target: '#trade_server'}"><span  class="am-navbar-label">|贸威特色|</span></a></li>
-      <li><a class=""href="/cart/mobile?id=<%=@supplier.id%>"><span  class="am-navbar-label">|购物车|</span></a></li>
-      <li ><a class=" " href="/vshop/<%=@supplier.id%>/user?id=<%=@supplier.id%>"><span  class="am-navbar-label">|个人中心|</span></a></li>
-      <li> <a  class=" " id="showall" >
-        <%if  I18n.locale.to_s=="zh_cn"%>
+        <li>
+          <a class=" "  data-am-modal="{target: '#trade_server'}">
+            <span  class="am-navbar-label">|贸威特色|</span>
+          </a>
+        </li>
+        <li>
+          <a class=""href="/cart/mobile?id=<%=@supplier.id%>
+            ">
+            <span  class="am-navbar-label">|购物车|</span>
+          </a>
+        </li>
+        <li >
+          <a class=" " href="/vshop/<%=@supplier.id%>
+            /user?id=
+            <%=@supplier.id%>
+            ">
+            <span  class="am-navbar-label">|个人中心|</span>
+          </a>
+        </li>
+        <li>
+          <a  class=" " id="showall" >
+            <%if  I18n.locale.to_s=="zh_cn"%>
             <span id="lange" class="">English</span>
-        <%elsif  I18n.locale.to_s =="en"%>
+            <%elsif  I18n.locale.to_s =="en"%>
             <span id="lange" class="">中文切换</span>
-        <%end%>
-      </a></li>
+            <%end%></a>
+        </li>
 
-    </ul>
+      </ul>
+    </div>
   </div>
-</div>
 
-<div class="am-modal-actions" id="trade_server">
-  <div class="am-modal-actions-group">
+  <div class="am-modal-actions" id="trade_server">
+    <div class="am-modal-actions-group">
 
       <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" >
 
-          <ul class="am-list am-col col-sm-4 am-list-thumb">
-            <li><a href="/tuan" ><span>限时团购馆</span> </a>
-            </li>
-            <li>
-              <a href="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=204944531&idx=1&sn=be4f618aa55fae6d7a7347cf50028eb8#rd"><span>舌尖上年货</span> </a>
-            </li>
-            <li><a href="/world_food?supplier_id=<%=@supplier.id%>" ><span>德国香肠馆</span> </a>
-            </li>
-            <li><a href="/prime_beef?supplier_id=<%=@supplier.id%>" ><span>顶级牛肉馆</span> </a>
-            </li>
+        <ul class="am-list am-col col-sm-4 am-list-thumb">
+          <li>
+            <a href="/tuan" >
+              <span>限时团购馆</span>
+            </a>
+          </li>
+          <li>
+            <a href="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=204944531&idx=1&sn=be4f618aa55fae6d7a7347cf50028eb8#rd">
+              <span>舌尖上年货</span>
+            </a>
+          </li>
+          <li>
+            <a href="/world_food?supplier_id=<%=@supplier.id%>
+              " >
+              <span>德国香肠馆</span>
+            </a>
+          </li>
+          <li>
+            <a href="/prime_beef?supplier_id=<%=@supplier.id%>
+              " >
+              <span>顶级牛肉馆</span>
+            </a>
+          </li>
 
-          </ul>
+        </ul>
 
-
-             <ul class="am-col col-sm-4 am-list-main am-list">
-            <li>
-              <a href="/quality_products?supplier_id=<%=@supplier.id%>"><span>生态农产馆</span> </a>
-            </li>
-               <li><a href="/black_tea?supplier_id=<%=@supplier.id%>" ><span>顶级红茶馆</span> </a>
-               </li>
-            <li><a href="/mgallery?name=%e4%bd%90%e5%ba%b7%e8%8c%b6&id=<%=@supplier.id%>" ><span>营养保健馆</span> </a>
-            </li>
-            <li><a href="mgallery?name=%E5%A9%B4%E7%AB%A5&id=<%=@supplier.id%>" ><span>婴童天地馆</span> </a>
-            </li>
-            <li><a href="/mproducts?id=a01090001&supplier_id=<%=@supplier.id%>&fp=category" ><span>微POS机</span> </a>
-            </li>
-          </ul>
         <ul class="am-col col-sm-4 am-list-main am-list">
           <li>
-            <a href="/mgallery?name=%e8%87%aa%e8%b4%b8%e5%8c%ba%e8%bf%9b%e5%8f%a3%e8%bd%a6&id=<%=@supplier.id%>"><span>进口豪车馆</span> </a>
+            <a href="/quality_products?supplier_id=<%=@supplier.id%>
+              ">
+              <span>生态农产馆</span>
+            </a>
           </li>
-          <li><a href="/food_beverage?supplier_id=<%=@supplier.id%>" ><span>食品饮料馆</span> </a>
+          <li>
+            <a href="/black_tea?supplier_id=<%=@supplier.id%>
+              " >
+              <span>顶级红茶馆</span>
+            </a>
           </li>
-          <li><a href="javascript:void(0);" ><span>生活用品馆</span> </a>
+          <li>
+            <a href="/mgallery?name=%e4%bd%90%e5%ba%b7%e8%8c%b6&id=<%=@supplier.id%>
+              " >
+              <span>营养保健馆</span>
+            </a>
           </li>
-          <li><a href="/fashion?supplier_id=<%=@supplier.id%>" ><span>时令礼品馆</span> </a>
+          <li>
+            <a href="mgallery?name=%E5%A9%B4%E7%AB%A5&id=<%=@supplier.id%>
+              " >
+              <span>婴童天地馆</span>
+            </a>
+          </li>
+          <li>
+            <a href="/mproducts?id=a01090001&supplier_id=<%=@supplier.id%>
+              &fp=category" >
+              <span>微POS机</span>
+            </a>
           </li>
         </ul>
-      </li> <br>
-    <br>
-</ul>
+        <ul class="am-col col-sm-4 am-list-main am-list">
+          <li>
+            <a href="/mgallery?name=%e8%87%aa%e8%b4%b8%e5%8c%ba%e8%bf%9b%e5%8f%a3%e8%bd%a6&id=<%=@supplier.id%>
+              ">
+              <span>进口豪车馆</span>
+            </a>
+          </li>
+          <li>
+            <a href="/food_beverage?supplier_id=<%=@supplier.id%>
+              " >
+              <span>食品饮料馆</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0);" >
+              <span>生活用品馆</span>
+            </a>
+          </li>
+          <li>
+            <a href="/fashion?supplier_id=<%=@supplier.id%>
+              " >
+              <span>时令礼品馆</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <br>
+      <br></ul>
   </div>
 </div>
 
-
 <div class="footer clearfix">
 
-  <p class="copyright" style="display: none">Copyright © 2013-2014 trade-v.com <br/>版权所有 上海普慧信息科技有限公司 All rights reserved. <br/>沪ICP备13045311号-1 </p>
-  <p style="display:none">from=<%=session[:wechat_user]%>|recommend=<%=session[:recommend_user]%></p>
+  <p class="copyright" style="display: none">
+    Copyright © 2013-2014 trade-v.com
+    <br/>
+    版权所有 上海普慧信息科技有限公司 All rights reserved.
+    <br/>
+    沪ICP备13045311号-1
+  </p>
+  <p style="display:none">
+    from=
+    <%=session[:wechat_user]%>
+    |recommend=
+    <%=session[:recommend_user]%></p>
 </div>
-
 
 <script type="text/javascript">
 
@@ -296,7 +373,6 @@
 </script>
 <%= javascript_include_tag "mobile/jquery.vs.common-1.0.0.min" %>
 
-
 <script type="text/javascript">
     var _smq = _smq || [];
     _smq.push(['_setAccount', '63e2363', new Date()]);
@@ -316,14 +392,6 @@
         })
     })
 </script>
-
-
-
-
-
-
-
-
 
 <script>
     $(document).ready(function(){
@@ -424,5 +492,5 @@
     })
 
 
-</script>
-</body></html>
+</script></body>
+</html>
