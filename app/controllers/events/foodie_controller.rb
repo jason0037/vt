@@ -29,7 +29,7 @@ class Events::FoodieController < ApplicationController
         @applicant = Imodec::Applicant.new(params[:applicant])
         @applicant.save
       end
-     return redirect_to "http://vshop.trade-v.com/events/foodie?supplier_id=78"
+     return redirect_to "/events/party/detail?id=8&supplier_id=78#applicats"
     else
       @user.update_attributes(:user_desc=>params[:user_desc])
     end
