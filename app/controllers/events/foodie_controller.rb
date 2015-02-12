@@ -16,10 +16,26 @@ class Events::FoodieController < ApplicationController
   end
 
   def add_foodie
-    @user.update_attributes(:user_desc=>params[:user_desc])
+    member_id =0
+    if @user
+      member_id = @user.member_id
+    end
+
+    if params[:applicant][:event_id]=='8'
+      params[:applicant].merge!(:user_desc=>params[:applicant].delete(:address))
+      @applicant = Imodec::Applicant.where(:email=>params[:applicant][:email],:mobile=>params[:applicant][:mobile])
+
+      if @applicant.size==0
+        @applicant.save
+      end
+      redirect_to "http://vshop.trade-v.com/events/foodie?supplier_id=78"
+    else
+      @user.update_attributes(:user_desc=>params[:user_desc])
+    end
+    
 
     @applicant = Imodec::Applicant.new(params[:applicant])
-    @app= Imodec::Applicant.where(:member_id=>params[:applicant][:member_id],:event_id=>@applicant.event_id)
+    @app= Imodec::Applicant.where(:member_id=>member_id,:event_id=>@applicant.event_id)
      if @app.size>0
        render "error"
      else

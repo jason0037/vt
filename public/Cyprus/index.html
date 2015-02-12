@@ -60,13 +60,19 @@
                      <div class="row">                               
                         <div class="col-sm-12">
                             <div class="form-group">
-                            <form accept-charset="UTF-8" action="/events/applicants" data-remote="true" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="OiOyI8ywkXQXR9LewyOqoY/h6kTSuvS2imRvJ1pbwpQ=" /></div>
-      <input id="applicant_event_id" name="applicant[event_id]" type="hidden" value="8" />
+                            <form accept-charset="UTF-8" action="/events/foodie/add_foodie" class="am-form" data-remote="true" method="post">
+                                <input name="utf8" type="hidden" value="&#x2713;" />
+                                <input name="authenticity_token" type="hidden" value="dc2Vy2se0fF8M7bu4289m+EGVMH5QXEjgOiJ+Wi2kYY=" />
+                                <input id="applicant_event_id" name="applicant[event_id]" type="hidden" value="8" />
 
-                                <input placeholder="姓名" class="form-control" required="required"><br>
-                                <input placeholder="邮箱" class="form-control" required="required"><br>
-                                <input placeholder="电话" class="form-control" required="required"><br>
-                                <input placeholder="地址" class="form-control" required="required"><br>
+                                <input  name="applicant[name]" placeholder="姓名" class="form-control" required="required"><br>
+                                <select id="applicant_sex" name="applicant[sex]">
+                                    <option value="female">女</option>
+                                    <option value="male">男</option>
+                                </select><br>
+                                <input name="applicant[email]" placeholder="邮箱" class="form-control" required="required"><br>
+                                <input name="applicant[mobile]" placeholder="手机" class="form-control" required="required"><br>
+                                <input name="applicant[address]" placeholder="地址" class="form-control" required="required"><br>
                                 <input type="checkbox" placeholder="地址" class="form-control" checked readonly> 我同意注册条款
                             </div>
                         </div>
