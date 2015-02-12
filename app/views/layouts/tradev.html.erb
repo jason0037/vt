@@ -72,7 +72,7 @@
       <%if @supplier%>
         supplier_id="<%=@supplier.id%>";
       <%end%>
-<%if @user && isWeixinBrowser%>
+<%if @user%>
 
 
         if ('<%=@user.account.supplier_id %>'!=supplier_id){
