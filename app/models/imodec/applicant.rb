@@ -1,6 +1,6 @@
 #encoding:utf-8
 class Imodec::Applicant < ActiveRecord::Base
-  attr_accessible :age, :email, :mobile, :name, :sex,:event_id ,:wechat_num ,:member_id
+  attr_accessible :age, :email, :mobile, :name, :sex,:event_id ,:wechat_num ,:member_id:,:user_desc
   belongs_to :ecstore_member, :class_name => 'Ecstore::Member',:foreign_key=>"member_id"
   validates_presence_of :name,:message=>"请填写姓名"
   # validates_presence_of :age,:message=>"请填写年龄"
