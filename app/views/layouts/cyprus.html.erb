@@ -24,7 +24,7 @@
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-default btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand"><a href="/Cyprus">塞浦路斯</a></li>
+            <li class="sidebar-brand"><a href="/events/foodie?supplier_id=78">所有活动</a></li>
             <li><a href="#top">Home 首页</a></li>
             <li><a href="#register">Register 报名</a>            
             <li><a href="#contact">联系方式</a></li>
@@ -34,6 +34,7 @@
             <li><a href="#item_cn">条款与条件</a></li>
             <li><a href="#item_en">Terms & Conditions</a></li>
             <li><a href="#trust">活动授权书</a></li>
+            <li><a href="#applicants">还有谁报名了</a></li>
         </ul>
     </div>
     <!-- /Side Menu -->
@@ -66,7 +67,7 @@
                                 <input id="applicant_event_id" name="applicant[event_id]" type="hidden" value="8" />
 
                                 <input  name="applicant[name]" placeholder="姓名" class="form-control" required="required"><br>
-                                <select id="applicant_sex" name="applicant[sex]">
+                                <select id="applicant_sex" name="applicant[sex]" class="form-control" required="required">
                                     <option value="female">女</option>
                                     <option value="male">男</option>
                                 </select><br>
@@ -245,6 +246,14 @@
         </div>
     </div>
     <!--/Trust -->
+    <div class="container" id ="applicants">
+            <div class="row">
+                <div class="col-sm-12">
+                    <%=yield%>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>

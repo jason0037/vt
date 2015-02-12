@@ -46,14 +46,15 @@ class Events::PartyController < ApplicationController
 
 
   def detail
-    if params[:id]=='8'
-      redirect_to "/Cyprus"
-    end
+   
 
     @supplier=Ecstore::Supplier.find(params[:supplier_id])
     @event = Imodec::Event.find(params[:id])
     @applicants = @event.applicants.paginate(:page => params[:page], :per_page => 20,:order=>"created_at desc")
     @event_desc=@event.name
+     if params[:id]=='8'
+      render :layout=>"cyprus"
+    end
   end
 
   end
