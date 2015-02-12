@@ -26,6 +26,7 @@ class Events::FoodieController < ApplicationController
       @applicant = Imodec::Applicant.where(:email=>params[:applicant][:email],:mobile=>params[:applicant][:mobile])
 
       if @applicant.size==0
+        @applicant = Imodec::Applicant.new(params[:applicant])
         @applicant.save
       end
       redirect_to "http://vshop.trade-v.com/events/foodie?supplier_id=78"
