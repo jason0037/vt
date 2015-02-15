@@ -5,11 +5,12 @@ class HomeController < ApplicationController
 	layout 'standard'
 
 	def index
-		@title = "trade-V 跨境贸易直通车"
-		@home = Ecstore::Home.where(:supplier_id=>nil).last
-		if signed_in?
-		   redirect_to params[:return_url] if params[:return_url].present?
-		end
+		redirect_to "http://vshop.trade-v.com/vshop/78"
+		# @title = "trade-V 跨境贸易直通车"
+		# @home = Ecstore::Home.where(:supplier_id=>nil).last
+		# if signed_in?
+		#    redirect_to params[:return_url] if params[:return_url].present?
+		# end
 	end
 
 	def blank
