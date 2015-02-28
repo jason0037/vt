@@ -15,6 +15,33 @@
   <%end%>
   <meta content="" name="keywords">
   <meta content="" name="description">
+
+  <script>
+    <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+    function isWeixinBrowser(){
+        var ua = navigator.userAgent.toLowerCase();
+        return (/micromessenger/.test(ua)) ? true : false ;
+    }   
+
+    var auto_login_url= '/login';
+
+    if(isWeixinBrowser()){
+      var supplier_id='78';
+      <%if @supplier%>
+          supplier_id="<%=@supplier.id%>";
+      <%end%>
+      auto_login_url= '/auto_login?id='+supplier_id+'&<%=return_url%>&platform=mobile';
+    }
+    
+    <%if @user%>
+      if ('<%=@user.account.supplier_id %>'!=supplier_id){
+        location.href = auto_login_url;
+      }
+    <%else%>
+      location.href = auto_login_url;
+    <%end%>   
+  </script>
+
   <%= stylesheet_link_tag    "tradev.css" %>
   <%= stylesheet_link_tag    "amaze/amazeui.min.css" %>
 
@@ -58,33 +85,7 @@
 
   </style>
 </head>
-<body style="margin: 0 auto; min-width: 320px; max-width: 640px; ">
-
-  <% return_url={:return_url =>
-  request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
-  <script>
-    function isWeixinBrowser(){
-        var ua = navigator.userAgent.toLowerCase();
-        return (/micromessenger/.test(ua)) ? true : false ;
-    }
-
-    var supplier_id='78';
-      <%if @supplier%>
-        supplier_id="<%=@supplier.id%>";
-      <%end%>
-<%if @user%>
-
-
-        if ('<%=@user.account.supplier_id %>'!=supplier_id){
-            location.href = '/auto_login?id='+supplier_id+'&<%=return_url%>&platform=mobile'
-        }
-
-<%else%>
-        if(isWeixinBrowser())
-        {
-          location.href = "/auto_login?id="+supplier_id+"&<%=return_url%>&platform=mobile"
-        }
-<%end%></script>
+<body style="margin: 0 auto; min-width: 320px; max-width: 640px; ">  
   <%= yield %>
   <div class="bottomdivsclearfix">
 

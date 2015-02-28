@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <!--<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta content="yes" name="apple-mobile-web-app-capable">
@@ -8,15 +10,41 @@
   <title><%= I18n.t 'title' %></title>
   <meta content="" name="keywords">
   <meta content="" name="description">
+
+ <script>
+    <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
+    function isWeixinBrowser(){
+        var ua = navigator.userAgent.toLowerCase();
+        return (/micromessenger/.test(ua)) ? true : false ;
+    }   
+
+    var auto_login_url= '/login';
+
+    if(isWeixinBrowser()){
+      var supplier_id='78';
+      <%if @supplier%>
+          supplier_id="<%=@supplier.id%>";
+      <%end%>
+      auto_login_url= '/auto_login?id='+supplier_id+'&<%=return_url%>&platform=mobile';
+    }
+    
+    <%if @user%>
+      if ('<%=@user.account.supplier_id %>'!=supplier_id){
+        location.href = auto_login_url;
+      }
+    <%else%>
+      location.href = auto_login_url;
+    <%end%>   
+  </script>
+
   <%= stylesheet_link_tag    "tradev.css" %>
-<%= stylesheet_link_tag    "amaze/amazeui.min.css" %>
-<%= stylesheet_link_tag    "amaze/amazeui.widgets.min.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.min.css" %>
+  <%= stylesheet_link_tag    "amaze/amazeui.widgets.min.css" %>
 <!--框架有冲突用-->
 <!--时间插件-->
   <link rel="stylesheet" type="text/css" href="/assets/timeplug/jquery.datetimepicker.css"/>
   <script src="/assets/jquery.min.js"></script>
-   <script src="/assets/timeplug/jquery.datetimepicker.js"></script>
-
+  <script src="/assets/timeplug/jquery.datetimepicker.js"></script>
 
   <script>
       var ui = 'touch';
@@ -48,42 +76,16 @@
 </head>
 <body>
 
-<% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
-<%if @user%>
-    <script>
-        if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-            location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
-        }
-    </script>
-<%end%>
 <%= yield %>
 
-
-
-
-
 <div class="footer clearfix">
-  <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
-  <%if @user%>
-      <script>
-          if ('<%=@user.account.supplier_id %>'!='<%=@supplier.id%>'){
-              location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
-          }
-      </script>
-  <%else%>
-      <script>
-          location.href = "/auto_login?id=<%=@supplier.id%>&<%=return_url%>&platform=mobile"
-      </script>
-  <%end%>
+  
   <p class="copyright" style="display: none">Copyright © 2013-2014 trade-v.com <br/>版权所有 上海普慧信息科技有限公司 All rights reserved. <br/>沪ICP备13045311号-1 </p>
   <p style="display:none">from=<%=session[:wechat_user]%>|recommend=<%=session[:recommend_user]%></p>
 </div>
 
 
 <script type="text/javascript">
-
-
-
     function wechatShare(data) {
         // If no data is defined, just fallback to wechat's default behaviour.
         if (!data) {
