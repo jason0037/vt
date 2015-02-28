@@ -4,9 +4,10 @@ class Events::PartyController < ApplicationController
 
   def index
     if @user
-    @supplier=Ecstore::Supplier.find(params[:supplier_id])
-    render :layout => "default"
-   end
+      @supplier=Ecstore::Supplier.find(params[:supplier_id])
+      render :layout => "default"    
+    end
+
   end
 
   def stepone

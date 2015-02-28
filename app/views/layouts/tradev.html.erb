@@ -28,7 +28,7 @@
     if(isWeixinBrowser()){
       var supplier_id='78';
       <%if @supplier%>
-          supplier_id="<%=@supplier.id%>";
+          supplier_id='<%=@supplier.id%>';
       <%end%>
       auto_login_url= '/auto_login?id='+supplier_id+'&<%=return_url%>&platform=mobile';
     }
@@ -99,15 +99,15 @@
           </a>
         </li>
         <li>
-          <a class=""href="/cart/mobile?id=<%=@supplier.id%>
+          <a class=""href="/cart/mobile?id=<%=@supplier.id if @suplier%>
             ">
             <span  class="am-navbar-label">|购物车|</span>
           </a>
         </li>
         <li >
-          <a class=" " href="/vshop/<%=@supplier.id%>
+          <a class=" " href="/vshop/<%=@supplier.id if @supplier%>
             /user?id=
-            <%=@supplier.id%>
+            <%=@supplier.id if @supplier%>
             ">
             <span  class="am-navbar-label">|个人中心|</span>
           </a>
@@ -142,13 +142,13 @@
             </a>
           </li>
           <li>
-            <a href="/world_food?supplier_id=<%=@supplier.id%>
+            <a href="/world_food?supplier_id=<%=@supplier.id if @supplier%>
               " >
               <span>德国香肠馆</span>
             </a>
           </li>
           <li>
-            <a href="/prime_beef?supplier_id=<%=@supplier.id%>
+            <a href="/prime_beef?supplier_id=<%=@supplier.id if @supplier%>
               " >
               <span>顶级牛肉馆</span>
             </a>
@@ -158,31 +158,31 @@
 
         <ul class="am-col col-sm-4 am-list-main am-list">
           <li>
-            <a href="/quality_products?supplier_id=<%=@supplier.id%>
+            <a href="/quality_products?supplier_id=<%=@supplier.id if @supplier%>
               ">
               <span>生态农产馆</span>
             </a>
           </li>
           <li>
-            <a href="/black_tea?supplier_id=<%=@supplier.id%>
+            <a href="/black_tea?supplier_id=<%=@supplier.id if @supplier%>
               " >
               <span>顶级红茶馆</span>
             </a>
           </li>
           <li>
-            <a href="/mgallery?name=%e4%bd%90%e5%ba%b7%e8%8c%b6&id=<%=@supplier.id%>
+            <a href="/mgallery?name=%e4%bd%90%e5%ba%b7%e8%8c%b6&id=<%=@supplier.id if @supplier%>
               " >
               <span>营养保健馆</span>
             </a>
           </li>
           <li>
-            <a href="mgallery?name=%E5%A9%B4%E7%AB%A5&id=<%=@supplier.id%>
+            <a href="mgallery?name=%E5%A9%B4%E7%AB%A5&id=<%=@supplier.id if @supplier%>
               " >
               <span>婴童天地馆</span>
             </a>
           </li>
           <li>
-            <a href="/mproducts?id=a01090001&supplier_id=<%=@supplier.id%>
+            <a href="/mproducts?id=a01090001&supplier_id=<%=@supplier.id if @supplier%>
               &fp=category" >
               <span>微POS机</span>
             </a>
@@ -190,13 +190,13 @@
         </ul>
         <ul class="am-col col-sm-4 am-list-main am-list">
           <li>
-            <a href="/mgallery?name=%e8%87%aa%e8%b4%b8%e5%8c%ba%e8%bf%9b%e5%8f%a3%e8%bd%a6&id=<%=@supplier.id%>
+            <a href="/mgallery?name=%e8%87%aa%e8%b4%b8%e5%8c%ba%e8%bf%9b%e5%8f%a3%e8%bd%a6&id=<%=@supplier.id if @supplier %>
               ">
               <span>进口豪车馆</span>
             </a>
           </li>
           <li>
-            <a href="/food_beverage?supplier_id=<%=@supplier.id%>
+            <a href="/food_beverage?supplier_id=<%=@supplier.id if @supplier%>
               " >
               <span>食品饮料馆</span>
             </a>
@@ -207,7 +207,7 @@
             </a>
           </li>
           <li>
-            <a href="/fashion?supplier_id=<%=@supplier.id%>
+            <a href="/fashion?supplier_id=<%=@supplier.id if @supplier%>
               " >
               <span>时令礼品馆</span>
             </a>

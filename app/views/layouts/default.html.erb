@@ -23,7 +23,7 @@
     if(isWeixinBrowser()){
       var supplier_id='78';
       <%if @supplier%>
-          supplier_id="<%=@supplier.id%>";
+          supplier_id='<%=@supplier.id%>';
       <%end%>
       auto_login_url= '/auto_login?id='+supplier_id+'&<%=return_url%>&platform=mobile';
     }

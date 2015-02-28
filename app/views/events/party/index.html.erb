@@ -92,39 +92,32 @@
   </div>
 </div>
 
+<script type="text/javascript">
 
+  if ('<%=params[:step]%>'=='2'){
+      document.getElementById("step2").style.display="";
+  }
+  else if('<%=params[:step]%>'=='3'){
+      document.getElementById("step3").style.display="";
+  }
+  else{
+      document.getElementById("step1").style.display="";
+  }
 
-
-<SCRIPT type="text/javascript">
-
-    if ('<%=params[:step]%>'=='2'){
-        document.getElementById("step2").style.display="";
-    }
-    else if('<%=params[:step]%>'=='3'){
-        document.getElementById("step3").style.display="";
-    }
-    else{
-        document.getElementById("step1").style.display="";
-    }
-
-</SCRIPT>
-
-
-  <script> $('#startdatetimepicker').datetimepicker({
+  $('#startdatetimepicker').datetimepicker({
       format:'Y-m-d H:i',
       lang:'ch'
 
   });
-          $('#endatetimepicker')  .datetimepicker({
-              format:'Y-m-d H:i',
-              lang:'ch'
+  
+  $('#endatetimepicker')  .datetimepicker({
+      format:'Y-m-d H:i',
+      lang:'ch'
 
-          });
+  });
 
-  </script>
-<script>
+
   $(document).ready(function(){
-
 
     $(".submit").click(function(){
         var startime=$("#startdatetimepicker").val();
@@ -146,6 +139,5 @@
         }
     })
   })
-
 
 </script>
