@@ -1,0 +1,92 @@
+
+<%#=render "shared/metable", :resource => nil %>
+<div id="modal_login" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+      <div class="modal-header">
+      <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+
+     贸威是吃货帮的技术平台，信用平台，交易平台，请扫描二维码登陆
+      </div>
+  <div style="margin:20px;">
+  <h3>
+    我们全球优选产品和服务，为成功的您量身定制各种个性化产品和服务，从吃、穿、用到企业互联网转型。目前有四十多种德国香肠,自贸区进口豪车，西藏卓玛泉、云南松茸、私家传橙、日本和牛等等。欢迎关注！</h3>
+   <div style="float: right">
+  <div >
+    公司名称：上海普慧信息科技有限公司</div>
+  <div>
+    &nbsp; 客服电话：021-22306630</div> </div>
+  <div class="modal-body" style="text-align: center">
+       <img src="/images/a078/homepage/getqrcode.jpg">
+    </div>
+
+
+</div></div>
+
+
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        var showLogin = function(){
+            $(window.parent.document).find("body").append('<div id="simple_modal_over" class="__mask" style="opacity: 0.3;filter:alpha(opacity=30);position: fixed;display:block;z-index: 99998;top: 0;left: 0;width: 100%;height: 100%;background-color:#000;background-position: center center;background-repeat: no-repeat;background: -webkit-gradient(radial, center center, 0, center center, 460, from(#ffffff), to(#291a49));background: -webkit-radial-gradient(circle, #ffffff, #291a49);background: -moz-radial-gradient(circle, #ffffff, #291a49);background: -ms-radial-gradient(circle, #ffffff, #291a49);"></div>');
+            $(window.parent.document).find("#iframe_login").show();
+            $('.carousel').carousel();
+        }
+
+
+        var nologin_times  = document.cookie.match(/nologin_times=(\d+)/)[1];
+        var nologin_close = !!document.cookie.match(/nologin_close=1/);
+        var logined = !!document.cookie.match(/MEMBER=([0-9a-z-]+)/);
+        var passportLost = (window.parent.location.pathname == "/passport-lost.html");
+        var matched = window.parent.location.search.slice(1).match(/return_url=([^&]+)/);
+        if(!!matched){
+            var return_url = matched[1];
+            if(logined){
+                window.parent.location.replace(return_url);
+            }else{
+                $("#return_url").val(decodeURIComponent(return_url));
+                showLogin();
+            }
+        }else{
+            $("#return_url").val(window.parent.location.href);
+        }
+
+        if(!logined&&!nologin_close&&parseInt(nologin_times)>3&&!passportLost){
+            showLogin();
+        }
+
+        $(document).on("click","#modal_login .close",function(){
+
+            $(window.parent.document).find("iframe#iframe_login").hide();
+            $(window.parent.document).find(".__mask").remove();
+            if (!document.cookie.match(/nologin_close=1/)){
+                document.cookie = "nologin_close=1";
+            }
+            $('#modal_login .register_box').css({ left: '640px'});
+            $('#modal_login .login_box').css({ left: '40px'});
+        });
+
+        $(window.parent.document).on("click",".login",function(e){
+
+            $("#return_url").val(window.parent.location.href);
+
+
+            if($(this).attr("id")=="reg"){
+
+                // $('#modal_login .register_box').css({ left: '40px'},'linear');
+                // $('#modal_login .login_box').css({ left: '-600px'},'linear');
+                //$('#modal_login .login_box').animate({ left: '-600px'}, 400,'linear');
+                //$('#modal_login .register_box').animate({ left: '40px'}, 400,'linear');
+
+                setTimeout(function(){
+                    $("#modal_login .register_link").click();
+                },5);
+            }
+
+            showLogin();
+
+
+            return false;
+        });
+    });
+</script>

@@ -1,0 +1,914 @@
+<%=render "shared/metable", :resource => @home%>
+<%=content_for :head do %>
+  <%=stylesheet_link_tag "home"%>
+    <%=stylesheet_link_tag "homebase"%>
+    <%=stylesheet_link_tag "homepage"%>
+
+    <script src="/assets/unslider.js"></script>
+<%end%>
+<%if signed_in?%>
+    <%=content_for :notice do %>
+        <%=render "shared/notice"%>
+    <%end%>
+    <div class="menu_nav" style="float:left">
+    <div class="nav" id="topchannel">
+    <ul>
+    <li class="lichannel firstli"><a href="/category/1.html">商品分类</a>
+    <div class="i_category hide" style="display: block;">
+    <ul id="main_cat">
+    <li _index="1">
+      <div class="cat_tit" id="catlistul">
+        <a href="/category/98.html">黄油奶酪</a></div>
+      <div class="cat_menu" style="display: none;">
+        <div class="cat_m">
+          <dl class="cat_dl">
+            <dt><a href="/category/9804.html">水果</a> </dt>
+            <dd>
+              <a href="/category/980402.html">进口水果</a>
+              <a href="/category/980401.html">国产水果</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9805.html">超值组合</a> </dt>
+            <dd class="gdh170">
+              <a href="/category/980501.html">水果组合</a>
+              <a href="/category/980502.html">水果礼盒</a>
+            </dd>
+          </dl>
+        </div>
+
+        <div class="brand">
+          <div class="title">
+            推荐品牌
+          </div>
+          <div class="content">
+            <a href="/product/search?key=%E6%96%B0%E8%A5%BF%E5%85%B0%E4%BD%B3%E6%B2%9B">新西兰佳沛</a>
+            <a href="/product/search?key=%E6%96%B0%E5%A5%87%E5%A3%AB">新奇士</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li _index="2">
+      <div class="cat_tit">
+        <a href="/category/97.html">休闲食品</a></div>
+      <div class="cat_menu" style="display: none;">
+        <div class="cat_m">
+          <dl class="cat_dl">
+            <dt><a href="/category/9704.html">蛋品</a></dt>
+            <dd>
+              <a href="/category/970404.html">鸡蛋</a>
+              <a href="/category/970401.html">松花蛋</a>
+              <a href="/category/970403.html">咸鸭蛋</a>
+              <a href="/category/970402.html">其他蛋类</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9703.html">牛肉</a></dt>
+            <dd>
+              <a href="/category/970301.html">肥牛卷/牛肉饼</a>
+              <a href="/category/970302.html">牛骨/牛尾</a>
+              <a href="/category/970304.html">套餐组合</a>
+              <a href="/category/970303.html">调味牛排</a>
+              <a href="/category/970305.html">牛肉/牛排</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9706.html">禽类</a></dt>
+            <dd>
+              <a href="/category/970601.html">冰鲜禽类</a>
+              <a href="/category/970602.html">鹅</a>
+              <a href="/category/970603.html">分割禽</a>
+              <a href="/category/970604.html">鸽</a>
+              <a href="/category/970605.html">整鸡</a>
+              <a href="/category/970606.html">整鸭</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9701.html">腌制调味</a></dt>
+            <dd>
+              <a href="/category/970101.html">调味肉禽</a>
+              <a href="/category/970103.html">西式腌腊</a>
+              <a href="/category/970102.html">中式腌腊</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9702.html">羊肉</a></dt>
+            <dd>
+              <a href="/category/970201.html">羊排羊肉</a>
+              <a href="/category/970202.html">羊肉卷</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9705.html">猪肉</a></dt>
+            <dd>
+              <a href="/category/970501.html">黑毛/有机猪肉</a>
+              <a href="/category/970502.html">进口猪肉</a>
+              <a href="/category/970503.html">冷鲜猪肉</a>
+            </dd>
+          </dl>
+        </div>
+
+        <div class="brand">
+          <div class="title">
+            推荐品牌
+          </div>
+          <div class="content">
+            <a href="/product/search?key=%E9%87%91%E9%94%A3">金锣</a>
+            <a href="/product/search?key=%E7%BE%8E%E5%91%B3%E4%B8%83%E4%B8%83">贸威</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li _index="3">
+      <div class="cat_tit">
+        <a href="/category/96.html">橄榄油</a></div>
+      <div class="cat_menu" style="display: none;">
+        <div class="cat_m">
+          <dl class="cat_dl">
+            <dt><a href="/category/9604.html">海鲜</a></dt>
+            <dd>
+              <a href="/category/960402.html">鲍鱼海参</a>
+              <a href="/category/960401.html">贝类</a>
+              <a href="/category/960403.html">海蜇类</a>
+              <a href="/category/960405.html">虾类</a>
+              <a href="/category/960406.html">蟹类</a>
+              <a href="/category/960408.html">鱼类</a>
+              <a href="/category/960407.html">鱿鱼类</a>
+              <a href="/category/960404.html">其他</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9605.html">河鲜</a></dt>
+            <dd>
+              <a href="/category/960501.html">大闸蟹</a>
+              <a href="/category/960502.html">虾类</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9607.html">冰鲜水产</a></dt>
+            <dd>
+              <a href="/category/960701.html">冰鲜淡水鱼</a>
+              <a href="/category/960702.html">冰鲜海水鱼</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9601.html">即食类</a></dt>
+            <dd>
+              <a href="/category/960101.html">贝类</a>
+              <a href="/category/960102.html">刺身类</a>
+              <a href="/category/960103.html">海草类</a>
+              <a href="/category/960104.html">海蜇类</a>
+              <a href="/category/960105.html">虾类</a>
+              <a href="/category/960106.html">蟹类</a>
+              <a href="/category/960108.html">鱼类</a>
+              <a href="/category/960107.html">鱿鱼类</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9602.html">调味预处理</a></dt>
+            <dd>
+              <a href="/category/960201.html">鱼柳</a>
+              <a href="/category/960202.html">鱼排</a>
+              <a href="/category/960203.html">鱼片</a>
+              <a href="/category/960204.html">整鱼</a>
+              <a href="/category/960205.html">鱿鱼类</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9606.html">海鲜干货</a></dt>
+            <dd>
+              <a href="/category/960601.html">海鲜干货</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9603.html">超值组合</a></dt>
+            <dd>
+              <a href="/category/960301.html">海鲜组合</a>
+              <a href="/category/960302.html">混合组合</a>
+            </dd>
+          </dl>
+        </div>
+
+        <div class="brand">
+          <div class="title">
+            推荐品牌
+          </div>
+          <div class="content">
+            <a href="/product/search?key=%E7%BE%8E%E5%91%B3%E4%B8%83%E4%B8%83">贸威</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li _index="4">
+      <div class="cat_tit">
+        <a href="/category/88.html">牛奶乳品</a></div>
+      <div class="cat_menu" style="display: none;">
+        <div class="cat_m">
+          <dl class="cat_dl">
+            <dt><a href="/category/8801.html">乳制品</a></dt>
+            <dd>
+              <a href="/category/880101.html">进口牛奶</a>
+              <a href="/category/880102.html">国产牛奶</a>
+              <a href="/category/880103.html">豆奶</a>
+              <a href="/category/880104.html">奶酪</a>
+              <a href="/category/880105.html">黄油</a>
+              <a href="/category/880106.html">酸奶</a>
+              <a href="/category/880107.html">乳饮料</a>
+              <a href="/category/880108.html">低温奶</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/8802.html">奶粉系列</a></dt>
+            <dd>
+              <a href="/category/880201.html">孕妇奶粉</a>
+              <a href="/category/880202.html">1段</a>
+              <a href="/category/880203.html">2段</a>
+              <a href="/category/880204.html">3段</a>
+              <a href="/category/880205.html">4段</a>
+              <a href="/category/880206.html">成人奶粉</a>
+            </dd>
+          </dl>
+          <div style="height: 55px; width:1px;float: left;"></div>
+        </div>
+
+        <div class="brand">
+          <div class="title">
+            推荐品牌
+          </div>
+          <div class="content">
+            <a href="/product/search?key=%E7%BA%BD%E9%BA%A6%E7%A6%8F">纽麦福</a>
+            <a href="/product/search?key=%E5%85%B0%E7%89%B9">兰特（总统）</a>
+            <a href="/product/search?key=%E5%8D%A1%E8%B4%9D%E4%B9%90">卡贝乐</a>
+            <a href="/product/search?key=%E7%94%B0%E5%9B%AD">田园</a>
+            <a href="/product/search?key=%E5%93%88%E7%BB%B4">哈维</a>
+            <a href="/product/search?key=%E7%94%98%E8%92%82%E7%89%A7%E5%9C%BA">甘蒂牧场</a>
+            <a href="/product/search?key=%E5%AE%BE%E6%A0%BC%E7%91%9E">宾格瑞</a>
+            <a href="/product/search?key=%E8%89%BE%E7%BE%8E">艾美</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li _index="5">
+      <div class="cat_tit">
+        <a href="/product/listchannel/95">休闲食品</a></div>
+      <div class="cat_menu" style="display: none;">
+        <div class="cat_m">
+          <dl class="cat_dl">
+            <dt><a href="/category/9501.html">坚果炒货</a> </dt>
+
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9502.html">肉蛋制品</a> </dt>
+
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9503.html">海味零食</a> </dt>
+
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9504.html">小食</a> </dt>
+
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9505.html">饼干糕点</a> </dt>
+
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9506.html">糖果巧克力</a> </dt>
+
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9507.html">蜜饯果干</a> </dt>
+
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9509.html">营养保健</a> </dt>
+
+          </dl>
+        </div>
+        <div class="brand">
+          <div class="title">
+            推荐品牌
+          </div>
+          <div class="content">
+            <a href="/product/search?key=%E7%BE%8E%E5%91%B3%E4%B8%83%E4%B8%83">贸威</a>
+            <a href="/product/search?key=%E8%8E%B1%E5%AE%B6">莱家</a>
+            <a href="/product/search?key=%E5%BC%A0%E5%90%9B%E9%9B%85">张君雅</a>
+            <a href="/product/search?key=%E5%AE%9D%E7%91%9E%E6%B7%87">宝瑞淇</a>
+            <a href="/product/search?key=%E7%9A%87%E5%86%A0">皇冠</a>
+            <a href="/product/search?key=Mixx">Mixx</a>
+            <a href="/product/search?key=%E5%8C%97%E7%94%B0">北田</a>
+            <a href="/product/search?key=%E5%AE%BF%E9%9B%BE">宿雾</a>
+            <a href="/product/search?key=Aji">Aji</a>
+            <a href="/product/search?key=%E4%B9%90%E4%BA%8B">乐事</a>
+            <a href="/product/search?key=%E5%BA%B7%E5%B8%88%E5%82%85">康师傅</a>
+            <a href="/product/search?key=%E5%A5%BD%E4%B8%BD%E5%8F%8B">好丽友</a>
+            <a href="/product/search?key=%E9%BB%84%E9%A3%9E%E7%BA%A2">黄飞红</a>
+            <a href="/product/search?key=%E7%B1%B3%E8%80%81%E5%A4%B4">米老头</a>
+            <a href="/product/search?key=%E4%BD%B3%E5%AE%9D">佳宝</a>
+            <a href="/product/search?key=%E5%A4%96%E5%A9%86%E5%AE%B6">外婆家</a>
+            <a href="/product/search?key=%E6%9D%A5%E4%BC%8A%E4%BB%BD">来伊份</a>
+            <a href="/product/search?key=%E5%A4%A7%E7%80%9B">大瀛</a>
+            <a href="/product/search?key=%E6%A3%92%E6%A3%92%E5%A8%83">棒棒娃</a>
+            <a href="/product/search?key=%E5%B0%8F%E8%BE%A3%E6%A4%92">小辣椒</a>
+            <a href="/product/search?key=%E6%A0%BC%E5%8A%9B%E9%AB%98">格力高</a>
+            <a href="/product/search?key=%E5%8F%AF%E5%85%B9">可兹</a>
+            <a href="/product/search?key=%E7%9B%8A%E8%BE%BE">益达</a>
+            <a href="/product/search?key=%E7%BB%BF%E7%AE%AD">绿箭</a>
+            <a href="/product/search?key=%E9%98%BF%E5%B0%94%E5%8D%91%E6%96%AF">阿尔卑斯</a>
+            <a href="/product/search?key=%E6%A2%85%E6%80%A1%E9%A6%86">梅怡馆</a>
+            <a href="/product/search?key=%E7%96%86%E5%B1%B1%E7%BE%8E%E4%BB%81">疆山美仁</a>
+            <a href="/product/search?key=%E5%85%83%E7%A5%96">元祖</a>
+            <a href="/product/search?key=%E9%9D%99%E5%AE%89%E9%9D%A2%E5%8C%85%E6%88%BF">静安面包房</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li _index="6">
+      <div class="cat_tit">
+        <a href="/category/89.html">方便速食</a></div>
+      <div class="cat_menu" style="display: none;">
+        <div class="cat_m cat_width_m">
+          <dl class="cat_dl">
+            <dt><a href="/category/8906.html">速冻方便菜肴</a></dt>
+            <dd>
+              <a href="/category/890601.html">半成品菜</a>
+              <a href="/category/890602.html">火锅食品</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/8908.html">即食食品</a> </dt>
+            <dd>
+              <a href="/category/890802.html">酒酿制品</a>
+              <a href="/category/890805.html">肉类罐头</a>
+              <a href="/category/890803.html">水产罐头</a>
+              <a href="/category/890804.html">杂粮罐头</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/8907.html">速冻主食小吃</a></dt>
+            <dd>
+              <a href="/category/890701.html">西式主食</a>
+              <a href="/category/890702.html">新式小食</a>
+              <a href="/category/890703.html">中式点心</a>
+              <a href="/category/890704.html">中式主食</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/8909.html">冷鲜熟食</a></dt>
+            <dd>
+              <a href="/category/890901.html">微波熟食</a>
+              <a href="/category/890902.html">即食熟食</a>
+            </dd>
+          </dl>
+          <div style="height: 105px; width:1px;float: left;"></div>
+        </div>
+
+      </div>
+    </li>
+    <li _index="7">
+      <div class="cat_tit">
+        <a href="/category/87.html">保健食品</a></div>
+      <div class="cat_menu" style="display: none;">
+        <div class="cat_m">
+          <dl class="cat_dl">
+            <dt><a href="/category/8702.html">蔬菜</a> </dt>
+            <dd>
+              <a href="/category/870201.html">叶菜类</a>
+              <a href="/category/870202.html">根茎类</a>
+              <a href="/category/870203.html">瓜果类</a>
+              <a href="/category/870204.html">菌菇类</a>
+              <a href="/category/870206.html">香辛类</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/8708.html">有机蔬菜</a> </dt>
+            <dd>
+              <a href="/category/870801.html">有机叶菜类</a>
+              <a href="/category/870802.html">有机根茎类</a>
+              <a href="/category/870803.html">有机茄果类</a>
+              <a href="/category/870804.html">有机花菜类</a>
+              <a href="/category/870805.html">有机菌菇类</a>
+              <a href="/category/870806.html">有机豆类</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/8707.html">速冻蔬菜</a> </dt>
+            <dd class="gdh170">
+              <a href="/category/870701.html">叶菜类</a>
+              <a href="/category/870702.html">根茎类</a>
+              <a href="/category/870703.html">瓜果类</a>
+              <a href="/category/870704.html">豆类</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/8701.html">即食蔬果</a> </dt>
+            <dd class="gdh170">
+              <a href="/category/870301.html">蔬菜色拉</a>
+              <a href="/category/870302.html">水果色拉</a>
+              <a href="/category/870303.html">水果杯</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/8706.html">健康素食</a> </dt>
+            <dd class="gdh170">
+              <a href="/category/870601.html">即食素食</a>
+              <a href="/category/870602.html">生鲜素食</a>
+              <a href="/category/870603.html">方便素食</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/8704.html">豆制品</a> </dt>
+            <dd class="gdh170">
+              <a href="/category/870401.html">大豆食品类</a>
+              <a href="/category/870402.html">其他豆制品</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/8705.html">果蔬套餐</a> </dt>
+            <dd class="gdh170">
+              <a href="/category/870502.html">有机套餐</a>
+            </dd>
+          </dl>
+        </div>
+
+        <div class="brand">
+          <div class="title">
+            推荐品牌
+          </div>
+          <div class="content">
+            <a href="/product/search?key=%E4%B8%83%E4%B8%83%E5%86%9C%E5%9C%BA">七七农场</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li _index="8">
+      <div class="cat_tit">
+        <a href="/category/93.html">粮油副食</a></div>
+      <div class="cat_menu" style="display: none;">
+        <div class="cat_m">
+          <dl class="cat_dl">
+            <dt><a href="/category/9303.html">米面杂粮</a></dt>
+            <dd>
+              <a href="/category/930301.html">米</a>
+              <a href="/category/930302.html">面/面制品</a>
+              <a href="/category/930304.html">杂粮</a>
+              <a href="/category/930303.html">有机杂粮</a>
+              <a href="/category/930305.html">方便面</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9305.html">食用油</a></dt>
+            <dd>
+              <a href="/category/930501.html">国产食用油</a>
+              <a href="/category/930502.html">进口食用油</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9301.html">厨房调料</a></dt>
+            <dd>
+              <a href="/category/930105.html">糖</a>
+              <a href="/category/930101.html">醋</a>
+              <a href="/category/930103.html">酱油</a>
+              <a href="/category/930109.html">味精</a>
+              <a href="/category/930110.html">食用盐</a>
+              <a href="/category/930107.html">调味料</a>
+              <a href="/category/930106.html">调味酱</a>
+              <a href="/category/930111.html">腌制品</a>
+              <a href="/category/930102.html">酱菜</a>
+              <a href="/category/930108.html">西式调味料</a>
+              <a href="/category/930104.html">料酒</a>
+              <a href="/category/930112.html">涂抹酱</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9304.html">南北干货</a></dt>
+            <dd>
+              <a href="/category/930401.html">干货菌菇类</a>
+              <a href="/category/930402.html">其他干货类</a>
+            </dd>
+          </dl>
+          <div style="height:98px; width:1px;float: left;"></div>
+        </div>
+
+        <div class="brand">
+          <div class="title">
+            推荐品牌
+          </div>
+          <div class="content">
+            <a href="/product/search?key=%E9%87%91%E8%9D%B6">金蝶</a>
+            <a href="/product/search?key=%E9%94%A6%E7%95%94">锦畔</a>
+            <a href="/product/search?key=%E7%A6%8F%E4%B8%B4%E9%97%A8">福临门</a>
+            <a href="/product/search?key=%E6%9D%8E%E9%94%A6%E8%AE%B0">李锦记</a>
+            <a href="/product/search?key=%E5%A4%A7%E5%B1%B1%E5%90%88">大山合</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li _index="9">
+      <div class="cat_tit">
+        <a href="/category/94.html">酒水饮料</a></div>
+      <div class="cat_menu" style="display: none;">
+        <div class="cat_m">
+          <dl class="cat_dl">
+            <dt><a href="/category/9402.html">酒类</a></dt>
+            <dd>
+              <a href="/category/940201.html">白酒</a>
+              <a href="/category/940204.html">啤酒</a>
+              <a href="/category/940203.html">黄酒</a>
+              <a href="/category/940202.html">红酒/葡萄酒</a>
+              <a href="/category/940207.html">日本酒</a>
+              <a href="/category/940206.html">洋酒</a>
+              <a href="/category/940208.html">预调酒</a>
+              <a href="/category/940205.html">其他酒类</a>
+              <a href="/category/940209.html">酒类配件</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9404.html">饮料/水</a> </dt>
+            <dd>
+              <a href="/category/940404.html">矿泉水</a>
+              <a href="/category/940405.html">碳酸饮料</a>
+              <a href="/category/940401.html">茶饮料</a>
+              <a href="/category/940403.html">果汁</a>
+              <a href="/category/940406.html">咖啡饮料</a>
+              <a href="/category/940402.html">功能性饮料</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9403.html">咖啡/茶</a> </dt>
+            <dd>
+              <a href="/category/940306.html">咖啡豆/粉</a>
+              <a href="/category/940305.html">咖啡冲饮</a>
+              <a href="/category/940303.html">红茶</a>
+              <a href="/category/940307.html">绿茶</a>
+              <a href="/category/940310.html">乌龙茶</a>
+              <a href="/category/940308.html">普洱茶</a>
+              <a href="/category/940304.html">花果茶</a>
+              <a href="/category/940302.html">韩国茶</a>
+              <a href="/category/940309.html">其他茶</a>
+              <a href="/category/940301.html">茶叶礼盒</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9401.html">冲调饮品</a> </dt>
+            <dd>
+              <a href="/category/940106.html">奶粉</a>
+              <a href="/category/940102.html">蜂蜜</a>
+              <a href="/category/940103.html">麦片</a>
+              <a href="/category/940104.html">奶茶</a>
+              <a href="/category/940105.html">速溶饮品</a>
+            </dd>
+          </dl>
+          <div style="height:120px; width:1px;float: left;"></div>
+        </div>
+
+        <div class="brand">
+          <div class="title">
+            推荐品牌
+          </div>
+          <div class="content">
+            <a href="/product/search?key=%E4%B9%90%E7%BB%B4%E8%90%A8">乐维萨</a>
+            <a href="/product/search?key=%E5%8D%A1%E5%8F%B8%E8%AF%BA">卡司诺</a>
+            <a href="/product/search?key=%E6%A0%BC%E5%85%B0%E7%89%B9">格兰特</a>
+            <a href="/product/search?key=%E5%A5%BD%E6%97%B6">好时</a>
+            <a href="/product/search?key=%E6%B1%87%E6%BA%90">汇源</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li _index="10">
+      <div class="cat_tit" style="border-bottom: none;">
+        <a href="/category/91.html">礼盒卡券</a></div>
+      <div class="cat_menu" style="display: none;">
+        <div class="cat_m">
+          <dl class="cat_dl">
+            <dt><a href="/category/9102.html">精品礼盒</a></dt>
+            <dd>
+              <a href="/category/910201.html">水果礼盒</a>
+              <a href="/category/910202.html">干货礼盒</a>
+              <a href="/category/910203.html">海鲜礼盒</a>
+              <a href="/category/910205.html">杂粮礼盒</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9101.html">礼品卡券</a></dt>
+            <dd>
+              <a href="/category/910102.html">礼品卡</a>
+              <a href="/category/910101.html">棕子券</a>
+              <a href="/category/910103.html">蟹券</a>
+              <a href="/category/910104.html">月饼券</a>
+              <a href="/category/910105.html">现金券</a>
+              <a href="/category/910106.html">海鲜礼包券</a>
+              <a href="/category/910107.html">蛋糕面包券</a>
+            </dd>
+          </dl>
+          <dl class="cat_dl">
+            <dt><a href="/category/9103.html">年货套餐</a></dt>
+            <dd>
+              <a href="/category/910301.html">年货套餐</a>
+            </dd>
+          </dl>
+          <div style="height: 232px; width:1px;float: left;"></div>
+        </div>
+
+        <div class="brand">
+          <div class="title">
+            推荐品牌
+          </div>
+          <div class="content">
+            <a href="/product/search?key=%E7%BE%8E%E5%91%B3%E4%B8%83%E4%B8%83">贸威</a>
+          </div>
+        </div>
+      </div>
+    </li>
+    </ul>
+    </div>
+    </li>
+    <li class="lichannel liindex"><a href="/">首页 HOME</a></li>
+    <li class="lichannel"><a href="/">限时特价 ON SALE</a></li>
+    <li class="lichannel"><a href="/gallery/483?gtype=1">现货 GOODS</a><span class="ch_sp_tag new1"></span></li>
+    <li class="lichannel"><a href="/gallery/483?gtype=2">期货 FUTURES</a></li>
+    <li class="lichannel"><a href="/gallery/483?gtype=3">代购 PURCHASE AGENT</a></li>
+    <li class="lichannel"><a href="/country/97?gtype=1">国别中心 COUNTORY</a><span class="ch_sp_tag new"></span></li>
+    <li class="lichannel"><a href="/brands">品牌专区 BRAND</a></li>
+
+
+    </ul>
+
+    </div>
+    </div>
+
+    <div class="products clearfix" style="display:none;width:170px;float:left;border:1px solid">
+    <div class="left">
+      <div class="tree-menu" id="cats_tree">
+        <div class="title-level1">
+          <a href="#">酒类</a>
+        </div>
+        <ul class="items-level1 folded ">
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/489?gtype=1">啤酒</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/535?gtype=1">葡萄酒</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/548?gtype=1">果酒</a></div>
+          </li>
+        </ul>
+        <div class="title-level1">
+          <a href="#">食品饮料</a>
+        </div>
+        <ul class="items-level1 folded expand">
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/508?gtype=1">冰激凌</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/509?gtype=1">蛋糕</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/494?gtype=1">巧克力</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/495?gtype=1">糖果</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/496?gtype=1">饼干</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/497?gtype=1">茶</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/498?gtype=1">咖啡</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/499?gtype=1">枫糖</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/500?gtype=1">橄榄油</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/534?gtype=1">通心粉</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/532?gtype=1">果汁</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/533?gtype=1">豆奶</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/530?gtype=1">套装礼盒</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/536?gtype=1">冲饮</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/537?gtype=1">蜂蜜</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/539?gtype=1">干果</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/547?gtype=1">牛奶</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/550?gtype=1">婴儿食品</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/551?gtype=1">奶粉</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/554?gtype=1">罐头</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/555?gtype=1">饮料</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/556?gtype=1">奶酪</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/557?gtype=1">黄油</a></div>
+          </li>
+        </ul>
+
+        <div class="title-level1">
+          <a href="#">美容护肤</a>
+        </div>
+        <ul class="items-level1 folded ">
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/520?gtype=1">护肤乳液</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/510?gtype=1">面膜</a></div>
+          </li>
+        </ul>
+        <div class="title-level1">
+          <a href="#">家居日用</a>
+        </div>
+        <ul class="items-level1 folded ">
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/521?gtype=1">洗发水</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/522?gtype=1">润发乳霜</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/519?gtype=1">沐浴露</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/518?gtype=1">浴盐</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/524?gtype=1">厨房用品</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/527?gtype=1">工艺品</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/538?gtype=1">茶具</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/544?gtype=1">清洁剂</a></div>
+          </li>
+          <li class="item-level1">
+            <div class="title-level2"><a href="/gallery/549?gtype=1">菜籽油</a></div>
+          </li>
+        </ul>
+
+
+      </div>
+    </div>
+    </div>
+
+        <%=content_for :cover do %>
+
+        <div style="display:none">
+
+          <%=render "slider" if @home.sliders%>
+        </div>
+        <%end%>
+
+
+    <%#=render "keywords" if @home.keywords%>
+
+    <% #render "suit_products"%>
+
+    <div class="main" id="categoryProList">
+      <div class="i_banner">
+        <div class="i_slider  mainBanner">
+          <div class="banner" id="banner">
+            <div id="banner_bg">
+            </div>
+            <!--标题背景-->
+            <div id="banner_info">
+            </div>
+            <ul>
+              <li>1</li>
+              <li>2</li>
+              <li class="on">3</li>
+              <li>4</li>
+              <li>5</li>
+              <li>6</li>
+              <li>7</li>
+            </ul>
+            <div id="banner_list">
+              <div class="bitem">
+                <div class="mi">
+                  <a href="/products/a0761001" target="_blank">
+                    <img src="/assets/home/slide_tbtx.jpg" class="lazy" data-src="/assets/home/slide_tbtx.jpg" alt="同班同学"></a>
+                </div>
+                <div class="bannerad">
+                  <span><a href="/products/a0761001" target="_blank"><img src="./yummy77original_files/197x100-0001.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0001.jpg" alt=""></a></span>
+                  <span><a href="/products/a0761001" target="_blank"><img src="./yummy77original_files/197x100-0002(1).jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0002(1).jpg" alt=""></a></span>
+                  <span><a href="/products/a0761001" target="_blank"><img src="./yummy77original_files/197x100-0004.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0004.jpg" alt=""></a></span>
+                  <span><a href="/products/a0761001" target="_blank"><img src="./yummy77original_files/197x100-0048.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0048.jpg" alt=""></a></span>
+                </div>
+              </div>
+              <div class="bitem hide" style="display: none;">
+                <div class="mi">
+                  <a href="/static/activity/activity140523/index.html?cpin=homeindex" target="_blank">
+                    <img src="/assets/home/slide_president.jpg" class="lazy" data-src="/assets/home/slide_president.jpg" alt=""></a>
+                </div>
+                <div class="bannerad">
+                  <span><a href="/product/111420132.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0030522.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0030522.jpg" alt=""></a></span>
+                  <span><a href="/product/111420168.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0035522.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0035522.jpg" alt=""></a></span>
+                  <span><a href="/product/111413112.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-002259.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-002259.jpg" alt=""></a></span>
+                  <span><a href="/product/111017015.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0039522.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0039522.jpg" alt=""></a></span>
+                </div>
+              </div>
+              <div class="bitem hide" style="display: block;">
+                <div class="mi">
+                  <a href="/products/a0761001" target="_blank">
+                    <img src="./yummy77original_files/儿童节banner788-29005.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/banner/儿童节banner788-29005.jpg" alt=""></a>
+                </div>
+                <div class="bannerad">
+                  <span><a href="/product/111714032.html?cpin=homeindex&cpip=Mtop4-1" target="_blank"><img src="./yummy77original_files/197x100-0010.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0010.jpg" alt=""></a></span>
+                  <span><a href="/product/111713049.html?cpin=homeindex&cpip=Mtop4-2" target="_blank"><img src="./yummy77original_files/197x100-0011.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0011.jpg" alt=""></a></span>
+                  <span><a href="/product/111712022.html?cpin=homeindex&cpip=Mtop4-3" target="_blank"><img src="./yummy77original_files/197x100-0012.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0012.jpg" alt=""></a></span>
+                  <span><a href="/product/111713048.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0024522.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0024522.jpg" alt=""></a></span>
+                </div>
+              </div>
+              <div class="bitem hide" style="display: none;">
+                <div class="mi">
+                  <a href="/static/activity/activity140524/index.html?cpin=homeindex" target="_blank">
+                    <img src="./yummy77original_files/banner_菠萝(1).jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/banner/banner_菠萝(1).jpg" alt=""></a>
+                </div>
+                <div class="bannerad">
+                  <span><a href="/product/111818006.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0040522.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0040522.jpg" alt=""></a></span>
+                  <span><a href="/product/111816144.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0041522.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0041522.jpg" alt=""></a></span>
+                  <span><a href="/product/211111008.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0042.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0042.jpg" alt=""></a></span>
+                  <span><a href="/product/211212004.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0043102.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0043102.jpg" alt=""></a></span>
+                </div>
+              </div>
+              <div class="bitem hide" style="display: none;">
+                <div class="mi">
+                  <a href="/activity/promotion/1-250.html?cpin=homeindex" target="_blank">
+                    <img src="./yummy77original_files/榴莲BANNER改1_0523.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/banner/榴莲BANNER改1_0523.jpg" alt=""></a>
+                </div>
+                <div class="bannerad">
+                  <span><a href="/product/121916016.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0044.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0044.jpg" alt=""></a></span>
+                  <span><a href="/product/125310021.html?cpin=homeindex&cpip=Mtop7-3" target="_blank"><img src="./yummy77original_files/197x100-0034522.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0034522.jpg" alt=""></a></span>
+                  <span><a href="/product/251425053.html?cpin=homeindex&cpip=Mtop7-1" target="_blank"><img src="./yummy77original_files/197x100-0036522.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0036522.jpg" alt=""></a></span>
+                  <span><a href="/product/121812009.html?cpin=homeindex&cpip=Mtop7-2" target="_blank"><img src="./yummy77original_files/197x100-0045.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0045.jpg" alt=""></a></span>
+                </div>
+              </div>
+              <div class="bitem hide" style="display: none;">
+                <div class="mi">
+                  <a href="/activity/promotion/1-246.html?cpin=homeindex" target="_blank">
+                    <img src="./yummy77original_files/端午节BANNER.JPG" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/banner/端午节BANNER.JPG" alt=""></a>
+                </div>
+                <div class="bannerad">
+                  <span><a href="/product/101015080.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0031522.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0031522.jpg" alt=""></a></span>
+                  <span><a href="/product/101015076.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0033522.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0033522.jpg" alt=""></a></span>
+                  <span><a href="/product/101423021.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0020522.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0020522.jpg" alt=""></a></span>
+                  <span><a href="/product/101113037.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0021522.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0021522.jpg" alt=""></a></span>
+                </div>
+              </div>
+              <div class="bitem hide" style="display: none;">
+                <div class="mi">
+                  <a href="/activity/promotion/1-248.html?cpin=homeindex" target="_blank">
+                    <img src="./yummy77original_files/杉德banner788-290.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/banner/杉德banner788-290.jpg" alt=""></a>
+                </div>
+                <div class="bannerad">
+                  <span><a href="/product/111140096.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0046xg.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0046xg.jpg" alt=""></a></span>
+                  <span><a href="/product/142510104.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0050.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0050.jpg" alt=""></a></span>
+                  <span><a href="/product/141314010.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0049.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0049.jpg" alt=""></a></span>
+                  <span><a href="/product/111140081.html?cpin=homeindex" target="_blank"><img src="./yummy77original_files/197x100-0047xg.jpg" class="lazy" data-src="http://images.yummy77.com/upload/wscreen/middle/197x100-0047xg.jpg" alt=""></a></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      </div>
+    <div class="other clearfix">
+        <%#render "new_hots"%>
+        <%=@home.body.html_safe if @home.body.present?%>
+    </div>
+<%else%>
+ <input id="poplogin" type="hidden" value="1">
+
+<%end%>
+
+<%=javascript_include_tag "bootstrap-transition","bootstrap-carousel"%>

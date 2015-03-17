@@ -1,0 +1,88 @@
+<style type="text/css">
+
+   .am-panel-hd >span{
+    text-align: center;
+   }
+
+</style>
+
+<div class="am-panel am-panel-default fixed_one "style="margin: 0px;padding: 0px">
+  <div class="am-panel-hd"  style="text-align: center;padding: 10px">欢迎来到<%=@gallery.tag_name%></div>
+</div>
+<%if @categories%>
+    <%@categories.each  do |category|%>
+      <div class="am-panel  "style="filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9" data-am-sticky >
+        <div class="am-panel-hd" style="background-color: #FF8000;"> 
+          <span style="font-size: 20px; "><%=category.cat_name%></span>
+        </div>
+      </div>
+      <div class="am-panel-bd">
+        <ul class="am-list">
+          <a name="<%=category.cat_name%>"> </a>
+            <%@goods=Ecstore::Good.where(:cat_id=>category.cat_id)%>
+              <% @goods.each do |good|%>
+                  <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                    <img class=" beisaier hide"  src="<%=good.list_default_pic%>">
+                    <div class="am-col col-sm-4 am-list-thumb">
+
+                        <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
+                    </div>
+                    <div class="am-col col-sm-8 am-list-main">
+                      <a href="/mproducts?id=<%=good.bn%>&supplier_id=<%=@supplier.id%>&fp=category" class="cart_orderlist_i">
+                        <span class="am-list-item-hd goods-name-span" >  <%=good.name%>  </span>   <br>
+                        <%unless good.tag.blank?%>
+                            <%a=0%>
+                            <%good.tag.split(",").each do |tag|%>
+                                <%color=["black","red","black","red"]%>
+                                <%if a<5%>
+                                    <em style=" font-size: 12px; color: <%=color[a]%>"> <%=tag%> </em>
+                                    <%end%><%a=a+1%> <%end%>  <%end%>  </a>
+
+                     <div class="am-list-item-text" style="line-height: 2">
+                      <div class="am-col ">
+                        <span  class="mall_price">吃货价:¥<%=good.price%> </span> &nbsp;
+                        <span class="mktprice" >市场价:¥<%=good.mktprice%></span>
+
+                      </div>   </div>
+
+                    </div> <div></div> </li>
+                    <div class="button">
+                    <input type="hidden" class="goods_id" value="<%=good.goods_id%>"/>
+                        <a href="javascript:void (0)" class="am-btn am-btn-danger addcart"> <i class="am-icon-shopping-cart"> <em class="icon-em">加入购物车</em> </i> </a>
+                      <a  href="javascript:void (0)"class="am-btn  am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
+                      </div>
+        <%end%> 
+        </ul>  
+      </div>
+    <%end%>
+<%end%>
+
+
+<script type="text/javascript" >
+    $('.addcart').on('click',addProduct);
+
+        $(".buttom_bolt").on('click',function(){
+            var goods_id= $(this).parent().children(".goods_id").val();
+
+            var url="/cart/add" ;
+
+
+        $.ajax(url,{
+            type: "post",
+            data:{"goods_id":goods_id,"spec": "","attr":"mall","platform":"mobile"  },
+
+            success:function(res){
+             window.location.href="/cart/mobile?supplier_id=78";
+            }
+        })
+    })
+
+</script>
+
+<div class="J-shoping">
+  <div class="amz-toolbar J-shoping-title" id="amz-toolbar">
+    <a href="/cart/mobile?id=<%=@supplier.id%>" title="购物车" >
+      <i class="am-icon-btn  am-icon-shopping-cart " id="cart"></i>
+    </a>
+    <span class="  J-shoping-num" id="cart_num"><%=@line_items.count%></span>
+  </div> </div>

@@ -1,8 +1,9 @@
 class Admin::TagExtsController < Admin::BaseController
 	
-	def index
+def index
 		key = params[:search][:key] if params[:search] && params[:search][:key]
-		@tags = Ecstore::TagName.where('tag_name rlike ?','z[0-9]{4}').order("tag_id desc")
+		#@tags = Ecstore::TagName.where('tag_name rlike ?','z[0-9]{4}').order("tag_id desc")
+		@tags = Ecstore::TagName.order("tag_id desc")
 		unless key.blank?
 			@tags = @tags.where("tag_name like ?","%#{key}%")
 		end
@@ -11,6 +12,11 @@ class Admin::TagExtsController < Admin::BaseController
 	end
 
 	def edit
+		@tag = Ecstore::TagName.find(params[:id])
+		@tag_ext = @tag.tag_ext || Ecstore::TagExt.new(:tag_name=>@tag.tag_name,:tag_id=>@tag.tag_id)
+	end
+
+	def new
 		@tag = Ecstore::TagName.find(params[:id])
 		@tag_ext = @tag.tag_ext || Ecstore::TagExt.new(:tag_name=>@tag.tag_name,:tag_id=>@tag.tag_id)
 	end

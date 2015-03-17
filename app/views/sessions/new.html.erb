@@ -1,25 +1,124 @@
-
 <%#=render "shared/metable", :resource => nil %>
 <div id="modal_login" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-      <div class="modal-header">
-      <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
-     贸威是吃货帮的技术平台，信用平台，交易平台，请扫描二维码登陆
+
+  </div>
+<div class="modal-body">
+  <div class="login_box">
+    <h5>您还没有登录，请在此处登录网站</h5>
+
+    <div class="login_form">
+      <%=#form_for :session,:url=>"/login", :remote=>true do |f|%>
+      <%=#hidden_field_tag :return_url%>
+      <div id="login_msg"></div>
+
+      <%=#f.text_field :username,:placeholder=>"已认证手机号/用户名/邮箱",:class=>"new-input"%>
+      <%=#f.password_field :password, :placeholder=>"密码",:class=>"new-input"%>
+      <%=#f.submit "登 录",:class=>"btn new_btn"%>
+
+      <div class="clear"></div>
+      <div class="other-login">
+                  <span>
+                     还不是会员？<a class="register_link dark_red" href="javascript:void(0);">立即注册</a>
+                  </span>
+        <ul class="sns_login" style="">
+          <span> 或第三方登录:</span>
+          <li>
+            <a class="tsina" href="/auth/weixin" target="_top">微信</a>
+          </li>
+
+          <div class="clear"></div>
+        </ul>
+        <ul class="sns_login" style="display:none">
+          <span> 或第三方登录:</span>
+          <li>
+            <a class="tsina" href="/auth/weibo" target="_top">新浪微博</a>
+          </li>
+          <li>
+            <a class="douban" href="/auth/douban" target="_top">豆瓣</a>
+          </li>
+          <div class="clear"></div>
+        </ul>
+        <div class="login_links">
+          <input type="checkbox" checked="checked" id="autologin" name="remember_me" value="1">
+          <label id="remember_me" class="checkbox_label"  for="autologin"> 记住登录</label>
+          <a class="forgot_link" href="/users/forgot_password" target="_top">找回密码</a>
+        </div>
+        <div class="clear"></div>
       </div>
-  <div style="margin:20px;">
-  <h3>
-    我们全球优选产品和服务，为成功的您量身定制各种个性化产品和服务，从吃、穿、用到企业互联网转型。目前有四十多种德国香肠,自贸区进口豪车，西藏卓玛泉、云南松茸、私家传橙、日本和牛等等。欢迎关注！</h3>
-   <div style="float: right">
-  <div >
-    公司名称：上海普慧信息科技有限公司</div>
-  <div>
-    &nbsp; 客服电话：021-22306630</div> </div>
-  <div class="modal-body" style="text-align: center">
-       <img src="/images/a078/homepage/getqrcode.jpg">
+      <%#end%>
+    </div>
+
+    <div id="myCarousel" class="carousel slide">
+
+      <div class="carousel-inner">
+        <div class="active item">
+          <img src="/assets/login_img1.jpg" alt="享受旗下所有设计师品牌提供的VIP专享优惠">
+        </div>
+        <div class="item">
+          <img src="/assets/login_img2.jpg" alt="有机会受邀参加贸威线下会员专享沙龙活动">
+        </div>
+        <div class="item">
+          <img src="/assets/login_img3.jpg" alt="获得贸威提供的最新时尚信息">
+        </div>
+      </div>
+
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+      </ol>
     </div>
 
 
-</div></div>
+  </div>
+
+  <div class="register_box">
+    <h5>a class="login_link" href="#">返回登录框</a现在注册即可获价值100元现金抵用券</h5>
+    <div class="login_form">
+      <img class="register_girl" src="/assets/register_girl.jpg">
+      <%=#form_for :user,:url=>users_path,:remote=>true,:html=>{:id=>"register_form"} do |f|%>
+      <ul class="register_ul">
+        <li>
+          <%=#f.text_field :login_name,:class=>"new-input required",:placeholder=>"用户名"%>
+          <div class="help-block" rel="user_login_name"></div>
+        </li>
+        <li>
+          <%=#f.password_field :login_password,:class=>"new-input required",:placeholder=>"密码"%>
+          <div class="help-block" rel="user_login_password"></div>
+        </li>
+        <li>
+          <%=#f.password_field :login_password_confirmation,:class=>"new-input required",:placeholder=>"确认密码"%>
+          <div class="help-block" rel="user_login_password_confirmation"></div>
+        </li>
+        <li>
+          <%=#f.text_field :email,:class=>"new-input required email",:placeholder=>"邮箱"%>
+          <div class="help-block" rel="user_email"></div>
+        </li>
+        <li>
+          <%=#f.text_field :mobile,:class=>"new-input required mobile",:placeholder=>"手机号码"%>
+          <div class="help-block" rel="user_mobile"></div>
+        </li>
+        <li>
+          <input type="checkbox" checked="checked" value="agree" name="user[license]" id="license" class="x-input required" autocomplete="off">
+          <label for="license" class="checkbox_label" id="i_agree">&nbsp;我已阅读并同意：</label><a href="/pages/zhucexieyi" target="_top"  id="reg_term">会员注册协议</a>
+          <span id="and">和</span><br/><a href="/pages/ysbh" id="privacy" target="_top">隐私保护政策</a>
+          <div class="help-block" rel="user_license"></div>
+        </li>
+
+        <li>
+          <%=#f.submit "注 册",:class=>"btn register_btn"%>
+          <%#=link_to "返回登录","javascript:void(0);",:class=>"login_link dark_red"%>
+        </li>
+      </ul>
+      <%#end%>
+    </div>
+  </div>
+</div>
+</div>
+-->
 
 
 
@@ -90,3 +189,7 @@
         });
     });
 </script>
+
+
+
+

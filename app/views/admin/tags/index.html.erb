@@ -7,6 +7,7 @@
 	<%=link_to "商品标签",admin_tags_path(:tag_type=>"goods"),:class=>"btn"%>
 	<%=link_to "订单标签",admin_tags_path(:tag_type=>"orders"),:class=>"btn"%>
 	<%=link_to "会员标签",admin_tags_path(:tag_type=>"members"),:class=>"btn"%>
+	<%=link_to "商品馆标签",admin_tags_path(:tag_type=>"gallery"),:class=>"btn"%>
 
 </p>
 
@@ -33,6 +34,7 @@
 					<%="商品" if tag.tag_type == "goods"%>
 					<%="订单" if tag.tag_type == "orders"%>
 					<%="会员" if tag.tag_type == "members"%>
+					<%="商品馆" if tag.tag_type == "gallery"%>
 				</td>
 				<td>
 					<%=tag.tag_abbr%>

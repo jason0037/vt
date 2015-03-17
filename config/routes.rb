@@ -3,15 +3,6 @@ require 'httpclient'
 Modengke::Application.routes.draw do
 
 
-
-
-
-
-
-
-
-
-
   #scope :module => "shop" do
   get 'shop'=>'shop/shopinfos#myshop'
   namespace :shop do
@@ -68,14 +59,6 @@ Modengke::Application.routes.draw do
       end
     end
   end
-
-
-
-
-
-
-
-
 
   scope :module => "cheuksgroup" do
     resource :cheuks do
@@ -669,8 +652,6 @@ Modengke::Application.routes.draw do
     post 'cart/manco_add'=>"cart#manco_add" ,:as=>:add_to_cart
     post 'cart/tairyoall_add'=>"cart#tairyoall_add" ,:as=>:add_to_cart
 
-
-
     resources :cart do
       get 'manco_express'  ,:on=>:collection
       get 'distribution_manco',:on=>:collection
@@ -682,11 +663,13 @@ Modengke::Application.routes.draw do
       get 'jinbalang',:on=>:collection
       get 'manco_black_buy',:on=>:collection
     end
+
     resources :brands,:only=>[:index,:show]
     resources :users
     resources :vshop
     resources :country, :as=>"countries", :controller=>"countries"
     resources :gallery, :as=>"cats", :controller=>"cats"
+    resources :galleries
 
     get 'vgroup'=>"cats#show_group",:as=>"cats",:controller=>"cats"  #金芭浪饭店团购
     get 'mgallery' =>"cats#show_mobile", :as=>"cats",:controller=>"cats"

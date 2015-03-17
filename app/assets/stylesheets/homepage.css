@@ -112,18 +112,19 @@ a:hover { color: #f60; text-decoration: underline; }
 .com_right .com_p_tit{line-height:20px;height: 20px;overflow: hidden;}
 .com_right .com_p_con{height:40px;line-height:20px;overflow:hidden;}
 
-.p_cat{display:inline-block;padding:0px 10px;height:81px;}
+.p_cat{display:inline-block;padding:0px 10px;height:20px;}
 .p_cat a{color:#7b7b7b;}
-.p_cat dl {width:165px;display:block;margin-top:5px;display:block;height:35px;}
+.p_cat dl {width:800px;display:block;margin-top:5px;display:block;height:20px;}
 .p_cat dl dt{font-weight:bold;}
 .p_cat dl dd{float:left;line-height:20px;margin-right:5px;}
 
-.p_cat_h{height:71px;}
+.p_cat_h{height:20px;}
 
 .mian_cont{text-align:center;float:left;} 
-.mian_cont ul{height:245px;line-height:245px;width:806px;}
-.mian_cont ul li{float:left;width:200px;height:232px;border-right:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;padding-top:13px; position:relative;}
-.mian_cont  .t_tit{line-height:20px;margin-top:5px;overflow:hidden;height: 20px;width: 160px;padding: 0 20px;}
+/*.mian_cont ul{height:245px;line-height:245px;width:806px;}*/
+.mian_cont ul{min-height:245px;width:1190px;}
+.mian_cont ul li{float:left;width:197px;min-height:232px;border-right:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;padding-top:13px; position:relative;}
+.mian_cont  .t_tit{line-height:20px;margin-top:5px;overflow:hidden;height: 20px;width: 160px;padding: 0 15px;}
 .mian_cont .t_price{line-height:20px;margin-top:5px;}
 .mian_cont .t_price .b_span{color:#9d2910;font-size:14px;font-weight:bold;display:inline-block;margin-right:10px;}
 .mian_cont .t_price .gry_span{text-decoration:line-through;}
