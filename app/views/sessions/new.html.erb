@@ -10,13 +10,13 @@
     <h5>您还没有登录，请在此处登录网站</h5>
 
     <div class="login_form">
-      <%=#form_for :session,:url=>"/login", :remote=>true do |f|%>
-      <%=#hidden_field_tag :return_url%>
+      <%=form_for :session,:url=>"/login", :remote=>true do |f|%>
+      <%=hidden_field_tag :return_url%>
       <div id="login_msg"></div>
 
-      <%=#f.text_field :username,:placeholder=>"已认证手机号/用户名/邮箱",:class=>"new-input"%>
-      <%=#f.password_field :password, :placeholder=>"密码",:class=>"new-input"%>
-      <%=#f.submit "登 录",:class=>"btn new_btn"%>
+      <%=f.text_field :username,:placeholder=>"已认证手机号/用户名/邮箱",:class=>"new-input"%>
+      <%=f.password_field :password, :placeholder=>"密码",:class=>"new-input"%>
+      <%=f.submit "登 录",:class=>"btn new_btn"%>
 
       <div class="clear"></div>
       <div class="other-login">
@@ -48,7 +48,7 @@
         </div>
         <div class="clear"></div>
       </div>
-      <%#end%>
+      <%end%>
     </div>
 
     <div id="myCarousel" class="carousel slide">
@@ -79,26 +79,26 @@
     <h5>a class="login_link" href="#">返回登录框</a现在注册即可获价值100元现金抵用券</h5>
     <div class="login_form">
       <img class="register_girl" src="/assets/register_girl.jpg">
-      <%=#form_for :user,:url=>users_path,:remote=>true,:html=>{:id=>"register_form"} do |f|%>
+      <%=form_for :user,:url=>users_path,:remote=>true,:html=>{:id=>"register_form"} do |f|%>
       <ul class="register_ul">
         <li>
-          <%=#f.text_field :login_name,:class=>"new-input required",:placeholder=>"用户名"%>
+          <%=f.text_field :login_name,:class=>"new-input required",:placeholder=>"用户名"%>
           <div class="help-block" rel="user_login_name"></div>
         </li>
         <li>
-          <%=#f.password_field :login_password,:class=>"new-input required",:placeholder=>"密码"%>
+          <%=f.password_field :login_password,:class=>"new-input required",:placeholder=>"密码"%>
           <div class="help-block" rel="user_login_password"></div>
         </li>
         <li>
-          <%=#f.password_field :login_password_confirmation,:class=>"new-input required",:placeholder=>"确认密码"%>
+          <%=f.password_field :login_password_confirmation,:class=>"new-input required",:placeholder=>"确认密码"%>
           <div class="help-block" rel="user_login_password_confirmation"></div>
         </li>
         <li>
-          <%=#f.text_field :email,:class=>"new-input required email",:placeholder=>"邮箱"%>
+          <%=f.text_field :email,:class=>"new-input required email",:placeholder=>"邮箱"%>
           <div class="help-block" rel="user_email"></div>
         </li>
         <li>
-          <%=#f.text_field :mobile,:class=>"new-input required mobile",:placeholder=>"手机号码"%>
+          <%=f.text_field :mobile,:class=>"new-input required mobile",:placeholder=>"手机号码"%>
           <div class="help-block" rel="user_mobile"></div>
         </li>
         <li>
@@ -109,11 +109,11 @@
         </li>
 
         <li>
-          <%=#f.submit "注 册",:class=>"btn register_btn"%>
-          <%#=link_to "返回登录","javascript:void(0);",:class=>"login_link dark_red"%>
+          <%=f.submit "注 册",:class=>"btn register_btn"%>
+          <%=link_to "返回登录","javascript:void(0);",:class=>"login_link dark_red"%>
         </li>
       </ul>
-      <%#end%>
+      <%end%>
     </div>
   </div>
 </div>

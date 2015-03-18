@@ -25,7 +25,6 @@
 		margin-bottom: 5px;
 		img{
 			width: 193px;
-			height: 272px;
 			max-width: none;
 			margin: 0px auto;
 			display: block;
@@ -42,7 +41,7 @@
 			height: 20px;
 		}
 		.name{
-			height: 20px;
+			height-min: 20px;
 			a{
 				font-size: 12px;
 				color:#999;

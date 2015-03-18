@@ -15,15 +15,21 @@
           <li class="home <%= 'active' if controller_name == 'home' %>">
             <a href="<%=site_name%>/">首页 <span>HOME</span></a>
           </li>
-          <!-- <li class="newin dropdown  <%= 'active' if controller_name == 'goods' %>">
+          <li class="lichannel"><a href="/tuan">特价 <span>ON SALE</span></a></li>    
+    <li ><a href="/galleries/129">商品馆 <span>GALLERIES</span></a></li>
+    <li ><a href="/brands">品牌 <span>BRANDS</span></a></li>
+    <li ><a href="/gallery/561?type=1">分类 <span>CATEGORIES</span></a></li>
+    <li ><a href="/shop/shopinfos">店铺 <span>SHOPS</span></a></li>
+    <li ><a href="/events/foodie?supplier_id=78">活动吧 <span>EVENTS</span></a></li>
+          <li class="newin dropdown  <%= 'active' if controller_name == 'goods' %>" style="display:none">
             <a id="newin" data-target="<%=site_name%>/products/newest" href="<%=site_name%>/products/newest" class="dropdown-toggle" data-toggle="dropdown">新品 <span>NEW IN</span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="newin">
               <li><a tabindex="-1" href="<%=site_name%>/products/newest">本期新品</a></li>
               <li><a tabindex="-1" href="<%=site_name%>/products/more">更多新品</a></li>
               <li><a tabindex="-1" href="<%=site_name%>/products/suits">搭配推荐</a></li>
             </ul>
-          </li> -->
-          <li class="brands dropdown">
+          </li>
+          <li class="brands dropdown" style="display:none">
             <a id="brands" data-target="<%=site_name%>/gallery/483?gtype=1" href="<%=site_name%>/gallery/483?gtype=1" class="dropdown-toggle" data-toggle="dropdown">现货 <span>GOODS</span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="bags">
               <%Ecstore::GoodCat.top_cats.each do |cat|%>
@@ -42,9 +48,8 @@
                 <%end%>
               <%end%>
             </ul> -->
-          </li>
-         
-          <li class="apparel dropdown">
+          </li>         
+          <li class="apparel dropdown" style="display:none">
             <a id="apparel" data-target="<%=site_name%>/gallery/483?gtype=2" href="<%=site_name%>/gallery/483?gtype=2" class="dropdown-toggle" data-toggle="dropdown">期货 <span>FUTURES</span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="bags">
               <%Ecstore::GoodCat.top_cats.each do |cat|%>
@@ -59,7 +64,7 @@
               <%end%>
             </ul> -->
           </li>
-          <li class="bags_two dropdown">
+          <li class="bags_two dropdown" style="display:none">
             <a id="bags" data-target="<%=site_name%>/gallery/483?gtype=3" href="<%=site_name%>/gallery/483?gtype=3" class="dropdown-toggle" data-toggle="dropdown">代购 <span>PURCHASE AGENT</span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="bags">
               <%Ecstore::GoodCat.top_cats.each do |cat|%>
@@ -69,8 +74,7 @@
               <%end%>
             </ul>
           </li>
-
-<!--          <li class="bags_two dropdown">
+          <li class="bags_two dropdown" style="display:none">
             <a id="bags" data-target="<%=site_name%>/gallery/483?gtype=3" href="<%=site_name%>/supplier/" class="dropdown-toggle" data-toggle="dropdown">供应商 <span>SUPPLIER</span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="bags">
               <%Ecstore::Supplier.where(:status=>true).each do |supplier|%>
@@ -78,8 +82,7 @@
               <%end%>
             </ul>
           </li>
--->
-          <!-- <li class="accessories dropdown">
+          <li class="accessories dropdown" style="display:none">
             <a id="accessories" data-target="<%=site_name%>/gallery/69" href="<%=site_name%>/gallery/69" class="dropdown-toggle" data-toggle="dropdown">配饰 <span>ACCESSORIES</span></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="accessories">
               <li><a tabindex="-1" href="<%=site_name%>/gallery/70">首饰</a></li>
@@ -89,8 +92,8 @@
               <li><a tabindex="-1" href="<%=site_name%>/gallery/80">围巾</a></li>
               <li><a tabindex="-1" href="<%=site_name%>/gallery/78">手套</a></li>
             </ul>
-          </li> -->
-          <li class="bags_two dropdown">
+          </li>
+          <li class="bags_two dropdown" style="display:none">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">国别中心 <span>COUNTRIES</span> </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="news">
                <% Ecstore::Country.all.each do |country|%>

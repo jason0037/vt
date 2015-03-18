@@ -89,27 +89,22 @@
   <%= yield %>
   <div class="bottomdivsclearfix">
 
-    <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout"
-       id="">
+    <div data-am-widget="navbar"  class="am-navbar am-cf am-navbar-default am-no-layout" id="" >
       <ul class="am-navbar-nav am-cf sm-block-grid-3">
 
         <li>
           <a class=" "  data-am-modal="{target: '#trade_server'}">
-            <span  class="am-navbar-label">|贸威特色|</span>
+            <span  class="am-navbar-label" >商品馆</span>
           </a>
         </li>
         <li>
-          <a class=""href="/cart/mobile?id=<%=@supplier.id if @suplier%>
-            ">
-            <span  class="am-navbar-label">|购物车|</span>
+          <a class="" href="/cart/mobile?id=<%=@supplier.id if @suplier%>">
+            <span  class="am-navbar-label">购物车</span>
           </a>
         </li>
         <li >
-          <a class=" " href="/vshop/<%=@supplier.id if @supplier%>
-            /user?id=
-            <%=@supplier.id if @supplier%>
-            ">
-            <span  class="am-navbar-label">|个人中心|</span>
+          <a class=" " href="/vshop/<%=@supplier.id if @supplier%>/user?id=<%=@supplier.id if @supplier%>">
+            <span  class="am-navbar-label">个人中心</span>
           </a>
         </li>
         <li>
@@ -133,83 +128,58 @@
         <ul class="am-list am-col col-sm-4 am-list-thumb">
           <li>
             <a href="/tuan" >
-              <span>限时团购馆</span>
+              <span>限时特价</span>
             </a>
           </li>
           <li>
-            <a href="http://mp.weixin.qq.com/s?__biz=MzA5OTM5ODIzMQ==&mid=204944531&idx=1&sn=be4f618aa55fae6d7a7347cf50028eb8#rd">
-              <span>舌尖上年货</span>
-            </a>
-          </li>
-          <li>
-            <a href="/world_food?supplier_id=<%=@supplier.id if @supplier%>
-              " >
+            <a href="/galleries/126" >
               <span>德国香肠馆</span>
             </a>
           </li>
           <li>
-            <a href="/prime_beef?supplier_id=<%=@supplier.id if @supplier%>
-              " >
-              <span>顶级牛肉馆</span>
+            <a href="/galleries/128" >
+              <span>酒类茶叶馆</span>
             </a>
           </li>
-
+          <li>
+            <a href="/galleries/129" >
+              <span>生鲜果蔬馆</span>
+            </a>
+          </li>
         </ul>
 
         <ul class="am-col col-sm-4 am-list-main am-list">
           <li>
-            <a href="/quality_products?supplier_id=<%=@supplier.id if @supplier%>
-              ">
-              <span>生态农产馆</span>
+            <a href="/galleries/129">
+              <span>进口食品馆</span>
+            </a>
+          </li>          
+          <li>
+            <a href="/galleries/131" >
+              <span>鲜花礼品馆</span>
             </a>
           </li>
+
           <li>
-            <a href="/black_tea?supplier_id=<%=@supplier.id if @supplier%>
-              " >
-              <span>顶级红茶馆</span>
+            <a href="/galleries/127">
+              <span>养生珍品馆</span>
             </a>
           </li>
+        </ul>
+        <ul class="am-col col-sm-4 am-list-main am-list">
           <li>
-            <a href="/mgallery?name=%e4%bd%90%e5%ba%b7%e8%8c%b6&id=<%=@supplier.id if @supplier%>
-              " >
-              <span>营养保健馆</span>
-            </a>
-          </li>
-          <li>
-            <a href="mgallery?name=%E5%A9%B4%E7%AB%A5&id=<%=@supplier.id if @supplier%>
-              " >
+            <a href="/galleries/133" >
               <span>婴童天地馆</span>
             </a>
           </li>
           <li>
-            <a href="/mproducts?id=a01090001&supplier_id=<%=@supplier.id if @supplier%>
-              &fp=category" >
-              <span>微POS机</span>
-            </a>
-          </li>
-        </ul>
-        <ul class="am-col col-sm-4 am-list-main am-list">
-          <li>
-            <a href="/mgallery?name=%e8%87%aa%e8%b4%b8%e5%8c%ba%e8%bf%9b%e5%8f%a3%e8%bd%a6&id=<%=@supplier.id if @supplier %>
-              ">
-              <span>进口豪车馆</span>
+            <a href="/galleries/132" >
+              <span>粮油食品馆</span>
             </a>
           </li>
           <li>
-            <a href="/food_beverage?supplier_id=<%=@supplier.id if @supplier%>
-              " >
-              <span>食品饮料馆</span>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0);" >
+            <a href="/galleries/134" >
               <span>生活用品馆</span>
-            </a>
-          </li>
-          <li>
-            <a href="/fashion?supplier_id=<%=@supplier.id if @supplier%>
-              " >
-              <span>时令礼品馆</span>
             </a>
           </li>
         </ul>
