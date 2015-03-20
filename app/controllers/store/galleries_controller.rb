@@ -13,7 +13,7 @@ class Store::GalleriesController < ApplicationController
   	if @gallery.nil?
   		return render :text=>"敬请期待"
   	end
-  	@categories = Ecstore::Category.where("cat_id in (#{@gallery.categories})").order("p_order desc")
+  	@categories = Ecstore::Category.where("cat_id in (#{@gallery.categories})").order("p_order")
 
   	supplier_id = params[:supplier_id]
 
