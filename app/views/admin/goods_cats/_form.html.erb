@@ -19,6 +19,13 @@
         <%=f.select :type_id, options_from_collection_for_select(Ecstore::GoodType.all,:type_id,:name,Ecstore::GoodCat.find(params[:id]).type_id),{:include_blank=>"请选择"},{:class=>"span3"} %>
       </div>
     </div>
+
+    <div class="control-group">
+      <%= f.label :p_order, "显示位置", :class => "control-label" %>
+      <div class="controls">
+        <%= f.text_field :p_order%>
+      </div>
+    </div>
     
     <div class="control-group">
       <div class="controls">

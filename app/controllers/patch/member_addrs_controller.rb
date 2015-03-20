@@ -87,8 +87,16 @@ end
 
   end
   def new_memberaddr_add
-    @supplier=Ecstore::Supplier.find_by_id(params[:supplier_id])
+    supplier_id = params[:supplier_id]
+    if supplier_id.nil?
+      supplier_id =78
+    end
+    @supplier=Ecstore::Supplier.find_by_id(supplier_id)
     @addr=Ecstore::MemberAddr.new
+    @return_url= params[:return_url]
+    if @return_url.nil?
+      @return_url="/member_addrs?platform=mobile"
+    end
     render :layout=>@supplier.layout
   end
 

@@ -49,15 +49,6 @@ Modengke::Application.routes.draw do
         get 'order_show'
       end
     end
-
-    resource :goodsaddrs do
-      collection do
-        get 'new_addr'
-        get 'addr_detail'
-        post 'edit_addr'
-        post 'add'
-      end
-    end
   end
 
   scope :module => "cheuksgroup" do

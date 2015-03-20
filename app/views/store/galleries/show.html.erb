@@ -23,7 +23,7 @@
     </div>
     <div class="am-panel-bd">
       <ul class="am-list">
-          <%@goods=Ecstore::Good.where(:cat_id=>category.cat_id)%>
+          <%@goods=Ecstore::Good.where(:cat_id=>category.cat_id).order("goods_id DESC")%>
             <% @goods.each do |good|%>
               <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                 <img class=" beisaier hide"  src="<%=good.list_default_pic%>">

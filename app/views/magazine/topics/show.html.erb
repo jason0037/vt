@@ -6,6 +6,49 @@
 	<div id="topic">
 	  <%= raw(@topic.body) %>
 	</div>
+	<%if params[:platform]=='mobile'%>
+		 <div class="am-panel-bd">
+      <ul class="am-list">
+            <% @goods.each do |good|%>
+              <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                <img class=" beisaier hide"  src="<%=good.list_default_pic%>">
+                <div class="am-col col-sm-4 am-list-thumb">
+                  <a href="/mproducts?id=<%=good.bn%>&supplier_id=78&fp=category">
+                    <img src="<%=good.list_default_pic%>" class="j_item_image pg1" data-original1="<%=good.list_default_pic%>" data-brandid="<%=good.brand_id%>" data-productid="<%=good.bn%>" data-onerror="<%=good.list_default_pic%>" data-brandlazy="false" style="display: block;">
+                  </a>
+                </div>
+                <div class="am-col col-sm-8 am-list-main">
+                  <a href="/mproducts?id=<%=good.bn%>&supplier_id=78&fp=category" class="cart_orderlist_i">
+                    <span class="am-list-item-hd goods-name-span" >  <%=good.name%>  </span>   <br>
+                    <%unless good.tag.blank?%>
+                        <%a=0%>
+                        <%good.tag.split(",").each do |tag|%>
+                            <%color=["black","red","black","red"]%>
+                            <%if a<5%>
+                              <em style=" font-size: 12px; color: <%=color[a]%>"> <%=tag%> </em>
+                            <%end%>
+                            <%a=a+1%> 
+                        <%end%>  
+                    <%end%>  
+                  </a>
+
+                  <div class="am-list-item-text" style="line-height: 2">
+                    <div class="am-col ">
+                      <span  class="mall_price">吃货价:¥<%=good.price%> </span> &nbsp;
+                      <span class="mktprice" >市场价:¥<%=good.mktprice%></span>
+                    </div>   
+                  </div>
+                </div> 
+              </li>
+              <div class="button" style="display:none">
+              <input type="hidden" class="goods_id" value="<%=good.goods_id%>"/>
+                  <a href="javascript:void (0)" class="am-btn am-btn-danger addcart"> <i class="am-icon-shopping-cart"> <em class="icon-em">加入购物车</em> </i> </a>
+                <a  href="javascript:void (0)"class="am-btn  am-btn-success buttom_bolt" > <i class="am-icon-bolt"> <em class="icon-em" >立即购买</em> </i> </a>
+              </div>
+        <%end%> 
+      </ul>  
+    </div>
+	<%end%>
 <%else%>
 	<div id="iModecMagazine">
 	<div class="iModecMagazine-container">

@@ -146,8 +146,9 @@ def order_clearing
 
         @def_addr =  @user.member_addrs.first
     if @def_addr.nil?
+      redirect_to "/member_addrs/new_memberaddr_add?return_url=/shop/visitors/order_clearing"
 
-      redirect_to "/goodsaddrs/new_addr?return_url=/visitors/order_clearing?supplier_id=#{@shop_id}&user_id=#{params[:user_id]}"
+      # redirect_to "/shop/goodsaddrs/new_addr?return_url=/shop/visitors/order_clearing?supplier_id=#{@shop_id}"
     end
 
     if @pmtable

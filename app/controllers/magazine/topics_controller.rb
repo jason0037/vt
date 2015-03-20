@@ -22,6 +22,40 @@ class Magazine::TopicsController < Magazine::BaseController
   def show
     @topic = Imodec::Topic.find(params[:id])
     @comments = @topic.comments.paginate(:page => params[:page], :per_page => 3,:order=>"created_at desc")
+    if params[:id]=='2015sakura'
+      tag_id = params[:id]
+
+      @goods = Ecstore::Good.where("goods_id=26062 or cat_id in (559,560,561,578)")
+
+     end
+
+    @recommend_user = session[:recommend_user]
+
+    if @recommend_user==nil &&  params[:wechatuser]
+      @recommend_user = params[:wechatuser]
+    end
+    if @recommend_user
+      member_id =-1
+      if signed_in?
+        member_id = @user.member_id
+      end
+      now  = Time.now.to_i
+      Ecstore::RecommendLog.new do |rl|
+        rl.wechat_id = @recommend_user
+        #  rl.goods_id = @good.goods_id
+        rl.member_id = member_id
+        rl.terminal_info = request.env['HTTP_USER_AGENT']
+        #   rl.remote_ip = request.remote_ip
+        rl.access_time = now
+      end.save
+      session[:recommend_user]=@recommend_user
+      session[:recommend_time] =now
+    end
+
+    if params[:platform]=='mobile'
+      render :layout=>"tradev"
+    end
+
     # render :layout=>"new_magazine" if @topic.body.blank?
   end
 
