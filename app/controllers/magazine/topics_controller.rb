@@ -25,7 +25,7 @@ class Magazine::TopicsController < Magazine::BaseController
     if params[:id]=='2015sakura'
       tag_id = params[:id]
 
-      @goods = Ecstore::Good.where("goods_id=26062 or cat_id in (561)").order("goods_id DESC")
+      @goods = Ecstore::Good.where("goods_id=26062 or cat_id in (561,584)").order("goods_id DESC")
 
      end
 

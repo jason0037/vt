@@ -367,7 +367,7 @@ class Ecstore::Good < Ecstore::Base
   def pictures(style=:large,color=nil,format=:jpg)
     return [] if self.big_pic.blank?
 
-    pics = self.big_pic.split("|")
+    pics = self.big_pic.split(",")
 
     return pics
     # return []  if color.blank?

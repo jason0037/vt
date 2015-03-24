@@ -185,7 +185,7 @@ WeixinRailsMiddleware::WeixinController.class_eval do
 上海寓客文化联合顾村公园、上海衡山北郊宾馆，于2015年3月18日至4月15日，举办为期近一个月的德国文化月活动。
 这是一场活色生香的文化狂欢，网罗了德国最纯正的啤酒、美食、音乐、旅游、运动，让你身临其境地感受德国文化和休闲文化，最短时间了解德国，爱上德国。"
         pic_url="http://vshop.trade-v.com/images/gucunsausage5.jpg"
-        link_url = "http://vshop.trade-v.com/galleries/126"
+        link_url = "http://vshop.trade-v.com/topics/2015sakura?platform=mobile"
        # link_url="http://mp.weixin.qq.com/s?__biz=MzA4ODMwODE2MA==&mid=203230430&idx=1&sn=a8d2c5b5870c824d0cd2cc3353c8c746&scene=1&from=singlemessage&isappinstalled=0#rd"
 
           # title1="贸威除了热卖中的正宗德国香肠、卓玛泉、温县铁棍山药等优质产品外，还有每天听音乐、做按摩、睡软床、吹风扇、吃熟食的神秘来客，这就是雪龙黑牛，顶级品质，与您分享！"

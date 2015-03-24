@@ -9,7 +9,7 @@ class HomeController < ApplicationController
 		@title = "trade-V 跨境贸易直通车"
 	  	@galleries = Ecstore::Teg.where(:tag_type=>"gallery")	
 	  	@i = 1  	
-		#@home = Ecstore::Home.where(:supplier_id=>nil).last
+		@home = Ecstore::Home.where(:supplier_id=>nil).last
 		if signed_in?
 		    redirect_to params[:return_url] if params[:return_url].present?
 		end

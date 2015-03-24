@@ -31,6 +31,8 @@
 
     <% #render "suit_products"%>
 
+          <%=render "slider" if @home.sliders%>
+
     <div class="other clearfix">
         <%#render "new_hots"%>
         <%#=@home.body.html_safe if @home.body.present?%>
@@ -42,7 +44,7 @@
             <div class="i_floor"><a href="/galleries/<%=gallery.tag_id%>" style="font-size:16pt;color:#FF5809" target="_blank"><%=@i%>F&nbsp;<%=gallery.tag_name%></a></div>
               <div class="i_floor p_cat" style="width:800px;">
               <dl>
-                    <%categories = Ecstore::Category.where("cat_id in (#{gallery.tag_ext.categories})")%>
+                    <%categories = Ecstore::Category.where("cat_id in (#{gallery.tag_ext.categories})").order("p_order")%>
                     <%categories.each do |category|%>
                     <dd>
                       <a href="/gallery/<%=category.cat_id%>?type=1" target="_blank"><%=category.cat_name%></a>
@@ -57,7 +59,7 @@
             <div class="p_list">
               <div class="mian_cont">
                 <ul>
-                  <%goods=Ecstore::Good.where("cat_id in (#{gallery.tag_ext.categories})").limit(6)%>
+                  <%goods=Ecstore::Good.where("cat_id in (#{gallery.tag_ext.categories})").order("goods_id DESC").limit(6)%>
                   <%goods.each do |good|%>
                   <li _plink="/products/<%=good.bn%>" class="pro_item first">
                     <div class="t_img">

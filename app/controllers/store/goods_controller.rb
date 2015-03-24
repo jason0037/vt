@@ -78,16 +78,11 @@ class Store::GoodsController < ApplicationController
         count = @recommend_goods.size
         @recommend_goods += @cat.parent_cat.parent_cat.all_goods.select{|good| good.goods_id != @good.goods_id }[0,4-count]
       end
-
-
-
-
-
-      end
+    end
     render :layout => @supplier.layout
 
-
   end
+
   def food_beverage
 
     @promotions= Ecstore::Promotion.where(:mallname=>"food_beverage").order("priority asc")
@@ -394,7 +389,6 @@ class Store::GoodsController < ApplicationController
     @good = Ecstore::Good.includes(:specs,:spec_values,:cat).where(:bn=>params[:id]).first
 
     return render "not_find_good",:layout=>"new_store" unless @good
-
     tag_name = params[:tag]
     @tag = Ecstore::TagName.find_by_tag_name(tag_name)
 
@@ -418,6 +412,7 @@ class Store::GoodsController < ApplicationController
       format.mobile { render :layout=>nil }
     end
   end
+
  def tairyo_show
    tag_name  = params[:tag]
    @tag = Ecstore::Teg.find_by_tag_name(tag_name)

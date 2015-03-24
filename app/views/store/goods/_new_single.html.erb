@@ -4,7 +4,7 @@
       <%good.pictures(:large).each_with_index do |large, index|%>
         <li>
           <%= link_to large, :class=>"jqzoom#{ index + 1 }" do %>
-            <%=image_tag large,:size=>"420x592",:alt=>nil%>
+            <%=image_tag large,:style=>"width:420x420",:alt=>nil%>
           <% end %>
         </li>
       <%end%>

@@ -1081,7 +1081,7 @@ line-height: 36px;
   margin: 0 0 0 74px;
   display: block;
   width: 420px;
-  height: 592px;
+  min-height: 420px;
   padding: 0;
   overflow: hidden;
   float: left;
@@ -1091,35 +1091,33 @@ line-height: 36px;
 #products .gallery .jcarousel-skin-tango .jcarousel-container-horizontal {
   padding: 0;
   width: 420px;
-  height: 592px;
+  min-height: 420px;
 }
 #products .gallery .jcarousel-skin-tango .jcarousel-item img {
   border: none;
   width: 420px;
-  height: 592px;
 }
 #products .gallery .jcarousel-skin-tango .jcarousel-item > a,
 #products .gallery .jcarousel-skin-tango .jcarousel-item > a > .zoomPad{
   display: block;
   width: 420px;
-  height: 592px;
+  min-height: 420px;
 
 }
 #products .zoomWrapperImage img {
   width: 780px;
-  height: 1100px;
   max-width: 780px;
 }
 #products .gallery .jcarousel-skin-tango .jcarousel-item {
   width: 420px;
-  height: 592px;
+  min-height: 420px;
   position: relative;
   text-align: left;
   background: transparent;
 }
 #products .gallery .jcarousel-skin-tango .jcarousel-clip-horizontal {
   width: 420px;
-  height: 592px;
+  min-height: 420px;
 }
 #products .black_btn {
   background: url("black_btn.png") no-repeat scroll left bottom transparent;
