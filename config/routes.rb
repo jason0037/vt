@@ -750,6 +750,8 @@ Modengke::Application.routes.draw do
       post 'add',:on=>:collection
     end
 
+    resources :cats
+
     resources :users
 
   end
@@ -818,7 +820,11 @@ Modengke::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
-
+  scope ":agent" do
+    resources :home
+    resources :cart
+    resources :cats
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

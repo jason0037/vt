@@ -1,7 +1,13 @@
 class Store::CatsController < ApplicationController
 	# layout 'magazine'
-      layout 'standard'
+    layout 'standard'
   	before_filter :require_top_cats
+
+  def index
+    respond_to do  |format|
+        format.mobile { render :layout=> 'msite'}
+    end
+  end
 
   def show_mobile
 
@@ -133,7 +139,9 @@ class Store::CatsController < ApplicationController
          #          @menu_colors[spec_value.spec_value_id] = @menu_colors[spec_value.spec_value_id].to_i + 1
          #      end
          # end
-
+        respond_to do  |format|
+            format.mobile { render :layout=> 'msite'}
+        end
   end
 end
 

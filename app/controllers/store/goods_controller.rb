@@ -409,7 +409,7 @@ class Store::GoodsController < ApplicationController
 
     respond_to do |format|
       format.html { render :layout=>"new_store" }
-      format.mobile { render :layout=>nil }
+      format.mobile { render :layout=>"msite" }
     end
   end
 

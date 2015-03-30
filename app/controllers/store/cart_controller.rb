@@ -4,7 +4,12 @@ class Store::CartController < ApplicationController
 
 
   def index
-		render :layout=>"cart"
+    # render :layout=>"cart"
+
+    respond_to do  |format|
+        format.html { render :layout=> 'cart'}
+        format.mobile { render :layout=> 'msite'}
+    end
   end
 
   def mobile
