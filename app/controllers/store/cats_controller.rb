@@ -4,6 +4,7 @@ class Store::CatsController < ApplicationController
   	before_filter :require_top_cats
 
   def index
+    @cats = Ecstore::Category.where(:parent_id=>0)
     respond_to do  |format|
         format.mobile { render :layout=> 'msite'}
     end
