@@ -314,7 +314,7 @@ ul.good_spec_items{
           margin: 0px auto;
           display: block;
           width: 190px;
-          height: 272px;
+          #height: 272px;
         }
       }
       .good-info{
@@ -324,7 +324,7 @@ ul.good_spec_items{
             height: 20px;
           }
           .name{
-            height: 20px;
+            min-height: 20px;
             a{
               font-size: 12px;
               color:#999;
