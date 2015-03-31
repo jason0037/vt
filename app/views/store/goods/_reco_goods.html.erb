@@ -6,7 +6,7 @@
           <li>
             <div class="good-pic">
                 <%=link_to good_path(good.bn,:tag=>@tag&&@tag.tag_name) do %>
-                    <%=image_tag good.rec_image,:size=>"190x268",:alt=>good.name%>
+                    <%=image_tag good.rec_image,:alt=>good.name%>
                 <%end%>
             </div>
             <div class="good-info">

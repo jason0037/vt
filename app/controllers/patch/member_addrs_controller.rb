@@ -70,11 +70,11 @@ end
 
     @addr.save
 
-    if return_url
+    if return_url 
       @ids=@addr.addr_id
       session[:depar]=@ids
       redirect_to return_url
-    else
+    elsif params[:platform]=='mobile'
       redirect_to "/member_addrs?platform=#{pramas[:platform]}"
 
     end
