@@ -754,6 +754,9 @@ Modengke::Application.routes.draw do
 
     resources :users
 
+    resources :gallery, :as=>"cats", :controller=>"cats"
+
+    resources :galleries
   end
 
 

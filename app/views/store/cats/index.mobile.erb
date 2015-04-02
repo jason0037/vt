@@ -132,7 +132,7 @@
                       <li class="new-category2-li" >
                     <%end%>
                       <%@count = @count + 1%>
-                       <a href='#' class="new-category2-a"><span class="new-bar"></span><%=child_cat.cat_name%></a>
+                       <a href='/mobile/cats/<%=child_cat.cat_id%>' class="new-category2-a"><span class="new-bar"></span><%=child_cat.cat_name%></a>
                        <%if @childrens.count == (index+1) && @count%3 != 0%>
                         <%@append = 3 - (@count%3)%>
                         <%1.upto(@append) do |num|%>

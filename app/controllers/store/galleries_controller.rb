@@ -45,9 +45,11 @@ class Store::GalleriesController < ApplicationController
       session[:recommend_user]=@recommend_user
       session[:recommend_time] =now
     end
-
-    render :layout=>@supplier.layout
   	
+    respond_to do  |format|
+        format.html {render :layout=>@supplier.layout}
+        format.mobile { render :layout=> 'msite'}
+    end
   end
 
 
