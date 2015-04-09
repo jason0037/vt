@@ -113,7 +113,7 @@
             <%@goods.each do |good|%>
               <li class="new-mu_l2">
                 <a href="/mobile/products/<%=good.bn%>" class="new-mu_l2a">
-                  <span class="new-mu_tmb"><img src="/" width="100" height="100" /></span>
+                  <span class="new-mu_tmb"><img src="<%=good.thumbnail_pic%>" width="100" height="100" /></span>
                   <span class="new-mu_l2cw">
                     <strong class="new-mu_l2h"><%=good.name%></strong>
                     <span class="new-mu_l2h"><span class="new-txt-rd2 new-elps"></span></span>

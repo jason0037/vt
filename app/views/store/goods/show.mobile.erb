@@ -113,7 +113,8 @@
          <div class="detail-img" >
            <div class="tbl-type"  id="_zoom">
             <div id="imgSlider" style="position:relative;left:0px;">
-             <span class="tbl-cell"><img src="http://img13.360buyimg.com/n1/g10/M00/05/12/rBEQWFEtb78IAAAAAAWca7l6fjYAABFowBCPIEABZyD393.jpg!q70.jpg" seq="0" width="320" height="292"></span>
+            <%@small_pic = @good.small_pic.split(',')%>
+             <span class="tbl-cell"><img src="<%=@small_pic[0] if @good.small_pic%>" seq="0" width="320" height="292"></span>
 
          </div>
          <ul class="new-banner-num new-b-num-v1 new-tbl-type" id="imgSliderPage" style="display:none">
