@@ -73,7 +73,7 @@
         document.write('<script src="/assets/mobile/jd/jquery-1.6.2.min.js"><\/script>');
       }
       </script>
-      <script type="text/javascript" src="/assets/mobile/jd/html5/common.js@v=201401141358"></script>
+      <script type="text/javascript" src="/assets/mobile/jd/html5/common.js"></script>
       <script type="text/javascript" src="/assets/mobile/jd/html5/spin.min.js"></script>
     </head>
 
@@ -82,7 +82,7 @@
       <header>
         <div class="new-header">
           <a href="javascript:pageBack();" class="new-a-back" id="backUrl"><span>返回</span></a>
-          <h2><%=@cat.cat_name%></h2>
+          <h2></h2>
           <a href="javascript:void(0)" id="btnJdkey" class="new-a-jd"><span>京东键</span></a>
         </div>
         <div class="new-jd-tab" style="display:none" id="jdkey">
@@ -108,21 +108,32 @@
       </header>
       <div class="new-ct new-p-re">
         <div class="new-search">
-          <ul class="new-mu_l2w">
-            <%#@cat_goods=Ecstore::Good.where(:cat_id=>params[:id]).order("goods_id DESC")%>
-            <%@goods.each do |good|%>
-              <li class="new-mu_l2">
-                <a href="/mobile/products/<%=good.bn%>" class="new-mu_l2a">
-                  <span class="new-mu_tmb"><img src="/" width="100" height="100" /></span>
-                  <span class="new-mu_l2cw">
-                    <strong class="new-mu_l2h"><%=good.name%></strong>
-                    <span class="new-mu_l2h"><span class="new-txt-rd2 new-elps"></span></span>
-                    <span class="new-mu_l2c"><strong class="new-txt-rd2">￥<%=good.price%></strong></span>
-                  </span>
-                </a>
-              </li>
-            <%end%>
-          </ul>
+          <div class="new-goods-img-lst new-tbl-type">
+              <div class="new-tbl-cell">
+                            <a href="../product/1.html" class="new-goods-section">
+                      <div class="new-img-box">
+                            <img src="http://img13.360buyimg.com/n3/g15/M07/05/1D/rBEhWlIUf7oIAAAAAALnZATd9X4AACSsAGXLa8AAud8547.jpg" onerror="this.src=''" width="130" height="130" alt="" class="new-goods-img">
+                            <span class="new-goods-txt new-p-re">
+                                <strong class="new-txt">¥159.00</strong>
+                                <span class="new-txt2" style="color:red">
+                                  </span>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+                <div class="new-tbl-cell">
+                            <a href="../product/1.html" class="new-goods-section">
+                      <div class="new-img-box">
+                            <img src="http://img10.360buyimg.com/n3/g15/M04/09/13/rBEhWVIu6l8IAAAAAAQfYNF16GYAADAkgJhMXUABB94158.jpg" onerror="this.src=''" width="130" height="130" alt="" class="new-goods-img">
+                            <span class="new-goods-txt new-p-re">
+                               <strong class="new-txt">¥129.00</strong>
+                                <span class="new-txt2" style="color:red">
+                                  </span>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
       </div>
 

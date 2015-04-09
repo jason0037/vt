@@ -132,25 +132,12 @@
         </a>
         <span class="icon-arr"></span>
     </div>
-    <p class="detail-title">香织恋蝶 浪漫LOVE熊抱心熊泰迪熊抱抱熊毛绒玩具布娃娃公仔玩偶 粉红色 1米 <font color="red">高品质浪漫温馨爱心熊 送心爱女生！</font></p>
+    <p class="detail-title"><%=raw @good.intro%></p>
     <p class="text3" id="promotionInfo" style=" display:none ">  </p>
-    <p class="text2" id="vender" style=" ">服务：由香织恋蝶旗舰店负责发货，并提供售后服务。</p>
+    <!-- <p class="text2" id="vender" style=" ">服务：由贸微分负责发货，并提供售后服务。</p> -->
 </div>
 <div class="bg-h15"></div>
 <div id="spinner1" class="spinner" style="left:50%;position: absolute;height:120px;margin-top:50px;z-index:1000"></div>
-<div class="secton10 secton10-v1">
-    <div class="info">
-        <a href="#!showassess"  id="btnAssess">
-            <span class="text">商品评价</span><span class="text-fr" id="comments"></span>
-        </a>        
-        <span class="icon-arr"></span>
-    </div>
-    <div class="tbl-type">
-     <span class="tbl-cell"><a href="../orderComment/1016292843.html@resourceType=index_promotion&resourceValue=f1&sid=e0d0f025d6d3e8e8d7be5428c43ef911" class="btn-good" id="orderComment"><span class="icon"></span>商品晒单</a></span>
-     <span class="tbl-cell"><span class="bar">|</span></span>
-     <span class="tbl-cell"><a href="../consultations/1016292843.html@resourceType=index_promotion&resourceValue=f1&sid=e0d0f025d6d3e8e8d7be5428c43ef911" class="btn-ser" id="consultations"><span class="icon"></span>购买咨询</a></span>
- </div>
-</div>
 
 <div class="cart-pop" id="cart" style="display:none;position:absolute;bottom:50%;z-index:9999">
     <div class="ico-succ" >
@@ -184,10 +171,9 @@
  </span>
 </span>
 <span class="s-block" id="size_parent" >
-    <span class="text-fl2">尺寸：</span>
-    <span class="text-overflow">
-      <span class="to-text3" id="size1">1米</span>
-  </span>
+    <div class="spec">
+      <%=render :partial=>"store/goods/product/new_spec",:locals=>{ :good=>@good }%>
+    </div>
 </span>                
 <span class="icon-arr"></span>
 </a>
@@ -251,159 +237,6 @@
   <span class="tbl-cell" id="kefu" style="display:none">
      <a href="javascript:void(0)" id="im" class="btn-call"><span></span>联系客服</a>
  </span>
-</div>
-
-
-<div class="img-list-border">
-   <div class="img-list">
-    <p>也许您还喜欢：</p>
-    <div class="img-sild" style="position:relative;height:150px;">
-       <div  ontouchstart="touchStart(event)" ontouchmove="touchMove(event);" ontouchend="touchEnd(event);">
-          <div class="tbl-type" style="position:absolute;height:150px;margin-left:-100px" id="slide">
-              <a class="tbl-cell" href="326419.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g14/M07/07/1B/rBEhVlKxAjQIAAAAAAKWD_zNyNsAAHBwANiiA0AApYn133.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">德芙 心语 三种口味混装夹心巧克力（礼盒装）109g【本产品不含礼品袋，请以收到实物为准】</span>
-                    <span class="pro-price">&yen;39.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="1017564882.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g10/M00/0C/02/rBEQWFFHxycIAAAAAAPmUtoRtOEAACW_QAGQn4AA-Zq654.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">爱唯一鲜花速递 玫瑰花束鲜花快递 生日礼物礼品  同城花店送花 A11朵红玫瑰2小熊 鲜花</span>
-                    <span class="pro-price">&yen;88.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="1004209079.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g3/M00/04/16/rBEGE0-txpcIAAAAAAQW2myesa0AAA6vQEKKCcABBby814.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">不二礼坊 24K金箔玫瑰花 生日礼物 送女友 老婆 特别礼品送女生表白求婚 周年纪念礼物</span>
-                    <span class="pro-price">&yen;108.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="1006697761.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g8/M03/00/04/rBEHaFAssr0IAAAAAAIm51SuflcAAABpgGjhzcAAib_271.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">毛绒玩具熊 泰迪熊 布娃娃 生日礼物女 玩偶 抱抱熊 公仔 围巾熊 大号dmsky 普通包装 70厘米</span>
-                    <span class="pro-price">&yen;78.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="967598.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g14/M08/0E/0C/rBEhVVImyv0IAAAAAANNgeAPv_sAACz4ABk44QAA02Z277.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">意大利进口FerreroRocher费列罗榛果威化巧克力32粒钻石装400g</span>
-                    <span class="pro-price">&yen;114.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="326434.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g14/M04/07/1C/rBEhV1KxC8cIAAAAAAH9mMhz0DgAAHB6gJuVscAAf2w707.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">德芙 心语 两种口味混装夹心巧克力（礼盒装）98g【本产品不含礼品袋，请以收到实物为准】</span>
-                    <span class="pro-price">&yen;38.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="326343.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/561/3488c1bf-6d8c-4eda-aa46-31b7abf42e48.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">德芙 丝滑牛奶巧克力（碗装）294g </span>
-                    <span class="pro-price">&yen;39.90</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="1020391584.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g10/M00/18/15/rBEQWVF3OyMIAAAAAAF5rkuIBlMAAE0XwKpfs4AAXnG752.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">礼无忧 酷玩音乐台灯LED音响灯 新奇特礼品创意生日礼物送女友 送男女生朋友实用小礼物</span>
-                    <span class="pro-price">&yen;79.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="1035918068.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g13/M07/0B/0D/rBEhUlIy0y4IAAAAAAF7jVOKYsoAADHxgPZKK4AAXul369.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">咔噜噜 毛绒玩具圣诞老人雪人公仔抱枕新年礼物 大号50cm</span>
-                    <span class="pro-price">&yen;69.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="983186.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g13/M06/0C/18/rBEhVFKxcFcIAAAAAAI7KnDAmg0AAG9OAH0A4MAAjtC785.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">德芙 星彩 果仁及多种口味巧克力（桶装）160g </span>
-                    <span class="pro-price">&yen;43.80</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="1014244403.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g9/M02/12/07/rBEHaVDsHu8IAAAAAASuo7UQBaoAADj2QN8FwcABK67527.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">顺丰快递 女人节礼物 巧克力 费列罗 巧克力礼盒 金莎加 德芙心印礼盒装 送手提袋</span>
-                    <span class="pro-price">&yen;99.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="1005492310.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g5/M02/13/19/rBEIC0_9HkcIAAAAAARvvxF-4skAAD3cgBqDqcABG_X926.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">咔噜噜 泰迪熊毛绒玩具 公仔玩偶大号 1.6米 浅棕 1.6m</span>
-                    <span class="pro-price">&yen;99.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="1057015852.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g13/M03/05/17/rBEhU1KImK0IAAAAAAUt6zzOShcAAFliAKEjEQABS4D128.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">梦缘正版可爱吉祥小马公仔玩偶毛绒玩具娃娃创意马年新年愚人节礼品送宝宝孩子小朋友送 一对 高35cm*宽32cm</span>
-                    <span class="pro-price">&yen;78.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="1023954.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g14/M07/10/04/rBEhV1L96AoIAAAAAAC9YyfhH0EAAIpXwLYuS0AAL17179.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">倍斯特 BST-0137格兰木 移动电源 10400毫安 白色</span>
-                    <span class="pro-price">&yen;59.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="1044010385.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g14/M06/15/18/rBEhVVJeVb0IAAAAAAKTjnrlQf0AAEQDAPqRw8AApOm493.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">摩米特MOMITON 冬季韩版女士保暖非常幸运笑脸毛线帽子围巾手套套装三件套套件 白色 均码</span>
-                    <span class="pro-price">&yen;109.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="1006865306.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g13/M07/0F/1D/rBEhUlJXaHgIAAAAAAYPws73otAAAEABAM41k0ABg_a341.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">飘飘龙 1.3米趴趴狗 超大号毛绒玩具公仔  趴趴狗抱枕 生日礼物送女生亲子日 棕色 1.3米</span>
-                    <span class="pro-price">&yen;76.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="1003395585.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g13/M00/0D/08/rBEhVFK0BSYIAAAAAAN1kveyTugAAHDhgMY7r8AA3Wq976.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">百草味坚果炒货奶香夏威夷果200g×3包干果特产内附开果器</span>
-                    <span class="pro-price">&yen;39.90</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="1041666740.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g15/M0A/0E/12/rBEhWFJWWzUIAAAAAAFxA44pRwAAAD-oQPXviQAAXEb425.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">亲子日 熙悦 多功能儿童双面磁性画板可升降黑白画板双面写字板</span>
-                    <span class="pro-price">&yen;87.00</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="967592.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g14/M08/0E/0C/rBEhV1ImyvkIAAAAAAGWh3TOL7AAACz3wPGRI4AAZaf296.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">意大利进口FerreroRocher费列罗榛果威化巧克力3粒装37.5g</span>
-                    <span class="pro-price">&yen;7.20</span>
-                </div>
-            </a>
-            <a class="tbl-cell" href="1072999409.html@resourceType=recommend_productDetail&sid=e0d0f025d6d3e8e8d7be5428c43ef911">
-                <div class="pro-img">
-                    <span class="img"><img src="http://img10.360buyimg.com/n4/g14/M09/0A/1B/rBEhV1LE02cIAAAAAAOUKp0tncsAAHnPAIPzRQAA5RC956.jpg" width="85" height="85" alt="img"></span>
-                    <span class="pro-title">亲子日 保蒂卡 毛绒玩具 熊掌靠垫 抱枕 蓝色 45*40cm</span>
-                    <span class="pro-price">&yen;29.00</span>
-                </div>
-            </a>
-        </div>  
-    </div>
-</div>
-</div>
 </div>
 <div class="tbl-type detail-tbn2" id="cart1" style="position:fixed;bottom:0;z-index:10;" >
   <div class="tbl-cell">                    <a id="directorder" class="btn-buy btn-buy-def"><span></span>立即购买</a>

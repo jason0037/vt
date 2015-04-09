@@ -1,0 +1,56 @@
+<div id="specs_container" property-url="<%=price_good_path(good)%>">
+<%if good.specs.present?%>
+   <%good.specs.order("spec_id asc").each do |spec|%>
+      <div class="spec-item clearfix">
+        <span class="spec-name">选择<%=spec.spec_name%> : </span>
+        <%=hidden_field_tag "product[specs][]"%>
+        <ul class="spec-values clearfix">
+            <%good.spec_values.where(:spec_id=>spec.spec_id).uniq.order("p_order asc").each do |spec_value|%>
+                <li>
+                <%#if spec.spec_type=="image"%>
+                  <%#=link_to "","#", :class=>"spec-value image", :style=>"background:url(#{good.custom_picture(spec_value.abbr)}) center no-repeat;", :data=>{:value=>spec_value.spec_value_id,:images=>good.pictures(:large,spec_value.abbr).join(" ")},:title=>spec_value.spec_value%>
+                <%#else%>
+                  <%=link_to spec_value.spec_value, "#", :class=>"spec-value text",:data=>{:value=>spec_value.spec_value_id},:title=>spec_value.spec_value%>
+                <%#end%>
+                </li>
+             <%end%>
+         </ul>
+        <%if spec.spec_name == "尺码"%>
+          <span class="helper">(<a href="#" class="size_helper">帮助</a> / <a href="#" class="cs_helper">客服</a>)</span>
+        <%end%>
+       </div>
+    <%end%>
+<%else%>
+
+    <%good.spec_desc.each do  |spec_id, spec_hash|%>
+      <div class="spec-item clearfix">
+          <span class="spec-name">选择<%=(spec = Ecstore::Spec.find(spec_id)).spec_name%> : </span>
+          <%=hidden_field_tag "product[specs][]"%>
+          <ul class="spec-values clearfix">
+            <%spec_hash.each do |k,spec_values| %>
+            
+            <li>
+              <%if spec.spec_type == "image"%>
+                <% spec_value_abbr = spec_values["spec_value"].split(" ").last.downcase %>
+
+                <%=link_to "","#", :class=>"spec-value image", :style=>"background:url(#{good.custom_picture(spec_value_abbr)}) center no-repeat;", :data=>{:value=>spec_values["spec_value_id"],:images=>good.pictures(:large,spec_value_abbr).join(" ")},:title=>spec_values["spec_value"]%>
+              <%else%>
+                 <%=link_to spec_values["spec_value"], "#", :class=>"spec-value text",:data=>{:value=>spec_values["spec_value_id"]},:title=>spec_values["spec_value"]%>
+              <%end%>
+            </li>
+            <%end%>
+          </ul>
+          <%if spec.spec_name == "尺码"%>
+          <span class="helper">(<a href="#" class="size_helper">帮助</a> / <a href="#" class="cs_helper">客服</a>)</span>
+          <%end%>
+      </div>
+    <%end%>
+
+<%end%>
+
+    <div class="spec-item clearfix">
+      <span>购买数量 : </span>
+      <%=select_tag "product[quantity]",options_for_select((good.store.to_i > 0 ? 1 : 0)..(good.store.to_i>10 ? 10 : good.store.to_i)),:id=>"store",:class=>"goods_spec_number_down",:style=>"width:50px"%>
+      <span class="store-count">(库存 <span id="product_store"><%=good.store2.to_i%></span> 件)</span>
+    </div>
+</div>

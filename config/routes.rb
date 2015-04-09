@@ -750,7 +750,9 @@ Modengke::Application.routes.draw do
       post 'add',:on=>:collection
     end
 
-    resources :cats
+    resources :cats do
+      get 'list_spec',:on=>:collection
+    end
 
     resources :users
 
