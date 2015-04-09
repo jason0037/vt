@@ -827,6 +827,9 @@ Modengke::Application.routes.draw do
     resources :home
     resources :cart
     resources :cats
+    resources :sessions  do
+      get 'login', :on=>:collection
+    end
   end
 
   # The priority is based upon order of creation:

@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Fullscreen Responsive Register Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- CSS -->
+        <!-- <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'> -->
+        <!-- <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Oleo+Script:400,700'> -->
+        <link rel="stylesheet" href="/assets/mobile/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/mobile/login.css">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <div class="register-container container">
+            <div class="row">
+                <div class="register span6">
+                    <%=form_for :user,:url=>users_path,:remote=>true,:html=>{:id=>"register_form"} do |f|%>
+                        <%=hidden_field_tag :return_url%>
+                        <h2>用户登录</h2>
+                        <label for="firstname">用户名：</label>
+                        <%=f.text_field :login_name,:class=>"new-input required",:placeholder=>"用户名"%>
+                        <label for="lastname">密码：</label>
+                        <%=f.password_field :login_password,:class=>"new-input required",:placeholder=>"密码"%>
+                        <%=f.submit "登 录",:class=>"btn register_btn"%>
+                    <%end%>
+                </div>
+            </div>
+        </div>
+    <div align="center">Copyright &copy; 2014.</a>
+</div>
+        <!-- Javascript -->
+        <script src="/assets/mobile/jquery-1.8.2.min.js"></script>
+        <script src="/assets/bootstrap.js"></script>
+        <script src="/assets/mobile/jquery.backstretch.min.js"></script>
+        <script src="/assets/mobile/scripts.js"></script>
+</body>
+</html>
