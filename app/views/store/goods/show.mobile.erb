@@ -59,71 +59,71 @@
                 for(var i=0,len=_dlocationList.length;i<len;i++){
                 	if(_dlocationList[i].test(_winLocation)){
                 		_needReplace=true;
-                       break;
-                   }
-               }
-               if(_needReplace){
-                 document.write('<script src="/assets/mobile/jd/zepto.min.js"><\/script>');
-                 document.write('<script type="text/javascript">window.jQuery=window.Zepto;<\/script>');
-             }else{
-                 document.write('<script src="/assets/mobile/jd/jquery-1.6.2.min.js"><\/script>');
+                     break;
+                 }
              }
+             if(_needReplace){
+               document.write('<script src="/assets/mobile/jd/zepto.min.js"><\/script>');
+               document.write('<script type="text/javascript">window.jQuery=window.Zepto;<\/script>');
+           }else{
+               document.write('<script src="/assets/mobile/jd/jquery-1.6.2.min.js"><\/script>');
+           }
 			}else{//如果是非webkit内核直接使用jquery
 				document.write('<script src="/assets/mobile/jd/jquery-1.6.2.min.js"><\/script>');
 			}
-          </script>
-          <script type="text/javascript" src="/assets/mobile/jd/html5/common.js"></script>
-          <script type="text/javascript" src="/assets/mobile/jd/html5/spin.min.js"></script>
-      </head>
+      </script>
+      <script type="text/javascript" src="/assets/mobile/jd/html5/common.js"></script>
+      <script type="text/javascript" src="/assets/mobile/jd/html5/spin.min.js"></script>
+  </head>
 
-      <body id="body">
-        <a name="top"></a>
-        <header>
-           <div class="new-header">
-             <a href="javascript:pageBack();" class="new-a-back" id="backUrl"><span>返回</span></a>
-             <h2>商品详情</h2>
-             <a href="javascript:void(0)" id="btnJdkey" class="new-a-jd"><span>京东键</span></a>
-         </div>
-         <div class="new-jd-tab" style="display:none" id="jdkey">
-             <div class="new-tbl-type">
-                <a href="/mobile/home/" class="new-tbl-cell">
-                 <span class="icon">首页</span>
-                 <p style="color:#6e6e6e;">首页</p>
-             </a>
-             <a href="#" class="new-tbl-cell">
-                 <span class="icon2">分类搜索</span>
-                 <p style="color:#6e6e6e;">分类搜索</p>
-             </a>
-             <a href="javascript:void(0)" id="html5_cart" class="new-tbl-cell">
-                 <span class="icon3">购物车</span>
-                 <p style="color:#6e6e6e;">购物车</p>
-             </a>
-             <a href="../user/home.action@sid=e0d0f025d6d3e8e8d7be5428c43ef911" class="new-tbl-cell">
-                 <span class="icon4">我的京东</span>
-                 <p style="color:#6e6e6e;">我的京东</p>
-             </a>
-         </div>
-     </div>
- </header>
- <script type="text/javascript" src="/assets/mobile/jd/2013/ware/view.js"></script>
- <script type="text/javascript" src="/assets/mobile/jd/2013/ware/newView.js"></script>
- <div id="mainLayout" style="display:-webkit-box;">
+  <body id="body">
+    <a name="top"></a>
+    <header>
+     <div class="new-header">
+       <a href="javascript:pageBack();" class="new-a-back" id="backUrl"><span>返回</span></a>
+       <h2>商品详情</h2>
+       <a href="javascript:void(0)" id="btnJdkey" class="new-a-jd"><span>京东键</span></a>
+   </div>
+   <div class="new-jd-tab" style="display:none" id="jdkey">
+       <div class="new-tbl-type">
+        <a href="/mobile/home/" class="new-tbl-cell">
+           <span class="icon">首页</span>
+           <p style="color:#6e6e6e;">首页</p>
+       </a>
+       <a href="#" class="new-tbl-cell">
+           <span class="icon2">分类搜索</span>
+           <p style="color:#6e6e6e;">分类搜索</p>
+       </a>
+       <a href="javascript:void(0)" id="html5_cart" class="new-tbl-cell">
+           <span class="icon3">购物车</span>
+           <p style="color:#6e6e6e;">购物车</p>
+       </a>
+       <a href="../user/home.action@sid=e0d0f025d6d3e8e8d7be5428c43ef911" class="new-tbl-cell">
+           <span class="icon4">我的京东</span>
+           <p style="color:#6e6e6e;">我的京东</p>
+       </a>
+   </div>
+</div>
+</header>
+<script type="text/javascript" src="/assets/mobile/jd/2013/ware/view.js"></script>
+<script type="text/javascript" src="/assets/mobile/jd/2013/ware/newView.js"></script>
+<div id="mainLayout" style="display:-webkit-box;">
     <div class="new-ct" id="mainStay" style="-webkit-box-flex: 1;width: 100%;">
       <div class="new-p-re">
-         <div class="detail-img" >
-           <div class="tbl-type"  id="_zoom">
+       <div class="detail-img" >
+         <div class="tbl-type"  id="_zoom">
             <div id="imgSlider" style="position:relative;left:0px;">
-            <%@small_pic = @good.small_pic.split(',')%>
-             <span class="tbl-cell"><img src="<%=@small_pic[0] if @good.small_pic%>" seq="0" width="320" height="292"></span>
+                <%@small_pic = @good.small_pic.split(',')%>
+                <span class="tbl-cell"><img src="<%=@small_pic[0] if @good.small_pic%>" seq="0" width="320" height="292"></span>
 
-         </div>
-         <ul class="new-banner-num new-b-num-v1 new-tbl-type" id="imgSliderPage" style="display:none">
-         </ul>
-     </div>
- </div>
- <div class="detail-price">
-     <span class="text" id="price">&yen;<%=@good.name%>  </span><a class="btn-sc" id="attention"><span></span></a>
- </div>
+            </div>
+            <ul class="new-banner-num new-b-num-v1 new-tbl-type" id="imgSliderPage" style="display:none">
+            </ul>
+        </div>
+    </div>
+    <div class="detail-price">
+       <span class="text" id="price">&yen;<%=@good.name%>  </span><a class="btn-sc" id="attention"><span></span></a>
+   </div>
 </div>
 <input type="hidden" value="http://img13.360buyimg.com/n1/g10/M00/05/12/rBEQWFEtb78IAAAAAAWca7l6fjYAABFowBCPIEABZyD393.jpg!q70.jpg," id="imgs"/>
 <div class="secton10">
@@ -142,102 +142,32 @@
 
 <div class="cart-pop" id="cart" style="display:none;position:absolute;bottom:50%;z-index:9999">
     <div class="ico-succ" >
-     <span class="att-succ">添加成功！</span>
-     <span class="cart-succ">商品已成功加入购物车</span>
- </div>
- <div class="cp-lnk" >
-     <a href="javascript:void(0)" onClick="$('#cart').hide();$('#_mask').hide();" id="stroll">再逛逛</a>                    
-     <a  id="goCart"><span class="bar"></span>去购物车</a>
- </div>
+       <span class="att-succ">添加成功！</span>
+       <span class="cart-succ">商品已成功加入购物车</span>
+   </div>
+   <div class="cp-lnk" >
+       <a href="javascript:void(0)" onClick="$('#cart').hide();$('#_mask').hide();" id="stroll">再逛逛</a>                    
+       <a  id="goCart"><span class="bar"></span>去购物车</a>
+   </div>
 </div>
 
 <div class="bg-h15"></div>
 
 <div class="secton10 secton10-v1">
     <div class="info border-b-none">
-     <!--[D] 加on 箭头向下 -->
-     <a id="kucun" class="btn-option2 on">
-         <span class="s-block">
-            <span class="text-fl2">库存：</span>
-            <span class="text-overflow">
-             <span class="to-text" id="stockTip"> 北京                                    >  朝阳区                 >     管庄   </span>
-             <span class="to-text2" id="stockStatus"><font color="#c00">现货</font></span>
-         </span>
-     </span>
- </span>
- <span class="s-block" id="color_parent" >
-    <span class="text-fl2">颜色：</span>
-    <span class="text-overflow">
-     <span class="to-text3" id="color1">粉红色	</span>
- </span>
-</span>
-<span class="s-block" id="size_parent" >
-    <div class="spec">
-      <%=render :partial=>"store/goods/product/new_spec",:locals=>{ :good=>@good }%>
-    </div>
-</span>                
-<span class="icon-arr"></span>
-</a>
-<div class="detail-option" id="select" style="display:none" data="none">
-    <div class="option-section">
-        <span class="text-fl">送到：</span>
-        <div class="option">
-          <span>
-            <span class="select-box new-mg-b10" id="provincetip">
-                <span></span>
-                <select class="new-select" id="province" onChange="changeProvince();">
-                 <script language=javascript>$('#provincetip').append('北京');</script><option value="1"  selected="selected" > 北京</option> <option value="2" > 上海</option> <option value="3" > 天津</option> <option value="4" > 重庆</option> <option value="5" > 河北</option> <option value="6" > 山西</option> <option value="7" > 河南</option> <option value="8" > 辽宁</option> <option value="9" > 吉林</option> <option value="10" > 黑龙江</option> <option value="11" > 内蒙古</option> <option value="12" > 江苏</option> <option value="13" > 山东</option> <option value="14" > 安徽</option> <option value="15" > 浙江</option> <option value="16" > 福建</option> <option value="17" > 湖北</option> <option value="18" > 湖南</option> <option value="19" > 广东</option> <option value="20" > 广西</option> <option value="21" > 江西</option> <option value="22" > 四川</option> <option value="23" > 海南</option> <option value="24" > 贵州</option> <option value="25" > 云南</option> <option value="26" > 西藏</option> <option value="27" > 陕西</option> <option value="28" > 甘肃</option> <option value="29" > 青海</option> <option value="30" > 宁夏</option> <option value="31" > 新疆</option> <option value="32" > 台湾</option> <option value="42" > 香港</option> <option value="43" > 澳门</option> <option value="84" > 钓鱼岛</option>                                    </select>
-             </span>
-         </span>
-         <span>
-            <span class="select-box new-mg-b10" id="citytip">
-                <span></span>
-                <select class="new-select" id="city" onChange="changeCity();">
-                 <script language=javascript>$('#citytip').append('朝阳区');</script><option value="72"  selected="selected" > 朝阳区</option> <option value="2800" > 海淀区</option> <option value="2801" > 西城区</option> <option value="2802" > 东城区</option> <option value="2803" > 崇文区</option> <option value="2804" > 宣武区</option> <option value="2805" > 丰台区</option> <option value="2806" > 石景山区</option> <option value="2807" > 门头沟</option> <option value="2808" > 房山区</option> <option value="2809" > 通州区</option> <option value="2810" > 大兴区</option> <option value="2812" > 顺义区</option> <option value="2814" > 怀柔区</option> <option value="2816" > 密云区</option> <option value="2901" > 昌平区</option> <option value="2953" > 平谷区</option> <option value="3065" > 延庆县</option>    							</select>
-             </span>
-         </span>
-         <span id="country_1">
-            <span class="select-box new-mg-b10" id="countrytip">
-                <span></span>
-                <select class="new-select" id="country" onChange="changeCountry();">
-                 <option value="2799" > 三环以内</option> <option value="2819" > 三环到四环之间</option> <option value="2839" > 四环到五环之间</option> <option value="2840" > 五环到六环之间</option> <script language=javascript>$('#countrytip').append('管庄');</script><option value="4137"  selected="selected" > 管庄</option> <option value="4139" > 北苑</option> <option value="4211" > 定福庄</option>                                </select>
-             </span>
-         </span>
-         <span id="town_1">
-            <span class="detail-msg"><span class="text-red" id="stockStatus_1">现货</span></span>                
-        </div>
-    </div>
-
-    <div class="option-section new-mg-t10" >
-        <span class="text-fl">颜色：</span>
-        <div class="option" id="color">
-          <a title="粉红色" date="current" class="btn-color-op new-mg-b10 on">粉红色</a>&nbsp;<a title="紫色" date="noCurrent" href="javascript:void(0)" wareId='1018601194' class="btn-color-op new-mg-b10">紫色</a>&nbsp;<a title="情侣一对" date="noCurrent" href="javascript:void(0)" wareId='1073457037' class="btn-color-op new-mg-b10">情侣一对</a>&nbsp;                        </div>
-      </div>
-
-      <div class="option-section new-mg-t10" >
-        <span class="text-fl">尺寸：</span>
-        <div class="option" id="size">
-          <a title="1米" class="btn-color-op new-mg-b10 on" date="currentSize">1米</a>&nbsp;<a title="1.3米" href="javascript:void(0)" date="noCurrentSize" wareId="1016292844" class="btn-color-op new-mg-b10">1.3米</a>&nbsp;                        </div>
-      </div>
-
-      <div class="option-section new-mg-t10">
-        <span class="text-fl">数量：</span>
-        <div class="option">
-            <span class="add-del">
-                <a class="btn-add" id="plus" onClick="reduce();"><span></span></a>
-                <input type="text" class="new-input" value="1" id="number" onBlur="modify();"/>
-                <a class="btn-del" id="minus" onClick="add();"><span></span></a>
-            </span>
-        </div>
-    </div>
-
-</div>
-</div>
+       
+        <span class="s-block" id="size_parent" >
+            <div class="spec">
+              <%=render :partial=>"store/goods/product/new_spec",:locals=>{ :good=>@good }%>
+          </div>
+      </span>                
+      <span class="icon-arr"></span>
+  </div>
 </div>     
 <div class="tbl-type detail-tbn detail-tbn-v1" id="jshopAndIm">
   <span class="tbl-cell" id="kefu" style="display:none">
-     <a href="javascript:void(0)" id="im" class="btn-call"><span></span>联系客服</a>
- </span>
+   <a href="javascript:void(0)" id="im" class="btn-call"><span></span>联系客服</a>
+</span>
 </div>
 <div class="tbl-type detail-tbn2" id="cart1" style="position:fixed;bottom:0;z-index:10;" >
   <div class="tbl-cell">                    <a id="directorder" class="btn-buy btn-buy-def"><span></span>立即购买</a>
@@ -247,36 +177,36 @@
 </div>
 </div>
 <div id="showassess" style="margin-bottom: 20px;-webkit-box-flex: 1;width: 100%;display: none!important;">
- <div class="new-ct">
-     <div class="new-goods-details" id="_assessContent">
+   <div class="new-ct">
+       <div class="new-goods-details" id="_assessContent">
 
-      <div class="new-gd-introduce">
-         <div class="new-fl w56 new-mg-r12">
-             <span class="new-span-block"><span class="new-txt36" id="_assessScale">0</span><span class="new-txt-sign">%</span></span>
-             <span class="new-span-block new-mg-t5">好评度</span>
-         </div>
-         <div class="new-gd-txt3">
-             <span class="new-span-block" id="_btnGoodScale"><span>好评</span><span class="new-txtb8" id="_goodScale">（0%）</span><span class="new-gd-bar new-mg-l12"><span style="width:0%" id="_goodScaleImg"></span></span></span>
-             <span class="new-span-block" id="_btnMediumScale"><span>中评</span><span class="new-txtb8" id="_mediumScale">（0%）</span><span class="new-gd-bar new-mg-l12"><span style="width:0%" id="_mediumScaleImg"></span></span></span>
-             <span class="new-span-block" id="_btnGoodScale"><span>差评</span><span class="new-txtb8" id="_badScale">（0%）</span><span class="new-gd-bar new-mg-l12"><span style="width:0%" id="_badScaleImg"></span></span></span>
-         </div>
-         <div class="new-estimate new-tbl-type new-mg-t15">
-             <div class="new-tbl-cell on" id="_tabGoodScale" onClick="changeAssessType(this)">
-                 <span>好评</span><span id="goodNum">0</span>
-             </div>
-             <div class="new-tbl-cell" id="_tabMediumScale"  onclick="changeAssessType(this)">
-                 <span>中评</span><span id="mediumNum">0</span>
-             </div>
-             <div class="new-tbl-cell" id="_tabBadScale" onClick="changeAssessType(this)">
-                 <span>差评</span><span id="badNum">0</span>
-             </div>
-         </div>
-     </div>
+          <div class="new-gd-introduce">
+           <div class="new-fl w56 new-mg-r12">
+               <span class="new-span-block"><span class="new-txt36" id="_assessScale">0</span><span class="new-txt-sign">%</span></span>
+               <span class="new-span-block new-mg-t5">好评度</span>
+           </div>
+           <div class="new-gd-txt3">
+               <span class="new-span-block" id="_btnGoodScale"><span>好评</span><span class="new-txtb8" id="_goodScale">（0%）</span><span class="new-gd-bar new-mg-l12"><span style="width:0%" id="_goodScaleImg"></span></span></span>
+               <span class="new-span-block" id="_btnMediumScale"><span>中评</span><span class="new-txtb8" id="_mediumScale">（0%）</span><span class="new-gd-bar new-mg-l12"><span style="width:0%" id="_mediumScaleImg"></span></span></span>
+               <span class="new-span-block" id="_btnGoodScale"><span>差评</span><span class="new-txtb8" id="_badScale">（0%）</span><span class="new-gd-bar new-mg-l12"><span style="width:0%" id="_badScaleImg"></span></span></span>
+           </div>
+           <div class="new-estimate new-tbl-type new-mg-t15">
+               <div class="new-tbl-cell on" id="_tabGoodScale" onClick="changeAssessType(this)">
+                   <span>好评</span><span id="goodNum">0</span>
+               </div>
+               <div class="new-tbl-cell" id="_tabMediumScale"  onclick="changeAssessType(this)">
+                   <span>中评</span><span id="mediumNum">0</span>
+               </div>
+               <div class="new-tbl-cell" id="_tabBadScale" onClick="changeAssessType(this)">
+                   <span>差评</span><span id="badNum">0</span>
+               </div>
+           </div>
+       </div>
 
-     <div id="_assessItem">
-     </div>
+       <div id="_assessItem">
+       </div>
 
- </div>
+   </div>
 </div>
 
 <div class="new-paging" id="_assessPage">
@@ -299,7 +229,7 @@
 </div>
 
 <div id="yuyuecart" style="width:100%;position:fixed;bottom:0;display:none">
- <div class="tbl-type detail-tbn2">
+   <div class="tbl-type detail-tbn2">
     <div class="tbl-cell">
         <a class="btn-cart" data id="cartyuyue"><span></span>加入购物车</a>
     </div>
@@ -307,7 +237,7 @@
 </div>
 
 <div id="yuyueing" style="width:100%;position:fixed;bottom:0;display:none">
- <div class="tbl-type detail-tbn2" >
+   <div class="tbl-type detail-tbn2" >
     <div class="tbl-cell">
         <a class="btn-yuyue" data><span class="icon-clock"></span><span id="yuyuetime"></span><span class="txt-yuyue" id="yuyuecontext"><span></span>开始预约</span></a>
     </div>
@@ -323,22 +253,22 @@
 </div>
 
 <div id="yuyueend" style="position:fixed;bottom:0;display:none">
- <div class="tbl-type detail-tbn2" >
+   <div class="tbl-type detail-tbn2" >
     <div class="tbl-cell">
         <a class="btn-yuyue2"><span class="icon-clock"></span><span class="txt-yuyue" id="yuyueendcontext"><span></span></span></a>
     </div>
 </div>
 </div>
 <div class="pop" style="position:absolute;z-index:9999;display:none" id="tip">
- <p><span class="pop-txt"></span>
- </p>
- <div class="pop-txt-area">
-   <span class="pop-txt2" id="tips">
-   </span>
-</div>
-<div class="tbl-type">
- <a href="javascript:void(0)" onClick="$('#tip').hide();$('#_mask').hide();" class="tbl-cell" style="width:50%">知道啦</a>
- <a href="javascript:void(0)" id="myyuyue" class="tbl-cell"  style="width:50%">我的预约</a>
+   <p><span class="pop-txt"></span>
+   </p>
+   <div class="pop-txt-area">
+     <span class="pop-txt2" id="tips">
+     </span>
+ </div>
+ <div class="tbl-type">
+   <a href="javascript:void(0)" onClick="$('#tip').hide();$('#_mask').hide();" class="tbl-cell" style="width:50%">知道啦</a>
+   <a href="javascript:void(0)" id="myyuyue" class="tbl-cell"  style="width:50%">我的预约</a>
 </div>
 </div>
 
@@ -356,109 +286,109 @@
 <input type="hidden" id="passportUse" value="false"/>
 <input type="hidden" id="yuyueType" value="5"/>
 <script>
-var time,type;
+    var time,type;
 
-$(function(){
-  if('true' == 'false'){
-   $('#cart1').css("display","none");
-}
-else if(!(true && true && 98.00>0))	{
-   $('#add_cart').addClass('btn-cart-def');
-   $('#directorder').addClass('btn-buy-def');
-   $("#add_cart").unbind('click');
-   $("#directorder").unbind('click');
-}else{
-   $('#add_cart').removeClass('btn-cart-def');
-   $('#directorder').removeClass('btn-buy-def');
-}
+    $(function(){
+      if('true' == 'false'){
+         $('#cart1').css("display","none");
+     }
+     else if(!(true && true && 98.00>0))	{
+         $('#add_cart').addClass('btn-cart-def');
+         $('#directorder').addClass('btn-buy-def');
+         $("#add_cart").unbind('click');
+         $("#directorder").unbind('click');
+     }else{
+         $('#add_cart').removeClass('btn-cart-def');
+         $('#directorder').removeClass('btn-buy-def');
+     }
 
-type = $('#yuyueType').val();
-switch(type){
-   case '1':
-   $('#yuyueing').find('.btn-yuyue').attr('data','1');
-   $('#yuyuecontext').text('\u5f00\u59cb\u9884\u7ea6');
-   $('#yuyueing').show();
-   time = new Date().getTime()/1000 + parseInt('-1'.length > 0 ? '-1':0);
-   getTimes();
-   break
-   case '2':
-   $('.btn-yuyue2').attr('data','2');
-   $('#yuyuenow').show();
-   $('#yuyuenow').css("display","block");
-   time = new Date().getTime()/1000 + parseInt('-1'.length > 0 ? '-1':0);
-   getTimes();
-   break
-   case '3':
-   $('#yuyueing').find('.btn-yuyue').attr('data','3');
-   $('#yuyuecontext').text('\u5f00\u59cb\u62a2\u8d2d');
-   if('-1'.length>0){
-     time = new Date().getTime()/1000 + parseInt('-1'.length > 0 ? '-1':0);
-     getTimes();
- }else{
-     $('#yuyuetime').text('\u62a2\u8d2d\u672a\u5f00\u59cb\uff0c\u656c\u8bf7\u5173\u6ce8');
-     $('#yuyuecontext').empty();
- }
- $('#yuyueing').show();
- break
- case '4':
- $('#yuyuecart').show();
- $('#cartyuyue').attr('data','4');
- time = new Date().getTime()/1000 + parseInt('-1'.length > 0 ? '-1':0);
- getTimes();
- break
- case '5':
- if('true' == 'false'){
-     $('#yuyueendcontext').text('\u62a2\u8d2d\u5df2\u7ed3\u675f');
-     $('#yuyueend').css("display","block");
- }else{
-     $('#cart1').css("display","table");
-     $('#add_cart').removeClass('btn-cart-def');
-     $('#directorder').removeClass('btn-buy-def');
- }
- break
- default:
- $('#cart1').css("display","table");
- $('#add_cart').removeClass('btn-cart-def');
- $('#directorder').removeClass('btn-buy-def');
-}
+     type = $('#yuyueType').val();
+     switch(type){
+         case '1':
+         $('#yuyueing').find('.btn-yuyue').attr('data','1');
+         $('#yuyuecontext').text('\u5f00\u59cb\u9884\u7ea6');
+         $('#yuyueing').show();
+         time = new Date().getTime()/1000 + parseInt('-1'.length > 0 ? '-1':0);
+         getTimes();
+         break
+         case '2':
+         $('.btn-yuyue2').attr('data','2');
+         $('#yuyuenow').show();
+         $('#yuyuenow').css("display","block");
+         time = new Date().getTime()/1000 + parseInt('-1'.length > 0 ? '-1':0);
+         getTimes();
+         break
+         case '3':
+         $('#yuyueing').find('.btn-yuyue').attr('data','3');
+         $('#yuyuecontext').text('\u5f00\u59cb\u62a2\u8d2d');
+         if('-1'.length>0){
+           time = new Date().getTime()/1000 + parseInt('-1'.length > 0 ? '-1':0);
+           getTimes();
+       }else{
+           $('#yuyuetime').text('\u62a2\u8d2d\u672a\u5f00\u59cb\uff0c\u656c\u8bf7\u5173\u6ce8');
+           $('#yuyuecontext').empty();
+       }
+       $('#yuyueing').show();
+       break
+       case '4':
+       $('#yuyuecart').show();
+       $('#cartyuyue').attr('data','4');
+       time = new Date().getTime()/1000 + parseInt('-1'.length > 0 ? '-1':0);
+       getTimes();
+       break
+       case '5':
+       if('true' == 'false'){
+           $('#yuyueendcontext').text('\u62a2\u8d2d\u5df2\u7ed3\u675f');
+           $('#yuyueend').css("display","block");
+       }else{
+           $('#cart1').css("display","table");
+           $('#add_cart').removeClass('btn-cart-def');
+           $('#directorder').removeClass('btn-buy-def');
+       }
+       break
+       default:
+       $('#cart1').css("display","table");
+       $('#add_cart').removeClass('btn-cart-def');
+       $('#directorder').removeClass('btn-buy-def');
+   }
 
 
 
-var pid=$('#currentWareId').val();
+   var pid=$('#currentWareId').val();
 
-var url = "../../chat1.jd.com/api/checkChat@pid=" +pid + "&entry=m_item&returnCharset=gb2312&callback=?";
-if(true){
-  jQuery.getJSON(url, doResult);
-}
+   var url = "../../chat1.jd.com/api/checkChat@pid=" +pid + "&entry=m_item&returnCharset=gb2312&callback=?";
+   if(true){
+      jQuery.getJSON(url, doResult);
+  }
 
-function doResult(json) {
+  function doResult(json) {
     if ((!json || !json.code) &&(''=='') ) {
         $('#jshopAndIm').css('display','none');
         return
     }
     if(!json || !json.code){
-       return;
-   }
-   var code = json.code;
-   if(code == 1){
-       if($('#currentWareId').val()<1000000000){
-         $('#kefu').show();
-         $('#im').addClass("btn-call-def");
-     }else{
-        $('#kefu').show();
-        var url="../../im.m.jd.com/merchant/index@v=6&sku="+$('#currentWareId').val()+"&imgUrl="+$('#imgUrl').val()+"&goodName="+encodeURIComponent(encodeURIComponent($("#goodName").val()))+"&jdPrice="+$('#jdPrice').val()+"&sid="+$('#sid').val();
-        $('#im').attr('href',url);
-    }
+     return;
+ }
+ var code = json.code;
+ if(code == 1){
+     if($('#currentWareId').val()<1000000000){
+       $('#kefu').show();
+       $('#im').addClass("btn-call-def");
+   }else{
+    $('#kefu').show();
+    var url="../../im.m.jd.com/merchant/index@v=6&sku="+$('#currentWareId').val()+"&imgUrl="+$('#imgUrl').val()+"&goodName="+encodeURIComponent(encodeURIComponent($("#goodName").val()))+"&jdPrice="+$('#jdPrice').val()+"&sid="+$('#sid').val();
+    $('#im').attr('href',url);
+}
 }else if(code==2 || code==3 || code==9){
     $('#kefu').show();
     $('#im').addClass("btn-call-def");
 }else if(''==''){
-   $('#jshopAndIm').css('display',none);
+ $('#jshopAndIm').css('display',none);
 }
 }
 
 $('#kucun').bind("click",function(){
-   if($('#select').attr("data")=='none'){
+ if($('#select').attr("data")=='none'){
     $('#select').css("display","block");
     $('#select').attr("data","block")
     $('#kucun').removeClass("on");
@@ -470,22 +400,22 @@ $('#kucun').bind("click",function(){
 });
 
 if(window.localStorage){
-   addLocalStorage($('#currentWareId').val());
+ addLocalStorage($('#currentWareId').val());
 }
 $('footer').css('visibility','hidden');
 })
 </script>
 
 <div class="login-area" id="footer">
- <div class="login">
-  <a href="../user/login.action@sid=e0d0f025d6d3e8e8d7be5428c43ef911">登录</a><span class="lg-bar">|</span><a href="../user/mobileRegister.action@sid=e0d0f025d6d3e8e8d7be5428c43ef911">注册</a>
-  <span  class="new-fr"><a href="../showvote.html@sid=e0d0f025d6d3e8e8d7be5428c43ef911">反馈</a><span class="lg-bar">|</span><a href="#top">回到顶部</a></span>
-</div>
-<div class="version"><a href="../index.html@v=w&sid=e0d0f025d6d3e8e8d7be5428c43ef911">标准版</a><a href="javascript:void(0)" class="on">触屏版</a><a href="../index/pcsite.action" id="toPcHome">电脑版</a></div>
-<div class="copyright">&copy; m.jd.com </div>
+   <div class="login">
+      <a href="../user/login.action@sid=e0d0f025d6d3e8e8d7be5428c43ef911">登录</a><span class="lg-bar">|</span><a href="../user/mobileRegister.action@sid=e0d0f025d6d3e8e8d7be5428c43ef911">注册</a>
+      <span  class="new-fr"><a href="../showvote.html@sid=e0d0f025d6d3e8e8d7be5428c43ef911">反馈</a><span class="lg-bar">|</span><a href="#top">回到顶部</a></span>
+  </div>
+  <div class="version"><a href="../index.html@v=w&sid=e0d0f025d6d3e8e8d7be5428c43ef911">标准版</a><a href="javascript:void(0)" class="on">触屏版</a><a href="../index/pcsite.action" id="toPcHome">电脑版</a></div>
+  <div class="copyright">&copy; m.jd.com </div>
 </div>
 <script type="text/javascript">
-$("#unsupport").hide();
+    $("#unsupport").hide();
 if(!testLocalStorage()){ //not support html5
     if(0!=0 && !$clearCart && !$teamId){
       $("#html5_cart_num").text(0>0>0);
@@ -525,11 +455,11 @@ function reSearch(){
 });
     //banner 下载点击
     $('.div_banner_download').click(function(){
-     var downloadUrl = $(this).attr('url');
-     jQuery.post('../index/addClientCookieVal.json',function(d){
-       window.location.href=downloadUrl;
+       var downloadUrl = $(this).attr('url');
+       jQuery.post('../index/addClientCookieVal.json',function(d){
+         window.location.href=downloadUrl;
+     });
    });
- });
 
-    </script>
+</script>
 </body>

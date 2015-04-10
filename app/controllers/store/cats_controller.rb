@@ -87,6 +87,19 @@ class Store::CatsController < ApplicationController
     render :layout=>'tairyo_new'
   end
 
+  def list_spec
+      tag_id = params[:id]
+      @gallery = Ecstore::TagExt.where(:tag_id=>tag_id).first
+      if @gallery.nil?
+        return render :text=>"敬请期待"
+      end
+      @categories = Ecstore::Category.where("cat_id in (#{@gallery.categories})").order("p_order")
+
+      respond_to do |format|
+          format.mobile { render :layout=> 'msite'}
+      end
+  end
+
   def show
       @cat = Ecstore::Category.find_by_cat_id(params[:id])
       case params[:gtype]
@@ -97,7 +110,6 @@ class Store::CatsController < ApplicationController
         else
           @all_goods = @cat.all_goods(:sell=>"true")
       end
-
   		order = params[:order]
 
 	  	if order.present?
@@ -143,6 +155,6 @@ class Store::CatsController < ApplicationController
         respond_to do  |format|
             format.mobile { render :layout=> 'msite'}
         end
-  end
+    end
 end
 

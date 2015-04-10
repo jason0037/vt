@@ -1,0 +1,12 @@
+.good_info{
+	width: 50%;
+	float: left;
+}
+.new-img-box{
+	padding-left: 20px;
+}
+.goods_desc{
+	width: 70%;
+	float: left;
+	font-size: 12px;
+}

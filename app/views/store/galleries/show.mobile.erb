@@ -82,7 +82,7 @@
       <header>
         <div class="new-header">
           <a href="javascript:pageBack();" class="new-a-back" id="backUrl"><span>返回</span></a>
-          <h2></h2>
+          <h2><%=@gallery.tag_name%></h2>
           <a href="javascript:void(0)" id="btnJdkey" class="new-a-jd"><span>京东键</span></a>
         </div>
         <div class="new-jd-tab" style="display:none" id="jdkey">
@@ -106,35 +106,25 @@
           </div>
         </div>
       </header>
-      <div class="new-ct new-p-re">
-        <div class="new-search">
-          <div class="new-goods-img-lst new-tbl-type">
-              <div class="new-tbl-cell">
-                            <a href="../product/1.html" class="new-goods-section">
-                      <div class="new-img-box">
-                            <img src="http://img13.360buyimg.com/n3/g15/M07/05/1D/rBEhWlIUf7oIAAAAAALnZATd9X4AACSsAGXLa8AAud8547.jpg" onerror="this.src=''" width="130" height="130" alt="" class="new-goods-img">
-                            <span class="new-goods-txt new-p-re">
-                                <strong class="new-txt">¥159.00</strong>
-                                <span class="new-txt2" style="color:red">
-                                  </span>
-                            </span>
-                        </div>
-                    </a>
-                </div>
-                <div class="new-tbl-cell">
-                            <a href="../product/1.html" class="new-goods-section">
-                      <div class="new-img-box">
-                            <img src="http://img10.360buyimg.com/n3/g15/M04/09/13/rBEhWVIu6l8IAAAAAAQfYNF16GYAADAkgJhMXUABB94158.jpg" onerror="this.src=''" width="130" height="130" alt="" class="new-goods-img">
-                            <span class="new-goods-txt new-p-re">
-                               <strong class="new-txt">¥129.00</strong>
-                                <span class="new-txt2" style="color:red">
-                                  </span>
-                            </span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <div class="goods_list">
+              <%@categories.each do |category|%>
+                <%@goods=Ecstore::Good.where(:cat_id=>category.cat_id).order("goods_id DESC")%>
+                  <%@goods.each do |good|%>
+                    <div class="good_info">
+                        <a href="/mobile/products/<%=good.bn%>" class="goods-section">
+                          <div class="new-img-box">
+                                <img src="<%=good.thumbnail_pic%>" onerror="this.src=''" width="100" height="100" alt="" class="new-goods-img">
+                                <span class="goods_desc">
+                                    <%=good.name%>
+                                    <span class="text2" style="color:red">
+                                    ￥<%=good.price%>
+                                    </span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                  <%end%>
+              <%end%>
       </div>
 
       <div class="new-paging">
