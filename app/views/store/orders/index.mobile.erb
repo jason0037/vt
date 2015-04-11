@@ -1,0 +1,39 @@
+<table class="table table-striped" id="order_list">
+  <tr>
+    <th>订单号</th>
+    <th>订单商品</th>
+
+    <th>下单时间</th>
+    <th>订单金额</th>
+    <th style="display:none">订单状态</th>
+    <th>操作</th>
+  </tr>
+
+  <%@orders.each  do |order|%>
+      <tr>
+        <td><%=link_to order.order_id, order_path(order)%></td>
+        <td>
+          <%order.order_items.each_with_index do |order_item,index|%>
+              <%
+                 link_title = order_item.name
+                 link_title = "赠品:#{link_title}" if order_item.item_type == 'gift'
+              %>
+              <%=link_to good_path_ext(order_item.good),:title=>link_title,:target=>"_blank",:class=>"thumb-link" do %>
+                  <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.item_type == 'product' && order_item.good%>
+                  <%=image_tag order_item.product.gift_image_url,:class=>"thumb" if order_item.item_type == 'gift'%>
+              <%end%>
+
+          <%end%>
+        </td>
+
+        <td><%=order.created_at%></td>
+        <td>￥<%=order.final_amount%></td>
+        <td style="display:none"><%=order.status_text%></td>
+        <td>
+          <div><%=link_to "查看",detail_order_path(order),:target=>"_blank"%></div>
+          <div><%=link_to "去付款",order_path(order),:target=>"_blank" if order.status == 'active' && order.pay_status=='0'%></div>
+        </td>
+      </tr>
+  <%end%>
+
+</table>

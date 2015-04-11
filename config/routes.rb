@@ -653,6 +653,7 @@ Modengke::Application.routes.draw do
       post 'tairyo', :on=>:collection      #大渔订餐 不是团购
       get 'jinbalang',:on=>:collection
       get 'manco_black_buy',:on=>:collection
+      get 'add', :on=>:collection
     end
 
     resources :brands,:only=>[:index,:show]
@@ -827,7 +828,9 @@ Modengke::Application.routes.draw do
 
   scope ":agent" do
     resources :home
-    resources :cart
+    resources :cart do
+      get 'add', :on=>:collection
+    end
     resources :cats
     resources :sessions  do
       get 'login', :on=>:collection

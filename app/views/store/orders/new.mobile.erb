@@ -1,0 +1,37 @@
+<%= javascript_include_tag "mobile/orders" %>
+
+<div id="jqt">
+	<div id="new_order" class="orders" class="current">
+		<%if  @line_items.size > 0%>
+		<%=render "new"%>
+		<%else%>
+			对不起，您所购买的商品不存在或者已经下架。
+		<%end%>
+	</div>
+	
+	<div id="addrs_list">
+		<%=render "patch/member_addrs/addrs"%>
+	</div>
+	
+	<div id="addr_form">
+		<%=render "patch/member_addrs/form"%>
+	</div>
+
+	<div id="provinces" data-url="/m/regions/provinces" ></div>
+	<div id="cities"></div>
+	<div id="districts"></div>
+</div>
+
+<style type="text/css">
+	#footer_top{
+		display:none;
+	}
+	#login_footer{
+		display:none;
+	}
+</style>
+
+
+
+
+

@@ -1,4 +1,4 @@
-<div id="specs_container" property-url="<%=price_good_path(good)%>">
+<div id="specs_container" property-url="<%=price_good_path(good)%>" spec-type-size="<%=good.good_type_specs.blank? ? 1  : good.good_type_specs.size %>">
 <%if good.specs.present?%>
    <%good.specs.order("spec_id asc").each do |spec|%>
       <div class="spec-item clearfix">

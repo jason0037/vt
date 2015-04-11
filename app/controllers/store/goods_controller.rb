@@ -527,7 +527,7 @@ class Store::GoodsController < ApplicationController
       @good = Ecstore::Good.includes(:products,:good_type_specs).find(params[:id])
 
       return render(:nothing=>true) unless request.xhr?
-      spec_type_count = @good.good_type_specs.blank? ? @good.spec_desc.size  : @good.good_type_specs.size
+      spec_type_count = @good.good_type_specs.blank? ? 1  : @good.good_type_specs.size
       return render(:nothing=>true)  if params[:spec_values].size != spec_type_count
 
       @product  =  @good.products.select do |p|

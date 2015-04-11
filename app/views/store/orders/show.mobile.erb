@@ -1,0 +1,46 @@
+<%if @order%>
+<div class="order-holder orders">
+<%=form_for :payment,:url=>payments_path(:order_id=>@order.order_id),:html=>{ :target=>"_blank" } do |f|%>
+	<%=f.hidden_field :currency, :value=>"CNY" %>
+
+	<div class="m-section">
+		<div class="title">订单已经成功提交!</div>
+		<p>订单编号: <span><%=@order.order_id%></span>
+			&nbsp;&nbsp;&nbsp;     
+			支付金额: ￥<span id="final_pay"><%=@order.final_pay%></span>
+			&nbsp;&nbsp;&nbsp; 
+			<span id="products_total" data-amount="<%=@order.products_total%>"></span> 
+			订单状态: <span class="status"><%=@order.order_status_text%></span>
+
+			<span id="pmts_total" class="hide" data-amount="<%=@order.pmts_total%>"></span>
+		</p>
+		<%#=link_to "查看订单详细信息>>",detail_order_path(@order),:target=>"_blank"%>
+	</div>
+
+	<div class="m-section">
+		<span class="title">支付方式:<%=payments[@order.payment][:name]%></span>
+		<%if !@order.try&&@order.status == 'active' && @order.pay_status == '0' && @order.final_pay > 500 && @supper_offline%>
+			<%if params[:with_layout].blank?%>
+				<%=link_to "更改>>",change_pay_order_path(@order,:agent=>"m")%>
+			<%else%>
+				<%=link_to "更改>>",change_pay_order_path(@order,:agent=>"m",:with_layout=>"y")%>
+			<%end%>
+		<%end%>
+	</div>
+
+	<div class="m-section actions">
+		<div>支付成功后，可以在<%=link_to "订单详情",detail_order_path(@order,:agent=>"m"),:target=>"_blank"%>处查看订单和追踪订单状态</div>
+		<br>
+		<%if @order.pay_status == '0' && @order.status == 'active' && @order.payment != 'offline'%>
+			<%=link_to "安全支付",savepay_order_path(@order),:class=>"btn btn-inverse" %>
+		<%end%>
+		<%if @order.payment == 'offline'%>
+			<%=link_to "回到首页","/m",:class=>"btn btn-inverse",:target=>"_webapp" %>
+		<%end%>
+	</div>
+<%end%>
+</div>
+<%else%>
+	<p>没有找到订单 <b><%=params[:id]%></b> !</p>
+<%end%>
+

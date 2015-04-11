@@ -39,6 +39,12 @@ class Store::CartController < ApplicationController
        @line_items.delete_all
     end
 
+    if params[:supplier_id]
+      supplier_id  =params[:supplier_id]
+    end
+    supplier_id = 78
+    @supplier = Ecstore::Supplier.find(supplier_id)
+
 
     if params[:attr]=="mall"
        @mall="mall"
@@ -152,7 +158,11 @@ class Store::CartController < ApplicationController
       redirect_to url
 
     else
-       render "add"
+       # render "add"
+       respond_to do  |format|
+          # format.mobile { render :layout=> 'msite'}
+          format.mobile { render :layout=> 'msite'}
+      end
     end
 
 	#rescue
