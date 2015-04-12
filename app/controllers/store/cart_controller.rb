@@ -1,6 +1,6 @@
 #encoding:utf-8
 class Store::CartController < ApplicationController
-	# before_filter :find_user
+	before_filter :find_user
 
 
   def index
