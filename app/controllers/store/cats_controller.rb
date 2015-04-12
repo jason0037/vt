@@ -5,6 +5,11 @@ class Store::CatsController < ApplicationController
   	before_filter :require_top_cats
 
   def index
+    supplier_id=params[:supplier_id]
+    if supplier_id == nil
+      supplier_id = 78
+    end
+    @supplier = Ecstore::Supplier.find(supplier_id)
     @cats = Ecstore::Category.where(:parent_id=>0)
     respond_to do  |format|
         format.mobile { render :layout=> 'msite'}
@@ -102,6 +107,12 @@ class Store::CatsController < ApplicationController
   end
 
   def show
+      supplier_id=params[:supplier_id]
+      if supplier_id == nil
+        supplier_id = 78
+      end
+      @supplier = Ecstore::Supplier.find(supplier_id)
+      
       @cat = Ecstore::Category.find_by_cat_id(params[:id])
       case params[:gtype]
         when "2"
