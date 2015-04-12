@@ -33,16 +33,22 @@ class Store::CartController < ApplicationController
 	
 	def add
 		# parse params
+    supplier_id=params[:supplier_id]
 
     if params[:supplier_id] =="98"
-
        @line_items.delete_all
     end
 
-    if params[:supplier_id]
-      supplier_id  =params[:supplier_id]
+    if supplier_id.blank?
+        supplier_id=78
     end
-    supplier_id = 78
+
+    if  @user
+        @supplier = Ecstore::Supplier.find(supplier_id)
+    else
+       redirect_to  "/auto_login?id=#{supplier_id}&platform=mobile&return_url=/cart/mobile?id=#{supplier_id}"
+       return
+    end
     @supplier = Ecstore::Supplier.find(supplier_id)
 
 
