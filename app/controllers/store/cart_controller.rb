@@ -38,6 +38,7 @@ class Store::CartController < ApplicationController
 	
 	def add
 		# parse params
+
     supplier_id=params[:supplier_id]
 
     if params[:supplier_id] =="98"
@@ -51,7 +52,7 @@ class Store::CartController < ApplicationController
     if  @user
         @supplier = Ecstore::Supplier.find(supplier_id)
     else
-       redirect_to  "/auto_login?id=#{supplier_id}&platform=mobile&return_url=/cart/mobile?id=#{supplier_id}"
+       redirect_to  "/auto_login?id=#{supplier_id}&platform=mobile&return_url=/cart/add?id=#{supplier_id}&[product]specs=#{params[:product][:specs]}&[product]goods_id=#{params[:product][:goods_id]}&[product]type_id=#{params[:product][:type_id]}"
        return
     end
     @supplier = Ecstore::Supplier.find(supplier_id)
@@ -69,7 +70,7 @@ class Store::CartController < ApplicationController
       customs = params[:product].delete(:customs)
       quantity = params[:product].delete(:quantity).to_i
       goods_id = params[:product][:goods_id]
-       ref_id=  params[:product][:ref_id]
+      ref_id=  params[:product][:ref_id]
       supplier_id= params[:supplier_id]
       #return render :text=> "specs:#{specs[0].length},customs:#{customs},quantity:#{quantity},goods_id:#{goods_id}"
       # product_id = specs.collect do |spec_value_id|
@@ -77,7 +78,6 @@ class Store::CartController < ApplicationController
       # end.inject(:&).first
       if supplier_id =="98" && params[:mancoweight]
         quantity=params[:mancoweight].to_i
-
       end
 
       if quantity.blank? || quantity ==0
