@@ -5,6 +5,11 @@ class Store::CartController < ApplicationController
 
   def index
     # render :layout=>"cart"
+    supplier_id=params[:supplier_id]
+    if supplier_id == nil
+      supplier_id = 78
+    end
+    @supplier = Ecstore::Supplier.find(supplier_id)
 
     respond_to do  |format|
         format.html { render :layout=> 'cart'}
