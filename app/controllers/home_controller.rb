@@ -14,6 +14,13 @@ class HomeController < ApplicationController
 		    redirect_to params[:return_url] if params[:return_url].present?
 		end
 
+		supplier_id = 78
+		if  @user
+	    else
+	       redirect_to  "/auto_login?id=#{supplier_id}&platform=mobile&return_url=/mobile/home/"
+	       return
+	    end
+
 		respond_to do  |format|
 	        format.mobile { render :layout=> 'msite'}
 	    end

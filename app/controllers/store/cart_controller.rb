@@ -38,7 +38,7 @@ class Store::CartController < ApplicationController
 	
 	def add
 		# parse params
-
+    
     supplier_id=params[:supplier_id]
 
     if params[:supplier_id] =="98"
@@ -49,12 +49,6 @@ class Store::CartController < ApplicationController
         supplier_id=78
     end
 
-    if  @user
-        @supplier = Ecstore::Supplier.find(supplier_id)
-    else
-       redirect_to  "/auto_login?id=#{supplier_id}&platform=mobile&return_url=/cart/add?id=#{supplier_id}&[product]specs=#{params[:product][:specs]}&[product]goods_id=#{params[:product][:goods_id]}&[product]type_id=#{params[:product][:type_id]}"
-       return
-    end
     @supplier = Ecstore::Supplier.find(supplier_id)
 
 
