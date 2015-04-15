@@ -27,12 +27,12 @@
   <img src="/assets/mobile/jd/wx_001.png" width="640px" height="267px">
 </div>
 <div class="sec_tab">
-  <a class="sec_tab_wrap cur">
+  <a class="sec_tab_wrap cur all">
     <span>
       全部
     </span>
   </a>
-  <a class="sec_tab_wrap">
+  <a class="sec_tab_wrap germany">
     <span>
       德国香肠
     </span>
@@ -48,7 +48,7 @@
     </span>
   </a>
 </div>
-<div class="sec_tab_list">
+<div class="sec_tab_list all">
   <ul>
     <li>
       <div class="sign">
@@ -139,3 +139,112 @@
     </li>
   </ul>
 </div>
+
+<div class="sec_tab_list germany" style="display:none;">
+  <ul>
+    <li>
+      <div class="sign">
+         4月抢购                             
+      </div>
+      <div class="img">
+        <img class="photo" src="/assets/mobile/jd/wx_home_5.png">
+      </div>
+      <div class="info">
+          <div class="name">                                         
+            蘑菇里昂那香肠                                    
+          </div>                                     
+          <div class="desc">                                         
+            最美味！最具特色！最有人气！                                     
+          </div>                                     
+          <div class="price">
+          </div>                                 
+      </div>
+      <div class="buy">                                     
+          <span class="btn">立即查看</span>                                 
+      </div>
+    </li>
+    <li>
+      <div class="sign">
+         4月抢购                             
+      </div>
+      <div class="img">
+        <img class="photo" src="/assets/mobile/jd/wx_home_6.png">
+      </div>
+      <div class="info_yellow">
+          <div class="name">                                         
+            黑布丁香肠                                   
+          </div>                                     
+          <div class="desc">                                         
+            爱尔兰人的最爱！煎烤蒸煮！                                   
+          </div>                                     
+          <div class="price">
+                                                
+          </div>                                 
+      </div>
+      <div class="buy">                                     
+          <span class="btn">立即查看</span>                                 
+      </div>
+    </li>
+    <li>
+      <div class="sign">
+         4月抢购                             
+      </div>
+      <div class="img">
+        <img class="photo" src="/assets/mobile/jd/wx_home_7.png">
+      </div>
+      <div class="info_blue">
+          <div class="name">                                         
+            米兰风味萨拉米香肠                                   
+          </div>                                     
+          <div class="desc">                                         
+            贸威独享！超高品质！                                     
+          </div>                                     
+          <div class="price">
+                                                 
+          </div>                                 
+      </div>
+      <div class="buy">                                     
+          <span class="btn">立即查看</span>                                 
+      </div>
+    </li>
+    <li>
+      <div class="sign">
+         4月抢购                             
+      </div>
+      <div class="img">
+        <img class="photo" src="/assets/mobile/jd/wx_home_8.png">
+      </div>
+      <div class="info_red">
+          <div class="name">                                         
+            维也纳香肠                                   
+          </div>                                     
+          <div class="desc">                                         
+            欧洲品质！世界分享！                                     
+          </div>                                     
+          <div class="price">
+                                                 
+          </div>                                 
+      </div>
+      <div class="buy">                                     
+          <span class="btn">立即查看</span>                                 
+      </div>
+    </li>
+  </ul>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+      $(".sec_tab_wrap").click(function(e){
+          $(".sec_tab_wrap").removeClass("cur");
+          $(this).addClass("cur");
+          if($(this).hasClass("germany"))
+          {
+            $(".sec_tab_list").hide();
+            $(".germany").show();
+          }else if($(this).hasClass("all"))
+          {
+            $(".sec_tab_list").hide();
+            $(".all").show();
+          }
+      });
+    });
+</script>
