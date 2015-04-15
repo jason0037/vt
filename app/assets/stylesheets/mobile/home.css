@@ -223,6 +223,27 @@ body{
   vertical-align: baseline;
 }
 
+.sec_tab_list .info_yellow{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  background: rgba(120, 108, 0, 0.5);
+  padding: 10px 10px 5px;
+  color: #fff;
+}
+.sec_tab_list .info_blue{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  background: rgba(50, 81, 112, 0.5);
+  padding: 10px 10px 5px;
+  color: #fff;
+}
+
 .sec_tab_list .info{
   position: absolute;
   top: 0;
