@@ -118,8 +118,6 @@
   </div>
 </div>
 </div>
--->
-
 
 
 <script type="text/javascript">
@@ -144,15 +142,15 @@
                 window.parent.location.replace(return_url);
             }else{
                 $("#return_url").val(decodeURIComponent(return_url));
-                showLogin();
+                // showLogin();
             }
         }else{
             $("#return_url").val(window.parent.location.href);
         }
 
-        if(!logined&&!nologin_close&&parseInt(nologin_times)>3&&!passportLost){
-            showLogin();
-        }
+        // if(!logined&&!nologin_close&&parseInt(nologin_times)>3&&!passportLost){
+        //     showLogin();
+        // }
 
         $(document).on("click","#modal_login .close",function(){
 

@@ -124,7 +124,7 @@ a:hover { color: #f60; text-decoration: underline; }
 /*.mian_cont ul{height:245px;line-height:245px;width:806px;}*/
 .mian_cont ul{min-height:245px;width:1190px;}
 .mian_cont ul li{float:left;width:197px;min-height:232px;border-right:1px solid #e5e5e5;border-bottom:1px solid #e5e5e5;padding-top:13px; position:relative;}
-.mian_cont  .t_tit{line-height:20px;margin-top:5px;overflow:hidden;height: 20px;width: 160px;padding: 0 15px;}
+.mian_cont  .t_tit{line-height:20px;margin-top:5px;overflow:hidden;word-wrap: break-word;width: 160px;padding: 0 15px;}
 .mian_cont .t_price{line-height:20px;margin-top:5px;}
 .mian_cont .t_price .b_span{color:#9d2910;font-size:14px;font-weight:bold;display:inline-block;margin-right:10px;}
 .mian_cont .t_price .gry_span{text-decoration:line-through;}
