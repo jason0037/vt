@@ -40,25 +40,26 @@
 				<%#=image_tag good.list_hover_pic,:alt=>good.name,:class=>"hover"%>
 			<%end%>
 		</div>
-		<div class="good-info">
-			<div class="brand">
-				<%if controller_name == "search" && good.brand%>
-					<%
-					      dup_brand = good.brand.brand_name.dup
-						@splits.each do |part|
-							regex = Regexp.new(part,Regexp::IGNORECASE)
-							dup_brand.gsub! regex do |match|
-								"<span class='highlight'>#{match}</span>"
-							end
-						end
-					%>
-					<%=dup_brand.html_safe%>
-				<%else%>
-					<%=good.brand.brand_name if good.brand%>
-				<%end%>
-
-			</div>
+		<div class="good-info">			
 			<div class="name">
+				<span class="brand">[
+					<%if controller_name == "search" && good.brand%>
+						<%
+						      dup_brand = good.brand.brand_name.dup
+							@splits.each do |part|
+								regex = Regexp.new(part,Regexp::IGNORECASE)
+								dup_brand.gsub! regex do |match|
+									"<span class='highlight'>#{match}</span>"
+								end
+							end
+						%>
+						<%=dup_brand.html_safe%>
+					<%else%>
+						<%=link_to good.brand.brand_name ,brand_path(good.brand_id),:class=>"desc",:title=>good.brand.brand_desc.html_safe%>
+					<%end%>
+				]
+				</span>
+			
 				<%if controller_name == "search"%>
 					<%=link_to good_path(good.bn),:target=>"_blank" do%>
 						<%

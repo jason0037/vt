@@ -23,8 +23,6 @@ class Store::OrdersController < ApplicationController
 
     render :layout=>@supplier.layout
 
-
-
   end
 
   def share_order
@@ -42,7 +40,7 @@ class Store::OrdersController < ApplicationController
     @inventory = Ecstore::Inventory.where(:member_id=>current_account,:product_id=>params[:id]).first
 
     if @inventory.blank?
-#全部出库，删除记录
+      #全部出库，删除记录
     else
       #部分出库，修改数量
       quantity =  @inventory.quantity - @inventory.quantity
@@ -163,8 +161,6 @@ class Store::OrdersController < ApplicationController
 
     end
   end
-
-
 
 
   def create

@@ -1,4 +1,4 @@
-<div id="specs_container" property-url="<%=price_good_path(good)%>" spec-type-size="<%=good.good_type_specs.blank? ? good.spec_desc.size  : good.good_type_specs.size %>">
+<div id="specs_container" property-url="<%=price_good_path(good)%>" spec-type-size="<%#=good.good_type_specs.blank? ? good.spec_desc.size  : good.good_type_specs.size %>">
 <%if good.specs.present?%>
    <%good.specs.order("spec_id asc").each do |spec|%>
       <div class="spec-item clearfix">
@@ -51,6 +51,6 @@
     <div class="spec-item clearfix">
       <span>购买数量 : </span>
       <%=select_tag "product[quantity]",options_for_select((good.store.to_i > 0 ? 1 : 0)..(good.store.to_i>10 ? 10 : good.store.to_i)),:id=>"store",:class=>"goods_spec_number_down",:style=>"width:50px"%>
-      <span class="store-count">(库存 <span id="product_store"><%=good.store2.to_i%></span> 件)</span>
+      <span class="store-count">(库存 <span id="product_store">999<%#=good.store2.to_i%></span> 件)</span>
     </div>
 </div>

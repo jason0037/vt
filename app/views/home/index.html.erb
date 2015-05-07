@@ -41,11 +41,12 @@
         <% @galleries.each do |gallery|%>
           <div class="main_list">
             <div class="tit ptitle-lihe">
-            <div class="i_floor"><a href="/galleries/<%=gallery.tag_id%>" style="font-size:16pt;color:#FF5809" target="_blank"><%=@i%>F&nbsp;<%=gallery.tag_name%></a></div>
+            <div class="i_floor"><a href="#" style="font-size:16pt;color:#FF5809" target="_blank"><%=@i%>F&nbsp;<%=gallery.tag_name%></a></div>
               <div class="i_floor p_cat" style="width:800px;">
               <dl>
                     <%categories = Ecstore::Category.where("cat_id in (#{gallery.tag_ext.categories})").order("p_order")%>
                     <%categories.each do |category|%>
+                    <%@more = category.cat_id%>
                     <dd>
                       <a href="/gallery/<%=category.cat_id%>?type=1" target="_blank"><%=category.cat_name%></a>
                     </dd>
@@ -53,7 +54,8 @@
                   </dl>
                 </div>
               <div class="li_more" style="background-color:#999933">
-                <a href="/galleries/<%=gallery.tag_id%>" target="_blank"><b>更多</b> </a>
+                <!-- <a href="/galleries/<%=gallery.tag_id%>" target="_blank"><b>更多</b> </a> -->
+                <a href="/gallery/<%=@more%>?type=1" target="_blank"><b>更多</b> </a> 
               </div>
             </div>
             <div class="p_list">

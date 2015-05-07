@@ -37,6 +37,7 @@ class Store::CartController < ApplicationController
 
 	
 	def add
+
 		# parse params
     
     supplier_id=params[:supplier_id]
@@ -89,7 +90,7 @@ class Store::CartController < ApplicationController
         end.first
 
       end
-      end
+    end
 
 
 #return render :text=>@products.product_id
@@ -131,18 +132,13 @@ class Store::CartController < ApplicationController
 		# end
 
 		#calculate cart_total and cart_total_quantity
-    #@supplier = Ecstore::Supplier.find(supplier_id)
+   
 		find_cart!
 
-    supplier_id=params[:supplier_id]
-    if supplier_id == nil
-      supplier_id = 78
-
-    end
+   
     if params[:zhuanghuo] ||params[:xiehuo]
       session[:zhuanghuo] =params[:zhuanghuo]
       session[:xiehuo] =params[:xiehuo]
-
     end
 
     if params[:platform]=="mobile"
@@ -163,11 +159,11 @@ class Store::CartController < ApplicationController
       redirect_to url
 
     else
-       # render "add"
-       respond_to do  |format|
-          # format.mobile { render :layout=> 'msite'}
-          format.mobile { render :layout=> 'msite'}
-      end
+       render "add"
+      #  respond_to do  |format|
+      #     # format.mobile { render :layout=> 'msite'}
+      #     format.mobile { render :layout=> 'msite'}
+      # end
     end
 
 	#rescue

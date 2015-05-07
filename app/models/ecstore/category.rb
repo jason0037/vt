@@ -2,31 +2,33 @@ class Ecstore::Category < Ecstore::Base
       
 	self.table_name = "sdb_b2c_goods_cat"
 	self.primary_key = 'cat_id'
-  attr_accessible :p_order
+  # attr_accessible :p_order 
+  # self.accessible_all_columns
+  
 	has_many :goods, 
 				:foreign_key=> "cat_id",
 				:conditions=>{:marketable=>'true'}
 
 	has_many :categories,:foreign_key=>"parent_id",:class_name=>"Category"
-  	belongs_to :parent_cat,  :foreign_key=>"parent_id", :class_name=>"Category"
+ 	belongs_to :parent_cat,  :foreign_key=>"parent_id", :class_name=>"Category"
 
-  	has_one :seo, :foreign_key=>:pk,:conditions=>{ :mr_id => 4 }
+  has_one :seo, :foreign_key=>:pk,:conditions=>{ :mr_id => 4 }
 
-      include Ecstore::Metable
+  include Ecstore::Metable
 
-  	def cat_paths(include_self=true)
-             cat_ids = cat_path_ids
-             cat_ids << self.cat_id.to_s if include_self
-             Ecstore::Category.where(:cat_id=>cat_ids)
-  	end
+	def cat_paths(include_self=true)
+     cat_ids = cat_path_ids
+     cat_ids << self.cat_id.to_s if include_self
+     Ecstore::Category.where(:cat_id=>cat_ids)
+	end
 
-      def cat_path_ids
-          self.cat_path.split(",").select{ |x| x.present? }
-      end
+  def cat_path_ids
+      self.cat_path.split(",").select{ |x| x.present? }
+  end
 
-      def full_path_name
-            self.cat_paths.collect { |cat| cat.cat_name }.join(" -> ")
-      end
+  def full_path_name
+        self.cat_paths.collect { |cat| cat.cat_name }.join(" -> ")
+  end
 
   	# Conditions must be a hash for filter goods
   	# and must be field of Ecstore::Good
@@ -85,7 +87,6 @@ class Ecstore::Category < Ecstore::Base
         end
         cat_path
       end
-
 
 	class << self
 		def refresh_goods_cat_count
