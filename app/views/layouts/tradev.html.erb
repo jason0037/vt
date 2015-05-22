@@ -17,27 +17,30 @@
   <meta content="" name="description">
 
   <script>
+
     <% return_url={:return_url => request.url.sub('http://trade','').force_encoding('UTF-8')}.to_query%>
     function isWeixinBrowser(){
         var ua = navigator.userAgent.toLowerCase();
         return (/micromessenger/.test(ua)) ? true : false ;
     }   
 
-    var auto_login_url= '/login';
+    var is_weixin_browser = isWeixinBrowser();
+
+    var auto_login_url= '/mlogin';
     var supplier_id='78';
     <%if @supplier%>
          supplier_id='<%=@supplier.id%>';
     <%end%>
-    if(isWeixinBrowser()){
+    if(is_weixin_browser){
       
       auto_login_url= '/auto_login?id='+supplier_id+'&<%=return_url%>&platform=mobile';
     }
     
-    <%if @user%>
+    <%if @user && @user.account.supplier_id%>
       if ('<%=@user.account.supplier_id %>'!=supplier_id){
         location.href = auto_login_url;
       }
-    <%else%>
+    <%elsif @no_need_login.nil?%>
       location.href = auto_login_url;
     <%end%>   
   </script>
@@ -97,6 +100,7 @@
             <span  class="am-navbar-label" >商品馆</span>
           </a>
         </li>
+        <%if @user%>
         <li>
           <a class="" href="/cart/mobile?id=<%=@supplier.id if @suplier%>">
             <span  class="am-navbar-label">购物车</span>
@@ -107,7 +111,8 @@
             <span  class="am-navbar-label">个人中心</span>
           </a>
         </li>
-        <li>
+        <%end%>
+        <li style="display:none">
           <a  class=" " id="showall" >
             <%if  I18n.locale.to_s=="zh_cn"%>
             <span id="lange" class="">English</span>

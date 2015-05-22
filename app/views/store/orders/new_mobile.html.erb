@@ -5,6 +5,7 @@
 
 
 </style>
+
 <%if @line_items.size > 0%>
 
     <div class="am-panel am-panel-warning">
@@ -46,7 +47,7 @@
             <label class="radio" style="margin-left: 40px;padding: 2px">
               <%=f.radio_button :shipping_id, 1, :checked=>true%> <%= I18n.t "express"%>
               <span class="extra-info">+ ￥<%=@cart_freight%></span>
-                <%end%>
+              <%end%>
             </label>
           </div>
         </div>
@@ -59,15 +60,26 @@
                   <label class="radio active" style="margin-left: 40px;padding: 2px">
                     <%=f.check_box :part_pay, { :checked=>true, :'data-amount'=>@user.advance, :id=>"advance" }, @user.advance, 0%>预存款先支付</label>
               <%end%>
-              <label class="radio active" style="margin-left: 40px;padding: 2px">
+              <label id="alipay" class="radio active" style="margin-left: 40px;padding: 2px;display:none">
                 <%=f.radio_button :payment, "alipaywap" %><%= I18n.t "alipay_mobile"%>
               </label>
               <% unless @supplier==(Ecstore::Supplier.find_by_name("诺狮").id)%>
-              <label class="radio active" style="margin-left: 40px;padding: 2px">
+              <label id="wxpay" class="radio active" style="margin-left: 40px;padding:2px;display:none">
                 <%=f.radio_button :payment, "wxpay",:checked=>true %>
                 <%= I18n.t "wechat"%>
-                <%end%>
               </label>
+              <%end%>
+
+              <script>
+              // 判断浏览器，显示支付方式
+                if (is_weixin_browser){
+                    document.getElementById("wxpay").style.display="block";
+                }
+                else
+                {
+                  document.getElementById("alipay").style.display="block";
+                }
+              </script>
             </div>
             <div class="am-panel-hd"><%= I18n.t "pay_detail"%></div>
           </div>

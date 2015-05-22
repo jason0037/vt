@@ -12,7 +12,11 @@ class UsersController < ApplicationController
 
 
   def create
-    supplier_id = params[:supplier_id]
+    supplier_id =78
+
+    if params[:supplier_id].length>0
+      supplier_id = params[:supplier_id]
+    end
 
   	now  = Time.now
 	  @account = Ecstore::Account.new(params[:user]) do |ac|
@@ -27,6 +31,9 @@ class UsersController < ApplicationController
 
 	  if @account.save
       sign_in(@account)
+      if @return_url=='/mlogin'
+        @return_url ='tuan'
+      end
       @return_url=params[:return_url]
       render "create"
     else

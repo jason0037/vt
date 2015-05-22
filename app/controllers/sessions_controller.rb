@@ -46,6 +46,9 @@ class SessionsController < ApplicationController
     if params[:supplier_id]
       supplier_id  = params[:supplier_id]
     end
+    if supplier_id.empty?
+      supplier_id =78
+    end
     @supplier = Ecstore::Supplier.find(supplier_id)
 
     #redirect_uri = "http://vshop.trade-v.com/auth/weixin/callback?supplier_id=#{@supplier.id}"
@@ -62,9 +65,13 @@ class SessionsController < ApplicationController
   end
 
   def new_mobile
+    @no_need_login = 1
     supplier_id = params[:id]
     if params[:supplier_id]
-      supplier_id  =params[:supplier_id]
+      supplier_id  = params[:supplier_id]
+    end
+    if supplier_id.nil?
+      supplier_id =78
     end
     @supplier = Ecstore::Supplier.find(supplier_id)
 
@@ -78,21 +85,27 @@ class SessionsController < ApplicationController
     session[:return_url] =  return_url
 
     # return redirect_to(after_user_sign_in_path) if signed_in?
+     @no_need_login = 1
+    render :layout=>@supplier.layout
   end
 
 
 
   def register_mobile
-    supplier_id =params[:id]
-     if params[:supplier_id]
-       supplier_id=params[:supplier_id]
-     end
+    @no_need_login = 1
+     supplier_id = params[:id]
+    if params[:supplier_id]
+      supplier_id  = params[:supplier_id]
+    end
+    if supplier_id.empty?
+      supplier_id =78
+    end
     @supplier = Ecstore::Supplier.find(supplier_id)
+    
     render :layout => @supplier.layout
     # return redirect_to(after_user_sign_in_path) if signed_in?
+
   end
-
-
 
 
   def create
@@ -103,17 +116,24 @@ class SessionsController < ApplicationController
      else
        @supplier_id = params[:id]
      end
+
+     if @supplier_id.nil?
+        @supplier_id = 78
+     end
+
       if @supplier_id =="78"
          @return_url=params[:return_url].to_s+"&id=78"
       else
         @return_url=params[:return_url]
       end
 
-
     @platform = params[:platform]
 
-    if @platform =='mobile'
+
+
+    if @platform =='mobile' && @supplier_id.length>0
   	  @account = Ecstore::Account.user_authenticate_mobile(params[:session][:username],params[:session][:password],@supplier_id)
+      
     elsif @platform == 'vshop'
       @account = Ecstore::Account.admin_authenticate(params[:session][:username],params[:session][:password])
     else

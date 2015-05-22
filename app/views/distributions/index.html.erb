@@ -1,0 +1,71 @@
+ <ul class="breadcrumbs">
+      <li><a href="/distributions">首页</a></li>
+  </ul>
+
+  <div class="row">     
+    <div class="medium-4 small-12 columns">
+      <img src="/images//b01/images/new500x500.jpg">
+      <div class="hide-for-small panel">
+        <h3>预购</h3>
+        <h5 class="subheader"><i class="fi-burst-new style1"></i>
+        厂家批发销售 优质 葱、姜、蒜、辣椒 加工出口欧盟天然绿色无污染新鲜</h5>
+      </div>
+      <a href="cart.html" class="show-for-medium-up" title="生成订单">
+        <div class="panel callout radius">
+          <h6><i class="fi-shopping-cart style1"></i>&nbsp; 8个商品在进货单中</h6>
+        </div>
+      </a>
+    </div> 
+     
+    <div class="medium-8 columns">
+      <div class="row">
+      <div class="large-4 small-12 columns">
+      <div class="magellan-container show-for-small-only" style="background-color:#F0F0F0 !important;" data-magellan-expedition="fixed" data-options="destination_threshold:65;throttle_delay:0;" >
+  <dl class="sub-nav">
+    <dd data-magellan-arrival="ingredients"><a href="#ingredients">食材</a></dd>
+    <dd data-magellan-arrival="grain_oil"><a href="#grain_oil">粮油</a></dd>
+    <dd data-magellan-arrival="flavoring"><a href="#flavoring">调料</a></dd>
+    <dd data-magellan-arrival="drinks"><a href="#drinks">酒水</a></dd>
+  </dl>
+</div>
+</div>
+<h3 data-magellan-destination="ingredients" style="display:none">食材</h3>
+<a name="ingredients"></a>
+      <%@goods.each do |good|%>
+        <%if good.cat_id =='00'%>
+        <h3 data-magellan-destination="ingredients">食材</h3>
+        <a name="ingredients"></a>
+        <%end%>
+        <div class="large-4 small-6 columns">
+          <%=link_to "/distributions/#{good.bn}/product", :target=>"_blank" do %>
+            <%=image_tag good.list_default_pic,:alt=>good.name,:class=>"default"%>
+          <%end%>
+          <div class="panel"  style="height:200px;">
+            <div style="height:70px">
+              <%=link_to good.name,"/distributions/#{good.bn}/product", :target=>"_blank"%>
+            </div>
+            <h6 class="subheader price text-center">￥<%=good.price%></h6>
+            <div class="button-group text-center" data-grouptype="&nbsp;&nbsp;">
+                <a href="/distributions/<%=good.goods_id%>/add_to_cart" class="tiny button primary radius">采购</a>
+                <a href="/distributions/<%=good.goods_id%>/add_to_bookmark" class="tiny button success radius">收藏</a>
+            </div>
+          </div>
+        </div>
+      <%end%>
+      </div>
+      <h3 data-magellan-destination="drinks" style="display:none">酒水</h3>
+      <a name="drinks"></a>
+      <ul class="pagination" role="menubar" aria-label="Pagination">
+        <li class="arrow unavailable" aria-disabled="true"><a href="">&laquo; 上一页</a></li>
+        <li class="current"><a href="">1</a></li>
+        <li><a href="">2</a></li>
+        <li><a href="">3</a></li>
+        <li><a href="">4</a></li>
+        <li class="unavailable" aria-disabled="true"><a href="">&hellip;</a></li>
+        <li><a href="">12</a></li>
+        <li><a href="">13</a></li>
+        <li class="arrow"><a href="">下一页 &raquo;</a></li>
+      </ul>
+    </div>
+
+  </div>

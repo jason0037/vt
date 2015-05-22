@@ -8,18 +8,21 @@ class Store::GalleriesController < ApplicationController
   before_filter :find_tags, :only=>[:cheuksgroup,:newest]
 
    def show
+    @no_need_login = 1
+    
+    if params[:supplier_id]
+      supplier_id  = params[:supplier_id]
+    end
+    if supplier_id.nil?
+      supplier_id =78
+    end
+
   	tag_id = params[:id]
   	@gallery = Ecstore::TagExt.where(:tag_id=>tag_id).first
   	if @gallery.nil?
   		return render :text=>"敬请期待"
   	end
   	@categories = Ecstore::Category.where("cat_id in (#{@gallery.categories})").order("p_order")
-
-  	supplier_id = params[:supplier_id]
-
-  	if supplier_id.nil?
-  		supplier_id = 78
-  	end
 
     @supplier = Ecstore::Supplier.find(supplier_id)
 

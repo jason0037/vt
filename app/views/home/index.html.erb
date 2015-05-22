@@ -14,11 +14,11 @@
     <div class="nav" id="topchannel">
     <ul>
     <li class="lichannel liindex"><a href="/">首页 HOME</a></li>
-    <li class="lichannel"><a href="/tuan">限时特价 ON SALE</a></li>    
+    <li class="lichannel"><a href="/tuan">限时特价 ON SALE</a></li>
     <li class="lichannel firstli"><a href="/galleries/129">商品馆 GALLERIES</a></li>
     <li class="lichannel"><a href="/brands">品牌专区 BRANDS</a><span class="ch_sp_tag new1"></span></li>
     <li class="lichannel"><a href="/gallery/561?type=1">商品分类 CATEGORIES</a></li>
-    <li class="lichannel"><a href="/supply-distribution">供配频道</a></li>
+    <li class="lichannel"><a href="/distributions">供配频道 SUPPLY-DISTRIBUTION</a></li>
     <li class="lichannel"><a href="/events/foodie?supplier_id=78">活动吧 EVENTS</a></li>
 
 
@@ -61,7 +61,7 @@
             <div class="p_list">
               <div class="mian_cont">
                 <ul>
-                  <%goods=Ecstore::Good.where("cat_id in (#{gallery.tag_ext.categories})").order("goods_id DESC").limit(6)%>
+                  <%goods=Ecstore::Good.where("marketable ='true' and cat_id in (#{gallery.tag_ext.categories})").order("goods_id DESC").limit(6)%>
                   <%goods.each do |good|%>
                   <li _plink="/products/<%=good.bn%>" class="pro_item first">
                     <div class="t_img">

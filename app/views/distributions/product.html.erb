@@ -1,0 +1,195 @@
+
+    <ul class="breadcrumbs">
+      <li><a href="/distributions">首页</a></li>
+      <li><a href="#">肉类</a></li>
+      <li class="unavailable"><a href="#">猪肉</a></li>
+      <li class="current"><a href="#">精瘦肉</a></li>
+    </ul>
+
+<div class="row">
+  <div class="large-7 columns">
+  <img src="<%=@goods.big_pic%>">
+  </div>
+  <div class="large-5 columns">
+    <h4><%=@goods.name%></h4>
+    <div class="panel">
+      <ul class="small-block-grid-4">
+        <li>数量</li>
+        <%@sections.each do |section|%>
+        <li><%=section%></li>
+        <%end%>
+      </ul>
+       <ul class="small-block-grid-4">
+        <li>价格</li>
+        <li>¥<%=@goods.price%></li>
+        <li>¥<%=@goods.bulk%></li>
+        <li>¥<%=@goods.wholesale%></li>
+      </ul>
+    </div>
+    <div class="panel">
+            <label>
+              数量:
+            </label>
+              <select>
+                <option value="0-5">1</option>
+                <option value="5-10">2</option>
+                <option value="10-15">3</option>
+                <option value="15-20">4</option>
+                <option value="20-25">5</option>
+                <option value="25-30">6</option>
+                <option value="more">7</option>
+              </select>
+    </div>
+    <div class="button-group" data-grouptype="OR">
+        <a href="/distributions/<%=@goods.id%>/add_to_cart" class="small button primary radius">采购</a>
+        <a href="/distributions/<%=@goods.id%>/add_to_bookmark" class="small button success radius">收藏</a>
+    </div>
+  </div>
+</div>
+<div class="row">
+<hr/>
+<div class="small-12 columns">
+<ul class="tabs" data-tab role="tablist">
+  <li class="tab-title active" role="presentational" ><a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">详细信息</a></li>
+  <li class="tab-title" role="presentational" ><a href="#panel2-2" role="tab" tabindex="0"aria-selected="false" controls="panel2-2">成交</a></li>
+  <li class="tab-title" role="presentational"><a href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">评价</a></li>
+  <li class="tab-title" role="presentational" ><a href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">订购说明</a></li>
+</ul>
+<div class="tabs-content">
+  <section role="tabpanel" aria-hidden="false" class="content active" id="panel2-1">
+   <%=raw @goods.intro.gsub(/width/,'widthh').gsub(/height/,'heightt/') if @goods.intro%>
+  </section>
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-2">
+    <div>
+  <div class="record-filter" style="margin-top: 10px; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-left-style: solid; border-top-color: rgb(229, 229, 229); border-right-color: rgb(229, 229, 229); border-left-color: rgb(229, 229, 229); overflow: hidden; color: rgb(68, 68, 68); font-family: Tahoma, Arial, 宋体, sans-serif; line-height: 18px;">
+    <ul class="fd-clr" style="margin: 0px 0px 0px -17px; padding: 15px; list-style: none; zoom: 1;">
+      <li style="margin: 0px; padding: 0px 20px; float: left; border-left-width: 1px; border-left-style: solid; border-left-color: rgb(229, 229, 229); line-height: 1;">
+        <b>90天内:</b>&nbsp;<span data-count="1" data-recordstatus="0" style="color: rgb(0, 102, 204); font-size: 16px; cursor: pointer;">1</span>&nbsp;笔</li>
+      <li style="margin: 0px; padding: 0px 20px; float: left; border-left-width: 1px; border-left-style: solid; border-left-color: rgb(229, 229, 229); line-height: 1;">
+        <b>交易中:</b>&nbsp;<span data-count="1" data-recordstatus="2" style="color: rgb(0, 102, 204); font-size: 16px; cursor: pointer;">1</span>&nbsp;笔</li>
+      <li style="margin: 0px; padding: 0px 20px; float: left; border-left-width: 1px; border-left-style: solid; border-left-color: rgb(229, 229, 229); line-height: 1;">
+        <b>交易成功:</b>&nbsp;<span class="noresult" data-count="0" data-recordstatus="1" style="color: rgb(102, 102, 102); font-size: 16px; cursor: default;">0</span>&nbsp;笔</li>
+      <li style="margin: 0px; padding: 0px 20px; float: left; border-left-width: 1px; border-left-style: solid; border-left-color: rgb(229, 229, 229); line-height: 1;">
+        <b>退款中:</b>&nbsp;<span class="noresult" data-count="0" data-recordstatus="7" style="color: rgb(102, 102, 102); font-size: 16px; cursor: default;">0</span>&nbsp;笔</li>
+    </ul>
+  </div>
+  <table style="border-collapse: collapse; border-spacing: 0px; width: 790px; color: rgb(68, 68, 68); font-family: Tahoma, Arial, 宋体, sans-serif; line-height: 18px;">
+    <thead style="background: rgb(250, 250, 250);">
+      <tr class="pj-listop clr" id="pj-listop">
+        <th class="listop  list-buyer  " style="margin: 0px; padding: 0px; word-break: break-all; word-wrap: break-word; border-style: solid; border-color: rgb(226, 226, 226); border-right-width: 0px; border-left-width: 0px; width: 180px;">
+          <p style="margin: 0px; padding: 0px 8px; line-height: 32px; height: 32px;">
+            采购商</p>
+        </th>
+        <th class="listop  list-trade " style="margin: 0px; padding: 0px; word-break: break-all; word-wrap: break-word; border-style: solid; border-color: rgb(226, 226, 226); border-right-width: 0px; border-left-width: 0px; width: 170px;">
+          <p class="list-price " style="margin: 0px; padding: 0px 8px; line-height: 32px; height: 32px; width: 154px;">
+            成交单价（元）</p>
+        </th>
+        <th class="listop  list-amount  " style="margin: 0px; padding: 0px; word-break: break-all; word-wrap: break-word; border-style: solid; border-color: rgb(226, 226, 226); border-right-width: 0px; border-left-width: 0px; width: 170px;">
+          <p style="margin: 0px; padding: 0px 8px; line-height: 32px; height: 32px;">
+            数量</p>
+        </th>
+        <th class="listop  list-content  " style="margin: 0px; padding: 0px; word-break: break-all; word-wrap: break-word; border-style: solid; border-color: rgb(226, 226, 226); border-right-width: 0px; border-left-width: 0px; width: auto;">
+          <p style="margin: 0px; padding: 0px 8px; line-height: 32px; height: 32px;">
+            成交时间</p>
+        </th>
+      </tr>
+    </thead>
+    <tbody id="dynamicBlock">
+      <tr class="pj-list clr odd">
+        <td class="list  list-buyer  " style="margin: 0px; padding: 15px 0px; word-break: break-all; word-wrap: break-word; width: 180px; border-bottom-style: solid; border-bottom-color: rgb(239, 239, 239); vertical-align: middle;">
+          <p class="member" style="margin: 0px; padding: 0px 8px; line-height: 20px;">
+            苏**9&nbsp;<a class="member-star" href="http://vip.1688.com/club/buyer_growth_intr.htm" rel="nofollow" style="text-decoration: none; color: rgb(0, 102, 204); padding-left: 2px;" target="_blank" title="在线采购金额等级，展示采购商在线采购实力" trace="offer_buyers_rank"><img alt="在线采购金额等级，展示采购商在线采购实力" src="http://i02.c.aliimg.com/cms/upload/member/club/buy_3_star.gif" style="border: none;" title="在线采购金额等级，展示采购商在线采购实力" /></a></p>
+        </td>
+        <td class="list  list-trade  " style="margin: 0px; padding: 15px 0px; word-break: break-all; word-wrap: break-word; width: 170px; border-bottom-style: solid; border-bottom-color: rgb(239, 239, 239); vertical-align: middle;">
+          <span class="list-price   " style="width: 154px; display: block; text-align: center; color: rgb(255, 115, 0); font-weight: 700;">56</span>
+          <div class="fd-clr" style="zoom: 1; word-wrap: break-word;">
+            &nbsp;</div>
+        </td>
+        <td class="list  list-amount " style="margin: 0px; padding: 15px 0px; word-break: break-all; word-wrap: break-word; width: 170px; text-align: center; border-bottom-style: solid; border-bottom-color: rgb(239, 239, 239); vertical-align: middle;">
+          <p class="amount" style="margin: 0px; padding: 0px 8px;">
+            5 千克</p>
+          <p class="note" style="margin: 0px; padding: 0px 8px; color: rgb(170, 170, 170);">
+            累计采购5千克</p>
+        </td>
+        <td class="list  list-time " style="margin: 0px; padding: 15px 0px; word-break: break-all; word-wrap: break-word; border-bottom-style: solid; border-bottom-color: rgb(239, 239, 239); vertical-align: middle;">
+          <p class="time" style="margin: 0px; padding: 0px 8px; line-height: 20px; color: rgb(153, 153, 153); clear: both;">
+            2015-04-22 19:59:13</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  </section>
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-3">
+    <div class="comment-total fd-clr" style="zoom: 1; height: 30px; position: relative; margin: 5px 0px; z-index: 10; color: rgb(68, 68, 68); font-family: Tahoma, Arial, 宋体, sans-serif; line-height: 18px;">
+  <div class="comment-satisfaction" id="comment-satisfaction" style="float: left; line-height: 24px; position: relative; z-index: 2; width: 214px;">
+    <b style="float: left; line-height: 28px;">商品满意度：</b>
+    <div class="baseinfo" style="position: absolute; right: 0px; top: 0px; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-left-style: solid; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 0px 8px; z-index: 11;">
+      <span class="num" style="font-size: 22px; color: rgb(255, 115, 0);">5.0&nbsp;</span></div>
+  </div>
+  <div class="winport-comment" id="winport-comment" style="float: right; line-height: 24px; position: relative; z-index: 2; width: 125px;">
+    <span class="winport-title" style="position: absolute; right: 0px; top: 0px; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-left-style: solid; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); padding: 0px 8px; z-index: 11;"><b>店铺动态评分</b></span></div>
+</div>
+<div class="comment-impressions" style="color: rgb(68, 68, 68); font-family: Tahoma, Arial, 宋体, sans-serif; line-height: 18px;">
+  &nbsp;</div>
+<p class="txt-desc" style="margin: 0px; padding: 0px; color: rgb(68, 68, 68); font-family: Tahoma, Arial, 宋体, sans-serif; line-height: 18px;">
+  (统计结果截止到昨天)</p>
+<p>
+  &nbsp;</p>
+<div class="widget-de-paging de-comment-paging fd-clr fd-hide" style="zoom: 1; margin-top: 8px; color: rgb(68, 68, 68); font-family: Tahoma, Arial, 宋体, sans-serif; line-height: 18px;">
+  <ul class="paging" data-sp="paging" style="margin: 0px; padding-right: 0px; padding-left: 0px; list-style: none; float: right;">
+  </ul>
+</div>
+<div class="comment-list" style="color: rgb(68, 68, 68); font-family: Tahoma, Arial, 宋体, sans-serif; line-height: 18px;">
+  <div class="d-header" id="commentheader" style="border-style: solid; border-color: rgb(226, 226, 226); border-width: 1px 0px; height: 22px; line-height: 22px; margin-top: 15px; padding: 4px; position: relative; background: rgb(250, 250, 250);">
+    <div class="star-filter" style="float: left; padding-left: 10px;">
+      <label style="padding-right: 5px;"><input checked="checked" name="star-filter" style="margin-top: 0px; margin-right: 0px; margin-left: 0px; padding: 0px; font-stretch: normal; font-size: 12px; line-height: 1.5; font-family: Tahoma, Arial, 宋体, sans-serif; vertical-align: middle;" type="radio" value="" />&nbsp;全部</label>&nbsp;<label style="padding-right: 5px;"><input name="star-filter" style="margin-top: 0px; margin-right: 0px; margin-left: 0px; padding: 0px; font-stretch: normal; font-size: 12px; line-height: 1.5; font-family: Tahoma, Arial, 宋体, sans-serif; vertical-align: middle;" type="radio" value="7" />&nbsp;四星五星&nbsp;<span style="color: rgb(255, 115, 0); padding-right: 5px;">(0)</span></label>&nbsp;<label style="padding-right: 5px;"><input name="star-filter" style="margin-top: 0px; margin-right: 0px; margin-left: 0px; padding: 0px; font-stretch: normal; font-size: 12px; line-height: 1.5; font-family: Tahoma, Arial, 宋体, sans-serif; vertical-align: middle;" type="radio" value="3" />&nbsp;三星&nbsp;<span style="color: rgb(255, 115, 0); padding-right: 5px;">(0)</span></label>&nbsp;<label style="padding-right: 5px;"><input name="star-filter" style="margin-top: 0px; margin-right: 0px; margin-left: 0px; padding: 0px; font-stretch: normal; font-size: 12px; line-height: 1.5; font-family: Tahoma, Arial, 宋体, sans-serif; vertical-align: middle;" type="radio" value="6" />&nbsp;一星二星&nbsp;<span style="color: rgb(255, 115, 0); padding-right: 5px;">(0)</span></label></div>
+    <div class="sort-filter" style="float: right; padding-right: 8px;">
+      <label style="float: left; margin-right: 10px;"><input checked="checked" id="hascontent" name="hascontent" style="margin: 0px; padding: 0px; font-stretch: normal; font-size: 12px; line-height: 1.5; font-family: Tahoma, Arial, 宋体, sans-serif; vertical-align: middle;" type="checkbox" />&nbsp;有评价内容</label>
+      <div class="sort-box" style="position: relative; float: left; border: 1px solid rgb(204, 204, 204); line-height: 20px; height: 20px; background: rgb(255, 255, 255);">
+        <span class="current-sort" data-sort="date" style="border-right-width: 1px; border-right-style: solid; border-right-color: rgb(204, 204, 204); padding: 0px 8px; float: left;">最近评价</span></div>
+    </div>
+  </div>
+  <div class="d-content" id="commentbody">
+    <div class="nocomment">
+      <p style="margin: 10px 0px; padding: 20px 0px; border: 1px solid rgb(229, 229, 229); height: 20px; font-size: 14px; font-weight: 700; text-align: center;">
+        &nbsp;</p>
+    </div>
+  </div>
+</div>
+  </section>
+  <section role="tabpanel" aria-hidden="true" class="content" id="panel2-4">
+   批发说明
+供应商支持混批 ，500元以上起批 或者 20千克以上起批。
+什么是混批？
+混批是指不限产品的种类和样式，买家只要采购总价（或总量）达到或高于设置金额（或数量）即可享受批发价格。
+  </section>
+</div>
+</div>
+</div>
+ 
+<div class="row">
+<hr>
+<div class="large-12 columns">
+<h4>您可能感兴趣</h4>
+</div>
+<div class="row">
+  <div class="small-6 large-2 medium-4 columns">
+    <a href="product.html"><img src="images/flavoring500x500.jpg"></a>
+  </div>
+  <div class="small-6 large-2 medium-4 columns">
+    <a href="product.html"><img src="images/flavoring500x500.jpg"></a>
+  </div>
+  <div class="small-6 large-2 medium-4 columns">
+    <a href="product.html"><img src="images/flavoring500x500.jpg"></a>
+  </div>
+  <div class="small-6 large-2 medium-4 columns">
+    <a href="product.html"><img src="images/flavoring500x500.jpg"></a>
+  </div>
+  <div class="small-6 large-2 medium-4 columns">
+    <a href="product.html"><img src="images/flavoring500x500.jpg"></a>
+  </div>
+  <div class="small-6 large-2 medium-4 columns">
+    <a href="product.html"><img src="images/flavoring500x500.jpg"></a>
+  </div>
+</div>

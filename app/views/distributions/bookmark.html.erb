@@ -1,0 +1,36 @@
+<ul class="breadcrumbs">
+  <li><a href="/distributions">首页</a></li>
+  <li class="unavailable"><a href="#">采购管理</a></li>
+  <li class="current"><a href="#">收藏夹</a></li>
+</ul>
+  <%@bookmark.each do |goods|%>
+  <div class="row">
+    <div class="columns large-2 small-3">
+       <%=link_to "/distributions/#{goods.bn}/product", :target=>"_blank" do %>
+            <%=image_tag goods.list_default_pic,:alt=>goods.name,:class=>"default"%>
+      <%end%>
+    </div>
+    <div class="columns large-9 small-9">
+      <div class="row">
+        <div class="columns medium-12"><h4><%=goods.name%></h4></div>
+        <div class="columns medium-6 price">￥<%=goods.price%></div>
+        <div class="columns medium-6"><input type="text" value="10"></div>
+      </div>
+    </div>
+    <div class="columns large-1 small-12 text-center">
+       <a href="#" class="button radius alert tiny">删除</a>
+      <a href="#" class="button radius success tiny">订货</a>
+    </div>
+  </div>
+  <hr>
+  <%end%>  
+  <div class="row">     
+     <div class="columns medium-6 small-12 price">
+     </div>
+      <div class="columns medium-3 small-6">
+        <a href="/distributions" class="button radius tiny">继续采购</a>
+     </div>
+     <div class="columns medium-3 small-6">
+        <a href="/distributions/cart" class="button radius success tiny">查看订货单</a>
+     </div>
+  </div>

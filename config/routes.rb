@@ -3,6 +3,23 @@ require 'httpclient'
 Modengke::Application.routes.draw do
 
 
+  resources :distributions do
+
+    collection do 
+      get :cart
+      get :bookmark
+      get :orderproducts
+      get :ordernew
+    end 
+
+    member do
+      get 'add_to_cart'
+      get :product
+      get :add_to_bookmark
+      get :category
+    end
+  end
+
   #scope :module => "shop" do
   get 'shop'=>'shop/shopinfos#myshop'
   namespace :shop do

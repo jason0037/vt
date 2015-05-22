@@ -25,16 +25,10 @@
                 <li class="order_list">
                   <%unless @supplier.id.to_s=="98" %>
                   <%=image_tag order_item.good.medium_pic,:class=>"thumb" if order_item.good%><%end%>
-                  <span style="font-size: 14px"><%=order_item.good.name%></span></li>
+                  <span style="font-size: 14px"><%=order_item.good.name if order_item.good%></span></li>
             <%end%>
           </ul>
         </div>
-
-
-
-
-
-
     <%end%></div></div>
 
 

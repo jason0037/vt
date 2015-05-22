@@ -12,13 +12,13 @@
     <div class="am-panel-bd am-padding-xs" style="margin: 0px;">
       <ul class="am-avg-sm-4 am-text-center index-btns">
         <li class="am-padding-xs">
-          <a href="javascript:void(0)" data-am-modal="{target: '#'}">
+          <a href="javascript:void(0)" data-am-modal="{target: '/galleries/126'}">
             <p><span class="am-icon-list am-icon-btn am-warning"></span></p>
             <p>类目</p>
           </a>
         </li>
         <li class="am-padding-xs">
-          <a href="javascript:void(0)">
+          <a href="javascript:void(0)"  data-am-modal="{target: '/galleries/129'}">
             <p><span class="am-icon-cutlery am-icon-btn am-success"></span></p>
             <p>美食</p>
           </a>
@@ -42,29 +42,34 @@
 
 <div class="am-g">
   <div data-am-widget="titlebar" style="margin: 0px;" class="am-titlebar  am-margin-zero am-titlebar-multi am-no-layout">
-    <h2 class="am-titlebar-title">今日团购</h2>  <span>每天9:30上新</span>
+    <h2 class="am-titlebar-title">今日预售</h2>  <span>每天9:30上新</span>
   </div>
   <div id="demo-view" data-backend-compiled="">
     <div data-am-widget="list_news" class="am-list-news am-list-news-default am-no-layout">
 
       <div class="am-list-news-bd">
         <ul class="am-list">
+          <%if !@tuan.nil?%>
           <%@tuan.each do |tuan|%>
 
      <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-left">
-                <a href="/tuan/wares_details?goods_id=<%=tuan.goods_id%>">
+                <!-- <a href="/tuan/wares_details?goods_id=<%=tuan.goods_id%>"> -->
+                <a href="http://vshop.trade-v.com/mproducts?id=<%=tuan.bn%>&supplier_id=78&fp=tuan">
                   <div class="am-u-sm-4 am-list-thumb" style="max-height: 100%">
 
-                    <img src="<%=tuan.good.list_default_pic%>"  style="display: block;">
+                    <img src="<%=tuan.list_default_pic%><%#=tuan.good.list_default_pic%>"  style="display: block;">
                   </div>
                   <div class="am-u-sm-8 am-list-main" style="overflow: hidden;">
-                    <h4 class="title omitted" style="padding-top: 0px; padding-bottom: 0px;"><%=tuan.good.name%></h4>
-                    <div class="zkhw"><span class="price">￥<%=tuan.promotionsprice%></span>
+                    <h4 class="title omitted" style="padding-top: 0px; padding-bottom: 0px;"><%=tuan.name%><%#tuan.good.name%></h4>
+                    <div class="zkhw"><span class="price">￥<%=tuan.price%><%#tuan.promotionsprice%></span>
 
                     </div>
-                    <div class="tradev"><span class="originalprice">￥<%=tuan.good.price%></span><span class="zk"><%=format('%.2f',(tuan.promotionsprice.to_f)/(tuan.good.price.to_f))%>折</span><span class="gmrs"> <%=tuan.count%>人已买</span></div>
-                  </div> <span class="omitted"><%=tuan.description %></span>
-                  <span class="omitted">到期时间:<%=Time.at(tuan.to_time).to_s(:db)%></span></a></li>
+                    <div class="tradev"><span class="originalprice">￥<%=tuan.mktprice%><%#tuan.good.price%></span>
+                    <span class="zk" style="display:none"><%#=format('%.2f',(tuan.promotionsprice.to_f)/(tuan.good.price.to_f))%>折</span>
+                    <span class="gmrs"  style="display:none"> <%#=tuan.count%>人已买</span></div>
+                  </div> <span class="omitted"><%#=tuan.description %></span>
+                  <span class="omitted">到期时间:2015年6月30日<%#=Time.at(tuan.to_time).to_s(:db)%></span></a></li>
+                       <%end%>
                        <%end%>
 
         </ul>  </div></div></div>

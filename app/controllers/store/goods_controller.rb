@@ -83,218 +83,22 @@ class Store::GoodsController < ApplicationController
 
   end
 
-  def food_beverage
-
-    @promotions= Ecstore::Promotion.where(:mallname=>"food_beverage").order("priority asc")
-  #   @goods_mok= Ecstore::Good.where(:supplier_id=>"114").order("p_order asc,uptime desc")
-  # @goods_bs=Ecstore::Good.where(:supplier_id=>"115") .order("p_order asc,uptime desc")
-  #   @goods_ptj=Ecstore::Good.where(:supplier_id=>"116").order("p_order asc,uptime desc")
-    @supplier = Ecstore::Supplier.find(params[:supplier_id])
-
-    @recommend_user = session[:recommend_user]
-
-    if @recommend_user==nil &&  params[:wechatuser]
-      @recommend_user = params[:wechatuser]
-    end
-    if @recommend_user
-      member_id =-1
-      if signed_in?
-        member_id = @user.member_id
-      end
-      now  = Time.now.to_i
-      Ecstore::RecommendLog.new do |rl|
-        rl.wechat_id = @recommend_user
-        #  rl.goods_id = @good.goods_id
-        rl.member_id = member_id
-        rl.terminal_info = request.env['HTTP_USER_AGENT']
-        #   rl.remote_ip = request.remote_ip
-        rl.access_time = now
-      end.save
-      session[:recommend_user]=@recommend_user
-      session[:recommend_time] =now
-    end
-
-    render :layout=>@supplier.layout
-  end
-
-
- def fashion
-
-   @promotions= Ecstore::Promotion.where(:mallname=>"fashion").order("priority asc")
-
-    @supplier = Ecstore::Supplier.find(params[:supplier_id])
-
-    @recommend_user = session[:recommend_user]
-
-    if @recommend_user==nil &&  params[:wechatuser]
-      @recommend_user = params[:wechatuser]
-    end
-    if @recommend_user
-      member_id =-1
-      if signed_in?
-        member_id = @user.member_id
-      end
-      now  = Time.now.to_i
-      Ecstore::RecommendLog.new do |rl|
-        rl.wechat_id = @recommend_user
-        #  rl.goods_id = @good.goods_id
-        rl.member_id = member_id
-        rl.terminal_info = request.env['HTTP_USER_AGENT']
-        #   rl.remote_ip = request.remote_ip
-        rl.access_time = now
-      end.save
-      session[:recommend_user]=@recommend_user
-      session[:recommend_time] =now
-    end
-
-    render :layout=>@supplier.layout
-  end
-
-  def black_tea
-    @promotions= Ecstore::Promotion.where(:mallname=>"black_tea").order("priority asc")
-
-    @supplier = Ecstore::Supplier.find(params[:supplier_id])
-
-    @recommend_user = session[:recommend_user]
-
-    if @recommend_user==nil &&  params[:wechatuser]
-      @recommend_user = params[:wechatuser]
-    end
-    if @recommend_user
-      member_id =-1
-      if signed_in?
-        member_id = @user.member_id
-      end
-      now  = Time.now.to_i
-      Ecstore::RecommendLog.new do |rl|
-        rl.wechat_id = @recommend_user
-        #  rl.goods_id = @good.goods_id
-        rl.member_id = member_id
-        rl.terminal_info = request.env['HTTP_USER_AGENT']
-        #   rl.remote_ip = request.remote_ip
-        rl.access_time = now
-      end.save
-      session[:recommend_user]=@recommend_user
-      session[:recommend_time] =now
-    end
-
-    render :layout=>@supplier.layout
-  end
-
-  def prime_beef
-
-
-
-   @promotions= Ecstore::Promotion.where(:mallname=>"prime_beef").order("priority asc")
-
-    @supplier = Ecstore::Supplier.find(params[:supplier_id])
-
-    @recommend_user = session[:recommend_user]
-
-    if @recommend_user==nil &&  params[:wechatuser]
-      @recommend_user = params[:wechatuser]
-    end
-    if @recommend_user
-      member_id =-1
-      if signed_in?
-        member_id = @user.member_id
-      end
-      now  = Time.now.to_i
-      Ecstore::RecommendLog.new do |rl|
-        rl.wechat_id = @recommend_user
-        #  rl.goods_id = @good.goods_id
-        rl.member_id = member_id
-        rl.terminal_info = request.env['HTTP_USER_AGENT']
-        #   rl.remote_ip = request.remote_ip
-        rl.access_time = now
-      end.save
-      session[:recommend_user]=@recommend_user
-      session[:recommend_time] =now
-    end
-
-    render :layout=>@supplier.layout
-  end
-
-  def world_food
-
-    @goods = Ecstore::Good.where(:supplier_id=>"77").order("p_order asc,uptime desc")
-    if params[:cat_id]
-      @goods =  Ecstore::Good.where(:supplier_id=>"77",:cat_id=>params[:cat_id]).order("p_order asc,uptime desc")
-    end
-
-    @supplier = Ecstore::Supplier.find(params[:supplier_id])
-
-    @recommend_user = session[:recommend_user]
-
-    if @recommend_user==nil &&  params[:wechatuser]
-      @recommend_user = params[:wechatuser]
-    end
-    if @recommend_user
-      member_id =-1
-      if signed_in?
-        member_id = @user.member_id
-      end
-      now  = Time.now.to_i
-      Ecstore::RecommendLog.new do |rl|
-        rl.wechat_id = @recommend_user
-        #  rl.goods_id = @good.goods_id
-        rl.member_id = member_id
-        rl.terminal_info = request.env['HTTP_USER_AGENT']
-        #   rl.remote_ip = request.remote_ip
-        rl.access_time = now
-      end.save
-      session[:recommend_user]=@recommend_user
-      session[:recommend_time] =now
-    end
-
-    render :layout=>@supplier.layout
-  end
-
-
-
-  def quality_products
-    @promotions= Ecstore::Promotion.where(:mallname=>"quality_products").order("priority asc")
-     @supplier = Ecstore::Supplier.find(params[:supplier_id])
-  #   @goods_zmq =  Ecstore::Good.where(:supplier_id=>"104").order("p_order asc,uptime desc")
-  #  @goods_tiegun=Ecstore::Good.where(:supplier_id=>"106").order("p_order asc,uptime desc")
-  #  @goods_cmcyz=Ecstore::Good.where(:supplier_id=>"105").order("p_order asc,uptime desc")
-  # @goods_dmdm =Ecstore::Good.where(:supplier_id=>"108").order("p_order asc,uptime desc")
-  #  @goods_tsdzx=Ecstore::Good.where(:supplier_id=>"87").order("p_order asc,uptime desc")
-  #   @goods_ysgj=Ecstore::Good.where(:supplier_id=>"112").order("p_order asc,uptime desc")
-  #   @goods_cc=Ecstore::Good.where(:supplier_id=>"113").order("p_order asc,uptime desc")
-    @recommend_user = session[:recommend_user]
-
-    if @recommend_user==nil &&  params[:wechatuser]
-      @recommend_user = params[:wechatuser]
-    end
-    if @recommend_user
-      member_id =-1
-      if signed_in?
-        member_id = @user.member_id
-      end
-      now  = Time.now.to_i
-      Ecstore::RecommendLog.new do |rl|
-        rl.wechat_id = @recommend_user
-        #  rl.goods_id = @good.goods_id
-        rl.member_id = member_id
-        rl.terminal_info = request.env['HTTP_USER_AGENT']
-        #   rl.remote_ip = request.remote_ip
-        rl.access_time = now
-      end.save
-      session[:recommend_user]=@recommend_user
-      session[:recommend_time] =now
-    end
-
-    render :layout=>@supplier.layout
-  end
-
-
 
  def mproduct
-   if params[:id]=="78" ||params[:supplier_id]=="78"
 
+  @no_need_login = 1
+
+    if params[:supplier_id]
+      supplier_id  = params[:supplier_id]
+    end
+    if supplier_id.empty?
+      supplier_id =78
+    end
+
+   if supplier_id=="78"
      set_locale
    end
+
   if params[:ref_id]
    @tuan=Ecstore::GoodsPromotionRef.where(:status=>"true",:ref_id=>params[:ref_id]).first
    end
@@ -342,7 +146,6 @@ class Store::GoodsController < ApplicationController
      end
    end
 
-   supplier_id = params[:supplier_id]
    if supplier_id==nil
       if @user
         supplier_id= @user.account.supplier_id

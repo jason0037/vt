@@ -1,10 +1,16 @@
 //alert('platform:<%=params[:platform]%>;return_url:<%=@return_url%>:supplier_id:<%=@supplier_id%>');
 window.location.href ='/vshop/<%=@supplier_id%>';
 
+var return_url='<%=@return_url%>';
+
 if ('<%=@platform%>'=='mobile'){
-    window.location.href='<%=@return_url%>';
+	if (return_url.length==0){
+		return_url = '/tuan';
+	}
+	
+    window.location.href=return_url;
 }
 else{
-    window.parent.location.replace('<%=@return_url%>');
+    window.parent.location.replace(return_url);
 }
 

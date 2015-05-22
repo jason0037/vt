@@ -1,0 +1,188 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>吃货帮-供配频道</title>
+    <link rel="stylesheet" href="/supply_distribution/stylesheets/app.css" />
+    <link href="/supply_distribution/foundation-icons/foundation-icons.css" rel="stylesheet">
+    <script src="/supply_distribution/bower_components/modernizr/modernizr.js"></script>
+    <style type="text/css">
+       #bottomNav {z-index:9999; position:fixed; bottom:0; left:0; width:100%; _position:absolute;
+       _top: expression_r(documentElement.scrollTop + documentElement.clientHeight-this.offsetHeight); overflow:visible; }
+    </style>
+  </head>
+ <body>
+<div class="row">
+  <div class="large-12 columns">
+   
+    <div class="row">
+      <div class="large-12 columns">
+        <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
+          <ul class="title-area">     
+            <li class="name">
+              <h1><a href="/distributions/"><i class="fi-arrows-out style7"></i>供配频道</a></h1>
+            </li>
+            <li class="toggle-topbar menu-icon">
+              <a href="#"><span></span></a>
+            </li>
+          </ul>
+          <section class="top-bar-section">
+            <ul class="left" >
+              <li><a href="#" data-reveal-id="myModal">登录</a></li>
+              <li class=""><a class="signup" href="#" data-reveal-id="myModal">注册</a></li>
+            </ul>    
+            <ul class="right">
+              <li class="divider"></li>
+              <li class="has-dropdown">
+                <a href="/distributions">商品分类</a>
+                <ul class="dropdown">                 
+                  <li><a href="/distributions#ingredients">食材</a></li>
+                  <li><a href="/distributions#grain_oil">粮油</a></li>
+                  <li><a href="/distributions#flavoring">调料</a></li>
+                  <li><a href="/distributions#drinks">酒水</a></li>                 
+                </ul>
+              </li>
+              <li class="divider"></li>
+              <li>
+               <a href="#">供货中心</a>
+              </li>
+              <li class="divider"></li>
+              <li class="has-dropdown">
+                <a href="#">采购中心</a>
+                <ul class="dropdown">       
+                  <li class="has-dropdown">
+                    <li><%=link_to "购买明细",orderproducts_distributions_path%></li>
+                    <ul class="dropdown">
+                      <li>
+                       <a href="orderproducts.html#recieved">已签收</a>
+                      </li>
+                      <li>
+                        <a href="orderproducts.html#unrecieved">未签收</a>
+                      </li>
+                      <li>
+                        <a href="orderproducts.html#paid">已付款</a>
+                      </li>
+                      <li>
+                        <a href="orderproducts.html#unpaid">未付款</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><%=link_to "收藏夹",bookmark_distributions_path%></li>
+                  <li><%=link_to "进货单",cart_distributions_path%></li>
+                  <li>
+                  <a href="#">收货地址</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+        </nav> 
+      </div>
+    </div> 
+ 
+
+    <!-- modal content -->
+    <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="login or sign up" aria-hidden="true" role="dialog">
+      <div class="row">
+        <div class="large-6 columns auth-plain">
+          <div class="signup-panel left-solid">
+            <p class="welcome">请登录</p>
+            <form>
+              <div class="row collapse">
+                <div class="small-2  columns">
+                  <span class="prefix"><i class="fi-torso-female"></i></span>
+                </div>
+                <div class="small-10  columns">
+                  <input type="text" placeholder="username">
+                </div>
+              </div>
+              <div class="row collapse">
+                <div class="small-2 columns ">
+                  <span class="prefix"><i class="fi-lock"></i></span>
+                </div>
+                <div class="small-10 columns ">
+                  <input type="text" placeholder="password">
+                </div>
+              </div>
+            </form>
+            <a href="#" class="button ">登录</a>
+          </div>
+        </div>
+
+        <div class="large-6 columns auth-plain">
+          <div class="signup-panel newusers">
+            <p class="welcome"> New User?</p>
+            <p>By creating an account with us, you will be able to move through the checkout process faster, view and track your orders, and more.</p><br>
+            <a href="#" class="button ">Sign Up</a><br/>
+          </div>
+        </div>
+
+       </div>
+      <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+    </div>
+
+   
+     <%=yield%>
+   
+    </div> 
+    <footer class="row" style="margin-bottom:140px;">
+      <div class="large-12 columns">
+        <hr>
+        <div class="row">
+        <div class="large-6 columns">
+         <p>© Copyright trade-v.com</p>
+        </div>
+        <div class="large-6 columns">
+        <ul class="inline-list right">
+        <li>
+        <a href="/">贸威优品商城</a>
+        </li>
+        </ul>
+        </div>
+        </div>
+      </div>
+    </footer> 
+  </div>
+</div>
+
+ <div class="icon-bar four-up show-for-small-only"  id="bottomNav">
+      <a class="item" href="/distributions">
+        <i class="fi-home style1"></i>
+        <label>首页</label>
+      </a>
+      <a class="item" href="/distributions/bookmark">
+        <i class="fi-star style1"></i>
+        <label>收藏</label>
+      </a>
+      <a class="item" href="/distributions/cart">  
+        <i class="fi-shopping-cart style1"></i>
+        <label>进货单</label>
+      </a>
+      <a class="item" href="/distributions/orderproducts">
+        <i class="fi-clipboard-notes style1"></i>
+        <label>订单</label>
+      </a>
+    </div>
+
+<script>
+  document.write('<script src=/supply_distribution/js/vendor/' +
+  ('__proto__' in {} ? 'zepto' : 'jquery') +
+  '.js><\/script>')
+  </script>
+
+    <script src="/supply_distribution/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/supply_distribution/bower_components/foundation/js/foundation.min.js"></script>
+    <script src="/supply_distribution/bower_components/foundation/js/foundation/foundation.magellan.js"></script>
+    <script>
+    ￥(document).foundation();
+  </script>
+    <script src="/supply_distribution/js/app.js"></script>
+    <script>
+      ￥(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+    </script>
+  </body>
+</html>

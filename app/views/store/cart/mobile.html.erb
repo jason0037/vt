@@ -5,7 +5,7 @@
 </style>
 <div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
   <div class="am-panel-hd" style="text-align: center"><%= I18n.t "shopping-basket"%>
-    <a href="/world_food?supplier_id=<%=@supplier.id%>" style="float: right"> <%= I18n.t "continue_shopping"%></a>
+    <a href="/tuan" style="float: right"> <%= I18n.t "continue_shopping"%></a>
   </div>
 </div>
 
@@ -94,7 +94,8 @@
 
       </div>
       <%if @line_items[0]== nil%>
-          <a  style="float: right" class="am-btn am-btn-warning" style="margin-left: 30%" href="/vshop/<%=@supplier.id%>">
+          <a  style="float: right" class="am-btn am-btn-warning" style="margin-left: 30%" href="/tuan">
+          <!-- /vshop/<%=@supplier.id%> -->
             <i class="am-icon-shopping-cart"></i>
             <%= I18n.t "continue_shopping"%>
           </a>

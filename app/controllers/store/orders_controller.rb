@@ -471,9 +471,14 @@ class Store::OrdersController < ApplicationController
       supplier_id=78
     end
 
+    shop_id = params[:shop_id]
+    if shop_id.nil?
+      shop_id =' shop is null'
+    end
+
    sql = "SELECT SUM(price*quantity) AS total,mdk.sdb_b2c_cart_objects.supplier_id,SUM(freight)/count(*) AS freight FROM mdk.sdb_b2c_cart_objects
 INNER JOIN mdk.sdb_b2c_goods ON SUBSTRING_INDEX(SUBSTRING_INDEX(mdk.sdb_b2c_cart_objects.obj_ident,'_',2),'_',-1) = mdk.sdb_b2c_goods.goods_id
-WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id}
+WHERE mdk.sdb_b2c_cart_objects.member_id=#{@user.member_id} and shop_id is null
 GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
     @cart_total_by_supplier = ActiveRecord::Base.connection.execute(sql)
     @cart_freight = 0
@@ -485,7 +490,6 @@ GROUP BY mdk.sdb_b2c_cart_objects.supplier_id"
       end
       @cart_freight += row["freight"]
     end
-
 
     @cart_total_final = @cart_total+ @cart_freight + @favorable_terms
     @addrs =  @user.member_addrs
