@@ -113,8 +113,69 @@ class Auth::WeixinController < ApplicationController
 	  			@user.weixin_unionid = user_info.unionid
   			@user.save!(:validate=>false)
 			sign_in(auth_ext.account,'1')
+
+			@key = session[:key]
+			@url = session[:url]
+			if @key　#如果是从推荐页面进来的用户
+				
+				@mlm = Ecstore::Mlm.where(:member_id=>auth_ext.account_id) #判断是否已经有上级
+				if @mlm.new_record?
+					@mlm = Ecstore::Mlm.new do |m|
+						m.member_id = auth_ext.account_id
+						m.superior_id = @key
+					end
+					@mlm.save!
+					#调用微信接口通知上级，新增了下线
+
+
+					json = "{
+'touser':'OPENID',
+'template_id':'4mjMdY541r_VElWDbLirzUDFOSD7G3122wwFjtKvX1A',
+'url':'http://weixin.qq.com/download',
+'topcolor':'#FF0000',
+'data':{
+'User': {
+'value':'黄先生',
+'color':'#173177'
+},
+'Date':{
+'value':'06月07日 19时24分',
+'color':'#173177'
+},
+'CardNumber':{
+'value':'0426',
+'color':'#173177'
+},
+'Type':{
+'value':'消费',
+'color':'#173177'
+},
+'Money':{
+'value':'人民币260.00元',
+'color':'#173177'
+},
+'DeadTime':{
+'value':'06月07日19时24分',
+'color':'#173177'
+},
+'Left':{
+'value':'6504.09',
+'color':'#173177'
+}
+}
+}"
+
+
+
+
+
+				end
+
+			end
 		   
 		end
+
+
 
 		if return_url
 	        redirect = return_url

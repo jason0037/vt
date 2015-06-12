@@ -78,6 +78,14 @@ class Ecstore::Order < Ecstore::Base
         freight77 = 35
       end
     end
+    #Weiss
+    freight127 =0
+    items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 127}.collect{ |order_item|  order_item.amount }.inject(:+)
+    if items_amount_supplier
+      if items_amount_supplier <200
+        freight127 = 30
+      end
+    end
     #诺狮
     freight97 = 0
     items_amount_supplier = self.order_items.select{ |order_item| order_item.good.supplier_id == 97}.collect{ |order_item|  order_item.amount }.inject(:+)
@@ -103,7 +111,7 @@ class Ecstore::Order < Ecstore::Base
            freight += 0
          end
 =end
-    self.cost_freight =  freight77 + freight97
+    self.cost_freight =  freight77 + freight97 + freight127
     # items_amount = self.order_items.select{ |order_item| order_item.item_type == 'product' }.collect{ |order_item|  order_item.amount }.inject(:+).to_f
 
     if  items_amount&&pmts_amount
@@ -264,13 +272,15 @@ class Ecstore::Order < Ecstore::Base
 
   def payment_name
     return "账期" if payment == "term"
+    return "微信支付" if payment == "wxpay"
+    return "支付宝手机版" if payment == "alipaywap"    
+    return "支付宝PC版" if payment == "alipay"
     return "环迅人民币支付" if payment == "ips"
     return "交通银行网上支付" if payment == "bcom"
     return "工商银行网上支付" if payment == "icbc"
     return "预存款在线支付" if payment == "deposit"
     return "货到付款" if payment == "offline"
     return "快钱在线支付" if payment == "99bill"
-    return "支付宝在线支付" if payment == "alipay"
     return "无支付方式" if payment.blank?
   end
 

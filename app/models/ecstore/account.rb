@@ -2,19 +2,20 @@
 require 'digest/md5'
 require 'pp'
 class Ecstore::Account < Ecstore::Base
-
 	self.table_name = "sdb_pam_account"
-   has_one :order_dining, :foreign_key => "account_id"
-	
+
+	has_one :order_dining, :foreign_key => "account_id"	
 
 	belongs_to :manager,:foreign_key=>"account_id"
-  belongs_to :supplier, :foreign_key=>"supplier_id"
+  	belongs_to :supplier, :foreign_key=>"supplier_id"
 
 	has_one :user, :foreign_key=>"member_id"
 	has_one :member,:foreign_key=>"member_id"
 	has_one :auth_ext, :foreign_key=>"account_id"
 
-  has_many :commission,:foreign_key=>"member_id"
+  	has_many :commission,:foreign_key=>"member_id"
+
+  	has_many :mlms, :foreign_key=>"superior_id"
 
 
 	attr_accessible :auth_ext_id, :login_name, :login_password,:account_type, :login_password_confirmation, :email, :mobile, :follow_imodec,:license,:current_password
@@ -40,7 +41,7 @@ class Ecstore::Account < Ecstore::Base
 	validates :mobile,:format=>{:with=>/^\d{11}$/,:message=>"手机号码必须是11位数字"},
 					    :if=>Proc.new{ |c| c.mobile.present? }
 
-  validates :license, :presence=>{:presence=>true,:message=>"您还没有阅读注册协议"}, :if=>Proc.new{ |c| c.new_record? }
+ 	validates :license, :presence=>{:presence=>true,:message=>"您还没有阅读注册协议"}, :if=>Proc.new{ |c| c.new_record? }
 
 	validate :check_login_name_duplicated,:check_email_duplicated,:check_mobile_duplicated
 

@@ -33,7 +33,7 @@
 
     </div>
   <div class="am-col col-sm-4 ">
-     <span class="white_font">店铺佣金:<%= format('%.2f',@share_for_sale)if @share_for_sale %>&nbsp;</span>
+     <span class="white_font">销售佣金:<%= format('%.2f',@share_for_sale)if @share_for_sale %>&nbsp;</span>
  </div>  <%if @shop.parent.nil?%>
   <div class="am-col col-sm-4 ">
    <span class="white_font"> 分店佣金:<% if @share_for_shop==[]%>0<%else%><%= format('%.2f',@share_for_shop.share_shop)  %> <%end%></span>
@@ -74,6 +74,11 @@
     <div class="am-panel am-panel-default">
       <a href="/shop/shopinfos/myshop?shop_id=<%=@shop.shop_id%>">
         <div class="am-panel-hd">我的店铺</div>
+        <span class="icon-arr"></span> </a>
+    </div>
+    <div class="am-panel am-panel-default">
+      <a href="/shop/shopusers/branch?shop_id=<%=@shop.shop_id%>">
+        <div class="am-panel-hd">我的盟友</div>
         <span class="icon-arr"></span> </a>
     </div>
 

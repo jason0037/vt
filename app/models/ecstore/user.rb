@@ -8,6 +8,8 @@ class Ecstore::User < Ecstore::Base
                             :interests,:voc, :job, :income, :height, :weight, :shoesize,:price,:places,:colors,:edu,
                             :province,:city,:district,:login_count,:sms_validate,:email_validate,:custom_values,:sent_sms_at,:wechat_num,:user_desc
   self.accessible_all_columns
+  has_one :mlm, :foreign_key=>"member_id"
+
   belongs_to :account,:foreign_key=>"member_id"
 
   has_many :line_items,:class_name=>"Cart",:foreign_key=>"member_id",:conditions=>{ :obj_type=>"goods" }

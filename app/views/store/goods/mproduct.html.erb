@@ -23,10 +23,15 @@
     <%end%>
 <% if @supplier.id==78%>
 
-    <%if @cat.parent_id==558 %>
+    <%if @good.supplier_id==77 %>
         <div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
 
           <div class="am-panel-hd" style="text-align: center"><%= I18n.t "h4_1"%></span>
+          </div>
+    <%elsif @good.supplier_id==127 %>
+        <div class="am-panel am-panel-warning "style="margin: 0px;padding: 0px">
+
+          <div class="am-panel-hd" style="text-align: center">亲，本系列商品满200包邮哦！</span>
           </div>
     <%end%> 
 <%end%>
@@ -153,7 +158,7 @@
     <span class="num_cunt" data-ctime="true" data-carttime="-1402928788"></span>
 
     <%if @tuan.nil?%>
-        </a> <span class="mktprice" style=" color: rgb(176, 176, 172);" >￥<%=@good.mktprice %></span>  <span style="    color: #ff0000">￥<%=@good.default_product.price %>&nbsp;&nbsp;包邮</span>
+        </a> <span class="mktprice" style=" color: rgb(176, 176, 172);" >￥<%=@good.mktprice %></span>  <span style="    color: #ff0000">￥<%=@good.default_product.price %></span>
     <%else%>
         </a> <em>  团购价:</em> <span style="color: #ff0000">￥<%=@tuan.promotionsprice %></span>
     <%end%>

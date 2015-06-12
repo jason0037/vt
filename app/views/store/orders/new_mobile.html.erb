@@ -111,7 +111,7 @@
             <p>&nbsp;<%= I18n.t "order_goods_price"%>：<span class="fr  " id="order_amount" data-amount = "<%=@cart_total%>">¥<%=@cart_total%>&nbsp;</span></p>
             <p>&nbsp;<%= I18n.t "express_price"%>：
                   <span class="fr">¥<%=@cart_freight%>&nbsp;</span></p>
-            <p>&nbsp;优惠：<span class="fr">¥<%=@favorable_terms%>&nbsp;</span></p>
+            <p>&nbsp;优惠：<span class="fr">-¥<%=@favorable_terms%>&nbsp;</span></p>
             <p>&nbsp;<%= I18n.t "overall"%>：<span class="fr" style="color: red">¥<%=@cart_total_final%>&nbsp;</span></p>
 
             <span class="bg-border2"></span>

@@ -2,30 +2,32 @@
   <div class="am-g">
   <div class="am-u-md-6">
     <div class="am-panel am-panel-default">
-      <div class="am-panel-hd">
-        我的分店
+       <div class="am-panel-hd">
+        一级盟友
       </div>
-      <table class="am-panel-bd am-table">
+       <table class="am-panel-bd am-table" style="width:100%">
         <thead>
         <tr>
           <td>名称</td>
           <td>开店时间</td>
-          <td>店主昵称</td>
+          <td>佣金</td>
            </tr> </thead>
         <tbody>
         <%@results.each do |res|%>
         <tr>
-
-          <td><%=res.shop_name%></td>
+          <td><%=res.name%></td>
           <td> <%=(res.created_at)%> </td>
-              <td><%=res.name%></td>
-
+          <td></td>
         </tr>
              <%end%>
         </tbody>
-
-
           </table>
+      <div class="am-panel-hd">
+        二级盟友
+      </div>
+       <div class="am-panel-hd">
+        三级盟友
+      </div>
       </div></div>
 
 
